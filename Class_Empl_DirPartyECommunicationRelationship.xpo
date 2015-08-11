@@ -1,0 +1,173 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: Empl_DirPartyECommunicationRelationship unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #Empl_DirPartyECommunicationRelationship
+    PROPERTIES
+      Name                #Empl_DirPartyECommunicationRelationship
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class Empl_DirPartyECommunicationRelationship extends AfStronglyTypedDataContainer
+        #{
+        #    #define.ValidToDateTime('ValidToDateTime')
+        #    #define.ValidFromDateTime('ValidFromDateTime')
+        #    #define.Status('Status')
+        #    #define.RecId('RecId')
+        #    #define.PartyId('PartyId')
+        #    #define.DirPrivacyGroupTable('DirPrivacyGroupTable')
+        #    #define.DirECommunicationAddress('DirECommunicationAddress')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createDirECommunicationAddress
+        #public AfStronglyTypedDataContainerList createDirECommunicationAddress()
+        #{
+        #    return this.get_NewList(#DirECommunicationAddress);
+        #}
+      ENDSOURCE
+      SOURCE #createDirPrivacyGroupTable
+        #public AfStronglyTypedDataContainerList createDirPrivacyGroupTable()
+        #{
+        #    return this.get_NewList(#DirPrivacyGroupTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsDirECommunicationAddress
+        #public boolean existsDirECommunicationAddress()
+        #{
+        #    return this.exists(#DirECommunicationAddress);
+        #}
+      ENDSOURCE
+      SOURCE #existsDirPrivacyGroupTable
+        #public boolean existsDirPrivacyGroupTable()
+        #{
+        #    return this.exists(#DirPrivacyGroupTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsPartyId
+        #public boolean existsPartyId()
+        #{
+        #    return this.exists(#PartyId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsStatus
+        #public boolean existsStatus()
+        #{
+        #    return this.exists(#Status);
+        #}
+      ENDSOURCE
+      SOURCE #existsValidFromDateTime
+        #public boolean existsValidFromDateTime()
+        #{
+        #    return this.exists(#ValidFromDateTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsValidToDateTime
+        #public boolean existsValidToDateTime()
+        #{
+        #    return this.exists(#ValidToDateTime);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#Empl_DirPartyECommunicationRelationship);
+        #}
+      ENDSOURCE
+      SOURCE #parmDirECommunicationAddress
+        #public AfStronglyTypedDataContainerList parmDirECommunicationAddress(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#DirECommunicationAddress, _value);
+        #    }
+        #
+        #    return this.get_List(#DirECommunicationAddress);
+        #}
+      ENDSOURCE
+      SOURCE #parmDirPrivacyGroupTable
+        #public AfStronglyTypedDataContainerList parmDirPrivacyGroupTable(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#DirPrivacyGroupTable, _value);
+        #    }
+        #
+        #    return this.get_List(#DirPrivacyGroupTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmPartyId
+        #public DirPartyId parmPartyId(DirPartyId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PartyId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PartyId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmStatus
+        #public DirECommunicationStatus parmStatus(DirECommunicationStatus _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Status, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Status);
+        #}
+      ENDSOURCE
+      SOURCE #parmValidFromDateTime
+        #public DirECommunicationFromDateTime parmValidFromDateTime(DirECommunicationFromDateTime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ValidFromDateTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ValidFromDateTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmValidToDateTime
+        #public DirECommunicationToDateTime parmValidToDateTime(DirECommunicationToDateTime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ValidToDateTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ValidToDateTime);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

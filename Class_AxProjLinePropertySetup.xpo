@@ -1,0 +1,219 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxProjLinePropertySetup unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxProjLinePropertySetup
+    PROPERTIES
+      Name                #AxProjLinePropertySetup
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxProjLinePropertySetup axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxProjLinePropertySetup extends AxInternalBase
+        #{
+        #    ProjLinePropertySetup ProjLinePropertySetup;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public ProjLinePropertySetup currentRecord(ProjLinePropertySetup _ProjLinePropertySetup = ProjLinePropertySetup)
+        #{
+        #    if (!prmisdefault(_ProjLinePropertySetup))
+        #    {
+        #        super(_ProjLinePropertySetup);
+        #        ProjLinePropertySetup = _ProjLinePropertySetup;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return ProjLinePropertySetup;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected ProjLinePropertySetup emptyRecord()
+        #{
+        #    ProjLinePropertySetup localProjLinePropertySetup;
+        #    ;
+        #    return localProjLinePropertySetup;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCategoryCode
+        #public TableGroupAll parmCategoryCode(TableGroupAll _categoryCode = TableGroupAll::Table)
+        #{
+        #    if (!prmisdefault(_categoryCode))
+        #    {
+        #        this.setField(fieldNum(ProjLinePropertySetup, CategoryCode), _categoryCode);
+        #    }
+        #
+        #    return projLinePropertySetup.CategoryCode;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCategoryRelation
+        #public ProjCategoryRelation parmCategoryRelation(ProjCategoryRelation _categoryRelation = '')
+        #{
+        #    if (!prmisdefault(_categoryRelation))
+        #    {
+        #        this.setField(fieldNum(ProjLinePropertySetup, CategoryRelation), _categoryRelation);
+        #    }
+        #
+        #    return projLinePropertySetup.CategoryRelation;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmLinePropertyId
+        #public ProjLinePropertyId parmLinePropertyId(ProjLinePropertyId _linePropertyId = '')
+        #{
+        #    if (!prmisdefault(_linePropertyId))
+        #    {
+        #        this.setField(fieldNum(ProjLinePropertySetup, LinePropertyId), _linePropertyId);
+        #    }
+        #
+        #    return projLinePropertySetup.LinePropertyId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjCode
+        #public TableGroupAll parmProjCode(TableGroupAll _projCode = TableGroupAll::Table)
+        #{
+        #    if (!prmisdefault(_projCode))
+        #    {
+        #        this.setField(fieldNum(ProjLinePropertySetup, ProjCode), _projCode);
+        #    }
+        #
+        #    return projLinePropertySetup.ProjCode;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjRelation
+        #public ProjRelation parmProjRelation(ProjRelation _projRelation = '')
+        #{
+        #    if (!prmisdefault(_projRelation))
+        #    {
+        #        this.setField(fieldNum(ProjLinePropertySetup, ProjRelation), _projRelation);
+        #    }
+        #
+        #    return projLinePropertySetup.ProjRelation;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #ProjLinePropertySetup
+        #public ProjLinePropertySetup projLinePropertySetup(ProjLinePropertySetup _projLinePropertySetup = projLinePropertySetup)
+        #{
+        #    if (!prmisdefault(_projLinePropertySetup))
+        #    {
+        #        this.setCurrentRecordFromExternal(_projLinePropertySetup);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCategoryCode
+        #protected void setCategoryCode()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjLinePropertySetup, CategoryCode)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCategoryRelation
+        #protected void setCategoryRelation()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjLinePropertySetup, CategoryRelation)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setLinePropertyId
+        #protected void setLinePropertyId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjLinePropertySetup, LinePropertyId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjCode
+        #protected void setProjCode()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjLinePropertySetup, ProjCode)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjRelation
+        #protected void setProjRelation()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjLinePropertySetup, ProjRelation)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setProjCode();
+        #    this.setProjRelation();
+        #    this.setCategoryCode();
+        #    this.setCategoryRelation();
+        #    this.setLinePropertyId();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxProjLinePropertySetup construct()
+        #{
+        #    return new AxProjLinePropertySetup();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newProjLinePropertySetup
+        #public static AxProjLinePropertySetup newProjLinePropertySetup(ProjLinePropertySetup _ProjLinePropertySetup)
+        #{
+        #    AxProjLinePropertySetup AxProjLinePropertySetup = AxProjLinePropertySetup::construct();
+        #    ;
+        #    AxProjLinePropertySetup.ProjLinePropertySetup(_ProjLinePropertySetup);
+        #
+        #    return AxProjLinePropertySetup;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

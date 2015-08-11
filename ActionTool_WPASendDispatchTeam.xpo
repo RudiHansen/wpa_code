@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPASendDispatchTeam unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPASendDispatchTeam
+    Type: 3
+    PROPERTIES
+      Name                #WPASendDispatchTeam
+      Label               #@WPA138
+      HelpText            #@WPA139
+      ObjectType          #Class
+      Object              #WPASendDispatchTeam
+      RunOn               #Called from
+      ConfigurationKey    #WPAIntegration
+      SecurityKey         #WPAPeriodic
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

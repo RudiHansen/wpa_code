@@ -1,0 +1,311 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxDirPrivacyGroupTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxDirPrivacyGroupTable
+    PROPERTIES
+      Name                #AxDirPrivacyGroupTable
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxDirPrivacyGroupTable axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxDirPrivacyGroupTable extends AxInternalBase
+        #{
+        #    DirPrivacyGroupTable DirPrivacyGroupTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public DirPrivacyGroupTable currentRecord(DirPrivacyGroupTable _DirPrivacyGroupTable = DirPrivacyGroupTable)
+        #{
+        #    if (!prmisdefault(_DirPrivacyGroupTable))
+        #    {
+        #        super(_DirPrivacyGroupTable);
+        #        DirPrivacyGroupTable = _DirPrivacyGroupTable;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return DirPrivacyGroupTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #DirPrivacyGroupTable
+        #public DirPrivacyGroupTable dirPrivacyGroupTable(DirPrivacyGroupTable _dirPrivacyGroupTable = dirPrivacyGroupTable)
+        #{
+        #    if (!prmisdefault(_dirPrivacyGroupTable))
+        #    {
+        #        this.setCurrentRecordFromExternal(_dirPrivacyGroupTable);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected DirPrivacyGroupTable emptyRecord()
+        #{
+        #    DirPrivacyGroupTable localDirPrivacyGroupTable;
+        #    ;
+        #    return localDirPrivacyGroupTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDescription
+        #public DirPrivacyGroupDescription parmDescription(DirPrivacyGroupDescription _description = '')
+        #{
+        #    if (!prmisdefault(_description))
+        #    {
+        #        this.setField(fieldNum(DirPrivacyGroupTable, Description), _description);
+        #    }
+        #
+        #    return dirPrivacyGroupTable.Description;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmIsBusinessRel
+        #public NoYesId parmIsBusinessRel(NoYesId _isBusinessRel = NoYes::No)
+        #{
+        #    if (!prmisdefault(_isBusinessRel))
+        #    {
+        #        this.setField(fieldNum(DirPrivacyGroupTable, IsBusinessRel), _isBusinessRel);
+        #    }
+        #
+        #    return dirPrivacyGroupTable.IsBusinessRel;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmIsContactPerson
+        #public NoYesId parmIsContactPerson(NoYesId _isContactPerson = NoYes::No)
+        #{
+        #    if (!prmisdefault(_isContactPerson))
+        #    {
+        #        this.setField(fieldNum(DirPrivacyGroupTable, IsContactPerson), _isContactPerson);
+        #    }
+        #
+        #    return dirPrivacyGroupTable.IsContactPerson;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmIsCustomer
+        #public NoYesId parmIsCustomer(NoYesId _isCustomer = NoYes::No)
+        #{
+        #    if (!prmisdefault(_isCustomer))
+        #    {
+        #        this.setField(fieldNum(DirPrivacyGroupTable, IsCustomer), _isCustomer);
+        #    }
+        #
+        #    return dirPrivacyGroupTable.IsCustomer;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmIsEmployee
+        #public NoYesId parmIsEmployee(NoYesId _isEmployee = NoYes::No)
+        #{
+        #    if (!prmisdefault(_isEmployee))
+        #    {
+        #        this.setField(fieldNum(DirPrivacyGroupTable, IsEmployee), _isEmployee);
+        #    }
+        #
+        #    return dirPrivacyGroupTable.IsEmployee;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmIsOrgUnit
+        #public NoYesId parmIsOrgUnit(NoYesId _isOrgUnit = NoYes::No)
+        #{
+        #    if (!prmisdefault(_isOrgUnit))
+        #    {
+        #        this.setField(fieldNum(DirPrivacyGroupTable, IsOrgUnit), _isOrgUnit);
+        #    }
+        #
+        #    return dirPrivacyGroupTable.IsOrgUnit;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmIsVendor
+        #public NoYesId parmIsVendor(NoYesId _isVendor = NoYes::No)
+        #{
+        #    if (!prmisdefault(_isVendor))
+        #    {
+        #        this.setField(fieldNum(DirPrivacyGroupTable, IsVendor), _isVendor);
+        #    }
+        #
+        #    return dirPrivacyGroupTable.IsVendor;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmPrivacyGroupId
+        #public DirPrivacyGroupId parmPrivacyGroupId(DirPrivacyGroupId _privacyGroupId = '')
+        #{
+        #    if (!prmisdefault(_privacyGroupId))
+        #    {
+        #        this.setField(fieldNum(DirPrivacyGroupTable, PrivacyGroupId), _privacyGroupId);
+        #    }
+        #
+        #    return dirPrivacyGroupTable.PrivacyGroupId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSystemType
+        #public DirSystemPrivacyGroupType parmSystemType(DirSystemPrivacyGroupType _systemType = DirSystemPrivacyGroupType::None)
+        #{
+        #    if (!prmisdefault(_systemType))
+        #    {
+        #        this.setField(fieldNum(DirPrivacyGroupTable, SystemType), _systemType);
+        #    }
+        #
+        #    return dirPrivacyGroupTable.SystemType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDescription
+        #protected void setDescription()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirPrivacyGroupTable, Description)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setIsBusinessRel
+        #protected void setIsBusinessRel()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirPrivacyGroupTable, IsBusinessRel)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setIsContactPerson
+        #protected void setIsContactPerson()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirPrivacyGroupTable, IsContactPerson)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setIsCustomer
+        #protected void setIsCustomer()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirPrivacyGroupTable, IsCustomer)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setIsEmployee
+        #protected void setIsEmployee()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirPrivacyGroupTable, IsEmployee)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setIsOrgUnit
+        #protected void setIsOrgUnit()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirPrivacyGroupTable, IsOrgUnit)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setIsVendor
+        #protected void setIsVendor()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirPrivacyGroupTable, IsVendor)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setPrivacyGroupId
+        #protected void setPrivacyGroupId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirPrivacyGroupTable, PrivacyGroupId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSystemType
+        #protected void setSystemType()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirPrivacyGroupTable, SystemType)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setPrivacyGroupId();
+        #    this.setDescription();
+        #    this.setIsCustomer();
+        #    this.setIsVendor();
+        #    this.setIsBusinessRel();
+        #    this.setIsContactPerson();
+        #    this.setIsEmployee();
+        #    this.setSystemType();
+        #    this.setIsOrgUnit();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxDirPrivacyGroupTable construct()
+        #{
+        #    return new AxDirPrivacyGroupTable();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newDirPrivacyGroupTable
+        #public static AxDirPrivacyGroupTable newDirPrivacyGroupTable(DirPrivacyGroupTable _DirPrivacyGroupTable)
+        #{
+        #    AxDirPrivacyGroupTable AxDirPrivacyGroupTable = AxDirPrivacyGroupTable::construct();
+        #    ;
+        #    AxDirPrivacyGroupTable.DirPrivacyGroupTable(_DirPrivacyGroupTable);
+        #
+        #    return AxDirPrivacyGroupTable;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

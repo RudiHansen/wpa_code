@@ -1,0 +1,125 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAInventTable_InventTableModuleInvent unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAInventTable_InventTableModuleInvent
+    PROPERTIES
+      Name                #WPAInventTable_InventTableModuleInvent
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAInventTable_InventTableModuleInvent extends AfStronglyTypedDataContainer
+        #{
+        #    #define.RecId('RecId')
+        #    #define.Price('Price')
+        #    #define.PcsPrice('PcsPrice')
+        #    #define.ModuleType('ModuleType')
+        #    #define.ItemId('ItemId')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsItemId
+        #public boolean existsItemId()
+        #{
+        #    return this.exists(#ItemId);
+        #}
+      ENDSOURCE
+      SOURCE #existsModuleType
+        #public boolean existsModuleType()
+        #{
+        #    return this.exists(#ModuleType);
+        #}
+      ENDSOURCE
+      SOURCE #existsPcsPrice
+        #public boolean existsPcsPrice()
+        #{
+        #    return this.exists(#PcsPrice);
+        #}
+      ENDSOURCE
+      SOURCE #existsPrice
+        #public boolean existsPrice()
+        #{
+        #    return this.exists(#Price);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAInventTable_InventTableModuleInvent);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemId
+        #public ItemId parmItemId(ItemId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemId);
+        #}
+      ENDSOURCE
+      SOURCE #parmModuleType
+        #public ModuleInventPurchSales parmModuleType(ModuleInventPurchSales _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ModuleType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ModuleType);
+        #}
+      ENDSOURCE
+      SOURCE #parmPcsPrice
+        #public Price parmPcsPrice(Price _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PcsPrice, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PcsPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmPrice
+        #public Price parmPrice(Price _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Price, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Price);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

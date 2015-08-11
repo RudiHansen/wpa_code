@@ -1,0 +1,3826 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : EmplTable unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #EmplTable
+    PROPERTIES
+      Name                #EmplTable
+      Label               #@SYS4705
+      FormRef             #EmplTable
+      SearchLinkRefName   #EPEmplTableInfo
+      TitleField1         #EmplId
+      TitleField2         #AltNum
+      SecurityKey         #BasicTables
+      AOSAuthorization    #CreateReadUpdateDelete
+      CacheLookup         #Found
+      CreateRecIdIndex    #Yes
+      TableGroup          #Main
+      PrimaryIndex        #EmplIdx
+      ClusterIndex        #EmplIdx
+      AnalysisVisibility  #High
+      DeveloperDocumentation  #@SYS125887
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #EmplId
+        STRING
+        PROPERTIES
+          Name                #EmplId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DEL_Name
+        STRING
+        PROPERTIES
+          Name                #DEL_Name
+          HelpText            #@SYS11292
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplName
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #Dimension
+        STRING
+        PROPERTIES
+          Name                #Dimension
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #Dimension
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Training
+        STRING
+        PROPERTIES
+          Name                #Training
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #Training
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #DEL_Address
+        STRING
+        PROPERTIES
+          Name                #DEL_Address
+          HelpText            #@SYS9083
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #Addressing
+              #
+            ENDARRAY
+          StringSize          #250
+        ENDPROPERTIES
+        
+      FIELD #DEL_Phone
+        STRING
+        PROPERTIES
+          Name                #DEL_Phone
+          HelpText            #@SYS3742
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #Phone
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DEL_PhoneLocal
+        STRING
+        PROPERTIES
+          Name                #DEL_PhoneLocal
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #PhoneLocal
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_SyncOutlookAtStartup
+        ENUM
+        PROPERTIES
+          Name                #DEL_SyncOutlookAtStartup
+          ConfigurationKey    #SysDeletedObjects40
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #DEL_smmSyncAtStartup
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #OutlookCalendarOutlookStoreID
+        STRING
+        PROPERTIES
+          Name                #OutlookCalendarOutlookStoreID
+          Visible             #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmCalendarOutlookStoreID
+              #
+            ENDARRAY
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #OutlookCalendarOutlookEntryID
+        STRING
+        PROPERTIES
+          Name                #OutlookCalendarOutlookEntryID
+          Visible             #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmCalendarOutlookEntryID
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #OutlookTaskOutlookStoreID
+        STRING
+        PROPERTIES
+          Name                #OutlookTaskOutlookStoreID
+          Visible             #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmTaskOutlookStoreID
+              #
+            ENDARRAY
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #DEL_UserId
+        STRING
+        PROPERTIES
+          Name                #DEL_UserId
+          HelpText            #@SYS118
+          ConfigurationKey    #SysDeletedObjects40
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #userId
+              #
+            ENDARRAY
+          StringSize          #5
+        ENDPROPERTIES
+        
+      FIELD #AltNum
+        STRING
+        PROPERTIES
+          Name                #AltNum
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplAltNum
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DEL_ZipCodeId
+        STRING
+        PROPERTIES
+          Name                #DEL_ZipCodeId
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #AddressZipCodeId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_CountryRegionId
+        STRING
+        PROPERTIES
+          Name                #DEL_CountryRegionId
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #AddressCountryRegionId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_StateId
+        STRING
+        PROPERTIES
+          Name                #DEL_StateId
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #AddressStateId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_CountyId
+        STRING
+        PROPERTIES
+          Name                #DEL_CountyId
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #AddressCountyId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_URL
+        STRING
+        PROPERTIES
+          Name                #DEL_URL
+          HelpText            #@SYS24317
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #URL
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #DEL_Email
+        STRING
+        PROPERTIES
+          Name                #DEL_Email
+          HelpText            #@SYS24316
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #Email
+              #
+            ENDARRAY
+          StringSize          #80
+        ENDPROPERTIES
+        
+      FIELD #DEL_Telex
+        STRING
+        PROPERTIES
+          Name                #DEL_Telex
+          HelpText            #@SYS24318
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #Telex
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DEL_CellularPhone
+        STRING
+        PROPERTIES
+          Name                #DEL_CellularPhone
+          HelpText            #@SYS24313
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #PhoneMobile
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DEL_TeleFax
+        STRING
+        PROPERTIES
+          Name                #DEL_TeleFax
+          HelpText            #@SYS24315
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #TeleFax
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #CalendarId
+        STRING
+        PROPERTIES
+          Name                #CalendarId
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #CalendarId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #BirthDate
+        DATE
+        PROPERTIES
+          Name                #BirthDate
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #BirthDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_Alias
+        STRING
+        PROPERTIES
+          Name                #DEL_Alias
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplAlias
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ProjPeriodId
+        STRING
+        PROPERTIES
+          Name                #ProjPeriodId
+          ConfigurationKey    #ProjBasicHour
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #ProjPeriodId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ItemBuyerGroupId
+        STRING
+        PROPERTIES
+          Name                #ItemBuyerGroupId
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #ItemBuyerGroupId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #OutlookTaskOutlookEntryID
+        STRING
+        PROPERTIES
+          Name                #OutlookTaskOutlookEntryID
+          Visible             #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmTaskOutlookEntryID
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #OutlookTaskFolderName
+        STRING
+        PROPERTIES
+          Name                #OutlookTaskFolderName
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmOutlookTaskFolderName
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #DEL_City
+        STRING
+        PROPERTIES
+          Name                #DEL_City
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #AddressCity
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #DEL_Street
+        STRING
+        PROPERTIES
+          Name                #DEL_Street
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #AddressStreet
+              #
+            ENDARRAY
+          StringSize          #250
+        ENDPROPERTIES
+        
+      FIELD #DEL_Pager
+        STRING
+        PROPERTIES
+          Name                #DEL_Pager
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #Pager
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DEL_SMS
+        STRING
+        PROPERTIES
+          Name                #DEL_SMS
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #SMS
+              #
+            ENDARRAY
+          StringSize          #80
+        ENDPROPERTIES
+        
+      FIELD #Title
+        STRING
+        PROPERTIES
+          Name                #Title
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #PersonTitle
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #OutlookCalendarFolderName
+        STRING
+        PROPERTIES
+          Name                #OutlookCalendarFolderName
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmOutlookCalendarFolderName
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #DEL_RefZipCode
+        INT64
+        PROPERTIES
+          Name                #DEL_RefZipCode
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          ConfigurationKey    #SysDeletedObjects40
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #RefRecId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ValidateProjEmpl
+        ENUM
+        PROPERTIES
+          Name                #ValidateProjEmpl
+          Label               #@SYS4534
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #ProjValidateOption
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ValidateEmplCategory
+        ENUM
+        PROPERTIES
+          Name                #ValidateEmplCategory
+          Label               #@SYS11718
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #ProjValidateOption
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ActivityStartTime
+        TIME
+        PROPERTIES
+          Name                #ActivityStartTime
+          ConfigurationKey    #SmmCRM
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmActivityStartTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ActivityEndTime
+        TIME
+        PROPERTIES
+          Name                #ActivityEndTime
+          ConfigurationKey    #SmmCRM
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmActivityEndTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #OutlookContactFolderEntryID
+        STRING
+        PROPERTIES
+          Name                #OutlookContactFolderEntryID
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Visible             #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmContactPersonOutlookEntryID
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #OutlookContactFolderStoreID
+        STRING
+        PROPERTIES
+          Name                #OutlookContactFolderStoreID
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Visible             #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmContactPersonOutlookStoreID
+              #
+            ENDARRAY
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #OutlookContactFolderName
+        STRING
+        PROPERTIES
+          Name                #OutlookContactFolderName
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmOutlookContactFolderName
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #InclRecurringAppointments
+        ENUM
+        PROPERTIES
+          Name                #InclRecurringAppointments
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmInclRecurringAppointments
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #OutlookUserEntryID
+        STRING
+        PROPERTIES
+          Name                #OutlookUserEntryID
+          AllowEdit           #No
+          Visible             #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmOutlookUserEntryID
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #InclPrivateAppointments
+        ENUM
+        PROPERTIES
+          Name                #InclPrivateAppointments
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmInclPrivateAppointments
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #InclPrivateTasks
+        ENUM
+        PROPERTIES
+          Name                #InclPrivateTasks
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmInclPrivateTasks
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #PartyId
+        STRING
+        PROPERTIES
+          Name                #PartyId
+          AllowEdit           #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #DirPartyId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #SyncTransIdCreate
+        GUID
+        PROPERTIES
+          Name                #SyncTransIdCreate
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #SyncTransId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SyncEntityId
+        GUID
+        PROPERTIES
+          Name                #SyncEntityId
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #SyncEntityId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SyncVersion
+        INT64
+        PROPERTIES
+          Name                #SyncVersion
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #SyncVersion
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_Gender
+        ENUM
+        PROPERTIES
+          Name                #DEL_M1_Gender
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          EnumType            #Gender
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_DependentsNum
+        INT
+        PROPERTIES
+          Name                #DEL_M1_DependentsNum
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplDependentsNum
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ReqSiteId
+        STRING
+        PROPERTIES
+          Name                #ReqSiteId
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #PurchReqSiteId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_MaritalStatus
+        ENUM
+        PROPERTIES
+          Name                #DEL_M1_MaritalStatus
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          EnumType            #EmplMaritalStatus
+        ENDPROPERTIES
+        
+      FIELD #ReqLocationId
+        STRING
+        PROPERTIES
+          Name                #ReqLocationId
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #PurchReqLocationId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_AdjustedStartDate
+        DATE
+        PROPERTIES
+          Name                #DEL_M1_AdjustedStartDate
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplAdjustedStartDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_StartDate
+        DATE
+        PROPERTIES
+          Name                #DEL_M1_StartDate
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplStartDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_LastDateWorked
+        DATE
+        PROPERTIES
+          Name                #DEL_M1_LastDateWorked
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplLastDateWorked
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_TerminationDate
+        DATE
+        PROPERTIES
+          Name                #DEL_M1_TerminationDate
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplTerminationDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_Citizenship
+        STRING
+        PROPERTIES
+          Name                #DEL_M1_Citizenship
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #AddressCountryRegionId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_EEOMultiRace
+        ENUM
+        PROPERTIES
+          Name                #DEL_M1_EEOMultiRace
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplEEOMultiRace
+              #
+            ENDARRAY
+          EnumType            #EmplBoolean
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_EEORaceIntlCode
+        ENUM
+        PROPERTIES
+          Name                #DEL_M1_EEORaceIntlCode
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplEEORaceIntlCode
+              #
+            ENDARRAY
+          EnumType            #EmplEEORaceIntlCodeValues
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_ActiveDate
+        DATE
+        PROPERTIES
+          Name                #DEL_M1_ActiveDate
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplActiveDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_ExpiryDate
+        DATE
+        PROPERTIES
+          Name                #DEL_M1_ExpiryDate
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplExpiryDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_AccountType
+        ENUM
+        PROPERTIES
+          Name                #DEL_M1_AccountType
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          EnumType            #LedgerJournalACType
+        ENDPROPERTIES
+        
+      FIELD #DEL_M1_AccountNumber
+        STRING
+        PROPERTIES
+          Name                #DEL_M1_AccountNumber
+          Label               #@SYS80745
+          HelpText            #@SYS79891
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #LedgerJournalAC
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #EmplIdentNumber
+        STRING
+        PROPERTIES
+          Name                #EmplIdentNumber
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #EmplNationalIDCode
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #ReqAttention
+        STRING
+        PROPERTIES
+          Name                #ReqAttention
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #PurchReqAttention
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #DispatchTeamId
+        STRING
+        PROPERTIES
+          Name                #DispatchTeamId
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #SMADispatchTeamId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DeceasedDate
+        DATE
+        PROPERTIES
+          Name                #DeceasedDate
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #DeceasedDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #EmplGender
+        ENUM
+        PROPERTIES
+          Name                #EmplGender
+          Table               #EmplTable
+          EnumType            #EmplGender
+        ENDPROPERTIES
+        
+      FIELD #DEL_resignReasonCodeId
+        STRING
+        PROPERTIES
+          Name                #DEL_resignReasonCodeId
+          HelpText            #@SYS30682
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMResignReasonCodeId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_seniorityDate
+        DATE
+        PROPERTIES
+          Name                #DEL_seniorityDate
+          Label               #@SYS31417
+          HelpText            #@SYS31418
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #TransDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #OutlookUserID
+        STRING
+        PROPERTIES
+          Name                #OutlookUserID
+          AllowEdit           #No
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmOutlookUserId
+              #
+            ENDARRAY
+          StringSize          #128
+        ENDPROPERTIES
+        
+      FIELD #DEL_DateLastSyncWithOutlook
+        DATE
+        PROPERTIES
+          Name                #DEL_DateLastSyncWithOutlook
+          ConfigurationKey    #SysDeletedObjects40
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #DEL_smmDateofLastSyncWithPIM
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_SyncInterval
+        INT
+        PROPERTIES
+          Name                #DEL_SyncInterval
+          ConfigurationKey    #SysDeletedObjects40
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #DEL_smmInterval4Sync2PIM
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_TimeLastSyncWithOutlook
+        TIME
+        PROPERTIES
+          Name                #DEL_TimeLastSyncWithOutlook
+          ConfigurationKey    #SysDeletedObjects40
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #DEL_smmTimeofLastSyncWithPIM
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_SyncWithOutlook
+        ENUM
+        PROPERTIES
+          Name                #DEL_SyncWithOutlook
+          ConfigurationKey    #SysDeletedObjects40
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #DEL_smmSyncWithOutlook
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ActivateAnswer
+        ENUM
+        PROPERTIES
+          Name                #ActivateAnswer
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmActivateAnswer
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmAbsenceSetupId
+        STRING
+        PROPERTIES
+          Name                #DEL_hrmAbsenceSetupId
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMAbsenceSetupId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_absenceFromDate
+        DATE
+        PROPERTIES
+          Name                #DEL_absenceFromDate
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMAbsenceEmplFromDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_workingHours
+        REAL
+        PROPERTIES
+          Name                #DEL_workingHours
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMWorkingHours
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_probationDate
+        DATE
+        PROPERTIES
+          Name                #DEL_probationDate
+          Label               #@SYS32358
+          HelpText            #@SYS32450
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #BaseDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_employeeTerminationNoticeUnit
+        ENUM
+        PROPERTIES
+          Name                #DEL_employeeTerminationNoticeUnit
+          Label               #@SYS32589
+          HelpText            #@SYS32490
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          EnumType            #HRMNoticeUnit
+        ENDPROPERTIES
+        
+      FIELD #DEL_employerTerminationNoticeUnit
+        ENUM
+        PROPERTIES
+          Name                #DEL_employerTerminationNoticeUnit
+          Label               #@SYS32365
+          HelpText            #@SYS32452
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          EnumType            #HRMNoticeUnit
+        ENDPROPERTIES
+        
+      FIELD #DEL_employerTerminationNotice
+        INT
+        PROPERTIES
+          Name                #DEL_employerTerminationNotice
+          Label               #@SYS32590
+          HelpText            #@SYS32506
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMTerminationNotice
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_employeeTerminationNotice
+        INT
+        PROPERTIES
+          Name                #DEL_employeeTerminationNotice
+          Label               #@SYS32591
+          HelpText            #@SYS32507
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMTerminationNotice
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_pensionStartDateEmplContract
+        DATE
+        PROPERTIES
+          Name                #DEL_pensionStartDateEmplContract
+          HelpText            #@SYS32532
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #StartDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_pensionStartDateEmpl
+        DATE
+        PROPERTIES
+          Name                #DEL_pensionStartDateEmpl
+          Label               #@SYS33675
+          HelpText            #@SYS33676
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #StartDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_currency
+        STRING
+        PROPERTIES
+          Name                #DEL_currency
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #CurrencyCode
+              #
+            ENDARRAY
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmIncomeTaxCategoryId
+        STRING
+        PROPERTIES
+          Name                #DEL_hrmIncomeTaxCategoryId
+          HelpText            #@SYS32509
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMIncomeTaxCategoryId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmIncomeTaxCodeId
+        STRING
+        PROPERTIES
+          Name                #DEL_hrmIncomeTaxCodeId
+          HelpText            #@SYS32482
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMIncomeTaxCodeId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_employerSavingAmount
+        REAL
+        PROPERTIES
+          Name                #DEL_employerSavingAmount
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMPayrollEmployerSavingsAmount
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_employeeSavingAmount
+        REAL
+        PROPERTIES
+          Name                #DEL_employeeSavingAmount
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMPayrollEmployeeSavingsAmount
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_holidays
+        REAL
+        PROPERTIES
+          Name                #DEL_holidays
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMHolidays
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_vacationPayment
+        REAL
+        PROPERTIES
+          Name                #DEL_vacationPayment
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMVacationPayment
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_movingAllowanceAmount
+        REAL
+        PROPERTIES
+          Name                #DEL_movingAllowanceAmount
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMMovingAllowance
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_firstName
+        STRING
+        PROPERTIES
+          Name                #DEL_firstName
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMFirstName
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DEL_middleName
+        STRING
+        PROPERTIES
+          Name                #DEL_middleName
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMMiddleName
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DEL_lastName
+        STRING
+        PROPERTIES
+          Name                #DEL_lastName
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMLastName
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DEL_salutation
+        ENUM
+        PROPERTIES
+          Name                #DEL_salutation
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          EnumType            #HRMSalutation
+        ENDPROPERTIES
+        
+      FIELD #DEL_nameSuffix
+        ENUM
+        PROPERTIES
+          Name                #DEL_nameSuffix
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          EnumType            #HRMNameSuffix
+        ENDPROPERTIES
+        
+      FIELD #DEL_internalExternal
+        ENUM
+        PROPERTIES
+          Name                #DEL_internalExternal
+          ConfigurationKey    #SysDeletedObjects40
+          Table               #EmplTable
+          EnumType            #DEL_HRMEmployeeInternalExternal
+        ENDPROPERTIES
+        
+      FIELD #eMailSaveCopy
+        ENUM
+        PROPERTIES
+          Name                #eMailSaveCopy
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmEMailSaveCopy
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #status
+        ENUM
+        PROPERTIES
+          Name                #status
+          Table               #EmplTable
+          EnumType            #HRMEmplStatus
+        ENDPROPERTIES
+        
+      FIELD #PBAUserProfile
+        STRING
+        PROPERTIES
+          Name                #PBAUserProfile
+          HelpText            #@SYS40509
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #PBAUserProfile
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmUnionIdNegotiator
+        STRING
+        PROPERTIES
+          Name                #DEL_hrmUnionIdNegotiator
+          HelpText            #@SYS33627
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMUnionIdNegotiator
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmUnionId
+        STRING
+        PROPERTIES
+          Name                #DEL_hrmUnionId
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMUnionIdOrganization
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmSalaryType
+        ENUM
+        PROPERTIES
+          Name                #DEL_hrmSalaryType
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          EnumType            #HRMSalaryType
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmSalaryScaleDate
+        DATE
+        PROPERTIES
+          Name                #DEL_hrmSalaryScaleDate
+          Label               #@SYS33660
+          HelpText            #@SYS33659
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #TransDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmActiveInactive
+        ENUM
+        PROPERTIES
+          Name                #DEL_hrmActiveInactive
+          ConfigurationKey    #SysDeletedObjects40
+          Table               #EmplTable
+          EnumType            #DEL_HRMActiveInactive
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmMunicipalId
+        STRING
+        PROPERTIES
+          Name                #DEL_hrmMunicipalId
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #HRMMunicipalId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmVacationWithSalary
+        ENUM
+        PROPERTIES
+          Name                #DEL_hrmVacationWithSalary
+          Label               #@SYS33666
+          HelpText            #@SYS33667
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #NoYesId
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmDaysOffWithSalary
+        ENUM
+        PROPERTIES
+          Name                #DEL_hrmDaysOffWithSalary
+          Label               #@SYS33668
+          HelpText            #@SYS33669
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #NoYesId
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmCareWithSalary
+        ENUM
+        PROPERTIES
+          Name                #DEL_hrmCareWithSalary
+          Label               #@SYS33670
+          HelpText            #@SYS33671
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #NoYesId
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmSalarySeniorityDate
+        DATE
+        PROPERTIES
+          Name                #DEL_hrmSalarySeniorityDate
+          Label               #@SYS33674
+          HelpText            #@SYS33673
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #TransDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ActivityReminderMinutes
+        INT
+        PROPERTIES
+          Name                #ActivityReminderMinutes
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmActivityReminderMinutes
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #smmSynchronizeDaysBack
+        INT
+        PROPERTIES
+          Name                #smmSynchronizeDaysBack
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmSynchronizeDayBack
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #smmSynchronizeDaysForward
+        INT
+        PROPERTIES
+          Name                #smmSynchronizeDaysForward
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #smmSynchronizeDaysForward
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_hrmEmployeeType
+        ENUM
+        PROPERTIES
+          Name                #DEL_hrmEmployeeType
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          EnumType            #HRMEmployeeType
+        ENDPROPERTIES
+        
+      FIELD #DEL_vendAccount
+        STRING
+        PROPERTIES
+          Name                #DEL_vendAccount
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #VendAccount
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #WPAIsDepartment
+        ENUM
+        PROPERTIES
+          Name                #WPAIsDepartment
+          Table               #EmplTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAIsDepartment
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #EmplId
+          #AltNum
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #AutoLookup
+        PROPERTIES
+          Name                #AutoLookup
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #EmplId
+          #name
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #AbsenceRegistration
+        PROPERTIES
+          Name                #AbsenceRegistration
+          Label               #@SYS32274
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ActivityDefaultTime
+        PROPERTIES
+          Name                #ActivityDefaultTime
+          Label               #@SYS87425
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ActivityStartTime
+          #ActivityEndTime
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ActivityOptions
+        PROPERTIES
+          Name                #ActivityOptions
+          Label               #@SYS80847
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ActivityReminderMinutes
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Address
+        PROPERTIES
+          Name                #Address
+          Label               #@SYS9362
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #AddressDisplay
+        PROPERTIES
+          Name                #AddressDisplay
+          Label               #@SYS9362
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Administration
+        PROPERTIES
+          Name                #Administration
+          Label               #@SYS9853
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #AltNum
+          #Training
+          #PBAUserProfile
+          #WPAIsDepartment
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Calendar
+        PROPERTIES
+          Name                #Calendar
+          Label               #@SYS11839
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #CalendarId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ContactInfo
+        PROPERTIES
+          Name                #ContactInfo
+          Label               #@SYS21663
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Currency
+        PROPERTIES
+          Name                #Currency
+          Label               #@SYS7572
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Dimension
+        PROPERTIES
+          Name                #Dimension
+          Label               #@SYS14926
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Dimension
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #DispatchTeam
+        PROPERTIES
+          Name                #DispatchTeam
+          Label               #@SYS115226
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #DispatchTeamId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #EPOverview
+        PROPERTIES
+          Name                #EPOverview
+          Label               #@SYS5711
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #EmplId
+          #BirthDate
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Identification
+        PROPERTIES
+          Name                #Identification
+          Label               #@SYS5711
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #EmplId
+          #EmplIdentNumber
+          #PartyId
+          #status
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #IncomeTax
+        PROPERTIES
+          Name                #IncomeTax
+          Label               #@SYS32531
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Integration
+        PROPERTIES
+          Name                #Integration
+          Label               #@SYS104440
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SyncVersion
+          #SyncTransIdCreate
+          #SyncEntityId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #M1
+        PROPERTIES
+          Name                #M1
+          Label               #@SYS80745
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #DEL_M1_Gender
+          #DEL_M1_DependentsNum
+          #DEL_M1_MaritalStatus
+          #DEL_M1_AdjustedStartDate
+          #DEL_M1_StartDate
+          #DEL_M1_LastDateWorked
+          #DEL_M1_TerminationDate
+          #DEL_M1_Citizenship
+          #DEL_M1_EEOMultiRace
+          #DEL_M1_EEORaceIntlCode
+          #DEL_M1_ActiveDate
+          #DEL_M1_ExpiryDate
+          #DEL_M1_AccountType
+          #DEL_M1_AccountNumber
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Municipal
+        PROPERTIES
+          Name                #Municipal
+          Label               #@SYS33908
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Name
+        PROPERTIES
+          Name                #Name
+          Label               #@SYS7399
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #NameDetails
+        PROPERTIES
+          Name                #NameDetails
+          Label               #@SYS32694
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #OutlookFolders
+        PROPERTIES
+          Name                #OutlookFolders
+          Label               #@SYS86423
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #OutlookContactFolderName
+          #OutlookContactFolderEntryID
+          #OutlookContactFolderStoreID
+          #OutlookTaskFolderName
+          #OutlookTaskOutlookStoreID
+          #OutlookTaskOutlookEntryID
+          #OutlookCalendarFolderName
+          #OutlookCalendarOutlookStoreID
+          #OutlookCalendarOutlookEntryID
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #OutlookIdentification
+        PROPERTIES
+          Name                #OutlookIdentification
+          Label               #@SYS80392
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #OutlookUserID
+          #OutlookUserEntryID
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #OutlookSetup
+        PROPERTIES
+          Name                #OutlookSetup
+          Label               #@SYS81133
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #smmSynchronizeDaysBack
+          #smmSynchronizeDaysForward
+          #InclPrivateAppointments
+          #InclRecurringAppointments
+          #InclPrivateTasks
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #PayrollScale
+        PROPERTIES
+          Name                #PayrollScale
+          Label               #@SYS33658
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #PaySavings
+        PROPERTIES
+          Name                #PaySavings
+          Label               #@SYS32345
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Personal
+        PROPERTIES
+          Name                #Personal
+          Label               #@SYS30493
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #PersonalDetails
+        PROPERTIES
+          Name                #PersonalDetails
+          Label               #@SYS2707
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #BirthDate
+          #EmplGender
+          #Title
+          #DeceasedDate
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Project
+        PROPERTIES
+          Name                #Project
+          Label               #@SYS4534
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ProjPeriodId
+          #ValidateProjEmpl
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #PurchReq
+        PROPERTIES
+          Name                #PurchReq
+          Label               #@SYS94925
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ReqAttention
+          #ReqSiteId
+          #ReqLocationId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #References
+        PROPERTIES
+          Name                #References
+          Label               #@SYS14018
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ItemBuyerGroupId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #RelocationContribution
+        PROPERTIES
+          Name                #RelocationContribution
+          Label               #@SYS32491
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Retirement
+        PROPERTIES
+          Name                #Retirement
+          Label               #@SYS32355
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #SalarySeniority
+        PROPERTIES
+          Name                #SalarySeniority
+          Label               #@SYS33672
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #SaveOutgoingMails
+        PROPERTIES
+          Name                #SaveOutgoingMails
+          Label               #@SYS87055
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #eMailSaveCopy
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Seniority
+        PROPERTIES
+          Name                #Seniority
+          Label               #@SYS31419
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Telephony
+        PROPERTIES
+          Name                #Telephony
+          Label               #@SYS80905
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ActivateAnswer
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Termination
+        PROPERTIES
+          Name                #Termination
+          Label               #@SYS100077
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #TrialPeriod
+        PROPERTIES
+          Name                #TrialPeriod
+          Label               #@SYS32358
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Unions
+        PROPERTIES
+          Name                #Unions
+          Label               #@SYS33618
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Vacation
+        PROPERTIES
+          Name                #Vacation
+          Label               #@SYS32357
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Validation
+        PROPERTIES
+          Name                #Validation
+          Label               #@SYS4440
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ValidateEmplCategory
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #WageType
+        PROPERTIES
+          Name                #WageType
+          Label               #@SYS23315
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #WebCategoryBrowsing
+        PROPERTIES
+          Name                #WebCategoryBrowsing
+          Label               #@SYS74258
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Dimension
+          #Title
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #WorkDays
+        PROPERTIES
+          Name                #WorkDays
+          Label               #@SYS32587
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #WorkingTime
+        PROPERTIES
+          Name                #WorkingTime
+          Label               #@SYS11965
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #EmplIdx
+      PROPERTIES
+        Name                #EmplIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #EmplId
+      ENDINDEXFIELDS
+      
+      #AltNumIdx
+      PROPERTIES
+        Name                #AltNumIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #AltNum
+      ENDINDEXFIELDS
+      
+      #Alias
+      PROPERTIES
+        Name                #Alias
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #DEL_Alias
+      ENDINDEXFIELDS
+      
+      #PartyIdIdx
+      PROPERTIES
+        Name                #PartyIdIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #PartyId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+      REFERENCE #AddressCounty
+        PROPERTIES
+          Name                #AddressCounty
+          Table               #AddressCounty
+          EntityRelationshipRole  #@SYS125888
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #DEL_CountryRegionId
+            RelatedField        #CountryRegionId
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #DEL_StateId
+            RelatedField        #StateId
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #DEL_CountyId
+            RelatedField        #CountyId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #AddressState
+        PROPERTIES
+          Name                #AddressState
+          Table               #AddressState
+          EntityRelationshipRole  #@SYS125888
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #DEL_CountryRegionId
+            RelatedField        #CountryRegionId
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #DEL_StateId
+            RelatedField        #StateId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #CompanyImage
+        PROPERTIES
+          Name                #CompanyImage
+          Table               #CompanyImage
+          Validate            #No
+          EntityRelationshipRole  #@SYS125889
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #TableId
+            RelatedField        #RefTableId
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #RecId
+            RelatedField        #RefRecId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #DirPartyTable
+        PROPERTIES
+          Name                #DirPartyTable
+          Table               #DirPartyTable
+          EntityRelationshipRole  #@SYS125890
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #PartyId
+            RelatedField        #PartyId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #DirPartyView
+        PROPERTIES
+          Name                #DirPartyView
+          Table               #DirPartyView
+          Validate            #No
+          EntityRelationshipRole  #@SYS125891
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #PartyId
+            RelatedField        #PartyId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+    ENDREFERENCES
+    
+    DELETEACTIONS
+      #HRPPartyPositionTable
+      PROPERTIES
+        Table               #HRPPartyPositionTable
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #HRPPartyPositionTableRelationship
+      PROPERTIES
+        Table               #HRPPartyPositionTableRelationship
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #HRPPartyJobTable
+      PROPERTIES
+        Table               #HRPPartyJobTable
+        DeleteAction        #Cascade + Restricted
+      ENDPROPERTIES
+      
+      #TrvPartyEmployeeRelationship
+      PROPERTIES
+        Table               #TrvPartyEmployeeRelationship
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMPartyEmployeeRelationship
+      PROPERTIES
+        Table               #HRMPartyEmployeeRelationship
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMi9Document
+      PROPERTIES
+        Table               #HRMi9Document
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #smmResponsibilitiesEmplTable
+      PROPERTIES
+        Table               #smmResponsibilitiesEmplTable
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #CompanyImage
+      PROPERTIES
+        Table               #CompanyImage
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #smmEmailMembers
+      PROPERTIES
+        Table               #smmEmailMembers
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #ProjRevenueTrans
+      PROPERTIES
+        Table               #ProjRevenueTrans
+      ENDPROPERTIES
+      
+      #ProjCostTrans
+      PROPERTIES
+        Table               #ProjCostTrans
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #JmgEmployee
+      PROPERTIES
+        Table               #JmgEmployee
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #HRMStockOption
+      PROPERTIES
+        Table               #HRMStockOption
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMPayrollLine
+      PROPERTIES
+        Table               #HRMPayrollLine
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMBonus
+      PROPERTIES
+        Table               #HRMBonus
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #Dimensions
+      PROPERTIES
+        Table               #Dimensions
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #ProjEmplTrans
+      PROPERTIES
+        Table               #ProjEmplTrans
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #ProjJournalTrans
+      PROPERTIES
+        Table               #ProjJournalTrans
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #ProjPeriodEmpl
+      PROPERTIES
+        Table               #ProjPeriodEmpl
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #CommissionSalesRep
+      PROPERTIES
+        Table               #CommissionSalesRep
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #CommissionTrans
+      PROPERTIES
+        Table               #CommissionTrans
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #EmplTask
+      PROPERTIES
+        Table               #EmplTask
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMEmployeeBenefit
+      PROPERTIES
+        Table               #HRMEmployeeBenefit
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #HRMEmployeeContact
+      PROPERTIES
+        Table               #HRMEmployeeContact
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #KMKnowledgeBudget
+      PROPERTIES
+        Table               #KMKnowledgeBudget
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #KMKnowledgeCockpitGroupPersons
+      PROPERTIES
+        Table               #KMKnowledgeCockpitGroupPersons
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #KMKnowledgeCockpitTable
+      PROPERTIES
+        Table               #KMKnowledgeCockpitTable
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #HRMPayrollPension
+      PROPERTIES
+        Table               #HRMPayrollPension
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMEmplLeave
+      PROPERTIES
+        Table               #HRMEmplLeave
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMEmplHiringTerms
+      PROPERTIES
+        Table               #HRMEmplHiringTerms
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMEmplBankAccount
+      PROPERTIES
+        Table               #HRMEmplBankAccount
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #HRMEmplTaxInfo
+      PROPERTIES
+        Table               #HRMEmplTaxInfo
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMReminderTable
+      PROPERTIES
+        Table               #HRMReminderTable
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #HRMPayrollBasis
+      PROPERTIES
+        Table               #HRMPayrollBasis
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #HRMEmplIdentification
+      PROPERTIES
+        Table               #HRMEmplIdentification
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #ProjValEmplCategorySetUp
+      PROPERTIES
+        Table               #ProjValEmplCategorySetUp
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #ProjValEmplCategoryTable
+      PROPERTIES
+        Table               #ProjValEmplCategoryTable
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #ProjValEmplProjSetup
+      PROPERTIES
+        Table               #ProjValEmplProjSetup
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #ProjValEmplProjTable
+      PROPERTIES
+        Table               #ProjValEmplProjTable
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #ProjHourCostPrice
+      PROPERTIES
+        Table               #ProjHourCostPrice
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #ProjHourSalesPrice
+      PROPERTIES
+        Table               #ProjHourSalesPrice
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #ProjRevenueSalesPrice
+      PROPERTIES
+        Table               #ProjRevenueSalesPrice
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #ProjCostSalesPrice
+      PROPERTIES
+        Table               #ProjCostSalesPrice
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #smmOutlookLastSync
+      PROPERTIES
+        Table               #smmOutlookLastSync
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #address
+        #//BP deviation documented
+        #public Address address()
+        #{
+        #    ;
+        #
+        #    //
+        #    // Returns a <c>Primary</c>, date effective <c>Active</c>, address buffer for an employee.
+        #    //
+        #    // An empty buffer indicates that a <c>Primary<c>, date effective <c>Active</c>, address could not be found.
+        #    //
+        #    return DirPartyAddress::findPrimaryAddress(this.PartyId);
+        #}
+      ENDSOURCE
+      SOURCE #Age
+        #/// <summary>
+        #///    Calculates age from birth date and current date.
+        #/// </summary>
+        #/// <returns>
+        #///    Age
+        #/// </returns>
+        #//BP Deviation Documented
+        #display EmplAge age()
+        #{;
+        #    if (this.BirthDate)
+        #    {
+        #        return yearDiff(systemdateget(), this.BirthDate);
+        #    }
+        #
+        #    return 0;
+        #}
+      ENDSOURCE
+      SOURCE #alias
+        #//BP Deviation Documented
+        #display NameAlias alias()
+        #{
+        #    return this.dirPartyTable().NameAlias;
+        #}
+      ENDSOURCE
+      SOURCE #axEmplTable
+        #/// <summary>
+        #///    Create new AxEmplTable from current record.
+        #/// </summary>
+        #/// <returns>
+        #///    AxEmplTable object
+        #/// </returns>
+        #public AxEmplTable axEmplTable()
+        #{;
+        #    return AxEmplTable::newEmplTable(this);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #cellularPhone
+        #//BP Deviation Documented
+        #display PhoneMobile  cellularPhone()
+        #{
+        #    PhoneMobile  cellularPhone;
+        #    ;
+        #
+        #    cellularPhone = this.communicationValue(DirSystemECommunicationType::CellularPhone);
+        #    return cellularPhone;
+        #}
+      ENDSOURCE
+      SOURCE #clearOutlookFolders
+        #/// <summary>
+        #///    Clear outlook folder values (calendar folder, contact folder and task folder).
+        #/// </summary>
+        #void clearOutlookFolders()
+        #{;
+        #    // Clear Outlook calendar folder information
+        #    this.OutlookCalendarOutlookEntryID = '';
+        #    this.OutlookCalendarOutlookStoreID = '';
+        #    this.OutlookCalendarFolderName     = '';
+        #
+        #    // Clear Outlook contact folder information
+        #    this.OutlookContactFolderEntryID   = '';
+        #    this.OutlookContactFolderStoreID   = '';
+        #    this.OutlookContactFolderName      = '';
+        #
+        #    // Clear Outlook task folder information
+        #    this.OutlookTaskOutlookEntryID     = '';
+        #    this.OutlookTaskOutlookStoreID     = '';
+        #    this.OutlookTaskFolderName         = '';
+        #}
+      ENDSOURCE
+      SOURCE #communicationValue
+        #anytype communicationValue(
+        #    DirSystemECommunicationType _systemECommunicationType,
+        #    DirSystemPrivacyGroupType   _privacyGroupType = DirSystemPrivacyGroupType::Employee,
+        #    TransDateTime               _transDateTime = DateTimeUtil::getSystemDateTime())
+        #{
+        #    DirParty                party;
+        #    DirPartyECommunication  partyECommunication;
+        #    anytype                 value;
+        #
+        #    ;
+        #    party = DirParty::constructFromPartyId(this.PartyId,_privacyGroupType,_transDateTime);
+        #    if (party)
+        #    {
+        #        partyECommunication = party.getDirPartyECommunication();
+        #        if (partyECommunication)
+        #        {
+        #            switch (_systemECommunicationType)
+        #            {
+        #
+        #                case DirSystemECommunicationType::BusinessEmail :
+        #                value = partyECommunication.parmEmail();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::CallBackPhone :
+        #                value = partyECommunication.parmCallBackPhone();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::CarPhone :
+        #                value = partyECommunication.parmCarPhone();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::CellularPhone :
+        #                value = partyECommunication.parmCellularPhone();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::Email :
+        #                value = partyECommunication.parmEmail();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::FTP :
+        #                value = partyECommunication.parmFTP();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::HomeEmail :
+        #                value = partyECommunication.parmHomeEmail();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::HomeFax :
+        #                value = partyECommunication.parmHomeFax();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::HomePhone :
+        #                value = partyECommunication.parmHomePhone();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::IM :
+        #                value = partyECommunication.parmIM();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::OtherEmail :
+        #                value = partyECommunication.parmOtherEmail();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::OtherFax :
+        #                value = partyECommunication.parmOtherFax();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::OtherPhone :
+        #                value = partyECommunication.parmOtherPhone();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::Pager :
+        #                value = partyECommunication.parmPager();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::PersonalHomePage :
+        #                value = partyECommunication.parmPersonalHomePage();
+        #                break;
+        #
+        #
+        #                case DirSystemECommunicationType::Phone :
+        #                value = partyECommunication.parmPhone();
+        #                break;
+        #
+        #
+        #                case DirSystemECommunicationType::PrimaryPhone :
+        #                value = partyECommunication.parmPrimaryPhone();
+        #                break;
+        #
+        #
+        #                case DirSystemECommunicationType::RadioPhone :
+        #                value = partyECommunication.parmRadioPhone();
+        #                break;
+        #
+        #
+        #                case DirSystemECommunicationType::SMS :
+        #                value = partyECommunication.parmSMS();
+        #                break;
+        #
+        #
+        #                case DirSystemECommunicationType::TeleFax :
+        #                value = partyECommunication.parmTeleFax();
+        #                break;
+        #
+        #
+        #                case DirSystemECommunicationType::Telex :
+        #                value = partyECommunication.parmTelex();
+        #                break;
+        #
+        #                case DirSystemECommunicationType::URL :
+        #                value = partyECommunication.parmURL();
+        #                break;
+        #
+        #            }
+        #        }
+        #    }
+        #    if (!value && _privacyGroupType != DirSystemPrivacyGroupType::Public)
+        #    {
+        #        value = this.communicationValue(_systemECommunicationType,DirSystemPrivacyGroupType::Public,_transDateTime);
+        #    }
+        #    return value;
+        #}
+      ENDSOURCE
+      SOURCE #delete
+        #/// <summary>
+        #///    Delete record. Corresponding record in HRMVirtualNetworkTable is also deleted. Additionally several delete actions exists.
+        #/// </summary>
+        #void delete()
+        #{
+        #    SyncEmplTable               syncEmplTable;
+        #    InventTestEmplResponsible   inventTestEmplResponsible;
+        #    ;
+        #
+        #    ttsbegin;
+        #
+        #    // Delete the associated SyncEmplTable records
+        #    while select forupdate syncEmplTable where syncEmplTable.EmplId == this.EmplId
+        #    {
+        #        syncEmplTable.delete(false, true);
+        #    }
+        #
+        #    // Delete the associated setup for test responsible
+        #    delete_from inventTestEmplResponsible
+        #        where inventTestEmplResponsible.EmplId  == this.EmplId;
+        #
+        #    delete_from inventTestEmplResponsible
+        #        where inventTestEmplResponsible.InventTestEmplIdResponsible == this.EmplId;
+        #
+        #    super();
+        #
+        #    // Auto delete party at backend
+        #    DirParty::autoDeleteParty(this.PartyId);
+        #
+        #
+        #    ttscommit;
+        #
+        #    // HRm
+        #    HRMVirtualNetworkTableReplicate::delete(HRMVirtualNetworkReferenceType::Employee, this.EmplId);
+        #}
+      ENDSOURCE
+      SOURCE #DirPartyTable
+        #public DirPartyTable dirPartyTable()
+        #{
+        #    DirPartyTable dirPartyTable    = DirPartyTable::find(this.PartyId);
+        #
+        #    return dirPartyTable;
+        #}
+      ENDSOURCE
+      SOURCE #email
+        #//BP Deviation Documented
+        #display Email email(DirSystemPrivacyGroupType _privacyGroupType = DirSystemPrivacyGroupType::Employee,
+        #                    TransDateTime   _transDateTime = DateTimeUtil::getSystemDateTime())
+        #{
+        #    Email                   email;
+        #
+        #    ;
+        #    email = this.communicationValue(DirSystemECommunicationType::Email,_privacyGroupType,_transDateTime);
+        #    return email;
+        #}
+      ENDSOURCE
+      SOURCE #employmentStatus
+        #/// <summary>
+        #///    Returns employment status using HRMVirtualNetworkTable.
+        #/// </summary>
+        #/// <returns>
+        #///    Empoyment status.
+        #/// </returns>
+        #//BP Deviation Documented
+        #display HRMEmploymentStatus employmentStatus()
+        #{;
+        #    // HRm
+        #    return HRMVirtualNetworkTable::findTypeReference(HRMVirtualNetworkReferenceType::Employee, this.EmplId).employmentStatus();
+        #}
+      ENDSOURCE
+      SOURCE #getPartyAddress
+        #DirPartyAddress getPartyAddress(TransDateTime _transDateTime = DateTimeUtil::getSystemDateTime())
+        #{
+        #    DirParty        party;
+        #    DirPartyAddress partyAddress;
+        #    ;
+        #    party = DirParty::constructFromPartyId(this.PartyId,DirSystemPrivacyGroupType::Public, _transDateTime);
+        #    if (party)
+        #    {
+        #        partyAddress = party.getDirPartyAddress();
+        #    }
+        #    return partyAddress;
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #HRMPartyEmployeeRelationship
+        #public HRMPartyEmployeeRelationship hrmPartyEmployeeRelationship(
+        #    FromDateTime    _testDate = DateTimeUtil::getSystemDateTime())
+        #{
+        #    HRMPartyEmployeeRelationship    hrmPartyEmployeeRelationship    = HRMPartyEmployeeRelationship::findVersion(this.EmplId,_testDate);
+        #
+        #    return hrmPartyEmployeeRelationship;
+        #}
+      ENDSOURCE
+      SOURCE #image
+        #/// <summary>
+        #///    Returns reference to employee image. Macro <c>resAppl</c> is used.
+        #/// </summary>
+        #/// <returns>
+        #///    Image reference number.
+        #/// </returns>
+        #//BP Deviation Documented
+        #display ImageRes image()
+        #{
+        #    #resappl
+        #    int image;
+        #    ;
+        #
+        #    image = #ImageEmployee;
+        #
+        #    return image;
+        #}
+      ENDSOURCE
+      SOURCE #initFromDirParty
+        #void initFromDirParty(DirParty _dirParty)
+        #{
+        #    ;
+        #    // basic info
+        #    if (_dirParty.parmBasicInfo())
+        #    {
+        #        this.PartyId         = _dirParty.parmPartyId();
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #initValue
+        #// AOSRunMode::Server
+        #// Run on server, because software for synchronization with Microsoft
+        #// Outlook requires date and time according to the server clock.
+        #server public void initValue()
+        #{;
+        #    this.ValidateEmplCategory   = NoYes::Yes ;
+        #    this.ValidateProjEmpl       = NoYes::Yes ;
+        #
+        #    super();
+        #
+        #    this.ActivateAnswer          = NoYes::No;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #insert
+        #/// <summary>
+        #///    Insert new record in table. HRMVirtualNetworkTable is also updated.
+        #/// </summary>
+        #void insert()
+        #{;
+        #    super();
+        #
+        #    // HRm
+        #    HRMVirtualNetworkTableReplicate::insert(HRMVirtualNetworkReferenceType::Employee, this.EmplId);
+        #}
+      ENDSOURCE
+      SOURCE #modifiedField
+        #/// <summary>
+        #///    When fields are modified this method is called. The fields are updated using the AxEmplTable class. Note: super-method is never called.
+        #///    The map HRMPersonNameMap is used to update name fields in
+        #///    HRMApplicantTable.
+        #/// </summary>
+        #/// <param name="_fieldId">
+        #///    Id of the field being modified.
+        #/// </param>
+        #public void modifiedField(fieldId _fieldId)
+        #{
+        #    AxEmplTable     axEmplTable;
+        #    Object          formDataSource;
+        #    ;
+        #
+        #    super(_fieldId);
+        #
+        #    if (this.isFormDataSource())
+        #    {
+        #        if (formDataSourceHasMethod(this.dataSource(),classstr(AxEmplTable)))
+        #        {
+        #            formDataSource  = this.dataSource();
+        #            axEmplTable     = formDataSource.axEmplTable();
+        #        }
+        #    }
+        #    else
+        #    {
+        #        axEmplTable = this.axEmplTable();
+        #    }
+        #
+        #    if (axEmplTable)
+        #    {
+        #        axEmplTable.setFieldAsTouched(_fieldId);
+        #        axEmplTable.modify();
+        #    }
+        #    else
+        #    {
+        #        // HRM-start
+        #        switch(_fieldId)
+        #        {
+        #            case fieldnum(EmplTable, PartyId) :
+        #                this.initFromDirParty(DirParty::constructFromPartyId(this.PartyId));
+        #                break;
+        #        }
+        #        // HRM-end
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #name
+        #//BP Deviation Documented
+        #display DirPartyName name()
+        #{
+        #    // If partyid does not exist lookup using the EmplId
+        #    if (!this.PartyId)
+        #    {
+        #        return EmplTable::emplId2Name(this.EmplId);
+        #    }
+        #    // Else return the empl name for the party id
+        #    return this.dirPartyTable().Name;
+        #}
+      ENDSOURCE
+      SOURCE #numberOfWorkDays
+        #/// <summary>
+        #///    Find number of days were the employee works. This is done by finding days in field WorkingHours (an array), where hours larger than zero.
+        #/// </summary>
+        #/// <returns>
+        #///    Number of work days for employee.
+        #/// </returns>
+        #//BP Deviation Documented
+        #display HRMNumberOfWorkDays numberOfWorkDays()
+        #{
+        #
+        #    int                 arrayCounter;
+        #    HRMNumberOfWorkDays numberOfWorkDays;
+        #    ;
+        #
+        #    for (arrayCounter = 1; arrayCounter <= dimof(this.del_workingHours); arrayCounter++)
+        #    {
+        #        numberOfWorkDays += this.del_workingHours[arrayCounter] > 0 ? 1 : 0;
+        #    }
+        #
+        #    return numberOfWorkDays;
+        #}
+      ENDSOURCE
+      SOURCE #pager
+        #//BP Deviation Documented
+        #display Pager pager(DirSystemPrivacyGroupType _privacyGroupType = DirSystemPrivacyGroupType::Employee,
+        #                    TransDateTime   _transDateTime = DateTimeUtil::getSystemDateTime())
+        #{
+        #    Pager   pager;
+        #
+        #    ;
+        #    pager = this.communicationValue(DirSystemECommunicationType::Pager,_privacyGroupType, _transDateTime);
+        #    return pager;
+        #}
+      ENDSOURCE
+      SOURCE #Phone
+        #//BP Deviation Documented
+        #display Phone phone(DirSystemPrivacyGroupType   _privacyGroupType   = DirSystemPrivacyGroupType::Employee,
+        #                    TransDateTime               _transDateTime      = DateTimeUtil::getSystemDateTime())
+        #{
+        #    Phone  phone;
+        #    ;
+        #
+        #    phone = this.communicationValue(DirSystemECommunicationType::Phone, _privacyGroupType, _transDateTime);
+        #    return phone;
+        #}
+      ENDSOURCE
+      SOURCE #phoneLocal
+        #//BP Deviation Documented
+        #display PhoneLocal phoneLocal(DirSystemPrivacyGroupType _privacyGroupType = DirSystemPrivacyGroupType::Employee,
+        #                    TransDateTime   _transDateTime = DateTimeUtil::getSystemDateTime())
+        #{
+        #    PhoneLocal                      phoneLocal;
+        #    Phone                           phone;
+        #    DirParty                        party;
+        #    DirPartyECommunication          partyECommunication;
+        #    ;
+        #
+        #    phone = this.communicationValue(DirSystemECommunicationType::Phone, _privacyGroupType, _transDateTime);
+        #
+        #    //If Phone number exists then get the extension(Local Phone)
+        #    if(phone)
+        #    {
+        #        //Replicating code from this.communicationValue() to get Local Phone
+        #        party = DirParty::constructFromPartyId(this.PartyId,_privacyGroupType,_transDateTime);
+        #        if (party)
+        #        {
+        #            partyECommunication = party.getDirPartyECommunication();
+        #            if (partyECommunication)
+        #            {
+        #                phoneLocal = partyECommunication.parmPhoneLocal();
+        #            }
+        #
+        #        }
+        #        //Change the privacy to 'Public' if no phone number of privacy type 'Employee' exists
+        #        if (!phoneLocal && _privacyGroupType != DirSystemPrivacyGroupType::Public)
+        #        {
+        #            _privacyGroupType = DirSystemPrivacyGroupType::Public;
+        #            party = DirParty::constructFromPartyId(this.PartyId,_privacyGroupType,_transDateTime);
+        #            if (party)
+        #            {
+        #                partyECommunication = party.getDirPartyECommunication();
+        #                if (partyECommunication)
+        #                {
+        #                    phoneLocal = partyECommunication.parmPhoneLocal();
+        #                }
+        #            }
+        #
+        #        }
+        #    }
+        #
+        #    return phoneLocal? phoneLocal : "";
+        #}
+      ENDSOURCE
+      SOURCE #phoneOther
+        #//BP Deviation Documented
+        #display PhoneOther  phoneOther(DirSystemPrivacyGroupType  _privacyGroupType = DirSystemPrivacyGroupType::Employee,
+        #                               TransDateTime              _transDateTime    = DateTimeUtil::getSystemDateTime())
+        #{
+        #    PhoneOther  phone;
+        #    ;
+        #
+        #    phone = this.communicationValue(DirSystemECommunicationType::OtherPhone,_privacyGroupType,_transDateTime);
+        #    return phone;
+        #}
+      ENDSOURCE
+      SOURCE #primaryAddress
+        #//BP deviation documented
+        #display Addressing primaryAddress()
+        #{
+        #    ;
+        #
+        #    //
+        #    // Returns a <c>Primary</c>, date effective <c>Active</c>, address string for an employee.
+        #    //
+        #    // An empty <c>Addressing</c> string indicates that a <c>Primary<c>, date effective <c>Active</c>,
+        #    // address could not be found.
+        #    //
+        #    return DirPartyAddress::findPrimaryAddress(this.PartyId).Address;
+        #}
+      ENDSOURCE
+      SOURCE #renamePrimaryKey
+        #/// <summary>
+        #///    Called when primary key is renamed. It also updates primary key for Shoop Floor Control table JMGEmployee.
+        #/// </summary>
+        #public void renamePrimaryKey()
+        #{
+        #    // Shop Floor Control - Begin
+        #    JmgEmployee jmgEmployee;
+        #    ;
+        #    if (isConfigurationkeyEnabled(configurationkeynum(Jmg)))
+        #    {
+        #        jmgEmployee = JmgEmployee::find(this.orig().EmplId);
+        #        if (jmgEmployee)
+        #        {
+        #            jmgEmployee.EmplId = this.EmplId;
+        #            jmgEmployee.renamePrimaryKey();
+        #        }
+        #    }
+        #    // Shop Floor Control - End
+        #
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #showPartyMatchIcon
+        #//BP Deviation documented
+        #display DirPartyMatchIcon showPartyMatchIcon()
+        #{
+        #    ;
+        #    return DirParty::showPartyMatchIcon(this);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #SMS
+        #//BP Deviation Documented
+        #display SMS sms(DirSystemPrivacyGroupType _privacyGroupType = DirSystemPrivacyGroupType::Employee,
+        #                    TransDateTime   _transDateTime = DateTimeUtil::getSystemDateTime())
+        #{
+        #    SMS                   sms;
+        #    ;
+        #    sms = this.communicationValue(DirSystemECommunicationType::SMS,_privacyGroupType,_transDateTime);
+        #    return sms;
+        #}
+      ENDSOURCE
+      SOURCE #telefax
+        #//BP Deviation Documented
+        #display TeleFax telefax(DirSystemPrivacyGroupType _privacyGroupType = DirSystemPrivacyGroupType::Employee,
+        #                    TransDateTime   _transDateTime = DateTimeUtil::getSystemDateTime())
+        #{
+        #    TeleFax   teleFax;
+        #
+        #    ;
+        #    teleFax = this.communicationValue(DirSystemECommunicationType::TeleFax,_privacyGroupType,_transDateTime);
+        #    return teleFax;
+        #}
+      ENDSOURCE
+      SOURCE #telex
+        #//BP Deviation Documented
+        #display Telex telex(DirSystemPrivacyGroupType _privacyGroupType = DirSystemPrivacyGroupType::Employee,
+        #                    TransDateTime   _transDateTime = DateTimeUtil::getSystemDateTime())
+        #{
+        #    Telex   telex;
+        #
+        #    ;
+        #    telex = this.communicationValue(DirSystemECommunicationType::Telex, _privacyGroupType,_transDateTime);
+        #    return telex;
+        #}
+      ENDSOURCE
+      SOURCE #update
+        #public void update(boolean _skipSyncTrigger = false)
+        #{
+        #    recVersion rv;
+        #    boolean isIntegrated;
+        #    EmplTable emplTable;
+        #    SyncEmplTable syncEmplTable;
+        #    SyncApp syncApp;
+        #    SyncStoreManager objSyncStore = new SyncStoreManager();
+        #    ;
+        #
+        #    // Get the old version of the record before the update
+        #    rv = this.orig().RecVersion;
+        #
+        #    // Check if employee is an integrated employee
+        #    if(SyncEmplTable::checkIsIntegrated(this.EmplId))
+        #    {
+        #        isIntegrated = true;
+        #    }
+        #
+        #    super();
+        #
+        #    ttsbegin;
+        #    // If the employee has changed and the employee is integrated
+        #    // send the update transaction that occured to the synchronization store
+        #    if(!_skipSyncTrigger && isIntegrated && this.RecVersion != rv)
+        #    {
+        #        emplTable = EmplTable::find(this.EmplId, true);
+        #        emplTable.SyncVersion = emplTable.SyncVersion + 1;
+        #        emplTable.doUpdate();
+        #
+        #        // Get all the enabled applications integrated with this employee
+        #        while select syncEmplTable where syncEmplTable.EmplId == this.EmplId
+        #        join syncApp
+        #            where syncApp.AppId == syncEmplTable.AppId
+        #            && syncApp.Enabled == NoYes::Yes
+        #        {
+        #            // Send the update transaction for this employee to the sync store
+        #            objSyncStore.sendEmployeeTransToSyncStore(emplTable, syncEmplTable.AppId, SyncAction::Update, SyncAction::Update, false, true, emplTable.name());
+        #        }
+        #    }
+        #
+        #    ttscommit;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #updateBySyncService
+        #public boolean updateBySyncService(SyncAppId _sourceAppId, SyncResUID _resUID, recVersion _recVersion)
+        #{
+        #    EmplTable emplTable;
+        #    SyncEmplTable syncEmplTable;
+        #    SyncApp syncApp;
+        #    ;
+        #
+        #    // Perform concurrency checks here to make sure the employee has not been updated by someone else
+        #    if(_recVersion != -1)
+        #    {
+        #        emplTable = EmplTable::find(this.EmplId);
+        #        if(emplTable.RecVersion != _recVersion)
+        #            return false;
+        #    }
+        #
+        #    // Allow update if the employee is integrated to an enabled application
+        #    ttsbegin;
+        #    syncApp = SyncApp::find(_sourceAppId);
+        #    syncEmplTable = SyncEmplTable::find(this.EmplId, _sourceAppId, true);
+        #    if(syncEmplTable && syncApp && syncApp.Enabled)
+        #    {
+        #        this.update(true);
+        #
+        #        // update the SyncEmplTable record
+        #        syncEmplTable.Res_UID = _resUID;
+        #        syncEmplTable.update();
+        #
+        #    }
+        #    ttscommit;
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #url
+        #//BP Deviation Documented
+        #display URL url(DirSystemPrivacyGroupType _privacyGroupType = DirSystemPrivacyGroupType::Employee,
+        #                    TransDateTime   _transDateTime = DateTimeUtil::getSystemDateTime())
+        #{
+        #    URL url;
+        #
+        #    ;
+        #    url = this.communicationValue(DirSystemECommunicationType::URL,_privacyGroupType,_transDateTime);
+        #    return url;
+        #}
+      ENDSOURCE
+      SOURCE #validateDelete
+        #/// <summary>
+        #///    Validate that delete is possible.
+        #/// </summary>
+        #/// <returns>
+        #///    True, if delete possible.
+        #/// </returns>
+        #boolean validateDelete()
+        #{
+        #    boolean ret;
+        #    ;
+        #
+        #    ret = super();
+        #
+        #    // HRM Start
+        #    ret = ret && HRMVirtualNetworkTableReplicate::validateDelete(HRMVirtualNetworkReferenceType::Employee, this.EmplId);
+        #    // HRM End
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #validateDirPartyName
+        #/// <summary>
+        #/// Validates the <c>Name</c> related to the <c>PartyId</c> on associated to the employee.
+        #/// </summary>
+        #/// <returns>
+        #/// True if succesful; otherwise false.
+        #/// </returns>
+        #/// <remarks>
+        #/// Validates that the <c>PartyId</c> related to the employee has a non blank value
+        #/// in the <c>Name</c> field in the <c>DirPartyTable</c> table when the DirPartyTable exists.
+        #/// </remarks>
+        #public boolean validateDirPartyName()
+        #{
+        #    DirPartyTable   partyTable;
+        #    ;
+        #
+        #    select
+        #        Name, RecId from partyTable
+        #    where
+        #        partyTable.PartyId == this.PartyId;
+        #
+        #    return (partyTable.RecId ? (strLRTrim(partyTable.Name) != "") : true);
+        #}
+      ENDSOURCE
+      SOURCE #ValidateField
+        #boolean validateField(fieldId p1)
+        #{
+        #    boolean     ret;
+        #    ;
+        #
+        #    ret = super(p1);
+        #
+        #    switch(p1)
+        #    {
+        #        case(fieldnum(EmplTable, ProjPeriodId)):
+        #            if (!this.ProjPeriodId && (select projPeriodEmpl where projPeriodEmpl.EmplId == this.EmplId).RecId)
+        #            {
+        #                // Before period reference is removed, unused periods must be deleted.
+        #                return checkFailed("@SYS50763");
+        #            }
+        #            break;
+        #
+        #        case(fieldnum(EmplTable, SmmSynchronizeDaysBack)):
+        #            if (ret && (this.SmmSynchronizeDaysBack < 0 || this.SmmSynchronizeDaysBack > 365))
+        #            {
+        #                // The days before must be between 0 and 365.
+        #                ret = checkFailed("@SYS91128");
+        #            }
+        #            break;
+        #
+        #        case(fieldnum(EmplTable, SmmSynchronizeDaysForward)):
+        #            if (ret && (this.SmmSynchronizeDaysForward < 0 || this.SmmSynchronizeDaysForward > 365))
+        #            {
+        #                // The days after must be between 0 and 365.
+        #                ret = checkFailed("@SYS91129");
+        #            }
+        #            break;
+        #
+        #        case fieldnum(EmplTable, ReqLocationId) :
+        #            ret = this.InventStorageDimMap::validateField(fieldnum(InventStorageDimMap, InventLocationId));
+        #            break;
+        #    }
+        #    return ret;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #validateIfTerminatedAllowed
+        #public boolean validateIfTerminatedAllowed(boolean _suppressInfolog = false)
+        #{
+        #    boolean retOk = true;
+        #    ;
+        #
+        #    if (this.Status == HRMEmplStatus::Resigned  && !ProjParameters::find().ShowInactiveEmployees)
+        #    {
+        #        retOk = _suppressInfolog ? false : checkFailed("@SYS39651");
+        #    }
+        #
+        #    return retOk;
+        #}
+      ENDSOURCE
+      SOURCE #validateProjServerProperties
+        #private boolean validateProjServerProperties()
+        #{
+        #    SyncEmplTable syncEmplTable;
+        #    SyncApp syncApp;
+        #    EmplTable emplTableSameName;
+        #    DirPartyTable dirPartyTableSameName;
+        #    ;
+        #
+        #    select syncEmplTable where syncEmplTable.EmplId == this.EmplId
+        #    join syncApp where syncApp.AppId == syncEmplTable.AppId
+        #    && syncApp.AppType == SyncAppType::ProjectServer;
+        #
+        #    if(syncEmplTable)
+        #    {
+        #        // Check that an integrated employee with the same name as this integrated employee being updated does not exist
+        #        select emplTableSameName
+        #            where emplTableSameName.EmplId != this.EmplId
+        #        join dirPartyTableSameName
+        #            where dirPartyTableSameName.PartyId == emplTableSameName.PartyId
+        #            && dirPartyTableSameName.Name == this.name()
+        #        join syncEmplTable
+        #            where syncEmplTable.EmplId == emplTableSameName.EmplId
+        #        join syncApp
+        #            where syncApp.AppId == syncEmplTable.AppId && syncApp.AppType == SyncAppType::ProjectServer;
+        #        if(emplTableSameName)
+        #        {
+        #            // Employee %1 cannot be updated. An employee with the same name has already been integrated to project server.
+        #            // Project server does not allow more than one employee with the same name.
+        #            checkFailed(strfmt("@SYS113507", this.EmplId));
+        #            return false;
+        #        }
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #validateUniquePartyId
+        #/// <summary>
+        #/// Validates the <c>PartyId</c> related to employee is unique per employee.
+        #/// </summary>
+        #/// <returns>
+        #/// True if succesful; otherwise false.
+        #/// </returns>
+        #/// <remarks>
+        #/// Validates that the <c>PartyId</c> related to the employee is not already used for another employee.
+        #/// </remarks>
+        #public boolean validateUniquePartyId()
+        #{
+        #    boolean     retValue = true;
+        #    EmplTable   emplTableLocal;
+        #    ;
+        #
+        #    select
+        #        count(RecId) from emplTableLocal
+        #    where
+        #        emplTableLocal.PartyId  ==  this.PartyId &&
+        #        emplTableLocal.EmplId   !=  this.EmplId;
+        #
+        #    if (emplTableLocal.RecId)
+        #    {
+        #        retValue = false;
+        #    }
+        #
+        #    return retValue;
+        #}
+      ENDSOURCE
+      SOURCE #validateWrite
+        #/// <summary>
+        #///       Validate write to table is possible. Possible errors:
+        #///
+        #///    <list type="bullet">
+        #///       <item>
+        #///          <description><see cref="HRMVirtualNetworkTableReplicate::validateWrite Method" /> must be true.
+        #///          </description>
+        #///       </item>
+        #///       <item>
+        #///          <description>If absence code set, absence date must be setup too.
+        #///          </description>
+        #///       </item>
+        #///       <item>
+        #///          <description>Employee cannot be of type "Work center", when employee status is set to "None"
+        #///          </description>
+        #///       </item>
+        #///       <item>
+        #///          <description>Activity start time must be before the activity end date.
+        #///          </description>
+        #///       </item>
+        #///       <item>
+        #///          <description>Birthday must not be set to a future date.
+        #///          </description>
+        #///       </item>
+        #///    </list>
+        #/// </summary>
+        #/// <returns>
+        #///    True, if write is possible.
+        #/// </returns>
+        #boolean validateWrite()
+        #{
+        #    boolean     ret;
+        #    ;
+        #
+        #    ret = super();
+        #
+        #    if (!this.PartyId)
+        #    {
+        #        // PartyId field is empty
+        #        ret = ret && checkFailed(strfmt("@SYS122460"));
+        #    }
+        #    else if (!this.validateUniquePartyId())
+        #    {
+        #        // The PartyId is already related to another employee in the same company.
+        #        ret = ret && checkFailed(strfmt("@SYS123373", "@SYS36113", this.PartyId));
+        #    }
+        #
+        #    if (!this.validateDirPartyName())
+        #    {
+        #        // An existing DirPartyTable.Name field related to PartyId is empty.
+        #        ret = ret && checkFailed(strfmt("@SYS26332","@SYS92116"));
+        #    }
+        #
+        #    // HRM Start
+        #    if (!this.RecId)
+        #    {
+        #        ret = ret && HRMVirtualNetworkTableReplicate::validateWrite(HRMVirtualNetworkReferenceType::Employee, this.EmplId);
+        #    }
+        #    // HRM End
+        #
+        #    // Check that activities starts before they end
+        #    if (this.ActivityStartTime > this.ActivityEndTime)
+        #    {
+        #        // Activity start time must be before the activity end date
+        #        ret = ret && checkFailed("@SYS89986");
+        #    }
+        #
+        #    // Check that birthday is not in the future
+        #    if (this.BirthDate > systemdateget())
+        #    {
+        #        // Birthday must not be set to a future date
+        #        ret = ret && checkFailed("@SYS91352");
+        #    }
+        #
+        #    if (ret)
+        #    {
+        #        ret = appl.dimensionSetValidation().checkDimension(this, fieldnum(EmplTable, Dimension), true);
+        #    }
+        #
+        #    return ret;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #virtualNetworkId
+        #// HRm
+        #HRMVirtualNetworkId virtualNetworkId()
+        #{;
+        #    return HRMVirtualNetworkTable::findTypeReference(HRMVirtualNetworkReferenceType::Employee, this.EmplId).HrmVirtualNetworkId;
+        #}
+      ENDSOURCE
+      SOURCE #write
+        #/// <summary>
+        #///    Called when write to table is performed. Clears the email cache.
+        #/// </summary>
+        #public void write()
+        #{;
+        #    super();
+        #
+        #}
+      ENDSOURCE
+      SOURCE #capacity
+        #/// <summary>
+        #///    Find capacity for an employee within a specified period.  The capacity is returned by summing up hours in WorkCalendarDateLine in the period.
+        #///    If period dates not specified, the default period is
+        #///    current date and 50 days forward.
+        #/// </summary>
+        #/// <param name="fromDate">
+        #///    Start of period
+        #/// </param>
+        #/// <param name="toDate">
+        #///    End of period
+        #/// </param>
+        #/// <param name="emplId">
+        #///    Id of employee to calculate capacity for
+        #/// </param>
+        #/// <returns>
+        #///    Capacity of employee in hours.
+        #/// </returns>
+        #public server static CapacityValue capacity(TransDate       fromDate,
+        #                                            TransDate       toDate,
+        #                                            EmplId          emplId)
+        #{
+        #    WorkCalendarDateLine    workCalendarDateLine;
+        #    CalendarId              calendarId    = EmplTable::find(emplId).CalendarId;
+        #    date                    tmpDateFrom;
+        #    date                    tmpDateTo;
+        #    date                    incrDate;
+        #    CapacityValue           capacity;
+        #    ;
+        #
+        #    tmpDateFrom = fromDate ? fromDate   : systemdateget();
+        #    tmpDateTo   = toDate   ? toDate     : systemdateget() + 50;
+        #
+        #    incrDate = tmpDateFrom;
+        #
+        #    while (incrDate <= tmpDateTo)
+        #    {
+        #        while select workCalendarDateLine
+        #            index hint CalendarDateFromIdx
+        #            where workCalendarDateLine.CalendarId   == calendarId  &&
+        #                  workCalendarDateLine.TransDate    == incrDate
+        #        {
+        #            capacity += workCalendarDateLine.capacity(100, false);
+        #        }
+        #        incrDate += 1;
+        #    }
+        #
+        #    return capacity;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #checkExist
+        #/// <summary>
+        #///    Check if employee exists.
+        #/// </summary>
+        #/// <param name="_emplId">
+        #///    Employee id to be validated.
+        #/// </param>
+        #/// <returns>
+        #///    True, if employee exists.
+        #/// </returns>
+        #public static boolean checkExist(EmplId _emplId)
+        #{;
+        #    if (_emplId && !EmplTable::exist(_emplId))
+        #    {
+        #        return checkFailed(strfmt(EmplTable::txtNotExist(), _emplId));
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #createCategoryConnection
+        #public static boolean createCategoryConnection()
+        #{
+        #    ProjParameters      projParameters  = ProjParameters::find();
+        #    ;
+        #
+        #    if (projParameters.ValidationEmplCategory == ProjValParameter::None)
+        #    {
+        #        return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #createProjConnection
+        #public static boolean createProjConnection()
+        #{
+        #    ProjParameters      projParameters  = ProjParameters::find();
+        #    ;
+        #
+        #    if (projParameters.ValidationEmplProj == ProjValParameter::None)
+        #    {
+        #        return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #emplId2Name
+        #static DirPartyName emplId2Name(EmplId _emplId)
+        #{
+        #    DirPartyTable   partyTable;
+        #    EmplTable       emplTable;
+        #    ;
+        #    select emplTable
+        #            where emplTable.EmplId == _emplId
+        #        join partyTable
+        #            where partyTable.PartyId == emplTable.PartyId;
+        #
+        #    return partyTable.Name;
+        #}
+      ENDSOURCE
+      SOURCE #exist
+        #/// <summary>
+        #///    Check if employee exists.
+        #/// </summary>
+        #/// <param name="_emplId">
+        #///    Employee id to be validated.
+        #/// </param>
+        #/// <returns>
+        #///    True, if employee exists.
+        #/// </returns>
+        #public static boolean exist(EmplId _emplId)
+        #{;
+        #    return _emplId && (select firstonly emplTable index hint EmplIdx where emplTable.EmplId == _emplId).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #/// <summary>
+        #///    Find EmplTable record from employee id.
+        #/// </summary>
+        #/// <param name="_emplId">
+        #///    Employee id to be validated.
+        #/// </param>
+        #/// <param name="_forupdate">
+        #///    Update record?
+        #/// </param>
+        #/// <returns>
+        #///    Employee record.
+        #/// </returns>
+        #public static EmplTable find(EmplId _emplId, boolean _forupdate = false)
+        #{
+        #    EmplTable   emplTable = null;
+        #    ;
+        #
+        #    if (_emplId)
+        #    {
+        #        emplTable.selectForUpdate(_forupdate);
+        #
+        #        select firstonly emplTable index hint EmplIdx where emplTable.EmplId == _emplId;
+        #    }
+        #
+        #    return emplTable;
+        #}
+      ENDSOURCE
+      SOURCE #findByPartyId
+        #static EmplTable findByPartyId(DirPartyId   _partyId,
+        #                               boolean      _forUpdate = false)
+        #{
+        #    EmplTable emplTable;
+        #    ;
+        #
+        #    if (_partyId)
+        #    {
+        #        if (_forUpdate)
+        #            emplTable.selectForUpdate(_forUpdate);
+        #
+        #        select firstonly emplTable
+        #            where emplTable.PartyId == _partyId;
+        #    }
+        #    return emplTable;
+        #}
+      ENDSOURCE
+      SOURCE #lookupEmplId
+        #public client static void lookupEmplId(Object _ctrl)
+        #{
+        #    Args        args;
+        #    FormRun     formRun;
+        #    ;
+        #
+        #    args = new Args();
+        #    args.name(formstr(EmplIdLookup));
+        #    args.caller(_ctrl);
+        #    formRun = classfactory.formRunClass(args);
+        #    formRun.init();
+        #    _ctrl.performFormLookup(formRun);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #lookupEmployee
+        #client static void lookupEmployee(FormStringControl   _ctrl)
+        #{
+        #    Args    args;
+        #    Object  formRun;
+        #    ;
+        #
+        #    args = new Args();
+        #    args.name(formstr(EmplTableLookUp));
+        #    args.caller(_ctrl);
+        #
+        #    formRun = classfactory.formRunClass(args);
+        #    formRun.init();
+        #
+        #    _ctrl.performFormLookup(formRun);
+        #}
+      ENDSOURCE
+      SOURCE #periodHourRegistration
+        #/// <summary>
+        #///    Returns sum of registered hours in <see cref="ProjEmplTrans Table" /> for the specified employee, within the specified period.
+        #/// </summary>
+        #/// <param name="_emplId">
+        #///    Employee id
+        #/// </param>
+        #/// <param name="_periodFrom">
+        #///    Start of period
+        #/// </param>
+        #/// <param name="_periodTo">
+        #///    End of period
+        #/// </param>
+        #/// <returns>
+        #///    Sum of all registered hours.
+        #/// </returns>
+        #public static ProjQtyEmpl periodHourRegistration(EmplId         _emplId,
+        #                                                 ProjPeriodFrom _periodFrom,
+        #                                                 ProjPeriodTo   _periodTo)
+        #{;
+        #    return (select sum(Qty) from projEmplTrans where projEmplTrans.EmplId    == _emplId &&
+        #                                                     projEmplTrans.TransDate >= _periodFrom &&
+        #                                                     projEmplTrans.TransDate <= _periodTo).Qty;
+        #}
+      ENDSOURCE
+      SOURCE #txtNotExist
+        #/// <summary>
+        #///    Returns label id for error message, to use when employee does not exist.
+        #/// </summary>
+        #/// <returns>
+        #///    Label id.
+        #/// </returns>
+        #static str 80 txtNotExist()
+        #{;
+        #    // Employee '%1' does not exist
+        #    return "@SYS8607";
+        #}
+      ENDSOURCE
+      SOURCE #userId2EmplId
+        #/// <summary>
+        #///    Get employee id from user id.
+        #/// </summary>
+        #/// <param name="_userId">
+        #///    User id.
+        #/// </param>
+        #/// <returns>
+        #///    Employee id.
+        #/// </returns>
+        #public static EmplId userId2EmplId(userId _userId)
+        #{;
+        #    return SysCompanyUserInfo::find(_userId).EmplId;
+        #}
+      ENDSOURCE
+      SOURCE #userId2PBAUserProfile
+        #// PBa
+        #server static PBAUserProfile userId2PBAUserProfile(userId _userId)
+        #{;
+        #    return SysCompanyUserInfo::find(_userId).pbaUserProfile;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

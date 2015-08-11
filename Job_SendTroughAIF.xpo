@@ -1,0 +1,19 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: SendTroughAIF unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #SendTroughAIF
+    #static void SendTroughAIF(Args _args)
+    #{
+    #    ;
+    #    new AifOutboundProcessingService().run();
+    #    new AifGatewaySendService().run();
+    #}
+  ENDSOURCE
+
+***Element: END

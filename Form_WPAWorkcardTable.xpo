@@ -1,0 +1,611 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FRM
+
+; Microsoft Dynamics AX Forms unloaded
+; --------------------------------------------------------------------------------
+FRMVERSION 5
+
+FORM #WPAWorkcardTable
+  PROPERTIES
+    Name                #WPAWorkcardTable
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class FormRun extends ObjectRun
+      #{
+      #    SysFormSplitter_Y   _formSplitterVertical;
+      #    QueryBuildRange     direction_qbr;
+      #}
+    ENDSOURCE
+    SOURCE #updateRanges
+      #void updateRanges()
+      #{
+      #    ;
+      #    switch (AllOutInField.selection())
+      #    {
+      #        case WPAAllOutIn::All       :   direction_qbr.value(SysQuery::valueUnlimited());
+      #                                        break;
+      #        case WPAAllOutIn::Incoming  :   direction_qbr.value(SysQuery::value(WPADirection::Incoming));
+      #                                        break;
+      #        case WPAAllOutIn::OutGoing  :   direction_qbr.value(SysQuery::value(WPADirection::Outgoing));
+      #                                        break;
+      #        default                     :   break;
+      #    }
+      #
+      #    WPAWorkcardTable_ds.executeQuery();
+      #}
+    ENDSOURCE
+    SOURCE #init
+      #public void init()
+      #{
+      #    super();
+      #
+      #    _formSplitterVertical   = new SysFormSplitter_Y(ctrlSplitVertical, table, this);
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  OBJECTBANK
+    PROPERTIES
+    ENDPROPERTIES
+    
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #WPAWorkcardTable
+          Table               #WPAWorkcardTable
+          Index               #OrderWorkcardDirectionIdx
+          AllowCreate         #No
+          StartPosition       #Last
+          InsertAtEnd         #No
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #init
+          #public void init()
+          #{
+          #    super();
+          #
+          #    direction_qbr = WPAWorkcardTable_ds.query().dataSourceTable(tablenum(WPAWorkcardTable)).addRange(fieldnum(WPAWorkcardTable, Direction));
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #WPAWorkcardLine
+          Table               #WPAWorkcardLine
+          JoinSource          #WPAWorkcardTable
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+    ENDDATASOURCE
+  ENDOBJECTBANK
+  
+  JOINS
+    WPAWorkcardLine WPAWorkcardTable
+  ENDJOINS
+  
+  DESIGN
+    PROPERTIES
+      Caption             #@WPA142
+      TitleDatasource     #WPAWorkcardTable
+      DataSource          #WPAWorkcardTable
+      ArrangeWhen         #Auto
+      HideIfEmpty         #No
+    ENDPROPERTIES
+    
+    CONTAINER
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Group
+          Width               #Column width
+          Height              #Column height
+          FrameType           #None
+        ENDPROPERTIES
+        
+          CONTAINER
+            CONTROL GROUP
+              PROPERTIES
+                Name                #FilterGroup
+                FrameType           #None
+              ENDPROPERTIES
+              
+                CONTAINER
+                  CONTROL COMBOBOX
+                    PROPERTIES
+                      Name                #AllOutInField
+                      AutoDeclaration     #Yes
+                      EnumType            #WPAAllOutIn
+                    ENDPROPERTIES
+                    
+                    METHODS
+                      Version: 3
+                      SOURCE #selectionChange
+                        #public int selectionChange()
+                        #{
+                        #    int ret;
+                        #    ;
+                        #    ret = super();
+                        #
+                        #    element.updateRanges();
+                        #
+                        #    return ret;
+                        #}
+                      ENDSOURCE
+                    ENDMETHODS
+                  ENDCONTROL 
+                  
+                ENDCONTAINER
+                
+            ENDCONTROL 
+            
+            CONTROL GROUP
+              PROPERTIES
+                Name                #Table
+                AutoDeclaration     #Yes
+                Width               #Column width
+                Height              #300
+                FrameType           #None
+                DataSource          #WPAWorkcardTable
+                Columns             #2
+                ArrangeGuide        
+                  ARRAY INDEX Columns 
+                    #0
+                    #0
+                  ENDARRAY
+              ENDPROPERTIES
+              
+                CONTAINER
+                  CONTROL TAB
+                    PROPERTIES
+                      Name                #TabHeader
+                      AutoDeclaration     #Yes
+                      Width               #Column width
+                      Height              #Column height
+                      DataSource          #WPAWorkcardTable
+                    ENDPROPERTIES
+                    
+                    CONTAINER
+                      CONTROL TABPAGE
+                        PROPERTIES
+                          Name                #TabHeaderOverview
+                          AutoDeclaration     #Yes
+                          Caption             #@SYS9039
+                          DataSource          #WPAWorkcardTable
+                        ENDPROPERTIES
+                        
+                        CONTAINER
+                          CONTROL GRID
+                            PROPERTIES
+                              Name                #GridHeader
+                              Width               #Column width
+                              Height              #Column height
+                              VisibleRows         #9
+                              DataSource          #WPAWorkcardTable
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardTable_OrderId
+                                    DataSource          #WPAWorkcardTable
+                                    DataField           #OrderId
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardTable_WorkcardId
+                                    DataSource          #WPAWorkcardTable
+                                    DataField           #WorkcardId
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardTable_Description
+                                    DataSource          #WPAWorkcardTable
+                                    DataField           #Description
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardTable_Status
+                                    DataSource          #WPAWorkcardTable
+                                    DataField           #Status
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL COMBOBOX
+                                  PROPERTIES
+                                    Name                #WPAWorkcardTable_Transferred
+                                    DataSource          #WPAWorkcardTable
+                                    DataField           #Transferred
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL UTCDATETIMEEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardTable_createdDateTime
+                                    DataSource          #WPAWorkcardTable
+                                    DataField           #createdDateTime
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL COMBOBOX
+                                  PROPERTIES
+                                    Name                #WPAWorkcardTable_Direction
+                                    DataSource          #WPAWorkcardTable
+                                    DataField           #Direction
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                      ENDCONTROL 
+                      
+                      CONTROL TABPAGE
+                        PROPERTIES
+                          Name                #TabHeaderGeneral
+                          AutoDeclaration     #Yes
+                          Caption             #@SYS2952
+                          DataSource          #WPAWorkcardTable
+                          Columns             #3
+                          ArrangeGuide        
+                            ARRAY INDEX Columns 
+                              #0
+                              #0
+                              #0
+                            ENDARRAY
+                        ENDPROPERTIES
+                        
+                        CONTAINER
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Identification
+                              DataSource          #WPAWorkcardTable
+                              DataGroup           #Identification
+                              AutoDataGroup       #Yes
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Description
+                              DataSource          #WPAWorkcardTable
+                              DataGroup           #Description
+                              AutoDataGroup       #Yes
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Status
+                              DataSource          #WPAWorkcardTable
+                              DataGroup           #Status
+                              AutoDataGroup       #Yes
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #CRMInfo
+                              DataSource          #WPAWorkcardTable
+                              DataGroup           #CRMInfo
+                              AutoDataGroup       #Yes
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Employee
+                              DataSource          #WPAWorkcardTable
+                              DataGroup           #Employee
+                              AutoDataGroup       #Yes
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #TimeSheet
+                              DataSource          #WPAWorkcardTable
+                              DataGroup           #TimeSheet
+                              AutoDataGroup       #Yes
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Customer
+                              DataSource          #WPAWorkcardTable
+                              DataGroup           #Customer
+                              AutoDataGroup       #Yes
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                      ENDCONTROL 
+                      
+                    ENDCONTAINER
+                    
+                  ENDCONTROL 
+                  
+                ENDCONTAINER
+                
+            ENDCONTROL 
+            
+            CONTROL GROUP
+              PROPERTIES
+                Name                #CtrlSplitVertical
+                AutoDeclaration     #Yes
+                Width               #Column width
+                Height              #5
+                AlignControl        #Yes
+                FrameType           #Raised 3D
+                BackgroundColor     #Window background
+                HideIfEmpty         #No
+                AlignChild          #No
+              ENDPROPERTIES
+              
+              METHODS
+                Version: 3
+                SOURCE #mouseUp
+                  #int mouseUp(int x, int y, int button, boolean ctrl, boolean shift)
+                  #{
+                  #    int ret;
+                  #
+                  #    ret = super(x, y, button, ctrl, shift);
+                  #
+                  #    return _formSplitterVertical.mouseUp(x, y, button, ctrl, shift);
+                  #}
+                ENDSOURCE
+                SOURCE #mouseMove
+                  #int mouseMove(int x, int y, int button, boolean ctrl, boolean shift)
+                  #{
+                  #    int ret;
+                  #
+                  #    ret = super(x, y, button, ctrl, shift);
+                  #
+                  #    return _formSplitterVertical.mouseMove(x,y,button,ctrl,shift);
+                  #}
+                ENDSOURCE
+                SOURCE #mouseDown
+                  #int mouseDown(int x, int y, int button, boolean ctrl, boolean shift)
+                  #{
+                  #    int ret;
+                  #
+                  #    ret = super(x, y, button, ctrl, shift);
+                  #
+                  #    return _formSplitterVertical.mouseDown(x, y, button, ctrl, shift);
+                  #}
+                ENDSOURCE
+              ENDMETHODS
+                CONTAINER
+                ENDCONTAINER
+                
+            ENDCONTROL 
+            
+            CONTROL GROUP
+              PROPERTIES
+                Name                #Line
+                AutoDeclaration     #Yes
+                Width               #Column width
+                Height              #Column height
+                FrameType           #None
+                DataSource          #WPAWorkcardLine
+              ENDPROPERTIES
+              
+                CONTAINER
+                  CONTROL TAB
+                    PROPERTIES
+                      Name                #TabLine
+                      AutoDeclaration     #Yes
+                      Width               #Column width
+                      Height              #Column height
+                      DataSource          #WPAWorkcardLine
+                    ENDPROPERTIES
+                    
+                    CONTAINER
+                      CONTROL TABPAGE
+                        PROPERTIES
+                          Name                #TabLineOverview
+                          Caption             #@SYS15451
+                          DataSource          #WPAWorkcardLine
+                        ENDPROPERTIES
+                        
+                        CONTAINER
+                          CONTROL GRID
+                            PROPERTIES
+                              Name                #TabLineGrid
+                              AutoDeclaration     #Yes
+                              Width               #Column width
+                              Height              #Column height
+                              VisibleRows         #9
+                              DataSource          #WPAWorkcardLine
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardLine_ItemId
+                                    DataSource          #WPAWorkcardLine
+                                    DataField           #ItemId
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardLine_ItemEanNumber
+                                    DataSource          #WPAWorkcardLine
+                                    DataField           #ItemEanNumber
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardLine_ItemDescription1
+                                    DataSource          #WPAWorkcardLine
+                                    DataField           #ItemDescription1
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL REALEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardLine_Qty
+                                    DataSource          #WPAWorkcardLine
+                                    DataField           #Qty
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardLine_StockLocationId
+                                    DataSource          #WPAWorkcardLine
+                                    DataField           #StockLocationId
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #WPAWorkcardLine_ProductEmploymentCode
+                                    DataSource          #WPAWorkcardLine
+                                    DataField           #ProductEmploymentCode
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                                CONTROL COMBOBOX
+                                  PROPERTIES
+                                    Name                #WPAWorkcardLine_Transferred
+                                    DataSource          #WPAWorkcardLine
+                                    DataField           #Transferred
+                                  ENDPROPERTIES
+                                  
+                                ENDCONTROL 
+                                
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                      ENDCONTROL 
+                      
+                      CONTROL TABPAGE
+                        PROPERTIES
+                          Name                #TabLineGeneral
+                          AutoDeclaration     #Yes
+                          Caption             #@SYS2952
+                          DataSource          #WPAWorkcardLine
+                          Columns             #3
+                          ArrangeGuide        
+                            ARRAY INDEX Columns 
+                              #0
+                              #0
+                              #0
+                            ENDARRAY
+                        ENDPROPERTIES
+                        
+                        CONTAINER
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #WorkcardLine
+                              DataSource          #WPAWorkcardLine
+                              Columns             #2
+                              ArrangeGuide        
+                                ARRAY INDEX Columns 
+                                  #0
+                                  #0
+                                ENDARRAY
+                              DataGroup           #WorkcardLine
+                              AutoDataGroup       #Yes
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                      ENDCONTROL 
+                      
+                    ENDCONTAINER
+                    
+                  ENDCONTROL 
+                  
+                ENDCONTAINER
+                
+            ENDCONTROL 
+            
+          ENDCONTAINER
+          
+      ENDCONTROL 
+      
+    ENDCONTAINER
+    
+  ENDDESIGN
+  
+ENDFORM
+
+
+***Element: END

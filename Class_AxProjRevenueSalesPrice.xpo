@@ -1,0 +1,305 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxProjRevenueSalesPrice unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxProjRevenueSalesPrice
+    PROPERTIES
+      Name                #AxProjRevenueSalesPrice
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxProjRevenueSalesPrice axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxProjRevenueSalesPrice extends AxInternalBase
+        #{
+        #    ProjRevenueSalesPrice ProjRevenueSalesPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public ProjRevenueSalesPrice currentRecord(ProjRevenueSalesPrice _ProjRevenueSalesPrice = ProjRevenueSalesPrice)
+        #{
+        #    if (!prmisdefault(_ProjRevenueSalesPrice))
+        #    {
+        #        super(_ProjRevenueSalesPrice);
+        #        ProjRevenueSalesPrice = _ProjRevenueSalesPrice;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return ProjRevenueSalesPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected ProjRevenueSalesPrice emptyRecord()
+        #{
+        #    ProjRevenueSalesPrice localProjRevenueSalesPrice;
+        #    ;
+        #    return localProjRevenueSalesPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCategoryId
+        #public ProjCategoryId parmCategoryId(ProjCategoryId _categoryId = '')
+        #{
+        #    if (!prmisdefault(_categoryId))
+        #    {
+        #        this.setField(fieldNum(ProjRevenueSalesPrice, CategoryId), _categoryId);
+        #    }
+        #
+        #    return projRevenueSalesPrice.CategoryId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCurrencyId
+        #public str parmCurrencyId(str _currencyId = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_currencyId))
+        #    {
+        #        dictField = new DictField(tablenum(ProjRevenueSalesPrice),fieldnum(ProjRevenueSalesPrice,CurrencyId));
+        #        this.validateInboundCurrencyString(_currencyId,dictField);
+        #
+        #        if(this.valueMappingInbound())
+        #        {
+        #            _currencyId = this.axCurrencyCode(_currencyId);
+        #        }
+        #
+        #        this.setField(fieldNum(ProjRevenueSalesPrice, CurrencyId), _currencyId);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axCurrencyCode(projRevenueSalesPrice.CurrencyId);
+        #    }
+        #    else
+        #    {
+        #        return projRevenueSalesPrice.CurrencyId;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEmplId
+        #public EmplIdProj parmEmplId(EmplIdProj _emplId = '')
+        #{
+        #    if (!prmisdefault(_emplId))
+        #    {
+        #        this.setField(fieldNum(ProjRevenueSalesPrice, EmplId), _emplId);
+        #    }
+        #
+        #    return projRevenueSalesPrice.EmplId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjId
+        #public ProjId parmProjId(ProjId _projId = '')
+        #{
+        #    if (!prmisdefault(_projId))
+        #    {
+        #        this.setField(fieldNum(ProjRevenueSalesPrice, ProjId), _projId);
+        #    }
+        #
+        #    return projRevenueSalesPrice.ProjId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjPriceGroup
+        #public ProjPriceGroupID parmProjPriceGroup(ProjPriceGroupID _projPriceGroup = '')
+        #{
+        #    if (!prmisdefault(_projPriceGroup))
+        #    {
+        #        this.setField(fieldNum(ProjRevenueSalesPrice, ProjPriceGroup), _projPriceGroup);
+        #    }
+        #
+        #    return projRevenueSalesPrice.ProjPriceGroup;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjValidFor
+        #public ProjPriceGroupValidFor parmProjValidFor(ProjPriceGroupValidFor _projValidFor = TableGroupAll::Table)
+        #{
+        #    if (!prmisdefault(_projValidFor))
+        #    {
+        #        this.setField(fieldNum(ProjRevenueSalesPrice, ProjValidFor), _projValidFor);
+        #    }
+        #
+        #    return projRevenueSalesPrice.ProjValidFor;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSalesPrice
+        #public ProjSalesPricing parmSalesPrice(ProjSalesPricing _salesPrice = 0)
+        #{
+        #    if (!prmisdefault(_salesPrice))
+        #    {
+        #        this.setField(fieldNum(ProjRevenueSalesPrice, SalesPrice), _salesPrice);
+        #    }
+        #
+        #    return projRevenueSalesPrice.SalesPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTransDate
+        #public TransDate parmTransDate(TransDate _transDate = dateNull())
+        #{
+        #    if (!prmisdefault(_transDate))
+        #    {
+        #        this.setField(fieldNum(ProjRevenueSalesPrice, TransDate), _transDate);
+        #    }
+        #
+        #    return projRevenueSalesPrice.TransDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #ProjRevenueSalesPrice
+        #public ProjRevenueSalesPrice projRevenueSalesPrice(ProjRevenueSalesPrice _projRevenueSalesPrice = projRevenueSalesPrice)
+        #{
+        #    if (!prmisdefault(_projRevenueSalesPrice))
+        #    {
+        #        this.setCurrentRecordFromExternal(_projRevenueSalesPrice);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCategoryId
+        #protected void setCategoryId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjRevenueSalesPrice, CategoryId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCurrencyId
+        #protected void setCurrencyId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjRevenueSalesPrice, CurrencyId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setEmplId
+        #protected void setEmplId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjRevenueSalesPrice, EmplId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjId
+        #protected void setProjId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjRevenueSalesPrice, ProjId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjPriceGroup
+        #protected void setProjPriceGroup()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjRevenueSalesPrice, ProjPriceGroup)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjValidFor
+        #protected void setProjValidFor()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjRevenueSalesPrice, ProjValidFor)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSalesPrice
+        #protected void setSalesPrice()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjRevenueSalesPrice, SalesPrice)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setCategoryId();
+        #    this.setEmplId();
+        #    this.setProjId();
+        #    this.setCurrencyId();
+        #    this.setTransDate();
+        #    this.setSalesPrice();
+        #    this.setProjValidFor();
+        #    this.setProjPriceGroup();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTransDate
+        #protected void setTransDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjRevenueSalesPrice, TransDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxProjRevenueSalesPrice construct()
+        #{
+        #    return new AxProjRevenueSalesPrice();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newProjRevenueSalesPrice
+        #public static AxProjRevenueSalesPrice newProjRevenueSalesPrice(ProjRevenueSalesPrice _ProjRevenueSalesPrice)
+        #{
+        #    AxProjRevenueSalesPrice AxProjRevenueSalesPrice = AxProjRevenueSalesPrice::construct();
+        #    ;
+        #    AxProjRevenueSalesPrice.ProjRevenueSalesPrice(_ProjRevenueSalesPrice);
+        #
+        #    return AxProjRevenueSalesPrice;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

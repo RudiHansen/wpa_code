@@ -1,0 +1,148 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: QUE
+
+; Microsoft Dynamics AX Query: WPAServiceOrderLine unloaded
+; --------------------------------------------------------------------------------
+VERSION 18
+
+QUERY #WPAServiceOrderLine
+  PROPERTIES
+    Name                #WPAServiceOrderLine
+    Version             #414
+    NextUniqueId        #1007
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class QueryRun extends ObjectRun
+      #{
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  BLOCKS
+    BLOCK #SMAServiceOrderLine
+      PROPERTIES
+        Name                #SMAServiceOrderLine
+        Table               #SMAServiceOrderLine
+        UniqueId            #1000
+      ENDPROPERTIES
+      
+      FIELDLIST
+        PROPERTIES
+          Dynamic             #No
+        ENDPROPERTIES
+        
+        FIELD #ServiceOrderId
+        FIELD #ProjTransId
+        FIELD #EmplId
+        FIELD #ServiceObjectRelationId
+        FIELD #Description
+        FIELD #ItemId
+        FIELD #ProjCategoryId
+        FIELD #ProjCostPrice
+        FIELD #ProjSalesPrice
+        FIELD #Qty
+        FIELD #Unit
+      ENDFIELDLIST
+      SORTING
+      ENDSORTING
+      LINES
+        LINE #TransactionType
+        PROPERTIES
+          Name                #TransactionType
+          Table               #SMAServiceOrderLine
+          Field               #TransactionType
+          Value               #Hour
+          Status              #Lock
+        ENDPROPERTIES
+        
+      ENDLINES
+      BLOCKS
+        BLOCK #SMAServiceOrderTable
+          PROPERTIES
+            Name                #SMAServiceOrderTable
+            Table               #SMAServiceOrderTable
+            UniqueId            #1001
+            FetchMode           #1:1
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+              Dynamic             #No
+            ENDPROPERTIES
+            
+            FIELD #CustAccount
+            FIELD #ServiceAddressName
+            FIELD #ServiceAddress
+            FIELD #ServiceAddressCity
+            FIELD #ServiceAddressCountryRegion
+            FIELD #ServiceAddressCounty
+            FIELD #ServiceAddressState
+            FIELD #ServiceAddressStreet
+            FIELD #ServiceAddressZipCode
+            FIELD #StageId
+            FIELD #ServiceDateTime
+            FIELD #Priority
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+          ENDLINES
+          BLOCKS
+            BLOCK #CustTable
+              PROPERTIES
+                Name                #CustTable
+                Table               #CustTable
+                UniqueId            #1003
+                FetchMode           #1:1
+                Relations           #Yes
+              ENDPROPERTIES
+              
+              FIELDLIST
+                PROPERTIES
+                  Dynamic             #No
+                ENDPROPERTIES
+                
+                FIELD #TeleFax
+                FIELD #Phone
+                FIELD #CellularPhone
+                FIELD #Email
+              ENDFIELDLIST
+              SORTING
+              ENDSORTING
+              LINES
+              ENDLINES
+              BLOCKS
+              ENDBLOCKS
+              ASSOCIATIONS
+                ASSOCIATION
+                  MASTERFIELD  #CustAccount
+                  DETAILSFIELD #AccountNum
+              ENDASSOCIATIONS
+            ENDBLOCK
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #ServiceOrderId
+              DETAILSFIELD #ServiceOrderId
+          ENDASSOCIATIONS
+        ENDBLOCK
+      ENDBLOCKS
+      GROUPBY
+      ENDGROUPBY
+      ORDERBY
+      ENDORDERBY
+    ENDBLOCK
+  ENDBLOCKS
+  DEPENDENTS
+  ENDDEPENDENTS
+  COMPOSITEQUERIES
+  ENDCOMPOSITEQUERIES
+ENDQUERY
+
+
+***Element: END

@@ -1,0 +1,51 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBE
+
+; Microsoft Dynamics AX Enumtype : WPATransferredEnum unloaded
+; --------------------------------------------------------------------------------
+  ENUMTYPEVERSION 1
+  
+  ENUMTYPE #WPATransferredEnum
+    PROPERTIES
+      Name                #WPATransferredEnum
+      Label               #@SYS80127
+      Help                #@SYS78213
+      UseEnumValue        #Yes
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+      #Imported
+      PROPERTIES
+        Name                #Imported
+        Label               #@SYS54697
+        EnumValue           #1
+      ENDPROPERTIES
+      
+      #Transferred
+      PROPERTIES
+        Name                #Transferred
+        Label               #@SYS12615
+        EnumValue           #2
+      ENDPROPERTIES
+      
+      #Unknown
+      PROPERTIES
+        Name                #Unknown
+        Label               #@SYS21247
+        EnumValue           #3
+      ENDPROPERTIES
+      
+      #Error
+      PROPERTIES
+        Name                #Error
+        Label               #@SYS88631
+        EnumValue           #4
+      ENDPROPERTIES
+      
+    ENDTYPEELEMENTS
+  ENDENUMTYPE
+  
+
+***Element: END

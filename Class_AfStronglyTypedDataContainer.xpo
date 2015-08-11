@@ -1,0 +1,558 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AfStronglyTypedDataContainer unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AfStronglyTypedDataContainer
+    PROPERTIES
+      Name                #AfStronglyTypedDataContainer
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Interface:      AfStronglyTypedDataContainer
+        #//
+        #//  Description:    This is the base class for all strongly typed data container classes.
+        #//
+        #//                  Weakly vs. strongly typed data containers.
+        #//                  Data container can support two kinds of data access - weakly and strongly typed.
+        #//                  All data contaiers support weakly typed data access implemented by AfDataContainer
+        #//                  class. Some data containers support strongly typed data access implemented by
+        #//                  a class inherited from the AfStronglyTypedDataContainer class. Both weakly
+        #//                  and strongly typed interfaces provide methods to obtain objects that implement
+        #//                  the other interface (see AfDataContainer.st() and AfStronglyTypedDataContainer.wt()
+        #//                  methods).
+        #//
+        #//                  Data container instances must only be created by the data container factory
+        #//                  (see AfDataContainerFactory class).
+        #//
+        #//                  For more information see:
+        #//                      AfDataContainer class
+        #//                      AfDataContainerFactory class
+        #//                      DataContainerTypes macro
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #abstract class AfStronglyTypedDataContainer implements AifXmlSerializable
+        #{
+        #    // The underlying weakly typed data container. Cannot be null.
+        #    AfDataContainer dataContainer;
+        #
+        #    // Macro defining data container type constants.
+        #    #DataContainerTypes
+        #
+        #    // WPA import ->
+        #    AifMessageId        messageId;
+        #    // WPA import <-
+        #}
+      ENDSOURCE
+      SOURCE #deserialize
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         deserialize
+        #//
+        #//  Implements:     AifXmlSerializable.deserialize
+        #//
+        #//  Parameters:     XML representation of a strongly typed data container
+        #//
+        #//  Return value:   none
+        #//
+        #//  Description:    This method deserializes this strongly typed data container from the specified
+        #//                  XML representation.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #public void deserialize(AifXml xml)
+        #{
+        #    AfDataContainer deserializedDataContainer;
+        #
+        #    // Deserialize data container
+        #    deserializedDataContainer = AfDataContainerSerializer::deserializeDataContainer(xml, this.wt().get_Descriptor().get_Type());
+        #
+        #    // Swap the contents of the underlying weakly typed data container with the deserialized one.
+        #    if (!this.wt().swapContents(deserializedDataContainer))
+        #    {
+        #        // Contents were not swapped
+        #        throw error("@SYS86990");
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #exists
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         exists
+        #//
+        #//  Parameters:     _name           - data item name
+        #//
+        #//  Return value:   boolean value indicating whether the data container has a data item with the given name.
+        #//
+        #//  Description:    allows to determine whether tha data container has a data item with the given name.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected boolean exists(str _name)
+        #{
+        #    return this.wt().contains(_name);
+        #}
+      ENDSOURCE
+      SOURCE #get_Array
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         get_Array
+        #//
+        #//  Parameters:     _name               - data item name
+        #//
+        #//  Return value:   value of the data item of a type array (AfArray).
+        #//
+        #//  Description:    This is the get accesssor for data items of the type array.
+        #//                  If the data item does not exist, the method throws an exception.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected AfArray get_Array(str _name)
+        #{
+        #    if (this.exists(_name))
+        #    {
+        #        return this.wt().get_Array(_name);
+        #    }
+        #
+        #    throw error(strfmt("@SYS117663", _name));
+        #}
+      ENDSOURCE
+      SOURCE #get_Attribute
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         get_Attribute
+        #//
+        #//  Parameters:     _name           - data item name
+        #//
+        #//  Return value:   value of the data item of a primitive type (string, integer, boolean, etc.)
+        #//
+        #//  Description:    This is the get accesssor for data items of the primitive types.
+        #//                  If the data item does not exist, the method throws an exception.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected anytype get_Attribute(str _name)
+        #{
+        #    if (this.exists(_name))
+        #    {
+        #        return this.wt().get_Attribute(_name);
+        #    }
+        #
+        #    throw error(strfmt("@SYS117663", _name));
+        #}
+      ENDSOURCE
+      SOURCE #get_Container
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         get_Container
+        #//
+        #//  Parameters:     _name               - data item name
+        #//
+        #//  Return value:   value of the data item of a type data container (AfDataContainer).
+        #//
+        #//  Description:    This is the get accesssor for data items of the type data container.
+        #//                  If the data item does not exist, the method throws an exception.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected AfStronglyTypedDataContainer get_Container(str _name)
+        #{
+        #    if (this.exists(_name))
+        #    {
+        #        return AfDataContainerUtilities::getStronglyTypedDataContainer(this.wt().get_Container(_name));
+        #    }
+        #
+        #    throw error(strfmt("@SYS117663", _name));
+        #}
+      ENDSOURCE
+      SOURCE #get_EdtArray
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         get_EdtArray
+        #//
+        #//  Parameters:     _name               - data item name
+        #//
+        #//  Return value:   value of the data item of the corresponding extended array type.
+        #//
+        #//  Description:    This is the get accesssor for data items of the extended array type.
+        #//                  If the data item does not exist, the method throws an exception.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected anytype get_EdtArray(str _name)
+        #{
+        #    if (this.exists(_name))
+        #    {
+        #        return this.wt().get_EdtArray(_name);
+        #    }
+        #
+        #    throw error(strfmt("@SYS117663", _name));
+        #}
+      ENDSOURCE
+      SOURCE #get_List
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         get_List
+        #//
+        #//  Parameters:     _name               - data item name
+        #//
+        #//  Return value:   value of the data item of a type data container list (AfDataContainerList).
+        #//
+        #//  Description:    This is the get accesssor for data items of the type data container list.
+        #//                  If the data item does not exist, the method throws an exception.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected AfStronglyTypedDataContainerList get_List(str _name)
+        #{
+        #    if (this.exists(_name))
+        #    {
+        #        return AfDataContainerUtilities::getStronglyTypedDataContainerList(this.wt().get_List(_name));
+        #    }
+        #
+        #    throw error(strfmt("@SYS117663", _name));
+        #}
+      ENDSOURCE
+      SOURCE #get_NewArray
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         get_NewArray
+        #//
+        #//  Parameters:     _name               - data item name
+        #//
+        #//  Return value:   value of the data item of a type array (AfArray).
+        #//
+        #//  Description:    This is the get accesssor for data items of the type array.
+        #//                  This method creates a new array data item. If the data item
+        #//                  already exists, the method throws an exception.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected AfArray get_NewArray(str _name)
+        #{
+        #    if (this.exists(_name))
+        #    {
+        #        throw error(strfmt("@SYS117662", _name));
+        #    }
+        #
+        #    return this.wt().get_Array(_name, true);
+        #}
+      ENDSOURCE
+      SOURCE #get_NewContainer
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         get_NewContainer
+        #//
+        #//  Parameters:     _name               - data item name
+        #//
+        #//  Return value:   value of the data item of a type data container (AfDataContainer).
+        #//
+        #//  Description:    This is the get accesssor for data items of the type data container.
+        #//                  This method creates a new data container data item. If the data item
+        #//                  already exists, the method throws an error.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected AfStronglyTypedDataContainer get_NewContainer(str _name)
+        #{
+        #    if (this.exists(_name))
+        #    {
+        #        throw error(strfmt("@SYS117661", _name));
+        #    }
+        #
+        #    return AfDataContainerUtilities::getStronglyTypedDataContainer(this.wt().get_Container(_name, true));
+        #}
+      ENDSOURCE
+      SOURCE #get_NewList
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         get_NewList
+        #//
+        #//  Parameters:     _name               - data item name
+        #//
+        #//  Return value:   value of the data item of a type data container list (AfDataContainerList).
+        #//
+        #//  Description:    This is the get accesssor for data items of the type data container list.
+        #//                  This method creates a new data container list data item. If the data item
+        #//                  already exists, the method throws an exception.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected AfStronglyTypedDataContainerList get_NewList(str _name)
+        #{
+        #    if (this.exists(_name))
+        #    {
+        #        throw error(strfmt("@SYS117661", _name));
+        #    }
+        #
+        #    return AfDataContainerUtilities::getStronglyTypedDataContainerList(this.wt().get_List(_name, true));
+        #}
+      ENDSOURCE
+      SOURCE #getRootName
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         getRootName
+        #//
+        #//  Implements:     AifXmlSerializable.getRootName
+        #//
+        #//  Parameters:     none
+        #//
+        #//  Return value:   the name of the root element of XML representation of this strongly typed
+        #//                  data container.
+        #//
+        #//  Description:    This method returns the name of the root element of XML representation
+        #//                  of this strongly typed data container.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #public AifDocumentName getRootName()
+        #{
+        #    // Get the root element name for this type of data container.
+        #    return AfDataContainerSerializer::getXmlRootName(this.wt().get_Descriptor().get_Type());
+        #}
+      ENDSOURCE
+      SOURCE #getSchema
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         getSchema
+        #//
+        #//  Implements:     AifXmlSerializable.getSchema
+        #//
+        #//  Parameters:     none
+        #//
+        #//  Return value:   XML schema that describes XML representation of this strongly typed
+        #//                  data container returned by serialize() method and expected by deserialize() method.
+        #//
+        #//  Description:    This method returns XML schema that describes XML representation of this strongly typed
+        #//                  data container returned by serialize() method and expected by deserialize() method.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #public AifXml getSchema()
+        #{
+        #    // Get xml schema for this type of data container.
+        #    return AfDataContainerSerializer::getXmlSchema(this.wt().get_Descriptor().get_Type());
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         new
+        #//
+        #//  Parameters:     _dataContainerType - typed of the data container to be created
+        #//
+        #//  Return value:   none
+        #//
+        #//  Description:    This is the class constructor. It takes the data container typed to be created,
+        #//                  creates the underlying weakly typed data container of the specified type, and
+        #//                  stores the reference to that data container.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #public void new(str _dataContainerType)
+        #{
+        #    // Create the underlying weakly typed data container of the specified type and
+        #    // store the reference to that data container.
+        #    dataContainer = new AfDataContainer(_dataContainerType, this);
+        #}
+      ENDSOURCE
+      SOURCE #parmMessageId
+        #// WPA import
+        #public AifMessageId parmMessageId(AifMessageId _messageId = messageId)
+        #{
+        #    ;
+        #    messageId = _messageId;
+        #
+        #    return messageId;
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         serialize
+        #//
+        #//  Implements:     AifXmlSerializable.serialize
+        #//
+        #//  Parameters:     none
+        #//
+        #//  Return value:   XML representation of this strongly typed data container.
+        #//
+        #//  Description:    This method serializes this strongly typed data container into its
+        #//                  XML representation.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #public AifXml serialize()
+        #{
+        #    // Serialize the underlying weakly typed data container.
+        #    return AfDataContainerSerializer::serializeDataContainer(this.wt());
+        #}
+      ENDSOURCE
+      SOURCE #set_Array
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         set_Array
+        #//
+        #//  Parameters:     _name           - data item name
+        #//                  _value          - data item value
+        #//
+        #//  Return value:   none
+        #//
+        #//  Description:    This is the set accesssor for data items of array type.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected void set_Array(str _name, AfArray _value)
+        #{
+        #    this.wt().set_Array(_name, _value);
+        #}
+      ENDSOURCE
+      SOURCE #set_Attribute
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         set_Attribute
+        #//
+        #//  Parameters:     _name           - data item name
+        #//                  _value          - data item value
+        #//
+        #//  Return value:   none
+        #//
+        #//  Description:    This is the set accesssor for data items of the primitive types.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected void set_Attribute(str _name, anytype _value)
+        #{
+        #    this.wt().set_Attribute(_name, _value);
+        #}
+      ENDSOURCE
+      SOURCE #set_Container
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         set_Container
+        #//
+        #//  Parameters:     _name           - data item name
+        #//                  _value          - data item value
+        #//
+        #//  Return value:   none
+        #//
+        #//  Description:    This is the set accesssor for data items of data container type.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected void set_Container(str _name, AfStronglyTypedDataContainer _value)
+        #{
+        #    this.wt().set_Container(_name, AfDataContainerUtilities::getWeaklyTypedDataContainer(_value));
+        #}
+      ENDSOURCE
+      SOURCE #set_EdtArray
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         set_EdtArray
+        #//
+        #//  Parameters:     _name           - data item name
+        #//                  _value          - data item value
+        #//
+        #//  Return value:   none
+        #//
+        #//  Description:    This is the set accesssor for data items of extended array type.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected void set_EdtArray(str _name, anytype _value)
+        #{
+        #    this.wt().set_EdtArray(_name, _value);
+        #}
+      ENDSOURCE
+      SOURCE #set_List
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         set_Container
+        #//
+        #//  Parameters:     _name           - data item name
+        #//                  _value          - data item value
+        #//
+        #//  Return value:   none
+        #//
+        #//  Description:    This is the set accesssor for data items of data container list type.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #protected void set_List(str _name, AfStronglyTypedDataContainerList _value)
+        #{
+        #    this.wt().set_List(_name, AfDataContainerUtilities::getWeaklyTypedDataContainerList(_value));
+        #}
+      ENDSOURCE
+      SOURCE #wpa_addNotEmpty
+        #// WPA integration
+        #public void wpa_addNotEmpty(XmlElement  _node,
+        #                            XmlDocument _doc,
+        #                            str         _nodeName,
+        #                            str         _value)
+        #{
+        #    ;
+        #    if(_value)
+        #    {
+        #        if (strlen(_value) > 700)
+        #        {
+        #            _value = substr(_value,1,699);
+        #        }
+        #        _node.appendChild(_doc.createElement(_nodeName)).innerText(_value);
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #wt
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfStronglyTypedDataContainer
+        #//
+        #//  Method:         wt
+        #//
+        #//  Parameters:     none
+        #//
+        #//  Return value:   weakly typed data container interface
+        #//
+        #//  Description:    This method returns weakly typed data container interface associated with this
+        #//                  strongly typed data container. All strongly typed containers support weakly typed
+        #//                  access.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #public AfDataContainer wt()
+        #{
+        #    // Return the underlying weakly typed data container.
+        #    return dataContainer;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

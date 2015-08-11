@@ -1,0 +1,24 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPAWorkcardTable unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPAWorkcardTable
+    Type: 1
+    PROPERTIES
+      Name                #WPAWorkcardTable
+      Label               #@WPA71
+      HelpText            #@WPA149
+      Object              #WPAWorkcardTable
+      CountryConfigurationkey   #WPAIntegration
+      SecurityKey         #WPAInquiries
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

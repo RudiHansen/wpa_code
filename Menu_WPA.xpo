@@ -1,0 +1,227 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MNU
+
+; Microsoft Dynamics AX Menu : WPA unloaded
+; --------------------------------------------------------------------------------
+  MNUVERSION 4
+  
+  MENU #WPA
+    PROPERTIES
+      Name                #WPA
+      Label               #@WPA34
+      HelpText            #@WPA153
+      SetCompany          #Yes
+      NormalImage         #C:\Documents and Settings\Administrator\Desktop\wpalogo.png
+    ENDPROPERTIES
+    
+    MENU #@SYS3850
+      PROPERTIES
+        Name                #Submenu1
+        Label               #@SYS3850
+        HelpText            #@WPA150
+      ENDPROPERTIES
+      
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA71
+          MenuItemName        #WPAWorkcardTable
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #Document history
+          MenuItemName        #AifDocumentHistory
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #Exceptions
+          MenuItemName        #Exceptions
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA206
+          MenuItemName        #WPAStockTransfer
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+    ENDMENU
+    MENU #@SYS8782
+      PROPERTIES
+        Name                #Submenu1
+        Label               #@SYS8782
+        HelpText            #@WPA151
+      ENDPROPERTIES
+      
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA138
+          MenuItemType        #Action
+          MenuItemName        #WPASendDispatchTeam
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA140
+          MenuItemType        #Action
+          MenuItemName        #WPASendEmpl
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA133
+          MenuItemType        #Action
+          MenuItemName        #WPASendInventLocation
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #Send item
+          MenuItemType        #Action
+          MenuItemName        #WPASendItems
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA238
+          MenuItemType        #Action
+          MenuItemName        #WPASendItemsAll
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA136
+          MenuItemType        #Action
+          MenuItemName        #WPASendProjCategory
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA129
+          MenuItemType        #Action
+          MenuItemName        #WPASendProject
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA144
+          MenuItemType        #Action
+          MenuItemName        #WPAWorkCardTransfer
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA199
+          MenuItemType        #Action
+          MenuItemName        #WPAExportLogTrans
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA233
+          MenuItemType        #Action
+          MenuItemName        #WPAProjJournalsPost
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENU #@SYS50169
+        PROPERTIES
+          Name                #WarehouseManagement
+          Label               #@SYS50169
+        ENDPROPERTIES
+        
+        MENUITEM
+          PROPERTIES
+            Name                #@WPA224
+            MenuItemType        #Action
+            MenuItemName        #WPAStockTransfer_Update
+          ENDPROPERTIES
+          
+        ENDMENUITEM
+        MENUITEM
+          PROPERTIES
+            Name                #@WPA222
+            MenuItemType        #Action
+            MenuItemName        #WPASendInventSum
+          ENDPROPERTIES
+          
+        ENDMENUITEM
+        MENUITEM
+          PROPERTIES
+            Name                #@WPA228
+            MenuItemType        #Action
+            MenuItemName        #WPASendInventSumAll
+          ENDPROPERTIES
+          
+        ENDMENUITEM
+      ENDMENU
+    ENDMENU
+    MENU #@SYS2186
+      PROPERTIES
+        Name                #Submenu1
+        Label               #@SYS2186
+        HelpText            #@WPA152
+      ENDPROPERTIES
+      
+      MENUITEM
+        PROPERTIES
+          Name                #@WPA1
+          MenuItemName        #WPAParameters
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #@OBT1
+          MenuItemName        #OBTLogTable
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+    ENDMENU
+    MENUITEM
+      PROPERTIES
+        Name                #Service orders
+        MenuItemName        #SMAServiceOrderTable
+      ENDPROPERTIES
+      
+    ENDMENUITEM
+    MENUITEM
+      PROPERTIES
+        Name                #Projects
+        MenuItemName        #ProjTable
+      ENDPROPERTIES
+      
+    ENDMENUITEM
+    MENUITEM
+      PROPERTIES
+        Name                #Item details
+        MenuItemName        #InventTable
+      ENDPROPERTIES
+      
+    ENDMENUITEM
+    MENUITEM
+      PROPERTIES
+        Name                #Categories
+        MenuItemName        #ProjCategory
+      ENDPROPERTIES
+      
+    ENDMENUITEM
+  ENDMENU
+  
+
+***Element: END

@@ -1,0 +1,87 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AifXmlSerializable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  INTERFACE #AifXmlSerializable
+    PROPERTIES
+      Name                #AifXmlSerializable
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #/// <summary>
+        #/// The AifXmlSerializable inteface is used for xml serialization and
+        #/// deserialization of classes.
+        #/// </summary>
+        #/// <remarks>
+        #/// The AifXmlSerializable interface should be implemented by any
+        #/// class that is used as a parameter or a return value in any AIf
+        #/// service method.
+        #/// </remarks>
+        #// This is a framework class. Customizing this class may cause problems with future upgrades to the software.
+        #interface AifXmlSerializable
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #deserialize
+        #/// <summary>
+        #/// Deserialize the xml to initialize the object.
+        #/// </summary>
+        #/// <param name="xml">
+        #/// The xml to deserialize.
+        #/// </param>
+        #void deserialize(AifXml xml)
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #getRootName
+        #/// <summary>
+        #/// Return the name of the root element of the xml document.
+        #/// </summary>
+        #/// <returns>
+        #/// the name of the root element of the xml document.
+        #/// </returns>
+        #public AifDocumentName getRootName()
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #getSchema
+        #/// <summary>
+        #/// Get the schema of the xml document.
+        #/// </summary>
+        #/// <returns>
+        #/// The xml schema that describes the document.
+        #/// </returns>
+        #AifXml getSchema()
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #parmMessageId
+        #// WPA import
+        #public AifMessageId parmMessageId(AifMessageId _messageId)
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #/// <summary>
+        #/// Serialize this object into xml.
+        #/// </summary>
+        #/// <returns>
+        #/// The xml that represents this object instance.
+        #/// </returns>
+        #AifXml serialize()
+        #{
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

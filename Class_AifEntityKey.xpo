@@ -1,0 +1,372 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AifEntityKey unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AifEntityKey
+    PROPERTIES
+      Name                #AifEntityKey
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class AifEntityKey implements SysPackable, AifXmlSerializable
+        #{
+        #    tableId tableId;
+        #    recId   recId;
+        #    Map     keyDataMap;
+        #    Map     fieldNameValueMap;
+        #
+        #    #Aif
+        #    #define.CurrentVersion(1)
+        #    #define.version1(1)
+        #
+        #    #localmacro.CurrentList
+        #        tableId,
+        #        recId
+        #        //KeyDataMap has to be handled manually
+        #        //FieldNameValueMap has to be handled manually
+        #    #endmacro}
+      ENDSOURCE
+      SOURCE #deserialize
+        #public void deserialize(AifXml entityKeyXml)
+        #{
+        #    /*
+        #        Instantiates a new entityKey object, initializing it with the entityKey XML passed in.
+        #
+        #        The schema is manually validated as it is read.  Therefore the sequence
+        #        of the elements must match what is expected.
+        #    */
+        #
+        #    XmlTextReader           xmlTextReader;
+        #    str                     fieldName;
+        #    str                     fieldValueRaw;
+        #    AifDocumentXmlNamespace documentNamespace;
+        #    ;
+        #
+        #    // Get the namespace of AifEntityKey
+        #    documentNamespace = #EntityKeyNamespace;
+        #
+        #
+        #    //Using AnyType doesn't seem to work correctly, so we use a container instead
+        #    fieldNameValueMap = new Map(Types::String, Types::Container);
+        #
+        #    // Initialize the instance.
+        #    keyDataMap = new Map(Types::Integer, Types::Container);
+        #    tableId = 0;
+        #    recId   = 0;
+        #
+        #    xmlTextReader = XmlTextReader::newXml(entityKeyXml);
+        #    //Turn off Whitespace handling so we avoid doing seperate reads just for whitespace
+        #    xmlTextReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #
+        #    try
+        #    {
+        #        //Position the reader on the first Element - EntityKey
+        #        xmlTextReader.moveToContent();
+        #
+        #        // First node must be the root EntityKey element
+        #        xmlTextReader.readStartElement3(#EntityKeyRoot,documentNamespace);
+        #
+        #        //This is only need if WhitespaceHandling is on
+        #        xmlTextReader.moveToContent();
+        #
+        #        //The Table is no longer part of the schema.
+        #        //We should be on the EntityKey element
+        #
+        #        //Read to the first KeyField, if any
+        #        if(xmlTextReader.readToDescendant2(#EntityKeyKeyField, documentNamespace))
+        #        {
+        #            do
+        #            {
+        #                //Read to the Field element
+        #                xmlTextReader.readToDescendant2(#EntityKeyField, documentNamespace);
+        #
+        #                //Read the Field name
+        #                fieldName = xmlTextReader.readElementString3(#EntityKeyField, documentNamespace);
+        #
+        #                //This is only need if WhitespaceHandling is on
+        #                xmlTextReader.moveToContent();
+        #
+        #                //We Should now be on the Field End element
+        #
+        #                //Read the field value
+        #                fieldValueRaw= xmlTextReader.readElementString3(#EntityKeyValue, documentNamespace);
+        #
+        #                //Insert the field name/value pair into the map
+        #                fieldNameValueMap.insert(fieldName, [fieldValueRaw]);
+        #
+        #                //This is only need if WhitespaceHandling is on
+        #                xmlTextReader.moveToContent();
+        #
+        #            }
+        #            while(xmlTextReader.readToNextSibling2(#EntityKeyKeyField, documentNamespace));
+        #        }
+        #
+        #        xmlTextReader.close();
+        #
+        #        //Add the KeyData to the entityKey
+        #        this.parmFieldNameValueMap(fieldNameValueMap);
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        //Invalid EntityKey schema
+        #        throw error(strfmt("@SYS89808"));
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #getRootName
+        #public AifDocumentName getRootName()
+        #{
+        #    ;
+        #
+        #    return #EntityKeyRoot;
+        #}
+      ENDSOURCE
+      SOURCE #getSchema
+        #public AifXml getSchema()
+        #{
+        #    return AifUtil::getSchema(classnum(AifEntityKey));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    ;
+        #    keyDataMap = new Map(Types::Integer, Types::Container);
+        #
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    container       keyData;
+        #    container       fieldNameValueCon;
+        #
+        #    ;
+        #
+        #    if (keyDataMap)
+        #        keyData = keyDataMap.pack();
+        #    if (fieldNameValueMap)
+        #        fieldNameValueCon = fieldNameValueMap.pack();
+        #
+        #    return [#CurrentVersion,#CurrentList, keyData, fieldNameValueCon ];
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmFieldNameValueMap
+        #private Map parmFieldNameValueMap(Map _fieldNameValueMap = fieldNameValueMap)
+        #{
+        #    ;
+        #    fieldNameValueMap = _fieldNameValueMap;
+        #    return fieldNameValueMap;
+        #}
+      ENDSOURCE
+      SOURCE #parmKeyDataMap
+        #public Map parmKeyDataMap(Map _keyDataMap = keyDataMap)
+        #{
+        #    ;
+        #    keyDataMap = _keyDataMap;
+        #    return keyDataMap;
+        #}
+      ENDSOURCE
+      SOURCE #parmMessageId
+        #// WPA import
+        #public AifMessageId parmMessageId(AifMessageId _messageId)
+        #{
+        #    return str2guid(#EmptyGuidString);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _recId = recId)
+        #{
+        #    ;
+        #    recId = _recId;
+        #    return recId;
+        #}
+      ENDSOURCE
+      SOURCE #parmTableId
+        #public tableId parmTableId(tableId _tableId = tableId)
+        #{
+        #    ;
+        #    if(!prmisdefault(_tableId))
+        #    {
+        #        tableId = _tableId;
+        #        this.populateKeyData();
+        #    }
+        #    return tableId;
+        #}
+      ENDSOURCE
+      SOURCE #populateKeyData
+        #private void populateKeyData()
+        #{
+        #    MapEnumerator           mapEnum;
+        #    str                     fieldName;
+        #    str                     fieldValueRaw;
+        #    int                     fieldId;
+        #    SysDictField            dictField;
+        #    ;
+        #
+        #
+        #    //Only proceed if the fieldNameValueMap has at least one field in it.
+        #    //This is important so that if the user manually populates the parmKeyDataMap
+        #    //and then sets the parmTableId, we won't accidentally clear out the parmkeyDataMap
+        #    if(fieldNameValueMap)
+        #    {
+        #        if(fieldNameValueMap.elements() > 0)
+        #        {
+        #            //Using AnyType doesn't seem to work correctly, so we use a container instead
+        #            keyDataMap = new Map(Types::Integer, Types::Container);
+        #            mapEnum = new MapEnumerator(fieldNameValueMap);
+        #
+        #            //Loop through the FieldNameValueMap and write the FieldId/Value pairs
+        #            //to the keyDataMao
+        #            while(mapEnum.moveNext())
+        #            {
+        #                fieldName = mapEnum.currentKey();
+        #                fieldValueRaw = mapEnum.currentValue();
+        #
+        #                //Get the field Id from the Field Name
+        #                fieldId = fieldname2id(tableId, fieldName);
+        #
+        #                //Create a DictField so we can determine the data type
+        #                dictField = new SysDictField(tableId, fieldId);
+        #                if (!dictField)
+        #                    throw error(strfmt('@SYS107145', fieldName, tableId2Name(tableId)));
+        #
+        #                //Convert the raw field value into the correct data type.
+        #                //The users of the class will expect the parmKeyData to be of the correct type,
+        #                //so we can't just leave the value as a string.
+        #
+        #                 //Insert the field/value pair into the map
+        #                keyDataMap.insert(fieldId, [AifUtil::getTypedValue(dictField, fieldValueRaw)]);
+        #            }
+        #
+        #            //We no loner need the fieldNameValueMap, so clear it out.
+        #            fieldNameValueMap = null;
+        #        }
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public AifXml serialize()
+        #{
+        #    /*
+        #        Generates an EntityKey XML string based on the AifEntity object passed in.
+        #    */
+        #
+        #    AifXml                  entityKeyXml;
+        #    XmlTextWriter           xmlTextWriter;
+        #    MapEnumerator           mapEnum;
+        #    SysDictField            dictField;
+        #    AifDocumentXmlNamespace documentNamespace;
+        #    ;
+        #
+        #    // Get the namespace of AifEntityKey
+        #    documentNamespace = #EntityKeyNamespace;
+        #
+        #    mapEnum = keyDataMap.getEnumerator();
+        #
+        #    xmlTextWriter = XmlTextWriter::newXml();
+        #
+        #    //Don't include indentation - this should help reduce the size of the file
+        #    xmlTextWriter.formatting(XmlFormatting::None);
+        #
+        #    // Start the XMl
+        #    xmlTextWriter.writeStartDocument();
+        #
+        #    //Write the EntityKey root element
+        #    xmlTextWriter.writeStartElement2(#EntityKeyRoot, documentNamespace);
+        #
+        #    //The Table is no longer in the schema
+        #
+        #    //Write the KeyData start element
+        #    xmlTextWriter.writeStartElement2(#EntityKeyKeyData, documentNamespace);
+        #
+        #    //Loop through the KeyData container and write the Key/Value pairs
+        #    while(mapEnum.moveNext())
+        #    {
+        #
+        #        //Write the KeyField start element
+        #        xmlTextWriter.writeStartElement2(#EntityKeyKeyField, documentNamespace);
+        #
+        #        //Write the Field Name
+        #        xmlTextWriter.writeElementString(#EntityKeyField, fieldid2name(this.parmTableId(), any2int(mapEnum.currentKey())));
+        #
+        #        //Write the value
+        #        dictField = new SysDictField(this.parmTableId(), any2int(mapEnum.currentKey()));
+        #        xmlTextWriter.writeElementString(#EntityKeyValue, AifUtil::getStringValue(dictField, mapEnum.currentValue()));
+        #
+        #        //End the KeyField
+        #        xmlTextWriter.writeEndElement();
+        #    }
+        #
+        #    //End the KeyData
+        #    xmlTextWriter.writeEndElement();
+        #
+        #    //End the EntityKey
+        #    xmlTextWriter.writeEndElement();
+        #
+        #    //End the document
+        #    xmlTextWriter.writeEndDocument();
+        #
+        #    entityKeyXml = xmlTextWriter.writeToString();
+        #    xmlTextWriter.close();
+        #
+        #    return entityKeyXml;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container packedClass)
+        #{
+        #    int version     = RunBase::getVersion(packedClass);
+        #    container       keyData;
+        #    container       fieldNameValue;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version,#CurrentList, keyData, fieldNameValue] = packedClass;
+        #            if(keyData)
+        #                keyDataMap = Map::create(keyData);
+        #            if(fieldNameValue)
+        #                fieldNameValueMap = Map::create(fieldNameValue);
+        #            return true;
+        #        default :
+        #            return false;
+        #    }
+        #
+        #    return false;
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static AifEntityKey construct()
+        #{
+        #    AifEntityKey aifEntityKey = new AifEntityKey();
+        #    ;
+        #    return aifEntityKey;
+        #}
+      ENDSOURCE
+      SOURCE #create
+        #public static AifEntityKey create(AifEntityKeyContainer _aifEntityKey)
+        #{
+        #    AifEntityKey aifEntityKey = new AifEntityKey();
+        #    ;
+        #    aifEntityKey.unpack(_aifEntityKey);
+        #    return aifEntityKey;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

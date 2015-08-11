@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPASendInventLocation unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPASendInventLocation
+    Type: 3
+    PROPERTIES
+      Name                #WPASendInventLocation
+      Label               #@WPA133
+      HelpText            #@WPA134
+      ObjectType          #Class
+      Object              #WPASendInventLocation
+      RunOn               #Called from
+      ConfigurationKey    #WPAIntegration
+      SecurityKey         #WPAPeriodic
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

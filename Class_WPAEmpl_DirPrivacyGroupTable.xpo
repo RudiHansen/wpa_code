@@ -1,0 +1,89 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAEmpl_DirPrivacyGroupTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAEmpl_DirPrivacyGroupTable
+    PROPERTIES
+      Name                #WPAEmpl_DirPrivacyGroupTable
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAEmpl_DirPrivacyGroupTable extends AfStronglyTypedDataContainer
+        #{
+        #    #define.SystemType('SystemType')
+        #    #define.RecId('RecId')
+        #    #define.PrivacyGroupId('PrivacyGroupId')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsPrivacyGroupId
+        #public boolean existsPrivacyGroupId()
+        #{
+        #    return this.exists(#PrivacyGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsSystemType
+        #public boolean existsSystemType()
+        #{
+        #    return this.exists(#SystemType);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#Empl_DirPrivacyGroupTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmPrivacyGroupId
+        #public DirPrivacyGroupId parmPrivacyGroupId(DirPrivacyGroupId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PrivacyGroupId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PrivacyGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmSystemType
+        #public DirSystemPrivacyGroupType parmSystemType(DirSystemPrivacyGroupType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SystemType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SystemType);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

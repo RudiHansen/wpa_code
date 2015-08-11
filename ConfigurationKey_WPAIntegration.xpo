@@ -1,0 +1,19 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CON
+
+; Microsoft Dynamics AX CONFIGURATIONKEY : WPAIntegration unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  CONFIGURATIONKEY #WPAIntegration
+    PROPERTIES
+      Name                #WPAIntegration
+      Label               #@WPA32
+    ENDPROPERTIES
+    
+  ENDCONFIGURATIONKEY
+  
+
+***Element: END

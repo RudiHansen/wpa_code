@@ -1,0 +1,3514 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FRM
+
+; Microsoft Dynamics AX Forms unloaded
+; --------------------------------------------------------------------------------
+FRMVERSION 5
+
+FORM #ForecastSales
+  PROPERTIES
+    Name                #ForecastSales
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #ClassDeclaration
+      #final class FormRun extends ObjectRun
+      #{
+      #    NoYes                lockmodel;
+      #    BudgetModelHeadId    modelId;
+      #
+      #    NoYes                lockItem;
+      #    ItemId               itemId;
+      #
+      #    NoYes                lockItemGroup;
+      #    ItemGroupId          itemGroupId;
+      #
+      #    NoYes                lockCustAccount;
+      #    CustAccount          custAccountId;
+      #
+      #    NoYes                lockCustGroup;
+      #    CustGroupId          custGroupId;
+      #
+      #    QueryBuildRange      criteriaReport;
+      #    QueryBuildRange      criteriaExpand_1;
+      #    QueryBuildRange      criteriaExpand_2;
+      #
+      #    QueryBuildRange      criteriaModelId;
+      #
+      #    QueryBuildRange      criteriaCostGroupId;
+      #    QueryBuildRange      criteriaControlId;
+      #
+      #    QueryBuildRange      criteriaCustAccountId;
+      #    QueryBuildRange      criteriaCustGroupId;
+      #    QueryBuildRange      criteriaItemId;
+      #    QueryBuildRange      criteriaItemGroupId;
+      #
+      #    QueryBuildDataSource qB;
+      #    QueryBuildDataSource qb2;
+      #    QueryBuildDataSource qb3;
+      #    boolean              calledFromProject;
+      #    boolean              showSubProjects;
+      #    ProjId               projId;
+      #
+      #    boolean              showChild;
+      #
+      #    QueryBuildRange      criteriaProjId;
+      #    QueryBuildRange      criteriaWIPProjId;
+      #
+      #    QueryBuildRange      criteriaProjInvoiceProjId;
+      #    QueryBuildRange      criteriaFixedPrice;
+      #    QueryBuildRange      criteriaTimeMaterial;
+      #    QueryBuildRange      criteriaInternal;
+      #    QueryBuildRange      criteriaCost;
+      #    QueryBuildRange      criteriaInvestment;
+      #    QueryBuildRange      criteriaTime;
+      #    QueryBuildRange      criteriaSorting1;
+      #    QueryBuildRange      criteriaSorting2;
+      #    QueryBuildRange      criteriaSorting3;
+      #    QueryBuildRange      criteriaGroupId;
+      #    QueryBuildRange      criteriaCustAccount;
+      #
+      #    QueryBuildRange      criteriaCategoryGroupId;
+      #
+      #    QueryBuildRange      criteriaTransDate;
+      #    QueryBuildRange      criteriaCategoryId;
+      #
+      #    QueryBuildRange      criteriaActivityId;
+      #
+      #    ProjStatistic        projStatistic;
+      #    TransDate            ledgerFromDate;
+      #    TransDate            ledgerToDate;
+      #
+      #    InventDimCtrl_Frm_Forecast    inventDimFormSetup;
+      #
+      #    SysFormSplitter_Y    formSplitter;
+      #    CurrencyCode         oldCurrency;
+      #    ProjCashFlow         projCashFlow;
+      #    ProjCostControl      projCostControl;
+      #    ProjForecastEmpl     projForecastEmpl;//WPA
+      #
+      #    #define.CurrentVersion(1)
+      #    #localmacro.CurrentList
+      #        lockModel,
+      #        modelId,
+      #        lockItem,
+      #        itemId,
+      #        lockItemGroup,
+      #        itemGroupId,
+      #        lockCustAccount,
+      #        custAccountId,
+      #        lockCustGroup,
+      #        custGroupId
+      #    #endmacro
+      #}
+      #
+    ENDSOURCE
+    SOURCE #categoryTableCostControl
+      #boolean categoryTableCostControl(ProjCostControl _projCostControl = projCostControl)
+      #{;
+      #    return (_projCostControl && _projCostControl.parmCategoryGroupId());
+      #}
+      #
+      #
+    ENDSOURCE
+    SOURCE #categoryTableCashFlow
+      #boolean categoryTableCashFlow(ProjCashFlow _projCashFlow = projCashFlow)
+      #{;
+      #    return (_projCashFlow && _projCashFlow.parmCategoryGroupId());
+      #}
+      #
+      #
+    ENDSOURCE
+    SOURCE #doReFreshDatasource
+      #void doReFreshDatasource()
+      #{
+      #    forecastSales_ds.executeQuery();
+      #}
+    ENDSOURCE
+    SOURCE #validateProject
+      #boolean validateProject()
+      #{
+      #    boolean  ret    = true;
+      #    ;
+      #    if (! forecastSales.ProjId)
+      #        ret  = checkFailed("@SYS81107");
+      #
+      #    return ret;
+      #}
+    ENDSOURCE
+    SOURCE #initFromProject
+      #void initFromProject()
+      #{
+      #    ProjTable                   localProjTable;
+      #    ProjControlPeriodCostGroup  localProjControlPeriodCostGroup;
+      #    ProjSelected                projSelected;
+      #    DictConfigurationKey        dictConfigKey = new DictConfigurationKey(configurationkeynum(ProjBasicForecast));
+      #    ;
+      #
+      #    if (element.args().parmEnumType() == enumnum(ProjSelected))
+      #        projSelected        = element.args().parmEnum();
+      #
+      #    if (element.args().dataset()    == tablenum(ProjTable)  ||
+      #        element.args().dataset()    == tablenum(ProjControlPeriodCostGroup) ||
+      #        element.args().dataset()    == tablenum(TmpProjStatistic) ||
+      #        element.args().dataset()    == tablenum(ProjInvoiceTable) ||
+      #        element.args().dataset()    == tablenum(ProjWIPTable) ||
+      #        element.args().dataset()    == tablenum(TmpProjCashFlow) ||
+      #        projSelected                == ProjSelected::Project
+      #       )
+      #    {
+      #        calledFromProject = true;
+      #
+      #        if (!dictConfigKey.enabled())
+      #        {
+      #            throw error (strfmt("@SYS75398", dictConfigKey.name()));
+      #        }
+      #
+      #
+      #
+      #
+      #        if (element.args().dataset()    == tablenum(ProjTable))
+      #        {
+      #            showSubProjects = element.args().caller().showChild();
+      #            localProjTable = element.args().record();
+      #            projId = localProjTable.ProjId;
+      #        }
+      #
+      #        if(element.args().dataset() == tablenum(ProjControlPeriodCostGroup))
+      #        {
+      #            localProjControlPeriodCostGroup = element.args().record();
+      #            projId = localProjControlPeriodCostGroup.ProjId;
+      #        }
+      #    }
+      #}
+      #
+    ENDSOURCE
+    SOURCE #validateCaller
+      #boolean validateCaller()
+      #{
+      #    InventTable inventTable;
+      #    ;
+      #    switch(element.args().dataset())
+      #    {
+      #        case tablenum(InventTable):
+      #            inventTable = element.args().record();
+      #            if (!inventTable.RecId)
+      #                return checkFailed(strfmt("@SYS84897", tablepname(InventTable)));
+      #            if (!InventTable::exist(inventTable.ItemId))
+      #                return checkFailed(strfmt("@SYS5307", inventTable.ItemId));
+      #            break;
+      #    }
+      #    return true;
+      #}
+    ENDSOURCE
+    SOURCE #updateCostPrice
+      #void updateCostPrice()
+      #{
+      #    if (forecastSales.ItemId)
+      #    {
+      #        if (foreCastSales.ItemAllocateId)
+      #            forecastSales.CostPrice = InventTable::find(forecastSales.ItemId).costPcsPrice('');
+      #        else
+      #            forecastSales.CostPrice = InventTable::find(forecastSales.ItemId).costPcsPrice('',inventDim);
+      #    }
+      #    else
+      #    {
+      #        forecastSales.CostPrice = 0;
+      #    }
+      #}
+      #
+    ENDSOURCE
+    SOURCE #linkProjStatistic
+      #void linkProjStatistic(
+      #    )
+      #{
+      #    #define.star('*')
+      #    ;
+      #    if (projStatistic.parmItem())
+      #    {
+      #        ledgerFromDate  = projStatistic.parmLedgerFromDate();
+      #        ledgerToDate    = projStatistic.parmLedgerToDate();
+      #        if (projStatistic.parmProjFromDate() || projStatistic.parmProjToDate())
+      #            criteriaTransDate.value(strfmt('%1..%2',queryValue(projStatistic.parmProjFromDate()),queryValue(projStatistic.parmProjToDate())));
+      #
+      #        modelId = projStatistic.parmForecastModelId();
+      #        projId  = projStatistic.parmProjId();
+      #
+      #        if (projStatistic.parmProjCategoryId())
+      #            criteriaCategoryId.value(projStatistic.parmProjCategoryId());
+      #
+      #        if (element.categoryTable(element.args().parmObject()))
+      #            criteriaCategoryGroupId.value(projStatistic.parmCategoryGroupId());
+      #
+      #        if (projStatistic.parmFixedPrice())
+      #            criteriaFixedPrice.value(queryValue(ProjType::FixedPrice));
+      #        if (projStatistic.parmTimeMaterial())
+      #            criteriaTimeMaterial.value(queryValue(ProjType::TimeMaterial));
+      #        if (projStatistic.parmInternalCost())
+      #            criteriaInternal.value(queryValue(ProjType::Cost));
+      #        if (projStatistic.parmInternalCost())
+      #            criteriaCost.value(queryValue(ProjType::Internal));
+      #        if (projStatistic.parmInvestment())
+      #            criteriaInvestment.value(queryValue(ProjType::Investment));
+      #        if (projStatistic.parmTime())
+      #            criteriaTime.value(queryValue(ProjType::Time));
+      #
+      #        if (projStatistic.parmSorting1())
+      #            criteriaSorting1.value(queryValue(projStatistic.parmSorting1()));
+      #        if (projStatistic.parmSorting2())
+      #            criteriaSorting2.value(queryValue(projStatistic.parmSorting2()));
+      #        if (projStatistic.parmSorting3())
+      #            criteriaSorting3.value(queryValue(projStatistic.parmSorting3()));
+      #        if (projStatistic.parmCustAccount())
+      #            criteriaCustAccount.value(queryValue(projStatistic.parmCustAccount()));
+      #        if (projStatistic.parmProjGroupId())
+      #            criteriaGroupId.value(queryValue(projStatistic.parmProjGroupId()));
+      #
+      #        if (projStatistic.parmProjTree())
+      #            criteriaProjId.value(projStatistic.parmProjId()+ #star);
+      #        else
+      #            if (projStatistic.parmProjId())
+      #                criteriaProjId.value(queryValue(projStatistic.parmProjId()));
+      #
+      #        if (projStatistic.parmProjWIPId())
+      #            criteriaWIPProjId.value(queryValue(projStatistic.parmProjWIPId()));
+      #
+      #        if (projStatistic.parmProjInvoiceProjId())
+      #            criteriaProjInvoiceProjId.value(queryValue(projStatistic.parmProjInvoiceProjId()));
+      #    }
+      #    else
+      #        criteriaProjId.value(queryValue(SysQuery::valueEmptyString()));
+      #
+      #
+      #}
+    ENDSOURCE
+    SOURCE #categoryTable
+      #boolean categoryTable(ProjStatistic _projStatistic = projStatistic)
+      #{;
+      #    return (_projStatistic && _projStatistic.parmCategoryGroupId());
+      #}
+      #
+    ENDSOURCE
+    SOURCE #init
+      #void init()
+      #{;
+      #    this.initFromProject();
+      #
+      #    super();
+      #
+      #    if (!this.validateCaller())
+      #        throw(error(Error::missingFormActiveBuffer(element.design().caption())));
+      #
+      #    formSplitter = new SysFormSplitter_Y(ctrlSplit,overview_GridForecastSales,element);
+      #
+      #    if (calledFromProject)
+      #    {
+      #        element.design().caption("@SYS60281");
+      #    }
+      #
+      #    element.updateDesign(InventDimFormDesignUpdate::Init);
+      #
+      #    xSysLastValue::getLast(this);
+      #
+      #    element.updateFields();
+      #}
+    ENDSOURCE
+    SOURCE #updateDesign
+      #void updateDesign(InventDimFormDesignUpdate mode)
+      #{
+      #    InventDimParm   inventDimParmShow;
+      #    NoYes           useItemAllocationKey    = NoYes::No;
+      #    ;
+      #
+      #    switch (mode)
+      #    {
+      #        case InventDimFormDesignUpdate::Init        :
+      #            if (! inventDimFormSetup)
+      #            inventDimFormSetup  = InventDimCtrl_Frm_Forecast::newFromForm(element);
+      #            inventDimFormSetup.parmSkipOnHandLookUp(true);
+      #            inventDimFormSetup.parmDimParmVisibleGrid(inventDimParmShow);
+      #
+      #        case InventDimFormDesignUpdate::Active,
+      #            InventDimFormDesignUpdate::FieldChange :
+      #
+      #            if (forecastSales.ItemAllocateId)
+      #                useItemAllocationKey = NoYes::Yes;
+      #
+      #            inventDimFormSetup.parmUseItemAllocationKey(useItemAllocationKey);
+      #
+      #            inventDimFormSetup.formActiveSetup(forecastSales.inventTable().DimGroupId);
+      #            inventDimFormSetup.formSetControls(true);
+      #
+      #            break;
+      #
+      #        default : throw error(strfmt("@SYS54195",funcname()));
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #close
+      #public void close()
+      #{
+      #    ;
+      #    xSysLastValue::saveLast(this);
+      #    super();
+      #}
+    ENDSOURCE
+    SOURCE #initParmDefault
+      #/*
+      #This method is called when no SysLastValue record can be found in xSysLastValue.GetLast()
+      #*/
+      #public void initParmDefault()
+      #{
+      #
+      #}
+    ENDSOURCE
+    SOURCE #buttonCoverage
+      #void buttonCoverage()
+      #{
+      #    ;
+      #    ctrlLedgerCoverage.enabled(forecastSales.mustBeCovPlanned() || forecastSalesExpand.mustBeCovPlanned());
+      #}
+      #
+    ENDSOURCE
+    SOURCE #lastValueElementName
+      #public identifiername lastValueElementName()
+      #{
+      #    return this.name();
+      #}
+    ENDSOURCE
+    SOURCE #lastValueType
+      #public UtilElementType lastValueType()
+      #{
+      #    return UtilElementType::Form;
+      #}
+    ENDSOURCE
+    SOURCE #updateFields
+      #void updateFields()
+      #{
+      #    element.lock();
+      #
+      #    overview_modelId.visible(! lockModelId.value());
+      #    overview_ProjId.visible(calledFromProject && showSubProjects);
+      #
+      #    overview_CustGroupId.visible(! (calledFromProject || lockCustGroupId.value() || (lockCustAccountId.value() && critCustAccountId.text())));
+      #    overview_CustAccountId.visible(! (calledFromProject || lockCustAccountId.value()));
+      #
+      #    overview_ItemGroupId.visible(! (calledFromProject || lockItemGroupId.value() || (lockItemId.value() && critItemId.text())));
+      #    overview_ItemId.visible(! lockItemId.value());
+      #
+      #    overview_amount.visible( ! calledFromProject);
+      #    overview_CostPrice.visible(calledFromProject);
+      #    element.resetSize();
+      #
+      #    element.unLock();
+      #
+      #    element.updateCaption();
+      #
+      #}
+    ENDSOURCE
+    SOURCE #lastValueUserId
+      #public userId lastValueUserId()
+      #{
+      #    return curuserid();
+      #}
+    ENDSOURCE
+    SOURCE #inventDimSetupObject
+      #Object inventDimSetupObject()
+      #{
+      #    return inventDimFormSetup;
+      #}
+    ENDSOURCE
+    SOURCE #lastValueDesignName
+      #public identifiername lastValueDesignName()
+      #{
+      #    if (element.args() && element.args().caller())
+      #        return element.args().caller().name();
+      #
+      #    return '';
+      #
+      #
+      #}
+    ENDSOURCE
+    SOURCE #updateCaption
+      #void updateCaption()
+      #{
+      #    str             captionText;
+      #    ;
+      #
+      #    captionText= calledFromProject ? "@SYS60281" : strfmt(tableid2pname(tablenum(ForecastSales)));
+      #
+      #    if (lockModelId.value())
+      #    {
+      #       captionText +=', ' +  fieldpname(ForecastSales,ModelId) + ': ' + critModelId.text();
+      #    }
+      #
+      #    if (lockCustGroupId.value() && lockCustGroupId.allowEdit())     // allowEdit == false => caption is set via dynalink
+      #    {
+      #        captionText +=', ' + fieldpname(ForecastSales,CustGroupId) + ': ' + critCustGroupId.text();
+      #    }
+      #
+      #    if (lockCustAccountId.value() && lockCustAccountId.allowEdit()) // allowEdit == false => caption is set via dynalink
+      #    {
+      #        captionText +=', ' + fieldpname(ForecastSales,CustAccountId) + ': ' + critCustAccountId.text();
+      #    }
+      #
+      #    if (lockItemGroupId.value() && lockItemGroupId.allowEdit())     // allowEdit == false => caption is set via dynalink
+      #    {
+      #        captionText +=', ' + fieldpname(ForecastSales,ItemGroupId) + ': ' + critItemGroupId.text();
+      #    }
+      #
+      #    if (lockItemId.value() && lockItemId.allowEdit())               // allowEdit == false => caption is set via dynalink
+      #    {
+      #        captionText +=', ' + fieldpname(ForecastSales,ItemId) + ': ' + critItemId.text();
+      #    }
+      #
+      #    element.design().caption(captionText);
+      #
+      #}
+    ENDSOURCE
+    SOURCE #unpack
+      #public boolean unpack(container packedClass)
+      #{
+      #
+      #    int version     = RunBase::getVersion(packedClass);
+      #
+      #    switch (version)
+      #    {
+      #        case #CurrentVersion:
+      #            [version,#CurrentList] = packedClass;
+      #
+      #            lockModelId.value(lockmodel);
+      #            lockItemId.value(lockItem);
+      #            lockItemGroupId.value(lockItemGroup);
+      #            lockCustAccountId.value(lockCustAccount);
+      #            lockCustGroupId.value(lockCustGroup);
+      #
+      #            critModelId.text(modelId);
+      #            critItemId.text(itemId);
+      #            critItemGroupId.text(itemGroupId);
+      #            critCustAccountId.text(custAccountId);
+      #            critCustGroupId.text(custGroupId);
+      #
+      #            return true;
+      #
+      #        default :
+      #            return false;
+      #    }
+      #
+      #    return false;
+      #
+      #}
+    ENDSOURCE
+    SOURCE #pack
+      #public container pack()
+      #{
+      #    lockmodel       = lockModelId.value();
+      #    modelId         = critModelId.text();
+      #
+      #    lockItem        = lockItemId.value();
+      #    itemId          = critItemId.text();
+      #
+      #    lockItemGroup   = lockItemGroupId.value();
+      #    itemGroupId     = critItemGroupId.text();
+      #
+      #    lockCustAccount = lockCustAccountId.value();
+      #    custAccountId   = critCustAccountId.text();
+      #
+      #    lockCustGroup   = lockCustGroupId.value();
+      #    custGroupId     = critCustGroupId.text();
+      #
+      #    return [#CurrentVersion,#CurrentList];
+      #
+      #}
+    ENDSOURCE
+    SOURCE #lastValueDataAreaId
+      #public dataAreaId lastValueDataAreaId()
+      #{
+      #    return curext();
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  OBJECTBANK
+    PROPERTIES
+    ENDPROPERTIES
+    
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #ForecastSales
+          Table               #ForecastSales
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD ItemId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    InventTable     inventTable = InventTable::find(forecastsales.ItemId);
+                #
+                #    super();
+                #
+                #    inventdim.initFromInventTable(inventTable,InventItemOrderSetupType::Sales);
+                #
+                #    if(!forecastSales.isProjLumpSum())
+                #        element.updateCostPrice();
+                #
+                #    element.updateDesign(InventDimFormDesignUpdate::FieldChange);
+                #
+                #    // disable all unenabled fields
+                #    inventDim.clearNotSelectedDim(inventDimFormSetup.parmDimParmEnabled());
+                #
+                #    forecastSales_ds.updateAmount();
+                #    forecastSales_ds.updateForecastSalesFields();
+                #
+                #    if (forecastSales.ProjId)
+                #        forecastSales.ProjLinePropertyId   = ProjLinePropertySetup::findLinePropertyId(forecastSales.ProjId,forecastSales.ProjCategoryId);
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD CustAccountId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.updateAmount();
+                #    forecastSales_ds.updateForecastSalesFields();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD StartDate
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.updateAmount();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD Currency
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    oldCurrency = forecastSales.Currency;
+                #
+                #    forecastSales_ds.updateAmount();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD SalesPrice
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.updateAmount();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD PriceUnit
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.updateAmount();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD SalesMarkup
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.updateAmount();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD DiscAmount
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.updateAmount();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD DiscPercent
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.updateAmount();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD SalesQty
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.updateAmount();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD SalesUnitId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.updateAmount();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD AllocateMethod
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Modified
+                #void modified()
+                #{
+                #;
+                #    super();
+                #
+                #    forecastSales_ds.active();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD ProjId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #modified
+                #public void modified()
+                #{
+                #    super();
+                #
+                #    if (lockModelId.value() && forecastSales.ModelId != critModelId.text())  // if initFromProjTable finds a modelId and the modelId is locked
+                #    {
+                #        forecastSales.ModelId = critModelId.text();
+                #    }
+                #
+                #    forecastSales_ds.updateAmount();
+                #
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD ItemBOMId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #lookup
+                #public void lookup(FormControl _formControl, str _filterStr)
+                #{
+                #    ;
+                #    InventTable::lookupBOMId(_formControl, forecastSales.ItemId, inventDim);
+                #}
+                #
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD ItemRouteId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #lookup
+                #public void lookup(FormControl _formControl, str _filterStr)
+                #{
+                #    ;
+                #    InventTable::lookupRouteId(_formControl, forecastSales.ItemId, inventDim);
+                #}
+                #
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD ItemAllocateId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #modified
+                #public void modified()
+                #{
+                #    ProjParameters projParameters=ProjParameters::find(false);
+                #    ;
+                #    super();
+                #
+                #    element.updateCostPrice();
+                #
+                #    if(forecastSales.isProjLumpSum())
+                #    {
+                #        forecastSales.CostPrice=(forecastSales.costAmount());
+                #        forecastSales.SalesQty=1.00;
+                #        forecastSales.InventQty=1.00;
+                #        forecastSales.ItemId = '';
+                #        forecastSales_ds.object(fieldnum(ForecastSales,ItemId)).allowEdit(false);
+                #        forecastSales_ds.object(fieldnum(ForecastSales,SalesQty)).allowEdit(false);
+                #    }
+                #    else
+                #    {
+                #        forecastSales_ds.object(fieldnum(ForecastSales,ItemId)).allowEdit(true);
+                #        forecastSales_ds.object(fieldnum(ForecastSales,SalesQty)).allowEdit(true);
+                #    }
+                #
+                #    element.updateDesign(InventDimFormDesignUpdate::FieldChange);
+                #
+                #    // disable all unenabled fields
+                #    inventDim.clearNotSelectedDim(inventDimFormSetup.parmDimParmEnabled());
+                #}
+                #
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD ActivityNumber
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #lookup
+                #public void lookup(FormControl _formControl, str _filterStr)
+                #{
+                #;
+                #    HierarchyTreeTable::lookupHierarchyTree(_formControl, ProjTable::find(forecastSales.ProjId));
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #changeCurrency
+          #void changeCurrency(CurrencyCode _oldCurrency, CurrencyCode _newCurrency)
+          #{;
+          #    forecastSales.CostPrice = Currency::curPrice2CurPrice(forecastSales.CostPrice,_oldCurrency,
+          #                                                          _newCurrency,forecastSales.StartDate);
+          #}
+          #
+        ENDSOURCE
+        SOURCE #initFromProject
+          #void initFromProject()
+          #{;
+          #    if (showSubProjects)
+          #    {
+          #        qB.clearDynalinks();
+          #    }
+          #
+          #    criteriaProjId      = qB.addRange(fieldnum(ForecastSales, ProjId));
+          #    criteriaCategoryId  = qB.addRange(fieldnum(ForecastSales, ProjCategoryId));
+          #    criteriaTransDate   = qB.addRange(fieldnum(ForecastSales, StartDate));
+          #
+          #    if (element.args().dataset() == tablenum(TmpProjStatistic) && (element.categoryTable(element.args().parmObject())))
+          #    {
+          #        qb2                = qB.addDataSource(tablenum(ProjCategory));
+          #        qb2.addLink(fieldnum(ForecastSales, ProjCategoryId), fieldnum(ProjCategory, CategoryId));
+          #        qb2.fetchMode(0);
+          #        qb2.joinMode(JoinMode::ExistsJoin);
+          #
+          #        criteriaCategoryGroupId        = qb2.addRange(fieldnum(ProjCategory, CategoryGroupId));
+          #    }
+          #    else if (element.args().dataset() == tablenum(TmpProjCashFlow) && (element.categoryTableCashFlow(element.args().parmObject())))
+          #    {
+          #        qb2                = qB.addDataSource(tablenum(ProjCategory));
+          #        qb2.addLink(fieldnum(ForecastSales, ProjCategoryId), fieldnum(ProjCategory, CategoryId));
+          #        qb2.fetchMode(0);
+          #        qb2.joinMode(JoinMode::ExistsJoin);
+          #
+          #        criteriaCategoryGroupId        = qb2.addRange(fieldnum(ProjCategory, CategoryGroupId));
+          #    }
+          #    else if (element.args().dataset() == tablenum(TmpProjCostControl) && (element.categoryTableCostControl(element.args().parmObject())))
+          #    {
+          #        qb2                = qB.addDataSource(tablenum(ProjCategory));
+          #        qb2.addLink(fieldnum(ForecastSales, ProjCategoryId), fieldnum(ProjCategory, CategoryId));
+          #        qb2.fetchMode(0);
+          #        qb2.joinMode(JoinMode::ExistsJoin);
+          #
+          #        criteriaCategoryGroupId        = qb2.addRange(fieldnum(ProjCategory, CategoryGroupId));
+          #    }
+          #
+          #    else if (element.args().dataset()    == tablenum(ProjControlPeriodCostGroup))
+          #    {
+          #        qb2 = qB.addDataSource(tablenum(ProjTable));
+          #
+          #        qb2.addLink(fieldnum(ForecastSales,ProjId),
+          #                    fieldnum(ProjTable,ProjId));
+          #
+          #        criteriaWIPProjId   = qb2.addRange(fieldnum(ProjTable,wipProject));
+          #
+          #        qb2.fetchMode(0);
+          #
+          #        qb3 = qB.addDataSource(tablenum(ProjControlCategory));
+          #
+          #        qb3.addLink(fieldnum(ForecastSales,ProjCategoryId),
+          #                    fieldnum(ProjControlCategory,CategoryId));
+          #
+          #        criteriaControlId   = qb3.addRange(fieldnum(ProjControlCategory,ControlId));
+          #        criteriaCostGroupId = qb3.addRange(fieldnum(ProjControlCategory,CostGroupId));
+          #
+          #        qb3.fetchMode(0);
+          #
+          #
+          #    }
+          #
+          #    qb2                = qB.addDataSource(tablenum(ProjTable));
+          #    qb2.addLink(fieldnum(ForecastSales,ProjId),
+          #                fieldnum(ProjTable,ProjId));
+          #    qb2.fetchMode(0);
+          #
+          #    criteriaProjInvoiceProjId   = qb2.addRange(fieldnum(ProjTable, ProjInvoiceProjId));
+          #    criteriaWIPProjId           = qb2.addRange(fieldnum(ProjTable, wipProject));
+          #    criteriaFixedPrice          = qb2.addRange(fieldnum(ProjTable, Type));
+          #    criteriaTimeMaterial        = qb2.addRange(fieldnum(ProjTable, Type));
+          #    criteriaInternal            = qb2.addRange(fieldnum(ProjTable, Type));
+          #    criteriaCost                = qb2.addRange(fieldnum(ProjTable, Type));
+          #    criteriaInvestment          = qb2.addRange(fieldnum(ProjTable, Type));
+          #    criteriaTime                = qb2.addRange(fieldnum(ProjTable, Type));
+          #    criteriaSorting1            = qb2.addRange(fieldId2Ext(fieldnum(ProjTable, SortingId),1));
+          #    criteriaSorting2            = qb2.addRange(fieldId2Ext(fieldnum(ProjTable, SortingId),2));
+          #    criteriaSorting3            = qb2.addRange(fieldId2Ext(fieldnum(ProjTable, SortingId),3));
+          #    criteriaGroupId             = qb2.addRange(fieldnum(ProjTable, ProjGroupId));
+          #    criteriaCustAccount         = qb2.addRange(fieldnum(ProjTable, CustAccount));
+          #}
+        ENDSOURCE
+        SOURCE #delete
+          #public void delete()
+          #{
+          #    super();
+          #    if (! forecastSales.RecId)
+          #    {
+          #        forecastSalesExpand_ds.executeQuery();
+          #    }
+          #
+          #}
+        ENDSOURCE
+        SOURCE #write
+          #public void write()
+          #{
+          #    super();
+          #
+          #    forecastSalesExpand_ds.executeQuery();
+          #}
+        ENDSOURCE
+        SOURCE #LinkActive
+          #void linkActive()
+          #{
+          #    InventDimCombination    callerInventDimCombination;
+          #
+          #    CustAccount             callerCustAccount;
+          #    CustGroupId             callerCustGroupId;
+          #
+          #    ItemId                  callerItemId;
+          #    ItemGroupId             callerItemGroupId;
+          #
+          #    ForecastInvent          callerForecastInvent;
+          #    ForecastSales           bufferForecastSales;
+          #
+          #    HierarchyTreeTable      hierarchyTreeTable;
+          #    smmActivities           smmActivities;
+          #    ProjTable               projTable;
+          #
+          #    QueryBuildDataSource    qbs,qbsInventDim;
+          #
+          #    QueryBuildRange         criteriaRecId,criteriaConfigId,criteriaInventColorId,criteriaInventSizeId;
+          #    ;
+          #
+          #    if (element.args().caller() && element.args().dataset())
+          #    {
+          #        switch (element.args().dataset())
+          #        {
+          #            case tablenum(ProjTable),
+          #            tablenum(ProjControlPeriodCostGroup),
+          #            tablenum(ProjInvoiceTable),
+          #            tablenum(ProjWIPTable),
+          #            tablenum(TmpProjStatistic),
+          #            tablenum(TmpProjCashFlow),
+          #            tablenum(ProjForecastEmpl): //WPA
+          #                this.linkActiveProject();
+          #                break;
+          #
+          #            case tablenum(CustTable):
+          #                callerCustAccount = element.args().record().(fieldname2id(tablenum(CustTable), fieldstr(CustTable,AccountNum)));
+          #                if (callerCustAccount)
+          #                {
+          #                    lockCustAccountId.value(true);
+          #                    lockCustAccountId.allowEdit(false);
+          #
+          #                    critCustAccountId.text(callerCustAccount);
+          #                    critCustAccountId.allowEdit(false);
+          #                }
+          #                break;
+          #
+          #
+          #            case tablenum(CustGroup):
+          #                callerCustGroupId = element.args().record().(fieldname2id(tablenum(CustGroup), fieldstr(CustGroup,CustGroup)));
+          #                if (callerCustGroupId)
+          #                {
+          #                    lockCustGroupId.value(true);
+          #                    lockCustGroupId.allowEdit(false);
+          #
+          #                    critCustGroupId.text(callerCustGroupId);
+          #                    critCustGroupId.allowEdit(false);
+          #                }
+          #                break;
+          #
+          #            case tablenum(InventTable):
+          #                callerItemId = element.args().record().(fieldname2id(tablenum(InventTable), fieldstr(InventTable,ItemId)));
+          #                if (callerItemId)
+          #                {
+          #                    lockItemId.value(true);
+          #                    lockItemId.allowEdit(false);
+          #
+          #                    critItemId.text(callerItemId);
+          #                    critItemId.allowEdit(false);
+          #                }
+          #                break;
+          #
+          #            case tablenum(InventItemGroup):
+          #                callerItemGroupId = element.args().record().(fieldname2id(tablenum(InventItemGroup), fieldstr(InventItemGroup,ItemGroupId)));
+          #                if (callerItemGroupId)
+          #                {
+          #                    lockItemGroupId.value(true);
+          #                    lockItemGroupId.allowEdit(false);
+          #
+          #                    critItemGroupId.text(callerItemGroupId);
+          #                    critItemGroupId.allowEdit(false);
+          #                }
+          #                break;
+          #
+          #            case tablenum(ForecastInvent):        // if forecastInvent record is created from an expanded record then use the expandId instead of dynalink
+          #                callerForecastInvent = element.args().record();
+          #                select firstonly ExpandId,ModelId,ItemId from bufferForecastSales where bufferForecastSales.RecId == callerForecastInvent.TransRecId;
+          #                if (bufferForecastSales.ModelId)
+          #                {
+          #                    lockModelId.value(true);
+          #                    lockModelId.allowEdit(false);
+          #                    critModelId.text(bufferForecastSales.ModelId);
+          #                    critModelId.allowEdit(false);
+          #                }
+          #                if (bufferForecastSales.ItemId)
+          #                {
+          #                    lockItemId.value(true);
+          #                    lockItemId.allowEdit(false);
+          #                    critItemId.text(bufferForecastSales.ItemId);
+          #                    critItemId.allowEdit(false);
+          #                }
+          #
+          #                if ( bufferForecastSales.ExpandId)
+          #                {
+          #                    qbs = forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales));
+          #                    qbs.clearDynalinks();
+          #                    forecastSalesExpand_ds.query().dataSourceTable(tablenum(ForecastSales)).clearDynalinks();
+          #                    criteriaRecId = qbs.findRange(fieldname2id(tablenum(ForecastSales), fieldstr(ForecastSales,RecId)));
+          #                    if (!criteriaRecId)
+          #                    {
+          #                        criteriaRecId = qbs.addRange(fieldname2id(tablenum(ForecastSales), fieldstr(ForecastSales,RecId)));
+          #                    }
+          #                    criteriaRecId.value(queryValue(bufferForecastSales.ExpandId));
+          #
+          #                }
+          #            break;
+          #
+          #
+          #            case tablenum(InventDimCombination):
+          #                callerInventDimCombination = element.args().record();
+          #                if (callerInventDimCombination)
+          #                {
+          #                    lockItemId.value(true);
+          #                    lockItemId.allowEdit(false);
+          #
+          #                    critItemId.text(callerInventDimCombination.ItemId);
+          #                    critItemId.allowEdit(false);
+          #
+          #                    qbs = forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales));
+          #                    qbs.clearDynalinks();
+          #                    qbsInventDim = inventDim_ds.query().dataSourceTable(tablenum(InventDim));
+          #
+          #                    criteriaConfigId = qbsInventDim.findRange(fieldname2id(tablenum(InventDim), fieldstr(InventDim,ConfigId)));
+          #                    if (! criteriaConfigId)
+          #                    {
+          #                        criteriaConfigId = qbsInventDim.addRange(fieldname2id(tablenum(InventDim), fieldstr(InventDim,ConfigId)));
+          #                    }
+          #                    criteriaConfigId.value(queryValue(callerInventDimCombination.ConfigId));
+          #
+          #                    criteriaInventColorId = qbsInventDim.findRange(fieldname2id(tablenum(InventDim), fieldstr(InventDim,InventColorId)));
+          #                    if (! criteriaInventColorId)
+          #                    {
+          #                        criteriaInventColorId = qbsInventDim.addRange(fieldname2id(tablenum(InventDim), fieldstr(InventDim,InventColorId)));
+          #                    }
+          #                    criteriaInventColorId.value(callerInventDimCombination.InventColorId);
+          #
+          #                    criteriaInventSizeId = qbsInventDim.findRange(fieldname2id(tablenum(InventDim), fieldstr(InventDim,InventSizeId)));
+          #                    if (! criteriaInventSizeId)
+          #                    {
+          #                        criteriaInventSizeId = qbsInventDim.addRange(fieldname2id(tablenum(InventDim), fieldstr(InventDim,InventSizeId)));
+          #                    }
+          #                    criteriaInventSizeId.value(callerInventDimCombination.InventSizeId);
+          #                }
+          #            break;
+          #
+          #            case (tablenum(HierarchyTreeTable)):
+          #                hierarchyTreeTable = element.args().record();
+          #
+          #                if (hierarchyTreeTable.ElementNodeType == ElementNodeType::Activity)
+          #                {
+          #                    smmActivities = smmActivities::findWithRecId(hierarchyTreeTable.RefRecId);
+          #                    criteriaActivityId.value(queryValue(smmActivities.ActivityNumber));
+          #                    projTable = HierarchyTreeTable::findAssociation(smmActivities, tablenum(ProjTable));
+          #
+          #                    criteriaProjId.value(projTable.ProjId);
+          #                }
+          #                else
+          #                {
+          #                    criteriaActivityId.value(SysQuery::valueEmptyString());
+          #                    criteriaProjId.value(SysQuery::valueEmptyString());
+          #                }
+          #
+          #                break;
+          #        }
+          #    }
+          #    else if (element.args().dataset()   == tablenum(TmpProjStatistic))
+          #    {
+          #        this.linkActiveProject();
+          #    }
+          #    else if (element.args().dataset()   == tablenum(TmpProjCostControl))
+          #    {
+          #        this.linkActiveProject();
+          #    }
+          #    else if (element.args().dataset()   == tablenum(TmpProjCashFlow))
+          #    {
+          #        this.linkActiveProject();
+          #    }
+          #
+          #    super();
+          #
+          #    element.updateFields();
+          #
+          #}
+          #
+        ENDSOURCE
+        SOURCE #InitValue
+          #void initValue()
+          #{;
+          #    forecastSales.ItemId = critItemId.text();
+          #
+          #    super();
+          #    forecastSales.ModelId = modelId;
+          #    forecastSales.initFromProjTable(ProjTable::find(projId));
+          #    if(calledFromProject)
+          #    {
+          #        forecastSales.SalesQty = 1;
+          #        forecastSales.InventQty = 1;
+          #    }
+          #
+          #    if (lockModelId.value() && forecastSales.ModelId != critModelId.text())  // if initFromProjTable finds a modelId and the modelId is locked
+          #    {
+          #        forecastSales.ModelId = critModelId.text();
+          #    }
+          #    if (projForecastEmpl)
+          #    {
+          #        forecastSales.RefRecId = projForecastEmpl.RecId;
+          #    }
+          #    inventDim.data(InventDim::find(forecastSales.InventDimId));
+          #}
+        ENDSOURCE
+        SOURCE #validateWrite
+          #public boolean validateWrite()
+          #{
+          #    boolean ret;
+          #    ;
+          #
+          #    forecastSales.InventDimId = InventDim::findOrCreate(inventDim).InventDimId;
+          #
+          #    ret = super();
+          #
+          #    if (!element.validateCaller())
+          #        ret = false;
+          #
+          #    if (ret && calledFromProject)
+          #        ret = element.validateProject();
+          #
+          #    return ret;
+          #}
+        ENDSOURCE
+        SOURCE #init
+          #void init()
+          #{
+          #    super();
+          #
+          #    qB = this.query().dataSourceNo(1);
+          #
+          #    if (calledFromProject)
+          #        this.initFromProject();
+          #
+          #    criteriaExpand_1      = qB.addRange(fieldnum(ForecastSales,ExpandId));
+          #
+          #    criteriaModelId       = qB.addRange(fieldnum(ForecastSales,ModelId));
+          #    criteriaCustGroupId   = qB.addRange(fieldnum(ForecastSales,CustGroupId));
+          #    criteriaCustAccountId = qB.addRange(fieldnum(ForecastSales,CustAccountId));
+          #    criteriaItemGroupId   = qB.addRange(fieldnum(ForecastSales,ItemGroupId));
+          #    criteriaItemId        = qB.addRange(fieldnum(ForecastSales,ItemId));
+          #    criteriaActivityId    = qB.addRange(fieldnum(ForecastSales, ActivityNumber));
+          #}
+        ENDSOURCE
+        SOURCE #executeQuery
+          #void executeQuery()
+          #{
+          #    criteriaExpand_1.value('0');
+          #
+          #    criteriaModelId.value(       lockModelId.value()       ? queryValue(critModelId.text())       : SysQuery::valueUnlimited() );
+          #    criteriaCustGroupId.value(   lockCustGroupId.value()   ? queryValue(critCustGroupId.text())   : SysQuery::valueUnlimited() );
+          #    criteriaCustAccountId.value( lockCustAccountId.value() ? queryValue(critCustAccountId.text()) : SysQuery::valueUnlimited() );
+          #    criteriaItemGroupId.value(   lockItemGroupId.value()   ? queryValue(critItemGroupId.text())   : SysQuery::valueUnlimited() );
+          #    criteriaItemId.value(        lockItemId.value()        ? queryValue(critItemId.text())        : SysQuery::valueUnlimited() );
+          #
+          #    super();
+          #
+          #}
+          #
+        ENDSOURCE
+        SOURCE #Active
+          #int active()
+          #{
+          #    int             ret;
+          #    boolean         canEdit = !forecastSales.derived();
+          #    ForecastModel   forecastModel;
+          #
+          #    ret = super();
+          #
+          #    if (canEdit && forecastSales.ModelId)
+          #    {
+          #        forecastModel = ForecastModel::find(HeadingSub::Heading, forecastSales.ModelId);
+          #        if (forecastModel && forecastModel.Blocked)
+          #            canEdit = false;
+          #    }
+          #
+          #    this.allowEdit(canEdit);
+          #    this.allowDelete(canEdit);
+          #
+          #    element.buttonCoverage();
+          #
+          #    this.updateForecastSalesFields();
+          #
+          #    element.updateDesign(InventDimFormDesignUpdate::Active);
+          #
+          #    forecastSalesExpand_ds.executeQuery();
+          #
+          #    oldCurrency = forecastSales.Currency;
+          #
+          #    return ret;
+          #}
+          #
+        ENDSOURCE
+        SOURCE #linkActiveProject
+          #void linkActiveProject()
+          #{
+          #    ProjInvoiceTable            projInvoiceTable;
+          #    ProjWIPTable                projWIPTable;
+          #    QueryBuildRange             rangeProjId;
+          #
+          #    ProjId                      localprojId;
+          #
+          #    ProjTable                   projTable;
+          #    ProjControlPeriodCostGroup  projControlPeriodCostGroup;
+          #
+          #    #define.star('*')
+          #
+          #    if (calledFromProject)
+          #    {
+          #        switch (element.args().dataset())
+          #        {
+          #            case tablenum(ProjTable):
+          #
+          #                projTable       = element.args().record();
+          #                localprojId     = projTable.ProjId;
+          #                showSubProjects = element.args().caller().showChild();
+          #                projId          = projTable.ProjId;
+          #                if (showSubProjects)
+          #                    criteriaProjId.value(projTable.ProjId+'*');
+          #                else
+          #                    criteriaProjId.value(queryValue(projTable.ProjId));
+          #                break;
+          #
+          #            case tablenum(ProjInvoiceTable):
+          #                rangeProjId    = forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales)).findRange(fieldnum(ForecastSales,ProjId));
+          #
+          #                while (rangeProjId)
+          #                {
+          #                    forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales)).clearRange(fieldnum(ForecastSales,ProjId));
+          #                    rangeProjId    = forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales)).findRange(fieldnum(ForecastSales,ProjId));
+          #                }
+          #
+          #                projInvoiceTable   = element.args().record();
+          #
+          #                while select ProjId from projTable
+          #                    where projTable.ProjInvoiceProjId   == projInvoiceTable.ProjInvoiceProjId
+          #                {
+          #                    forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales)).addRange(fieldnum(ForecastSales,ProjId)).value(projTable.ProjId);
+          #                }
+          #                modelId = ProjParameters::find().ModelId;
+          #                break;
+          #
+          #            case tablenum(ProjWIPTable)     :
+          #                rangeProjId    = forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales)).findRange(fieldnum(ForecastSales,ProjId));
+          #
+          #                while (rangeProjId)
+          #                {
+          #                    forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales)).clearRange(fieldnum(ForecastSales,ProjId));
+          #                    rangeProjId    = forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales)).findRange(fieldnum(ForecastSales,ProjId));
+          #                }
+          #
+          #                projWIPTable   =   element.args().record();
+          #
+          #                while select ProjId from projTable
+          #                    where projTable.wipProject  == projWIPTable.ProjId
+          #                {
+          #                    forecastSales_ds.query().dataSourceTable(tablenum(ForecastSales)).addRange(fieldnum(ForecastSales,ProjId)).value(projTable.ProjId);
+          #                }
+          #                modelId = ProjParameters::find().ModelId;
+          #                break;
+          #
+          #
+          #            case tablenum(ProjControlPeriodCostGroup):
+          #
+          #                projControlPeriodCostGroup  = element.args().record();
+          #
+          #                if (projControlPeriodCostGroup.costType() != ProjCostType::Item)
+          #                    element.close();
+          #
+          #                critModelId.text(projControlPeriodCostGroup.projControlPeriod().ModelId);
+          #                lockModelId.value(critModelId.text() ? true : false );
+          #
+          #                localprojId                  = projControlPeriodCostGroup.ProjId;
+          #                projId                      = projControlPeriodCostGroup.ProjId;
+          #
+          #                criteriaControlId.value(projControlPeriodCostGroup.ControlId);
+          #                criteriaWIPProjId.value(localprojId);
+          #
+          #                qb2.joinMode(JoinMode::ExistsJoin);
+          #                criteriaCostGroupId.value(projControlPeriodCostGroup.CostGroupId);
+          #
+          #                break;
+          #
+          #            case tablenum(TmpProjStatistic):
+          #
+          #                if (projStatistic)   //          linkActive called again .criteria changed... close form
+          #                    element.close();
+          #
+          #                projStatistic   = element.args().parmObject();
+          #                projId          = projStatistic.parmProjId();
+          #
+          #                if (projStatistic.parmItem())
+          #                {
+          #                    critModelId.text(projStatistic.parmForecastModelId());
+          #                    lockModelId.value(projStatistic.parmForecastModelId() ? true : false );
+          #
+          #                    ledgerFromDate  = projStatistic.parmLedgerFromDate();
+          #                    ledgerToDate    = projStatistic.parmLedgerToDate();
+          #                    if (projStatistic.parmProjFromDate() || projStatistic.parmProjToDate())
+          #                        criteriaTransDate.value(strfmt('%1..%2',queryValue(projStatistic.parmProjFromDate()),queryValue(projStatistic.parmProjToDate())));
+          #
+          #                    if (projStatistic.parmProjCategoryId())
+          #                        criteriaCategoryId.value(projStatistic.parmProjCategoryId());
+          #
+          #                    if (element.categoryTable(element.args().parmObject()))
+          #                        criteriaCategoryGroupId.value(projStatistic.parmCategoryGroupId());
+          #
+          #                    if (projStatistic.parmFixedPrice())
+          #                        criteriaFixedPrice.value(queryValue(ProjType::FixedPrice));
+          #                    if (projStatistic.parmTimeMaterial())
+          #                        criteriaTimeMaterial.value(queryValue(ProjType::TimeMaterial));
+          #                    if (projStatistic.parmInternalCost())
+          #                        criteriaInternal.value(queryValue(ProjType::Cost));
+          #                    if (projStatistic.parmInternalCost())
+          #                        criteriaCost.value(queryValue(ProjType::Internal));
+          #                    if (projStatistic.parmInvestment())
+          #                        criteriaInvestment.value(queryValue(ProjType::Investment));
+          #                    if (projStatistic.parmTime())
+          #                        criteriaTime.value(queryValue(ProjType::Time));
+          #
+          #                    if (projStatistic.parmSorting1())
+          #                        criteriaSorting1.value(queryValue(projStatistic.parmSorting1()));
+          #                    if (projStatistic.parmSorting2())
+          #                        criteriaSorting2.value(queryValue(projStatistic.parmSorting2()));
+          #                    if (projStatistic.parmSorting3())
+          #                        criteriaSorting3.value(queryValue(projStatistic.parmSorting3()));
+          #                    if (projStatistic.parmCustAccount())
+          #                        criteriaCustAccount.value(queryValue(projStatistic.parmCustAccount()));
+          #                    if (projStatistic.parmProjGroupId())
+          #                        criteriaGroupId.value(queryValue(projStatistic.parmProjGroupId()));
+          #
+          #                    if (projStatistic.parmProjTree())
+          #                        criteriaProjId.value(projStatistic.parmProjId()+ #star);
+          #                    else
+          #                        if (projStatistic.parmProjId())
+          #                            criteriaProjId.value(queryValue(projStatistic.parmProjId()));
+          #
+          #                    if (projStatistic.parmProjWIPId())
+          #                        criteriaWIPProjId.value(queryValue(projStatistic.parmProjWIPId()));
+          #
+          #                    if (projStatistic.parmProjInvoiceProjId())
+          #                        criteriaProjInvoiceProjId.value(queryValue(projStatistic.parmProjInvoiceProjId()));
+          #
+          #                }
+          #                else
+          #                    criteriaProjId.value(queryValue(SysQuery::valueEmptyString()));
+          #
+          #                break;
+          #
+          #            case tablenum(TmpProjCashFlow):
+          #
+          #                if (projCashFlow)   //          linkActive called again .criteria changed... close form
+          #                    element.close();
+          #
+          #                projCashFlow   = element.args().parmObject();
+          #                projId          = projCashFlow.parmProjId();
+          #
+          #                if (projCashFlow.parmItem())
+          #                {
+          #                    critModelId.text(projCashFlow.parmForecastModelId());
+          #                    lockModelId.value(projCashFlow.parmForecastModelId() ? true : false );
+          #
+          #                    /*
+          #                    ledgerFromDate  = projStatistic.parmLedgerFromDate();
+          #                    ledgerToDate    = projStatistic.parmLedgerToDate();*/
+          #
+          #                    if (projCashFlow.parmProjectFromDate() || projCashFlow.parmProjectToDate())
+          #                        criteriaTransDate.value(strfmt('%1..%2',queryValue(projCashFlow.parmProjectFromDate()),queryValue(projCashFlow.parmProjectToDate())));
+          #
+          #                    if (projCashFlow.parmCategoryId())
+          #                        criteriaCategoryId.value(projCashFlow.parmCategoryId());
+          #
+          #                    if (element.categoryTableCashFlow(element.args().parmObject()))
+          #                        criteriaCategoryGroupId.value(projCashFlow.parmCategoryGroupId());
+          #
+          #                    if (projCashFlow.parmFixedPrice())
+          #                        criteriaFixedPrice.value(queryValue(ProjType::FixedPrice));
+          #                    if (projCashFlow.parmTimeMaterial())
+          #                        criteriaTimeMaterial.value(queryValue(ProjType::TimeMaterial));
+          #                    if (projCashFlow.parmInternalCost())
+          #                        criteriaInternal.value(queryValue(ProjType::Cost));
+          #                    if (projCashFlow.parmInternalCost())
+          #                        criteriaCost.value(queryValue(ProjType::Internal));
+          #                    if (projCashFlow.parmInvestment())
+          #                        criteriaInvestment.value(queryValue(ProjType::Investment));
+          #                    if (projCashFlow.parmTimeProject())
+          #                        criteriaTime.value(queryValue(ProjType::Time));
+          #
+          #                    if (projCashFlow.parmSorting1())
+          #                        criteriaSorting1.value(queryValue(projCashFlow.parmSorting1()));
+          #                    if (projCashFlow.parmSorting2())
+          #                        criteriaSorting2.value(queryValue(projCashFlow.parmSorting2()));
+          #                    if (projCashFlow.parmSorting3())
+          #                        criteriaSorting3.value(queryValue(projCashFlow.parmSorting3()));
+          #
+          #                    if (projCashFlow.parmCustAccount())
+          #                        criteriaCustAccount.value(queryValue(projCashFlow.parmCustAccount()));
+          #                    if (projCashFlow.parmProjGroupId())
+          #                        criteriaGroupId.value(queryValue(projCashFlow.parmProjGroupId()));
+          #
+          #                    if (projCashFlow.parmProjTree())
+          #                        criteriaProjId.value(projCashFlow.parmProjId()+ #star);
+          #                    else
+          #                        if (projCashFlow.parmProjId())
+          #                            criteriaProjId.value(queryValue(projCashFlow.parmProjId()));
+          #
+          #                    if (projCashFlow.parmProjWIPId())
+          #                        criteriaWIPProjId.value(queryValue(projCashFlow.parmProjWIPId()));
+          #
+          #                    if (projCashFlow.parmProjInvoiceProjId())
+          #                        criteriaProjInvoiceProjId.value(queryValue(projCashFlow.parmProjInvoiceProjId()));
+          #
+          #                }
+          #                else
+          #                    criteriaProjId.value(queryValue(SysQuery::valueEmptyString()));
+          #
+          #                break;
+          #
+          #            case tablenum(TmpProjCostControl):
+          #
+          #                if (projCostControl)   //          linkActive called again .criteria changed... close form
+          #                    element.close();
+          #
+          #                projCostControl = element.args().parmObject();
+          #                projId          = projCostControl.parmProjId();
+          #
+          #                if (projCostControl.parmItem())
+          #                {
+          #                    switch(projCostControl.parmModelType())
+          #                    {
+          #                        case ProjForecastModelType::Original:
+          #                        {
+          #                            critModelId.text(projCostControl.parmOriginalForecastModelId());
+          #                            lockModelId.value(projCostControl.parmOriginalForecastModelId() ? true : false );
+          #                            break;
+          #                        }
+          #                        case ProjForecastModelType::Remaining:
+          #                        {
+          #                            critModelId.text(projCostControl.parmRemainingForecastModelId());
+          #                            lockModelId.value(projCostControl.parmRemainingForecastModelId() ? true : false );
+          #                            break;
+          #                        }
+          #                        case ProjForecastModelType::Total:
+          #                        {
+          #                            critModelId.text(projCostControl.parmTotalForecastModelId());
+          #                            lockModelId.value(projCostControl.parmTotalForecastModelId() ? true : false );
+          #                            break;
+          #                        }
+          #                    }
+          #
+          #                    ledgerFromDate  = projCostControl.parmLedgerTransDateFrom();
+          #                    ledgerToDate    = projCostControl.parmLedgerTransDateTo();
+          #
+          #                    if (projCostControl.parmProjTransDateFrom() || projCostControl.parmProjTransDateTo())
+          #                        criteriaTransDate.value(strfmt('%1..%2',queryValue(projCostControl.parmProjTransDateFrom()),queryValue(projCostControl.parmProjTransDateTo())));
+          #
+          #                    if (projCostControl.parmProjCategoryId())
+          #                        criteriaCategoryId.value(projCostControl.parmProjCategoryId());
+          #
+          #                    if (projCostControl.parmCategoryGroupId())
+          #                        criteriaCategoryGroupId.value(projCostControl.parmCategoryGroupId());
+          #
+          #                    if (projCostControl.parmFixedPrice())
+          #                        criteriaFixedPrice.value(queryValue(ProjType::FixedPrice));
+          #                    if (projCostControl.parmTimeMaterial())
+          #                        criteriaTimeMaterial.value(queryValue(ProjType::TimeMaterial));
+          #                    if (projCostControl.parmInternalCost())
+          #                        criteriaInternal.value(queryValue(ProjType::Cost));
+          #                    if (projCostControl.parmInternalCost())
+          #                        criteriaCost.value(queryValue(ProjType::Internal));
+          #                    if (projCostControl.parmInvestment())
+          #                        criteriaInvestment.value(queryValue(ProjType::Investment));
+          #                    if (projCostControl.parmTime())
+          #                        criteriaTime.value(queryValue(ProjType::Time));
+          #
+          #                    if (projCostControl.parmProjSorting1())
+          #                        criteriaSorting1.value(queryValue(projCostControl.parmProjSorting1()));
+          #                    if (projCostControl.parmProjSorting2())
+          #                        criteriaSorting2.value(queryValue(projCostControl.parmProjSorting2()));
+          #                    if (projCostControl.parmProjSorting3())
+          #                        criteriaSorting3.value(queryValue(projCostControl.parmProjSorting3()));
+          #
+          #                    if (projCostControl.parmCustomerAccount())
+          #                        criteriaCustAccount.value(queryValue(projCostControl.parmCustomerAccount()));
+          #
+          #                    if (projCostControl.parmProjGroupId())
+          #                        criteriaGroupId.value(queryValue(projCostControl.parmProjGroupId()));
+          #
+          #                    if (projCostControl.parmProjTree())
+          #                        criteriaProjId.value(projCostControl.parmProjId()+ #star);
+          #                    else
+          #                        if (projCostControl.parmProjId())
+          #                            criteriaProjId.value(queryValue(projCostControl.parmProjId()));
+          #
+          #                    if (projCostControl.parmProjWIPId())
+          #                        criteriaWIPProjId.value(queryValue(projCostControl.parmProjWIPId()));
+          #
+          #                    if (projCostControl.parmProjInvoiceProjId())
+          #                        criteriaProjInvoiceProjId.value(queryValue(projCostControl.parmProjInvoiceProjId()));
+          #
+          #                }
+          #                else
+          #                    criteriaProjId.value(queryValue(SysQuery::valueEmptyString()));
+          #
+          #                break;
+          #            //WPA -->
+          #            case tablenum(ProjForecastEmpl):
+          #                projForecastEmpl    = element.args().record();
+          #                projTable           = projTable::find(projForecastEmpl.ProjId);
+          #                modelId             = projForecastEmpl.ModelId;
+          #                localprojId         = projTable.ProjId;
+          #                showSubProjects     = false;
+          #                projId              = projTable.ProjId;
+          #                if (showSubProjects)
+          #                    criteriaProjId.value(projTable.ProjId+'*');
+          #                else
+          #                    criteriaProjId.value(queryValue(projTable.ProjId));
+          #                break;
+          #            //WPA <--
+          #        }
+          #        this.executeQuery();
+          #    }
+          #}
+        ENDSOURCE
+        SOURCE #UpdateAmount
+          #void updateAmount()
+          #{
+          #;
+          #    forecastSales.Amount= forecastSales.calcLineAmount();
+          #    ctrlGrossAmount.update();
+          #}
+        ENDSOURCE
+        SOURCE #updateForecastSalesFields
+          #void updateForecastSalesFields()
+          #{
+          #    ;
+          #
+          #    forecastSales_ds.object(fieldnum(ForecastSales,Freq)).allowEdit(    forecastSales.BudgetMap::mustEnableFreq());
+          #    forecastSales_ds.object(fieldnum(ForecastSales,FreqCode)).allowEdit(forecastSales.BudgetMap::mustEnableFreqCode());
+          #    forecastSales_ds.object(fieldnum(ForecastSales,KeyId)).allowEdit(   forecastSales.BudgetMap::mustEnableKeyId());
+          #    forecastSales_ds.object(fieldnum(ForecastSales,EndDate)).allowEdit( forecastSales.BudgetMap::mustEnableEndDate());
+          #
+          #    forecastSales_ds.object(fieldnum(ForecastSales,CustAccountId)).allowEdit(!lockCustAccountId.allowEdit() || forecastSales.ProjId ? false : true);
+          #    forecastSales_ds.object(fieldnum(ForecastSales,CustGroupId)).allowEdit(!lockCustGroupId.allowEdit() || forecastSales.CustAccountId ? false : true);
+          #
+          #    forecastSales_ds.object(fieldnum(ForecastSales,ItemGroupId)).allowEdit(!lockItemGroupId.allowEdit() || forecastSales.ItemId ? false : true);
+          #
+          #
+          #    if(forecastSales.isProjLumpSum())
+          #    {
+          #        forecastSales_ds.object(fieldnum(ForecastSales,ItemId)).allowEdit(false);
+          #        forecastSales_ds.object(fieldnum(ForecastSales,SalesQty)).allowEdit(false);
+          #    }
+          #    else
+          #    {
+          #        forecastSales_ds.object(fieldnum(ForecastSales,ItemId)).allowEdit(lockItemId.allowEdit());
+          #        forecastSales_ds.object(fieldnum(ForecastSales,SalesQty)).allowEdit(true);
+          #    }
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #InventDim
+          Table               #InventDim
+          Index               #DimIdIdx
+          JoinSource          #ForecastSales
+          LinkType            #InnerJoin
+          DelayActive         #No
+          InsertAtEnd         #No
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD configId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #modified
+                #public void modified()
+                #{
+                #    super();
+                #
+                #    element.updateCostPrice();
+                #}
+                #
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD InventSizeId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #modified
+                #public void modified()
+                #{
+                #    super();
+                #
+                #    element.updateCostPrice();
+                #}
+                #
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD InventColorId
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #modified
+                #public void modified()
+                #{
+                #    super();
+                #
+                #    element.updateCostPrice();
+                #}
+                #
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #ForecastSalesExpand
+          Table               #ForecastSales
+          Index               #ExpandIdx
+          AllowEdit           #No
+          AllowCreate         #No
+          AllowDelete         #No
+          AutoSearch          #No
+          InsertAtEnd         #No
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #active
+          #public int active()
+          #{
+          #    int ret;
+          #
+          #    ret = super();
+          #
+          #    element.buttonCoverage();
+          #
+          #    return ret;
+          #}
+        ENDSOURCE
+        SOURCE #init
+          #public void init()
+          #{
+          #
+          #    QueryBuildDataSource    qbsForecastSalesExpand;
+          #
+          #    super();
+          #
+          #    qbsForecastSalesExpand = this.query().dataSourceTable(tablenum(ForecastSales));
+          #
+          #    criteriaReport    = qbsForecastSalesExpand.addRange(fieldnum(ForecastSales,Report));
+          #    criteriaExpand_2  = qbsForecastSalesExpand.addRange(fieldnum(ForecastSales,ExpandId));
+          #
+          #    qbsForecastSalesExpand.addSortField(fieldname2id(tablenum(ForecastSales),fieldstr(ForecastSales,StartDate)));
+          #
+          #}
+        ENDSOURCE
+        SOURCE #executeQuery
+          #public void executeQuery()
+          #{
+          #    ;
+          #    if ( ! forecastSales.RecId)                     // then query must not find any records
+          #    {
+          #        criteriaExpand_2.value(queryValue('! 0 '));
+          #        criteriaReport.value(queryValue(NoYes::No));
+          #    }
+          #    else
+          #    {
+          #        criteriaExpand_2.value(queryValue(forecastSales.RecId));
+          #        criteriaReport.value(SysQuery::valueUnlimited());
+          #    }
+          #
+          #    super();
+          #
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+  ENDOBJECTBANK
+  
+  JOINS
+    InventDim ForecastSales
+  ENDJOINS
+  
+  DESIGN
+    PROPERTIES
+      Caption             #@SYS15056
+      HTMLHelpFile        #HTMLHelpFileIWorker
+      HTMLHelpTopic       #AxShared.chm::/html/2116AE09-ADA4-4E2A-9603-3D3F522626A1.htm
+      HideIfEmpty         #No
+    ENDPROPERTIES
+    
+    CONTAINER
+      CONTROL TAB
+        PROPERTIES
+          Name                #Tab
+          Width               #Column width
+          Height              #Column height
+          Tabs                #6
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabPageOverview
+              Width               #Column width
+              Caption             #@SYS9039
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GRID
+                PROPERTIES
+                  Name                #Overview_GridForecastSales
+                  AutoDeclaration     #Yes
+                  Width               #Column width
+                  Height              #Column height
+                  DataSource          #ForecastSales
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_ModelId
+                        AutoDeclaration     #Yes
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/79717ad0-5dde-4d60-a76b-0342f2b81c7b.htm
+                        DataSource          #ForecastSales
+                        DataField           #ModelId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #Overview_StartDate
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/bff81332-f188-46f0-8485-0b8de05c477f.htm
+                        DataSource          #ForecastSales
+                        DataField           #StartDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_ProjId
+                        AutoDeclaration     #Yes
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/8a80d58b-67eb-4dcd-9267-327ece39f39f.htm
+                        DataSource          #ForecastSales
+                        DataField           #ProjId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_CustAccountId
+                        AutoDeclaration     #Yes
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/6522b564-a7bb-4c49-83bf-c7b22fc0ffe5.htm
+                        DataSource          #ForecastSales
+                        DataField           #CustAccountId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_CustGroupId
+                        AutoDeclaration     #Yes
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/0bf1591f-0a90-4897-8292-91baf3ab90a9.htm
+                        DataSource          #ForecastSales
+                        DataField           #CustGroupId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_ItemId
+                        AutoDeclaration     #Yes
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/97484776-c377-4063-988a-a413fc0b8f73.htm
+                        DataSource          #ForecastSales
+                        DataField           #ItemId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_ItemGroupId
+                        AutoDeclaration     #Yes
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/b1870248-52cf-4855-bdd2-520edaf40c3d.htm
+                        DataSource          #ForecastSales
+                        DataField           #ItemGroupId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Overview_Inventorydimensions
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/2BE88C2A-EDF1-4EDE-AA72-E44C3D79D8A8.htm
+                        BackgroundColor     #Window background
+                        DataSource          #InventDim
+                        DataGroup           #InventoryDimensions
+                        AutoDataGroup       #Yes
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_ItemAllocateId
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/2e0154d2-810e-4284-b8fe-5e06965cac7a.htm
+                        DataSource          #ForecastSales
+                        DataField           #ItemAllocateId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL REALEDIT
+                      PROPERTIES
+                        Name                #Overview_SalesQty
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/09957c26-f2fa-4255-80fe-d275a6a3cd58.htm
+                        DisplaceNegative    #0
+                        DataSource          #ForecastSales
+                        DataField           #SalesQty
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_SalesUnitId
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/03e5b2aa-bdcb-4445-805a-231f3fb2677b.htm
+                        DataSource          #ForecastSales
+                        DataField           #SalesUnitId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL REALEDIT
+                      PROPERTIES
+                        Name                #Overview_Amount
+                        AutoDeclaration     #Yes
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/948060cf-da21-48e2-8885-4f86023fdeee.htm
+                        DataSource          #ForecastSales
+                        DataField           #Amount
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL REALEDIT
+                      PROPERTIES
+                        Name                #Overview_CostPrice
+                        AutoDeclaration     #Yes
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/d54fb9dd-ceb0-4b87-9a2e-1d91f6f5a513.htm
+                        DataSource          #ForecastSales
+                        DataField           #CostPrice
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ForecastSales_Currency
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/de0d4384-b9cc-46cd-8fee-eb7262a762ea.htm
+                        DataSource          #ForecastSales
+                        DataField           #Currency
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #Overview_GroupAllocation
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/1F5A2D1C-82D3-4557-81F4-B5F9A4D180F7.htm
+                  FrameType           #Edged 3D
+                  Caption             #@SYS26697
+                  ArrangeMethod       #Horizontal, flush right
+                  AlignChildren       #No
+                  AlignChild          #No
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL COMBOBOX
+                      PROPERTIES
+                        Name                #Allocation_AllocateMethod
+                        DataSource          #ForecastSales
+                        DataField           #AllocateMethod
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL INTEDIT
+                      PROPERTIES
+                        Name                #Allocation_CtrlFreq
+                        AutoDeclaration     #Yes
+                        DataSource          #ForecastSales
+                        DataField           #Freq
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL COMBOBOX
+                      PROPERTIES
+                        Name                #Allocation_FreqCode
+                        AutoDeclaration     #Yes
+                        Selection           #255
+                        DataSource          #ForecastSales
+                        DataField           #FreqCode
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Allocation_KeyId
+                        AutoDeclaration     #Yes
+                        DataSource          #ForecastSales
+                        DataField           #KeyId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #Allocation_EndDate
+                        AutoDeclaration     #Yes
+                        DataSource          #ForecastSales
+                        DataField           #EndDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #CtrlSplit
+                  AutoDeclaration     #Yes
+                  Width               #Column width
+                  Height              #5
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/B5177B4C-2358-41D1-BC56-5062D64C54CA.htm
+                  FrameType           #Raised 3D
+                  BackgroundColor     #Window background
+                  HideIfEmpty         #No
+                  AlignChild          #No
+                ENDPROPERTIES
+                
+                METHODS
+                  Version: 3
+                  SOURCE #mouseUp
+                    #int mouseUp(int x, int y, int button, boolean ctrl, boolean shift)
+                    #{
+                    #    int ret;
+                    #
+                    #    ret = super(x, y, button, ctrl, shift);
+                    #
+                    #    return formSplitter.mouseUp(x, y, button, ctrl, shift);
+                    #}
+                  ENDSOURCE
+                  SOURCE #mouseMove
+                    #int mouseMove(int x, int y, int button, boolean ctrl, boolean shift)
+                    #{
+                    #    int ret;
+                    #
+                    #    ret = super(x, y, button, ctrl, shift);
+                    #
+                    #    return formSplitter.mouseMove(x,y,button,ctrl,shift);
+                    #}
+                  ENDSOURCE
+                  SOURCE #mouseDown
+                    #int mouseDown(int x, int y, int button, boolean ctrl, boolean shift)
+                    #{
+                    #    int ret;
+                    #
+                    #    ret = super(x, y, button, ctrl, shift);
+                    #
+                    #    return formSplitter.mouseDown(x, y, button, ctrl, shift);
+                    #}
+                  ENDSOURCE
+                ENDMETHODS
+                  CONTAINER
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #Overview_ForecastSalesExpand
+                  Width               #Column width
+                  Height              #Column height
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/4E14D5BD-2D62-4238-9ED1-FA7E12C9E34B.htm
+                  Caption             #@SYS28034
+                  FrameOptionButton   #Hide
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GRID
+                      PROPERTIES
+                        Name                #Overview_GridForecastSalesExploded
+                        AutoDeclaration     #Yes
+                        Width               #Column width
+                        Height              #Column height
+                        VisibleRows         #6
+                        DataSource          #ForecastSalesExpand
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL DATEEDIT
+                            PROPERTIES
+                              Name                #ForecastSalesExpand_StartDate
+                              DataSource          #ForecastSalesExpand
+                              DataField           #StartDate
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #ForecastSalesExpand_SalesQty
+                              DataSource          #ForecastSalesExpand
+                              DataField           #SalesQty
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #ForecastSalesExpand_SalesUnitId
+                              DataSource          #ForecastSalesExpand
+                              DataField           #SalesUnitId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #ForecastSalesExpand_Amount
+                              DataSource          #ForecastSalesExpand
+                              DataField           #Amount
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #ForecastSalesExpand_Currency
+                              DataSource          #ForecastSalesExpand
+                              DataField           #Currency
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabPageGeneral
+              Caption             #@SYS2952
+              Columns             #2
+              ArrangeGuide        
+                ARRAY INDEX Columns 
+                  #0
+                  #0
+                ENDARRAY
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #General_Identification
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/74D7C57E-C26A-421A-8634-C50771234250.htm
+                  DataSource          #ForecastSales
+                  DataGroup           #Identification
+                  AutoDataGroup       #Yes
+                ENDPROPERTIES
+                
+                  CONTAINER
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #General_Budget
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/61934D4C-F58B-427E-9A70-CFA21DB88451.htm
+                  Caption             #@SYS15436
+                  DataSource          #ForecastSales
+                  DataGroup           #SalesForecast
+                  AutoDataGroup       #Yes
+                ENDPROPERTIES
+                
+                  CONTAINER
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #General_Salestax
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/6FB5AC59-38EA-4CF3-BD9E-88BF0EB18201.htm
+                  DataSource          #ForecastSales
+                  DataGroup           #SalesTax
+                  AutoDataGroup       #Yes
+                ENDPROPERTIES
+                
+                  CONTAINER
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabPageItemSpecification
+              Width               #Column width
+              Caption             #@SYS7407
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GRID
+                PROPERTIES
+                  Name                #ItemSpecification_gridForecastItem
+                  Height              #Column height
+                  DataSource          #ForecastSales
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ForecastSalesItem_ItemId
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/97484776-c377-4063-988a-a413fc0b8f73.htm
+                        DataSource          #ForecastSales
+                        DataField           #ItemId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #ForecastSalesItem_Inventorydimensions
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/9F9A8C03-02C1-4A14-B3B6-95C6A35BBD15.htm
+                        BackgroundColor     #Window background
+                        DataSource          #InventDim
+                        DataGroup           #InventoryDimensions
+                        AutoDataGroup       #Yes
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL REALEDIT
+                      PROPERTIES
+                        Name                #ForecastSalesItem_SalesQty
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/09957c26-f2fa-4255-80fe-d275a6a3cd58.htm
+                        DataSource          #ForecastSales
+                        DataField           #SalesQty
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ForecastSalesItem_SalesUnitId
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/03e5b2aa-bdcb-4445-805a-231f3fb2677b.htm
+                        DataSource          #ForecastSales
+                        DataField           #SalesUnitId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL REALEDIT
+                      PROPERTIES
+                        Name                #ForecastSalesItem_SalesPrice
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/9444ae96-6d71-4cb2-a614-6d6a29c78a9a.htm
+                        DataSource          #ForecastSales
+                        DataField           #SalesPrice
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL REALEDIT
+                      PROPERTIES
+                        Name                #ForecastSalesItem_Amount
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/948060cf-da21-48e2-8885-4f86023fdeee.htm
+                        DataSource          #ForecastSales
+                        DataField           #Amount
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ForecastSalesItem_ItemName
+                        AllowEdit           #No
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/9E316282-7112-4F8E-B16D-DAADC8F38D1A.htm
+                        DataSource          #ForecastSales
+                        DataMethod          #itemName
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #ColumnsItem
+                  Width               #Column width
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/0AE8488E-32AB-4A5B-A2C0-C783CC7FDF0A.htm
+                  FrameType           #None
+                  Columns             #3
+                  ArrangeGuide        
+                    ARRAY INDEX Columns 
+                      #0
+                      #0
+                      #0
+                    ENDARRAY
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Prices
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/B102567C-BC6C-4C87-BC24-EF7E85729D0C.htm
+                        Caption             #@SYS12983
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #ForecastSales_PriceUnit
+                              DataSource          #ForecastSales
+                              DataField           #PriceUnit
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #ForecastSales_SalesMarkup
+                              DataSource          #ForecastSales
+                              DataField           #SalesMarkup
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #ForecastSales_CostPrice
+                              DataSource          #ForecastSales
+                              DataField           #CostPrice
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Price_Discount
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/385D3206-E6F5-4CCF-97FF-0AB27FB665F8.htm
+                        Caption             #@SYS19789
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #ForecastSales_DiscPercent
+                              DataSource          #ForecastSales
+                              DataField           #DiscPercent
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #ForecastSales_DiscAmount
+                              DataSource          #ForecastSales
+                              DataField           #DiscAmount
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #ctrlGrossAmount
+                              AutoDeclaration     #Yes
+                              HelpText            #@SYS26695
+                              DisplaceNegative    #0
+                              DataSource          #ForecastSales
+                              DataMethod          #GrossAmount
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Inventory
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/0D5099A0-E157-4A87-856B-3DC5EB3E3144.htm
+                        Caption             #@SYS981
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #ForecastSales_InventQty
+                              DataSource          #ForecastSales
+                              DataField           #InventQty
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #ForecastSales_ItemBOMId
+                              DataSource          #ForecastSales
+                              DataField           #ItemBOMId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #ForecastSales_ItemRouteId
+                              DataSource          #ForecastSales
+                              DataField           #ItemRouteId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #ProjectTab
+              ConfigurationKey    #ProjBasicForecast
+              Caption             #@SYS4534
+              Columns             #3
+              ArrangeGuide        
+                ARRAY INDEX Columns 
+                  #0
+                  #0
+                  #0
+                ENDARRAY
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #GroupLeft
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/FA2625B9-1B3E-4EA0-B9CB-2ADBC13EDA31.htm
+                  FrameType           #None
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #ProjectIdentification
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/81F6FD5B-3795-4FBD-9C62-64DB53BDC008.htm
+                        DataSource          #ForecastSales
+                        DataGroup           #ProjectIdentification
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL DATEEDIT
+                            PROPERTIES
+                              Name                #Group_StartDate
+                              Label               #@SYS54242
+                              DataSource          #ForecastSales
+                              DataField           #StartDate
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Group_ProjId
+                              DataSource          #ForecastSales
+                              DataField           #ProjId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Group_ActivityNumber
+                              DataSource          #ForecastSales
+                              DataField           #ActivityNumber
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Group_ProjCategoryId
+                              DataSource          #ForecastSales
+                              DataField           #ProjCategoryId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Group_ItemId
+                              DataSource          #ForecastSales
+                              DataField           #ItemId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Group_ProjLinePropertyId
+                              DataSource          #ForecastSales
+                              DataField           #ProjLinePropertyId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #ProjectTransaction
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/BD4BDCA2-331F-418A-B192-ADE1FBD013D2.htm
+                        DataSource          #ForecastSales
+                        DataGroup           #ProjectTransaction
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #ProjectTransaction_ProjTransId
+                              DataSource          #ForecastSales
+                              DataField           #ProjTransId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #GroupMiddle
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/DA1A72C1-D3C8-41CC-ACC7-3A72E61D4C85.htm
+                  FrameType           #None
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #ProjectCostPrice
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/622255E1-3452-4DD2-A7FD-85BEC68B8293.htm
+                        DataSource          #ForecastSales
+                        DataGroup           #ProjectCostPrice
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #Group1_SalesQty
+                              DataSource          #ForecastSales
+                              DataField           #SalesQty
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #Group1_CostPrice
+                              DataSource          #ForecastSales
+                              DataField           #CostPrice
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #CostAmount
+                              DataSource          #ForecastSales
+                              DataMethod          #costAmount
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #ProjectSalesPrice
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/BDFACBFB-9DE2-49BB-923D-41687F10992D.htm
+                        DataSource          #ForecastSales
+                        DataGroup           #ProjectSalesPrice
+                        AutoDataGroup       #Yes
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #ProjectAdministration
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/FB8A0D59-FCFD-4AC4-AD43-E4B78EEA248B.htm
+                        DataSource          #ForecastSales
+                        DataGroup           #ProjectAdministration
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL CHECKBOX
+                            PROPERTIES
+                              Name                #Group_Active
+                              DataSource          #ForecastSales
+                              DataField           #Active
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Group_modifiedBy
+                              DataSource          #ForecastSales
+                              DataField           #modifiedBy
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #GroupRight
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/027922DE-ABF2-4378-8BCA-DC9ED758D9F6.htm
+                  FrameType           #None
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Dates
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/C9BEEF4F-B537-4EF9-AF90-E75599F1251E.htm
+                        DataSource          #ForecastSales
+                        DataGroup           #Dates
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL DATEEDIT
+                            PROPERTIES
+                              Name                #Dates_StartDate
+                              Label               #@SYS54242
+                              DataSource          #ForecastSales
+                              DataField           #StartDate
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL DATEEDIT
+                            PROPERTIES
+                              Name                #Dates_ProjForecastInvoiceDate
+                              DataSource          #ForecastSales
+                              DataField           #ProjForecastInvoiceDate
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL DATEEDIT
+                            PROPERTIES
+                              Name                #Dates_ProjForecastEliminationDate
+                              DataSource          #ForecastSales
+                              DataField           #ProjForecastEliminationDate
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL DATEEDIT
+                            PROPERTIES
+                              Name                #Dates_ProjForecastCostPaymDate
+                              ConfigurationKey    #ProjAdvCashFlow
+                              DataSource          #ForecastSales
+                              DataField           #ProjForecastCostPaymDate
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL DATEEDIT
+                            PROPERTIES
+                              Name                #Dates_ProjForecastSalesPaymDate
+                              ConfigurationKey    #ProjAdvCashFlow
+                              DataSource          #ForecastSales
+                              DataField           #ProjForecastSalesPaymDate
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabPageDimensionTab
+              Width               #Column width
+              Caption             #@SYS14926
+              Columns             #2
+              ArrangeGuide        
+                ARRAY INDEX Columns 
+                  #0
+                  #0
+                ENDARRAY
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #LedgerDimension
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/F3941B13-CA53-4044-9D18-B2B6A1611CD5.htm
+                  Caption             #@SYS53632
+                  DataSource          #ForecastSales
+                  DataGroup           #Dimension
+                  AutoDataGroup       #Yes
+                ENDPROPERTIES
+                
+                  CONTAINER
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #InventoryDimension
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/EF7E44E7-B4C7-43A6-8337-33EE4FA7304F.htm
+                  FrameType           #None
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Inventorydimensions1
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/8A89CAC4-010B-4D13-9C4E-00331677DD00.htm
+                        DataSource          #InventDim
+                        DataGroup           #InventoryDimensions
+                        AutoDataGroup       #Yes
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabPageFilter
+              Width               #Column width
+              Caption             #@SYS2163
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #Criteria
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/422D6612-6F28-4076-8AA3-9D32A8D4D617.htm
+                  Caption             #@SYS2163
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Column1
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/48398B60-6E52-4229-9109-2ACFD3096AB2.htm
+                        FrameType           #None
+                        Columns             #2
+                        ArrangeGuide        
+                          ARRAY INDEX Columns 
+                            #0
+                            #0
+                          ENDARRAY
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Column11
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/6EEDA048-538D-4CEB-978F-CC4D6CF90C70.htm
+                              FrameType           #None
+                              LeftMargin          #0
+                              RightMargin         #0
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                                CONTROL CHECKBOX
+                                  PROPERTIES
+                                    Name                #LockModelId
+                                    AutoDeclaration     #Yes
+                                    Label               #@SYS9923
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    forecastSales_ds.executeQuery();
+                                      #    element.updateFields();
+                                      #
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Column12
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/B29376BA-E87D-4EC9-A7EA-745175F22F40.htm
+                              FrameType           #None
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #critModelId
+                                    AutoDeclaration     #Yes
+                                    ShowLabel           #No
+                                    ExtendedDataType    
+                                      ARRAY 
+                                        #ForecastModelHeadId
+                                        #
+                                      ENDARRAY
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    if (lockModelId.value())
+                                      #    {
+                                      #        forecastSales_ds.executeQuery();
+                                      #        element.updateFields();
+                                      #    }
+                                      #
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Column2
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/BC5862B2-049B-4A48-B464-DF82AB7102F5.htm
+                        FrameType           #None
+                        Columns             #2
+                        ArrangeGuide        
+                          ARRAY INDEX Columns 
+                            #0
+                            #0
+                          ENDARRAY
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Column21
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/42195054-96D4-45E2-A26C-298C85D824F2.htm
+                              FrameType           #None
+                              LeftMargin          #0
+                              RightMargin         #0
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                                CONTROL CHECKBOX
+                                  PROPERTIES
+                                    Name                #LockCustGroupId
+                                    AutoDeclaration     #Yes
+                                    Label               #@SYS11904
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    forecastSales_ds.executeQuery();
+                                      #    element.updateFields();
+                                      #
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                                CONTROL CHECKBOX
+                                  PROPERTIES
+                                    Name                #LockCustAccountId
+                                    AutoDeclaration     #Yes
+                                    Label               #@SYS24704
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    forecastSales_ds.executeQuery();
+                                      #    element.updateFields();
+                                      #
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Column22
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/CFE80B35-F0A3-4AB2-9BB6-EA706D66F6AC.htm
+                              FrameType           #None
+                              LeftMargin          #0
+                              RightMargin         #0
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #CritCustGroupId
+                                    AutoDeclaration     #Yes
+                                    ShowLabel           #No
+                                    ExtendedDataType    
+                                      ARRAY 
+                                        #CustGroupId
+                                        #
+                                      ENDARRAY
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    if (lockCustGroupId.value())
+                                      #    {
+                                      #        forecastSales_ds.executeQuery();
+                                      #        element.updateFields();
+                                      #    }
+                                      #
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #CritCustAccountId
+                                    AutoDeclaration     #Yes
+                                    ShowLabel           #No
+                                    ExtendedDataType    
+                                      ARRAY 
+                                        #CustAccount
+                                        #
+                                      ENDARRAY
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    if (lockCustAccountId.value())
+                                      #    {
+                                      #        forecastSales_ds.executeQuery();
+                                      #        element.updateFields();
+                                      #    }
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Column3
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/E5C29098-4B45-4E1A-B724-B2E56B23378A.htm
+                        FrameType           #None
+                        LeftMargin          #0
+                        RightMargin         #0
+                        Columns             #2
+                        ArrangeGuide        
+                          ARRAY INDEX Columns 
+                            #0
+                            #0
+                          ENDARRAY
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Column31
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/56118CA7-4DB3-4D42-9978-E0B092E5106A.htm
+                              FrameType           #None
+                              LeftMargin          #0
+                              RightMargin         #0
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                                CONTROL CHECKBOX
+                                  PROPERTIES
+                                    Name                #LockItemGroupId
+                                    AutoDeclaration     #Yes
+                                    Label               #@SYS4922
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    forecastSales_ds.executeQuery();
+                                      #    element.updateFields();
+                                      #
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                                CONTROL CHECKBOX
+                                  PROPERTIES
+                                    Name                #LockItemId
+                                    AutoDeclaration     #Yes
+                                    Label               #@SYS7407
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    forecastSales_ds.executeQuery();
+                                      #    element.updateFields();
+                                      #
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #Column32
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/E8841C84-19EF-44A8-A737-498495783D78.htm
+                              FrameType           #None
+                              LeftMargin          #0
+                              RightMargin         #0
+                            ENDPROPERTIES
+                            
+                              CONTAINER
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #CritItemGroupId
+                                    AutoDeclaration     #Yes
+                                    ShowLabel           #No
+                                    ExtendedDataType    
+                                      ARRAY 
+                                        #ItemGroupId
+                                        #
+                                      ENDARRAY
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    if (lockItemGroupId.value())
+                                      #    {
+                                      #        forecastSales_ds.executeQuery();
+                                      #        element.updateFields();
+                                      #    }
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                                CONTROL STRINGEDIT
+                                  PROPERTIES
+                                    Name                #CritItemId
+                                    AutoDeclaration     #Yes
+                                    ShowLabel           #No
+                                    ExtendedDataType    
+                                      ARRAY 
+                                        #ItemId
+                                        #
+                                      ENDARRAY
+                                  ENDPROPERTIES
+                                  
+                                  METHODS
+                                    Version: 3
+                                    SOURCE #modified
+                                      #public boolean modified()
+                                      #{
+                                      #    boolean ret;
+                                      #
+                                      #    ret = super();
+                                      #
+                                      #    if (lockItemId.value())
+                                      #    {
+                                      #        forecastSales_ds.executeQuery();
+                                      #        element.updateFields();
+                                      #    }
+                                      #    return ret;
+                                      #}
+                                    ENDSOURCE
+                                  ENDMETHODS
+                                ENDCONTROL 
+                                
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+      CONTROL BUTTONGROUP
+        PROPERTIES
+          Name                #ButtonGroup
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #Manipulation
+              MenuItemType        #Action
+              MenuItemName        #ForecastManipulation
+              DataSource          #ForecastSales
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Clicked
+                #void clicked()
+                #{
+                #    super();
+                #
+                #    forecastSales_ds.research();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #SalesBalances
+              MenuItemName        #ForecastSalesBalance
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #CtrlInvent
+              AutoDeclaration     #Yes
+              MenuItemName        #ForecastInvent
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #ctrlLedgerCoverage
+              AutoDeclaration     #Yes
+              MenuItemName        #LedgerCoverage
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #clicked
+                #void clicked()
+                #{
+                #    if (forecastSales.AllocateMethod != BudgetAllocateMethod::None)
+                #    {
+                #        overview_GridForecastSalesExploded.setFocus();
+                #        ctrlLedgerCoverage.dataSource(forecastSalesExpand.dataSource().name());
+                #    }
+                #    else
+                #    {
+                #        ctrlLedgerCoverage.dataSource(forecastSales.dataSource().name());
+                #    }
+                #
+                #    super();
+                #
+                #
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDCONTROL 
+          
+          CONTROL MENUBUTTON
+            PROPERTIES
+              Name                #InventButton
+              AutoDeclaration     #Yes
+              HelpText            #@SYS28780
+              Text                #@SYS981
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL MENUITEMBUTTON
+                PROPERTIES
+                  Name                #InventDimParmFixed
+                  MenuItemName        #InventDimParmFixed
+                ENDPROPERTIES
+                
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL MENUBUTTON
+            PROPERTIES
+              Name                #ProjectButton
+              HelpText            #@SYS59214
+              Text                #@SYS80304
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL MENUITEMBUTTON
+                PROPERTIES
+                  Name                #ProjTransBudget
+                  MenuItemName        #ProjTransBudget
+                ENDPROPERTIES
+                
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #ProjForecastItemCopy
+              MultiSelect         #Yes
+              MenuItemName        #ProjForecastItemCopy
+              DataSource          #ForecastSales
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #ProjForecastTransferFromQuotationItem
+              MenuItemName        #ProjForecastTransferFromQuotationItem
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+    ENDCONTAINER
+    
+  ENDDESIGN
+  
+ENDFORM
+
+
+***Element: END

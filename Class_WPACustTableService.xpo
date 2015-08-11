@@ -1,0 +1,50 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPACustTableService unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPACustTableService
+    PROPERTIES
+      Name                #WPACustTableService
+      Extends             #AifDocumentService
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPACustTableService extends AifDocumentService
+        #{
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #find
+        #public WPACustTable find(AifQueryCriteria _queryCriteria)
+        #{
+        #    WPACustTable wPACustTable = new WPACustTable();
+        #    this.findList(_queryCriteria, wPACustTable);
+        #    return wPACustTable;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #protected void new()
+        #{
+        #    ;
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPACustTableService construct()
+        #{
+        #    return new WPACustTableService();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

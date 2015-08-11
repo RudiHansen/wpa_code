@@ -1,0 +1,93 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBE
+
+; Microsoft Dynamics AX Enumtype : WPAWorkcardStatus unloaded
+; --------------------------------------------------------------------------------
+  ENUMTYPEVERSION 1
+  
+  ENUMTYPE #WPAWorkcardStatus
+    PROPERTIES
+      Name                #WPAWorkcardStatus
+      Label               #@WPA179
+      Help                #@WPA180
+      UseEnumValue        #Yes
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+      #Created
+      PROPERTIES
+        Name                #Created
+        Label               #@WPA184
+        EnumValue           #0
+      ENDPROPERTIES
+      
+      #Activated
+      PROPERTIES
+        Name                #Activated
+        Label               #@WPA185
+        EnumValue           #2
+      ENDPROPERTIES
+      
+      #Accepted
+      PROPERTIES
+        Name                #Accepted
+        Label               #@WPA186
+        EnumValue           #3
+      ENDPROPERTIES
+      
+      #InProgress
+      PROPERTIES
+        Name                #InProgress
+        Label               #@WPA187
+        EnumValue           #4
+      ENDPROPERTIES
+      
+      #Postponed
+      PROPERTIES
+        Name                #Postponed
+        Label               #@WPA188
+        EnumValue           #5
+      ENDPROPERTIES
+      
+      #CheckedIn
+      PROPERTIES
+        Name                #CheckedIn
+        Label               #@WPA189
+        EnumValue           #6
+      ENDPROPERTIES
+      
+      #Finished
+      PROPERTIES
+        Name                #Finished
+        Label               #@WPA190
+        EnumValue           #7
+      ENDPROPERTIES
+      
+      #Transferred
+      PROPERTIES
+        Name                #Transferred
+        Label               #@WPA191
+        EnumValue           #1
+      ENDPROPERTIES
+      
+      #Unavailable
+      PROPERTIES
+        Name                #Unavailable
+        Label               #@WPA192
+        EnumValue           #9
+      ENDPROPERTIES
+      
+      #Pending
+      PROPERTIES
+        Name                #Pending
+        Label               #@SYS104366
+        EnumValue           #41
+      ENDPROPERTIES
+      
+    ENDTYPEELEMENTS
+  ENDENUMTYPE
+  
+
+***Element: END

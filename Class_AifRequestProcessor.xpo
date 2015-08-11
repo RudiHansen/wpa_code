@@ -1,0 +1,1073 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AifRequestProcessor unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AifRequestProcessor
+    PROPERTIES
+      Name                #AifRequestProcessor
+      Extends             #
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #// This is a framework class. Customizing this class may cause problems with future upgrades to the software.
+        #class AifRequestProcessor
+        #{
+        #    #Aif
+        #}
+      ENDSOURCE
+      SOURCE #applyDataPolicy
+        #static private void applyDataPolicy(AifMessage message, AifEndpointActionPolicy endpointActionPolicy)
+        #{
+        #    AifDataPolicyFilter dataPolicyFilter = new AifDataPolicyFilter();
+        #    AifDocumentClassId documentClassId;
+        #    DictMethod dictMethod;
+        #    int i;
+        #
+        #    // Data policy is only done in the inbound direction
+        #    // First check if there is any data to apply data policy to
+        #    if ((message.direction() == AifMessageDirection::Inbound) && (message.getMessagePartCount() > 0))
+        #    {
+        #        dictMethod = AifParameterLookup::getActionMethod(message.actionId());
+        #
+        #        for (i = 1; i <= dictMethod.parameterCnt(); i++)
+        #        {
+        #            if (dictMethod.parameterType(i) == Types::Class)
+        #            {
+        #                documentClassId = dictMethod.parameterId(i);
+        #                if (AifEndpointActionParameterSchema::isDataPolicyAllowed(documentClassId))
+        #                {
+        #                    // Remove any disabled fields that have the xsi:nil attribute set to true.
+        #                    message.setMessagePart(i, dataPolicyFilter.apply(message.sourceEndpointId(), message.actionId(), documentClassId, message.getMessagePart(i)));
+        #                }
+        #            }
+        #        }
+        #
+        #        // Update the document logs
+        #        if (endpointActionPolicy.LoggingMode == AifLoggingMode::LogAll)
+        #            AifMessageManager::update(message, classstr(AifDataPolicyFilter), true);
+        #        else
+        #            message.hasXmlChanged(false);
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #copyPropertyBag
+        #private static void copyPropertyBag(AifMessage sourceMessage, AifMessage destinationMessage)
+        #{
+        #    Map sourcePropertyBag = sourceMessage.getPropertyBag();
+        #    Map destinationPropertyBag = destinationMessage.getPropertyBag();
+        #    MapEnumerator mapEnum = sourcePropertyBag.getEnumerator();
+        #;
+        #    while (mapEnum.moveNext())
+        #    {
+        #        destinationPropertyBag.insert(mapEnum.currentKey(), mapEnum.currentValue());
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #doIdempotenceCheck
+        #static private void doIdempotenceCheck(AifMessage message, boolean enableIdempotence)
+        #{
+        #    AifXml responseXml;
+        #    AifResponseData responseData;
+        #    AifMessage existingMessage;
+        #
+        #    // Check if message Id was processed before
+        #    if(!AifMessageManager::isNewMessage(message.messageId()))
+        #    {
+        #        //First make sure the message sent in is substantially the same as the existing message
+        #        existingMessage = AifMessageManager::read(message.messageId());
+        #
+        #        //If they are not the same, then raise an error.
+        #        if (message.isDuplicate(existingMessage))
+        #        {
+        #            if (enableIdempotence)
+        #            {
+        #                // The message is a duplicate
+        #                responseData = AifResponse::getResponse(message.messageId());
+        #                if ((responseData != connull()) && (conlen(responseData) > 0))
+        #                    responseXml = conpeek(responseData, 1);
+        #            }
+        #
+        #            // throw fault so that this message is sent back to the end user.
+        #            //Duplicate message. Message has already been processed.
+        #            throw AifFault::fault("@SYS101182", #DuplicateMessageCode, responseXml);
+        #        }
+        #        else
+        #        {
+        #            // The message Id was processed before, but the message is different.
+        #            // Cannot process message with duplicate Id.  Message '%1' has already been processed and is different from the new message.
+        #            // Throw fault here, we want the message to be sent to the end user.
+        #            throw AifFault::fault(strfmt("@SYS96266", message.messageId()), #DuplicateMessageCode);
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #doValidations
+        #static private void doValidations(AifMessage message, AifEndpointActionPolicy endpointActionPolicy, AifSendMode sendMode)
+        #{
+        #    if (endpointActionPolicy && !endpointActionPolicy.IsDefault)
+        #    {
+        #        //Make sure the appropriate action policy is not set to Hold if the sendMode is sync.
+        #        if ((sendMode == AifSendMode::Sync) && (endpointActionPolicy.Status == AifPolicyStatus::Hold))
+        #        {
+        #           //The request failed: Endpoint action policy is set to Hold
+        #            throw error("@SYS99427");
+        #        }
+        #
+        #        //Make sure the endpoint is allowed to perform this action
+        #        if(endpointActionPolicy.Status == AifPolicyStatus::Disabled)
+        #        {
+        #            //Endpoint is not allowed to perform this action.
+        #            throw error(strfmt('@SYS89828'));
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #executePipeline
+        #private static boolean executePipeline(AifMessage message,  AifLoggingMode loggingMode)
+        #{
+        #    /*
+        #        This method determines if a pipeline should be executed,
+        #        populates the parameter object and calls the Pipeline Manager.
+        #
+        #        Retruns true if the Request processor should continue processing.
+        #        Returns false if the RequestProcessor should abort processing, but
+        #        not raise an error - this is rare.
+        #    */
+        #    AifPipelineParms            pipelineParms;
+        #    SysExceptionLog             exceptionLog;
+        #    ;
+        #
+        #    setprefix(classstr(AifRequestProcessor) + '-' + staticmethodstr(AifRequestProcessor, executePipeline));
+        #
+        #    //See if there is pipeline configured for this EndpointActionPolicy
+        #    //the message must have already been populated with the Id.
+        #    if(message.pipelineId())
+        #    {
+        #        //Create a new Pipeline parms object and set its logging mode
+        #        // based on the setting in the EndpointActionPolicy
+        #        pipelineParms = new AifPipelineParms();
+        #        pipelineParms.loggingMode(loggingMode);
+        #
+        #        //Process the message through the Pipeline
+        #        AifPipelineManager::process(message, pipelineParms);
+        #
+        #        //Check to see if the Pipeline manager wants us to cancel
+        #        //all processing
+        #        if(pipelineParms.cancelProcess()==true)
+        #        {
+        #            //Log a message in the event log.
+        #            exceptionLog = new SysExceptionLog();
+        #            //Document processing was canceled by the pipeline.  The message will not be sent.
+        #            exceptionLog.writeEntry(Exception::Info,
+        #                                    strfmt("@SYS97120"),
+        #                                    strfmt("@SYS95172"),
+        #                                    classstr(AifRequestProcessor));
+        #            return false;
+        #        }
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #executeServiceOperation
+        #private static AifMessage executeServiceOperation(AifMessage message, AifEndpointActionPolicy endpointActionPolicy)
+        #{
+        #    #Aif
+        #
+        #    // Processes an inbound message object executes the requested Action.
+        #    AifMessage              responseMessage;
+        #    AifXml                  responseXml;
+        #    Struct                  operationParameters;
+        #    // WPA import  ->
+        #    WPAWorkCardXmlContainer workCardXmlContainer;
+        #    WPAStockTransferTable   document;
+        #    // WPA import <-
+        #    ;
+        #
+        #    setprefix(classstr(AifRequestProcessor) + '-' + staticmethodstr(AifRequestProcessor, executeServiceOperation));
+        #
+        #    ttsbegin;
+        #
+        #    if (infolog.infologLevel() != SysInfologLevel::All)
+        #        message.hasXmlChanged(false);
+        #
+        #    // Save the transaction source for this request
+        #    AifUtil::setTransactionSource(message.sourceEndpointId());
+        #
+        #    // WPA import  ->
+        #    if(AifEndpoint::find(endpointActionPolicy.EndpointId).SimpleXml == NoYes::Yes)
+        #    {
+        #        operationParameters = new Struct();
+        #        if (AifEndpointActionPolicy::find(endpointActionPolicy.EndpointId, "WPAStockTransferService.create").RecId)
+        #        {
+        #            document = new WPAStockTransferTable();
+        #            document.parmMessage(message);
+        #            operationParameters.add('1', document);
+        #        }
+        #        else
+        #        {
+        #            workCardXmlContainer = new WPAWorkCardXmlContainer("WPAWorkcard");
+        #            workCardXmlContainer.parmMessage(message);
+        #            operationParameters.add('1', workCardXmlContainer);
+        #        }
+        #        responseXml = AifDispatcher::dispatchOperation(message, operationParameters);
+        #    }
+        #    else
+        #    // WPA import <-
+        #        responseXml = AifDispatcher::dispatchOperation(message);
+        #
+        #    // Clear the transaction source for this request
+        #    AifUtil::clearTransactionSource();
+        #
+        #    //Set the message status to Processed. Don't use a separate TTS since this
+        #    //should get rolled back if the transaction fails.
+        #    message.status(AifMessageStatus::Processed);
+        #    AifMessageManager::update(message, classstr(AifRequestProcessor));
+        #
+        #    ttscommit;
+        #
+        #    //Create the response message
+        #    responseMessage = new AifMessage(newguid(),
+        #                                     AifEndpointUser::getWindowsUser(curuserid()),
+        #                                     AifEndpointUser::getWindowsUser(curuserid()));
+        #
+        #    responseMessage.actionId(message.actionId());
+        #    responseMessage.address(message.address());
+        #    responseMessage.channelId(message.channelId());
+        #    responseMessage.destinationEndpointId(message.sourceEndpointId());
+        #    responseMessage.direction(AifMessageDirection::Outbound);
+        #    responseMessage.externalAction(message.externalAction());
+        #    responseMessage.requestMessageId(message.messageId());
+        #    responseMessage.sourceEndpointId(message.destinationEndpointId());
+        #    responseMessage.transportName(message.transportName());
+        #    responseMessage.encoding(message.encoding());
+        #    AifRequestProcessor::copyPropertyBag(message, responseMessage);
+        #
+        #    if (responseXml != '')
+        #    {
+        #        // Add the message part -- if there is one
+        #        responseMessage.addMessagePart(responseXml);
+        #    }
+        #
+        #    return responseMessage;
+        #}
+      ENDSOURCE
+      SOURCE #getEndpointActionPolicy
+        #static private AifEndpointActionPolicy getEndpointActionPolicy(AifMessage message)
+        #{
+        #    AifEndpointActionPolicy endpointActionPolicy;
+        #    AifEndpointId sourceEndpointId;
+        #    AifActionId actionId;
+        #
+        #    sourceEndpointId = message.sourceEndpointId();
+        #    actionId = message.actionId();
+        #
+        #    endpointActionPolicy = AifEndpointActionPolicy::find(sourceEndpointId, actionId);
+        #
+        #    if (endpointActionPolicy)
+        #    {
+        #        // If we have an action policy, make sure the endpoint is allowed to perform this action
+        #        if (endpointActionPolicy.Status == AifPolicyStatus::Disabled)
+        #        {
+        #            //Endpoint is not allowed to perform this action.
+        #            throw error(strfmt('@SYS89828'));
+        #        }
+        #
+        #        //Set the pipelineId
+        #        message.pipelineId(endpointActionPolicy.InboundPipelineId);
+        #    }
+        #    else if (!message.isDefaultEndpoint())
+        #    {
+        #        // There is no action policy and this is not the default endpoint
+        #        // Endpoint Action Policy does not exist.
+        #        throw error("@SYS89830");
+        #    }
+        #
+        #    return endpointActionPolicy;
+        #}
+      ENDSOURCE
+      SOURCE #getRequestCompany
+        #static private CompanyId getRequestCompany(AifMessage message)
+        #{
+        #    CompanyId companyId;
+        #
+        #    if (message.destinationEndpointId())
+        #    {
+        #        // Use the Destination Endpoint to look up the appropriate companyId
+        #        companyId = AifLocalEndpoint::getCompanyId(message.destinationEndpointId());
+        #
+        #        //Make sure we found the companyId
+        #        if(!companyId)
+        #        {
+        #            //Local Endpoint '%1' does not exist.
+        #            throw error(strfmt('@SYS89960', message.destinationEndpointId()));
+        #        }
+        #    }
+        #    else if (message.sourceEndpointId() == #DefaultEndpointId)
+        #    {
+        #        companyId = AifUtil::getUserCompanyId(message.submittingAxUserId());
+        #
+        #        //Make sure we found the companyId
+        #        if(!companyId)
+        #        {
+        #            // Could not determine default company for user '%1'.
+        #            throw error(strfmt("@SYS118923", message.submittingAxUserId()));
+        #        }
+        #    }
+        #
+        #    return companyId;
+        #}
+      ENDSOURCE
+      SOURCE #handleProcessingException
+        #static private AifXml handleProcessingException(AifMessage message, AifInfoLog aifInfoLog)
+        #{
+        #    SysExceptionLog         exceptionLog;
+        #    AifXml                  faultXml;
+        #    AifMessage              originalMessage;
+        #
+        #    // We have to get the faultXml first, otherwise doing a infolog.cut() will clear
+        #    // the fault object from infolog.
+        #    if( message && AifEndpoint::propagateErrors(message.sourceEndpointId()) )
+        #    {
+        #        faultXml = AifFault::faultXml(aifInfoLog.getLastMessage());
+        #    }
+        #    else
+        #    {
+        #        faultXml = AifFault::faultXml("@SYS94277");
+        #    }
+        #
+        #    //Write entries to the Exception Log
+        #    exceptionLog = new SysExceptionLog();
+        #    exceptionLog.writeInfoLogData(strfmt("@SYS95172"), aifInfoLog.getInfoLogData());
+        #    aifInfoLog.clearLast();
+        #
+        #    // Set message status to Error if not processed yet
+        #    // The message will exist only if the message has been created, if
+        #    // any exception was thrown from processInboundMessage() before the message was created,
+        #    // the below call (AifMessageManager::update()) will fail, so we have additional check here.
+        #    if(    message
+        #        && message.messageId()
+        #        && (!AifMessageManager::isNewMessage(message.messageId())))
+        #    {
+        #        originalMessage = AifMessageManager::read(message.messageId());
+        #        // If message in already in processed or error state, then leave it as is.
+        #        if ((originalMessage.status() != AifMessageStatus::Processed) && (originalMessage.status() != AifMessageStatus::Error))
+        #        {
+        #            originalMessage.status(AifMessageStatus::Error);
+        #            AifMessageManager::update(originalMessage, classstr(AifRequestProcessor), true);
+        #        }
+        #    }
+        #
+        #    return faultXml;
+        #}
+      ENDSOURCE
+      SOURCE #postProcessRequest
+        #static private void postProcessRequest(AifMessage message, AifMessage responseMessage, AifEndpointActionPolicy endpointActionPolicy)
+        #{
+        #/*
+        #    Post processing steps:
+        #    - Execute outbound pipeline if any
+        #*/
+        #        //Make sure we got the EndpointActionPolicy
+        #        if(!endpointActionPolicy.RecId)
+        #        {
+        #            //we should never really end up here.
+        #            //Endpoint Action Policy does not exist.
+        #            throw error("@SYS89830");
+        #        }
+        #
+        #        //Check the logging flag to see if we should persist the xml
+        #        if(endpointActionPolicy.LoggingMode == AifLoggingMode::LogNone)
+        #        {
+        #            //Since logging=LogNone, we need to prevent the xml from getting persisted
+        #            responseMessage.hasXmlChanged(false);
+        #        }
+        #
+        #        if (endpointActionPolicy.OutboundPipelineId != '')
+        #        {
+        #            //Set the pipelineId
+        #            responseMessage.pipelineId(endpointActionPolicy.OutboundPipelineId);
+        #
+        #            //Execute the pipeline, if any
+        #            if(AifRequestProcessor::executePipeline(responseMessage,  endpointActionPolicy.LoggingMode)==false)
+        #            {
+        #                //When the executePipeline method returns false, throw an error.
+        #                //Silent "Cancel Processing" is only available for outbound messages
+        #                //Processing was aborted by the pipeline.
+        #                throw error("@SYS94276");
+        #            }
+        #        }
+        #}
+      ENDSOURCE
+      SOURCE #preProcessRequest
+        #static private void preProcessRequest(AifMessage message, AifEndpointActionPolicy endpointActionPolicy)
+        #{
+        #/*
+        #    Pre processing steps:
+        #    - Execute inbound pipeline if any
+        #    - Apply data policy
+        #*/
+        #
+        #    //Make sure we got the EndpointActionPolicy
+        #    if(!endpointActionPolicy.RecId)
+        #    {
+        #        //we should never really end up here.
+        #        //Endpoint Action Policy does not exist.
+        #        throw error("@SYS89830");
+        #    }
+        #
+        #    //Check the logging flag to see if we should persist the xml
+        #    if(endpointActionPolicy.LoggingMode == AifLoggingMode::LogNone)
+        #    {
+        #        //Since logging=LogNone, we need to prevent the xml from getting persisted
+        #        message.hasXmlChanged(false);
+        #    }
+        #
+        #    //Execute the pipeline, if any
+        #    if(AifRequestProcessor::executePipeline(message,  endpointActionPolicy.LoggingMode)==false)
+        #    {
+        #        //When the executePipeline method returns false, throw an error.
+        #        //Silent "Cancel Processing" is only available for outbound messages
+        #        //Processing was aborted by the pipeline.
+        #        throw error("@SYS94276");
+        #
+        #    }
+        #
+        #    // Data policy
+        #    AifRequestProcessor::applyDataPolicy(message, endpointActionPolicy);
+        #}
+      ENDSOURCE
+      SOURCE #ProcessOutbound
+        #public static AifMessage processOutbound(AifMessageId messageId, AifEndpointId destEndpointId,
+        #                                             AifActionId actionId, Object documentCriteria, AifXml documentXml,
+        #                                             userId submittingUserId, AifPropertyBag propertyBag = connull())
+        #{
+        #    // Execute the requested Action and then converts the send request into a persisted message ready to be sent.
+        #    AifEndpoint                         endpoint;
+        #    AifChannel                          channel;
+        #    AifAdapter                          adapter;
+        #    AifEndpointActionPolicy             endpointActionPolicy;
+        #    AifAction                           action;
+        #    AifMessage                          message;
+        #    AifActionBase                       externalAction;
+        #    AifEndpointActionPolicyInfo         endpointActionInfo = new AifEndpointActionPolicyInfo();
+        #    Struct                              operationParameters;
+        #    AifDocumentClassId                  documentClassId;
+        #    ;
+        ##Aif
+        #
+        #    setprefix(classstr(AifRequestProcessor) + '-' + staticmethodstr(AifRequestProcessor, processOutbound));
+        #
+        #    if ((documentCriteria != null) && (documentXml != ''))
+        #    {
+        #        // "The parameters are invalid."
+        #        throw error("@SYS104607");
+        #    }
+        #
+        #    //Get the Destination Endpoint record - we need the localEndpoint and channelId
+        #    endpoint = AifEndpoint::find(destEndpointId);
+        #
+        #    //Make sure we got the endpoint and its still enabled
+        #    if(endpoint.RecId==0 || endpoint.Status==AifEndpointStatus::Disabled)
+        #    {
+        #        //Endpoint '%1' does not exist or is disabled.
+        #        throw error(strfmt('@SYS89849', destEndpointId));
+        #    }
+        #
+        #    //Get the Action record - we need the externalAction and we need to make usre it is still enabled
+        #    action = AifAction::find(actionId);
+        #
+        #    //Make sure we got the action and its still enabled and there are no generation errors
+        #    if(action.RecId == 0 || !action.ActionEnabled)
+        #    {
+        #        //Action '%1' does not exist or is disabled.
+        #        throw error(strfmt('@SYS90323', actionId));
+        #    }
+        #
+        #    //Get the EndpointActionPolicy record - we need the externalAction, pipelineId and logginMode
+        #    endpointActionPolicy = AifEndpointActionPolicy::find(destEndpointId, actionId);
+        #
+        #    //Make sure the endpoint is allowed to perform this action
+        #    if(endpointActionPolicy.RecId==0 || endpointActionPolicy.Status == AifPolicyStatus::Disabled)
+        #    {
+        #        //Endpoint is not allowed to perform this action.
+        #        throw error(strfmt('@SYS89828'));
+        #    }
+        #
+        #    //Get the channel record
+        #    channel = AifChannel::find(endpoint.OutboundChannelId);
+        #
+        #    //Make sure we found the channel
+        #    if(channel.RecId == 0)
+        #    {
+        #        //Channel does not exist.
+        #        throw error(strfmt('@SYS89722'));
+        #    }
+        #
+        #    // Find the adapter -- this must exist if the channel exists
+        #    adapter = AifAdapter::find(channel.AdapterClassId);
+        #
+        #    //Instantiate a new Message object
+        #    //To prevent repudiation. #48319
+        #    //The submitting userid will always be the current user. This is valid in Sync or Async submit.
+        #    //In Async submit, runas() switches the id and this call is called under runas() context.
+        #    // message = new AifMessage(messageId, '', AifEndpointUser::getWindowsUser(submittingUserId));
+        #    message = new AifMessage(messageId, AifEndpointUser::getWindowsUser(curuserid()), AifEndpointUser::getWindowsUser(curuserid()));
+        #
+        #    message.sourceEndpointId(endpoint.LocalEndpointId);
+        #    message.destinationEndpointId(destEndpointId);
+        #    message.actionId(actionId);
+        #    message.externalAction(externalAction);
+        #    message.channelId(channel.ChannelId);
+        #    message.transportName(adapter.Name);
+        #    message.address(channel.TransportAddress);
+        #    message.direction(AifMessageDirection::Outbound);
+        #    message.pipelineId(endpointActionPolicy.OutboundPipelineId);
+        #    message.getPropertyBag().insert(#SendParametersKey, propertyBag);
+        #
+        #    //Get the externalAction name
+        #    //See if we need to use the ExternalActionOverride from the endpointActionPolicy
+        #    if(endpointActionPolicy.ExternalActionOverride)
+        #    {
+        #        externalAction = endpointActionPolicy.ExternalActionOverride;
+        #    }
+        #    else if (action.ActionType == AifActionType::ServiceOperation)
+        #        externalAction = strfmt("%1/%2/%3", message.getServiceNamespace(), message.getServiceName(), message.getOperationName());
+        #    else
+        #        externalAction = action.ExternalAction;
+        #
+        #    message.externalAction(externalAction);
+        #
+        #    if (action.ActionType != AifActionType::ServiceOperation)
+        #    {
+        #        // If the document is of type MessageTypes, add to message as is, otherwise add as a message part.
+        #        if (AifUtil::getDocumentType(documentXml) == #MessagePartsType)
+        #            message.setXml(documentXml);
+        #        else
+        #            message.addMessagePart(documentXml);
+        #    }
+        #    else
+        #    {
+        #        operationParameters = new Struct();
+        #        operationParameters.add('1', documentCriteria);
+        #        documentXml = AifDispatcher::dispatchOperation(message, operationParameters);
+        #
+        #        // WPA import ->
+        #        if(endpoint.SimpleXml == NoYes::Yes)
+        #            message.setXml(documentXml);
+        #        else
+        #        // WPA import <-
+        #            message.addMessagePart(documentXml);
+        #
+        #        if (AifGlobalSettings::getValidateOutboundSchema() == NoYes::Yes)
+        #        {
+        #            documentClassId = AifParameterLookup::getReturnDocumentClassId(actionId);
+        #            // Validate the xml against its schema
+        #            AifRequestProcessor::validateParameterSchema(message, 1, #ReturnValueDisplay, documentClassId, true);
+        #        }
+        #    }
+        #
+        #
+        #    //Check the logging flag to see if we should persist the xml
+        #    if(endpointActionPolicy.LoggingMode != AifLoggingMode::LogAll)
+        #    {
+        #        //Since LogNone or LogOriginal, we need to prevent the xml from getting persisted
+        #        message.hasXmlChanged(false);
+        #    }
+        #
+        #    // Recreate the message in the database
+        #    // AifMessageManager::create(message, classstr(AifRequestProcessor), true);
+        #    AifMessageManager::recreateUnprocessedMessage(message, classstr(AifRequestProcessor), true);
+        #
+        #    ttsbegin;
+        #
+        #    //Execute the pipeline, if any
+        #    if(AifRequestProcessor::executePipeline(message, endpointActionPolicy.LoggingMode)==false)
+        #    {
+        #        //When the executePipeline method returns false, we need to abort all processing
+        #        // but we don't want to throw a normal error.  This should be rare.
+        #        throw Exception::Break;
+        #    }
+        #
+        #    //If Logging is set to LogOriginal we want to just store the final XML.
+        #    //The XML should not have been persisted during the create, nor during
+        #    //pipeline processing.
+        #    //If Logging is set to LogAll, then the we would have persiste it above
+        #    //and the Pipeline would have persisted each change.
+        #    if(endpointActionPolicy.LoggingMode == AifLoggingMode::LogOriginal)
+        #    {
+        #         //Reset the flag to true, otherwise the xml wont get persisted
+        #         message.hasXmlChanged(true);
+        #         AifMessageManager::update(message, classstr(AifRequestProcessor), true);
+        #    }
+        #
+        #    ttscommit;
+        #
+        #    return message;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #processServiceMessage
+        #/// <summary>
+        #/// Processes an AIF request message and returns an AIF response message.
+        #/// </summary>
+        #/// <param name="message">
+        #/// Request message.
+        #/// </param>
+        #/// <returns>
+        #/// The AIF response message.
+        #/// </returns>
+        #/// <remarks>
+        #/// The processing is done synchronously.  This method is called by the AIF WCF services.
+        #/// </remarks>
+        #/// <exception cref="Exception::Error">
+        #/// An error exception is thrown in case of any failures.
+        #/// </exception>
+        #
+        #public static AifMessage processServiceMessage(AifMessage message)
+        #{
+        #    #Aif
+        #    /*
+        #        Processes an inbound message XML.  The XML is deserialized into
+        #        an AifMessage and passed to the processInboundMessage method.
+        #    */
+        #    AifMessage              responseMessage;
+        #    AifInfoLog              aifInfoLog;
+        #    AifXml                  faultXml;
+        #    ;
+        #
+        #    // Not adding any setprefix() here since the exceptions thrown from here are directly sent to caller.
+        #
+        #    aifInfoLog = new AifInfoLog();
+        #
+        #    try
+        #    {
+        #        //Process the inbound message
+        #        responseMessage = AifRequestProcessor::processServiceRequest(message, AifSendMode::Sync);
+        #    }
+        #    catch
+        #    {
+        #        //All errors should end up here, since this is the outer most
+        #        //try/catch related to the transaction.
+        #        faultXml = AifRequestProcessor::handleProcessingException(message, aifInfoLog);
+        #        // throw fault in cache, else create faultXml using default passed in
+        #        throw error(faultXml);
+        #    }
+        #
+        #    return responseMessage;
+        #}
+      ENDSOURCE
+      SOURCE #processServiceMessageXml
+        #/// <summary>
+        #/// Internal method for processing an AIF request xml.
+        #/// </summary>
+        #/// <param name="transport">
+        #/// Name of the transport.
+        #/// </param>
+        #/// <param name="address">
+        #/// Address of the channel.
+        #/// </param>
+        #/// <param name="messageXml">
+        #/// Request message xml.
+        #/// </param>
+        #/// <param name="submittingUserId">
+        #/// The submitting user Id.
+        #/// </param>
+        #/// <returns>
+        #/// The response message xml without a header.
+        #/// </returns>
+        #/// <remarks>
+        #/// This method is for internal use only and is used by isolated adapters (e.g. BTS adapter)
+        #/// </remarks>
+        #/// <exception cref="Exception::Error">
+        #/// An error exception is thrown in an case of any failure.
+        #/// </exception>
+        #public static AifDocumentXml processServiceMessageXml (
+        #    AifTransportBase transport,
+        #    AifTransportAddress address,
+        #    AifMessageXml messageXml,
+        #    AifWindowsUser submittingUserId)
+        #{
+        #    #Aif
+        #    /*
+        #        Processes an inbound message XML.  The XML is deserialized into
+        #        an AifMessage and passed to the processInboundMessage method.
+        #    */
+        #    AifMessage              message;
+        #    AifMessage              responseMessage;
+        #    AifInfoLog              aifInfoLog;
+        #    AifXml                  faultXml;
+        #    ;
+        #
+        #    // Not adding any setprefix() here since the exceptions thrown from here are directly sent to caller.
+        #
+        #    aifInfoLog = new AifInfoLog();
+        #
+        #    try
+        #    {
+        #        //Deserialize the messageXml into a AifMessage object
+        #        message = AifMessage::deserialize(messageXml, submittingUserId);
+        #
+        #        //Populate the transport and address for history
+        #        message.transportName(transport);
+        #        message.address(address);
+        #
+        #        //Process the inbound message
+        #        responseMessage = AifRequestProcessor::processServiceRequest(message, AifSendMode::Sync);
+        #
+        #        //Make sure a response message was returned
+        #        if(responseMessage)
+        #            return responseMessage.getXml();
+        #        else
+        #            return '';
+        #    }
+        #    catch
+        #    {
+        #        //All errors should end up here, since this is the outer most
+        #        //try/catch related to the transaction.
+        #
+        #        faultXml = AifRequestProcessor::handleProcessingException(message, aifInfoLog);
+        #
+        #        throw error(faultXml);
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #processServiceRequest
+        #/// <summary>
+        #/// Internal method for processing an AIF request.  All inbound processing is done by this method.
+        #/// </summary>
+        #/// <param name="message">
+        #/// An AIF request message.
+        #/// </param>
+        #/// <param name="sendMode">
+        #/// Send mode indicating whether the call is synchronous or asynchronous.
+        #/// </param>
+        #/// <returns>
+        #/// The response message.
+        #/// </returns>
+        #/// <remarks>
+        #/// This method is for internal use only.
+        #/// </remarks>
+        #public static AifMessage processServiceRequest (AifMessage message, AifSendMode sendMode)
+        #{
+        #    #Aif
+        #
+        #    // Processes an inbound message object executes the requested Action.
+        #    AifMessage                      responseMessage;
+        #    AifChannel                      responseChannel;
+        #    AifAdapter                      adapter;
+        #    AifEndpointActionPolicy         endpointActionPolicy;
+        #    AifAction                       action;
+        #    boolean                         isActionCustomized;
+        #    AifOperationContext             operationContext;
+        #    CompanyId                       companyId;
+        #    AifLoggingMode                  loggingMode;
+        #    NoYes                           simpleXml;
+        #    ;
+        #
+        #    setprefix(classstr(AifRequestProcessor) + '-' + staticmethodstr(AifRequestProcessor, processServiceRequest));
+        #
+        #    // Set Message properties
+        #    message.direction(AifMessageDirection::Inbound);
+        #    //Populate the Axapta user properties
+        #    message.getAxUsers();
+        #
+        #    // Determine the company
+        #    companyId = AifRequestProcessor::getRequestCompany(message);
+        #
+        #        //Change the company
+        #    changecompany(companyId)
+        #    {
+        #        // Make sure that this request is allowed
+        #        AifRequestProcessor::verifyRequestIsAllowed(message);
+        #
+        #        // Get the action information
+        #        operationContext = message.getOperationContext();
+        #        action = AifAction::find(message.actionId());
+        #
+        #        // Get the endpoint action policy if any.  It is optional for the default endpoint
+        #        endpointActionPolicy = AifRequestProcessor::getEndpointActionPolicy(message);
+        #
+        #        // Additional validations
+        #        AifRequestProcessor::doValidations(message, endpointActionPolicy, sendMode);
+        #
+        #        // Delete existing message logs
+        #        AifMessageManager::delete(message.messageId(), AifMessageStatus::Created, true);
+        #        AifMessageManager::delete(message.messageId(), AifMessageStatus::Error, true);
+        #
+        #        // Do idempotence check
+        #        AifRequestProcessor::doIdempotenceCheck(message, action.EnableIdempotence);
+        #
+        #        ttsbegin;
+        #
+        #        // Check if the action has been customized
+        #        isActionCustomized = ((endpointActionPolicy.RecId != 0) && !endpointActionPolicy.IsDefault);
+        #
+        #        // Obtain the loggingMode based on if the action is customized
+        #        loggingMode = isActionCustomized? endpointActionPolicy.LoggingMode : AifLoggingMode::LogOriginal;
+        #
+        #        // If LoggingMode is set to LogNone we do not persist the inbound xml.
+        #        if(loggingMode == AifLoggingMode::LogNone)
+        #        {
+        #            message.hasXmlChanged(false);
+        #        }
+        #
+        #        // Create new message log -- Insert the message in the database
+        #        if(sendMode == AifSendMode::Sync)
+        #        {
+        #            new SkipAOSValidationPermission().assert();
+        #            AifMessageManager::create(message, classstr(AifRequestProcessor), true, true);
+        #            CodeAccessPermission::revertAssert();
+        #        }
+        #        else
+        #        {
+        #            AifMessageManager::create(message, classstr(AifRequestProcessor), true, false);
+        #        }
+        #
+        #        // Pre-processing
+        #        if (isActionCustomized)
+        #        {
+        #            AifRequestProcessor::preProcessRequest(message, endpointActionPolicy);
+        #        }
+        #
+        #        // WPA import ->
+        #        simpleXml = AifEndpoint::find(endpointActionPolicy.EndpointId).SimpleXml;
+        #
+        #        if(simpleXml == NoYes::No)
+        #        // WPA import <-
+        #            // Validate inbound document schema
+        #            AifRequestProcessor::validateOperationSchemas(message, isActionCustomized);
+        #
+        #        // Execute the service operation
+        #        responseMessage = AifRequestProcessor::executeServiceOperation(message, endpointActionPolicy);
+        #
+        #        // Validate outbound document schema
+        #        AifRequestProcessor::validateOperationSchemas(responseMessage, isActionCustomized);
+        #
+        #        //Check the logging flag to see if we should persist the response xml
+        #        if(loggingMode != AifLoggingMode::LogAll)
+        #        {
+        #            //Since LogNone or LogOriginal, we need to prevent the xml from getting persisted
+        #            responseMessage.hasXmlChanged(false);
+        #        }
+        #
+        #        //Insert the response message in the database
+        #        if(sendMode == AifSendMode::Sync)
+        #        {
+        #            new SkipAOSValidationPermission().assert();
+        #            AifMessageManager::create(responseMessage, classstr(AifRequestProcessor), true, true);
+        #            CodeAccessPermission::revertAssert();
+        #        }
+        #        else
+        #        {
+        #            AifMessageManager::create(responseMessage, classstr(AifRequestProcessor), true, false);
+        #        }
+        #
+        #        // Post-processing
+        #        if (isActionCustomized)
+        #        {
+        #            AifRequestProcessor::postProcessRequest(message, responseMessage, endpointActionPolicy);
+        #        }
+        #
+        #        // If Logging is set to LogOriginal we want to just store the final XML.
+        #        // If Logging is set to LogAll we store the response after processing.
+        #        if(loggingMode == AifLoggingMode::LogOriginal || loggingMode == AifLoggingMode::LogAll)
+        #        {
+        #            //Reset the flag to true, otherwise the xml wont get persisted
+        #            responseMessage.hasXmlChanged(true);
+        #            //Update the message so the  XML gets persisted.  Use a separate transaction
+        #            //so that document xml can viewed in the event of an error.
+        #            AifMessageManager::update(responseMessage, classstr(AifRequestProcessor), true);
+        #        }
+        #
+        #        //Set the response message status to Processed. Don't use a separate TTS since this
+        #        //should get rolled back if the transaction fails.
+        #        responseMessage.status(AifMessageStatus::Processed);
+        #        AifMessageManager::update(responseMessage, classstr(AifRequestProcessor));
+        #
+        #        if (action.EnableIdempotence)
+        #        {
+        #            // Save responses when idempotence is required
+        #            if (sendMode == AifSendMode::Sync)
+        #                new SkipAOSValidationPermission().assert();
+        #
+        #            AifResponse::saveResponse(message.messageId(), message.sourceEndpointId(), [responseMessage.getXml()], (sendMode == AifSendMode::Sync));
+        #
+        #            if (sendMode == AifSendMode::Sync)
+        #                CodeAccessPermission::revertAssert();
+        #        }
+        #
+        #        ttscommit;
+        #
+        #        //Its possible that the pipeline wants us to cancel processing without an error.
+        #        //In that case the responseMessage returned above would be null
+        #        if(responseMessage)
+        #        {
+        #            //See if we know the channel this was delivered to us on.
+        #            //We use the delivery channel to determine the response Channel, if any.
+        #            //The responseMessage has already been initialized to have the same
+        #            //channel, transport and address of the request message.
+        #            if(message.channelId())
+        #            {
+        #                //Get the reponse channel
+        #                responseChannel = AifChannel::getResponseChannel(message.channelId());
+        #
+        #                //Make sure we found the channel
+        #                if(responseChannel)
+        #                {
+        #                    // Find the adapter -- this must exist if the channel exists
+        #                    adapter = AifAdapter::find(responseChannel.AdapterClassId);
+        #
+        #                    //Update the reponseMessages to reflect the reponse channel
+        #                    responseMessage.channelId(responseChannel.ChannelId);
+        #                    //responseMessage.transportId(responseChannel.TransportId);
+        #                    responseMessage.transportName(adapter.Name);
+        #                    // responseMessage.address(responseChannel.Address);
+        #                    responseMessage.address(responseChannel.TransportAddress);
+        #                }
+        #            }
+        #        }
+        #    }
+        #
+        #    return responseMessage;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #validateOperationSchemas
+        #static private void validateOperationSchemas(AifMessage message, boolean applyDataPolicy)
+        #{
+        #    AifDataPolicyFilter dataPolicyFilter = new AifDataPolicyFilter();
+        #    DictMethod dictMethod;
+        #    int i;
+        #
+        #    // First check if there is any data to validate
+        #    if (message.getMessagePartCount() > 0)
+        #    {
+        #        // Remove any disabled fields that have the xsi:nil attribute set to true.
+        #        if (message.direction() == AifMessageDirection::Inbound)
+        #        {
+        #            dictMethod = AifParameterLookup::getActionMethod(message.actionId());
+        #
+        #            for (i = 1; i <= dictMethod.parameterCnt(); i++)
+        #            {
+        #                if (dictMethod.parameterType(i) == Types::Class)
+        #                    AifRequestProcessor::validateParameterSchema(message, i, dictMethod.parameterName(i), dictMethod.parameterId(i), applyDataPolicy);
+        #            }
+        #        }
+        #        else if (AifGlobalSettings::getValidateOutboundSchema())
+        #        {
+        #            dictMethod = AifParameterLookup::getActionMethod(message.actionId());
+        #
+        #            if (dictMethod.returnType() == Types::Class)
+        #            {
+        #                // Outbound -- return value is always paramater 1
+        #                AifRequestProcessor::validateParameterSchema(message, 1, #ReturnValueDisplay, dictMethod.returnId(), applyDataPolicy);
+        #            }
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #validateParameterSchema
+        #private static void validateParameterSchema(AifMessage message, int parameterIndex, str parameterName, AifDocumentClassId documentClassId, boolean applyDataPolicy)
+        #{
+        #    XmlSchemaValidationError xmlError;
+        #    AifSchemaInfo schemaInfo;
+        #    XmlTextReader xmlReader;
+        #
+        #    Exception fault(str _errorMessage)
+        #    {
+        #        AifFaultContext faultContext;
+        #
+        #        faultContext = AifFaultContext::construct();
+        #        faultContext.parmService(message.getServiceName());
+        #        faultContext.parmServiceOperation(message.getOperationName());
+        #        faultContext.parmServiceOperationParameter(parameterName);
+        #        AifFaultContext::setGlobalContext(faultContext);
+        #        AifFault::checkFailedLogFault(_errorMessage, #SchemaValidationFailed);
+        #        return AifFault::faultList(_errorMessage, #SchemaValidationFailed);
+        #    }
+        #    ;
+        #
+        #    // Only validate document schemas
+        #    if (AifEndpointActionParameterSchema::isDataPolicyAllowed(documentClassId))
+        #    {
+        #        if (applyDataPolicy)
+        #        {
+        #            schemaInfo = AifSchemaRepository::getEndpointSchema(message.getOperationContext().getExternalEndpointId(), message.actionId(), documentClassId);
+        #            if (schemaInfo == null)
+        #            {
+        #                // There is no schema for this parameter.  Please configure the data policies first.
+        #                throw fault("@SYS117487");
+        #            }
+        #        }
+        #        else
+        #        {
+        #            schemaInfo = AifSchemaRepository::getSchema(documentClassId);
+        #            if (schemaInfo == null)
+        #            {
+        #                // There is no schema information available for document class Id '%1'.
+        #                throw fault(strfmt("@SYS118917", documentClassId));
+        #            }
+        #        }
+        #
+        #        xmlReader = XmlTextReader::newXml(message.getMessagePart(parameterIndex));
+        #        xmlError = xmlReader.validate(schemaInfo.parmSchemaXml());
+        #        if (xmlError)
+        #        {
+        #            //Invalid document schema.  The following error was returned: %1
+        #            throw fault(strfmt("@SYS89961", xmlError.message()));
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #verifyRequestIsAllowed
+        # // Verifies that the current user has access to the service operation
+        #static private void verifyRequestIsAllowed(AifMessage message)
+        #{
+        #    boolean isValidUser;
+        #
+        #    // Check service security key always
+        #    if (!AifUtil::hasServiceAccess(message.getServiceName()))
+        #    {
+        #        throw error(strfmt("@SYS118924", curuserid(), message.getServiceName()));
+        #    }
+        #
+        #    //Make sure the Endpoint exists and is enabled
+        #    if(!AifEndpoint::isEnabled(message.sourceEndpointId()))
+        #    {
+        #        //Endpoint '%1' does not exist or is disabled.
+        #        throw error(strfmt('@SYS89849', message.sourceEndpointId()));
+        #    }
+        #
+        #    if (message.isDefaultEndpoint())
+        #    {
+        #        // Endpoint user validation is not done for default endpoint
+        #        // For the default endpoint, an intermediary is not allowed
+        #        isValidUser = (message.submittingAxUserId() == message.sourceEndpointAxUserId());
+        #    }
+        #    else
+        #    {
+        #        //Make sure the sourceUser and submittingUser are valid for this endpoint
+        #        isValidUser = AifEndpointUser::isValidUser(message.sourceEndpointId(), message.sourceEndpointAxUserId(), message.submittingAxUserId());
+        #    }
+        #
+        #    // #48319 - the sourceEndpointUser should always be equal to the currently logged in user.
+        #    if(!isValidUser || ( message.sourceEndpointAxUserId() != curuserid()))
+        #        //User is not authorized for this Endpoint.
+        #        throw error(strfmt('@SYS89826'));
+        #
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,95 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPACustTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPACustTable
+    PROPERTIES
+      Name                #WPACustTable
+      Extends             #AifDocument
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPACustTable extends AifDocument
+        #{
+        #    #define.SenderId('SenderId')
+        #    #define.DocPurpose('DocPurpose')
+        #    #define.CustTable('CustTable')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createCustTable
+        #public AfStronglyTypedDataContainerList createCustTable()
+        #{
+        #    return this.get_NewList(#CustTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsCustTable
+        #public boolean existsCustTable()
+        #{
+        #    return this.exists(#CustTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsDocPurpose
+        #public boolean existsDocPurpose()
+        #{
+        #    return this.exists(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #existsSenderId
+        #public boolean existsSenderId()
+        #{
+        #    return this.exists(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPACustTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmCustTable
+        #public AfStronglyTypedDataContainerList parmCustTable(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#CustTable, _value);
+        #    }
+        #
+        #    return this.get_List(#CustTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmDocPurpose
+        #public XMLDocPurpose parmDocPurpose(XMLDocPurpose _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DocPurpose, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #parmSenderId
+        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SenderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SenderId);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

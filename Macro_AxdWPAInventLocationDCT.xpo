@@ -1,0 +1,15 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAInventLocationDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAInventLocationDCT
+    ##define.WPAInventLocation('WPAInventLocation')
+    ##define.WPAInventLocation_InventLocation('WPAInventLocation.InventLocation')
+  ENDSOURCE
+
+***Element: END

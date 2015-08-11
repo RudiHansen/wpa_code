@@ -1,0 +1,35 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: SVC
+
+; Microsoft Dynamics AX SERVICE : WPAInventSumService unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  SERVICE #WPAInventSumService
+    PROPERTIES
+      Name                #WPAInventSumService
+      ExternalName        #WPAInventSumService
+      Namespace           #
+      Class               #WPAInventSumService
+      SecurityKey         #WPAServices
+      Description         #
+    ENDPROPERTIES
+    
+    OPERATIONS
+      OPERATION #find
+        PROPERTIES
+          Name                #find
+          Method              #find
+          EnableIdempotence   #No
+        ENDPROPERTIES
+        
+      ENDOPERATION
+      
+    ENDOPERATIONS
+    
+  ENDSERVICE
+  
+
+***Element: END

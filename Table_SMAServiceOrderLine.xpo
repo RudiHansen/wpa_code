@@ -1,0 +1,3087 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : SMAServiceOrderLine unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #SMAServiceOrderLine
+    PROPERTIES
+      Name                #SMAServiceOrderLine
+      Label               #@SYS88878
+      TitleField1         #ServiceOrderId
+      TitleField2         #ServiceOrderLineNum
+      ConfigurationKey    #SMAManagement
+      SecurityKey         #SMATables
+      CacheLookup         #NotInTTS
+      CreateRecIdIndex    #Yes
+      TableGroup          #WorksheetLine
+      PrimaryIndex        #ServiceOrderIdx
+      ClusterIndex        #ServiceOrderIdx
+      AnalysisVisibility  #High
+      DeveloperDocumentation  #@SYS122715
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #ServiceOrderId
+        STRING
+        PROPERTIES
+          Name                #ServiceOrderId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAServiceOrderId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ServiceOrderLineNum
+        REAL
+        PROPERTIES
+          Name                #ServiceOrderLineNum
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #LineNum
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SignOff
+        ENUM
+        PROPERTIES
+          Name                #SignOff
+          HelpText            #@SYS89931
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMASignOff
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        ENUM
+        PROPERTIES
+          Name                #Origin
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          EnumType            #SMAServiceOrderOrigin
+        ENDPROPERTIES
+        
+      FIELD #AgreementLineNum
+        INT
+        PROPERTIES
+          Name                #AgreementLineNum
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAAgreementLineNum
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DateCalculated
+        DATE
+        PROPERTIES
+          Name                #DateCalculated
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMADateCalculated
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DateExecution
+        DATE
+        PROPERTIES
+          Name                #DateExecution
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMADateExecution
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ServiceObjectId
+        STRING
+        PROPERTIES
+          Name                #ServiceObjectId
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAServiceObjectId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #TransactionType
+        ENUM
+        PROPERTIES
+          Name                #TransactionType
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          EnumType            #SMATransactionType
+        ENDPROPERTIES
+        
+      FIELD #ServiceTaskId
+        STRING
+        PROPERTIES
+          Name                #ServiceTaskId
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAServiceTaskId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DescriptionService
+        STRING
+        PROPERTIES
+          Name                #DescriptionService
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMADescription
+              #
+            ENDARRAY
+          StringSize          #1000
+        ENDPROPERTIES
+        
+      FIELD #DateRangeTo
+        DATE
+        PROPERTIES
+          Name                #DateRangeTo
+          Mandatory           #Yes
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMADateRangeTo
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DateRangeFrom
+        DATE
+        PROPERTIES
+          Name                #DateRangeFrom
+          Mandatory           #Yes
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMADateRangeFrom
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Dimension
+        STRING
+        PROPERTIES
+          Name                #Dimension
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #Dimension
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Qty
+        REAL
+        PROPERTIES
+          Name                #Qty
+          Mandatory           #Yes
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAQty
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Unit
+        STRING
+        PROPERTIES
+          Name                #Unit
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #UnitID
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #EmplId
+        STRING
+        PROPERTIES
+          Name                #EmplId
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #EmplId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #TimeSheetStartTime
+        TIME
+        PROPERTIES
+          Name                #TimeSheetStartTime
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAServiceStartedTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #TimeSheetEndTime
+        TIME
+        PROPERTIES
+          Name                #TimeSheetEndTime
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAServiceFinishedTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #InvoiceId
+        STRING
+        PROPERTIES
+          Name                #InvoiceId
+          HelpText            #@SYS4726
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #InvoiceId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ProjTransId
+        STRING
+        PROPERTIES
+          Name                #ProjTransId
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjTransIdBase
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ItemId
+        STRING
+        PROPERTIES
+          Name                #ItemId
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ItemId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ProjLinePropertyId
+        STRING
+        PROPERTIES
+          Name                #ProjLinePropertyId
+          Mandatory           #Yes
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjLinePropertyId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProjCategoryId
+        STRING
+        PROPERTIES
+          Name                #ProjCategoryId
+          Mandatory           #Yes
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjCategoryId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #InventDimId
+        STRING
+        PROPERTIES
+          Name                #InventDimId
+          Visible             #No
+          ConfigurationKey    #LogisticsBasic
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #InventDimId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ProjCurrencyCode
+        STRING
+        PROPERTIES
+          Name                #ProjCurrencyCode
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjSalesCurrencyCode
+              #
+            ENDARRAY
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #ProjTaxItemGroup
+        STRING
+        PROPERTIES
+          Name                #ProjTaxItemGroup
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjTaxItemGroup
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProjTaxGroup
+        STRING
+        PROPERTIES
+          Name                #ProjTaxGroup
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjTaxGroup
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProjTransTxt
+        STRING
+        PROPERTIES
+          Name                #ProjTransTxt
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #TransTxt
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #ServiceOrderStatus
+        ENUM
+        PROPERTIES
+          Name                #ServiceOrderStatus
+          Table               #SMAServiceOrderLine
+          EnumType            #SMAServiceOrderStatus
+        ENDPROPERTIES
+        
+      FIELD #DEL_ProjActivityId
+        STRING
+        PROPERTIES
+          Name                #DEL_ProjActivityId
+          Visible             #No
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjActivityId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #AgreementId
+        STRING
+        PROPERTIES
+          Name                #AgreementId
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAAgreementId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Description
+        STRING
+        PROPERTIES
+          Name                #Description
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #Description
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #ProjSalesPrice
+        REAL
+        PROPERTIES
+          Name                #ProjSalesPrice
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjSalesPriceCost
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProjCostPrice
+        REAL
+        PROPERTIES
+          Name                #ProjCostPrice
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjCostPriceCost
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #TaxGroupExpense
+        STRING
+        PROPERTIES
+          Name                #TaxGroupExpense
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #TaxGroupJournal
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CurrencyIdCost
+        STRING
+        PROPERTIES
+          Name                #CurrencyIdCost
+          Label               #@SYS87716
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #CurrencyCode
+              #
+            ENDARRAY
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #ProjId
+        STRING
+        PROPERTIES
+          Name                #ProjId
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #OffsetAccountExpense
+        STRING
+        PROPERTIES
+          Name                #OffsetAccountExpense
+          Label               #@SYS11162
+          HelpText            #@SYS28145
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #LedgerJournalAC
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #OffsetAccountTypeExpense
+        ENUM
+        PROPERTIES
+          Name                #OffsetAccountTypeExpense
+          Label               #@SYS23950
+          HelpText            #@SYS27735
+          Table               #SMAServiceOrderLine
+          EnumType            #LedgerJournalACType
+        ENDPROPERTIES
+        
+      FIELD #TaxItemGroupExpense
+        STRING
+        PROPERTIES
+          Name                #TaxItemGroupExpense
+          Label               #@SYS21932
+          HelpText            #@SYS27751
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #TaxGroupJournal
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ActivityId
+        STRING
+        PROPERTIES
+          Name                #ActivityId
+          Label               #@SYS113232
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #smmActivityId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ServiceTimeStartAfter
+        TIME
+        PROPERTIES
+          Name                #ServiceTimeStartAfter
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAStartAfter
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ServiceTimeEndBefore
+        TIME
+        PROPERTIES
+          Name                #ServiceTimeEndBefore
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAEndBeforeTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ServiceObjectRelationId
+        STRING
+        PROPERTIES
+          Name                #ServiceObjectRelationId
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #SMAServiceObjectRelationId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ActivityNumber
+        STRING
+        PROPERTIES
+          Name                #ActivityNumber
+          Table               #SMAServiceOrderLine
+          ExtendedDataType    
+            ARRAY 
+              #ProjActivityNumber
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TransactionType
+          #ServiceOrderId
+          #Unit
+          #Dimension
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Activity
+        PROPERTIES
+          Name                #Activity
+          Label               #@SYS7772
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ActivityId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Agreement
+        PROPERTIES
+          Name                #Agreement
+          Label               #@SYS15240
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #AgreementId
+          #AgreementLineNum
+          #ServiceObjectId
+          #ServiceTaskId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #DateControl
+        PROPERTIES
+          Name                #DateControl
+          Label               #@SYS16056
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #DateCalculated
+          #DateExecution
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Description
+        PROPERTIES
+          Name                #Description
+          Label               #@SYS6303
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Description
+          #DescriptionService
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Dimension
+        PROPERTIES
+          Name                #Dimension
+          Label               #@SYS14926
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Dimension
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Employee
+        PROPERTIES
+          Name                #Employee
+          Label               #@SYS4705
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #EmplId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ExpenseCost
+        PROPERTIES
+          Name                #ExpenseCost
+          Label               #@SYS99164
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #CurrencyIdCost
+          #TaxGroupExpense
+          #TaxItemGroupExpense
+          #OffsetAccountTypeExpense
+          #OffsetAccountExpense
+          #InvoiceId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Identification
+        PROPERTIES
+          Name                #Identification
+          Label               #@SYS5711
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TransactionType
+          #Origin
+          #ServiceOrderStatus
+          #SignOff
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #IdentificationKey
+        PROPERTIES
+          Name                #IdentificationKey
+          Label               #@SYS12005
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ServiceOrderId
+          #ServiceOrderLineNum
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Invoice
+        PROPERTIES
+          Name                #Invoice
+          Label               #@SYS12128
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Item
+        PROPERTIES
+          Name                #Item
+          Label               #@SYS7407
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Unit
+          #Qty
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Overview
+        PROPERTIES
+          Name                #Overview
+          Label               #@SYS9039
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SignOff
+          #TransactionType
+          #EmplId
+          #ProjCategoryId
+          #Description
+          #ServiceObjectRelationId
+          #ServiceObjectId
+          #ServiceTaskId
+          #ServiceOrderStatus
+          #ItemId
+          #wPAWorkcardStatus
+          #wPAHasBeenUpdated
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ProjectCostPrice
+        PROPERTIES
+          Name                #ProjectCostPrice
+          Label               #@SYS13134
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Qty
+          #ProjCostPrice
+          #costAmount
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ProjectIdentification
+        PROPERTIES
+          Name                #ProjectIdentification
+          Label               #@SYS53631
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ProjId
+          #ItemId
+          #ActivityNumber
+          #ProjCategoryId
+          #EmplId
+          #ProjLinePropertyId
+          #InventDimId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ProjectSalestPrice
+        PROPERTIES
+          Name                #ProjectSalestPrice
+          Label               #@SYS5755
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ProjCurrencyCode
+          #Unit
+          #ProjSalesPrice
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ProjectTax
+        PROPERTIES
+          Name                #ProjectTax
+          Label               #@SYS67871
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ProjTaxGroup
+          #ProjTaxItemGroup
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Reference
+        PROPERTIES
+          Name                #Reference
+          Label               #@SYS81755
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #AgreementId
+          #AgreementLineNum
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ServiceRelation
+        PROPERTIES
+          Name                #ServiceRelation
+          Label               #@SYS90610
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ServiceObjectRelationId
+          #ServiceObjectId
+          #ServiceTaskId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ServiceTime
+        PROPERTIES
+          Name                #ServiceTime
+          Label               #@SYS90312
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ServiceTimeStartAfter
+          #ServiceTimeEndBefore
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #TimeSheet
+        PROPERTIES
+          Name                #TimeSheet
+          Label               #@SYS716
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TimeSheetStartTime
+          #TimeSheetEndTime
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #TimeWindow
+        PROPERTIES
+          Name                #TimeWindow
+          Label               #@SYS90551
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #DateRangeFrom
+          #DateRangeTo
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Transaction
+        PROPERTIES
+          Name                #Transaction
+          Label               #@SYS99887
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ProjTransId
+          #ProjTransTxt
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #ServiceOrderIdx
+      PROPERTIES
+        Name                #ServiceOrderIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ServiceOrderId
+        #ServiceOrderLineNum
+      ENDINDEXFIELDS
+      
+      #ServiceObjectIdx
+      PROPERTIES
+        Name                #ServiceObjectIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ServiceObjectId
+      ENDINDEXFIELDS
+      
+      #ServiceTaskIdx
+      PROPERTIES
+        Name                #ServiceTaskIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ServiceTaskId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+      REFERENCE #OffsetBank
+        PROPERTIES
+          Name                #OffsetBank
+          Table               #BankAccountTable
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #dataAreaId
+            RelatedField        #dataAreaId
+          ENDPROPERTIES
+          
+          REFERENCETYPE THISFIXED
+          PROPERTIES
+            Table               #SMAServiceOrderLine
+            Field               #OffsetAccountTypeExpense
+            Value               #6
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #OffsetAccountExpense
+            RelatedField        #AccountID
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #OffsetCustTable
+        PROPERTIES
+          Name                #OffsetCustTable
+          Table               #CustTable
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #dataAreaId
+            RelatedField        #dataAreaId
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #OffsetAccountExpense
+            RelatedField        #AccountNum
+          ENDPROPERTIES
+          
+          REFERENCETYPE THISFIXED
+          PROPERTIES
+            Table               #SMAServiceOrderLine
+            Field               #OffsetAccountTypeExpense
+            Value               #1
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #OffsetProjTable
+        PROPERTIES
+          Name                #OffsetProjTable
+          Table               #ProjTable
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #OffsetAccountExpense
+            RelatedField        #ProjId
+          ENDPROPERTIES
+          
+          REFERENCETYPE THISFIXED
+          PROPERTIES
+            Table               #SMAServiceOrderLine
+            Field               #OffsetAccountTypeExpense
+            Value               #3
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #OffsetVendTable
+        PROPERTIES
+          Name                #OffsetVendTable
+          Table               #VendTable
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #OffsetAccountExpense
+            RelatedField        #AccountNum
+          ENDPROPERTIES
+          
+          REFERENCETYPE THISFIXED
+          PROPERTIES
+            Table               #SMAServiceOrderLine
+            Field               #OffsetAccountTypeExpense
+            Value               #2
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #dataAreaId
+            RelatedField        #dataAreaId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjCostTrans
+        PROPERTIES
+          Name                #ProjCostTrans
+          Table               #ProjCostTrans
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ProjId
+            RelatedField        #ProjId
+          ENDPROPERTIES
+          
+          REFERENCETYPE THISFIXED
+          PROPERTIES
+            Table               #SMAServiceOrderLine
+            Field               #TransactionType
+            Value               #2
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ProjTransId
+            RelatedField        #TransId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjEmplTrans
+        PROPERTIES
+          Name                #ProjEmplTrans
+          Table               #ProjEmplTrans
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ProjId
+            RelatedField        #ProjId
+          ENDPROPERTIES
+          
+          REFERENCETYPE THISFIXED
+          PROPERTIES
+            Table               #SMAServiceOrderLine
+            Field               #TransactionType
+            Value               #1
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ProjTransId
+            RelatedField        #TransId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjItemTrans
+        PROPERTIES
+          Name                #ProjItemTrans
+          Table               #ProjItemTrans
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ProjId
+            RelatedField        #ProjId
+          ENDPROPERTIES
+          
+          REFERENCETYPE THISFIXED
+          PROPERTIES
+            Table               #SMAServiceOrderLine
+            Field               #TransactionType
+            Value               #3
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ProjTransId
+            RelatedField        #ProjTransId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjRevenueTrans
+        PROPERTIES
+          Name                #ProjRevenueTrans
+          Table               #ProjRevenueTrans
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ProjId
+            RelatedField        #ProjId
+          ENDPROPERTIES
+          
+          REFERENCETYPE THISFIXED
+          PROPERTIES
+            Table               #SMAServiceOrderLine
+            Field               #TransactionType
+            Value               #4
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ProjTransId
+            RelatedField        #TransId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #SMAServiceOrderTable
+        PROPERTIES
+          Name                #SMAServiceOrderTable
+          Table               #SMAServiceOrderTable
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ServiceOrderId
+            RelatedField        #ServiceOrderId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #TaxItemGroupExpense
+        PROPERTIES
+          Name                #TaxItemGroupExpense
+          Table               #TaxItemGroupHeading
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #TaxItemGroupExpense
+            RelatedField        #TaxItemGroup
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #cancelLine
+        #public void cancelLine()
+        #{
+        #    boolean allowLineCancel = false;
+        #    ;
+        #
+        #    // Cancellation is not allowed
+        #    if (this.ServiceOrderStatus != SMAServiceOrderStatus::Posted)
+        #    {
+        #        allowLineCancel = SMAStageTable::find(SMAServiceOrderTable::find(this.ServiceOrderId).StageId).StageCanCancel == NoYes::Yes;
+        #    }
+        #
+        #    if (!allowLineCancel)
+        #    {
+        #        // Service Order line cannot be cancelled due to status or Service stage option.
+        #        throw error("@SYS8364");
+        #    }
+        #
+        #    if (this.ServiceOrderStatus == SMAServiceOrderStatus::Created)
+        #    {
+        #        ttsbegin;
+        #
+        #        this.ServiceOrderStatus = SMAServiceOrderStatus::Canceled;
+        #        this.update();
+        #
+        #        this.deleteAssociatedActivity();
+        #
+        #        ttscommit;
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #changeEmployeeAndTask
+        #/// <summary>
+        #/// Updates merged activity or deletes activity when employee and/or service task were changed.
+        #/// </summary>
+        #/// <param name="_originalOrderLine">
+        #/// Original service order line.
+        #/// </param>
+        #void changeEmployeeAndTask(SMAServiceOrderLine _originalOrderLine)
+        #{
+        #    smmActivities           activity;
+        #    smmActivityId           activityId;
+        #    ;
+        #
+        #    if (this.TransactionType == SMATransactionType::Hour && this.EmplId)
+        #    {
+        #        // Is a task associated with the service order line?
+        #        if (this.ServiceTaskId)
+        #        {
+        #            activityId = this.findActivityWithSameProfile(_originalOrderLine);
+        #        }
+        #
+        #        ttsbegin;
+        #
+        #        if (activityId)
+        #        {
+        #            select firstonly forupdate activity where activity.ActivityNumber == activityId;
+        #
+        #            activity.TotalWork -= _originalOrderLine.Qty;
+        #
+        #            activity.update();
+        #
+        #        }
+        #        else
+        #        {
+        #            select firstonly forupdate activity where activity.ActivityNumber == _originalOrderLine.ActivityId;
+        #
+        #            activity.delete();
+        #        }
+        #
+        #        ttscommit;
+        #
+        #        this.ActivityId = '';
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #checkActivity
+        #private boolean checkActivity()
+        #{
+        #    RecId                       projRecId;
+        #
+        #    if (this.ActivityNumber)
+        #    {
+        #        if (! ProjActivity::find(this.ActivityNumber))
+        #            return checkFailed(strfmt("@SYS50966",this.ActivityNumber));
+        #
+        #        //validate activity is associated to Project
+        #        projRecId = ProjTable::find(this.ProjId).RecId;
+        #
+        #        if (smmActivityParentLinkTable::find(this.ActivityNumber, smmActivityParentType::Project, projRecId).RecId == 0)
+        #            return checkFailed(strfmt("@SYS105858",this.ActivityNumber, this.ProjId));
+        #    }
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #checkServiceTaskRelation
+        #public void checkServiceTaskRelation(boolean            _createRelation = false,
+        #                                    SMAAgreementLine    _originSAL      = null,
+        #                                    SMAServiceOrderLine _originSOL      = null)
+        #{
+        #    boolean                 existRelation   = false;
+        #    SMAServiceTaskRelation  taskRelationOrigin;
+        #    ;
+        #
+        #    // Check for existing service task relation
+        #    existRelation = SMAServiceTaskRelation::existRelation(tablenum(SMAServiceOrderTable), this.ServiceOrderId, this.ServiceTaskId) ||
+        #                    SMAServiceTaskRelation::existRelation(tablenum(SMAAgreementTable), this.AgreementId, this.ServiceTaskId);
+        #
+        #    if (!existRelation && _createRelation)
+        #    {
+        #        if (_originSAL)
+        #        {
+        #            // Find original relation
+        #            taskRelationOrigin  = SMAServiceTaskRelation::findAgreement(_originSAL.AgreementId);
+        #        }
+        #
+        #        if (_originSOL)
+        #        {
+        #            // Find original Service task relation
+        #            taskRelationOrigin  = SMAServiceTaskRelation::findServiceOrder(_originSOL.ServiceOrderId);
+        #        }
+        #
+        #        // Create Service task relation
+        #        SMAServiceTaskRelation::createRelation(this.ServiceTaskId,
+        #                                               this.ServiceOrderId,
+        #                                               tablenum(SMAServiceOrderTable),
+        #                                               taskRelationOrigin.DescriptionExternal,
+        #                                               taskRelationOrigin.DescriptionInternal);
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #checkStatusAllowModify
+        #public boolean checkStatusAllowModify()
+        #{
+        #    boolean ret = true;
+        #    ;
+        #
+        #    if (this.ServiceOrderStatus == SMAServiceOrderStatus::Posted || this.ServiceOrderStatus == SMAServiceOrderStatus::Canceled)
+        #    {
+        #        ret = checkFailed("@SYS96676");
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #copyDimension
+        #/// <summary>
+        #/// Returns a dimension set that can be applied to the SMAServiceOrderLine.dimension field.
+        #/// The method ensures that potential linked dimensions are not overwritten.
+        #/// </summary>
+        #/// <param name="_dimension">
+        #/// A dimension set that should be applied to the SMAServiceOrderLine.dimension field.
+        #/// </param>
+        #/// <param name="_dimensionCopy">
+        #/// A dimensionCopy object previously instantiated using the current SMAServiceOrderLine buffer; optional.
+        #/// </param>
+        #/// <returns>
+        #/// Dimension set that can be applied to the SMAServiceOrderLine.dimension field.
+        #/// </returns>
+        #public Dimension copyDimension(Dimension _dimension, DimensionCopy _dimensionCopy = DimensionCopy::newFromTable(this))
+        #{
+        #    return _dimensionCopy.copy(_dimension);
+        #}
+      ENDSOURCE
+      SOURCE #costAmount
+        #//BP Deviation documented
+        #display CostAmount costAmount()
+        #{;
+        #    return this.Qty * this.ProjCostPrice;
+        #}
+      ENDSOURCE
+      SOURCE #createUpdateActivity
+        #void createUpdateActivity(smmActivityPhaseId _phaseId)
+        #{
+        #    smmActivityId           activityId;
+        #    smmActivities           activity;
+        #    SMAServiceOrderTable    serviceOrderTable = SMAServiceOrderTable::find(this.ServiceOrderId);
+        #    ;
+        #
+        #    ttsbegin;
+        #
+        #    if (this.TransactionType == SMATransactionType::Hour && this.EmplId && serviceOrderTable.ServiceDateTime)
+        #    {
+        #        // Is a task associated with the service order line?
+        #        if (this.ServiceTaskId)
+        #        {
+        #            activityId = this.findActivityWithSameProfile();
+        #        }
+        #
+        #        if (!this.ActivityId)
+        #        {
+        #            if (!activityId)
+        #            {
+        #                // Clear previous used id to get a new id from the init method
+        #                activity.ActivityNumber = '';
+        #
+        #                // Set the activity number
+        #                activity.setActivityNum();
+        #
+        #                activity.initFromCommon(this);
+        #
+        #                activity.initValue(smmActivityCategory::Appointment);
+        #
+        #                activity.TypeId                 = serviceOrderTable.ActivityTypeId;
+        #                activity.TaskPriority           = serviceOrderTable.Priority;
+        #
+        #                activity.Purpose                = serviceOrderTable.Description;
+        #                activity.ResponsibleEmployee    = this.EmplId;
+        #                activity.TotalWork              = this.Qty;
+        #
+        #                if (this.ServiceTaskId)
+        #                {
+        #                    activity.UserMemo = SMAServiceTaskRelation::find(tablenum(SMAServiceOrderTable), this.ServiceOrderId, this.ServiceTaskId).DescriptionInternal;
+        #                }
+        #
+        #                activity.Dispatched             = SMADispatched::No;
+        #
+        #                activity.StartDateTime          = serviceOrderTable.ServiceDateTime;
+        #
+        #                activity.findEndDateTimeBasedOnTotalWork();
+        #
+        #                activity.PhaseId                = _phaseId;
+        #
+        #                activity.insert();
+        #
+        #                this.ActivityId = activity.ActivityNumber;
+        #            }
+        #            else
+        #            {
+        #                ttsbegin;
+        #
+        #                select firstonly forupdate activity where activity.ActivityNumber == activityId;
+        #
+        #                activity.TotalWork += this.Qty;
+        #                activity.findEndDateTimeBasedOnTotalWork();
+        #
+        #                activity.doUpdate();
+        #
+        #                ttscommit;
+        #
+        #                this.ActivityId = activityId;
+        #            }
+        #        }
+        #    }
+        #
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #delete
+        #public void delete()
+        #{
+        #    SMAServiceOrderTable    tmpServiceOrderTable;
+        #    SMAPreServiceOrderLine  preServiceOrderLine;
+        #    ;
+        #
+        #    tmpServiceOrderTable = SMAServiceOrderTable::find(this.ServiceOrderId,true);
+        #
+        #    ttsbegin;
+        #
+        #    // Check and delete a record in SMAPreServiceOrderLine if it exists
+        #    if (this.ServiceOrderStatus != SMAServiceOrderStatus::Posted && SMAPreServiceOrderLine::exist(this.AgreementId, this.AgreementLineNum, this.DateCalculated))
+        #    {
+        #        if (!SMAPreServiceOrderLine::deleteLine(this.ServiceOrderId, this.ProjTransId))
+        #        {
+        #            preServiceOrderLine = SMAPreServiceOrderLine::find(this.AgreementId, this.AgreementLineNum, this.DateCalculated, true);
+        #
+        #            if (preServiceOrderLine)
+        #            {
+        #                preServiceOrderLine.delete();
+        #            }
+        #        }
+        #    }
+        #
+        #    this.deleteAssociatedActivity();
+        #
+        #    ttscommit;
+        #
+        #    super();
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #deleteAssociatedActivity
+        #public void deleteAssociatedActivity()
+        #{
+        #    smmActivities           activity;
+        #    SMAServiceOrderLine     serviceLine;
+        #    ;
+        #
+        #    ttsbegin;
+        #
+        #    // Is a activity associated with the service line
+        #    if (this.ActivityId)
+        #    {
+        #        // Is there any other lines associated with the activity?
+        #        select forupdate activity join serviceLine where activity.ActivityNumber == serviceLine.ActivityId && activity.ActivityNumber == this.ActivityId && serviceLine.RecId != this.RecId;
+        #
+        #        // Is other lines found?
+        #        if (activity)
+        #        {
+        #            // Subtract service line quantity from the total work on the shared activity
+        #            activity.TotalWork = activity.TotalWork - this.Qty;
+        #            activity.findEndDateTimeBasedOnTotalWork();
+        #
+        #            activity.update();
+        #        }
+        #        else
+        #        {
+        #            // If no other lines are associated, just delete the activity
+        #            select forupdate activity where activity.ActivityNumber == this.ActivityId;
+        #
+        #            activity.delete();
+        #
+        #            this.ActivityId = '';
+        #            this.update();
+        #        }
+        #    }
+        #
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #fieldModifiedProjId
+        #public void fieldModifiedProjId()
+        #{;
+        #    this.SMAServiceLineMap::initFromProjTable(ProjTable::find(this.ProjId));
+        #    this.SMAServiceLineMap::fieldModifiedCategoryId();
+        #}
+      ENDSOURCE
+      SOURCE #findActivityWithSameProfile
+        #smmActivityId findActivityWithSameProfile(SMAServiceOrderLine _serviceLine = null)
+        #{
+        #    SMAServiceOrderLine     serviceOrderLine;
+        #    ;
+        #
+        #    if (_serviceLine)
+        #    {
+        #        // Is there another service order line with activity connected to this task
+        #        select firstonly serviceOrderLine where serviceOrderLine.ServiceOrderId  == _serviceLine.ServiceOrderId &&
+        #                                                serviceOrderLine.EmplId          == _serviceLine.EmplId &&
+        #                                                serviceOrderLine.TransactionType == SMATransactionType::Hour &&
+        #                                                serviceOrderLine.ServiceTaskId   == _serviceLine.ServiceTaskId &&
+        #                                                serviceOrderLine.ServiceTaskId   != '' &&
+        #                                                serviceOrderLine.ActivityId      != '' &&
+        #                                                serviceOrderLine.RecId           != _serviceLine.RecId;
+        #    }
+        #    else
+        #    {
+        #        // Is there another service order line with activity connected to this task
+        #        select firstonly serviceOrderLine where serviceOrderLine.ServiceOrderId  == this.ServiceOrderId &&
+        #                                                serviceOrderLine.EmplId          == this.EmplId &&
+        #                                                serviceOrderLine.TransactionType == SMATransactionType::Hour &&
+        #                                                serviceOrderLine.ServiceTaskId   == this.ServiceTaskId &&
+        #                                                serviceOrderLine.ServiceTaskId   != '' &&
+        #                                                serviceOrderLine.ActivityId      != '' &&
+        #                                                serviceOrderLine.RecId           != this.RecId;
+        #    }
+        #
+        #    return serviceOrderLine.ActivityId;
+        #}
+      ENDSOURCE
+      SOURCE #generateActivity
+        #void generateActivity()
+        #{
+        #    SMAStageId  stageId;
+        #    ;
+        #
+        #    stageId = SMAServiceOrderTable::find(this.ServiceOrderId).StageId;
+        #
+        #    if (stageId && (SMAParameters::find().ServiceLineActivityStage == stageId))
+        #    {
+        #        this.createUpdateActivity(SMAStageTable::find(stageId).StageActivityPhaseId);
+        #
+        #        this.doUpdate();
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #getInvoiceInformation
+        #container getInvoiceInformation()
+        #{
+        #    container           invoiceInformation;
+        #    ProjEmplTrans       projEmplTrans;
+        #    ProjCostTrans       projCostTrans;
+        #    ProjItemTrans       projItemTrans;
+        #    ProjRevenueTrans    projRevenueTrans;
+        #    ;
+        #
+        #    switch (this.TransactionType)
+        #    {
+        #        case SMATransactionType::Expense :
+        #            projCostTrans = ProjCostTrans::find(this.ProjTransId);
+        #            if (projCostTrans)
+        #            {
+        #                invoiceInformation = [projCostTrans.proposalId(), projCostTrans.invoiceId()];
+        #            }
+        #            break;
+        #
+        #        case SMATransactionType::Fee :
+        #            projRevenueTrans = ProjRevenueTrans::find(this.ProjTransId);
+        #            if (projRevenueTrans)
+        #            {
+        #                invoiceInformation = [projRevenueTrans.proposalId(), projRevenueTrans.invoiceId()];
+        #            }
+        #            break;
+        #
+        #        case SMATransactionType::Hour :
+        #            projEmplTrans = ProjEmplTrans::find(this.ProjTransId);
+        #            if (projEmplTrans)
+        #            {
+        #                invoiceInformation = [projEmplTrans.proposalId(), projEmplTrans.invoiceId()];
+        #            }
+        #            break;
+        #
+        #        case SMATransactionType::Item :
+        #            projItemTrans = ProjItemTrans::find(this.ProjTransId);
+        #            if (projItemTrans)
+        #            {
+        #                invoiceInformation = [projItemTrans.proposalId(), projItemTrans.invoiceId()];
+        #            }
+        #            break;
+        #    }
+        #
+        #    return invoiceInformation;
+        #}
+      ENDSOURCE
+      SOURCE #initFromAgreementLine
+        #public void initFromAgreementLine(SMAAgreementLine    _agreementLine,
+        #                                  boolean             _includeProj     = true,
+        #                                  boolean             _includeTask     = true,
+        #                                  boolean             _includeAgreementRef = true)
+        #{;
+        #    this.initValue();
+        #
+        #    if (_includeAgreementRef)
+        #    {
+        #        this.AgreementId            = _agreementLine.AgreementId;
+        #        this.AgreementLineNum       = _agreementLine.AgreementLineNum;
+        #    }
+        #    this.TransactionType        = _agreementLine.TransactionType;
+        #    this.Description            = _agreementLine.Description;
+        #    this.DescriptionService     = _agreementLine.DescriptionService;
+        #    this.Qty                    = _agreementLine.Qty;
+        #    this.EmplId                 = _agreementLine.EmplId;
+        #    this.ProjCategoryId         = _agreementLine.ProjCategoryId;
+        #
+        #    // Item fields
+        #    this.ItemId                 = _agreementLine.ItemId;
+        #    this.setInventDimId(_agreementLine.InventDimId);
+        #    this.Unit                   = _agreementLine.Unit;
+        #
+        #    this.ServiceTimeStartAfter  = _agreementLine.ServiceTimeStartAfter;
+        #    this.ServiceTimeEndBefore   = _agreementLine.ServiceTimeEndBefore;
+        #
+        #    this.Dimension              = this.copyDimension(_agreementLine.ProjDimension);
+        #
+        #    if (_includeProj)
+        #    {
+        #        this.ProjId                 = _agreementLine.ProjId;
+        #        this.ProjLinePropertyId     = _agreementLine.ProjLinePropertyId;
+        #        this.ProjCurrencyCode       = _agreementLine.ProjCurrencyId;
+        #    }
+        #
+        #    // Copy activity if there is one matching to original
+        #    if(ProjActivity::find(_agreementLine.ActivityNumber))
+        #    {
+        #        this.ActivityNumber     = _agreementLine.ActivityNumber;
+        #    }
+        #
+        #    this.ProjTaxGroup       = _agreementLine.ProjTaxGroupId;
+        #    this.ProjTaxItemGroup   = _agreementLine.ProjTaxItemGroupId;
+        #    this.ProjTransTxt       = _agreementLine.ProjTransTxt;
+        #
+        #    if (_includeTask && _agreementLine.ServiceTaskId)
+        #    {
+        #        this.ServiceTaskId          = _agreementLine.ServiceTaskId;
+        #
+        #        // Check and create service task relation
+        #        this.checkServiceTaskRelation(true, _agreementLine);
+        #    }
+        #
+        #    this.ProjCostPrice      = this.SMAServiceLineMap::projCostPrice();
+        #    this.ProjSalesPrice     = this.SMAServiceLineMap::projSalesPrice();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #initFromOffsetAccount
+        #public void initFromOffsetAccount()
+        #{
+        #    VendTable    vendTable;
+        #    ;
+        #
+        #    this.initTaxGroup();
+        #    this.initTaxItemGroup();
+        #
+        #    if (this.TransactionType == SMATransactionType::Expense && this.OffsetAccountExpense)
+        #    {
+        #        if (this.OffsetAccountTypeExpense == LedgerJournalACType::Vend)
+        #        {
+        #            vendTable               = VendTable::find(this.OffsetAccountExpense);
+        #            this.CurrencyIdCost     = vendTable.Currency;
+        #            this.TaxGroupExpense    = vendTable.TaxGroup;
+        #        }
+        #        else
+        #        {
+        #            this.CurrencyIdCost     = CompanyInfo::standardCurrency();
+        #            this.TaxGroupExpense    = '';
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #initFromServiceOrder
+        #public void initFromServiceOrder(SMAServiceOrderId _serviceOrderId)
+        #{
+        #    SMAServiceOrderTable    serviceOrderTable;
+        #    CustTable custTable = CustTable::find(SMAServiceOrderTable::find(_serviceOrderId).CustAccount);
+        #    InventDim inventDim = this.inventDim();
+        #    ;
+        #
+        #    serviceOrderTable = SMAServiceOrderTable::find(_serviceOrderId);
+        #
+        #    this.AgreementId    = serviceOrderTable.AgreementId;
+        #    this.ProjId         = serviceOrderTable.ProjId;
+        #
+        #    if (serviceOrderTable.Origin == SMAServiceOrderOrigin::User)
+        #    {
+        #        this.EmplId     = serviceOrderTable.PreferredTechnician;
+        #    }
+        #
+        #    if (serviceOrderTable.ProjId)
+        #    {
+        #        this.SMAServiceLineMap::initFromProjTable(ProjTable::find(this.ProjId));
+        #    }
+        #
+        #    if (custTable.InventLocation || custTable.InventSiteId)
+        #    {
+        #        inventDim.InventLocationId = custTable.InventLocation;
+        #        inventDim.InventSiteId     = custTable.InventSiteId;
+        #    }
+        #
+        #    this.setInventDimIdFromInventDim(inventDim);
+        #
+        #    this.DateExecution = DateTimeUtil::date(DateTimeUtil::applyTimeZoneOffset(serviceOrderTable.ServiceDateTime,DateTimeUtil::getUserPreferredTimeZone()));
+        #}
+        #
+        #
+      ENDSOURCE
+      SOURCE #initFromServiceOrderLine
+        #public void initFromServiceOrderLine(SMAServiceOrderLine    _serviceOrderLine,
+        #                                     boolean                _includeProj     = true,
+        #                                     boolean                _includeTask     = true)
+        #{
+        #    ;
+        #
+        #    this.initValue();
+        #
+        #    this.TransactionType        = _serviceOrderLine.TransactionType;
+        #    this.Description            = _serviceOrderLine.Description;
+        #    this.DescriptionService     = _serviceOrderLine.DescriptionService;
+        #    this.Unit                   = _serviceOrderLine.Unit;
+        #    this.Qty                    = _serviceOrderLine.Qty;
+        #    this.ServiceTimeStartAfter  = _serviceOrderLine.ServiceTimeStartAfter;
+        #    this.ServiceTimeEndBefore   = _serviceOrderLine.ServiceTimeEndBefore;
+        #
+        #    // Mandatory fields
+        #    this.EmplId                 = _serviceOrderLine.EmplId;
+        #    this.ProjCategoryId         = _serviceOrderLine.ProjCategoryId;
+        #    this.ProjLinePropertyId     = _serviceOrderLine.ProjLinePropertyId;
+        #
+        #    // Item fields
+        #    this.ItemId                 = _serviceOrderLine.ItemId;
+        #    this.setInventDimId(_serviceOrderLine.InventDimId);
+        #    this.Unit                   = _serviceOrderLine.Unit;
+        #
+        #    // Copy activity if there is one matching to original
+        #    if(ProjActivity::find(_serviceOrderLine.ActivityNumber))
+        #    {
+        #        this.ActivityNumber     = _serviceOrderLine.ActivityNumber;
+        #    }
+        #
+        #    if (_includeProj)
+        #    {
+        #        this.ProjId                 = _serviceOrderLine.ProjId;
+        #        this.Dimension              = this.copyDimension(_serviceOrderLine.Dimension);
+        #
+        #        // Project fields
+        #        this.ProjCurrencyCode       = _serviceOrderLine.ProjCurrencyCode;
+        #        this.ProjTaxGroup           = _serviceOrderLine.ProjTaxGroup;
+        #        this.ProjTaxItemGroup       = _serviceOrderLine.ProjTaxItemGroup;
+        #        this.ProjTransTxt           = _serviceOrderLine.ProjTransTxt;
+        #    }
+        #
+        #    if (_includeTask && _serviceOrderLine.ServiceTaskId)
+        #    {
+        #        this.ServiceTaskId = _serviceOrderLine.ServiceTaskId;
+        #
+        #        // Check and create service task relation
+        #        this.checkServiceTaskRelation(true, null, _serviceOrderLine);
+        #    }
+        #
+        #    this.ProjCostPrice       = this.SMAServiceLineMap::projCostPrice();
+        #    this.ProjSalesPrice      = this.SMAServiceLineMap::projSalesPrice();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #initTaxGroup
+        #private void initTaxGroup()
+        #{;
+        #    this.TaxGroupExpense = '';
+        #
+        #    if(this.OffsetAccountExpense)
+        #    {
+        #        if (this.OffsetAccountTypeExpense == LedgerJournalACType::Cust)
+        #        {
+        #            this.TaxGroupExpense = CustTable::find(this.OffsetAccountExpense).TaxGroup;
+        #        }
+        #        else
+        #        if (this.OffsetAccountTypeExpense == LedgerJournalACType::Vend)
+        #        {
+        #            this.TaxGroupExpense = VendTable::find(this.OffsetAccountExpense).TaxGroup;
+        #        }
+        #        else
+        #        if (this.OffsetAccountTypeExpense == LedgerJournalACType::Ledger)
+        #        {
+        #            this.TaxGroupExpense = LedgerTable::find(this.OffsetAccountExpense).TaxGroup;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #initTaxItemGroup
+        #public void initTaxItemGroup()
+        #{;
+        #    this.ProjTaxItemGroup = '';
+        #    this.TaxItemGroupExpense = '';
+        #
+        #    if(this.OffsetAccountTypeExpense == LedgerJournalACType::Ledger
+        #        && (!LedgerTable::find(this.OffsetAccountExpense).TaxFree))
+        #    {
+        #        this.ProjTaxItemGroup = LedgerTable::find(this.OffsetAccountExpense).TaxItemGroup;
+        #    }
+        #
+        #    if (this.ProjCategoryId)
+        #        this.ProjTaxItemGroup = ProjCategory::find(this.ProjCategoryId).TaxItemGroupId;
+        #    else
+        #        this.ProjTaxItemGroup = TaxParameters::find().TaxItemGroup;
+        #
+        #    this.TaxItemGroupExpense = this.ProjTaxItemGroup;
+        #}
+      ENDSOURCE
+      SOURCE #insert
+        #public void insert()
+        #{
+        #    SMAServiceOrderTable   tmpServiceOrderTable;
+        #    ;
+        #
+        #    tmpServiceOrderTable = SMAServiceOrderTable::find(this.ServiceOrderId,true);
+        #
+        #    this.ServiceOrderLineNum = this.setLineNum();
+        #
+        #    if (!this.ProjCostPrice)
+        #    {
+        #        this.ProjCostPrice = this.SMAServiceLineMap::projCostPrice();
+        #    }
+        #
+        #    if (!this.ProjSalesPrice)
+        #    {
+        #        this.ProjSalesPrice = this.SMAServiceLineMap::projSalesPrice(this.ProjCostPrice);
+        #    }
+        #
+        #    if (!this.ProjTransId)
+        #    {
+        #        this.ProjTransId = ProjParameters::newTransId();
+        #    }
+        #
+        #    super();
+        #
+        #    this.generateActivity();
+        #
+        #    // Sign off the Service Order if all lines are signed off
+        #    if (tmpServiceOrderTable)
+        #    {
+        #        ttsbegin;
+        #        tmpServiceOrderTable.updateSignOff();
+        #        tmpServiceOrderTable.doUpdate();
+        #        ttscommit;
+        #    }
+        #
+        #    this.signOffServiceOrder();
+        #    this.signOffActivity();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #inventDim
+        #public InventDim inventDim(boolean  _forUpdate = false)
+        #{
+        #    return InventDim::find(this.InventDimId, _forUpdate);
+        #}
+      ENDSOURCE
+      SOURCE #InvoiceIdRequired
+        #public boolean invoiceIdRequired()
+        #{;
+        #    return (this.OffsetAccountTypeExpense == LedgerJournalACType::Vend);
+        #}
+      ENDSOURCE
+      SOURCE #linkInventDim2Dimension
+        #/// <summary>
+        #/// Defaults SMAServiceOrderLine.dimension values based on the InventDim record buffer values.
+        #/// </summary>
+        #/// <param name="_inventDim">
+        #/// The InventDim record buffer linked to the current SMAServiceOrderLine record buffer; optional.
+        #/// </param>
+        #public void linkInventDim2Dimension(InventDim _inventDim)
+        #{
+        #    ;
+        #    _inventDim.modifiedInventSiteFromParent(this);
+        #}
+      ENDSOURCE
+      SOURCE #modifiedField
+        #public void modifiedField(fieldId _fieldId)
+        #{
+        #    ;
+        #
+        #    super(_fieldId);
+        #
+        #    switch(_fieldId)
+        #    {
+        #        case(fieldnum(SMAServiceOrderLine, ProjId)):
+        #            this.fieldModifiedProjId();
+        #            if (this.TransactionType == SMATransactionType::Expense)
+        #            {
+        #                this.setDefaultOffsetAccount();
+        #            }
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, ProjCategoryId)):
+        #            this.SMAServiceLineMap::fieldModifiedCategoryId();
+        #            if (this.TransactionType == SMATransactionType::Expense)
+        #            {
+        #                this.setDefaultOffsetAccount();
+        #            }
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, ActivityNumber)):
+        #            this.SMAServiceLineMap::fieldModifiedActivityId();
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, ProjLinePropertyId)):
+        #            this.SMAServiceLineMap::fieldModifiedLinePropertyId();
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, EmplId)):
+        #            this.SMAServiceLineMap::fieldModifiedEmplId();
+        #            if (this.TransactionType == SMATransactionType::Expense)
+        #            {
+        #                this.setDefaultOffsetAccount();
+        #            }
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, SignOff)):
+        #            if (this.RecId)
+        #            {
+        #                this.updateSignOff();
+        #            }
+        #            else
+        #            {
+        #                this.SignOff = NoYes::No;
+        #            }
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, ItemId)):
+        #            this.SMAServiceLineMap::fieldModifiedItemId();
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, ProjCategoryId)):
+        #            this.SMAServiceLineMap::fieldModifiedCurrency();
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, Qty)):
+        #            this.SMAServiceLineMap::fieldModifiedQty();
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, ProjCostPrice)):
+        #            this.ProjSalesPrice = this.SMAServiceLineMap::projSalesPrice(this.ProjCostPrice);
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, TransactionType)):
+        #            this.ProjCategoryId     = '';
+        #            this.ActivityNumber     = '';
+        #            break;
+        #
+        #        case(fieldnum(SMAServiceOrderLine, OffsetAccountTypeExpense)):
+        #            this.InvoiceId              = '';
+        #            this.OffsetAccountExpense   = '';
+        #
+        #        case (fieldnum(SMAServiceOrderLine, ServiceObjectRelationId)):
+        #            if (!this.ServiceObjectRelationId)
+        #            {
+        #                this.ServiceObjectId = '';
+        #            }
+        #            else
+        #            {
+        #                this.ServiceObjectId = SMAServiceObjectRelation::find(this.ServiceObjectRelationId).ServiceObjectId;
+        #            }
+        #            break;
+        #
+        #        case (fieldnum(SMAServiceOrderLine, TimeSheetStartTime)):
+        #            this.setQtyFromToTime();
+        #            break;
+        #
+        #        case (fieldnum(SMAServiceOrderLine, TimeSheetEndTime)):
+        #            this.setQtyFromToTime();
+        #            break;
+        #
+        #        default :
+        #            break;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #offsetAccountNumLookUp
+        #public boolean offsetAccountNumLookUp(FormStringControl     _formStringControl,
+        #                                      SMAServiceOrderLine   _serviceOrderLine,
+        #                                      LedgerJournalACType   _accountType = LedgerJournalACType::Project,
+        #                                      LedgerJournalAC       _accountNum  = _serviceOrderLine.ProjId)
+        #{;
+        #    switch (_serviceOrderLine.OffsetAccountTypeExpense)
+        #    {
+        #        case LedgerJournalACType::Ledger :
+        #            LedgerTable::lookupAccountNum(_formStringControl,LedgerPostingType::LedgerJournal);
+        #            break;
+        #
+        #        default:
+        #            switch (_serviceOrderLine.OffsetAccountTypeExpense)
+        #            {
+        #                case LedgerJournalACType::FixedAssets   :
+        #                    AssetTable::lookupAccountNum(_formStringControl);
+        #                    break;
+        #
+        #                case LedgerJournalACType::Project       :
+        #                    ProjTable::lookupProjId(_formStringControl,_serviceOrderLine);
+        #                    break;
+        #
+        #                default:
+        #                    return false;
+        #            }
+        #    }
+        #
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #priceDate
+        #public date priceDate()
+        #{;
+        #    return this.Origin == SMAServiceOrderOrigin::System && this.DateCalculated ? this.DateCalculated : this.DateExecution;
+        #}
+      ENDSOURCE
+      SOURCE #revokeCancelLine
+        #public void revokeCancelLine()
+        #{;
+        #    if (this.ServiceOrderStatus == SMAServiceOrderStatus::Canceled)
+        #    {
+        #        ttsbegin;
+        #
+        #        this.ServiceOrderStatus = SMAServiceOrderStatus::Created;
+        #        this.update();
+        #
+        #        this.generateActivity();
+        #
+        #        ttscommit;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #salesAmount
+        #//BP Deviation documented
+        #display SalesAmount salesAmount()
+        #{;
+        #    return this.Qty * this.ProjSalesPrice;
+        #}
+      ENDSOURCE
+      SOURCE #setDefaultOffsetAccount
+        #public void setDefaultOffsetAccount()
+        #{
+        #    /*
+        #     * Get default offset account for project ledger journal.
+        #     *
+        #     * The default offset account will only be set, if an offset account
+        #     * has not been set for the active ledger journal.
+        #     */
+        #
+        #    ProjDefaultOffsetSetup  projDefaultOffsetSetup;
+        #    LedgerJournalName       ledgerJournaName;
+        #    ;
+        #
+        #    // Check if offset account set for ledger journal.
+        #    ledgerJournaName = LedgerJournalName::find(SMAParameters::find().ProjJournalExpense);
+        #    if (!ledgerJournaName.OffsetAccount)
+        #    {
+        #        projDefaultOffsetSetup = ProjDefaultOffsetSetup::findDefaultOffsetAccount(this.ProjId, this.ProjCategoryId, this.EmplId);
+        #        if (projDefaultOffsetSetup)
+        #        {
+        #            this.OffsetAccountTypeExpense = projDefaultOffsetSetup.getLedgerOffsetType();
+        #            this.OffsetAccountExpense     = projDefaultOffsetSetup.AccountNum;
+        #        }
+        #    }
+        #    else
+        #    {
+        #        this.OffsetAccountTypeExpense = ledgerJournaName.OffsetAccountType;
+        #        this.OffsetAccountExpense     = ledgerJournaName.OffsetAccount;
+        #    }
+        #    this.initFromOffsetAccount();
+        #}
+      ENDSOURCE
+      SOURCE #setInventDimId
+        #/// <summary>
+        #/// Applies the InventDimId parameter to the SMAServiceOrderLine.inventDimId field and defaults values based on the new inventory dimensions.
+        #/// </summary>
+        #/// <param name="_inventDimId">
+        #/// The InventDimId value that should be applied to the SMAServiceOrderLine.InventDimId field.
+        #/// </param>
+        #/// <param name="_inventDim">
+        #/// The InventDim record buffer related to the InventDimId parameters; optional.
+        #/// </param>
+        #public void setInventDimId(InventDimId _inventDimId, InventDim _inventDim = InventDim::find(_inventDimId))
+        #{
+        #    ;
+        #    this.InventDimId = _inventDimId;
+        #    this.linkInventDim2Dimension(_inventDim);
+        #}
+      ENDSOURCE
+      SOURCE #setInventDimIdFromInventDim
+        #/// <summary>
+        #/// Finds or create an InventDimId for the InventDim parameter and applies the found InventDimId to the SMAServiceOrderLine.inventDimId field.
+        #/// </summary>
+        #/// <param name="_inventDim">
+        #/// An InventDim record buffer that should be referenced by the current SMAServiceOrderLine record buffer.
+        #/// </param>
+        #public void setInventDimIdFromInventDim(InventDim _inventDim)
+        #{
+        #    InventDim   inventDim;
+        #    ;
+        #    inventDim = InventDim::findOrCreate(_inventDim);
+        #    this.setInventDimId(inventDim.InventDimId, inventDim);
+        #}
+      ENDSOURCE
+      SOURCE #setLineNum
+        #public LineNum setLineNum()
+        #{
+        #    LineNum tmpLineNum;
+        #    ;
+        #
+        #    tmpLineNum = (select maxof (ServiceOrderLineNum) from smaServiceOrderLine where smaServiceOrderLine.ServiceOrderId == this.ServiceOrderId).ServiceOrderLineNum;
+        #    tmpLineNum++;
+        #
+        #    return tmpLineNum;
+        #}
+      ENDSOURCE
+      SOURCE #setQtyFromToTime
+        #public server void setQtyFromToTime()
+        #{;
+        #    this.Qty = ((this.TimeSheetEndTime - this.TimeSheetStartTime) / 3600);
+        #}
+      ENDSOURCE
+      SOURCE #signOffActivity
+        #void signOffActivity()
+        #{
+        #    smmActivities           activity;
+        #    SMAServiceOrderLine     serviceLine;
+        #    ;
+        #
+        #    if (this.ActivityId)
+        #    {
+        #        if (this.SignOff)
+        #        {
+        #            select firstonly activity join serviceLine where
+        #                activity.ActivityNumber == serviceLine.ActivityId &&
+        #                activity.Closed         == NoYes::No &&
+        #                activity.ActivityNumber == this.ActivityId &&
+        #                serviceLine.SignOff     == NoYes::No &&
+        #                serviceLine.RecId       != this.RecId;
+        #
+        #            if (!activity)
+        #            {
+        #                ttsbegin;
+        #
+        #                select forupdate activity where activity.ActivityNumber == this.ActivityId;
+        #
+        #                if (activity.Closed == NoYes::No)
+        #                {
+        #                    activity.Closed = NoYes::Yes;
+        #                    activity.update();
+        #                }
+        #
+        #                ttscommit;
+        #            }
+        #        }
+        #        else
+        #        {
+        #                ttsbegin;
+        #
+        #                select forupdate activity where activity.ActivityNumber == this.ActivityId;
+        #
+        #                if (activity.Closed == NoYes::Yes)
+        #                {
+        #                    activity.Closed = NoYes::No;
+        #                    activity.update();
+        #                }
+        #
+        #                ttscommit;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #signOffServiceOrder
+        #void signOffServiceOrder()
+        #{
+        #    SMAServiceOrderTable   serviceOrderTable;
+        #    SMAServiceOrderLine    serviceOrderLine;
+        #    ;
+        #
+        #    serviceOrderTable = SMAServiceOrderTable::find(this.ServiceOrderId,true);
+        #
+        #    if (this.SignOff != serviceOrderTable.SignOff)
+        #    {
+        #        // Sign off the Service Order if all lines are signed off
+        #        select RecId from  serviceOrderLine
+        #                     where serviceOrderLine.ServiceOrderId  == this.ServiceOrderId
+        #                        && serviceOrderLine.SignOff         == NoYes::No;
+        #        serviceOrderTable.SignOff   = !serviceOrderLine.RecId;
+        #        serviceOrderTable.update(true, false, null, false);
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #update
+        #public void update(boolean _signOffActivities = true)
+        #{
+        #    boolean signOffUpdate = this.orig().SignOff != this.SignOff;
+        #    ;
+        #
+        #    ttsbegin;
+        #
+        #    this.updateActivity();
+        #
+        #    super();
+        #
+        #    ttscommit;
+        #
+        #    if (signOffUpdate)
+        #    {
+        #        if (_signOffActivities)
+        #        {
+        #            this.signOffActivity();
+        #        }
+        #        this.signOffServiceOrder();
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #updateActivity
+        #/// <summary>
+        #/// Updates activity related to service order line.
+        #/// </summary>
+        #public void updateActivity()
+        #{
+        #    smmActivities   activity;
+        #
+        #    ;
+        #    if (this.ActivityId)
+        #    {
+        #        activity = smmActivities::find(this.ActivityId);
+        #
+        #        if (!activity.Closed)
+        #        {
+        #            // If Employee or task were changed activity should be recreated.
+        #            // Quantity changes will be taken into account during activity creation
+        #            if (    this.EmplId         != this.orig().EmplId
+        #                ||  this.ServiceTaskId  != this.orig().ServiceTaskId)
+        #            {
+        #                this.changeEmployeeAndTask(this.orig());
+        #                this.createUpdateActivity('');
+        #            }
+        #            else if (this.Qty           != this.orig().Qty)
+        #            {
+        #                this.updateUpdateActivity(this.Qty - this.orig().Qty);
+        #            }
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #updateItemPrice
+        #public void updateItemPrice(InventDim inventDim)
+        #{;
+        #    this.InventDimId     = InventDim::findOrCreate(inventDim).InventDimId;
+        #    this.ProjCostPrice   = this.SMAServiceLineMap::projCostPrice();
+        #    this.ProjSalesPrice  = this.SMAServiceLineMap::projSalesPrice(this.ProjCostPrice);
+        #}
+      ENDSOURCE
+      SOURCE #updateSignOff
+        #void updateSignOff()
+        #{
+        #    SMAServiceOrderTable    serviceOrderTable;
+        #    SMAServiceOrderLine     serviceOrderLine;
+        #    Args                    args;
+        #    MenuFunction            menuFunction;
+        #    boolean                 updateThroughSLA = false;
+        #    ;
+        #
+        #    if (this.SignOff == NoYes::Yes)
+        #    {
+        #        serviceOrderTable = SMAServiceOrderTable::find(this.ServiceOrderId);
+        #        select RecId from  serviceOrderLine
+        #                     where serviceOrderLine.ServiceOrderId  == this.ServiceOrderId
+        #                        && serviceOrderLine.SignOff         == NoYes::No
+        #                        && serviceOrderLine.RecId           != this.RecId;
+        #        if (!serviceOrderLine.RecId)
+        #        {
+        #            // Header should be signed off
+        #            if (serviceOrderTable.ServiceLevelAgreementStatus == SMALogStatus::Open)
+        #            {
+        #                // SLA cancel prompt
+        #                menuFunction = new MenuFunction(menuitemactionstr(SMAServiceLevelAgreementLog_Close), MenuItemType::Action);
+        #                args = new Args();
+        #                args.record(this);
+        #                menuFunction.run(args);
+        #                updateThroughSLA = true;
+        #            }
+        #        }
+        #    }
+        #
+        #    if (!updateThroughSLA)
+        #    {
+        #        ttsbegin;
+        #        this.update();
+        #        ttscommit;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #updateUpdateActivity
+        #public void updateUpdateActivity(Qty _deltaQty = 0)
+        #{
+        #    SMAServiceOrderTable    serviceOrderTable = SMAServiceOrderTable::find(this.ServiceOrderId);
+        #    smmActivities           activity;
+        #    smmActivityId           activityId;
+        #    ;
+        #
+        #    ttsbegin;
+        #
+        #    if (this.TransactionType == SMATransactionType::Hour && this.EmplId && serviceOrderTable.ServiceDateTime && this.ActivityId != '')
+        #    {
+        #        if (this.ServiceTaskId)
+        #        {
+        #            activityId = this.findActivityWithSameProfile();
+        #        }
+        #
+        #        if (!activityId)
+        #        {
+        #            select forupdate activity where activity.ActivityNumber == this.ActivityId;
+        #            if (activity)
+        #            {
+        #                activity.TotalWork = this.Qty;
+        #            }
+        #        }
+        #        else
+        #        {
+        #            select forupdate activity where activity.ActivityNumber == activityId;
+        #            if (activity)
+        #            {
+        #                activity.TotalWork += _deltaQty;
+        #            }
+        #        }
+        #
+        #        activity.findEndDateTimeBasedOnTotalWork();
+        #
+        #        if (activity.orig().TotalWork != activity.TotalWork)
+        #        {
+        #            activity.Dispatched = SMADispatched::No;
+        #        }
+        #
+        #        activity.doUpdate();
+        #    }
+        #
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #validateDelete
+        #public boolean validateDelete()
+        #{
+        #    boolean ret;
+        #    ;
+        #
+        #    ret = super();
+        #
+        #    ret = ret && SMAServiceOrderTable::find(this.ServiceOrderId).checkStageAllowDelete();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #validateField
+        #public boolean validateField(fieldId _fieldIdToCheck)
+        #{
+        #    boolean ret;
+        #    ;
+        #
+        #    ret = super(_fieldIdToCheck);
+        #
+        #    ret = ret && SMAServiceOrderTable::find(this.ServiceOrderId).checkStageAllowModify();
+        #
+        #    switch(_fieldIdToCheck)
+        #    {
+        #        case fieldnum(SMAServiceOrderLine, TransactionType):
+        #            ret = ret && this.SMAServiceLineMap::checkTransTypeAllowed();
+        #            break;
+        #
+        #        case fieldnum(SMAServiceOrderLine, ProjCategoryId):
+        #            ret = ret && this.SMAServiceLineMap::checkProjCategoryId();
+        #            break;
+        #
+        #        case fieldnum(SMAServiceOrderLine, EmplId):
+        #            ret = ret && this.SMAServiceLineMap::checkEmplId();
+        #            break;
+        #
+        #        case fieldnum(SMAServiceOrderLine, InventDimId):
+        #            ret = ret && InventDim::exist(this.InventDimId);
+        #
+        #        case fieldnum(SMAServiceOrderLine, ActivityNumber):
+        #            ret = ret && this.checkActivity();
+        #            break;
+        #
+        #        case fieldnum(SMAServiceOrderLine, ServiceTaskId):
+        #            if (ret && this.ServiceTaskId)
+        #            {
+        #                ret = ret && (SMAServiceTaskRelation::existRelation(tablenum(SMAServiceOrderTable), this.ServiceOrderId, this.ServiceTaskId) ||
+        #                              SMAServiceTaskRelation::existRelation(tablenum(SMAAgreementTable), this.AgreementId, this.ServiceTaskId));
+        #            }
+        #            break;
+        #
+        #        case fieldnum(SMAServiceOrderLine, ServiceObjectRelationId):
+        #            if (ret && this.ServiceObjectRelationId)
+        #            {
+        #                ret = ret && (SMAServiceObjectRelation::existRelation(this.ServiceObjectRelationId, this.ServiceOrderId, tablenum(SMAServiceOrderTable)) ||
+        #                              SMAServiceObjectRelation::existRelation(this.ServiceObjectRelationId, this.AgreementId, tablenum(SMAAgreementTable)));
+        #            }
+        #            break;
+        #
+        #        default:
+        #            break;
+        #    }
+        #
+        #    return ret;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #validateWrite
+        #public boolean validateWrite()
+        #{
+        #    boolean             ret;
+        #    InventDim           inventDim;
+        #    ProjValCheckTrans   projValCheckTrans = new ProjValCheckTrans();
+        #    ;
+        #
+        #    ret = super();
+        #
+        #    if (this.ServiceOrderStatus == SMAServiceOrderStatus::Posted)
+        #    {
+        #        // It is not possible to change transferred line.
+        #        ret = checkFailed("@SYS91979");
+        #    }
+        #
+        #    // Check the stage that it does allow to modify
+        #    ret = ret && SMAServiceOrderTable::find(this.ServiceOrderId).checkStageAllowModify();
+        #
+        #    if (ret)
+        #    {
+        #        ret = this.SMAServiceLineMap::validateWrite();
+        #    }
+        #
+        #    if (ret)
+        #    {
+        #        ret = projValCheckTrans.validateMandatory(this);
+        #    }
+        #
+        #    if (ret)
+        #    {
+        #        ret = appl.dimensionSetValidation().checkDimension(this, fieldnum(SMAServiceOrderLine, Dimension), true);
+        #    }
+        #
+        #    if (ret)
+        #    {
+        #       ret = this.checkActivity();
+        #    }
+        #
+        #    if (ret && this.TransactionType == SMATransactionType::Item && this.SignOff)
+        #    {
+        #        // check dimensions
+        #        inventDim = InventDim::find(this.InventDimId);
+        #        ret = ret && inventDim.checkDimFieldsValid(InventTable::find(this.ItemId).DimGroupId,this.ItemId,inventDim);
+        #    }
+        #
+        #    if (ret && this.TransactionType == SMATransactionType::Expense && this.SignOff)
+        #    {
+        #        // Cost currency, offset account must be filled in
+        #        if (!this.CurrencyIdCost)
+        #        {
+        #            // Cost currency must be filled in.
+        #            ret = checkFailed("@SYS96131");
+        #        }
+        #        else
+        #        {
+        #            if (!this.OffsetAccountExpense)
+        #            {
+        #                // Offset account is not specified.
+        #                ret = checkFailed("@SYS25236");
+        #            }
+        #            else
+        #            {
+        #                if (this.InvoiceId == '')
+        #                {
+        #                    // If the Offsettype is a vendor, InvoiceId is reqiured
+        #                    if (this.invoiceIdRequired())
+        #                    {
+        #                        // Invoice number is not filled in
+        #                        ret = checkFailed("@SYS24539");
+        #                    }
+        #                }
+        #            }
+        #        }
+        #    }
+        #
+        #    return ret;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #wPAHasBeenUpdated
+        #display WPAUpdated wPAHasBeenUpdated()
+        #{
+        #    return (select firstonly RecId from WPAWorkcardLine
+        #                where WPAWorkcardLine.RefTableId    == this.TableId             &&
+        #                      WPAWorkcardLine.RefRecId      == this.RecId               &&
+        #                      WPAWorkcardLine.Direction     == WPADirection::Incoming   &&
+        #                      WPAWorkcardLine.Transferred   == WPATransferredEnum::Transferred).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #wPAWorkcardStatus
+        #//BP Deviation documented
+        #display WPAWorkcardStatus wPAWorkcardStatus()
+        #{
+        #    WPAWorkcardTable    wPAWorkcardTable;
+        #    WPAWorkcardLine     wPAWorkcardLine;
+        #    ;
+        #
+        #    select maxof(Status) from wPAWorkcardTable
+        #        exists join wPAWorkcardLine
+        #            where wPAWorkcardLine.OrderId       == wPAWorkcardTable.OrderId     &&
+        #                  wPAWorkcardLine.WorkcardId    == wPAWorkcardTable.WorkcardId  &&
+        #                  wPAWorkcardLine.Direction     == wPAWorkcardTable.Direction   &&
+        #                  wPAWorkcardLine.RefTableId    == this.TableId                 &&
+        #                  wPAWorkcardLine.RefRecId      == this.RecId;
+        #
+        #    return str2int(wPAWorkcardTable.Status);
+        #}
+      ENDSOURCE
+      SOURCE #buildItemCombinationQuery
+        #public static Query buildItemCombinationQuery(ItemId  _itemId = '')
+        #{;
+        #    return InventDimCombination::webLookupItemCombinationQuery(_itemId);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #buildProjCategoryQuery
+        #public static Query buildProjCategoryQuery(ProjId _projId, EmplId _emplId, Args _args)
+        #{
+        #    Query                   query;
+        #    ProjCategoryLookup      pcLookup;
+        #    ProjValCheckTrans       projValTrans;
+        #    tableId                 tmpTableId;
+        #    str                     formName;
+        #    ;
+        #
+        #    if (_args)
+        #    {
+        #        tmpTableId = _args.dataset();
+        #        if(_args.caller())
+        #            formName = _args.caller().name();
+        #    }
+        #
+        #    // set the value of the fields that will be used to build the query for the lookup
+        #    projValTrans    = new ProjValCheckTrans();
+        #    if (projValTrans.checkBuffer(_args))
+        #    {
+        #        projValTrans.setVariablesFromBuffer(_args);
+        #    }
+        #
+        #    // Build the query used for the category lookup
+        #    pcLookup = new ProjCategoryLookup();
+        #
+        #    pcLookup.parmCategoryType(projValTrans.parmCategoryType());
+        #    pcLookup.parmFilterEstimate(projValTrans.parmFilterEstimate());
+        #    pcLookup.parmFilterSubscription(projValTrans.parmFilterSubscription());
+        #    pcLookup.parmShowActiveOrSubscription(projValTrans.parmShowActiveOrSubscription());
+        #    pcLookup.parmSubscription(projValTrans.parmSubscription());
+        #    pcLookup.parmShowInactiveCategories(ProjParameters::find().ShowInactiveCategories);
+        #    pcLookup.parmFormName(formName);
+        #    query = pcLookup.buildQuery(tmpTableId, _projId, _emplId);
+        #
+        #    return query;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #buildProjEmplIdQuery
+        #public static Query buildProjEmplIdQuery(Args _args)
+        #{
+        #    Query                   webQuery = new Query();
+        #    ProjValCheckTrans       projValTrans;
+        #    QueryBuildDataSource    empl, setup1, setup2;
+        #    QueryBuildRange         qrEmplId;
+        #    ;
+        #
+        #    // set the value of the fields that will be used to build the query for the lookup
+        #    projValTrans    = new ProjValCheckTrans();
+        #    if (projValTrans.checkBuffer(_args))
+        #    {
+        #        projValTrans.setVariablesFromBuffer(_args);
+        #    }
+        #
+        #    empl   = webQuery.addDataSource(tablenum(EmplTable));
+        #    empl.addSortField(fieldnum(EmplTable,EmplId));
+        #    //empl.addSortField(fieldnum(EmplTable,Name));
+        #    empl.addSortField(fieldnum(EmplTable,RecId));
+        #    empl.orderMode(OrderMode::GroupBy);
+        #
+        #    setup1 = empl.addDataSource(tablenum(ProjValEmplProjSetup),'ds_1');
+        #    setup1.addSortField(fieldnum(ProjValEmplProjSetup,GroupId));
+        #    setup1.addSortField(fieldnum(ProjValEmplProjSetup,RecId));
+        #    setup1.orderMode(OrderMode::GroupBy);
+        #
+        #    setup2 = setup1.addDataSource(tablenum(ProjValEmplProjSetup),'ds_2');
+        #
+        #    setup1.clearLinks();
+        #
+        #    setup1.addRange(fieldnum(ProjValEmplProjSetup,Projid)).value(queryValue(projValTrans.parmProjId()));
+        #
+        #    qrEmplId = setup1.addRange(fieldnum(ProjValEmplProjSetup, EmplId));
+        #    qrEmplId.value(
+        #      strfmt('(%1) || (%2)',fieldstr(ProjValEmplProjSetup,Projid), fieldstr(ProjValEmplProjSetup, GroupId)));
+        #    qrEmplId.status(RangeStatus::Hidden);
+        #
+        #    qrEmplId = setup2.addRange(fieldnum(ProjValEmplProjSetup, EmplId));
+        #    qrEmplId.value(
+        #    strfmt('((%6.%1 == %4.%3) && (((%6.%1 == %5.%1) && (%6.%1)) || ((%6.%2 == %5.%2) && (%6.%2))))',
+        #        fieldstr(ProjValEmplProjSetup,EmplId),
+        #        fieldstr(ProjValEmplProjSetup,GroupId),
+        #        fieldstr(EmplTable, EmplId),
+        #        empl.name(),
+        #        setup1.name(),
+        #        setup2.name()));
+        #    qrEmplId.status(RangeStatus::Hidden);
+        #
+        #    return webQuery;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #exist
+        #public static boolean exist(SMAServiceOrderId _serviceOrderId)
+        #{;
+        #    return (select firstonly RecId from smaServiceOrderLine where smaServiceOrderLine.ServiceOrderId == _serviceOrderId).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #existAgreementId
+        #public static boolean existAgreementId(SMAAgreementId _agreementId)
+        #{
+        #    boolean ret = false;
+        #    ;
+        #
+        #    if (_agreementId)
+        #    {
+        #        ret = (select firstonly RecId from smaServiceOrderLine where smaServiceOrderLine.AgreementId == _agreementId).RecId != 0;
+        #    }
+        #
+        #    return ret;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existServiceOrderLine
+        #public static boolean existServiceOrderLine(SMAServiceOrderId _serviceOrderId)
+        #{
+        #    boolean ret = false;
+        #    ;
+        #
+        #    if (_serviceOrderId)
+        #    {
+        #        ret = (select firstonly RecId from smaServiceOrderLine where smaServiceOrderLine.ServiceOrderId == _serviceOrderId).RecId != 0;
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #existServiceOrderLineStatus
+        #public static boolean existServiceOrderLineStatus(SMAServiceOrderId _serviceOrderId, SMAServiceOrderStatus _status)
+        #{
+        #    boolean ret = false;
+        #    ;
+        #
+        #    if (_serviceOrderId)
+        #    {
+        #        ret = (select firstonly RecId from smaServiceOrderLine
+        #                where smaServiceOrderLine.ServiceOrderId == _serviceOrderId
+        #                    && smaServiceOrderLine.ServiceOrderStatus == _status).RecId != 0;
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #existTask
+        #public static boolean existTask(SMAServiceOrderId _serviceOrderId, SMAServiceTaskId _taskId)
+        #{
+        #    boolean ret = false;
+        #    ;
+        #
+        #    if (_serviceOrderId && _taskId)
+        #    {
+        #        ret = (select firstonly RecId from smaServiceOrderLine
+        #                    index hint ServiceTaskIdx
+        #                    where smaServiceOrderLine.ServiceOrderId == _serviceOrderId &&
+        #                          smaServiceOrderLine.ServiceTaskId  == _taskId).RecId != 0;
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #existTransTypePosted
+        #public static container existTransTypePosted(SMAServiceOrderId        serviceOrderId,
+        #                                NoYes hour              = NoYes::No,
+        #                                NoYes itemJournal       = NoYes::No,
+        #                                NoYes itemRequirement   = NoYes::No,
+        #                                NoYes expense           = NoYes::No,
+        #                                NoYes fee               = NoYes::No)
+        #{
+        #    container               existTransType = [false,false,false,false,false];
+        #    SMAServiceOrderLine     serviceOrderLine;
+        #    SalesLine               salesLine;
+        #    ;
+        #
+        #    if(hour)
+        #    {
+        #        select firstonly serviceOrderLine where serviceOrderLine.ServiceOrderId == serviceOrderId &&
+        #                                    serviceOrderLine.TransactionType == SMATransactionType::Hour  &&
+        #                                    serviceOrderLine.ServiceOrderStatus == SMAServiceOrderStatus::Posted;
+        #
+        #        if(serviceOrderLine)
+        #        {
+        #            existTransType = conpoke(existTransType,1,true);
+        #        }
+        #    }
+        #
+        #    if(itemJournal)
+        #    {
+        #        select firstonly serviceOrderLine where serviceOrderLine.ServiceOrderId == serviceOrderId &&
+        #                                    serviceOrderLine.TransactionType            == SMATransactionType::Item  &&
+        #                                    serviceOrderLine.ServiceOrderStatus         == SMAServiceOrderStatus::Posted;
+        #
+        #        if(serviceOrderLine)
+        #        {
+        #            existTransType = conpoke(existTransType,2,true);
+        #        }
+        #    }
+        #
+        #    if(itemRequirement)
+        #    {
+        #        select firstonly salesLine where salesLine.ServiceOrderId            == serviceOrderId &&
+        #                                         salesLine.SalesType                 == SalesType::ItemReq;
+        #
+        #        if(salesLine)
+        #        {
+        #            existTransType = conpoke(existTransType,3,true);
+        #        }
+        #    }
+        #
+        #    if(expense)
+        #    {
+        #        select firstonly serviceOrderLine where serviceOrderLine.ServiceOrderId     == serviceOrderId &&
+        #                                                serviceOrderLine.TransactionType    == SMATransactionType::Expense &&
+        #                                                serviceOrderLine.ServiceOrderStatus == SMAServiceOrderStatus::Posted;
+        #
+        #        if(serviceOrderLine)
+        #        {
+        #            existTransType = conpoke(existTransType,4,true);
+        #        }
+        #    }
+        #
+        #    if(fee)
+        #    {
+        #        select firstonly serviceOrderLine where serviceOrderLine.ServiceOrderId     == serviceOrderId &&
+        #                                                serviceOrderLine.TransactionType    == SMATransactionType::Fee &&
+        #                                                serviceOrderLine.ServiceOrderStatus == SMAServiceOrderStatus::Posted;
+        #
+        #        if(serviceOrderLine)
+        #        {
+        #            existTransType = conpoke(existTransType,5,true);
+        #        }
+        #    }
+        #
+        #    return existTransType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #find
+        #public static SMAServiceOrderLine find(SMAServiceOrderId _serviceOrderId, LineNum _serviceOrderLineNum, boolean _forupdate = false)
+        #{
+        #    SMAServiceOrderLine serviceOrderLine = null;
+        #    ;
+        #
+        #    if (_serviceOrderId && _serviceOrderLineNum)
+        #    {
+        #        serviceOrderLine.selectForUpdate(_forupdate);
+        #
+        #        select firstonly serviceOrderLine
+        #            index hint ServiceOrderIdx
+        #            where serviceOrderLine.ServiceOrderId        == _serviceOrderId &&
+        #                  serviceOrderLine.ServiceOrderLineNum   == _serviceOrderLineNum;
+        #    }
+        #
+        #    return serviceOrderLine;
+        #}
+      ENDSOURCE
+      SOURCE #findRecId
+        #static SMAServiceOrderLine findRecId(recId      _recId,
+        #                           boolean              _update = false)
+        #{
+        #    SMAServiceOrderLine smaServiceOrderLine;
+        #    ;
+        #    if (_update)
+        #    {
+        #        smaServiceOrderLine.selectForUpdate(_update);
+        #    }
+        #
+        #    select smaServiceOrderLine
+        #        where smaServiceOrderLine.RecId == _recId;
+        #
+        #    return smaServiceOrderLine;
+        #}
+      ENDSOURCE
+      SOURCE #webLookupItemCombination
+        #client static public void webLookupItemCombination(ItemId  itemId = '')
+        #{
+        #    webTableLookup          webTableLookup;
+        #    Query                   query;
+        #
+        #    QueryBuildDataSource    queryInventProductGroupItem;
+        #    QueryBuildDataSource    queryInventDimCombination;
+        #    QueryBuildRange         rangeInventDimCombination;
+        #
+        #    QueryBuildDataSource    queryInventTxt;
+        #    QueryBuildRange         rangeInventTxt;
+        #
+        #    InventProductGroupItem  inventProductGroupItem;
+        #
+        #    WebSession              webSession = new WebSession();
+        #    ;
+        #
+        #    if (!itemId)
+        #    {
+        #        checkFailed("@SYS16661");
+        #        return;
+        #    }
+        #
+        #    webTableLookup = webTableLookup::newParameters(tablenum(InventDimCombination));
+        #    webTableLookup.addLookupfield(fieldnum(InventDimCombination, ConfigId));
+        #    webTableLookup.addLookupfield(fieldnum(InventDimCombination, InventSizeId));
+        #    webTableLookup.addLookupfield(fieldnum(InventDimCombination, InventColorId));
+        #    webTableLookup.addLookupfield(fieldnum(InventTxt, Txt),false,tablenum(InventTxt));
+        #    webTableLookup.selectField(fieldnum(InventDimCombination, InventDimId));
+        #
+        #    if (itemId)
+        #    {
+        #        query = new Query();
+        #
+        #        queryInventDimCombination = query.addDataSource(tablenum(InventDimCombination));
+        #
+        #        if (EP::isCustomer())
+        #        {
+        #            queryInventDimCombination.orderMode(OrderMode::GroupBy);
+        #            queryInventDimCombination.addSortField(fieldnum(InventDimCombination,ItemId));
+        #            queryInventDimCombination.addSortField(fieldnum(InventDimCombination,ConfigId));
+        #            queryInventDimCombination.addSortField(fieldnum(InventDimCombination,InventColorId));
+        #            queryInventDimCombination.addSortField(fieldnum(InventDimCombination,InventSizeId));
+        #            queryInventDimCombination.addSortField(fieldnum(InventDimCombination,InventDimId));
+        #            queryInventDimCombination.addSortField(fieldnum(InventDimCombination,Name));
+        #
+        #            select firstonly inventProductGroupItem
+        #                where inventProductGroupItem.ItemId == itemId &&
+        #                      inventProductGroupItem.InventDimId != InventDim::inventDimIdBlank();
+        #
+        #            if (inventProductGroupItem)
+        #            {
+        #                queryInventProductGroupItem = queryInventDimCombination.addDataSource(tablenum(InventProductGroupItem));
+        #                queryInventProductGroupItem.joinMode(JoinMode::InnerJoin);
+        #                queryInventProductGroupItem.relations(true);
+        #                queryInventProductGroupItem.orderMode(OrderMode::GroupBy);
+        #                queryInventProductGroupItem.addSortField(fieldnum(InventProductGroupItem,ItemId));
+        #                queryInventProductGroupItem.addSortField(fieldnum(InventProductGroupItem,InventDimId));
+        #
+        #                queryInventTxt            = queryInventProductGroupItem.addDataSource(tablenum(InventTxt));
+        #            }
+        #            else
+        #            {
+        #                queryInventTxt            = queryInventDimCombination.addDataSource(tablenum(InventTxt));
+        #            }
+        #
+        #             queryInventTxt.joinMode(JoinMode::OuterJoin);
+        #             queryInventTxt.relations(true);
+        #             queryInventTxt.orderMode(OrderMode::GroupBy);
+        #             queryInventTxt.addSortField(fieldnum(InventTxt,ItemId));
+        #             queryInventTxt.addSortField(fieldnum(InventTxt,InventDimId));
+        #             queryInventTxt.addSortField(fieldnum(InventTxt,Txt));
+        #        }
+        #        else
+        #        {
+        #            queryInventTxt            = queryInventDimCombination.addDataSource(tablenum(InventTxt));
+        #            queryInventTxt.joinMode(JoinMode::OuterJoin);
+        #            queryInventTxt.relations(true);
+        #        }
+        #
+        #        rangeInventDimCombination = queryInventDimCombination.addRange(fieldnum(InventDimCombination, ItemId));
+        #        rangeInventDimCombination.value(queryValue(itemId));
+        #
+        #        rangeInventTxt            = queryInventTxt.addRange(fieldnum(InventTxt, LanguageId));
+        #        rangeInventTxt.value(webSession.language());
+        #
+        #        webTableLookup.parmQuery(query);
+        #    }
+        #
+        #    webTableLookup.run();
+        #}
+      ENDSOURCE
+      SOURCE #webLookupProjCategory
+        #public client static void webLookupProjCategory(ProjId _projId, EmplId _emplId, Args _args)
+        #{
+        #    webTableLookup          webTableLookup;
+        #    Query                   q;
+        #
+        #    ProjCategoryLookup      pcLookup;
+        #    ProjValCheckTrans       projValTrans;
+        #    tableId                 tmpTableId;
+        #    str                     formName;
+        #    ;
+        #
+        #    if (_args)
+        #    {
+        #        tmpTableId = _args.dataset();
+        #        if(_args.caller())
+        #            formName = _args.caller().name();
+        #    }
+        #
+        #    // set the value of the fields that will be used to build the query for the lookup
+        #    projValTrans    = new ProjValCheckTrans();
+        #    if (projValTrans.checkBuffer(_args))
+        #    {
+        #        projValTrans.setVariablesFromBuffer(_args);
+        #    }
+        #
+        #    // Build the query used for the category lookup
+        #    pcLookup = new ProjCategoryLookup();
+        #
+        #    pcLookup.parmCategoryType(projValTrans.parmCategoryType());
+        #    pcLookup.parmFilterEstimate(projValTrans.parmFilterEstimate());
+        #    pcLookup.parmFilterSubscription(projValTrans.parmFilterSubscription());
+        #    pcLookup.parmShowActiveOrSubscription(projValTrans.parmShowActiveOrSubscription());
+        #    pcLookup.parmSubscription(projValTrans.parmSubscription());
+        #    pcLookup.parmShowInactiveCategories(ProjParameters::find().ShowInactiveCategories);
+        #    pcLookup.parmFormName(formName);
+        #    q = pcLookup.buildQuery(tmpTableId, _projId, _emplId);
+        #
+        #    webTableLookup = webTableLookup::newParameters(tablenum(ProjCategory));
+        #    webTableLookup.addLookupfield(fieldnum(ProjCategory, CategoryId));
+        #    webTableLookup.addLookupfield(fieldnum(ProjCategory, Name));
+        #
+        #    // Pass the query to WebTableLookup so it result is rendered in the lookup page.
+        #    webTableLookup.parmQuery(q);
+        #    webTableLookup.selectField(fieldnum(ProjCategory, CategoryId));
+        #    webTableLookup.run();
+        #
+        #}
+      ENDSOURCE
+      SOURCE #webLookupProjEmplId
+        #public client static void webLookupProjEmplId(Args _args)
+        #{
+        #    webTableLookup          webTableLookup;
+        #    Query                   webQuery = new Query();
+        #
+        #    ProjValCheckTrans       projValTrans;
+        #    QueryBuildDataSource    empl, setup1, setup2;
+        #    QueryBuildRange         qrEmplId;
+        #    ;
+        #
+        #    // set the value of the fields that will be used to build the query for the lookup
+        #    projValTrans    = new ProjValCheckTrans();
+        #    if (projValTrans.checkBuffer(_args))
+        #    {
+        #        projValTrans.setVariablesFromBuffer(_args);
+        #    }
+        #
+        #    empl   = webQuery.addDataSource(tablenum(EmplTable));
+        #    empl.addSortField(fieldnum(EmplTable,EmplId));
+        #    empl.addSortField(fieldnum(EmplTable,RecId));
+        #    empl.orderMode(OrderMode::GroupBy);
+        #
+        #    setup1 = empl.addDataSource(tablenum(ProjValEmplProjSetup),'ds_1');
+        #    setup1.addSortField(fieldnum(ProjValEmplProjSetup,GroupId));
+        #    setup1.addSortField(fieldnum(ProjValEmplProjSetup,RecId));
+        #    setup1.orderMode(OrderMode::GroupBy);
+        #
+        #    setup2 = setup1.addDataSource(tablenum(ProjValEmplProjSetup),'ds_2');
+        #
+        #    setup1.clearLinks();
+        #
+        #    setup1.addRange(fieldnum(ProjValEmplProjSetup,Projid)).value(queryValue(projValTrans.parmProjId()));
+        #
+        #    qrEmplId = setup1.addRange(fieldnum(ProjValEmplProjSetup, EmplId));
+        #    qrEmplId.value(
+        #      strfmt('(%1) || (%2)',fieldstr(ProjValEmplProjSetup,Projid), fieldstr(ProjValEmplProjSetup, GroupId)));
+        #    qrEmplId.status(RangeStatus::Hidden);
+        #
+        #    qrEmplId = setup2.addRange(fieldnum(ProjValEmplProjSetup, EmplId));
+        #    qrEmplId.value(
+        #    strfmt('((%6.%1 == %4.%3) && (((%6.%1 == %5.%1) && (%6.%1)) || ((%6.%2 == %5.%2) && (%6.%2))))',
+        #        fieldstr(ProjValEmplProjSetup,EmplId),
+        #        fieldstr(ProjValEmplProjSetup,GroupId),
+        #        fieldstr(EmplTable, EmplId),
+        #        empl.name(),
+        #        setup1.name(),
+        #        setup2.name()));
+        #    qrEmplId.status(RangeStatus::Hidden);
+        #
+        #    webTableLookup = webTableLookup::newParameters(tablenum(EmplTable));
+        #    webTableLookup.addLookupfield(fieldnum(EmplTable, EmplId));
+        #
+        #    // Pass the query to WebTableLookup so it result is rendered in the lookup page.
+        #    webTableLookup.parmQuery(webQuery);
+        #    webTableLookup.selectField(fieldnum(EmplTable, EmplId));
+        #    webTableLookup.run();
+        #}
+      ENDSOURCE
+      SOURCE #webLookupServiceObject
+        #public client static void webLookupServiceObject(SMAAgreementId _agreementId)
+        #{
+        #    webTableLookup          webTableLookup;
+        #    Query                   query;
+        #    QueryBuildDataSource    queryBuildDataSource;
+        #    QueryBuildRange         qbr_RelTableId;
+        #    QueryBuildRange         qbr_RelKeyId;
+        #    ;
+        #
+        #    webTableLookup = webTableLookup::newParameters(tablenum(SMAServiceObjectRelation));
+        #    webTableLookup.addLookupfield(fieldnum(SMAServiceObjectRelation, ServiceObjectRelationId), true);
+        #    webTableLookup.addLookupfield(fieldnum(SMAServiceObjectRelation, ServiceObjectId));
+        #    webTableLookup.addLookupfield(fieldnum(SMAServiceObjectRelation, ServiceObjectRef));
+        #
+        #    query = new Query();
+        #    queryBuildDataSource = query.addDataSource(tablenum(SMAServiceObjectRelation));
+        #    qbr_RelTableId = queryBuildDataSource.addRange(fieldnum(SMAServiceObjectRelation, RelTableId));
+        #    qbr_RelTableId.value(SysQuery::value(tablenum(SMAAgreementTable)));
+        #
+        #    qbr_RelKeyId = queryBuildDataSource.addRange(fieldnum(SMAServiceObjectRelation, RelKeyId));
+        #    qbr_RelKeyId.value(SysQuery::value(_agreementId));
+        #
+        #    webTableLookup.parmQuery(query);
+        #
+        #    webTableLookup.run();
+        #}
+      ENDSOURCE
+      SOURCE #webLookupServiceTask
+        #public client static void webLookupServiceTask(SMAAgreementId _agreementId)
+        #{
+        #    webTableLookup          webTableLookup;
+        #    Query                   query;
+        #    QueryBuildDataSource    queryBuildDataSource;
+        #    QueryBuildRange         qbr_RelTableId;
+        #    QueryBuildRange         qbr_RelKeyId;
+        #    ;
+        #
+        #    webTableLookup = webTableLookup::newParameters(tablenum(SMAServiceTaskRelation));
+        #    webTableLookup.addLookupfield(fieldnum(SMAServiceTaskRelation, ServiceTaskId), true);
+        #
+        #    query = new Query();
+        #
+        #    queryBuildDataSource = query.addDataSource(tablenum(SMAServiceTaskRelation));
+        #    qbr_RelTableId = queryBuildDataSource.addRange(fieldnum(SMAServiceTaskRelation, RelTableId));
+        #    qbr_RelTableId.value(SysQuery::value(tablenum(SMAAgreementTable)));
+        #
+        #    qbr_RelKeyId = queryBuildDataSource.addRange(fieldnum(SMAServiceTaskRelation, RelKeyId));
+        #    qbr_RelKeyId.value(SysQuery::value(_agreementId));
+        #
+        #    webTableLookup.parmQuery(query);
+        #
+        #    webTableLookup.run();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

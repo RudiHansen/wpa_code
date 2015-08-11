@@ -1,0 +1,44 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBE
+
+; Microsoft Dynamics AX Enumtype : WPAAllOutIn unloaded
+; --------------------------------------------------------------------------------
+  ENUMTYPEVERSION 1
+  
+  ENUMTYPE #WPAAllOutIn
+    PROPERTIES
+      Name                #WPAAllOutIn
+      Label               #@SYS8335
+      Help                #@WPA172
+      UseEnumValue        #Yes
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+      #All
+      PROPERTIES
+        Name                #All
+        Label               #@SYS14437
+        EnumValue           #0
+      ENDPROPERTIES
+      
+      #OutGoing
+      PROPERTIES
+        Name                #OutGoing
+        Label               #@WPA163
+        EnumValue           #1
+      ENDPROPERTIES
+      
+      #Incoming
+      PROPERTIES
+        Name                #Incoming
+        Label               #@WPA164
+        EnumValue           #2
+      ENDPROPERTIES
+      
+    ENDTYPEELEMENTS
+  ENDENUMTYPE
+  
+
+***Element: END

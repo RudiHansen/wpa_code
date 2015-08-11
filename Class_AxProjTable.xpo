@@ -1,0 +1,1406 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxProjTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxProjTable
+    PROPERTIES
+      Name                #AxProjTable
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxProjTable axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxProjTable extends AxInternalBase
+        #{
+        #    ProjTable ProjTable;
+        #    str             county;
+        #    str             state;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public ProjTable currentRecord(ProjTable _ProjTable = ProjTable)
+        #{
+        #    if (!prmisdefault(_ProjTable))
+        #    {
+        #        super(_ProjTable);
+        #        ProjTable = _ProjTable;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return ProjTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected ProjTable emptyRecord()
+        #{
+        #    ProjTable localProjTable;
+        #    ;
+        #    return localProjTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getDimensionelement
+        #public SysDim getDimensionelement(int _array)
+        #{
+        #    ;
+        #    return projTable.Dimension[_array];
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getSortingIdElement
+        #public str getSortingIdElement(int _array)
+        #{
+        #    ;
+        #    return projTable.SortingId[_array];
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmAssetId
+        #public AssetId parmAssetId(AssetId _assetId = '')
+        #{
+        #    if (!prmisdefault(_assetId))
+        #    {
+        #        this.setField(fieldNum(ProjTable, AssetId), _assetId);
+        #    }
+        #
+        #    return projTable.AssetId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCheckBudget
+        #public NoYesId parmCheckBudget(NoYesId _checkBudget = NoYes::No)
+        #{
+        #    if (!prmisdefault(_checkBudget))
+        #    {
+        #        this.setField(fieldNum(ProjTable, CheckBudget), _checkBudget);
+        #    }
+        #
+        #    return projTable.CheckBudget;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCreated
+        #public TransDate parmCreated(TransDate _created = dateNull())
+        #{
+        #    if (!prmisdefault(_created))
+        #    {
+        #        this.setField(fieldNum(ProjTable, Created), _created);
+        #    }
+        #
+        #    return projTable.Created;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCustAccount
+        #public str parmCustAccount(str _custAccount = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_custAccount))
+        #    {
+        #        dictField = new DictField(tablenum(ProjTable),fieldnum(ProjTable,CustAccount));
+        #        if(this.valueMappingInbound())
+        #        {
+        #            this.validateInboundString(_custAccount,dictField,this.mapPolicy().xMLMapCustAccount());
+        #            _custAccount = this.axCustAccount(_custAccount);
+        #        }
+        #        else
+        #        {
+        #            this.validateInboundString(_custAccount,dictField);
+        #        }
+        #        this.setField(fieldNum(ProjTable, CustAccount), _custAccount);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axCustAccount(projTable.CustAccount);
+        #    }
+        #    else
+        #    {
+        #        return projTable.CustAccount;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDeliveryCity
+        #public AddressCity parmDeliveryCity(AddressCity _deliveryCity = '')
+        #{
+        #    if (!prmisdefault(_deliveryCity))
+        #    {
+        #        this.setField(fieldNum(ProjTable, DeliveryCity), _deliveryCity);
+        #    }
+        #
+        #    return projTable.DeliveryCity;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDeliveryStreet
+        #public AddressStreet parmDeliveryStreet(AddressStreet _deliveryStreet = '')
+        #{
+        #    if (!prmisdefault(_deliveryStreet))
+        #    {
+        #        this.setField(fieldNum(ProjTable, DeliveryStreet), _deliveryStreet);
+        #    }
+        #
+        #    return projTable.DeliveryStreet;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDimension
+        #public Dimension parmDimension(Dimension _dimension = Dimensions::emptyDimension())
+        #{
+        #    SysDictField    sysDictField;
+        #    int             array;
+        #    ;
+        #    if (!prmisdefault(_dimension))
+        #    {
+        #        sysDictField = new SysDictField(tableNum(ProjTable),fieldnum(ProjTable,Dimension));
+        #        for (array = 1; array <= sysDictField.arraySize(); array++)
+        #        {
+        #            this.setDimensionElement(array,_dimension[array]);
+        #        }
+        #    }
+        #
+        #    return projTable.Dimension;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDlvAddr
+        #public Addressing parmDlvAddr(Addressing _dlvAddr = '')
+        #{
+        #    if (!prmisdefault(_dlvAddr))
+        #    {
+        #        this.setField(fieldNum(ProjTable, DlvAddr), _dlvAddr);
+        #    }
+        #
+        #    return projTable.DlvAddr;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDlvCountryRegionId
+        #public str parmDlvCountryRegionId(str _dlvCountryRegionId = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_dlvCountryRegionId))
+        #    {
+        #        dictField = new DictField(tablenum(ProjTable),fieldnum(ProjTable,DlvCountryRegionId));
+        #        if(this.valueMappingInbound())
+        #        {
+        #            this.validateInboundString(_dlvCountryRegionId,dictField,this.mapPolicy().xMLMapCountryRegion());
+        #            _dlvCountryRegionId = this.axAddressCountryRegionId(_dlvCountryRegionId);
+        #        }
+        #        else
+        #        {
+        #            this.validateInboundString(_dlvCountryRegionId,dictField);
+        #        }
+        #        this.setField(fieldNum(ProjTable, DlvCountryRegionId), _dlvCountryRegionId);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axAddressCountryRegionId(projTable.DlvCountryRegionId);
+        #    }
+        #    else
+        #    {
+        #        return projTable.DlvCountryRegionId;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDlvCounty
+        #public str parmDlvCounty(str _dlvCounty = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_dlvCounty))
+        #    {
+        #        dictField = new DictField(tablenum(ProjTable),fieldnum(ProjTable,DlvCounty));
+        #        if(this.valueMappingInbound())
+        #        {
+        #            this.validateInboundString(_dlvCounty,dictField,this.mapPolicy().xMLMapCounty());
+        #            county = _dlvCounty;
+        #        }
+        #        else
+        #        {
+        #            this.validateInboundString(_dlvCounty,dictField);
+        #        }
+        #        this.setField(fieldNum(ProjTable, DlvCounty), _dlvCounty);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axaddressCountyId(projTable.DlvCounty, projTable.DlvCountryRegionId, projTable.DlvState);
+        #    }
+        #    else
+        #    {
+        #        return projTable.DlvCounty;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDlvName
+        #public CompanyName parmDlvName(CompanyName _dlvName = '')
+        #{
+        #    if (!prmisdefault(_dlvName))
+        #    {
+        #        this.setField(fieldNum(ProjTable, DlvName), _dlvName);
+        #    }
+        #
+        #    return projTable.DlvName;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDlvState
+        #public str parmDlvState(str _dlvState = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_dlvState))
+        #    {
+        #        dictField = new DictField(tablenum(ProjTable),fieldnum(ProjTable,DlvState));
+        #        if(this.valueMappingInbound())
+        #        {
+        #            this.validateInboundString(_dlvState,dictField,this.mapPolicy().xMLMapState());
+        #            state = _dlvState;
+        #        }
+        #        else
+        #        {
+        #            this.validateInboundString(_dlvState,dictField);
+        #        }
+        #        this.setField(fieldNum(ProjTable, DlvState), _dlvState);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axaddressStateId(projTable.DlvState, projTable.DlvCountryRegionId);
+        #    }
+        #    else
+        #    {
+        #        return projTable.DlvState;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDlvZipCode
+        #public str parmDlvZipCode(str _dlvZipCode = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_dlvZipCode))
+        #    {
+        #        dictField = new DictField(tablenum(ProjTable),fieldnum(ProjTable,DlvZipCode));
+        #        if(this.valueMappingInbound())
+        #        {
+        #            this.validateInboundString(_dlvZipCode,dictField,this.mapPolicy().xMLMapZipCode());
+        #            _dlvZipCode = this.axAddressZipCodeId(_dlvZipCode);
+        #        }
+        #        else
+        #        {
+        #            this.validateInboundString(_dlvZipCode,dictField);
+        #        }
+        #        this.setField(fieldNum(ProjTable, DlvZipCode), _dlvZipCode);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axAddressZipCodeId(projTable.DlvZipCode);
+        #    }
+        #    else
+        #    {
+        #        return projTable.DlvZipCode;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEmail
+        #public Email parmEmail(Email _email = '')
+        #{
+        #    if (!prmisdefault(_email))
+        #    {
+        #        this.setField(fieldNum(ProjTable, Email), _email);
+        #    }
+        #
+        #    return projTable.Email;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEndDate
+        #public ProjEndDate parmEndDate(ProjEndDate _endDate = dateNull())
+        #{
+        #    if (!prmisdefault(_endDate))
+        #    {
+        #        this.setField(fieldNum(ProjTable, EndDate), _endDate);
+        #    }
+        #
+        #    return projTable.EndDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmFormat
+        #public NumberSequenceFormat parmFormat(NumberSequenceFormat _format = '')
+        #{
+        #    if (!prmisdefault(_format))
+        #    {
+        #        this.setField(fieldNum(ProjTable, Format), _format);
+        #    }
+        #
+        #    return projTable.Format;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmHeader
+        #public ProjHeader parmHeader(ProjHeader _header = NoYes::No)
+        #{
+        #    if (!prmisdefault(_header))
+        #    {
+        #        this.setField(fieldNum(ProjTable, Header), _header);
+        #    }
+        #
+        #    return projTable.Header;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmJobId
+        #public JmgJobId parmJobId(JmgJobId _jobId = '')
+        #{
+        #    if (!prmisdefault(_jobId))
+        #    {
+        #        this.setField(fieldNum(ProjTable, JobId), _jobId);
+        #    }
+        #
+        #    return projTable.JobId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmJobPayType
+        #public JmgJobPayType parmJobPayType(JmgJobPayType _jobPayType = JmgJobPayTypeEnum::Empty)
+        #{
+        #    if (!prmisdefault(_jobPayType))
+        #    {
+        #        this.setField(fieldNum(ProjTable, JobPayType), _jobPayType);
+        #    }
+        #
+        #    return projTable.JobPayType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmName
+        #public ProjName parmName(ProjName _name = '')
+        #{
+        #    if (!prmisdefault(_name))
+        #    {
+        #        this.setField(fieldNum(ProjTable, Name), _name);
+        #    }
+        #
+        #    return projTable.Name;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmParentId
+        #public ProjParentId parmParentId(ProjParentId _parentId = '')
+        #{
+        #    if (!prmisdefault(_parentId))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ParentId), _parentId);
+        #    }
+        #
+        #    return projTable.ParentId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjGroupId
+        #public ProjGroupId parmProjGroupId(ProjGroupId _projGroupId = '')
+        #{
+        #    if (!prmisdefault(_projGroupId))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ProjGroupId), _projGroupId);
+        #    }
+        #
+        #    return projTable.ProjGroupId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjId
+        #public ProjId parmProjId(ProjId _projId = '')
+        #{
+        #    if (!prmisdefault(_projId))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ProjId), _projId);
+        #    }
+        #
+        #    return projTable.ProjId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjInvoiceProjId
+        #public ProjInvoiceProjId parmProjInvoiceProjId(ProjInvoiceProjId _projInvoiceProjId = '')
+        #{
+        #    if (!prmisdefault(_projInvoiceProjId))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ProjInvoiceProjId), _projInvoiceProjId);
+        #    }
+        #
+        #    return projTable.ProjInvoiceProjId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjLedgerPosting
+        #public ProjLedgerPosting parmProjLedgerPosting(ProjLedgerPosting _projLedgerPosting = ProjLedgerPosting::GroupId)
+        #{
+        #    if (!prmisdefault(_projLedgerPosting))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ProjLedgerPosting), _projLedgerPosting);
+        #    }
+        #
+        #    return projTable.ProjLedgerPosting;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjLinePropertySearch
+        #public ProjLinePropertySearch parmProjLinePropertySearch(ProjLinePropertySearch _projLinePropertySearch = ProjLinePropertySearch::Project)
+        #{
+        #    if (!prmisdefault(_projLinePropertySearch))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ProjLinePropertySearch), _projLinePropertySearch);
+        #    }
+        #
+        #    return projTable.ProjLinePropertySearch;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjPriceGroup
+        #public ProjPriceGroupID parmProjPriceGroup(ProjPriceGroupID _projPriceGroup = '')
+        #{
+        #    if (!prmisdefault(_projPriceGroup))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ProjPriceGroup), _projPriceGroup);
+        #    }
+        #
+        #    return projTable.ProjPriceGroup;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRequireActivityExpenseForecast
+        #public RequireActivityExpenseForecast parmRequireActivityExpenseForecast(RequireActivityExpenseForecast _requireActivityExpenseForecast = NoYes::No)
+        #{
+        #    if (!prmisdefault(_requireActivityExpenseForecast))
+        #    {
+        #        this.setField(fieldNum(ProjTable, RequireActivityExpenseForecast), _requireActivityExpenseForecast);
+        #    }
+        #
+        #    return projTable.RequireActivityExpenseForecast;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRequireActivityExpenseTrx
+        #public RequireActivityExpenseTrx parmRequireActivityExpenseTrx(RequireActivityExpenseTrx _requireActivityExpenseTrx = NoYes::No)
+        #{
+        #    if (!prmisdefault(_requireActivityExpenseTrx))
+        #    {
+        #        this.setField(fieldNum(ProjTable, RequireActivityExpenseTrx), _requireActivityExpenseTrx);
+        #    }
+        #
+        #    return projTable.RequireActivityExpenseTrx;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRequireActivityHourForecast
+        #public RequireActivityHourForecast parmRequireActivityHourForecast(RequireActivityHourForecast _requireActivityHourForecast = NoYes::No)
+        #{
+        #    if (!prmisdefault(_requireActivityHourForecast))
+        #    {
+        #        this.setField(fieldNum(ProjTable, RequireActivityHourForecast), _requireActivityHourForecast);
+        #    }
+        #
+        #    return projTable.RequireActivityHourForecast;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRequireActivityHourTrx
+        #public RequireActivityHourTrx parmRequireActivityHourTrx(RequireActivityHourTrx _requireActivityHourTrx = NoYes::No)
+        #{
+        #    if (!prmisdefault(_requireActivityHourTrx))
+        #    {
+        #        this.setField(fieldNum(ProjTable, RequireActivityHourTrx), _requireActivityHourTrx);
+        #    }
+        #
+        #    return projTable.RequireActivityHourTrx;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRequireActivityItemForecast
+        #public RequireActivityItemForecast parmRequireActivityItemForecast(RequireActivityItemForecast _requireActivityItemForecast = NoYes::No)
+        #{
+        #    if (!prmisdefault(_requireActivityItemForecast))
+        #    {
+        #        this.setField(fieldNum(ProjTable, RequireActivityItemForecast), _requireActivityItemForecast);
+        #    }
+        #
+        #    return projTable.RequireActivityItemForecast;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRequireActivityItemTrx
+        #public RequireActivityItemTrx parmRequireActivityItemTrx(RequireActivityItemTrx _requireActivityItemTrx = NoYes::No)
+        #{
+        #    if (!prmisdefault(_requireActivityItemTrx))
+        #    {
+        #        this.setField(fieldNum(ProjTable, RequireActivityItemTrx), _requireActivityItemTrx);
+        #    }
+        #
+        #    return projTable.RequireActivityItemTrx;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmResponsible
+        #public ProjResponsible parmResponsible(ProjResponsible _responsible = '')
+        #{
+        #    if (!prmisdefault(_responsible))
+        #    {
+        #        this.setField(fieldNum(ProjTable, Responsible), _responsible);
+        #    }
+        #
+        #    return projTable.Responsible;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmResponsibleFinancial
+        #public ProjResponsibleFinancial parmResponsibleFinancial(ProjResponsibleFinancial _responsibleFinancial = '')
+        #{
+        #    if (!prmisdefault(_responsibleFinancial))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ResponsibleFinancial), _responsibleFinancial);
+        #    }
+        #
+        #    return projTable.ResponsibleFinancial;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmResponsibleSales
+        #public ProjResponsibleSales parmResponsibleSales(ProjResponsibleSales _responsibleSales = '')
+        #{
+        #    if (!prmisdefault(_responsibleSales))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ResponsibleSales), _responsibleSales);
+        #    }
+        #
+        #    return projTable.ResponsibleSales;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSortingId
+        #public ProjSortingId parmSortingId(ProjSortingId _sortingId)
+        #{
+        #    SysDictField    sysDictField;
+        #    int             array;
+        #    ;
+        #    if (!prmisdefault(_sortingId))
+        #    {
+        #        sysDictField = new SysDictField(tableNum(ProjTable),fieldnum(ProjTable,SortingId));
+        #        for (array = 1; array <= sysDictField.arraySize(); array++)
+        #        {
+        #            this.setSortingIdElement(array,_sortingId[array]);
+        #        }
+        #    }
+        #
+        #    return projTable.SortingId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmStartDate
+        #public ProjStartDate parmStartDate(ProjStartDate _startDate = dateNull())
+        #{
+        #    if (!prmisdefault(_startDate))
+        #    {
+        #        this.setField(fieldNum(ProjTable, StartDate), _startDate);
+        #    }
+        #
+        #    return projTable.StartDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmStatus
+        #public ProjStatus parmStatus(ProjStatus _status = ProjStatus::Created)
+        #{
+        #    if (!prmisdefault(_status))
+        #    {
+        #        this.setField(fieldNum(ProjTable, Status), _status);
+        #    }
+        #
+        #    return projTable.Status;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSyncCreatedByExternal
+        #public SyncCreatedByExternal parmSyncCreatedByExternal(SyncCreatedByExternal _syncCreatedByExternal = NoYes::No)
+        #{
+        #    if (!prmisdefault(_syncCreatedByExternal))
+        #    {
+        #        this.setField(fieldNum(ProjTable, SyncCreatedByExternal), _syncCreatedByExternal);
+        #    }
+        #
+        #    return projTable.SyncCreatedByExternal;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSyncEntityId
+        #public SyncEntityId parmSyncEntityId(SyncEntityId _syncEntityId = nullValueFromType(Types::Guid))
+        #{
+        #    if (!prmisdefault(_syncEntityId))
+        #    {
+        #        this.setField(fieldNum(ProjTable, SyncEntityId), _syncEntityId);
+        #    }
+        #
+        #    return projTable.SyncEntityId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSyncLastTransId
+        #public SyncTransId parmSyncLastTransId(SyncTransId _syncLastTransId = nullValueFromType(Types::Guid))
+        #{
+        #    if (!prmisdefault(_syncLastTransId))
+        #    {
+        #        this.setField(fieldNum(ProjTable, SyncLastTransId), _syncLastTransId);
+        #    }
+        #
+        #    return projTable.SyncLastTransId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSyncVersion
+        #public SyncVersion parmSyncVersion(SyncVersion _syncVersion = 0)
+        #{
+        #    if (!prmisdefault(_syncVersion))
+        #    {
+        #        this.setField(fieldNum(ProjTable, SyncVersion), _syncVersion);
+        #    }
+        #
+        #    return projTable.SyncVersion;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTaxGroupId
+        #public TaxGroup parmTaxGroupId(TaxGroup _taxGroupId = '')
+        #{
+        #    if (!prmisdefault(_taxGroupId))
+        #    {
+        #        this.setField(fieldNum(ProjTable, TaxGroupId), _taxGroupId);
+        #    }
+        #
+        #    return projTable.TaxGroupId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTemplate
+        #public NoYes parmTemplate(NoYes _template = NoYes::No)
+        #{
+        #    if (!prmisdefault(_template))
+        #    {
+        #        this.setField(fieldNum(ProjTable, Template), _template);
+        #    }
+        #
+        #    return projTable.Template;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmType
+        #public ProjType parmType(ProjType _type = ProjType::TimeMaterial)
+        #{
+        #    if (!prmisdefault(_type))
+        #    {
+        #        this.setField(fieldNum(ProjTable, Type), _type);
+        #    }
+        #
+        #    return projTable.Type;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmURL
+        #public URL parmURL(URL _uRL = '')
+        #{
+        #    if (!prmisdefault(_uRL))
+        #    {
+        #        this.setField(fieldNum(ProjTable, URL), _uRL);
+        #    }
+        #
+        #    return projTable.URL;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmValidateProjCategory
+        #public ProjValidateOption parmValidateProjCategory(ProjValidateOption _validateProjCategory = NoYes::No)
+        #{
+        #    if (!prmisdefault(_validateProjCategory))
+        #    {
+        #        this.setField(fieldNum(ProjTable, ValidateProjCategory), _validateProjCategory);
+        #    }
+        #
+        #    return projTable.ValidateProjCategory;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmWIPProject
+        #public ProjWipId parmWIPProject(ProjWipId _wIPProject = '')
+        #{
+        #    if (!prmisdefault(_wIPProject))
+        #    {
+        #        this.setField(fieldNum(ProjTable, WIPProject), _wIPProject);
+        #    }
+        #
+        #    return projTable.WIPProject;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #ProjTable
+        #public ProjTable projTable(ProjTable _projTable = projTable)
+        #{
+        #    if (!prmisdefault(_projTable))
+        #    {
+        #        this.setCurrentRecordFromExternal(_projTable);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setAssetId
+        #protected void setAssetId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, AssetId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCheckBudget
+        #protected void setCheckBudget()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, CheckBudget)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCreated
+        #protected void setCreated()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Created)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCustAccount
+        #protected void setCustAccount()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, CustAccount)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDeliveryCity
+        #protected void setDeliveryCity()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, DeliveryCity)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDeliveryStreet
+        #protected void setDeliveryStreet()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, DeliveryStreet)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDimension
+        #protected void setDimension()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Dimension)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDimensionelement
+        #public void setDimensionelement(int _array, SysDim _Dimensionelement)
+        #{
+        #    ;
+        #    if (!prmisdefault(_Dimensionelement))
+        #    {
+        #        if (_array > 0 || _array <= new SysDictField(tablenum(ProjTable), fieldnum(ProjTable, Dimension)).arraySize())
+        #        {
+        #            this.setField(new SysDictField(tablenum(ProjTable), fieldnum(ProjTable,Dimension), _array).id(), _DimensionElement);
+        #        }
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDlvAddr
+        #protected void setDlvAddr()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, DlvAddr)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDlvCountryRegionId
+        #protected void setDlvCountryRegionId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, DlvCountryRegionId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDlvCounty
+        #protected void setDlvCounty()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, DlvCounty)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDlvName
+        #protected void setDlvName()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, DlvName)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDlvState
+        #protected void setDlvState()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, DlvState)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDlvZipCode
+        #protected void setDlvZipCode()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, DlvZipCode)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setEmail
+        #protected void setEmail()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Email)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setEndDate
+        #protected void setEndDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, EndDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setFormat
+        #protected void setFormat()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Format)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setHeader
+        #protected void setHeader()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Header)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setJobId
+        #protected void setJobId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, JobId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setJobPayType
+        #protected void setJobPayType()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, JobPayType)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setName
+        #protected void setName()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Name)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setParentId
+        #protected void setParentId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ParentId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjGroupId
+        #protected void setProjGroupId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ProjGroupId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjId
+        #protected void setProjId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ProjId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjInvoiceProjId
+        #protected void setProjInvoiceProjId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ProjInvoiceProjId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjLedgerPosting
+        #protected void setProjLedgerPosting()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ProjLedgerPosting)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjLinePropertySearch
+        #protected void setProjLinePropertySearch()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ProjLinePropertySearch)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjPriceGroup
+        #protected void setProjPriceGroup()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ProjPriceGroup)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setRequireActivityExpenseForecast
+        #protected void setRequireActivityExpenseForecast()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, RequireActivityExpenseForecast)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setRequireActivityExpenseTrx
+        #protected void setRequireActivityExpenseTrx()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, RequireActivityExpenseTrx)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setRequireActivityHourForecast
+        #protected void setRequireActivityHourForecast()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, RequireActivityHourForecast)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setRequireActivityHourTrx
+        #protected void setRequireActivityHourTrx()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, RequireActivityHourTrx)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setRequireActivityItemForecast
+        #protected void setRequireActivityItemForecast()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, RequireActivityItemForecast)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setRequireActivityItemTrx
+        #protected void setRequireActivityItemTrx()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, RequireActivityItemTrx)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setResponsible
+        #protected void setResponsible()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Responsible)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setResponsibleFinancial
+        #protected void setResponsibleFinancial()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ResponsibleFinancial)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setResponsibleSales
+        #protected void setResponsibleSales()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ResponsibleSales)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSortingId
+        #protected void setSortingId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, SortingId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSortingIdElement
+        #public void setSortingIdElement(int _array, str _SortingIdElement)
+        #{
+        #    ;
+        #    if (!prmisdefault(_SortingIdelement))
+        #    {
+        #        if (_array > 0 || _array <= new SysDictField(tablenum(ProjTable), fieldnum(ProjTable, SortingId)).arraySize())
+        #        {
+        #            this.setField(new SysDictField(tablenum(ProjTable), fieldnum(ProjTable,SortingId), _array).id(), _SortingIdElement);
+        #        }
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setStartDate
+        #protected void setStartDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, StartDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setStatus
+        #protected void setStatus()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Status)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSyncCreatedByExternal
+        #protected void setSyncCreatedByExternal()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, SyncCreatedByExternal)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSyncEntityId
+        #protected void setSyncEntityId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, SyncEntityId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSyncLastTransId
+        #protected void setSyncLastTransId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, SyncLastTransId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSyncVersion
+        #protected void setSyncVersion()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, SyncVersion)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setProjGroupId();
+        #    this.setProjId();
+        #    this.setName();
+        #    this.setProjLedgerPosting();
+        #    this.setCreated();
+        #    this.setStartDate();
+        #    this.setEndDate();
+        #    this.setCustAccount();
+        #    this.setDlvName();
+        #    this.setDlvAddr();
+        #    this.setDimension();
+        #    this.setResponsibleSales();
+        #    this.setProjInvoiceProjId();
+        #    this.setDlvZipCode();
+        #    this.setDlvCounty();
+        #    this.setDlvCountryRegionId();
+        #    this.setDlvState();
+        #    this.setResponsible();
+        #    this.setEmail();
+        #    this.setURL();
+        #    this.setParentId();
+        #    this.setHeader();
+        #    this.setTaxGroupId();
+        #    this.setFormat();
+        #    this.setCheckBudget();
+        #    this.setSortingId();
+        #    this.setSyncLastTransId();
+        #    this.setStatus();
+        #    this.setWIPProject();
+        #    this.setType();
+        #    this.setResponsibleFinancial();
+        #    this.setTemplate();
+        #    this.setDeliveryCity();
+        #    this.setDeliveryStreet();
+        #    this.setValidateProjCategory();
+        #    this.setProjLinePropertySearch();
+        #    this.setRequireActivityHourTrx();
+        #    this.setRequireActivityExpenseTrx();
+        #    this.setRequireActivityItemTrx();
+        #    this.setRequireActivityHourForecast();
+        #    this.setRequireActivityExpenseForecast();
+        #    this.setRequireActivityItemForecast();
+        #    this.setProjPriceGroup();
+        #    this.setSyncEntityId();
+        #    this.setSyncVersion();
+        #    this.setSyncCreatedByExternal();
+        #    this.setAssetId();
+        #    this.setJobId();
+        #    this.setJobPayType();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTaxGroupId
+        #protected void setTaxGroupId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, TaxGroupId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTemplate
+        #protected void setTemplate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Template)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setType
+        #protected void setType()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, Type)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setURL
+        #protected void setURL()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, URL)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setValidateProjCategory
+        #protected void setValidateProjCategory()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, ValidateProjCategory)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setWIPProject
+        #protected void setWIPProject()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjTable, WIPProject)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #valueMapDependingFields
+        #protected void valueMapDependingFields()
+        #{
+        #    if (this.valueMappingInbound())
+        #    {
+        #        if (state && ProjTable.DlvCountryRegionId)
+        #        {
+        #            this.parmDlvState(this.axAddressStateId(state,ProjTable.DlvCountryRegionId));
+        #
+        #            if (county)
+        #            {
+        #                this.parmDlvCounty(this.axAddressCountyId(county,
+        #                                                                ProjTable.DlvCountryRegionId,
+        #                                                                ProjTable.DlvState));
+        #            }
+        #        }
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxProjTable construct()
+        #{
+        #    return new AxProjTable();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newProjTable
+        #public static AxProjTable newProjTable(ProjTable _ProjTable)
+        #{
+        #    AxProjTable AxProjTable = AxProjTable::construct();
+        #    ;
+        #    AxProjTable.ProjTable(_ProjTable);
+        #
+        #    return AxProjTable;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

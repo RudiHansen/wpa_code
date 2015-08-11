@@ -1,0 +1,680 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FRM
+
+; Microsoft Dynamics AX Forms unloaded
+; --------------------------------------------------------------------------------
+FRMVERSION 5
+
+FORM #AifDataPolicy
+  PROPERTIES
+    Name                #AifDataPolicy
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class FormRun extends ObjectRun
+      #{
+      #}
+    ENDSOURCE
+    SOURCE #WPAModifyWPAName
+      #public void WPAModifyWPAName()
+      #{
+      #    AifDataPolicy    localAifDataPolicy;
+      #    ;
+      #    localAifDataPolicy.data(AifDataPolicy);
+      #    AifDataPolicy_ds.executeQuery();
+      #    AifDataPolicy_ds.findRecord(localAifDataPolicy);
+      #}
+    ENDSOURCE
+    SOURCE #markOutOfSync
+      #void markOutOfSync()
+      #{
+      #    AifEndpointActionParameterSchema parameterSchema;
+      #    ;
+      #
+      #    if (element.args().caller())
+      #    {
+      #        if (element.args().dataset() == tablenum(AifEndpointActionParameterSchema))
+      #        {
+      #            // Get the current parameter schema record.
+      #            parameterSchema = element.args().record();
+      #
+      #            // Get latest parameter schema record.
+      #            parameterSchema.reread();
+      #
+      #            // Mark the data policy for re-generation.
+      #            parameterSchema.DataPolicySynchronized = false;
+      #            parameterSchema.update();
+      #        }
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #enableUIControls
+      #public void enableUIControls(boolean _enabled)
+      #{
+      #    boolean editAccess = Global::hasSecuritykeyAccess(securitykeynum(BasicSetup), AccessType::Edit);
+      #    boolean enabled;
+      #    ;
+      #    //Form wants checkboxes to be _enabled. Before doing that we check whether user
+      #    //has edit access to this form and if not then we change _enabled to false
+      #    //to disable all UI controls.
+      #    enabled = _enabled && editAccess;
+      #
+      #    aifDataPolicy_IsEnabled.enabled(enabled);
+      #    aifDataPolicy_IsRequired.enabled(enabled);
+      #
+      #    //If user doesn't have edit access then we disable "set" buttons
+      #    buttonEnable.enabled(editAccess);
+      #    buttonDisable.enabled(editAccess);
+      #    buttonRequire.enabled(editAccess);
+      #    buttonUnrequire.enabled(editAccess);
+      #}
+    ENDSOURCE
+    SOURCE #unRequireFields
+      #void unRequireFields()
+      #{
+      #    AifEndpointActionParameterSchema parameterSchema;
+      #    AifDataPolicy policy;
+      #    AifDocumentField field;
+      #    ;
+      #
+      #    if (element.args().caller())
+      #    {
+      #        if (element.args().dataset() == tablenum(AifEndpointActionParameterSchema))
+      #        {
+      #            parameterSchema = element.args().record();
+      #
+      #            ttsbegin;
+      #
+      #            // Only "un-require" fields that are optional.
+      #            update_recordset policy
+      #            setting IsRequired = false
+      #            where policy.EndpointId == parameterSchema.EndpointId
+      #                && policy.ActionId == parameterSchema.ActionId
+      #            exists join field
+      #            where field.RecId == policy.DocumentFieldRecId
+      #                && field.MinOccurs == 0;
+      #
+      #             // Set data policy out of sync flag.
+      #            this.markOutOfSync();
+      #
+      #            ttscommit;
+      #
+      #            // Re-populate the grid to reflect the new values.
+      #            aifDataPolicy_DS.executeQuery();
+      #        }
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #requireFields
+      #void requireFields()
+      #{
+      #    AifEndpointActionParameterSchema parameterSchema;
+      #    AifDataPolicy policy;
+      #    ;
+      #
+      #    if (element.args().caller())
+      #    {
+      #        if (element.args().dataset() == tablenum(AifEndpointActionParameterSchema))
+      #        {
+      #            parameterSchema = element.args().record();
+      #            ttsbegin;
+      #
+      #            update_recordset policy
+      #            setting IsRequired = true
+      #            where policy.EndpointId == parameterSchema.EndpointId
+      #            && policy.ActionId == parameterSchema.ActionId
+      #            && policy.IsEnabled == true;
+      #
+      #            // Set data policy out of sync flag.
+      #            this.markOutOfSync();
+      #
+      #            ttscommit;
+      #
+      #            aifDataPolicy_DS.executeQuery();
+      #        }
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #enableFields
+      #void enableFields()
+      #{
+      #    AifEndpointActionParameterSchema parameterSchema;
+      #    AifDataPolicy policy;
+      #    ;
+      #
+      #    if (element.args().caller())
+      #    {
+      #        if (element.args().dataset() == tablenum(AifEndpointActionParameterSchema))
+      #        {
+      #            parameterSchema = element.args().record();
+      #
+      #            ttsbegin;
+      #
+      #            update_recordset policy
+      #            setting IsEnabled = true
+      #            where policy.EndpointId == parameterSchema.EndpointId
+      #            && policy.ActionId == parameterSchema.ActionId;
+      #
+      #            // Set data policy out of sync flag.
+      #            this.markOutOfSync();
+      #
+      #            ttscommit;
+      #
+      #            aifDataPolicy_DS.executeQuery();
+      #        }
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #disableFields
+      #void disableFields()
+      #{
+      #    AifEndpointActionParameterSchema parameterSchema;
+      #    AifDataPolicy policy;
+      #    AifDocumentField field;
+      #    ;
+      #
+      #    if (element.args().caller())
+      #    {
+      #        if (element.args().dataset() == tablenum(AifEndpointActionParameterSchema))
+      #        {
+      #            parameterSchema = element.args().record();
+      #            ttsbegin;
+      #
+      #            // Only disable fields that are optional.
+      #            update_recordset policy
+      #            setting IsEnabled = false, IsRequired = false
+      #            where policy.EndpointId == parameterSchema.EndpointId
+      #                && policy.ActionId == parameterSchema.ActionId
+      #            exists join field
+      #            where field.RecId == policy.DocumentFieldRecId
+      #                && field.MinOccurs == 0;
+      #
+      #            // Set data policy out of sync flag.
+      #            this.markOutOfSync();
+      #
+      #            ttscommit;
+      #
+      #            // Re-populate the grid to reflect the new values.
+      #            aifDataPolicy_DS.executeQuery();
+      #        }
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #init
+      #public void init()
+      #{
+      #    // Make sure an enpdoint action record has been
+      #    // passed to the form.
+      #    if (!element.args().caller())
+      #    {
+      #        // Form cannot be called directly.
+      #        throw error("@SYS96590");
+      #    }
+      #
+      #    if (element.args().dataset() != tablenum(AifEndpointActionParameterSchema))
+      #    {
+      #        // Caller must pass an endpoint action parameter schema record.
+      #        throw error("@SYS117374");
+      #    }
+      #
+      #    if (element.args().record().RecId == 0)
+      #    {
+      #        // The endpoint action parameter schema record has not been saved.
+      #        throw error("@SYS117375");
+      #    }
+      #
+      #    super();
+      #    this.enableUIControls(false);
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  OBJECTBANK
+    PROPERTIES
+    ENDPROPERTIES
+    
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifDataPolicy
+          Table               #AifDataPolicy
+          AllowCreate         #No
+          AllowDelete         #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD IsEnabled
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #validate
+                #public boolean validate()
+                #{
+                #    boolean ret;
+                #
+                #    if (aifDataPolicy.IsEnabled == false)
+                #        aifDataPolicy.IsRequired = false;
+                #
+                #    ret = super();
+                #
+                #    aifDataPolicy_DS.refresh();
+                #
+                #    return ret;
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD IsRequired
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #validate
+                #public boolean validate()
+                #{
+                #    boolean ret;
+                #
+                #    if (aifDataPolicy.IsRequired)
+                #        aifDataPolicy.IsEnabled = true;
+                #
+                #    ret = super();
+                #
+                #    aifDataPolicy_DS.refresh();
+                #
+                #    return ret;
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #executeQuery
+          #public void executeQuery()
+          #{
+          #    AifEndpointActionParameterSchema parameterSchema;
+          #    boolean isInboundDocument;
+          #    ;
+          #
+          #
+          #    if (element.args().caller())
+          #    {
+          #        if (element.args().dataset() == tablenum(AifEndpointActionParameterSchema))
+          #        {
+          #            // Get the current endpoint policy action record.
+          #            parameterSchema = element.args().record();
+          #
+          #            isInboundDocument = (parameterSchema.Direction == AifDirection::Inbound) || (parameterSchema.Direction == AifDirection::Both);
+          #            // Set state of Require All and Un-require
+          #            buttonRequire.visible(isInboundDocument);
+          #            buttonUnrequire.visible(isInboundDocument);
+          #
+          #            // Set state of Required check box on the grid.
+          #            aifDataPolicy_isRequired.allowEdit(isInboundDocument);
+          #
+          #            // Only synchronize when the data policy syncrhonized
+          #            // flag is false.  This flag will be false when:
+          #            //   1.) ActionPolicy record is first created.
+          #            //   2.) Changes are made from the data policy UI.
+          #            //   3.) Document schema is updated in the repository.
+          #            if (parameterSchema.DataPolicySynchronized == NoYes::No)
+          #            {
+          #                // Synchronize the data policy records
+          #                // so they match whatever is in the
+          #                // AifDocumentField table.
+          #                AifDataPolicy::synchronizeSchema(parameterSchema.EndpointId, parameterSchema.ActionId, parameterSchema.DocumentClassId);
+          #            }
+          #        }
+          #    }
+          #
+          #    super();
+          #}
+        ENDSOURCE
+        SOURCE #write
+          #public void write()
+          #{
+          #    ;
+          #
+          #    super();
+          #
+          #    // Set data policy out of sync flag.
+          #    element.markOutOfSync();
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifDocumentField
+          Table               #AifDocumentField
+          AllowCreate         #No
+          AllowDelete         #No
+          JoinSource          #AifDataPolicy
+          LinkType            #InnerJoin
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD DocumentClassId
+            PROPERTIES
+              AllowEdit           #No
+            ENDPROPERTIES
+            
+          ENDDATAFIELD
+          
+          DATAFIELD Xpath
+            PROPERTIES
+              AllowEdit           #No
+            ENDPROPERTIES
+            
+          ENDDATAFIELD
+          
+          DATAFIELD Name
+            PROPERTIES
+              AllowEdit           #No
+            ENDPROPERTIES
+            
+          ENDDATAFIELD
+          
+          DATAFIELD MinOccurs
+            PROPERTIES
+              AllowEdit           #No
+            ENDPROPERTIES
+            
+          ENDDATAFIELD
+          
+          DATAFIELD ExtendedDataTypeId
+            PROPERTIES
+              AllowEdit           #No
+            ENDPROPERTIES
+            
+          ENDDATAFIELD
+          
+          DATAFIELD XsdDataTypeName
+            PROPERTIES
+              AllowEdit           #No
+            ENDPROPERTIES
+            
+          ENDDATAFIELD
+          
+          DATAFIELD MarkForDelete
+            PROPERTIES
+              AllowEdit           #No
+            ENDPROPERTIES
+            
+          ENDDATAFIELD
+          
+          DATAFIELD WPAName
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #modified
+                #public void modified()
+                #{
+                #    super();
+                #    element.wPAModifyWPAName();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #active
+          #public int active()
+          #{
+          #    int ret;
+          #
+          #    ret = super();
+          #
+          #    // Adjust availablility of Enabled / Required
+          #    // check boxes for all actions.
+          #    if (aifDocumentField.MinOccurs > 0)
+          #    {
+          #        // Disable check boxes for required field.
+          #        element.enableUIControls(false);
+          #    }
+          #    else
+          #    {
+          #        // Enable check boxes for optional field.
+          #        element.enableUIControls(true);
+          #    }
+          #
+          #    return ret;
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+  ENDOBJECTBANK
+  
+  JOINS
+    AifDocumentField AifDataPolicy
+  ENDJOINS
+  
+  DESIGN
+    PROPERTIES
+      Width               #Column width
+      Height              #Column height
+      Caption             #@SYS95026
+      HTMLHelpFile        #HTMLHelpFileIWorker
+      HTMLHelpTopic       #AxShared.chm::/html/EEEB7D11-85F7-4D8E-9748-E31B672EBC1A.htm
+      DataSource          #AifDataPolicy
+    ENDPROPERTIES
+    
+    CONTAINER
+      CONTROL GRID
+        PROPERTIES
+          Name                #Grid
+          Width               #Column width
+          Height              #Column height
+          DataSource          #AifDataPolicy
+        ENDPROPERTIES
+        
+          CONTAINER
+            CONTROL STRINGEDIT
+              PROPERTIES
+                Name                #AifDocumentField_Name
+                AutoDeclaration     #Yes
+                Label               #@SYS8498
+                DataSource          #AifDocumentField
+                DataField           #Name
+              ENDPROPERTIES
+              
+            ENDCONTROL 
+            
+            CONTROL CHECKBOX
+              PROPERTIES
+                Name                #AifDataPolicy_IsEnabled
+                AutoDeclaration     #Yes
+                BackgroundColor     #Window background
+                Label               #@SYS58636
+                DataSource          #AifDataPolicy
+                DataField           #IsEnabled
+              ENDPROPERTIES
+              
+            ENDCONTROL 
+            
+            CONTROL CHECKBOX
+              PROPERTIES
+                Name                #AifDataPolicy_IsRequired
+                AutoDeclaration     #Yes
+                BackgroundColor     #Window background
+                Label               #@SYS53664
+                LabelWidth          #0
+                DataSource          #AifDataPolicy
+                DataField           #IsRequired
+              ENDPROPERTIES
+              
+              METHODS
+                Version: 3
+                SOURCE #clicked
+                  #public void clicked()
+                  #{
+                  #    super();
+                  #}
+                ENDSOURCE
+              ENDMETHODS
+            ENDCONTROL 
+            
+            CONTROL STRINGEDIT
+              PROPERTIES
+                Name                #AifDocumentField_Xpath
+                DataSource          #AifDocumentField
+                DataField           #Xpath
+              ENDPROPERTIES
+              
+            ENDCONTROL 
+            
+            CONTROL STRINGEDIT
+              PROPERTIES
+                Name                #AifDocumentField_WPAName
+                DataSource          #AifDocumentField
+                DataField           #WPAName
+              ENDPROPERTIES
+              
+            ENDCONTROL 
+            
+          ENDCONTAINER
+          
+      ENDCONTROL 
+      
+      CONTROL BUTTONGROUP
+        PROPERTIES
+          Name                #ButtonGroup
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL MENUBUTTON
+            PROPERTIES
+              Name                #MenuButton
+              HelpText            #@SYS96602
+              Text                #@SYS95004
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL BUTTON
+                PROPERTIES
+                  Name                #buttonEnable
+                  AutoDeclaration     #Yes
+                  HelpText            #@SYS96603
+                  Text                #@SYS95005
+                ENDPROPERTIES
+                
+                METHODS
+                  Version: 3
+                  SOURCE #clicked
+                    #void clicked()
+                    #{
+                    #    ;
+                    #
+                    #    super();
+                    #    element.enableFields();
+                    #}
+                  ENDSOURCE
+                ENDMETHODS
+              ENDCONTROL 
+              
+              CONTROL BUTTON
+                PROPERTIES
+                  Name                #buttonDisable
+                  AutoDeclaration     #Yes
+                  HelpText            #@SYS96604
+                  Text                #@SYS95006
+                ENDPROPERTIES
+                
+                METHODS
+                  Version: 3
+                  SOURCE #clicked
+                    #void clicked()
+                    #{
+                    #    ;
+                    #
+                    #    super();
+                    #    element.disableFields();
+                    #}
+                    #
+                  ENDSOURCE
+                ENDMETHODS
+              ENDCONTROL 
+              
+              CONTROL SEPARATOR
+                PROPERTIES
+                  Name                #Separator
+                ENDPROPERTIES
+                
+              ENDCONTROL 
+              
+              CONTROL BUTTON
+                PROPERTIES
+                  Name                #ButtonRequire
+                  AutoDeclaration     #Yes
+                  HelpText            #@SYS96605
+                  Text                #@SYS95007
+                ENDPROPERTIES
+                
+                METHODS
+                  Version: 3
+                  SOURCE #clicked
+                    #void clicked()
+                    #{
+                    #    ;
+                    #
+                    #    super();
+                    #    element.requireFields();
+                    #}
+                  ENDSOURCE
+                ENDMETHODS
+              ENDCONTROL 
+              
+              CONTROL BUTTON
+                PROPERTIES
+                  Name                #buttonUnrequire
+                  AutoDeclaration     #Yes
+                  HelpText            #@SYS96606
+                  Text                #@SYS95008
+                ENDPROPERTIES
+                
+                METHODS
+                  Version: 3
+                  SOURCE #clicked
+                    #void clicked()
+                    #{
+                    #    ;
+                    #
+                    #    super();
+                    #    element.unRequireFields();
+                    #}
+                    #
+                  ENDSOURCE
+                ENDMETHODS
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+    ENDCONTAINER
+    
+  ENDDESIGN
+  
+ENDFORM
+
+
+***Element: END

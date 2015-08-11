@@ -1,0 +1,161 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjCategory_ProjLinePropertySetup unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjCategory_ProjLinePropertySetup
+    PROPERTIES
+      Name                #WPAProjCategory_ProjLinePropertySetup
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProjCategory_ProjLinePropertySetup extends AfStronglyTypedDataContainer
+        #{
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.ProjRelation('ProjRelation')
+        #    #define.ProjCode('ProjCode')
+        #    #define.LinePropertyId('LinePropertyId')
+        #    #define.CategoryRelation('CategoryRelation')
+        #    #define.CategoryCode('CategoryCode')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsCategoryCode
+        #public boolean existsCategoryCode()
+        #{
+        #    return this.exists(#CategoryCode);
+        #}
+      ENDSOURCE
+      SOURCE #existsCategoryRelation
+        #public boolean existsCategoryRelation()
+        #{
+        #    return this.exists(#CategoryRelation);
+        #}
+      ENDSOURCE
+      SOURCE #existsLinePropertyId
+        #public boolean existsLinePropertyId()
+        #{
+        #    return this.exists(#LinePropertyId);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjCode
+        #public boolean existsProjCode()
+        #{
+        #    return this.exists(#ProjCode);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjRelation
+        #public boolean existsProjRelation()
+        #{
+        #    return this.exists(#ProjRelation);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAProjCategory_ProjLinePropertySetup);
+        #}
+      ENDSOURCE
+      SOURCE #parmCategoryCode
+        #public TableGroupAll parmCategoryCode(TableGroupAll _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CategoryCode, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CategoryCode);
+        #}
+      ENDSOURCE
+      SOURCE #parmCategoryRelation
+        #public ProjCategoryRelation parmCategoryRelation(ProjCategoryRelation _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CategoryRelation, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CategoryRelation);
+        #}
+      ENDSOURCE
+      SOURCE #parmLinePropertyId
+        #public ProjLinePropertyId parmLinePropertyId(ProjLinePropertyId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#LinePropertyId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#LinePropertyId);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjCode
+        #public TableGroupAll parmProjCode(TableGroupAll _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjCode, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjCode);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjRelation
+        #public ProjRelation parmProjRelation(ProjRelation _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjRelation, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjRelation);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public recVersion parmRecVersion(recVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

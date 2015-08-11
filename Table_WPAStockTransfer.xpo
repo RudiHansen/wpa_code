@@ -1,0 +1,296 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : WPAStockTransfer unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #WPAStockTransfer
+    PROPERTIES
+      Name                #WPAStockTransfer
+      Label               #@WPA206
+      TitleField1         #StockTransferId
+      TitleField2         #ItemId
+      ConfigurationKey    #WPAWarehouseManagement
+      SecurityKey         #WPATables
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #StockTransferIdx
+      ClusterIndex        #StockTransferIdx
+      ModifiedDateTime    #Yes
+      ModifiedBy          #Yes
+      CreatedDateTime     #Yes
+      CreatedBy           #Yes
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #StockTransferId
+        STRING
+        PROPERTIES
+          Name                #StockTransferId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #WPAStockTransfer
+          ExtendedDataType    
+            ARRAY 
+              #WPAGUID
+              #
+            ENDARRAY
+          StringSize          #36
+        ENDPROPERTIES
+        
+      FIELD #ItemId
+        STRING
+        PROPERTIES
+          Name                #ItemId
+          Mandatory           #Yes
+          Table               #WPAStockTransfer
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemId
+              #
+            ENDARRAY
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #Qty
+        REAL
+        PROPERTIES
+          Name                #Qty
+          Table               #WPAStockTransfer
+          ExtendedDataType    
+            ARRAY 
+              #WPAQty
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DifferenceQty
+        REAL
+        PROPERTIES
+          Name                #DifferenceQty
+          Label               #@SYS11152
+          Table               #WPAStockTransfer
+          ExtendedDataType    
+            ARRAY 
+              #WPAQty
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #InventLocationIdFrom
+        STRING
+        PROPERTIES
+          Name                #InventLocationIdFrom
+          Table               #WPAStockTransfer
+          ExtendedDataType    
+            ARRAY 
+              #InventLocationIdFrom
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #InventLocationIdTo
+        STRING
+        PROPERTIES
+          Name                #InventLocationIdTo
+          Mandatory           #Yes
+          Table               #WPAStockTransfer
+          ExtendedDataType    
+            ARRAY 
+              #InventLocationIdTo
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #StockTransferType
+        ENUM
+        PROPERTIES
+          Name                #StockTransferType
+          Table               #WPAStockTransfer
+          EnumType            #WPAStockTransferType
+        ENDPROPERTIES
+        
+      FIELD #Updated
+        ENUM
+        PROPERTIES
+          Name                #Updated
+          Label               #@SYS439
+          Table               #WPAStockTransfer
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ErrorTxt
+        STRING
+        PROPERTIES
+          Name                #ErrorTxt
+          Table               #WPAStockTransfer
+          ExtendedDataType    
+            ARRAY 
+              #WPAErrorTxt
+              #
+            ENDARRAY
+          StringSize          #130
+        ENDPROPERTIES
+        
+      FIELD #Error
+        ENUM
+        PROPERTIES
+          Name                #Error
+          Label               #@WPA207
+          Table               #WPAStockTransfer
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #RefTableId
+        INT
+        PROPERTIES
+          Name                #RefTableId
+          HelpText            #@SYS22567
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAStockTransfer
+          ExtendedDataType    
+            ARRAY 
+              #RefTableId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #RefRecId
+        INT64
+        PROPERTIES
+          Name                #RefRecId
+          Label               #@SYS22569
+          HelpText            #@SYS12233
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAStockTransfer
+          ExtendedDataType    
+            ARRAY 
+              #RefRecId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #StockTransferId
+          #ItemId
+          #Qty
+          #DifferenceQty
+          #InventLocationIdFrom
+          #InventLocationIdTo
+          #StockTransferType
+          #Updated
+          #ErrorTxt
+          #Error
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #History
+        PROPERTIES
+          Name                #History
+          Label               #@SYS10575
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Updated
+          #ErrorTxt
+          #Error
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Identification
+        PROPERTIES
+          Name                #Identification
+          Label               #@SYS5711
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #StockTransferId
+          #ItemId
+          #StockTransferType
+          #createdDateTime
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Inventory
+        PROPERTIES
+          Name                #Inventory
+          Label               #@SYS981
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Qty
+          #DifferenceQty
+          #InventLocationIdFrom
+          #InventLocationIdTo
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #StockTransferIdx
+      PROPERTIES
+        Name                #StockTransferIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #StockTransferId
+      ENDINDEXFIELDS
+      
+      #CreatedIdx
+      PROPERTIES
+        Name                #CreatedIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #createdDateTime
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #exist
+        #static boolean exist(WPAGUID    _stockTransferId)
+        #{
+        #    ;
+        #    return _stockTransferId && (select firstonly WPAStockTransfer
+        #                                    where WPAStockTransfer.StockTransferId == _stockTransferId
+        #                               ).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #static WPAStockTransfer find(WPAGUID    _stockTransferId,
+        #                             boolean    _update = false)
+        #{
+        #    WPAStockTransfer    wPAStockTransfer;
+        #    ;
+        #    wPAStockTransfer.selectForUpdate(_update);
+        #
+        #    if (_stockTransferId)
+        #    {
+        #        select firstonly wPAStockTransfer
+        #            where wPAStockTransfer.StockTransferId  == _stockTransferId;
+        #    }
+        #
+        #    return wPAStockTransfer;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

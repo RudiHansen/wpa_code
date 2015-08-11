@@ -1,0 +1,134 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: OBTFileWriteCSV_Items unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #OBTFileWriteCSV_Items
+    PROPERTIES
+      Name                #OBTFileWriteCSV_Items
+      Extends             #OBTFileWriteCSV
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class OBTFileWriteCSV_Items extends OBTFileWriteCSV
+        #{
+        #    QueryRun    queryRun;
+        #
+        #    #define.CurrentVersion(2)
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    ;
+        #    super();
+        #
+        #    queryRun = new QueryRun(this.queryBuild());
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion, #CurrentList, queryRun.pack()];
+        #}
+      ENDSOURCE
+      SOURCE #queryBuild
+        #Query queryBuild()
+        #{
+        #    Query   query;
+        #    ;
+        #    query = new Query(querystr(InventTable));
+        #
+        #    return query;
+        #}
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    return queryRun;
+        #}
+      ENDSOURCE
+      SOURCE #showQueryValues
+        #public boolean showQueryValues()
+        #{
+        #    boolean ret;
+        #    ;
+        #    ret = true;
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #    Integer         version        = conpeek(_packedClass,1);
+        #    container   packedQuery;
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList, packedQuery] = _packedClass;
+        #            if (packedQuery)
+        #            {
+        #                queryRun = new QueryRun(packedQuery);
+        #            }
+        #            break;
+        #        default:
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #writeFile
+        #void writeFile()
+        #{
+        #    InventTable inventTable;
+        #    ;
+        #
+        #    while (queryRun.next())
+        #    {
+        #        inventTable = queryRun.get(tablenum(InventTable));
+        #        this.writeLine([inventTable.ItemId, inventTable.ItemName]);
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static OBTFileWriteCSV_Items construct()
+        #{
+        #    return new OBTFileWriteCSV_Items();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #public static client server ClassDescription description()
+        #{
+        #    ;
+        #
+        #    return "Export of items";
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #public static void main(Args    _args)
+        #{
+        #    OBTFileWriteCSV_Items   fileWriteCSV_Items = OBTFileWriteCSV_Items::construct();
+        #    ;
+        #    if (fileWriteCSV_Items.prompt())
+        #    {
+        #        fileWriteCSV_Items.run();
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,89 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAAifImport unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAAifImport
+    PROPERTIES
+      Name                #WPAAifImport
+      Extends             #RunBaseBatch
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #caption
+        #public ClassDescription caption()
+        #{
+        #    ClassDescription ret;
+        #    ;
+        #    ret = "@WPA169";
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class WPAAifImport extends RunBaseBatch
+        #{
+        #    #define.CurrentVersion(1)
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion];
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    ;
+        #    new AifGatewayReceiveService().run();
+        #    new AifInboundProcessingService().run();
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #    Version version = RunBase::getVersion(_packedClass);
+        #
+        #    switch (version)
+        #    {
+        #        case(#CurrentVersion) :
+        #            [version] = _packedClass;
+        #            break;
+        #
+        #        default :
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAAifImport construct()
+        #{
+        #    return new WPAAifImport();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #main
+        #public static void main(Args _args)
+        #{
+        #    WPAAifImport    import = WPAAifImport::construct();
+        #    ;
+        #    if(import.prompt())
+        #    {
+        #        import.run();
+        #    }
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

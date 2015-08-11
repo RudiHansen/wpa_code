@@ -1,0 +1,16 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAInventSumDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAInventSumDCT
+    ##define.WPAInventSum('WPAInventSum')
+    ##define.WPAInventSum_InventSum_1('WPAInventSum.InventSum_1')
+    ##define.WPAInventSum_InventDim_1('WPAInventSum.InventDim_1')
+  ENDSOURCE
+
+***Element: END

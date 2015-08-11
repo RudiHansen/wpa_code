@@ -1,0 +1,50 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjCategoryService unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjCategoryService
+    PROPERTIES
+      Name                #WPAProjCategoryService
+      Extends             #AifDocumentService
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProjCategoryService extends AifDocumentService
+        #{
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #find
+        #public WPAProjCategory find(AifQueryCriteria _queryCriteria)
+        #{
+        #    WPAProjCategory wPAProjCategory = new WPAProjCategory();
+        #    this.findList(_queryCriteria, wPAProjCategory);
+        #    return wPAProjCategory;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #protected void new()
+        #{
+        #    ;
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAProjCategoryService construct()
+        #{
+        #    return new WPAProjCategoryService();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

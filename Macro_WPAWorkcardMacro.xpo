@@ -1,0 +1,61 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: WPAWorkcardMacro unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #WPAWorkcardMacro
+    ##define.Workcard('Workcard')
+    ##define.OrderId('OrderId')
+    ##define.WorkCardId('WorkcardId')
+    ##define.EmploymentCode('EmploymentCode')
+    ##define.AccountId('AccountId')
+    ##define.AreaId('AreaId')
+    ##define.StartTime('StartTime')
+    ##define.EndTime('EndTime')
+    ##define.Description('Description')
+    ##define.Responsible('Responsible')
+    ##define.CrmInfo1('CrmInfo1')
+    ##define.CrmInfo2('CrmInfo2')
+    ##define.Status('Status')
+    ##define.PurchaseOrderNumber('PurchaseOrderNumber')
+    ##define.AttentionName('AttentionName')
+    ##define.Urgent('Urgent')
+    ##define.Debitor('Debitor')
+    ##define.DebitorId('DebitorId')
+    ##define.WorkcardType('WorkcardTypes')
+    ##define.WorkcardTypeId('WorkcardTypeId')
+    ##define.Site('Site')
+    ##define.SiteId('SiteId')
+    ##define.ServiceObject('ServiceObject')
+    ##define.ServiceObjectId('ServiceObjectId')
+    ##define.Items('WorkcardItems')
+    ##define.Item('WorkcardItem')
+    ##define.ItemId('ItemId')
+    ##define.GUID('WorkcardItemId')
+    ##define.ItemEanNumber('ItemEanNumber')
+    ##define.ItemUnitPrice('ItemUnitPrice');
+    ##define.ItemDescription1('ItemDescription1')
+    ##define.ItemDescription2('ItemDescription2')
+    ##define.Qty('Quantity')
+    ##define.Price('Price')
+    ##define.ItemUnit('ItemUnit')
+    ##define.StockLocationId('StockLocationId')
+    ##define.ItemLineType('ItemLineType')
+    ##define.ProductEmploymentCode('EmploymentCode')
+    ##define.TransDate('Date')
+    ##define.Location('Location')
+    ##define.Postal('Postal')
+    ##define.State('State')
+    #
+    ##define.WorkcardEndpointId('WorkCardSO')
+    ##define.WorkcardAction('http://tempuri.org/WPAWorkcardService/create')
+    ##define.WPA_TO_ERP('WPA_TO_ERP')
+    ##define.DataReceiverName('DataReceiverName')
+    #
+  ENDSOURCE
+
+***Element: END

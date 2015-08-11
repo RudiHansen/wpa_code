@@ -1,0 +1,390 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : AifChannel unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #AifChannel
+    PROPERTIES
+      Name                #AifChannel
+      Label               #@SYS88788
+      TitleField1         #ChannelId
+      TitleField2         #Name
+      ConfigurationKey    #AIF
+      SecurityKey         #BasicTables
+      AOSAuthorization    #CreateUpdateDelete
+      SaveDataPerCompany  #No
+      PrimaryIndex        #AifChannelIdx
+      ClusterIndex        #AifChannelIdx
+      DeveloperDocumentation  #@SYS125184
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #ChannelId
+        STRING
+        PROPERTIES
+          Name                #ChannelId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #AifChannel
+          ExtendedDataType    
+            ARRAY 
+              #AifChannelId
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #ResponseChannel
+        STRING
+        PROPERTIES
+          Name                #ResponseChannel
+          Table               #AifChannel
+          ExtendedDataType    
+            ARRAY 
+              #AifChannelId
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #Direction
+        ENUM
+        PROPERTIES
+          Name                #Direction
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #AifChannel
+          EnumType            #AifChannelDirection
+        ENDPROPERTIES
+        
+      FIELD #TransportAddress
+        STRING
+        PROPERTIES
+          Name                #TransportAddress
+          Mandatory           #Yes
+          Table               #AifChannel
+          ExtendedDataType    
+            ARRAY 
+              #AifTransportAddress
+              #
+            ENDARRAY
+          StringSize          #260
+        ENDPROPERTIES
+        
+      FIELD #Name
+        STRING
+        PROPERTIES
+          Name                #Name
+          Mandatory           #Yes
+          Table               #AifChannel
+          ExtendedDataType    
+            ARRAY 
+              #AifChannelName
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #AdapterClassId
+        INT
+        PROPERTIES
+          Name                #AdapterClassId
+          Label               #@SYS93617
+          HelpText            #@SYS93618
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #AifChannel
+          ExtendedDataType    
+            ARRAY 
+              #AifAdapterClassId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #MaximumBatchSize
+        INT
+        PROPERTIES
+          Name                #MaximumBatchSize
+          Label               #@SYS93619
+          HelpText            #@SYS93620
+          Table               #AifChannel
+          ExtendedDataType    
+            ARRAY 
+              #AifAdapterBatchSize
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Enabled
+        ENUM
+        PROPERTIES
+          Name                #Enabled
+          Label               #@SYS93621
+          HelpText            #@SYS93622
+          Table               #AifChannel
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ParallelProcessing
+        ENUM
+        PROPERTIES
+          Name                #ParallelProcessing
+          Label               #@SYS119296
+          HelpText            #@SYS119297
+          Table               #AifChannel
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #DestinationEndpointId
+        STRING
+        PROPERTIES
+          Name                #DestinationEndpointId
+          Table               #AifChannel
+          ExtendedDataType    
+            ARRAY 
+              #AifEndpointId
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TransportAddress
+          #ChannelId
+          #Name
+          #Direction
+          #AdapterClassId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #AutoLookup
+        PROPERTIES
+          Name                #AutoLookup
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Direction
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Overview
+        PROPERTIES
+          Name                #Overview
+          Label               #@SYS93623
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Enabled
+          #MaximumBatchSize
+          #AdapterClassId
+          #Name
+          #ChannelId
+          #ParallelProcessing
+          #TransportAddress
+          #ResponseChannel
+          #Direction
+          #DestinationEndpointId
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #AifChannelIdx
+      PROPERTIES
+        Name                #AifChannelIdx
+        AllowDuplicates     #No
+        ConfigurationKey    #AIF
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ChannelId
+      ENDINDEXFIELDS
+      
+      #AifTransportAddressIdx
+      PROPERTIES
+        Name                #AifTransportAddressIdx
+        AllowDuplicates     #No
+        ConfigurationKey    #AIF
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TransportAddress
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+      #AifBizTalkServer
+      PROPERTIES
+        Table               #AifBizTalkServer
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #adapterName
+        #// This method is used represent the name of the adapter class
+        #//BP Deviation Documented
+        #edit Name adapterName(boolean set, ClassName value)
+        #{
+        #    AifAdapter aifAdapter;
+        #;
+        #
+        #    if (set)
+        #    {
+        #        select firstonly AdapterClassId from aifAdapter where aifAdapter.Name == value;
+        #        if (aifAdapter.RecId != 0)
+        #            this.AdapterClassId = aifAdapter.AdapterClassId;
+        #        else
+        #            value = '';
+        #    }
+        #    else
+        #    {
+        #        select firstonly Name from aifAdapter where aifAdapter.AdapterClassId == this.AdapterClassId;
+        #        if (aifAdapter.RecId != 0)
+        #            value = aifAdapter.Name;
+        #        else
+        #            value = '';
+        #    }
+        #
+        #    return value;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #validateDelete
+        #public boolean validateDelete()
+        #{
+        #    boolean ret;
+        #    AifChannel channel;
+        #    AifGatewayQueue gatewayQueue;
+        #
+        #    ret = super();
+        #
+        #    if (ret)
+        #    {
+        #        if (this.Direction == AifChannelDirection::Outbound)
+        #        {
+        #            select firstonly channel
+        #                where channel.Direction == AifChannelDirection::Inbound
+        #                && channel.ResponseChannel == this.ChannelId;
+        #
+        #            if (channel.RecId != 0)
+        #            {
+        #                ret = false;
+        #                error("@SYS99330");
+        #            }
+        #            else
+        #            {
+        #                select firstonly gatewayQueue
+        #                    where gatewayQueue.Direction == AifMessageDirection::Outbound
+        #                    && gatewayQueue.ChannelId == this.ChannelId;
+        #
+        #                if (gatewayQueue.RecId != 0)
+        #                {
+        #                    ret = false;
+        #                    error("@SYS99331");
+        #                }
+        #            }
+        #        }
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #public static AifChannel find(AifChannelId channelId, boolean update = false)
+        #{
+        #
+        #    AifChannel         aifChannel;
+        #    ;
+        #
+        #    aifChannel.selectForUpdate(update);
+        #
+        #    if (channelId)
+        #    {
+        #        select firstonly aifChannel
+        #            index hint AifChannelIdx
+        #            where aifChannel.ChannelId == channelId;
+        #    }
+        #
+        #    return aifChannel;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #getChannelsForGatewayReceive
+        #public static AifChannel getChannelsForGatewayReceive()
+        #{
+        #    AifChannel channel;
+        #    AifAdapter adapter;
+        #
+        #    select * from channel join adapter
+        #    where
+        #        (channel.Direction == AifChannelDirection::Inbound || channel.Direction == AifChannelDirection::Both)
+        #        && channel.AdapterClassId == adapter.AdapterClassId
+        #        && channel.Enabled == true
+        #        && adapter.Enabled == true
+        #        && adapter.Hosted == true;
+        #
+        #    return channel;
+        #}
+      ENDSOURCE
+      SOURCE #getResponseChannel
+        #public static AifChannel getResponseChannel(AifChannelId channelId)
+        #{
+        #    /*
+        #        This method gets the response channel for a given channel Id.
+        #        Returns the entire channel record.
+        #    */
+        #
+        #     AifChannel          responseChannel;
+        #    ;
+        #
+        #    if(channelId)
+        #    {
+        #        select responseChannel
+        #        where responseChannel.ChannelId == (select aifChannel where aifChannel.ChannelId==channelId).ResponseChannel;
+        #    }
+        #
+        #    return responseChannel;
+        #}
+      ENDSOURCE
+      SOURCE #hasResponseChannel
+        #public static boolean hasResponseChannel(AifChannelId channelId)
+        #{
+        #    /*
+        #        This method checks to see if a given channel has a response channel configured for it.
+        #    */
+        #    AifChannel          aifChannel;
+        #    ;
+        #
+        #    if(channelId)
+        #    {
+        #        select aifChannel
+        #        where aifChannel.ChannelId == channelId;
+        #    }
+        #
+        #    if (aifChannel.ResponseChannel)
+        #        return true;
+        #    else
+        #        return false;
+        #
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

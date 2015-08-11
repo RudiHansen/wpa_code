@@ -1,0 +1,112 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : OBTFileHistory unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #OBTFileHistory
+    PROPERTIES
+      Name                #OBTFileHistory
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #StartDateTime
+        DATETIME
+        PROPERTIES
+          Name                #StartDateTime
+          Table               #OBTFileHistory
+          ExtendedDataType    
+            ARRAY 
+              #OBTFileStartDateTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #EndDateTime
+        DATETIME
+        PROPERTIES
+          Name                #EndDateTime
+          Table               #OBTFileHistory
+          ExtendedDataType    
+            ARRAY 
+              #OBTFileEndDateTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #RecordsProcessed
+        INT64
+        PROPERTIES
+          Name                #RecordsProcessed
+          Table               #OBTFileHistory
+          ExtendedDataType    
+            ARRAY 
+              #OBTRecordsProcessed
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Filename
+        STRING
+        PROPERTIES
+          Name                #Filename
+          Table               #OBTFileHistory
+          ExtendedDataType    
+            ARRAY 
+              #Filename
+              #
+            ENDARRAY
+          StringSize          #259
+        ENDPROPERTIES
+        
+      FIELD #GUID
+        STRING
+        PROPERTIES
+          Name                #GUID
+          Table               #OBTFileHistory
+          ExtendedDataType    
+            ARRAY 
+              #OBTFileGUID
+              #
+            ENDARRAY
+          StringSize          #36
+        ENDPROPERTIES
+        
+      FIELD #Direction
+        ENUM
+        PROPERTIES
+          Name                #Direction
+          Table               #OBTFileHistory
+          EnumType            #OBTFileDirection
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #initValue
+        #public void initValue()
+        #{
+        #    super();
+        #
+        #    this.GUID = WinApiServer::createGUID();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

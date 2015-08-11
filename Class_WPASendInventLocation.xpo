@@ -1,0 +1,47 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendInventLocation unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendInventLocation
+    PROPERTIES
+      Name                #WPASendInventLocation
+      Extends             #AxdSend
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPASendInventLocation extends AxdSend
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args args)
+        #{
+        #    WPASendInventLocation   WPASendInventLocation;
+        #    AifConstraintList       aifConstraintList;
+        #    AifConstraint           aifConstraint;
+        #    ;
+        #
+        #    WPASendInventLocation   = new WPASendInventLocation();
+        #    aifConstraintList       = new AifConstraintList();
+        #    aifConstraint           = new AifConstraint();
+        #
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    WPASendInventLocation.parmShowDocPurpose(true) ;
+        #
+        #    WPASendInventLocation.sendMultipleDocuments(classnum(WPAInventLocation), classnum(WPAInventLocationService), AifSendMode::Async, aifConstraintList);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

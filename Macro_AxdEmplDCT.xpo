@@ -1,0 +1,20 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdEmplDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdEmplDCT
+    ##define.Empl('WPAEmpl')
+    ##define.Empl_EmplTable('WPAEmpl.EmplTable')
+    ##define.Empl_DirPartyTable('WPAEmpl.DirPartyTable')
+    ##define.Empl_DirPartyECommunicationRelationship('Empl.DirPartyECommunicationRelationship')
+    ##define.Empl_DirPrivacyGroupTable('WPAEmpl.DirPrivacyGroupTable')
+    ##define.Empl_DirECommunicationAddress('WPAEmpl.DirECommunicationAddress')
+    ##define.Empl_DirECommunicationTypeTable('WPAEmpl.DirECommunicationTypeTable')
+  ENDSOURCE
+
+***Element: END

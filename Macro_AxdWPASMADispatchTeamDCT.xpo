@@ -1,0 +1,15 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPASMADispatchTeamDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPASMADispatchTeamDCT
+    ##define.WPASMADispatchTeam('WPASMADispatchTeam')
+    ##define.WPASMADispatchTeam_SMADispatchTeamTable('WPASMADispatchTeam.SMADispatchTeamTable')
+  ENDSOURCE
+
+***Element: END

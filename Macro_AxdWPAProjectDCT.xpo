@@ -1,0 +1,19 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAProjectDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAProjectDCT
+    ##define.WPAProject('WPAProject')
+    ##define.WPAProject_ProjTable('WPAProject.ProjTable')
+    ##define.WPAProject_CustTable('WPAProject.CustTable')
+    ##define.WPAProject_DirPartyAddressRelationship('WPAProject.DirPartyAddressRelationship')
+    ##define.WPAProject_DirPartyAddRelMapping('WPAProject.DirPartyAddRelMapping')
+    ##define.WPAProject_Address('WPAProject.Address')
+  ENDSOURCE
+
+***Element: END

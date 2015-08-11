@@ -1,0 +1,44 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBE
+
+; Microsoft Dynamics AX Enumtype : SysClassWizardFrameworks unloaded
+; --------------------------------------------------------------------------------
+  ENUMTYPEVERSION 1
+  
+  ENUMTYPE #SysClassWizardFrameworks
+    PROPERTIES
+      Name                #SysClassWizardFrameworks
+      Label               #@SYS74163
+      Help                #@SYS74164
+      UseEnumValue        #Yes
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+      #SysClassFrameworkNormal
+      PROPERTIES
+        Name                #SysClassFrameworkNormal
+        Label               #@SYS665
+        EnumValue           #0
+      ENDPROPERTIES
+      
+      #SysClassFrameworkFramework
+      PROPERTIES
+        Name                #SysClassFrameworkFramework
+        Label               #@SYS74162
+        EnumValue           #2
+      ENDPROPERTIES
+      
+      #WPAAifImport
+      PROPERTIES
+        Name                #WPAAifImport
+        Label               #@WPA166
+        EnumValue           #3
+      ENDPROPERTIES
+      
+    ENDTYPEELEMENTS
+  ENDENUMTYPE
+  
+
+***Element: END

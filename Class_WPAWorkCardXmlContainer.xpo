@@ -1,0 +1,42 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAWorkCardXmlContainer unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAWorkCardXmlContainer
+    PROPERTIES
+      Name                #WPAWorkCardXmlContainer
+      Extends             #AifDocument
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAWorkcardXmlContainer extends AifDocument
+        #{
+        #    AifMessage  message;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new(str _dataContainerType)
+        #{
+        #    super(_dataContainerType);
+        #}
+      ENDSOURCE
+      SOURCE #parmMessage
+        #public AifMessage parmMessage(AifMessage _message = message)
+        #{
+        #    message = _message;
+        #
+        #    return message;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

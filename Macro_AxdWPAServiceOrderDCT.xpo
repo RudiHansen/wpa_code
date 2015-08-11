@@ -1,0 +1,16 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAServiceOrderDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAServiceOrderDCT
+    ##define.WPAServiceOrder('WPAServiceOrder')
+    ##define.WPAServiceOrder_SMAServiceOrderLine('WPAServiceOrder.SMAServiceOrderLine')
+    ##define.WPAServiceOrder_SMAServiceOrderTable('WPAServiceOrder.SMAServiceOrderTable')
+  ENDSOURCE
+
+***Element: END

@@ -1,0 +1,304 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: RUHAExportUtilElements unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #RUHAExportUtilElements
+    PROPERTIES
+      Name                #RUHAExportUtilElements
+      Extends             #RunBaseBatch
+      RunOn               #Client
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #checkExportStatus
+        #boolean checkExportStatus(UtilElements  _utilElements)
+        #{
+        #    boolean     retVal = false;
+        #    str         elementName = strFmt("%1_%2",_utilElements.recordType,_utilElements.name);
+        #
+        #    if(conFind(exportedElements,elementName))
+        #        retVal = true;
+        #
+        #    exportedElements = conIns(exportedElements,conLen(exportedElements)+1,elementName);
+        #
+        #    return retVal;
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #// Class for exporting a users changed elements.
+        #// The Class runs through UtilElements and selects records based on Current User, modifiedDateTime and createdDateTime
+        #// and then exports the elements to a folder, also an version number based on utilElements.version and an internal export
+        #// count is added to the filename.
+        #//
+        #// Author Rudi Hansen, axdevutil@gmail.com
+        #// Please send me an email if you use, change and/or like this class.
+        #//
+        #// As of right now this class saves data in SysLastValue, so it should always be run in the same company.
+        #// If not it could result in errors.
+        #class RUHAExportUtilElements extends RunBaseBatch
+        #{
+        #    // Variables for dialog
+        #    DialogField         dialog_ExportPath;
+        #    DialogField         dialog_LastRunDateTime;
+        #
+        #    // Variables with default values.
+        #    FilePath            exportFilePath;
+        #
+        #    // Variables used in the class, and saved in Pack.
+        #    utcDateTime         lastRunDateTime;
+        #    container           exportCountSave;
+        #
+        #    // Variables used in the class, and not saved in Pack.
+        #    container           exportedElements;
+        #
+        #    #DEFINE.CurrentVersion(1)
+        #    #LOCALMACRO.CurrentList
+        #        exportFilePath,
+        #        lastRunDateTime,
+        #        exportCountSave
+        #    #ENDMACRO
+        #
+        #}
+      ENDSOURCE
+      SOURCE #dialog
+        #Object dialog()
+        #{
+        #    dialogRunBase  dialog = new DialogRunBase("Scan development elements", this);
+        #    ;
+        #    dialog_ExportPath = dialog.addField(typeid(FilePath));
+        #    dialog_ExportPath.value(exportFilePath);
+        #
+        #    dialog_LastRunDateTime = dialog.addField(typeId(DateTimeExecuted));
+        #    dialog_LastRunDateTime.value(lastRunDateTime);
+        #
+        #    return dialog;
+        #}
+      ENDSOURCE
+      SOURCE #export
+        #void export(UtilElements    _utilElements)
+        #{
+        #    fileName        exportFileName;
+        #    boolean         isFilenameOK = false;
+        #    str 100         exportElementName;
+        #    int             exportCountPos;
+        #    int             exportCount;
+        #    ;
+        #    if(this.checkExportStatus(_utilElements))
+        #        return;
+        #
+        #    // Find the last exportCount, and update the container with next number.
+        #    exportElementName   = strFmt("%1_%2",_utilElements.recordType,_utilElements.name);
+        #    exportCountPos      = conFind(exportCountSave,exportElementName);
+        #    if(exportCountPos)
+        #    {
+        #        exportCount     = conPeek(exportCountSave,exportCountPos+1);
+        #        exportCountSave = conPoke(exportCountSave,exportCountPos+1,exportCount+1);
+        #    }
+        #    else
+        #    {
+        #        exportCountPos  = conLen(exportCountSave)+1;
+        #        exportCount     = 0;
+        #        exportCountSave = conPoke(exportCountSave,exportCountPos,exportElementName,exportCount+1);
+        #        exportCountPos++;
+        #    }
+        #
+        #    // Make export filename.
+        #    while(!isFilenameOK)
+        #    {
+        #        exportFileName = strFmt("%1\\%2_%3_V%4_%5.xpo",
+        #                            exportFilePath,
+        #                            _utilElements.recordType,
+        #                            _utilElements.Name,
+        #                            Num2Str0(_utilElements.version,2),
+        #                            Num2Str0(exportCount,2));
+        #
+        #        if(!WinAPI::fileExists(exportFileName))
+        #        {
+        #            isFilenameOK = true;
+        #        }
+        #        else
+        #        {
+        #            exportCount++;
+        #            exportCountSave = conPoke(exportCountSave,exportCountPos+1,exportCount);
+        #        }
+        #    }
+        #
+        #    if(!_utilElements.RecId)
+        #        breakpoint;
+        #
+        #    if(_utilElements.recordType  == UtilElementType::SharedProject)
+        #    {
+        #        //this.exportSharedProj(_utilElements.name,exportFileName,true);
+        #    }
+        #    else
+        #    {
+        #        exportFileName = strFmt("%1\\%2_%3.xpo",
+        #                            exportFilePath,
+        #                            _utilElements.recordType,
+        #                            _utilElements.Name);
+        #        if(!WinAPI::fileExists(exportFileName))
+        #        {
+        #            WinAPI::deleteFile(exportFileName);
+        #        }
+        #
+        #        this.exportTreeNode(xutilElements::getNodeInTree(_utilElements),exportFileName);
+        #        info(strFmt("Exported %1 %2",_utilElements.recordType,_utilElements.Name));
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #exportTreeNode
+        #private void exportTreeNode(Treenode _treeNode,fileName _exportFile)
+        #{
+        #    FileIoPermission    perm;
+        #
+        #    #define.ExportMode("w")
+        #    ;
+        #    perm = new FileIoPermission(_exportFile, #ExportMode);
+        #    if (perm == null)
+        #    {
+        #        return;
+        #    }
+        #
+        #    perm.assert();
+        #
+        #    if (_treeNode != null)
+        #    {
+        #        // BP deviation documented.
+        #        _treeNode.treeNodeExport(_exportFile);
+        #    }
+        #
+        #    CodeAccessPermission::revertAssert();
+        #}
+      ENDSOURCE
+      SOURCE #getFromDialog
+        #boolean getFromDialog()
+        #{
+        #    ;
+        #    exportFilePath  = dialog_ExportPath.value();
+        #    lastRunDateTime = dialog_LastRunDateTime.value();
+        #    return super();
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion,#CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    // Searches all elements in utilElements and looks for changes.
+        #    // If an element has been changed since the last check, the element is exported to file.
+        #    #AviFiles
+        #    UtilElements        utilElements;
+        #    AxdRecordAction     axdRecordAction;
+        #    counter             numRecords;
+        #    counter             numChanged;
+        #    counter             numCreated;
+        #    counter             numUpdated;
+        #    utcDateTime         startTime;
+        #    ;
+        #    // Save the current time for later use to set lastRunDateTime.
+        #    startTime = DateTimeUtil::utcNow();
+        #
+        #    // Here you can reset lastRunDateTime if you want.
+        #    //lastRunDateTime = DateTimeUtil::minValue();
+        #
+        #    // Count number of records to be scaned.
+        #    select count(recid) from utilElements
+        #        where utilElements.recordType       != UtilElementType::WebListDef
+        #        &&    utilElements.recordType       != UtilElementType::ReportLibrary
+        #        &&    utilElements.recordType       != UtilElementType::PrivateProject
+        #        &&    utilElements.recordType       != UtilElementType::SharedProject
+        #        &&    utilElements.utilLevel        >  UtilEntryLevel::sl3;
+        #//        &&    (utilElements.modifiedBy       == curuserid()     || utilElements.createdBy       == curuserid())
+        #//            &&    (utilElements.modifiedDateTime >= lastRunDateTime || utilElements.createdDateTime >= lastRunDateTime);
+        #    numRecords = any2int(utilElements.RecId);
+        #    this.progressInit("Searching for changed elements",numRecords,#AviPublish2Web);
+        #
+        #    // Find all changed elements in the AOS and save them in DevUtilElements.
+        #    while select utilElements
+        #        order by parentId
+        #        where utilElements.recordType       != UtilElementType::WebListDef
+        #        &&    utilElements.recordType       != UtilElementType::ReportLibrary
+        #        &&    utilElements.recordType       != UtilElementType::PrivateProject
+        #        &&    utilElements.recordType       != UtilElementType::SharedProject
+        #        &&    utilElements.utilLevel        >  UtilEntryLevel::sl3
+        #//        &&    (utilElements.modifiedBy       == curuserid()     || utilElements.createdBy       == curuserid())
+        #//        &&    (utilElements.modifiedDateTime >= lastRunDateTime || utilElements.createdDateTime >= lastRunDateTime)
+        #        {
+        #        progress.setText(strFmt("%1,%2",utilElements.recordType,utilElements.name));
+        #        progress.incCount();
+        #
+        #        if(!utilElements.parentId)
+        #        {
+        #            // Export the element to a file.
+        #            this.export(utilElements);
+        #        }
+        #        else
+        #        {
+        #            // Find the parrent element and export it to a file.
+        #            utilElements = xUtilElements::parentElement(utilElements);
+        #            this.export(utilElements);
+        #        }
+        #    }
+        #    // Update lastRunDateTime with the time this job started.
+        #    lastRunDateTime = startTime;
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container packedClass)
+        #{
+        #    Integer     _version     = conPeek(packedClass,1);
+        #
+        #    switch (_version)
+        #    {
+        #        case(#CurrentVersion) :
+        #            [_version,#CurrentList] = packedClass;
+        #            break;
+        #        default :
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #description
+        #Static public ClassDescription description()
+        #{
+        #    return "Scan development elements";
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #public static void main(Args args)
+        #{
+        #    TimeInMS                startTime, endTime;
+        #    RUHAExportUtilElements  ruhaExportUtilElements = new RUHAExportUtilElements();
+        #
+        #    if (ruhaExportUtilElements.prompt())
+        #    {
+        #        startTime = WinAPI::getTickCount();
+        #        ruhaExportUtilElements.run();
+        #        endTime = WinAPI::getTickCount();
+        #        info(strfmt("Execution time: %1",time2Str( ((endTime-startTime) div 1000) ,1,1)));
+        #        xSysLastValue::saveLast(ruhaExportUtilElements);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

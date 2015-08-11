@@ -1,0 +1,142 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MNU
+
+; Microsoft Dynamics AX Menu : MainMenu unloaded
+; --------------------------------------------------------------------------------
+  MNUVERSION 4
+  
+  MENU #MainMenu
+    PROPERTIES
+      Name                #MainMenu
+      Label               #@SYS71148
+      HelpText            #@SYS59494
+      NeededAccessLevel   #NoAccess
+      SetCompany          #Yes
+    ENDPROPERTIES
+    
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Ledger
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #COSCosting
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Bank
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #smmCRMSeries
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Cust
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Vend
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Invent
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Req
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Prod
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #ProductBuilder
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #JmgMenu
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #HRM
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #KMQuestionnaire
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #KMScorecard
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #TrvExpense
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Project
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #SMA
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Basic
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #Administration
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #WPA
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+  ENDMENU
+  
+
+***Element: END

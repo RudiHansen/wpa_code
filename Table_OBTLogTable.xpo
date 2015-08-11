@@ -1,0 +1,453 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : OBTLogTable unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #OBTLogTable
+    PROPERTIES
+      Name                #OBTLogTable
+      Label               #@OBT1
+      FormRef             #OBTLogTable
+      TitleField1         #TableName
+      TitleField2         #LogMediaDescription
+      ConfigurationKey    #SysDatabaseLog
+      SecurityKey         #AdminSetup
+      SaveDataPerCompany  #No
+      PrimaryIndex        #TableNameIdx
+      ClusterIndex        #TableNameIdx
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #TableName
+        STRING
+        PROPERTIES
+          Name                #TableName
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #OBTLogTable
+          ExtendedDataType    
+            ARRAY 
+              #TableName
+              #
+            ENDARRAY
+          StringSize          #40
+        ENDPROPERTIES
+        
+      FIELD #UseStandardLog
+        ENUM
+        PROPERTIES
+          Name                #UseStandardLog
+          Table               #OBTLogTable
+          ExtendedDataType    
+            ARRAY 
+              #OBTUseStandardLog
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #LogMedia
+        STRING
+        PROPERTIES
+          Name                #LogMedia
+          Mandatory           #Yes
+          Table               #OBTLogTable
+          ExtendedDataType    
+            ARRAY 
+              #OBTLogMedia
+              #
+            ENDARRAY
+          StringSize          #40
+        ENDPROPERTIES
+        
+      FIELD #LogMediaDescription
+        STRING
+        PROPERTIES
+          Name                #LogMediaDescription
+          Table               #OBTLogTable
+          ExtendedDataType    
+            ARRAY 
+              #ClassDescription
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TableName
+          #UseStandardLog
+          #LogMedia
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Identification
+        PROPERTIES
+          Name                #Identification
+          Label               #@SYS5711
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TableName
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Setup
+        PROPERTIES
+          Name                #Setup
+          Label               #@SYS26269
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #UseStandardLog
+          #LogMedia
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #TableNameIdx
+      PROPERTIES
+        Name                #TableNameIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TableName
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #addToDatabaseLog
+        #void addToDatabaseLog()
+        #{
+        #    #define.AdminDomain ('Admin')
+        #    ;
+        #    OBTLogTable::insertDatabaseLog(this.logTableId(), DatabaseLogType::Insert, #AdminDomain);
+        #    OBTLogTable::insertDatabaseLog(this.logTableId(), DatabaseLogType::Update, #AdminDomain);
+        #    OBTLogTable::insertDatabaseLog(this.logTableId(), DatabaseLogType::Delete, #AdminDomain);
+        #    OBTLogTable::insertDatabaseLog(this.logTableId(), DatabaseLogType::RenameKey, #AdminDomain);
+        #}
+      ENDSOURCE
+      SOURCE #delete
+        #public void delete()
+        #{
+        #
+        #    ;
+        #    if (!this.UseStandardLog)
+        #    {
+        #        this.removeFromDatabaseLog();
+        #    }
+        #
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #insert
+        #public void insert()
+        #{
+        #    super();
+        #
+        #    this.addToDatabaseLog();
+        #}
+      ENDSOURCE
+      SOURCE #logMedia
+        #//BP Deviation Documented
+        #edit Name logMedia(boolean      _set,
+        #                   OBTLogMedia  _logMedia)
+        #{
+        #    Name    name;
+        #    ;
+        #    if (_set)
+        #    {
+        #        this.LogMedia = _logMedia;
+        #        this.modifiedField(fieldnum(OBTLogTable, LogMedia));
+        #    }
+        #    name = this.LogMediaDescription;
+        #
+        #    return name;
+        #}
+      ENDSOURCE
+      SOURCE #logTableId
+        #TableId logTableId()
+        #{
+        #    ;
+        #    return tablename2id(this.TableName);
+        #}
+      ENDSOURCE
+      SOURCE #modifiedField
+        #public void modifiedField(fieldId _fieldId)
+        #{
+        #    #define.Description('Description')
+        #    SysDictClass    dictClass;
+        #    identifiername  staticName = staticmethodstr(OBTLogMediaBase, description);
+        #    ;
+        #
+        #    super(_fieldId);
+        #
+        #    switch (_fieldId)
+        #    {
+        #        case fieldnum(OBTLogTable, LogMedia)    :   dictClass = new SysDictClass(classname2id(this.LogMedia));
+        #                                                    if (dictClass.hasStaticMethod(staticName))
+        #                                                    {
+        #                                                        new ExecutePermission().assert();
+        #                                                        this.LogMediaDescription = dictClass.callStatic(#Description);
+        #                                                    }
+        #                                                    break;
+        #        default                                 :   break;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #removeFromDatabaseLog
+        #void removeFromDatabaseLog()
+        #{
+        #    #define.AdminDomain ('Admin')
+        #    ;
+        #    OBTLogTable::deleteDatabaseLog(this.logTableId(), DatabaseLogType::Insert, #AdminDomain);
+        #    OBTLogTable::deleteDatabaseLog(this.logTableId(), DatabaseLogType::Update, #AdminDomain);
+        #    OBTLogTable::deleteDatabaseLog(this.logTableId(), DatabaseLogType::Delete, #AdminDomain);
+        #    OBTLogTable::deleteDatabaseLog(this.logTableId(), DatabaseLogType::RenameKey, #AdminDomain);
+        #}
+      ENDSOURCE
+      SOURCE #validateMedia
+        #public boolean validateMedia()
+        #{
+        #    classId         mediaClassId;
+        #    SysDictClass    mediaClass;
+        #    boolean         ret = true;
+        #
+        #    mediaClassId = className2Id(this.LogMedia);
+        #
+        #    if (mediaClassId == 0)
+        #    {
+        #        return checkfailed(strfmt("@SYS97137", this.LogMedia));
+        #    }
+        #    /*mediaClass = new SysDictClass(mediaClassId);
+        #
+        #    if (mediaClass.extend() != classnum(OBTLogMediaBase))
+        #    {
+        #        return checkfailed(strfmt("@OBT10", this.LogMedia));
+        #    }*/
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #validateWrite
+        #public boolean validateWrite()
+        #{
+        #    boolean ret;
+        #
+        #    ret = super();
+        #
+        #    ret = ret && this.validateMedia();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #application_Log
+        #static server boolean application_Log(DatabaseLogType   _logType,
+        #                                      Common            _record,
+        #                                      Common            _recordOrig     = _record.orig(),
+        #                                      container         _changedFields  = connull())
+        #{
+        #    boolean         ret;
+        #    OBTLogTable     logTable = OBTLogTable::findId(_record.TableId);
+        #    SysDictClass    dictClass;
+        #    OBTLogMediaBase logMedia;
+        #    ;
+        #    if (logTable)
+        #    {
+        #        ret         = !logTable.UseStandardLog;
+        #        dictClass   = new SysDictClass(classname2id(logTable.LogMedia));
+        #
+        #        if (dictClass)
+        #        {
+        #            logMedia = dictClass.makeObject();
+        #
+        #            switch (_logType)
+        #            {
+        #                case DatabaseLogType::Insert    :   logMedia.logInsert(_record);
+        #                                                    break;
+        #                case DatabaseLogType::Delete    :   logMedia.logDelete(_record);
+        #                                                    break;
+        #                case DatabaseLogType::Update    :   logMedia.logUpdate(_recordOrig, _record, _changedFields);
+        #                                                    break;
+        #                case DatabaseLogType::RenameKey :   logMedia.logRenameKey(_recordOrig, _record, _changedFields);
+        #                                                    break;
+        #                default                         :   break;
+        #            }
+        #        }
+        #    }
+        #    else
+        #    {
+        #        ret = false;
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #application_LogDelete
+        #static server boolean application_LogDelete(Common _recordDeleted)
+        #{
+        #    boolean ret;
+        #    ;
+        #
+        #    ret = OBTLogTable::application_Log(DatabaseLogType::Delete, _recordDeleted);
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #application_LogInsert
+        #static server boolean application_LogInsert(Common _recordInserted)
+        #{
+        #    boolean ret = false;
+        #    ;
+        #
+        #    ret = OBTLogTable::application_Log(DatabaseLogType::Insert, _recordInserted);
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #application_LogRenameKey
+        #static server boolean application_LogRenameKey(Common       _recordOrig,
+        #                                               Common       _recordUpdated,
+        #                                               container    _changedFields)
+        #{
+        #    boolean ret;
+        #    ;
+        #
+        #    ret = OBTLogTable::application_Log(DatabaseLogType::RenameKey, _recordOrig, _recordUpdated, _changedFields);
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #application_LogUpdate
+        #static server boolean application_LogUpdate(Common      _recordOrig,
+        #                                            Common      _recordUpdated,
+        #                                            container   _changedFields)
+        #{
+        #    boolean ret;
+        #    ;
+        #
+        #    ret = OBTLogTable::application_Log(DatabaseLogType::Update, _recordOrig, _recordUpdated, _changedFields);
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #databaseLogExist
+        #public static boolean databaseLogExist(TableId          _tableId,
+        #                                       DatabaseLogType  _logType,
+        #                                       DomainId         _domainId)
+        #{
+        #    DataBaseLog  dataBaseLog;
+        #    ;
+        #    select firstonly RecId from dataBaseLog
+        #        where dataBaseLog.logTable  == _tableId &&
+        #              dataBaseLog.logType   == _logType &&
+        #              dataBaseLog.domainId  == _domainId;
+        #
+        #    return dataBaseLog.RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #deleteDatabaseLog
+        #static void deleteDatabaseLog(TableId           _tableId,
+        #                              DatabaseLogType   _logType,
+        #                              DomainId          _domainId)
+        #{
+        #    DataBaseLog  dataBaseLog;
+        #    ;
+        #    ttsbegin;
+        #
+        #    delete_from dataBaseLog
+        #        where dataBaseLog.logTable  == _tableId &&
+        #              dataBaseLog.logType   == _logType &&
+        #              dataBaseLog.domainId  == _domainId;
+        #    ttscommit;
+        #
+        #    SysFlushDatabaseLogSetup::main();
+        #}
+      ENDSOURCE
+      SOURCE #exist
+        #public static boolean exist(TableName   _tableName)
+        #{
+        #    ;
+        #    return _tableName && (select firstonly RecId from OBTLogTable
+        #                            where OBTLogTable.TableName == _tableName).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #public static OBTLogTable find(TableName    _tableName,
+        #                               boolean      _forUpdate = false)
+        #{
+        #    OBTLogTable logTable;
+        #    ;
+        #    logTable.selectForUpdate(_forUpdate);
+        #
+        #    if (_tableName)
+        #    {
+        #        select firstonly logTable
+        #            where logTable.TableName    == _tableName;
+        #    }
+        #
+        #    return logTable;
+        #}
+      ENDSOURCE
+      SOURCE #findId
+        #public static OBTLogTable findId(TableId    _tableId,
+        #                                 boolean    _forUpdate = false)
+        #{
+        #    OBTLogTable logTable;
+        #    ;
+        #    logTable.selectForUpdate(_forUpdate);
+        #
+        #    if (_tableId)
+        #    {
+        #        select firstonly logTable
+        #            where logTable.TableName    == tableid2name(_tableId);
+        #    }
+        #
+        #    return logTable;
+        #}
+      ENDSOURCE
+      SOURCE #insertDatabaseLog
+        #static void insertDatabaseLog(TableId           _tableId,
+        #                              DatabaseLogType   _logType,
+        #                              DomainId          _domainId)
+        #{
+        #    DataBaseLog  dataBaseLog;
+        #    ;
+        #
+        #    if (!OBTLogTable::databaseLogExist(_tableId, _logType, _domainId))
+        #    {
+        #        ttsbegin;
+        #        dataBaseLog.clear();
+        #        dataBaseLog.initValue();
+        #        dataBaseLog.logTable    = _tableId;
+        #        dataBaseLog.logType     = _logType;
+        #        dataBaseLog.domainId    = _domainId;
+        #        dataBaseLog.insert();
+        #        ttscommit;
+        #    }
+        #
+        #    SysFlushDatabaseLogSetup::main();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

@@ -1,0 +1,24 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPAExportLogTrans unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPAExportLogTrans
+    Type: 3
+    PROPERTIES
+      Name                #WPAExportLogTrans
+      Label               #@WPA199
+      HelpText            #@WPA200
+      ObjectType          #Class
+      Object              #WPAExportLogTrans
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

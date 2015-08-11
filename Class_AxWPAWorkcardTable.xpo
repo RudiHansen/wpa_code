@@ -1,0 +1,646 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxWPAWorkcardTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxWPAWorkcardTable
+    PROPERTIES
+      Name                #AxWPAWorkcardTable
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxWPAWorkcardTable axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxWPAWorkcardTable extends AxInternalBase
+        #{
+        #    WPAWorkcardTable WPAWorkcardTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public WPAWorkcardTable currentRecord(WPAWorkcardTable _WPAWorkcardTable = WPAWorkcardTable)
+        #{
+        #    if (!prmisdefault(_WPAWorkcardTable))
+        #    {
+        #        super(_WPAWorkcardTable);
+        #        WPAWorkcardTable = _WPAWorkcardTable;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return WPAWorkcardTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected WPAWorkcardTable emptyRecord()
+        #{
+        #    WPAWorkcardTable localWPAWorkcardTable;
+        #    ;
+        #    return localWPAWorkcardTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmAccountId
+        #public str parmAccountId(str _accountId = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_accountId))
+        #    {
+        #        dictField = new DictField(tablenum(WPAWorkcardTable),fieldnum(WPAWorkcardTable,AccountId));
+        #        if(this.valueMappingInbound())
+        #        {
+        #            this.validateInboundString(_accountId,dictField,this.mapPolicy().xMLMapCustAccount());
+        #            _accountId = this.axCustAccount(_accountId);
+        #        }
+        #        else
+        #        {
+        #            this.validateInboundString(_accountId,dictField);
+        #        }
+        #        this.setField(fieldNum(WPAWorkcardTable, AccountId), _accountId);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axCustAccount(wPAWorkcardTable.AccountId);
+        #    }
+        #    else
+        #    {
+        #        return wPAWorkcardTable.AccountId;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmAreaId
+        #public WPAAreaId parmAreaId(WPAAreaId _areaId = '')
+        #{
+        #    if (!prmisdefault(_areaId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, AreaId), _areaId);
+        #    }
+        #
+        #    return wPAWorkcardTable.AreaId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmAttentionName
+        #public WPAAttentionName parmAttentionName(WPAAttentionName _attentionName = '')
+        #{
+        #    if (!prmisdefault(_attentionName))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, AttentionName), _attentionName);
+        #    }
+        #
+        #    return wPAWorkcardTable.AttentionName;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCrmInfo1
+        #public WPACrmInfo1 parmCrmInfo1(WPACrmInfo1 _crmInfo1 = '')
+        #{
+        #    if (!prmisdefault(_crmInfo1))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, CrmInfo1), _crmInfo1);
+        #    }
+        #
+        #    return wPAWorkcardTable.CrmInfo1;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCrmInfo2
+        #public WPACrmInfo2 parmCrmInfo2(WPACrmInfo2 _crmInfo2 = '')
+        #{
+        #    if (!prmisdefault(_crmInfo2))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, CrmInfo2), _crmInfo2);
+        #    }
+        #
+        #    return wPAWorkcardTable.CrmInfo2;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDebitorId
+        #public str parmDebitorId(str _debitorId = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_debitorId))
+        #    {
+        #        dictField = new DictField(tablenum(WPAWorkcardTable),fieldnum(WPAWorkcardTable,DebitorId));
+        #        if(this.valueMappingInbound())
+        #        {
+        #            this.validateInboundString(_debitorId,dictField,this.mapPolicy().xMLMapCustAccount());
+        #            _debitorId = this.axCustAccount(_debitorId);
+        #        }
+        #        else
+        #        {
+        #            this.validateInboundString(_debitorId,dictField);
+        #        }
+        #        this.setField(fieldNum(WPAWorkcardTable, DebitorId), _debitorId);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axCustAccount(wPAWorkcardTable.DebitorId);
+        #    }
+        #    else
+        #    {
+        #        return wPAWorkcardTable.DebitorId;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDescription
+        #public WPADescription parmDescription(WPADescription _description = '')
+        #{
+        #    if (!prmisdefault(_description))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, Description), _description);
+        #    }
+        #
+        #    return wPAWorkcardTable.Description;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDirection
+        #public WPADirection parmDirection(WPADirection _direction = WPADirection::Outgoing)
+        #{
+        #    if (!prmisdefault(_direction))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, Direction), _direction);
+        #    }
+        #
+        #    return wPAWorkcardTable.Direction;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEmploymentCode
+        #public WPAEmploymentCode parmEmploymentCode(WPAEmploymentCode _employmentCode = '')
+        #{
+        #    if (!prmisdefault(_employmentCode))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, EmploymentCode), _employmentCode);
+        #    }
+        #
+        #    return wPAWorkcardTable.EmploymentCode;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEndTime
+        #public WPAEndTime parmEndTime(WPAEndTime _endTime = DateTimeUtil::newDateTime(today(), 0))
+        #{
+        #    if (!prmisdefault(_endTime))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, EndTime), _endTime);
+        #    }
+        #
+        #    return wPAWorkcardTable.EndTime;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmOrderId
+        #public WPAOrderId parmOrderId(WPAOrderId _orderId = '')
+        #{
+        #    if (!prmisdefault(_orderId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, OrderId), _orderId);
+        #    }
+        #
+        #    return wPAWorkcardTable.OrderId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmPurchaseOrderNumber
+        #public WPAPurchaseOrderNumber parmPurchaseOrderNumber(WPAPurchaseOrderNumber _purchaseOrderNumber = '')
+        #{
+        #    if (!prmisdefault(_purchaseOrderNumber))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, PurchaseOrderNumber), _purchaseOrderNumber);
+        #    }
+        #
+        #    return wPAWorkcardTable.PurchaseOrderNumber;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRefCompany
+        #public CompanyId parmRefCompany(CompanyId _refCompany = '')
+        #{
+        #    if (!prmisdefault(_refCompany))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, RefCompany), _refCompany);
+        #    }
+        #
+        #    return wPAWorkcardTable.RefCompany;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmResponsible
+        #public WPAResponsible parmResponsible(WPAResponsible _responsible = '')
+        #{
+        #    if (!prmisdefault(_responsible))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, Responsible), _responsible);
+        #    }
+        #
+        #    return wPAWorkcardTable.Responsible;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceObjectId
+        #public WPAServiceObjectId parmServiceObjectId(WPAServiceObjectId _serviceObjectId = '')
+        #{
+        #    if (!prmisdefault(_serviceObjectId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, ServiceObjectId), _serviceObjectId);
+        #    }
+        #
+        #    return wPAWorkcardTable.ServiceObjectId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSiteId
+        #public WPASiteId parmSiteId(WPASiteId _siteId = '')
+        #{
+        #    if (!prmisdefault(_siteId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, SiteId), _siteId);
+        #    }
+        #
+        #    return wPAWorkcardTable.SiteId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmStartTime
+        #public WPAStartTime parmStartTime(WPAStartTime _startTime = DateTimeUtil::newDateTime(today(), 0))
+        #{
+        #    if (!prmisdefault(_startTime))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, StartTime), _startTime);
+        #    }
+        #
+        #    return wPAWorkcardTable.StartTime;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmStatus
+        #public WPAStatus parmStatus(WPAStatus _status = '')
+        #{
+        #    if (!prmisdefault(_status))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, Status), _status);
+        #    }
+        #
+        #    return wPAWorkcardTable.Status;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTransferred
+        #public WPATransferred parmTransferred(WPATransferred _transferred = WPATransferredEnum::Imported)
+        #{
+        #    if (!prmisdefault(_transferred))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, Transferred), _transferred);
+        #    }
+        #
+        #    return wPAWorkcardTable.Transferred;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmUrgent
+        #public WPAUrgent parmUrgent(WPAUrgent _urgent = '')
+        #{
+        #    if (!prmisdefault(_urgent))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, Urgent), _urgent);
+        #    }
+        #
+        #    return wPAWorkcardTable.Urgent;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmWorkcardId
+        #public WPAWorkcardId parmWorkcardId(WPAWorkcardId _workcardId = '')
+        #{
+        #    if (!prmisdefault(_workcardId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, WorkcardId), _workcardId);
+        #    }
+        #
+        #    return wPAWorkcardTable.WorkcardId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmWorkcardTypeId
+        #public WPAWorkcardTypeId parmWorkcardTypeId(WPAWorkcardTypeId _workcardTypeId = '')
+        #{
+        #    if (!prmisdefault(_workcardTypeId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardTable, WorkcardTypeId), _workcardTypeId);
+        #    }
+        #
+        #    return wPAWorkcardTable.WorkcardTypeId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setAccountId
+        #protected void setAccountId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, AccountId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setAreaId
+        #protected void setAreaId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, AreaId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setAttentionName
+        #protected void setAttentionName()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, AttentionName)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCrmInfo1
+        #protected void setCrmInfo1()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, CrmInfo1)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCrmInfo2
+        #protected void setCrmInfo2()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, CrmInfo2)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDebitorId
+        #protected void setDebitorId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, DebitorId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDescription
+        #protected void setDescription()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, Description)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDirection
+        #protected void setDirection()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, Direction)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setEmploymentCode
+        #protected void setEmploymentCode()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, EmploymentCode)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setEndTime
+        #protected void setEndTime()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, EndTime)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setOrderId
+        #protected void setOrderId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, OrderId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setPurchaseOrderNumber
+        #protected void setPurchaseOrderNumber()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, PurchaseOrderNumber)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setRefCompany
+        #protected void setRefCompany()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, RefCompany)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setResponsible
+        #protected void setResponsible()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, Responsible)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setServiceObjectId
+        #protected void setServiceObjectId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, ServiceObjectId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSiteId
+        #protected void setSiteId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, SiteId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setStartTime
+        #protected void setStartTime()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, StartTime)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setStatus
+        #protected void setStatus()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, Status)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setOrderId();
+        #    this.setWorkcardId();
+        #    this.setEmploymentCode();
+        #    this.setAccountId();
+        #    this.setAreaId();
+        #    this.setStartTime();
+        #    this.setEndTime();
+        #    this.setDescription();
+        #    this.setResponsible();
+        #    this.setCrmInfo1();
+        #    this.setCrmInfo2();
+        #    this.setStatus();
+        #    this.setPurchaseOrderNumber();
+        #    this.setAttentionName();
+        #    this.setUrgent();
+        #    this.setDebitorId();
+        #    this.setWorkcardTypeId();
+        #    this.setSiteId();
+        #    this.setServiceObjectId();
+        #    this.setTransferred();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTransferred
+        #protected void setTransferred()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, Transferred)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setUrgent
+        #protected void setUrgent()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, Urgent)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setWorkcardId
+        #protected void setWorkcardId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, WorkcardId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setWorkcardTypeId
+        #protected void setWorkcardTypeId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardTable, WorkcardTypeId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #WPAWorkcardTable
+        #public WPAWorkcardTable wPAWorkcardTable(WPAWorkcardTable _wPAWorkcardTable = wPAWorkcardTable)
+        #{
+        #    if (!prmisdefault(_wPAWorkcardTable))
+        #    {
+        #        this.setCurrentRecordFromExternal(_wPAWorkcardTable);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxWPAWorkcardTable construct()
+        #{
+        #    return new AxWPAWorkcardTable();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newWPAWorkcardTable
+        #public static AxWPAWorkcardTable newWPAWorkcardTable(WPAWorkcardTable _WPAWorkcardTable)
+        #{
+        #    AxWPAWorkcardTable AxWPAWorkcardTable = AxWPAWorkcardTable::construct();
+        #    ;
+        #    AxWPAWorkcardTable.WPAWorkcardTable(_WPAWorkcardTable);
+        #
+        #    return AxWPAWorkcardTable;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,93 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: QUE
+
+; Microsoft Dynamics AX Query: WPACustTable unloaded
+; --------------------------------------------------------------------------------
+VERSION 18
+
+QUERY #WPACustTable
+  PROPERTIES
+    Name                #WPACustTable
+    Version             #185
+    AllowCheck          #Yes
+    NextUniqueId        #1003
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #ClassDeclaration
+      #final class QueryRun
+      #{
+      #
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  BLOCKS
+    BLOCK #CustTable
+      PROPERTIES
+        Name                #CustTable
+        Table               #CustTable
+        UniqueId            #1002
+      ENDPROPERTIES
+      
+      FIELDLIST
+        PROPERTIES
+          Dynamic             #No
+        ENDPROPERTIES
+        
+        FIELD #AccountNum
+        FIELD #CellularPhone
+        FIELD #Address
+        FIELD #County
+        FIELD #City
+        FIELD #ContactPersonId
+        FIELD #Email
+        FIELD #MainContactId
+        FIELD #Name
+        FIELD #PartyCountry
+        FIELD #PartyId
+        FIELD #PartyState
+        FIELD #PartyType
+        FIELD #PaymTermId
+        FIELD #Phone
+        FIELD #PhoneLocal
+        FIELD #State
+        FIELD #Street
+        FIELD #TeleFax
+        FIELD #ZipCode
+      ENDFIELDLIST
+      SORTING
+        FIELD #AccountNum
+          PROPERTIES
+            Table               #CustTable
+            Field               #AccountNum
+          ENDPROPERTIES
+          
+      ENDSORTING
+      LINES
+        LINE #AccountNum
+        PROPERTIES
+          Name                #AccountNum
+          Table               #CustTable
+          Field               #AccountNum
+        ENDPROPERTIES
+        
+      ENDLINES
+      BLOCKS
+      ENDBLOCKS
+      GROUPBY
+      ENDGROUPBY
+      ORDERBY
+      ENDORDERBY
+    ENDBLOCK
+  ENDBLOCKS
+  DEPENDENTS
+  ENDDEPENDENTS
+  COMPOSITEQUERIES
+  ENDCOMPOSITEQUERIES
+ENDQUERY
+
+
+***Element: END

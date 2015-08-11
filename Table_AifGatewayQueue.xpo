@@ -1,0 +1,1107 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : AifGatewayQueue unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #AifGatewayQueue
+    PROPERTIES
+      Name                #AifGatewayQueue
+      Label               #@SYS88708
+      TitleField1         #MessageId
+      TitleField2         #Status
+      ConfigurationKey    #AIF
+      SecurityKey         #BasicTables
+      CreateRecIdIndex    #Yes
+      SaveDataPerCompany  #No
+      PrimaryIndex        #AifGatewayQueueIdx
+      ClusterIndex        #AifConversationIdx
+      CreatedDateTime     #Yes
+      DEL_createdTime     #Yes
+      DeveloperDocumentation  #@SYS125205
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Direction
+        ENUM
+        PROPERTIES
+          Name                #Direction
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #AifGatewayQueue
+          EnumType            #AifMessageDirection
+        ENDPROPERTIES
+        
+      FIELD #ChannelId
+        STRING
+        PROPERTIES
+          Name                #ChannelId
+          Mandatory           #Yes
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifChannelId
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #SubmittingUserId
+        STRING
+        PROPERTIES
+          Name                #SubmittingUserId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifWindowsUser
+              #
+            ENDARRAY
+          StringSize          #121
+        ENDPROPERTIES
+        
+      FIELD #Status
+        ENUM
+        PROPERTIES
+          Name                #Status
+          Mandatory           #Yes
+          Table               #AifGatewayQueue
+          EnumType            #AifQueueStatus
+        ENDPROPERTIES
+        
+      FIELD #MessageXml
+        STRING
+        PROPERTIES
+          Name                #MessageXml
+          Mandatory           #Yes
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifMessageXml
+              #
+            ENDARRAY
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #MessageId
+        GUID
+        PROPERTIES
+          Name                #MessageId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifMessageBase
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #InfoLogData
+        QUEUE
+        PROPERTIES
+          Name                #InfoLogData
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #InfologData
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ErrorMessage
+        STRING
+        PROPERTIES
+          Name                #ErrorMessage
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifErrorMessage
+              #
+            ENDARRAY
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #Encoding
+        STRING
+        PROPERTIES
+          Name                #Encoding
+          Label               #@SYS93616
+          HelpText            #@SYS93615
+          Mandatory           #Yes
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifMessageEncoding
+              #
+            ENDARRAY
+          StringSize          #15
+        ENDPROPERTIES
+        
+      FIELD #EndpointUserId
+        STRING
+        PROPERTIES
+          Name                #EndpointUserId
+          Mandatory           #Yes
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifWindowsUser
+              #
+            ENDARRAY
+          StringSize          #121
+        ENDPROPERTIES
+        
+      FIELD #DestinationEndpointId
+        STRING
+        PROPERTIES
+          Name                #DestinationEndpointId
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifEndpointBase
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #SourceEndpointId
+        STRING
+        PROPERTIES
+          Name                #SourceEndpointId
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifEndpointBase
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #ActionId
+        STRING
+        PROPERTIES
+          Name                #ActionId
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifActionBase
+              #
+            ENDARRAY
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #RequestMessageId
+        GUID
+        PROPERTIES
+          Name                #RequestMessageId
+          Visible             #No
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifMessageBase
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_SendDetailedFault
+        ENUM
+        PROPERTIES
+          Name                #DEL_SendDetailedFault
+          Visible             #No
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #AifGatewayQueue
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #FaultCode
+        STRING
+        PROPERTIES
+          Name                #FaultCode
+          Visible             #No
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifErrorMessage
+              #
+            ENDARRAY
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #FaultDetailXml
+        STRING
+        PROPERTIES
+          Name                #FaultDetailXml
+          Visible             #No
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifXml
+              #
+            ENDARRAY
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #FaultType
+        ENUM
+        PROPERTIES
+          Name                #FaultType
+          Visible             #No
+          Table               #AifGatewayQueue
+          EnumType            #AifFaultType
+        ENDPROPERTIES
+        
+      FIELD #MessageBodyXml
+        STRING
+        PROPERTIES
+          Name                #MessageBodyXml
+          Visible             #No
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifDocumentXml
+              #
+            ENDARRAY
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #ConversationId
+        STRING
+        PROPERTIES
+          Name                #ConversationId
+          Visible             #No
+          Table               #AifGatewayQueue
+          ExtendedDataType    
+            ARRAY 
+              #AifConversationId
+              #
+            ENDARRAY
+          StringSize          #256
+        ENDPROPERTIES
+        
+      FIELD #ErrorType
+        ENUM
+        PROPERTIES
+          Name                #ErrorType
+          Visible             #No
+          Table               #AifGatewayQueue
+          EnumType            #AifErrorType
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SourceEndpointId
+          #ErrorMessage
+          #Direction
+          #Status
+          #MessageId
+          #DestinationEndpointId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #AutoLookup
+        PROPERTIES
+          Name                #AutoLookup
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Direction
+          #Status
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Expiration
+        PROPERTIES
+          Name                #Expiration
+          Label               #@SYS88794
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Overview
+        PROPERTIES
+          Name                #Overview
+          Label               #@SYS9039
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #MessageId
+          #Direction
+          #Status
+          #SubmittingUserId
+          #ChannelId
+          #MessageXml
+          #ActionId
+          #SourceEndpointId
+          #DestinationEndpointId
+          #EndpointUserId
+          #Encoding
+          #ErrorMessage
+          #InfoLogData
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #AifGatewayQueueIdx
+      PROPERTIES
+        Name                #AifGatewayQueueIdx
+        AllowDuplicates     #No
+        ConfigurationKey    #AIF
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #MessageId
+      ENDINDEXFIELDS
+      
+      #AifConversationIdx
+      PROPERTIES
+        Name                #AifConversationIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ConversationId
+        #Direction
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #aosValidateDelete
+        #public boolean aosValidateDelete()
+        #{
+        #    boolean ret;
+        #
+        #    ret = super();
+        #
+        #    if (ret)
+        #        ret = this.validateUser();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #aosValidateInsert
+        #public boolean aosValidateInsert()
+        #{
+        #    boolean ret;
+        #
+        #    ret = super();
+        #
+        #    if (ret)
+        #        ret = this.validateUser();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #aosValidateRead
+        #public boolean aosValidateRead()
+        #{
+        #    #Admin
+        #    boolean ret;
+        #    userId currentUserId;
+        #    sid currentUserSid;
+        #    AifGatewayQueue gatewayQueue;
+        #    ;
+        #    ret = super();
+        #
+        #    if (ret)
+        #    {
+        #        currentUserId = curuserid();
+        #
+        #        if (AifUtil::isGroupMember(currentUserId, #AdminUserGroup))
+        #        {
+        #            ret = true;
+        #        }
+        #        else
+        #        {
+        #            // Querying again as fields needed for validation maybe empty in table buffer.
+        #            new SkipAOSValidationPermission().assert();
+        #             // BP deviation documented
+        #            gatewayQueue.skipAosValidation(true);
+        #            select SubmittingUserId from gatewayQueue
+        #                where gatewayQueue.RecId == this.RecId;
+        #            CodeAccessPermission::revertAssert();
+        #
+        #            currentUserSid = AifUtil::getAxUserSid(currentUserId);
+        #            ret = (currentUserSid == AifUtil::getWindowsUserSid(gatewayQueue.SubmittingUserId));
+        #        }
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #aosValidateUpdate
+        #public boolean aosValidateUpdate()
+        #{
+        #    boolean ret;
+        #
+        #    ret = super();
+        #
+        #    if (ret)
+        #        ret = this.validateUser();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #getGatewayMessage
+        #public AifGatewayMessage getGatewayMessage()
+        #{
+        #    AifGatewayMessage gatewayMessage = new AifGatewayMessage(this.MessageXml, this.Encoding, this.SubmittingUserId, this.MessageId);
+        #
+        #    return gatewayMessage;
+        #}
+      ENDSOURCE
+      SOURCE #validateUser
+        #public boolean validateUser()
+        #{
+        #    #Admin
+        #    boolean ret;
+        #    userId currentUserId;
+        #    sid currentUserSid;
+        #
+        #    currentUserId = curuserid();
+        #
+        #    // Gateway records can be inserted or modified only:
+        #    //      - by members of Admin
+        #    //      - the submitting user
+        #    if (AifUtil::isGroupMember(currentUserId, #AdminUserGroup))
+        #    {
+        #        ret = true;
+        #    }
+        #    else
+        #    {
+        #        currentUserSid = AifUtil::getAxUserSid(currentUserId);
+        #        ret = (currentUserSid == AifUtil::getWindowsUserSid(this.SubmittingUserId));
+        #        if (ret && (this.orig().RecId != 0))
+        #            ret = (currentUserSid == AifUtil::getWindowsUserSid(this.orig().SubmittingUserId));
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #exist
+        #static boolean exist(AifMessageId messageId)
+        #
+        #{
+        #    AifGatewayQueue gatewayQueue;
+        #;
+        #    select firstonly RecId from gatewayQueue where gatewayQueue.MessageId == messageId;
+        #
+        #    return gatewayQueue.RecId != 0;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #generateErrorResponse
+        #public static void generateErrorResponse(AifMessage _message)
+        #{
+        #    AifEndpointActionPolicy endpointActionPolicy;
+        #    AifGatewayQueue gatewayQueue;
+        #    AifChannel channel;
+        #    AifActionId actionId;
+        #    boolean autoResponse = false;
+        #    UserConnection connection;
+        #    ;
+        #
+        #    actionId = AifUtil::getActionId(_message.externalAction());
+        #
+        #    if (actionId != '')
+        #        endpointActionPolicy = AifEndpointActionPolicy::find(_message.sourceEndpointId(), actionId);
+        #
+        #    if (endpointActionPolicy)
+        #        autoResponse = (endpointActionPolicy.AutoErrorResponse == NoYes::Yes);
+        #    else
+        #        autoResponse = _message.isDefaultEndpoint();
+        #
+        #    if (!autoResponse)
+        #        return;
+        #
+        #    // Response channel
+        #    select firstonly gatewayQueue join channel where
+        #            channel.ChannelId == gatewayQueue.ChannelId
+        #            && gatewayQueue.MessageId == _message.messageId();
+        #    if (channel.RecId != 0)
+        #        channel = AifChannel::getResponseChannel(channel.ChannelId);
+        #    if ((channel.RecId == 0) ||
+        #        (channel.Enabled == NoYes::No))
+        #        return;
+        #
+        #    // Send Error Response
+        #    connection = new UserConnection();
+        #    connection.ttsbegin();
+        #
+        #    AifGatewayQueue::sendErrorMessage(_message.messageId());
+        #    AifGatewayQueue::removeMessage(_message.messageId());
+        #
+        #    connection.ttscommit();
+        #}
+      ENDSOURCE
+      SOURCE #getFirstOutboundChannelMessage
+        #public static AifGatewayQueue getFirstOutboundChannelMessage(AifChannelId channelId)
+        #{
+        #    AifGatewayQueue gatewayQueue;
+        #
+        #    // Fetch ready outbound messages for the specified channel
+        #    select firstonly RecId, MessageId, MessageXml, Encoding, SubmittingUserId
+        #        from gatewayQueue
+        #        order by CreatedDateTime, RecId
+        #        where
+        #            gatewayQueue.ChannelId == channelId
+        #            && gatewayQueue.Direction == AifMessageDirection::Outbound
+        #            && gatewayQueue.Status == AifQueueStatus::Ready;
+        #
+        #    return gatewayQueue;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getInboundConversationList
+        #/// <summary>
+        #/// This method reads the first available inbound record from the queue.
+        #/// </summary>
+        #/// <returns>A list of containers containing unique  pair of <c>AifConversationId</c>, <c>AifEndpointId</c> and <c>AifChannel</c>.</returns>
+        #/// <remarks>Gets a list of all valid conversations for conversation based processing.</remarks>
+        #public static List getInboundConversationList()
+        #{
+        #    #Aif
+        #    AifGatewayQueue     gatewayQueue;
+        #    AifResourceIdMap    resourceIdMap;
+        #    AifResourceLock     resourceLock;
+        #    List                conversationList;
+        #    ;
+        #
+        #    conversationList = new List(Types::Container);
+        #
+        #    while select ConversationId, SourceEndpointId, ChannelId from gatewayQueue
+        #        group by ConversationId, SourceEndpointId, ChannelId
+        #        where ( gatewayQueue.Status == AifQueueStatus::Ready
+        #            || gatewayQueue.Status == AifQueueStatus::InProcess )
+        #            && gatewayQueue.ConversationId != #ParallelProcessingConvId
+        #            && gatewayQueue.Direction == AifMessageDirection::Inbound
+        #        notexists join resourceIdMap join resourceLock
+        #            where gatewayQueue.ConversationId == resourceIdMap.ConversationId
+        #               && gatewayQueue.SourceEndpointId == resourceIdMap.EndpointId
+        #               && gatewayQueue.ChannelId == resourceIdMap.ChannelId
+        #               && resourceLock.ResourceId == resourceIdMap.ResourceId
+        #               && resourceLock.ResourceType == AifResourceType::Conversation
+        #               && resourceLock.LockType == AifResourceLockType::DocumentService
+        #               && resourceLock.NextProcessingDateTime > DateTimeUtil::utcNow()
+        #    {
+        #        conversationList.addEnd( [gatewayQueue.ConversationId, gatewayQueue.SourceEndpointId, gatewayQueue.ChannelId]);
+        #    }
+        #
+        #    return  conversationList;
+        #}
+      ENDSOURCE
+      SOURCE #getInboundMessagesForParallel
+        #public static AifGatewayQueue getInboundMessagesForParallel()
+        #{
+        #    #Aif
+        #    AifGatewayQueue         gatewayQueue;
+        #    AifResourceIdMap        resourceIdMap;
+        #    AifResourceLock         resourceLock;
+        #    ;
+        #
+        #    // Being specific and getting only necessary fields, since we have 2 memo fields in table and only one is requred.
+        #    select Direction, ChannelId, SubmittingUserId, Status, MessageId, InfoLogData, ErrorMessage,
+        #        Encoding, EndpointUserId, DestinationEndpointId, SourceEndpointId, ActionId,
+        #        RequestMessageId, ErrorType, FaultCode, FaultDetailXml, FaultType, MessageBodyXml
+        #        from gatewayQueue
+        #        order by CreatedDateTime asc, RecId asc
+        #        where gatewayQueue.Direction == AifMessageDirection::Inbound
+        #            && (gatewayQueue.Status == AifQueueStatus::Ready
+        #            || gatewayQueue.Status == AifQueueStatus::InProcess)
+        #            && gatewayQueue.ConversationId == #ParallelProcessingConvId
+        #        notexists join resourceIdMap join resourceLock
+        #            where gatewayQueue.MessageId == resourceIdMap.MessageId
+        #                && resourceLock.ResourceId == resourceIdMap.ResourceId
+        #                && resourceLock.ResourceType == AifResourceType::Message
+        #                && resourceLock.LockType == AifResourceLockType::DocumentService
+        #                && resourceLock.NextProcessingDateTime > DateTimeUtil::utcNow();
+        #
+        #    return gatewayQueue;
+        #}
+      ENDSOURCE
+      SOURCE #getOutboundChannelMessages
+        #public static AifGatewayQueue getOutboundChannelMessages(AifChannelId channelId)
+        #{
+        #    AifGatewayQueue gatewayQueue;
+        #
+        #    // Fetch ready outbound messages for the specified channel
+        #    select RecId, MessageId, MessageXml, Encoding, SubmittingUserId
+        #        from gatewayQueue
+        #        order by CreatedDateTime, RecId
+        #        where
+        #            gatewayQueue.ChannelId == channelId
+        #            && gatewayQueue.Direction == AifMessageDirection::Outbound
+        #            && gatewayQueue.Status == AifQueueStatus::Ready;
+        #
+        #    return gatewayQueue;
+        #}
+      ENDSOURCE
+      SOURCE #getOutboundChannelsWithMessages
+        #public static List getOutboundChannelsWithMessages()
+        #{
+        #    AifGatewayQueue gatewayQueue;
+        #    AifChannel channel;
+        #    AifAdapter adapter;
+        #    List channelIdList = new List(Types::String);
+        #    Set uniqueChannelIds = new Set(Types::String);
+        #
+        #    // Get outbound messages ordered by created date/time
+        #    while
+        #        select ChannelId  from gatewayQueue join channel join adapter
+        #        order by CreatedDateTime, RecId
+        #        where
+        #            gatewayQueue.Direction == AifMessageDirection::Outbound
+        #            && gatewayQueue.Status == AifQueueStatus::Ready
+        #            && gatewayQueue.ChannelId == channel.ChannelId
+        #            && channel.AdapterClassId == adapter.AdapterClassId
+        #            && adapter.Hosted == NoYes::Yes
+        #    {
+        #        // get unique channel Ids
+        #        if (uniqueChannelIds.add(gatewayQueue.ChannelId))
+        #        {
+        #            channelIdList.addEnd(gatewayQueue.ChannelId);
+        #        }
+        #    }
+        #
+        #    return channelIdList;
+        #}
+      ENDSOURCE
+      SOURCE #removeMessage
+        #public static void removeMessage(AifMessageId messageId)
+        #{
+        #    // This method removes a message from the queue
+        #
+        #    AifGatewayQueue gatewayQueue;
+        #
+        #    if(messageId)
+        #    {
+        #        ttsbegin;
+        #        delete_from gatewayQueue where gatewayQueue.MessageId == messageId;
+        #        ttscommit;
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #sendCancellationMessage
+        #public static void sendCancellationMessage(AifMessageId _messageId)
+        #{
+        #    ;
+        #    AifGatewayQueue::sendResponseMessage(_messageId, AifUtil::cancellationXml());
+        #}
+      ENDSOURCE
+      SOURCE #sendErrorMessage
+        #/// <summary>
+        #/// Microsoft internal use only.
+        #/// </summary>
+        #/// <param name="_messageId">The ID of the message in the gateway queue.</param>
+        #/// <remarks>
+        #/// Sends the response error message to the end user.
+        #/// </remarks>
+        #public static void sendErrorMessage(AifMessageId _messageId)
+        #{
+        #    AifGatewayQueue gatewayQueue;
+        #    AifFault        rootFault;
+        #    AifXml          faultXml;
+        #
+        #    #Aif
+        #    ;
+        #
+        #    // Get the gateway queue record
+        #    select ErrorType, ErrorMessage, FaultType, FaultCode, FaultDetailXml, InfoLogData, SourceEndpointId
+        #            from gatewayQueue where gatewayQueue.MessageId == _messageId;
+        #
+        #    if(gatewayQueue && gatewayQueue.ErrorType == AifErrorType::Fault)
+        #    {
+        #        // If the root error is of type AifFault.
+        #        rootFault = new AifFault( gatewayQueue.FaultType,
+        #                        gatewayQueue.ErrorMessage,
+        #                        gatewayQueue.FaultCode,
+        #                        gatewayQueue.FaultDetailXml);
+        #        faultXml = AifFault::serialize(rootFault, gatewayQueue.InfoLogData);
+        #    }
+        #    else if (gatewayQueue && gatewayQueue.ErrorType == AifErrorType::Exception && AifEndpoint::propagateErrors(gatewayQueue.SourceEndpointId))
+        #    {
+        #        // The root error is of type Exception and sourceEndpoint allows throwing Exceptions to end user.
+        #        rootFault = new AifFault(AifFaultType::Single,
+        #                        gatewayQueue.ErrorMessage,
+        #                        gatewayQueue.FaultCode,
+        #                        gatewayQueue.FaultDetailXml);
+        #        faultXml = AifFault::serialize(rootFault);
+        #    }
+        #    else
+        #    {
+        #        // The root error is of type Exception and source Endpoint does NOT allow throwing Exceptions to end user.
+        #        // Note: gatewayQueue.ErrorType will never be None in this method.
+        #        rootFault = new AifFault(AifFaultType::Single, "@SYS94277", #RequestFailedCode);
+        #        faultXml = AifFault::serialize(rootFault);
+        #    }
+        #
+        #    AifGatewayQueue::sendResponseMessage(_messageId, faultXml);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #sendResponseMessage
+        #public static void sendResponseMessage(AifMessageId _messageId, AifXml _xml)
+        #{
+        #    AifMessage message;
+        #    AifGatewayQueue aifGatewayQueue;
+        #    AifChannel responseChannel;
+        #    ;
+        #    // Create a response message
+        #    message = new AifMessage(
+        #        newguid(),
+        #        AifEndpointUser::getWindowsUser(curuserid()),
+        #        AifEndpointUser::getWindowsUser(curuserid())
+        #    );
+        #
+        #    // Set its properties according to the record being deleted,
+        #    // which is the record in AifGatewayQueue
+        #    select firstonly RecId, MessageId, ChannelId, ActionId, SourceEndpointId, DestinationEndpointId, Encoding, RequestMessageId
+        #        from aifGatewayQueue where
+        #        aifGatewayQueue.MessageId == _messageId;
+        #
+        #    if(!aifGatewayQueue.RecId)
+        #    {
+        #        error("@SYS97117");
+        #        return;
+        #    }
+        #
+        #    // Find the response channel the message will be sent out on.
+        #    responseChannel = AifChannel::getResponseChannel(aifGatewayQueue.ChannelId);
+        #    if(! responseChannel)
+        #    {
+        #        error("@SYS97118");
+        #        return;
+        #    }
+        #
+        #    // Use the properties of the AifGatewayQueue record to populate
+        #    // the properties of the message object.
+        #    message.actionId(aifGatewayQueue.ActionId);  // Same actionId
+        #    message.externalAction(aifGatewayQueue.ActionId);  // Use actionId as external also
+        #    message.address(responseChannel.TransportAddress);
+        #    message.channelId(responseChannel.ChannelId);
+        #    // Switch the source/destination endpoints
+        #    message.destinationEndpointId(aifGatewayQueue.SourceEndpointId);
+        #    message.sourceEndpointId(aifGatewayQueue.DestinationEndpointId);
+        #    message.direction(AifMessageDirection::Outbound);
+        #    message.encoding(aifGatewayQueue.Encoding);
+        #    if (aifGatewayQueue.RequestMessageId)
+        #    {
+        #        message.requestMessageId(aifGatewayQueue.RequestMessageId);
+        #    }
+        #    else
+        #    {
+        #        // This code is here only to ensure correct behavior after 4.01 upgrade. If there
+        #        // are records in AifGatewayQueue table (without RequestMessageId) then after
+        #        // upgrade to 4.01 we want to correctly process them (use MessageId)
+        #        message.requestMessageId(aifGatewayQueue.MessageId);
+        #    }
+        #
+        #    message.addMessagePart(_xml);
+        #
+        #    // Lastly send the message off
+        #    AifGatewayQueue::submitMessage(message);
+        #
+        #    // Any exceptions will get passed up to the delete() method, which will then prevent the
+        #    // deletion from occuring.  This is desired behavior - if it's very important that a
+        #    // response message is sent, we don't want to ever delete the message without
+        #    // sending one.
+        #}
+      ENDSOURCE
+      SOURCE #setInProcessMessagesToReady
+        #public static void setInProcessMessagesToReady(AifChannelId channelId)
+        #{
+        #    AifGatewayQueue gatewayQueue;
+        #
+        #    // Only update if message status is InTransportProcess
+        #    update_recordset gatewayQueue setting Status = AifQueueStatus::Ready
+        #    where
+        #        gatewayQueue.ChannelId == channelId
+        #        && gatewayQueue.Direction == AifMessageDirection::Inbound
+        #        && gatewayQueue.Status == AifQueueStatus::InTransportProcess;
+        #}
+      ENDSOURCE
+      SOURCE #setMessageError
+        #public static void setMessageError(AifMessageId messageId, AifErrorMessage errorMessage, container infoLogData = connull())
+        #{
+        #    AifGatewayQueue gatewayQueue;
+        #    UserConnection dbConnection;
+        #    ;
+        #
+        #    dbConnection = new UserConnection();
+        #
+        #    gatewayQueue.setConnection(dbConnection);
+        #    dbConnection.ttsbegin();
+        #
+        #    select forupdate RecId, Status, ErrorMessage, InfoLogData
+        #            from gatewayQueue
+        #            where gatewayQueue.MessageId == messageId;
+        #
+        #    if (gatewayQueue.RecId != 0)
+        #    {
+        #        gatewayQueue.Status = AifQueueStatus::Error;
+        #        gatewayQueue.ErrorMessage = errorMessage;
+        #        gatewayQueue.InfoLogData = infoLogData;
+        #        gatewayQueue.update();
+        #        dbConnection.ttscommit();
+        #    }
+        #    else
+        #    {
+        #        dbConnection.ttsabort();
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #setMessageStatusToReady
+        #// This sets the message to ready or onhold depending on the endpoint action policy
+        #public static void setMessageStatusToReady(AifMessage message, UserConnection connection = null)
+        #{
+        #    AifGatewayQueue             gatewayQueue;
+        #    AifEndpointActionPolicy     endpointActionPolicy;
+        #    AifQueueStatus              messageStatus = AifQueueStatus::Ready;
+        #    AifActionId                 actionId;
+        #
+        #    if(!message)
+        #        return;
+        #
+        #    if (prmisdefault(connection) == false)
+        #    {
+        #        gatewayQueue.setConnection(connection);
+        #    }
+        #
+        #    actionId = AifUtil::getActionId(message.externalAction());
+        #
+        #    if (actionId != '')
+        #    {
+        #        // Check what the policy for the messages coming for this endpoint is.
+        #        // If set to 'Hold' then we will set it to hold.
+        #        endpointActionPolicy = AifEndpointActionPolicy::find(message.sourceEndpointId(), actionId);
+        #        if(endpointActionPolicy && endpointActionPolicy.Status == AifPolicyStatus::Hold)
+        #            messageStatus = AifQueueStatus::Hold;
+        #    }
+        #
+        #    // Only update if message status is InTransportProcess
+        #    ttsbegin;
+        #    update_recordset gatewayQueue setting Status = messageStatus
+        #    where
+        #        gatewayQueue.MessageId == message.messageId()
+        #        && gatewayQueue.Direction == AifMessageDirection::Inbound
+        #        && gatewayQueue.Status == AifQueueStatus::InTransportProcess;
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #submitInboundGatewayMessage
+        #public static AifMessage submitInboundGatewayMessage(   AifGatewayMessage gatewayMessage,
+        #                                                        AifChannel channel,
+        #                                                        UserConnection dbConnection,
+        #                                                        boolean aosSkipValidate = false)
+        #{
+        #    #AIF
+        #    AifMessage          message;
+        #    AifGatewayQueue     gatewayQueue;
+        #    AifMessageId        requestId;
+        #    AifMessageId        messageId;
+        #    container           infologData;
+        #    AifErrorMessage     errorMessage;
+        #    AifQueueStatus      messageStatus;
+        #    AifInfoLog          aifInfoLog;
+        #    AifActionBase       externalActionId;
+        #    AifEndpointBase     sourceEndpointId ;
+        #    AifEndpointBase     destinationEndpointId;
+        #    AifConversationId   conversationId;
+        #    AifWindowsUser      sourceEndpointUserId;
+        #    int                 infoLogLines;
+        #    InfologData         infoData;
+        #    SysExceptionLog     exceptionLog;
+        #    AifEndPoint         aifEndPoint;//WPA
+        #    ;
+        #
+        #    // init variables.
+        #    message = null;
+        #    infologData = connull();
+        #    errorMessage = '';
+        #    aifInfoLog = new AifInfoLog();
+        #    infoLogLines = aifInfoLog.getInfoLogStartLine();
+        #    messageStatus = AifQueueStatus::InTransportProcess;
+        #
+        #    setprefix(tablestr(AifGatewayQueue));
+        #
+        #    gatewayQueue.setConnection(dbConnection);
+        #
+        #    // The below is used from AifGatewayReceiveService to insert messages for performance reasons.
+        #    // Requires the GatewayReceiveService to assert SkipAOSValidationPermissions
+        #    if(aosSkipValidate)
+        #        // BP Deviation documented
+        #        gatewayQueue.skipAosValidation(true);
+        #
+        #
+        #    try
+        #    {
+        #        // try to deserialize the message first
+        #        message = AifMessage::deserialize(gatewayMessage.parmMessageXml(), gatewayMessage.parmSubmittingUser());
+        #        requestId = message.messageId();
+        #        messageId = requestId;
+        #        externalActionId = message.externalAction();
+        #        sourceEndpointId = channel.DestinationEndpointId ? channel.DestinationEndpointId : message.sourceEndpointId(); //WPA
+        #        //WPA
+        #        if (channel.DestinationEndpointId)
+        #        {
+        #            select firstonly crosscompany aifEndPoint where aifEndPoint.EndpointId == channel.DestinationEndpointId;
+        #            destinationEndpointId = aifEndPoint.LocalEndpointId;
+        #        }
+        #        else
+        #        {
+        #            destinationEndpointId = message.destinationEndpointId();
+        #        }
+        #        //destinationEndpointId = channel.DestinationEndpointId ? AifEndpoint::find(channel.DestinationEndpointId).LocalEndpointId : message.destinationEndpointId(); //WPA
+        #
+        #        conversationId = message.conversationId();
+        #        sourceEndpointUserId = message.sourceEndpointUserId();
+        #    }
+        #    catch (Exception::Error)
+        #    {
+        #        // Deserialization error -- get the error details and generate a new message Id
+        #        messageStatus = AifQueueStatus::MalformedXML;
+        #        infologData = aifInfoLog.getInfoLogData();
+        #
+        #        // Prefixing with "Importing of this message will not be possible: "
+        #        errorMessage = strfmt("@SYS98608", aifInfoLog.getLastMessage());
+        #
+        #        // Set request message id if available at this point
+        #        requestId = gatewayMessage.parmMessageId();
+        #
+        #        // If the gateway message has an Id use it, otherwise generate a new one
+        #        if (guid2str(gatewayMessage.parmMessageId()) == #emptyGuidString)
+        #            messageId = newguid();
+        #        else
+        #            messageId = gatewayMessage.parmMessageId();
+        #
+        #        infoData = infolog.cut(infoLogLines+1);
+        #        exceptionLog = new SysExceptionLog();
+        #        exceptionLog.writeInfoLogData("@SYS95172", infoData);
+        #    }
+        #
+        #    gatewayQueue.RequestMessageId = requestId;
+        #    gatewayQueue.ChannelId = channel.ChannelId;
+        #    gatewayQueue.Direction = AifMessageDirection::Inbound;
+        #    gatewayQueue.Encoding = gatewayMessage.parmEncoding();
+        #    gatewayQueue.MessageXml = gatewayMessage.parmMessageXml();
+        #    gatewayQueue.EndpointUserId = sourceEndpointUserId;
+        #    gatewayQueue.SubmittingUserId = gatewayMessage.parmSubmittingUser();
+        #    gatewayQueue.Status = messageStatus; // can be either ready or malformedxml
+        #    gatewayQueue.InfoLogData = infoLogData;
+        #    gatewayQueue.ErrorMessage = errorMessage;
+        #    gatewayQueue.ActionId = externalActionId;
+        #    gatewayQueue.SourceEndpointId = sourceEndpointId;
+        #    gatewayQueue.DestinationEndpointId = destinationEndpointId;
+        #
+        #    // if message is not null, then has been deserialized and hence will have messagebody
+        #    if(message)
+        #        gatewayQueue.MessageBodyXml = message.getXml();
+        #
+        #    // We need to do apply some logic on conversationId based on the channel setting.
+        #    // If channel is not set for parallel processing, then we have to override the value of
+        #    // conversationId in the message xml and default it to "*"
+        #    // else for parallel processing, check if message has a conversationId, if it does not, then set it
+        #    // to default to #ParallelProcessingConvId
+        #    if(!channel.ParallelProcessing)
+        #        conversationId = #SequentialProcessingConvId;
+        #    else
+        #    {
+        #        if(!conversationId)
+        #            conversationId = #ParallelProcessingConvId;
+        #    }
+        #    gatewayQueue.ConversationId = conversationId;
+        #
+        #    // insert in gatewayQueue will fail if messageId already exists
+        #    try
+        #    {
+        #        gatewayQueue.MessageId = messageId;
+        #        gatewayQueue.insert();
+        #    }
+        #    catch(Exception::DuplicateKeyException)
+        #    {
+        #        // Generate new messageId. requestMessageId is NOT changed. We also do not set it to
+        #        // any error state. We do this since, we allow the inboundprocessing logic to figure out if this was a
+        #        // duplicate message or not, based on contents of message.
+        #        // See code in AifRequestProcessor.executeCreate for sample on how this logic works.
+        #        messageId = newguid();
+        #        if (message != null)
+        #            message = message.clone(messageId);
+        #        retry;
+        #    }
+        #
+        #    if (message != null)
+        #        message.requestMessageId(requestId);
+        #
+        #    return message;
+        #}
+      ENDSOURCE
+      SOURCE #submitMessage
+        #public static void submitMessage(AifMessage message)
+        #{
+        #    // This method writes a new message to the gateway queue;
+        #
+        #    AifGatewayQueue         gatewayQueue;
+        #    AifMessageXml           messageXml;
+        #    AifMessageId            messageId;
+        #    ;
+        #
+        #    if(message)
+        #    {
+        #        //Serialize the message into xml
+        #        messageXml = AifMessage::serialize(message);
+        #        messageId = message.messageId();
+        #
+        #        ttsbegin;
+        #
+        #        gatewayQueue.ActionId = message.externalAction();
+        #        gatewayQueue.ChannelId = message.channelId();
+        #        gatewayQueue.DestinationEndpointId = message.destinationEndpointId();
+        #        gatewayQueue.Direction = message.direction();
+        #        gatewayQueue.Encoding = message.encoding();
+        #        gatewayQueue.EndpointUserId = message.sourceEndpointUserId();
+        #        gatewayQueue.RequestMessageId = message.requestMessageId();
+        #        gatewayQueue.MessageXml = messageXml;
+        #        gatewayQueue.MessageBodyXml = message.getXml();
+        #        gatewayQueue.SourceEndpointId = message.sourceEndpointId();
+        #        gatewayQueue.Status = AifQueueStatus::Ready;
+        #        gatewayQueue.SubmittingUserId = message.submittingUserId();
+        #
+        #        // insert in gatewayQueue will fail if messageId already exists
+        #        try
+        #        {
+        #            gatewayQueue.MessageId = messageId;
+        #            gatewayQueue.insert();
+        #        }
+        #        catch(Exception::DuplicateKeyException)
+        #        {
+        #            // Generate new messageId
+        #            messageId = newguid();
+        #            retry;
+        #        }
+        #
+        #        ttscommit;
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

@@ -1,0 +1,20 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: SEC
+
+; Microsoft Dynamics AX SECURITYKEY : WPAInquiries unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  SECURITYKEY #WPAInquiries
+    PROPERTIES
+      Name                #WPAInquiries
+      Label               #@SYS3850
+      ParentKey           #WPA
+    ENDPROPERTIES
+    
+  ENDSECURITYKEY
+  
+
+***Element: END

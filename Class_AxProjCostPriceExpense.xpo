@@ -1,0 +1,219 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxProjCostPriceExpense unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxProjCostPriceExpense
+    PROPERTIES
+      Name                #AxProjCostPriceExpense
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxProjCostPriceExpense axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxProjCostPriceExpense extends AxInternalBase
+        #{
+        #    ProjCostPriceExpense ProjCostPriceExpense;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public ProjCostPriceExpense currentRecord(ProjCostPriceExpense _ProjCostPriceExpense = ProjCostPriceExpense)
+        #{
+        #    if (!prmisdefault(_ProjCostPriceExpense))
+        #    {
+        #        super(_ProjCostPriceExpense);
+        #        ProjCostPriceExpense = _ProjCostPriceExpense;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return ProjCostPriceExpense;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected ProjCostPriceExpense emptyRecord()
+        #{
+        #    ProjCostPriceExpense localProjCostPriceExpense;
+        #    ;
+        #    return localProjCostPriceExpense;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCategoryId
+        #public ProjCategoryId parmCategoryId(ProjCategoryId _categoryId = '')
+        #{
+        #    if (!prmisdefault(_categoryId))
+        #    {
+        #        this.setField(fieldNum(ProjCostPriceExpense, CategoryId), _categoryId);
+        #    }
+        #
+        #    return projCostPriceExpense.CategoryId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCostPrice
+        #public ProjCostPriceCost parmCostPrice(ProjCostPriceCost _costPrice = 0)
+        #{
+        #    if (!prmisdefault(_costPrice))
+        #    {
+        #        this.setField(fieldNum(ProjCostPriceExpense, CostPrice), _costPrice);
+        #    }
+        #
+        #    return projCostPriceExpense.CostPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEmplId
+        #public EmplId parmEmplId(EmplId _emplId = '')
+        #{
+        #    if (!prmisdefault(_emplId))
+        #    {
+        #        this.setField(fieldNum(ProjCostPriceExpense, EmplId), _emplId);
+        #    }
+        #
+        #    return projCostPriceExpense.EmplId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjId
+        #public ProjId parmProjId(ProjId _projId = '')
+        #{
+        #    if (!prmisdefault(_projId))
+        #    {
+        #        this.setField(fieldNum(ProjCostPriceExpense, ProjId), _projId);
+        #    }
+        #
+        #    return projCostPriceExpense.ProjId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTransDate
+        #public TransDate parmTransDate(TransDate _transDate = dateNull())
+        #{
+        #    if (!prmisdefault(_transDate))
+        #    {
+        #        this.setField(fieldNum(ProjCostPriceExpense, TransDate), _transDate);
+        #    }
+        #
+        #    return projCostPriceExpense.TransDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #ProjCostPriceExpense
+        #public ProjCostPriceExpense projCostPriceExpense(ProjCostPriceExpense _projCostPriceExpense = projCostPriceExpense)
+        #{
+        #    if (!prmisdefault(_projCostPriceExpense))
+        #    {
+        #        this.setCurrentRecordFromExternal(_projCostPriceExpense);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCategoryId
+        #protected void setCategoryId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjCostPriceExpense, CategoryId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCostPrice
+        #protected void setCostPrice()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjCostPriceExpense, CostPrice)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setEmplId
+        #protected void setEmplId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjCostPriceExpense, EmplId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjId
+        #protected void setProjId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjCostPriceExpense, ProjId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setTransDate();
+        #    this.setCategoryId();
+        #    this.setEmplId();
+        #    this.setProjId();
+        #    this.setCostPrice();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTransDate
+        #protected void setTransDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjCostPriceExpense, TransDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxProjCostPriceExpense construct()
+        #{
+        #    return new AxProjCostPriceExpense();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newProjCostPriceExpense
+        #public static AxProjCostPriceExpense newProjCostPriceExpense(ProjCostPriceExpense _ProjCostPriceExpense)
+        #{
+        #    AxProjCostPriceExpense AxProjCostPriceExpense = AxProjCostPriceExpense::construct();
+        #    ;
+        #    AxProjCostPriceExpense.ProjCostPriceExpense(_ProjCostPriceExpense);
+        #
+        #    return AxProjCostPriceExpense;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

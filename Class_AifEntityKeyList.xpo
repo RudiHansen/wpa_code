@@ -1,0 +1,271 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AifEntityKeyList unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AifEntityKeyList
+    PROPERTIES
+      Name                #AifEntityKeyList
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #addEntityKey
+        #public void addEntityKey(AifEntityKey _entityKey)
+        #{
+        #    entityKeyArray.value(entityKeyCount+1, _entityKey);
+        #    entityKeyCount++;
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AifEntityKeyList implements SysPackable, AifXmlSerializable
+        #{
+        #    Array           entityKeyArray;
+        #    int             entityKeyCount;
+        #
+        #    #Aif
+        #    #Axd
+        #    #define.CurrentVersion(1)
+        #    #define.version1(1)
+        #
+        #    #localmacro.CurrentList
+        #        entityKeyCount
+        #        //EntityKeyArray has to be handled manually
+        #    #endmacro
+        #
+        #}
+      ENDSOURCE
+      SOURCE #deserialize
+        #public void deserialize(AifXml entityKeyListXml)
+        #{
+        #    /*
+        #        Instantiates a new entityKeyList object, initializing it with the entityKeyList
+        #        XML passed in.
+        #
+        #        The schema is manually validated as it is read.  Therefore the sequence
+        #        of the elements must match what is expected.
+        #    */
+        #
+        #    AifEntityKey            entityKey;
+        #    XmlTextReader           xmlTextReader;
+        #    AifDocumentXmlNamespace documentNamespace;
+        #    ;
+        #
+        #    // Get the namespace of AifEntityKeyList
+        #    documentNamespace = #EntityKeyListNamespace;
+        #
+        #    // Initialize the instance.
+        #    entityKeyArray = new Array(Types::Class);
+        #    entityKeyCount = 0;
+        #
+        #    xmlTextReader = XmlTextReader::newXml(entityKeyListXml);
+        #    //Turn off Whitespace handling so we avoid doing seperate reads just for whitespace
+        #    xmlTextReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #
+        #    try
+        #    {
+        #        //Position the reader on the first Element - EntityKeyList
+        #        xmlTextReader.moveToContent();
+        #
+        #        // First node must be the root EntityKeyList element
+        #        xmlTextReader.readStartElement3(#EntityKeyListRoot, documentNamespace);
+        #
+        #        xmlTextReader.moveToContent();
+        #
+        #
+        #        //We should now be on the first EntityKeyRoot, if any
+        #        if(xmlTextReader.localName() == #EntityKeyRoot)
+        #        {
+        #            do
+        #            {
+        #                entityKey = new AifEntityKey();
+        #                entityKey.deserialize(xmlTextReader.readOuterXml());
+        #                this.addEntityKey(entityKey);
+        #
+        #                //This is only need if WhitespaceHandling is on
+        #                xmlTextReader.moveToContent();
+        #
+        #            }
+        #            while(xmlTextReader.localName() == #EntityKeyRoot);
+        #        }
+        #
+        #        xmlTextReader.close();
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        //"Invalid EntityKeyList schema."
+        #        throw error(strfmt("@SYS93023"));
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #getEntityKey
+        #public AifEntityKey getEntityKey(int _index)
+        #{
+        #
+        #//    if(_index< 1 || _index > entityKeyArrayCount)
+        #//        //Throw an error
+        #//        throw error(strfmt("Index out of range"));
+        #
+        #    return entityKeyArray.value(_index);
+        #}
+      ENDSOURCE
+      SOURCE #getEntityKeyCount
+        #public int getEntityKeyCount()
+        #{
+        #    return entityKeyCount;
+        #}
+      ENDSOURCE
+      SOURCE #getRootName
+        #public AifDocumentName getRootName()
+        #{
+        #    ;
+        #
+        #    return #EntityKeyListRoot;
+        #}
+      ENDSOURCE
+      SOURCE #getSchema
+        #public AifXml getSchema()
+        #{
+        #    ;
+        #
+        #    return AifUtil::getSchema(classnum(AifEntityKeyList));
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    entityKeyArray = new Array(Types::Class);
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    container     entityKeyArrayCon;
+        #    ;
+        #
+        #    if (entityKeyArray)
+        #        entityKeyArrayCon = entityKeyArray.pack();
+        #
+        #    return [#CurrentVersion,#CurrentList, entityKeyArrayCon];
+        #
+        #}
+      ENDSOURCE
+      SOURCE #parmMessageId
+        #// WPA import
+        #public AifMessageId parmMessageId(AifMessageId _messageId)
+        #{
+        #    return str2guid(#EmptyGuidString);
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public AifXml serialize()
+        #{
+        #    /*
+        #        Generates an EntityKeyList XML string based on the AifEntityList object passed in.
+        #    */
+        #
+        #    AifXml                  entityKeyListXml;
+        #    AifXml                  entityKeyXml;
+        #    XmlTextWriter           xmlTextWriter;
+        #    XmlTextReader           xmlTextReader;
+        #    int                     x;
+        #    AifDocumentXmlNamespace documentNamespace;
+        #    ;
+        #
+        #    // Get the namespace of AifEntityKeyList
+        #    documentNamespace = #EntityKeyListNamespace;
+        #
+        #    xmlTextWriter = XmlTextWriter::newXml();
+        #    //Don't include indentation - this should help reduce the size of the file
+        #    xmlTextWriter.formatting(XmlFormatting::None);
+        #
+        #    // Start the XMl
+        #    xmlTextWriter.writeStartDocument();
+        #
+        #    //Write the EntityKeyList root element
+        #    xmlTextWriter.writeStartElement2(#EntityKeyListRoot, documentNamespace);
+        #
+        #    //Serialize each EntityKey in the EntityKeyList
+        #    for(x=1; x <= this.getEntityKeyCount(); x++)
+        #    {
+        #        entityKeyXml = this.getEntityKey(x).serialize();
+        #        if(entityKeyXml)
+        #        {
+        #            try
+        #            {
+        #                //The XML returned above will include the declaration,
+        #                // we we need to trim it off.
+        #                xmlTextReader = XmlTextReader::newXml(entityKeyXml);
+        #                xmlTextReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #                //Move past the declaration
+        #                xmlTextReader.moveToContent();
+        #                xmlTextWriter.writeRaw(xmlTextReader.readOuterXml());
+        #                xmlTextReader.close();
+        #            }
+        #            catch(Exception::Error)
+        #            {
+        #                //"Unable to serialize the entityKey."
+        #                throw error(strfmt("@SYS93022"));
+        #            }
+        #        }
+        #    }
+        #
+        #    //End the EntityKeyList
+        #    xmlTextWriter.writeEndElement();
+        #
+        #    //End the document
+        #    xmlTextWriter.writeEndDocument();
+        #
+        #    entityKeyListXml = xmlTextWriter.writeToString();
+        #    xmlTextWriter.close();
+        #
+        #    return entityKeyListXml;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #
+        #    int version     = RunBase::getVersion(_packedClass);
+        #    container       entityKeyArrayCon;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version,#CurrentList,entityKeyArrayCon] = _packedClass;
+        #            entityKeyArray = Array::create(entityKeyArrayCon);
+        #            return true;
+        #        default :
+        #            return false;
+        #    }
+        #
+        #    return false;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static AifEntityKeyList construct()
+        #{
+        #    return new AifEntityKeyList();
+        #}
+      ENDSOURCE
+      SOURCE #create
+        #public static AifEntityKeyList create(container _entityKeyListContainer)
+        #{
+        #    AifEntityKeyList entityKeyList = new AifEntityKeyList();
+        #    ;
+        #    entityKeyList.unpack(_entityKeyListContainer);
+        #    return entityKeyList;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

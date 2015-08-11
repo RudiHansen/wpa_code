@@ -1,0 +1,293 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjForecastEmpl_ProjTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjForecastEmpl_ProjTable
+    PROPERTIES
+      Name                #WPAProjForecastEmpl_ProjTable
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProjForecastEmpl_ProjTable extends AfStronglyTypedDataContainer
+        #{
+        #    #define.Type('Type')
+        #    #define.Status('Status')
+        #    #define.ProjId('ProjId')
+        #    #define.Email('Email')
+        #    #define.DlvZipCode('DlvZipCode')
+        #    #define.DlvState('DlvState')
+        #    #define.DlvName('DlvName')
+        #    #define.DlvCounty('DlvCounty')
+        #    #define.DlvCountryRegionId('DlvCountryRegionId')
+        #    #define.DlvAddr('DlvAddr')
+        #    #define.DeliveryStreet('DeliveryStreet')
+        #    #define.DeliveryCity('DeliveryCity')
+        #    #define.CustTable('CustTable')
+        #    #define.CustAccount('CustAccount')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createCustTable
+        #public AfStronglyTypedDataContainerList createCustTable()
+        #{
+        #    return this.get_NewList(#CustTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsCustAccount
+        #public boolean existsCustAccount()
+        #{
+        #    return this.exists(#CustAccount);
+        #}
+      ENDSOURCE
+      SOURCE #existsCustTable
+        #public boolean existsCustTable()
+        #{
+        #    return this.exists(#CustTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsDeliveryCity
+        #public boolean existsDeliveryCity()
+        #{
+        #    return this.exists(#DeliveryCity);
+        #}
+      ENDSOURCE
+      SOURCE #existsDeliveryStreet
+        #public boolean existsDeliveryStreet()
+        #{
+        #    return this.exists(#DeliveryStreet);
+        #}
+      ENDSOURCE
+      SOURCE #existsDlvAddr
+        #public boolean existsDlvAddr()
+        #{
+        #    return this.exists(#DlvAddr);
+        #}
+      ENDSOURCE
+      SOURCE #existsDlvCountryRegionId
+        #public boolean existsDlvCountryRegionId()
+        #{
+        #    return this.exists(#DlvCountryRegionId);
+        #}
+      ENDSOURCE
+      SOURCE #existsDlvCounty
+        #public boolean existsDlvCounty()
+        #{
+        #    return this.exists(#DlvCounty);
+        #}
+      ENDSOURCE
+      SOURCE #existsDlvName
+        #public boolean existsDlvName()
+        #{
+        #    return this.exists(#DlvName);
+        #}
+      ENDSOURCE
+      SOURCE #existsDlvState
+        #public boolean existsDlvState()
+        #{
+        #    return this.exists(#DlvState);
+        #}
+      ENDSOURCE
+      SOURCE #existsDlvZipCode
+        #public boolean existsDlvZipCode()
+        #{
+        #    return this.exists(#DlvZipCode);
+        #}
+      ENDSOURCE
+      SOURCE #existsEmail
+        #public boolean existsEmail()
+        #{
+        #    return this.exists(#Email);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjId
+        #public boolean existsProjId()
+        #{
+        #    return this.exists(#ProjId);
+        #}
+      ENDSOURCE
+      SOURCE #existsStatus
+        #public boolean existsStatus()
+        #{
+        #    return this.exists(#Status);
+        #}
+      ENDSOURCE
+      SOURCE #existsType
+        #public boolean existsType()
+        #{
+        #    return this.exists(#Type);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAProjForecastEmpl_ProjTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmCustAccount
+        #public str parmCustAccount(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CustAccount, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CustAccount);
+        #}
+      ENDSOURCE
+      SOURCE #parmCustTable
+        #public AfStronglyTypedDataContainerList parmCustTable(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#CustTable, _value);
+        #    }
+        #
+        #    return this.get_List(#CustTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmDeliveryCity
+        #public AddressCity parmDeliveryCity(AddressCity _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DeliveryCity, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DeliveryCity);
+        #}
+      ENDSOURCE
+      SOURCE #parmDeliveryStreet
+        #public AddressStreet parmDeliveryStreet(AddressStreet _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DeliveryStreet, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DeliveryStreet);
+        #}
+      ENDSOURCE
+      SOURCE #parmDlvAddr
+        #public Addressing parmDlvAddr(Addressing _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DlvAddr, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DlvAddr);
+        #}
+      ENDSOURCE
+      SOURCE #parmDlvCountryRegionId
+        #public str parmDlvCountryRegionId(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DlvCountryRegionId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DlvCountryRegionId);
+        #}
+      ENDSOURCE
+      SOURCE #parmDlvCounty
+        #public str parmDlvCounty(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DlvCounty, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DlvCounty);
+        #}
+      ENDSOURCE
+      SOURCE #parmDlvName
+        #public CompanyName parmDlvName(CompanyName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DlvName, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DlvName);
+        #}
+      ENDSOURCE
+      SOURCE #parmDlvState
+        #public str parmDlvState(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DlvState, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DlvState);
+        #}
+      ENDSOURCE
+      SOURCE #parmDlvZipCode
+        #public str parmDlvZipCode(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DlvZipCode, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DlvZipCode);
+        #}
+      ENDSOURCE
+      SOURCE #parmEmail
+        #public Email parmEmail(Email _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Email, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Email);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjId
+        #public ProjId parmProjId(ProjId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjId);
+        #}
+      ENDSOURCE
+      SOURCE #parmStatus
+        #public ProjStatus parmStatus(ProjStatus _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Status, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Status);
+        #}
+      ENDSOURCE
+      SOURCE #parmType
+        #public ProjType parmType(ProjType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Type, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Type);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

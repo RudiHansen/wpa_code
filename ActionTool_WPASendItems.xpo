@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPASendItems unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPASendItems
+    Type: 3
+    PROPERTIES
+      Name                #WPASendItems
+      Label               #@SYS103854
+      HelpText            #@WPA135
+      ObjectType          #Class
+      Object              #WPASendItems
+      RunOn               #Called from
+      ConfigurationKey    #WPAIntegration
+      SecurityKey         #WPAPeriodic
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

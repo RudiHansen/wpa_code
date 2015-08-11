@@ -1,0 +1,149 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendServiceOrder unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendServiceOrder
+    PROPERTIES
+      Name                #WPASendServiceOrder
+      Extends             #AxdSend
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPASendServiceOrder extends AxdSend
+        #{
+        #    SMAServiceOrderId   serviceOrderId;
+        #    ProjTransIdBase     projTransId;
+        #}
+      ENDSOURCE
+      SOURCE #getEndpoint
+        #AifEndpointId getEndpoint()
+        #{
+        #    ;
+        #    this.retrieveEndPoints();
+        #
+        #    select firstonly tmpAifEndPoint;
+        #
+        #    return tmpAifEndPoint.EndpointId;
+        #}
+      ENDSOURCE
+      SOURCE #parmProjTransId
+        #public ProjTransIdBase parmProjTransId(ProjTransIdBase _projTransId = projTransId)
+        #{
+        #    ;
+        #    projTransId = _projTransId;
+        #
+        #    return projTransId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceOrderId
+        #public SMAServiceOrderId parmServiceOrderId(SMAServiceOrderId _serviceOrderId = serviceOrderId)
+        #{
+        #    ;
+        #    serviceOrderId = _serviceOrderId;
+        #
+        #    return serviceOrderId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun            ret;
+        #    QueryBuildRange     qbr_OrderId;
+        #    QueryBuildRange     qbr_ProjTransId;
+        #    ;
+        #    if (!ret)
+        #    {
+        #        ret             = super();
+        #        qbr_OrderId     = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(SMAServiceOrderLine)), fieldnum(SMAServiceOrderLine, ServiceOrderId));
+        #        qbr_ProjTransId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(SMAServiceOrderLine)), fieldnum(SMAServiceOrderLine, ProjTransId));
+        #        if (serviceOrderId)
+        #        {
+        #            qbr_OrderId.value(serviceOrderId);
+        #            qbr_OrderId.status(RangeStatus::Locked);
+        #        }
+        #        if (projTransId)
+        #        {
+        #            qbr_ProjTransId.value(projTransId);
+        #            qbr_ProjTransId.status(RangeStatus::Locked);
+        #        }
+        #        else
+        #        {
+        #            throw error(strfmt("Unknown error."));
+        #        }
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    boolean ret;
+        #
+        #    ret = false;
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args args)
+        #{
+        #    WPASendServiceOrder     WPASendServiceOrder;
+        #    AifConstraintList       aifConstraintList;
+        #    AifConstraint           aifConstraint;
+        #    SMAServiceOrderLine     sMAServiceOrderLine;
+        #    ;
+        #
+        #    WPASendServiceOrder = new WPASendServiceOrder();
+        #    if (args.record())
+        #    {
+        #        sMAServiceOrderLine = args.record();
+        #        WPASendServiceOrder.parmServiceOrderId(sMAServiceOrderLine.ServiceOrderId);
+        #        WPASendServiceOrder.parmProjTransId(sMAServiceOrderLine.ProjTransId);
+        #    }
+        #    aifConstraintList   = new AifConstraintList();
+        #    aifConstraint       = new AifConstraint();
+        #
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    WPASendServiceOrder.parmShowDocPurpose(true) ;
+        #    WPASendServiceOrder.parmServiceClassId(classnum(WPAServiceOrderService));
+        #    WPASendServiceOrder.parmSendActionType(AifSendActionType::SendByQuery);
+        #    WPASendServiceOrder.parmEndPoint(WPASendServiceOrder.getEndpoint());
+        #    WPASendServiceOrder.sendMultipleDocuments(classnum(WPAServiceOrder), classnum(WPAServiceOrderService), AifSendMode::Async, aifConstraintList);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

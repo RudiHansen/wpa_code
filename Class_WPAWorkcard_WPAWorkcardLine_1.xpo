@@ -1,0 +1,322 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAWorkcard_WPAWorkcardLine_1 unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAWorkcard_WPAWorkcardLine_1
+    PROPERTIES
+      Name                #WPAWorkcard_WPAWorkcardLine_1
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAWorkcard_WPAWorkcardLine_1 extends AfStronglyTypedDataContainer
+        #{
+        #    #define.Transferred('Transferred')
+        #    #define.StockLocationId('StockLocationId')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.Qty('Qty')
+        #    #define.ProductEmploymentCode('ProductEmploymentCode')
+        #    #define.Price('Price')
+        #    #define.OrderId('OrderId')
+        #    #define.ItemUnitPrice('ItemUnitPrice')
+        #    #define.ItemUnit('ItemUnit')
+        #    #define.ItemLineType('ItemLineType')
+        #    #define.ItemId('ItemId')
+        #    #define.ItemEanNumber('ItemEanNumber')
+        #    #define.ItemDescription2('ItemDescription2')
+        #    #define.ItemDescription1('ItemDescription1')
+        #    #define.TransDate('Date')
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsItemDescription1
+        #public boolean existsItemDescription1()
+        #{
+        #    return this.exists(#ItemDescription1);
+        #}
+      ENDSOURCE
+      SOURCE #existsItemDescription2
+        #public boolean existsItemDescription2()
+        #{
+        #    return this.exists(#ItemDescription2);
+        #}
+      ENDSOURCE
+      SOURCE #existsItemEanNumber
+        #public boolean existsItemEanNumber()
+        #{
+        #    return this.exists(#ItemEanNumber);
+        #}
+      ENDSOURCE
+      SOURCE #existsItemId
+        #public boolean existsItemId()
+        #{
+        #    return this.exists(#ItemId);
+        #}
+      ENDSOURCE
+      SOURCE #existsItemLineType
+        #public boolean existsItemLineType()
+        #{
+        #    return this.exists(#ItemLineType);
+        #}
+      ENDSOURCE
+      SOURCE #existsItemUnit
+        #public boolean existsItemUnit()
+        #{
+        #    return this.exists(#ItemUnit);
+        #}
+      ENDSOURCE
+      SOURCE #existsItemUnitPrice
+        #public boolean existsItemUnitPrice()
+        #{
+        #    return this.exists(#ItemUnitPrice);
+        #}
+      ENDSOURCE
+      SOURCE #existsOrderId
+        #public boolean existsOrderId()
+        #{
+        #    return this.exists(#OrderId);
+        #}
+      ENDSOURCE
+      SOURCE #existsPrice
+        #public boolean existsPrice()
+        #{
+        #    return this.exists(#Price);
+        #}
+      ENDSOURCE
+      SOURCE #existsProductEmploymentCode
+        #public boolean existsProductEmploymentCode()
+        #{
+        #    return this.exists(#ProductEmploymentCode);
+        #}
+      ENDSOURCE
+      SOURCE #existsQty
+        #public boolean existsQty()
+        #{
+        #    return this.exists(#Qty);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsStockLocationId
+        #public boolean existsStockLocationId()
+        #{
+        #    return this.exists(#StockLocationId);
+        #}
+      ENDSOURCE
+      SOURCE #existsTransDate
+        #public boolean existsTransDate()
+        #{
+        #    return this.exists(#TransDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsTransferred
+        #public boolean existsTransferred()
+        #{
+        #    return this.exists(#Transferred);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAWorkcard_WPAWorkcardLine_1);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemDescription1
+        #public WPAItemDescription1 parmItemDescription1(WPAItemDescription1 _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemDescription1, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemDescription1);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemDescription2
+        #public WPAItemDescription2 parmItemDescription2(WPAItemDescription2 _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemDescription2, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemDescription2);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemEanNumber
+        #public WPAItemEanNumber parmItemEanNumber(WPAItemEanNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemEanNumber, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemEanNumber);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemId
+        #public WPAItemId parmItemId(WPAItemId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemId);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemLineType
+        #public WPAItemLineType parmItemLineType(WPAItemLineType _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemLineType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemLineType);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemUnit
+        #public str parmItemUnit(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemUnit, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemUnit);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemUnitPrice
+        #public WPAItemUnitPrice parmItemUnitPrice(WPAItemUnitPrice _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemUnitPrice, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemUnitPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmOrderId
+        #public WPAOrderId parmOrderId(WPAOrderId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#OrderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#OrderId);
+        #}
+      ENDSOURCE
+      SOURCE #parmPrice
+        #public WPAPrice parmPrice(WPAPrice _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Price, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Price);
+        #}
+      ENDSOURCE
+      SOURCE #parmProductEmploymentCode
+        #public WPAProductEmploymentCode parmProductEmploymentCode(WPAProductEmploymentCode _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProductEmploymentCode, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProductEmploymentCode);
+        #}
+      ENDSOURCE
+      SOURCE #parmQty
+        #public WPAQty parmQty(WPAQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Qty, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Qty);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public recVersion parmRecVersion(recVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmStockLocationId
+        #public WPAStockLocationId parmStockLocationId(WPAStockLocationId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#StockLocationId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#StockLocationId);
+        #}
+      ENDSOURCE
+      SOURCE #parmTransDate
+        #public TransDate parmTransDate(TransDate _value = datenull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#TransDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#TransDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmTransferred
+        #public WPATransferred parmTransferred(WPATransferred _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Transferred, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Transferred);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,113 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProject_DirPartyAddressRelationship unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProject_DirPartyAddressRelationship
+    PROPERTIES
+      Name                #WPAProject_DirPartyAddressRelationship
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProject_DirPartyAddressRelationship extends AfStronglyTypedDataContainer
+        #{
+        #    #define.RecId('RecId')
+        #    #define.PartyId('PartyId')
+        #    #define.IsPrimary('IsPrimary')
+        #    #define.DirPartyAddRelMapping('DirPartyAddRelMapping')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createDirPartyAddRelMapping
+        #public AfStronglyTypedDataContainerList createDirPartyAddRelMapping()
+        #{
+        #    return this.get_NewList(#DirPartyAddRelMapping);
+        #}
+      ENDSOURCE
+      SOURCE #existsDirPartyAddRelMapping
+        #public boolean existsDirPartyAddRelMapping()
+        #{
+        #    return this.exists(#DirPartyAddRelMapping);
+        #}
+      ENDSOURCE
+      SOURCE #existsIsPrimary
+        #public boolean existsIsPrimary()
+        #{
+        #    return this.exists(#IsPrimary);
+        #}
+      ENDSOURCE
+      SOURCE #existsPartyId
+        #public boolean existsPartyId()
+        #{
+        #    return this.exists(#PartyId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAProject_DirPartyAddressRelationship);
+        #}
+      ENDSOURCE
+      SOURCE #parmDirPartyAddRelMapping
+        #public AfStronglyTypedDataContainerList parmDirPartyAddRelMapping(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#DirPartyAddRelMapping, _value);
+        #    }
+        #
+        #    return this.get_List(#DirPartyAddRelMapping);
+        #}
+      ENDSOURCE
+      SOURCE #parmIsPrimary
+        #public DirIsPrimaryAddress parmIsPrimary(DirIsPrimaryAddress _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#IsPrimary, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#IsPrimary);
+        #}
+      ENDSOURCE
+      SOURCE #parmPartyId
+        #public DirPartyId parmPartyId(DirPartyId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PartyId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PartyId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

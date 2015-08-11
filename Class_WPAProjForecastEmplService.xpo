@@ -1,0 +1,86 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjForecastEmplService unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjForecastEmplService
+    PROPERTIES
+      Name                #WPAProjForecastEmplService
+      Extends             #AifDocumentService
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProjForecastEmplService extends AifDocumentService
+        #{
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #create
+        #
+        #public AifEntityKeyList create(WPAProjForecastEmpl _wPAProjForecastEmpl)
+        #{
+        #    return this.createList(_wPAProjForecastEmpl);
+        #}
+      ENDSOURCE
+      SOURCE #delete
+        #
+        #public void delete(AifEntityKeyList _entityKeyList)
+        #{
+        #    WPAProjForecastEmpl wPAProjForecastEmpl = new WPAProjForecastEmpl();
+        #    this.deleteList(_entityKeyList, wPAProjForecastEmpl);
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #public WPAProjForecastEmpl find(AifQueryCriteria _queryCriteria)
+        #{
+        #    WPAProjForecastEmpl wPAProjForecastEmpl = new WPAProjForecastEmpl();
+        #    this.findList(_queryCriteria, wPAProjForecastEmpl);
+        #    return wPAProjForecastEmpl;
+        #}
+      ENDSOURCE
+      SOURCE #findKeys
+        #public AifEntityKeyList findKeys(AifQueryCriteria _queryCriteria)
+        #{
+        #    WPAProjForecastEmpl wPAProjForecastEmpl = new WPAProjForecastEmpl();
+        #    return this.findKeyList(_queryCriteria, wPAProjForecastEmpl);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #protected void new()
+        #{
+        #    ;
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #read
+        #public WPAProjForecastEmpl read(AifEntityKeyList _entityKeyList)
+        #{
+        #    WPAProjForecastEmpl wPAProjForecastEmpl = new WPAProjForecastEmpl();
+        #    this.readList(_entityKeyList, wPAProjForecastEmpl);
+        #    return wPAProjForecastEmpl;
+        #}
+      ENDSOURCE
+      SOURCE #update
+        #public void update(AifEntityKeyList _entityKeyList, WPAProjForecastEmpl _wPAProjForecastEmpl)
+        #{
+        #    this.updateList(_entityKeyList, _wPAProjForecastEmpl);
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAProjForecastEmplService construct()
+        #{
+        #    return new WPAProjForecastEmplService();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

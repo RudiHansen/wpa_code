@@ -1,0 +1,1586 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FRM
+
+; Microsoft Dynamics AX Forms unloaded
+; --------------------------------------------------------------------------------
+FRMVERSION 5
+
+FORM #AifEndpoint
+  PROPERTIES
+    Name                #AifEndpoint
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class FormRun extends ObjectRun
+      #{
+      #    QueryBuildRange         criteriaEndpointUsers;
+      #    QueryBuildRange         criteriaIntermediaryUsers;
+      #    QueryBuildRange         criteriaEndpointConstraint;
+      #}
+    ENDSOURCE
+    SOURCE #isDefaultEndpoint
+      #boolean isDefaultEndpoint()
+      #{
+      #    AifEndpoint endpoint;
+      ##Aif;
+      #
+      #    endpoint = aifEndpoint_ds.cursor().orig();
+      #    return (endpoint.EndpointId == #DefaultEndpointId) && (endpoint.RecId != 0);
+      #}
+    ENDSOURCE
+    SOURCE #checkForEndpointValidity
+      #public void checkForEndpointValidity()
+      #{
+      #    /*
+      #        This method checks whether it is possible to activate the current endpoint. If case of check failure it is necessary to
+      #        deactivate the endpoint because the checkbox was already checked in clicked method.
+      #    */
+      #
+      #    ;
+      #
+      #    if (!this.isDefaultEndpoint())
+      #    {
+      #        if (element.checkForConstraintsValidity() == false)
+      #        {
+      #            error("@SYS98667");
+      #            aifEndpoint.isActive(true, false);
+      #            // This has to be done from "another thread".
+      #            infolog.addTimeOut(element, 'uncheckStatusCheckbox', 100);
+      #        }
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #uncheckStatusCheckbox
+      #public void uncheckStatusCheckbox()
+      #{
+      #    /*
+      #        This method unchecks endpoint activation checkbox (called by checkEndpointValidation method).
+      #    */
+      #
+      #    FormCheckBoxControl statusCheckBox = element.design().controlName(identifierstr(AifEndpoint_Status));
+      #    ;
+      #    statusCheckBox.value(false);
+      #}
+      #
+    ENDSOURCE
+    SOURCE #resetFormUI
+      #public void resetFormUI()
+      #{
+      #    /*
+      #        This method resets form controls state:
+      #            1. update controls enabled state based on configuration keys
+      #            2. update Constraints tab controls
+      #            3. check intermediary checkbox
+      #    */
+      #
+      #    this.updateControlsEnabledState();
+      #    this.updateConstraintsTabControls();
+      #    this.setIntermediaryCheckBox(true);
+      #}
+    ENDSOURCE
+    SOURCE #checkForConstraintsValidity
+      #boolean checkForConstraintsValidity()
+      #{
+      #    /*
+      #        This method checks whether it is possible to activate the endpoint (are constraints valid?).
+      #
+      #        Valid endpoint constraints mean:
+      #            1. either NoConstraints constraint and no regular constraint
+      #            2. or only regular constraint
+      #
+      #        Invalid endpoint constraints mean:
+      #            1. either both regular constraints as well as NoConstraints constraint
+      #            2. or no constraint at all
+      #    */
+      #
+      #    ;
+      #    if (aifEndpoint.hasNoConstraintsConstraint() != aifEndpoint.hasValidRegularConstraints())
+      #        return true;
+      #    else
+      #        return false;
+      #}
+    ENDSOURCE
+    SOURCE #init
+      #public void init()
+      #{
+      #    ;
+      #    super();
+      #    AifSetup::initialize();
+      #
+      #    if (isConfigurationkeyEnabled(configurationkeynum(Aif)))
+      #        AifEndpoint::createDefaultEndpoint();
+      #
+      #    //if the user has just view access then new record is not created => active is not called =>
+      #    //resetFormUI is not called => call it from here to be sure it is called
+      #    this.resetFormUI();
+      #}
+    ENDSOURCE
+    SOURCE #lookupUser
+      #void lookupUser(FormControl control, AifAxaptaUserType userType, boolean allowExternal = true)
+      #{
+      #    /*
+      #        This method creates a custom lookup form for the Axapta User or Group
+      #    */
+      #
+      #    Query                   query = new Query();
+      #    QueryBuildDataSource    queryBuildDataSource;
+      #    QueryBuildRange         queryBuildRange;
+      #    SysTableLookup          sysTableLookup
+      #    ;
+      #    //
+      #    if(userType == AifAxaptaUserType::User)
+      #    {
+      #        //Create an instance of SysTableLookup with the form control passed in
+      #        sysTableLookup = SysTableLookup::newParameters(tablenum(UserInfo), control);
+      #        //Add the Fields to be shown in the lookup form
+      #        sysTableLookup.addLookupfield(fieldnum(UserInfo, Id));
+      #        sysTableLookup.addLookupfield(fieldnum(UserInfo, Name));
+      #        //create the query datasource
+      #        queryBuildDataSource = query.addDataSource(tablenum(UserInfo));
+      #
+      #        //Added by v-rama
+      #        // To make sure only enabled user can be looked up
+      #        queryBuildRange = queryBuildDataSource.addRange(fieldnum(UserInfo, Enable));
+      #        queryBuildRange.value('true');
+      #
+      #        //Since Intermediary users cannot be external users, we need to
+      #        //restrict the values in the list.
+      #        if(allowExternal==false)
+      #        {
+      #            queryBuildRange = queryBuildDataSource.addRange(fieldnum(UserInfo, ExternalUser));
+      #            queryBuildRange.value('false');
+      #        }
+      #    }
+      #    else
+      #    {
+      #        //Create an instance of SysTableLookup with the form control passed in
+      #        sysTableLookup = SysTableLookup::newParameters(tablenum(UserGroupInfo), control);
+      #        //Add the Fields to be shown in the lookup form
+      #        sysTableLookup.addLookupfield(fieldnum(UserGroupInfo, Id));
+      #        sysTableLookup.addLookupfield(fieldnum(UserGroupInfo, Name));
+      #        //Create the query datasource
+      #        queryBuildDataSource = query.addDataSource(tablenum(UserGroupInfo));
+      #    }
+      #
+      #    //Assign the query to the lookup form
+      #    sysTableLookup.parmQuery(query);
+      #
+      #    // Perform lookup
+      #    sysTableLookup.performFormLookup();
+      #}
+    ENDSOURCE
+    SOURCE #lookupChannel
+      #void lookupChannel(FormControl control)
+      #{
+      #     /*
+      #        This method creates a custom lookup form for the Channel.
+      #        Only Channels with a direction of Outbound or Both should
+      #        be listed.
+      #    */
+      #
+      #    Query                   query = new Query();
+      #    QueryBuildDataSource    queryBuildDataSource;
+      #    QueryBuildRange         queryBuildRange;
+      #    SysTableLookup          sysTableLookup;
+      #    ;
+      #
+      #    //Create an instance of SysTableLookup with the form control passed in
+      #    sysTableLookup = SysTableLookup::newParameters(tablenum(AifChannel), control);
+      #
+      #    //Add the fields to be shown in the lookup form
+      #    sysTableLookup.addLookupfield(fieldnum(AifChannel, ChannelId));
+      #    sysTableLookup.addLookupfield(fieldnum(AifChannel, Name));
+      #    sysTableLookup.addLookupfield(fieldnum(AifChannel, Direction));
+      #
+      #    //create the query datasource
+      #    queryBuildDataSource = query.addDataSource(tablenum(AifChannel));
+      #
+      #    // Only list channels with a Direction of Both..
+      #    queryBuildRange = queryBuildDataSource.addRange(fieldnum(AifChannel, Direction));
+      #    queryBuildRange.value(enum2str(AifChannelDirection::Both));
+      #
+      #    // or a Direction of Outbound
+      #    queryBuildRange = queryBuildDataSource.addRange(fieldnum(AifChannel, Direction));
+      #    queryBuildRange.value(enum2str(AifChannelDirection::Outbound));
+      #
+      #    //add the query to the lookup form
+      #    sysTableLookup.parmQuery(query);
+      #
+      #    // Perform lookup
+      #    sysTableLookup.performFormLookup();
+      #}
+    ENDSOURCE
+    SOURCE #fillConstraintTypeCombo
+      #void fillConstraintTypeCombo()
+      #{
+      #    /*
+      #        This method fills the ConstraintType combobox
+      #        if the correct ConstraintTypes depending on
+      #        whether the current Endpoint is an Intercompany
+      #        Endpoint or not.
+      #    */
+      #
+      #    FormComboBoxControl combo;
+      #    ;
+      #
+      #    combo=element.design().controlName(identifierstr(AifEndpointConstraint_ConstraintType));
+      #    combo.clear();
+      #
+      #
+      #
+      #    //Always include the Customer and Vendor
+      #    combo.add(enum2str(AifConstraintType::Customer));
+      #    combo.add(enum2str(AifConstraintType::Vendor));
+      #
+      #    //Only include the other constraint types if this not
+      #    //an Intercompany Endpoint
+      #    if(aifEndpoint.InterCompanyOrg == NoYes::No)
+      #        combo.add(enum2str(AifConstraintType::Warehouse));
+      #
+      #}
+      #
+      #
+    ENDSOURCE
+    SOURCE #updateControlsEnabledState
+      #void updateControlsEnabledState()
+      #{
+      #    /*
+      #        This method sets the Enabled property of selected controls
+      #        based on:
+      #        1) the AIF & Intercompany configuration keys
+      #        2) whether this Endpoint is a Intercompany Endpoint or not
+      #    */
+      #
+      #    boolean         aifConfig, interCompanyConfig;
+      #    boolean         isDefaultEndpoint;
+      #    ;
+      #
+      #    //Get the AIF and Intercomapny configuration key state
+      #    aifConfig = isConfigurationkeyEnabled(configurationkeynum(Aif));
+      #    interCompanyConfig = isConfigurationkeyEnabled(configurationkeynum(TradeInterCompany));
+      #
+      #    //If AIF is not configured, then only Intercompany Endpoints are allowed
+      #    if(aifConfig == false)
+      #    {
+      #        aifEndpoint.InterCompanyOrg = NoYes::Yes;
+      #        element.design().controlName(identifierstr(InterCompany_InterCompanyOrg)).enabled(false);
+      #    }
+      #    //If Intercompany is not configured, then Intercompany Endpoints are not allowed
+      #    if(interCompanyConfig == false)
+      #    {
+      #        aifEndpoint.InterCompanyOrg = NoYes::No;
+      #        element.design().controlName(identifierstr(InterCompany_InterCompanyOrg)).enabled(false);
+      #    }
+      #
+      #    //If neither AIF or Intercompany are configured, then you end up in
+      #    //the same state as if AIF is installed but Intercompany is not.
+      #
+      #
+      #    //Now set the other fields based on IntercompanyOrg
+      #    if(aifEndpoint.InterCompanyOrg == NoYes::Yes)
+      #    {
+      #        element.design().controlName(identifierstr(InterCompany_InterCompanyCompanyId)).enabled(true);
+      #        element.design().controlName(identifierstr(AifEndpoint_EndpointId)).enabled(true);
+      #        element.design().controlName(identifierstr(AifEndpoint_Name)).enabled(true);
+      #        element.design().controlName(identifierstr(Identification_EndpointId)).enabled(true);
+      #        element.design().controlName(identifierstr(Identification_Name)).enabled(true);
+      #        element.design().controlName(identifierstr(AifEndpoint_LocalEndpointId)).enabled(false);
+      #        element.design().controlName(identifierstr(AifEndpoint_InterCompanyOrg)).enabled(true);
+      #        element.design().controlName(identifierstr(InterCompany_InterCompanyOrg)).enabled(true);
+      #        element.design().controlName(identifierstr(Channel_OutboundChannelId)).enabled(false);
+      #        element.design().controlName(identifierstr(Channel_LocalEndpointId)).enabled(false);
+      #        element.design().controlName(identifierstr(Channel_Encoding)).enabled(false);
+      #        element.design().controlName(identifierstr(TabUsers)).visible(false);
+      #        element.design().controlName(identifierstr(TabConstraints)).visible(true);
+      #        element.design().controlName(identifierstr(UseIntermediary)).enabled(false);
+      #        aifEndpointUser_ds.allowCreate(false);
+      #        aifEndpointConstraint_ds.allowCreate(true);
+      #        element.design().controlName(identifierstr(NoConstraints)).enabled(false);
+      #        element.design().controlName(identifierstr(MenuItemInterCompanyActionPolicy)).visible(true);
+      #        element.design().controlName(identifierstr(MenuItemActionPolicy)).visible(false);
+      #    }
+      #    else
+      #    {
+      #        isDefaultEndpoint = this.isDefaultEndpoint();
+      #        element.design().controlName(identifierstr(InterCompany_InterCompanyCompanyId)).enabled(false);
+      #        element.design().controlName(identifierstr(AifEndpoint_EndpointId)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(AifEndpoint_Name)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(Identification_EndpointId)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(Identification_Name)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(AifEndpoint_LocalEndpointId)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(AifEndpoint_InterCompanyOrg)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(InterCompany_InterCompanyOrg)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(Channel_OutboundChannelId)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(Channel_LocalEndpointId)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(Channel_Encoding)).enabled(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(TabUsers)).visible(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(TabConstraints)).visible(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(UseIntermediary)).enabled(true);
+      #        aifEndpointUser_ds.allowCreate(!isDefaultEndpoint);
+      #        aifEndpointConstraint_ds.allowCreate(!isDefaultEndpoint);
+      #        element.design().controlName(identifierstr(NoConstraints)).enabled(true);
+      #        element.design().controlName(identifierstr(MenuItemInterCompanyActionPolicy)).visible(false);
+      #        element.design().controlName(identifierstr(MenuItemActionPolicy)).visible(true);
+      #
+      #
+      #
+      #    }
+      #    element.design().controlName(identifierstr(MenuItemActionPolicy)).enabled(aifEndpoint.RecId != 0);
+      #    element.design().controlName(identifierstr(MenuItemInterCompanyActionPolicy)).enabled(aifEndpoint.RecId != 0);
+      #}
+    ENDSOURCE
+    SOURCE #updateConstraintsTabControls
+      #void updateConstraintsTabControls()
+      #{
+      #    /*
+      #        This method enables or disables NoConstraints checkbox based on entered constraints.
+      #    */
+      #    FormCheckBoxControl noConstraintsCheckBox = element.design().controlName(identifierstr(NoConstraints));
+      #    ;
+      #
+      #    //Get the current status of the Constraints.
+      #    if(aifEndpoint.hasNoConstraintsConstraint() == true)
+      #    {
+      #        //NoConstraints should be checked but disabled
+      #        noConstraintsCheckBox.value(true);
+      #        noConstraintsCheckBox.enabled(false);
+      #    }
+      #    else
+      #    {
+      #        //NoConstraints should be unchecked but enabled
+      #        noConstraintsCheckBox.value(false);
+      #        noConstraintsCheckBox.enabled(true);
+      #    }
+      #
+      #    aifEndpointConstraint_ds.executeQuery();
+      #}
+    ENDSOURCE
+    SOURCE #setIntermediaryGrid
+      #void setIntermediaryGrid()
+      #{
+      #    /*
+      #        This method enables or disables the Intermediary User
+      #        grid based on the state of the UserIntermediary checkbox.
+      #        All existing Intermediary (submitting) users will be deleted
+      #        when the checkbox is changed from checked to unchecked.
+      #    */
+      #
+      #    FormGridControl            grid;
+      #    FormCheckBoxControl        intermediaryCheckBox;
+      #    ;
+      #
+      #    grid = element.design().controlName(identifierstr(GridIntermediaries));
+      #    intermediaryCheckBox =element.design().controlName(identifierstr(UseIntermediary));
+      #
+      #    if(intermediaryCheckBox.value()==1)
+      #    {
+      #        grid.enabled(true);
+      #        grid.allowEdit(true);
+      #        aifEndpointUserIntermediary_ds.allowCreate(true);
+      #    }
+      #    else
+      #    {
+      #        //Since the user has chosen not to use an Intermediary,
+      #        //we need do delete all the existing submitting users.
+      #        aifEndpoint.removeIntermediaryUsers();
+      #        grid.enabled(false);
+      #        grid.allowEdit(false);
+      #        aifEndpointUserIntermediary_ds.allowCreate(false);
+      #    }
+      #
+      #    aifEndpointUserIntermediary_ds.executeQuery();
+      #}
+    ENDSOURCE
+    SOURCE #setIntermediaryCheckBox
+      #void setIntermediaryCheckBox(boolean _syncUseIntermediaryCheckBox = false)
+      #{
+      #    /*
+      #        This method enables or disables the UseIntermediary checkbox
+      #        based and sets its value.
+      #    */
+      #    FormCheckBoxControl         checkBox;
+      #    ;
+      #
+      #    checkBox = element.design().controlName(identifierstr(UseIntermediary));
+      #    if (_syncUseIntermediaryCheckBox == true)
+      #    {
+      #        //Set the checkbox based on the current records in the database
+      #        checkBox.value(aifEndpoint.hasIntermediaryUsers());
+      #    }
+      #
+      #    //Next, if any of the regular users are external users, then there must also be at
+      #    //least one trusted intermediary.  Mark the checkbox as checked and disable it
+      #    if(aifEndpoint.requiresIntermediaryUser())
+      #    {
+      #        checkBox.value(1);
+      #        checkBox.enabled(false);
+      #    }
+      #    else
+      #    {
+      #        if(!aifEndpoint.InterCompanyOrg)
+      #            checkBox.enabled(true);
+      #    }
+      #
+      #    //Update the state of the Intermediary grid
+      #    this.setIntermediaryGrid();
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  OBJECTBANK
+    PROPERTIES
+    ENDPROPERTIES
+    
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifEndpoint
+          Table               #AifEndpoint
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #init
+          #public void init()
+          #{
+          #    super();
+          #}
+        ENDSOURCE
+        SOURCE #create
+          #public void create(boolean _append = false)
+          #{
+          #    AifEndpoint endpoint = this.cursor();
+          #
+          #    super(_append);
+          #}
+        ENDSOURCE
+        SOURCE #delete
+          #public void delete()
+          #{
+          #    super();
+          #    element.resetFormUI();
+          #}
+        ENDSOURCE
+        SOURCE #validateWrite
+          #public boolean validateWrite()
+          #{
+          #    ;
+          #    // If the Active field was not set, then it's intended to be inactive
+          #    if(! aifEndpoint.Status)
+          #        aifEndpoint.Status = AifEndpointStatus::Disabled;
+          #
+          #    return super();
+          #}
+        ENDSOURCE
+        SOURCE #write
+          #public void write()
+          #{
+          #    AifEndpointUser aifEndpointUserTable;
+          #    ;
+          #    super();
+          #
+          #    // If this is an Intercompany endpoint, clear the Users tables
+          #    if(aifEndpoint.InterCompanyOrg == NoYes::Yes)
+          #    {
+          #        ttsbegin;
+          #
+          #        delete_from aifEndpointUserTable
+          #            where aifEndpointUserTable.EndpointId == aifEndpoint.EndpointId;
+          #
+          #        ttscommit;
+          #    }
+          #}
+        ENDSOURCE
+        SOURCE #active
+          #public int active()
+          #{
+          #    int returnValue;
+          #    ;
+          #    returnValue = super();
+          #
+          #    element.resetFormUI();
+          #
+          #    // If this is a new record we need to set the focus correctly
+          #    if(this.cursor().RecId == 0)
+          #    {
+          #        element.design().controlName(identifierstr(AifEndpoint_EndpointId)).setFocus();
+          #    }
+          #
+          #    return returnValue;
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifEndpointConstraint
+          Table               #AifEndpointConstraint
+          JoinSource          #AifEndpoint
+          LinkType            #Active
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #delete
+          #public void delete()
+          #{
+          #    boolean recordExistsBeforeDelete = aifEndpointConstraint.RecId != 0;
+          #    ;
+          #    super();
+          #
+          #    if (recordExistsBeforeDelete  && !aifEndpointConstraint.RecId)
+          #    {
+          #        aifEndpoint.setNoConstraints(true);
+          #        element.updateConstraintsTabControls();
+          #    }
+          #}
+        ENDSOURCE
+        SOURCE #active
+          #public int active()
+          #{
+          #    FormCheckBoxControl noConstraintsCheck = element.design().controlName(identifierstr(NoConstraints));
+          #    ;
+          #    if (aifEndpoint.hasValidRegularConstraints() == true)
+          #    {
+          #        //valid regular constraint exists
+          #        noConstraintsCheck.value(false);
+          #        noConstraintsCheck.enabled(true);
+          #    }
+          #    else if (aifEndpoint.hasNoConstraintsConstraint() == true)
+          #    {
+          #        //NoConstraints exists
+          #        noConstraintsCheck.value(true);
+          #        noConstraintsCheck.enabled(false);
+          #    }
+          #    else
+          #    {
+          #        //new endpoint without any constraint yet
+          #        noConstraintsCheck.value(false);
+          #        noConstraintsCheck.enabled(true);
+          #    }
+          #
+          #    return super();
+          #}
+        ENDSOURCE
+        SOURCE #validateWrite
+          #public boolean validateWrite()
+          #{
+          #    ;
+          #    // Set the endpoint ID to the record currently being edited
+          #    // but only if it does not already exist
+          #    if((! aifEndpointConstraint.EndpointId) && aifEndpoint.EndpointId)
+          #        aifEndpointConstraint.EndpointId = aifEndpoint.EndpointId;
+          #
+          #    return super();
+          #}
+        ENDSOURCE
+        SOURCE #constraintTypeFiltered
+          #//BP Deviation documented
+          #edit AifConstraintTypeValue constraintTypeFiltered(boolean set, AifEndpointConstraint endpointConstraint, AifConstraintTypeValue newValue)
+          #{
+          #    /*
+          #        This edit method maps the value from the ConstraintType combo box
+          #        to the correct AifConstraintType value for the database and vice-versa.
+          #        This is needed because the combo box doesn't  contain all the
+          #        values from the AifConstraintType enum.
+          #    */
+          #
+          #    AifConstraintTypeValue      currentValue;
+          #    AifConstraintType           constraintType;
+          #    ;
+          #
+          #    //First update the combo box based on the current endpoints
+          #    //IntercompanyOrg field.
+          #    element.fillConstraintTypeCombo();
+          #
+          #    //Only need to do this if the user is editing.  This is skiped
+          #    //when morphX just needs to display the value.
+          #    if(set)
+          #    {
+          #        if(aifEndpoint.InterCompanyOrg)
+          #        {
+          #            //Only Customer and Vendor are valid constraints
+          #            //for Intercompany Endpoints
+          #            switch(newValue)
+          #            {
+          #                case 0:
+          #                    constraintType= AifConstraintType::Customer;
+          #                    break;
+          #                case 1:
+          #                    constraintType = AifConstraintType::Vendor;
+          #                    break;
+          #            }
+          #        }
+          #        else
+          #        {
+          #            switch(newValue)
+          #            {
+          #                case 0:
+          #                    constraintType = AifConstraintType::Customer;
+          #                    break;
+          #                case 1:
+          #                    constraintType = AifConstraintType::Vendor;
+          #                    break;
+          #                case 2:
+          #                    constraintType = AifConstraintType::Warehouse;
+          #                    break;
+          #            }
+          #        }
+          #        //Only update the actual record if the value changed
+          #        if(endpointConstraint.ConstraintType != constraintType)
+          #        {
+          #            endpointConstraint.ConstraintType = constraintType;
+          #
+          #            //Clear out the id whenever the type changes
+          #            endpointConstraint.ConstraintId = '';
+          #            aifEndpointConstraint_ds.refresh();
+          #        }
+          #    }
+          #
+          #    //Now return the correct value
+          #    switch(endpointConstraint.ConstraintType)
+          #    {
+          #        case AifConstraintType::NotSet:
+          #            currentValue = -1;
+          #            break;
+          #        case AifConstraintType::Customer:
+          #            currentValue = 0;
+          #            break;
+          #        case AifConstraintType::Vendor:
+          #            currentValue = 1;
+          #            break;
+          #        case AifConstraintType::Warehouse:
+          #            currentValue = 2;
+          #            break;
+          #    }
+          #
+          #    return currentValue;
+          #}
+        ENDSOURCE
+        SOURCE #init
+          #public void init()
+          #{
+          #    super();
+          #
+          #    //Never display constraints of type NoConstraint - thats what the checkbox is for
+          #    criteriaEndpointConstraint = this.query().dataSourceName(identifierstr(AifEndpointConstraint)).addRange(fieldnum(AifEndpointConstraint,ConstraintType));
+          #    criteriaEndpointConstraint.value(strfmt('!%1',enum2str(AifConstraintType::NoConstraint)));
+          #
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifEndpointUser
+          Table               #AifEndpointUser
+          JoinSource          #AifEndpoint
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD AxaptaUserType
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #modified
+                #public void modified()
+                #{
+                #    super();
+                #    aifEndpointUser.UserId = '';
+                #    aifEndpointUser_ds.refresh();
+                #
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #delete
+          #public void delete()
+          #{
+          #    super();
+          #    element.setIntermediaryCheckBox();
+          #}
+        ENDSOURCE
+        SOURCE #write
+          #public void write()
+          #{
+          #    super();
+          #    element.setIntermediaryCheckBox();
+          #}
+        ENDSOURCE
+        SOURCE #initValue
+          #public void initValue()
+          #{
+          #    super();
+          #
+          #    aifEndpointUser.EndpointUserType = AifEndpointUserType::SourceUser;
+          #}
+        ENDSOURCE
+        SOURCE #init
+          #public void init()
+          #{
+          #    super();
+          #
+          #    //Only show Source Users
+          #    criteriaEndpointUsers = this.query().dataSourceName(identifierstr(AifEndpointUser)).addRange(fieldnum(AifEndpointUser,EndpointUserType));
+          #    criteriaEndpointUsers.value(enum2str(AifEndpointUserType::SourceUser));
+          #
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifEndpointUserIntermediary
+          Table               #AifEndpointUser
+          JoinSource          #AifEndpoint
+          LinkType            #Passive
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD AxaptaUserType
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #modified
+                #public void modified()
+                #{
+                #    super();
+                #    aifEndpointUserIntermediary.UserId = '';
+                #    aifEndpointUserIntermediary_ds.refresh();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #initValue
+          #public void initValue()
+          #{
+          #    super();
+          #    aifEndpointUserIntermediary.EndpointUserType = AifEndpointUserType::SubmittingUser;
+          #}
+        ENDSOURCE
+        SOURCE #init
+          #public void init()
+          #{
+          #    super();
+          #
+          #    //only show Submitting users
+          #    criteriaIntermediaryUsers = this.query().dataSourceName(identifierstr(AifEndpointUserIntermediary)).addRange(fieldnum(AifEndpointUser,EndpointUserType));
+          #    criteriaIntermediaryUsers.value(enum2str(AifEndpointUserType::SubmittingUser));
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+  ENDOBJECTBANK
+  
+  JOINS
+    AifEndpointConstraint AifEndpoint
+    AifEndpointUser AifEndpoint
+    AifEndpointUserIntermediary AifEndpoint
+  ENDJOINS
+  
+  DESIGN
+    PROPERTIES
+      Width               #Column width
+      Height              #Column height
+      Caption             #@SYS92841
+      WindowResize        #Dynamic
+      HTMLHelpFile        #HTMLHelpFileIWorker
+      HTMLHelpTopic       #AxShared.chm::/html/6A03D744-E29F-4D47-8955-0E737DE01C2D.htm
+    ENDPROPERTIES
+    
+    CONTAINER
+      CONTROL TAB
+        PROPERTIES
+          Name                #Tab
+          Width               #Column width
+          Height              #Column height
+          Tabs                #4
+          DataSource          #AifEndpoint
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabOverview
+              Width               #Column width
+              Height              #Column height
+              Caption             #@SYS93650
+              DataSource          #AifEndpoint
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GRID
+                PROPERTIES
+                  Name                #GridEndpoint
+                  Width               #Column width
+                  Height              #Column height
+                  DataSource          #AifEndpoint
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #AifEndpoint_EndpointId
+                        DataSource          #AifEndpoint
+                        DataField           #EndpointId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #AifEndpoint_Name
+                        DataSource          #AifEndpoint
+                        DataField           #Name
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #AifEndpoint_Status
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/43D94FAB-E5D7-4675-A1C1-4F241FEE3848.htm
+                        BackgroundColor     #Window background
+                        Label               #@SYS23262
+                        DataSource          #AifEndpoint
+                        DataMethod          #isActive
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #clicked
+                          #public void clicked()
+                          #{
+                          #    ;
+                          #    super();
+                          #    element.checkForEndpointValidity();
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #AifEndpoint_PropagateErrors
+                        BackgroundColor     #Window background
+                        Label               #@SYS117925
+                        DataSource          #AifEndpoint
+                        DataField           #PropagateErrors
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #AifEndpoint_InterCompanyOrg
+                        ConfigurationKey    #TradeInterCompany
+                        BackgroundColor     #Window background
+                        DataSource          #AifEndpoint
+                        DataField           #InterCompanyOrg
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #AifEndpoint_LocalEndpointId
+                        ConfigurationKey    #AIF
+                        DataSource          #AifEndpoint
+                        DataField           #LocalEndpointId
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    Query                   query = new Query();
+                          #    QueryBuildDataSource    queryBuildDataSource;
+                          #    QueryBuildRange         queryBuildRange;
+                          #    SysTableLookup          sysTableLookup;
+                          #    ;
+                          #
+                          #    //Create an instance of SysTableLookup with the form control passed in
+                          #    sysTableLookup = SysTableLookup::newParameters(tablenum(AifLocalEndpoint), this);
+                          #
+                          #    //Add the fields to be shown in the lookup form
+                          #    sysTableLookup.addLookupfield(fieldnum(AifLocalEndpoint, LocalEndpointId));
+                          #    sysTableLookup.addLookupfield(fieldnum(AifLocalEndpoint, Company));
+                          #
+                          #    //create the query datasource
+                          #    queryBuildDataSource = query.addDataSource(tablenum(AifLocalEndpoint));
+                          #
+                          #    //Only show LocalEndpoints for the current company
+                          #    queryBuildRange = queryBuildDataSource.addRange(fieldnum(AifLocalEndpoint, Company));
+                          #    queryBuildRange.value(curext());
+                          #
+                          #    //Assign the query to the lookup form
+                          #    sysTableLookup.parmQuery(query);
+                          #
+                          #    // Perform lookup
+                          #    sysTableLookup.performFormLookup();
+                          #
+                          #    // Don't call super()
+                          #    //    super()
+                          #
+                          #
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #AifEndpoint_SimpleXml
+                        BackgroundColor     #Window background
+                        DataSource          #AifEndpoint
+                        DataField           #SimpleXml
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabGeneral
+              Width               #Column width
+              Height              #Column height
+              Caption             #@SYS19924
+              DataSource          #AifEndpoint
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #Identificaiton
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/2C4F5C98-6279-4FB8-8ACC-5084A8328D74.htm
+                  Caption             #@SYS93455
+                  DataSource          #AifEndpoint
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Identification_EndpointId
+                        DataSource          #AifEndpoint
+                        DataField           #EndpointId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Identification_Name
+                        DataSource          #AifEndpoint
+                        DataField           #Name
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #Identification_Status
+                        Label               #@SYS23262
+                        DataSource          #AifEndpoint
+                        DataMethod          #isActive
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #clicked
+                          #public void clicked()
+                          #{
+                          #    super();
+                          #    element.checkForEndpointValidity();
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #Identification_PropagateErrors
+                        Label               #@SYS117925
+                        DataSource          #AifEndpoint
+                        DataField           #PropagateErrors
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #InterCompany
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/A1E18EEC-D0FE-4B28-A095-7BF58C9E0B82.htm
+                  ConfigurationKey    #TradeInterCompany
+                  DataSource          #AifEndpoint
+                  DataGroup           #InterCompany
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #InterCompany_InterCompanyOrg
+                        DataSource          #AifEndpoint
+                        DataField           #InterCompanyOrg
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #InterCompany_InterCompanyCompanyId
+                        Enabled             #No
+                        DataSource          #AifEndpoint
+                        DataField           #InterCompanyCompanyId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #Channel
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/3AB4B262-2719-40B9-BCE1-13BABA597613.htm
+                  ConfigurationKey    #AIF
+                  DataSource          #AifEndpoint
+                  DataGroup           #Channel
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Channel_OutboundChannelId
+                        Label               #@SYS98619
+                        DataSource          #AifEndpoint
+                        DataField           #OutboundChannelId
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #
+                          #    element.lookupChannel(this);
+                          #
+                          #    // Don't call super()
+                          #    //    super()
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Channel_LocalEndpointId
+                        DataSource          #AifEndpoint
+                        DataField           #LocalEndpointId
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    Query                   query = new Query();
+                          #    QueryBuildDataSource    queryBuildDataSource;
+                          #    QueryBuildRange         queryBuildRange;
+                          #    SysTableLookup          sysTableLookup;
+                          #    ;
+                          #
+                          #    //Create an instance of SysTableLookup with the form control passed in
+                          #    sysTableLookup = SysTableLookup::newParameters(tablenum(AifLocalEndpoint), this);
+                          #
+                          #    //Add the fields to be shown in the lookup form
+                          #    sysTableLookup.addLookupfield(fieldnum(AifLocalEndpoint, LocalEndpointId));
+                          #    sysTableLookup.addLookupfield(fieldnum(AifLocalEndpoint, Company));
+                          #
+                          #    //create the query datasource
+                          #    queryBuildDataSource = query.addDataSource(tablenum(AifLocalEndpoint));
+                          #
+                          #    //Only show LocalEndpoints for the current company
+                          #    queryBuildRange = queryBuildDataSource.addRange(fieldnum(AifLocalEndpoint, Company));
+                          #    queryBuildRange.value(curext());
+                          #
+                          #    //Assign the query to the lookup form
+                          #    sysTableLookup.parmQuery(query);
+                          #
+                          #    // Perform lookup
+                          #    sysTableLookup.performFormLookup();
+                          #
+                          #    // Don't call super()
+                          #    //    super()
+                          #
+                          #
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL COMBOBOX
+                      PROPERTIES
+                        Name                #Channel_Encoding
+                        DataSource          #AifEndpoint
+                        DataField           #Encoding
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #XmlMode
+                  Caption             #@WPA31
+                  DataSource          #AifEndpoint
+                  DataGroup           #XmlMode
+                  AutoDataGroup       #Yes
+                ENDPROPERTIES
+                
+                  CONTAINER
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabConstraints
+              Width               #Column width
+              Height              #Column height
+              Caption             #@SYS94982
+              DataSource          #AifEndpoint
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #pageActivated
+                #public void pageActivated()
+                #{
+                #    ;
+                #    // User cannot select this tab if the endpoint ID is empty!
+                #    if(!aifEndpoint.EndpointId)
+                #    {
+                #        warning("@SYS99116");
+                #        element.design().controlName(identifierstr(TabOverview)).setFocus();
+                #        return;
+                #    }
+                #    super();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+            CONTAINER
+              CONTROL CHECKBOX
+                PROPERTIES
+                  Name                #NoConstraints
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/1B3B9F2E-5582-4AD7-AAD7-CD8588061584.htm
+                  ConfigurationKey    #AIF
+                  Label               #@SYS94983
+                ENDPROPERTIES
+                
+                METHODS
+                  Version: 3
+                  SOURCE #clicked
+                    #public void clicked()
+                    #{
+                    #    ;
+                    #    super();
+                    #
+                    #    aifEndpoint.setNoConstraints(true);
+                    #    element.updateConstraintsTabControls();
+                    #}
+                  ENDSOURCE
+                ENDMETHODS
+              ENDCONTROL 
+              
+              CONTROL GRID
+                PROPERTIES
+                  Name                #GridConstraints
+                  Width               #Column width
+                  Height              #Column height
+                  DataSource          #AifEndpointConstraint
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL COMBOBOX
+                      PROPERTIES
+                        Name                #AifEndpointConstraint_ConstraintType
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/590C64C7-D00A-42EE-A063-974BF8630A6A.htm
+                        HideFirstEntry      #Yes
+                        DataSource          #AifEndpointConstraint
+                        DataMethod          #constraintTypeFiltered
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #AifEndpointConstraint_ConstraintId
+                        DataSource          #AifEndpointConstraint
+                        DataField           #ConstraintId
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    Query                   query = new Query();
+                          #    QueryBuildDataSource    queryBuildDataSource;
+                          #    SysTableLookup          sysTableLookup;
+                          #    tableId                 tableId;
+                          #    fieldId                 field1, field2;
+                          #
+                          #    ;
+                          #
+                          #    //The lookup is different depending on the constraint type
+                          #    switch(aifEndpointConstraint.ConstraintType)
+                          #    {
+                          #        case AifConstraintType::Customer:
+                          #            tableId = tablenum(CustTable);
+                          #            field1 = fieldnum(CustTable, AccountNum);
+                          #            field2 = fieldnum(CustTable, Name);
+                          #            break;
+                          #        case AifConstraintType::Vendor:
+                          #            tableId = tablenum(VendTable);
+                          #            field1 = fieldnum(VendTable, AccountNum);
+                          #            field2 = fieldnum(VendTable, Name);
+                          #            break;
+                          #        case AifConstraintType::Warehouse:
+                          #            tableId = tablenum(InventLocation);
+                          #            field1 = fieldnum(InventLocation, InventLocationId);
+                          #            field2 = fieldnum(InventLocation, Name);
+                          #            break;
+                          #    }
+                          #
+                          #
+                          #    //Create an instance of SysTableLookup with the form control passed in
+                          #    sysTableLookup= SysTableLookup::newParameters(tableId, this);
+                          #
+                          #    //Add the fields to be shown in the lookup form
+                          #    sysTableLookup.addLookupfield(field1);
+                          #    sysTableLookup.addLookupfield(field2);
+                          #
+                          #    // create the query datasource
+                          #    queryBuildDataSource = query.addDataSource(tableId);
+                          #
+                          #    //Assign the query to the lookup form
+                          #    sysTableLookup.parmQuery(query);
+                          #
+                          #    // Perform lookup
+                          #    sysTableLookup.performFormLookup();
+                          #
+                          #    // Don't call super()
+                          #    //    super()
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ConstraintName
+                        AllowEdit           #No
+                        Enabled             #No
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/336FE291-F3F9-4658-8E45-79D16E7E2374.htm
+                        DataSource          #AifEndpointConstraint
+                        DataMethod          #Name
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabUsers
+              Width               #Column width
+              Height              #Column height
+              ConfigurationKey    #AIF
+              Caption             #@SYS25412
+              DataSource          #AifEndpointUser
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #pageActivated
+                #public void pageActivated()
+                #{
+                #    ;
+                #    // User cannot select this tab if the endpoint ID is empty!
+                #    if(!aifEndpoint.EndpointId)
+                #    {
+                #        warning("@SYS117377");
+                #        element.design().controlName(identifierstr(TabOverview)).setFocus();
+                #        return;
+                #    }
+                #    super();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #EndpointUsers
+                  Width               #Column width
+                  Height              #Column height
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/0710C461-57B2-45E9-B306-F068D69753F2.htm
+                  Caption             #@SYS94986
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GRID
+                      PROPERTIES
+                        Name                #GridUsers
+                        Width               #Column width
+                        Height              #Column height
+                        VisibleRows         #5
+                        DataSource          #AifEndpointUser
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL COMBOBOX
+                            PROPERTIES
+                              Name                #AifEndpointUser_AxaptaUserType
+                              DataSource          #AifEndpointUser
+                              DataField           #AxaptaUserType
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #AifEndpointUser_UserId
+                              DataSource          #AifEndpointUser
+                              DataField           #UserId
+                            ENDPROPERTIES
+                            
+                            METHODS
+                              Version: 3
+                              SOURCE #lookup
+                                #public void lookup()
+                                #{
+                                #    element.lookupUser(this, aifEndpointUser.AxaptaUserType);
+                                #    //super();
+                                #}
+                              ENDSOURCE
+                            ENDMETHODS
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #UserName
+                              AllowEdit           #No
+                              Enabled             #No
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/C8310FC2-8C91-49D7-A256-B93EE1D98F08.htm
+                              DataSource          #AifEndpointUser
+                              DataMethod          #name
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #TrustedIntermediaries
+                  Width               #Column width
+                  Height              #Column height
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/53D65B50-4F8F-4B42-9CBB-A1A62AE0C280.htm
+                  Caption             #@SYS94985
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #UseIntermediary
+                        Label               #@SYS94984
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #clicked
+                          #public void clicked()
+                          #{
+                          #    super();
+                          #    element.setIntermediaryGrid();
+                          #
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL GRID
+                      PROPERTIES
+                        Name                #GridIntermediaries
+                        Width               #Column width
+                        Height              #Column height
+                        VisibleRows         #5
+                        DataSource          #AifEndpointUserIntermediary
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL COMBOBOX
+                            PROPERTIES
+                              Name                #AifEndpointUserIntermediary_AxaptaUserType
+                              DataSource          #AifEndpointUserIntermediary
+                              DataField           #AxaptaUserType
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #AifEndpointUserIntermediary_UserId
+                              DataSource          #AifEndpointUserIntermediary
+                              DataField           #UserId
+                            ENDPROPERTIES
+                            
+                            METHODS
+                              Version: 3
+                              SOURCE #lookup
+                                #public void lookup()
+                                #{
+                                #    element.lookupUser(this, aifEndpointUserIntermediary.AxaptaUserType, false);
+                                #    //super();
+                                #}
+                              ENDSOURCE
+                            ENDMETHODS
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #IntermediaryUserName
+                              AllowEdit           #No
+                              Enabled             #No
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/AB25E967-90A6-485A-BA42-34BBE2CDA6BE.htm
+                              DataSource          #AifEndpointUserIntermediary
+                              DataMethod          #name
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+      CONTROL BUTTONGROUP
+        PROPERTIES
+          Name                #ButtonGroup
+          HideIfEmpty         #No
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #MenuItemInterCompanyActionPolicy
+              Visible             #No
+              MenuItemName        #InterCompanyEndpointActionPolicy
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #MenuItemActionPolicy
+              ConfigurationKey    #AIF
+              MenuItemName        #AifEndpointActionPolicy
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+    ENDCONTAINER
+    
+  ENDDESIGN
+  
+ENDFORM
+
+
+***Element: END

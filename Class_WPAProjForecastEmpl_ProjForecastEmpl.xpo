@@ -1,0 +1,275 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjForecastEmpl_ProjForecastEmpl unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjForecastEmpl_ProjForecastEmpl
+    PROPERTIES
+      Name                #WPAProjForecastEmpl_ProjForecastEmpl
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProjForecastEmpl_ProjForecastEmpl extends AfStronglyTypedDataContainer
+        #{
+        #    #define.Txt('Txt')
+        #    #define.TransId('TransId')
+        #    #define.Qty('Qty')
+        #    #define.ProjTable('ProjTable')
+        #    #define.ProjId('ProjId')
+        #    #define.ModelId('ModelId')
+        #    #define.LinePropertyId('LinePropertyId')
+        #    #define.EmplId('EmplId')
+        #    #define.CostPrice('CostPrice')
+        #    #define.CategoryId('CategoryId')
+        #    #define.ActivityNumber('ActivityNumber')
+        #    #define.Active('Active')
+        #    #define._DocumentHash('_DocumentHash')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createProjTable
+        #public AfStronglyTypedDataContainerList createProjTable()
+        #{
+        #    return this.get_NewList(#ProjTable);
+        #}
+      ENDSOURCE
+      SOURCE #exists_DocumentHash
+        #public boolean exists_DocumentHash()
+        #{
+        #    return this.exists(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #existsActive
+        #public boolean existsActive()
+        #{
+        #    return this.exists(#Active);
+        #}
+      ENDSOURCE
+      SOURCE #existsActivityNumber
+        #public boolean existsActivityNumber()
+        #{
+        #    return this.exists(#ActivityNumber);
+        #}
+      ENDSOURCE
+      SOURCE #existsCategoryId
+        #public boolean existsCategoryId()
+        #{
+        #    return this.exists(#CategoryId);
+        #}
+      ENDSOURCE
+      SOURCE #existsCostPrice
+        #public boolean existsCostPrice()
+        #{
+        #    return this.exists(#CostPrice);
+        #}
+      ENDSOURCE
+      SOURCE #existsEmplId
+        #public boolean existsEmplId()
+        #{
+        #    return this.exists(#EmplId);
+        #}
+      ENDSOURCE
+      SOURCE #existsLinePropertyId
+        #public boolean existsLinePropertyId()
+        #{
+        #    return this.exists(#LinePropertyId);
+        #}
+      ENDSOURCE
+      SOURCE #existsModelId
+        #public boolean existsModelId()
+        #{
+        #    return this.exists(#ModelId);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjId
+        #public boolean existsProjId()
+        #{
+        #    return this.exists(#ProjId);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjTable
+        #public boolean existsProjTable()
+        #{
+        #    return this.exists(#ProjTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsQty
+        #public boolean existsQty()
+        #{
+        #    return this.exists(#Qty);
+        #}
+      ENDSOURCE
+      SOURCE #existsTransId
+        #public boolean existsTransId()
+        #{
+        #    return this.exists(#TransId);
+        #}
+      ENDSOURCE
+      SOURCE #existsTxt
+        #public boolean existsTxt()
+        #{
+        #    return this.exists(#Txt);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAProjForecastEmpl_ProjForecastEmpl);
+        #}
+      ENDSOURCE
+      SOURCE #parm_DocumentHash
+        #public str parm_DocumentHash(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#_DocumentHash, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #parmActive
+        #public BudgetActive parmActive(BudgetActive _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Active, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Active);
+        #}
+      ENDSOURCE
+      SOURCE #parmActivityNumber
+        #public ProjActivityNumber parmActivityNumber(ProjActivityNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ActivityNumber, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ActivityNumber);
+        #}
+      ENDSOURCE
+      SOURCE #parmCategoryId
+        #public ProjCategoryId parmCategoryId(ProjCategoryId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CategoryId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CategoryId);
+        #}
+      ENDSOURCE
+      SOURCE #parmCostPrice
+        #public ProjCostPriceEmpl parmCostPrice(ProjCostPriceEmpl _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CostPrice, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CostPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmEmplId
+        #public EmplIdProj parmEmplId(EmplIdProj _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#EmplId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#EmplId);
+        #}
+      ENDSOURCE
+      SOURCE #parmLinePropertyId
+        #public ProjLinePropertyId parmLinePropertyId(ProjLinePropertyId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#LinePropertyId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#LinePropertyId);
+        #}
+      ENDSOURCE
+      SOURCE #parmModelId
+        #public ProjForecastModelId parmModelId(ProjForecastModelId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ModelId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ModelId);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjId
+        #public ProjId parmProjId(ProjId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjId);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjTable
+        #public AfStronglyTypedDataContainerList parmProjTable(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#ProjTable, _value);
+        #    }
+        #
+        #    return this.get_List(#ProjTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmQty
+        #public ProjQtyEmpl parmQty(ProjQtyEmpl _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Qty, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Qty);
+        #}
+      ENDSOURCE
+      SOURCE #parmTransId
+        #public ProjEmplForecastTransId parmTransId(ProjEmplForecastTransId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#TransId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#TransId);
+        #}
+      ENDSOURCE
+      SOURCE #parmTxt
+        #public TransTxt parmTxt(TransTxt _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Txt, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Txt);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

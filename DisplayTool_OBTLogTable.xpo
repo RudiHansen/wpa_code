@@ -1,0 +1,24 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : OBTLogTable unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #OBTLogTable
+    Type: 1
+    PROPERTIES
+      Name                #OBTLogTable
+      Label               #@OBT1
+      HelpText            #@OBT8
+      Object              #OBTLogTable
+      ConfigurationKey    #SysDatabaseLog
+      SecurityKey         #AdminSetup
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

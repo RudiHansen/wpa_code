@@ -1,0 +1,305 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAStockTransferTable_WPAStockTransfer_1 unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAStockTransferTable_WPAStockTransfer_1
+    PROPERTIES
+      Name                #WPAStockTransferTable_WPAStockTransfer_1
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAStockTransferTable_WPAStockTransfer_1 extends AfStronglyTypedDataContainer
+        #{
+        #    #define.Updated('Updated')
+        #    #define.StockTransferType('StockTransferType')
+        #    #define.StockTransferId('StockTransferId')
+        #    #define.RefTableId('RefTableId')
+        #    #define.RefRecId('RefRecId')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.Qty('Qty')
+        #    #define.ItemId('ItemId')
+        #    #define.InventLocationIdTo('InventLocationIdTo')
+        #    #define.InventLocationIdFrom('InventLocationIdFrom')
+        #    #define.ErrorTxt('ErrorTxt')
+        #    #define.Error('Error')
+        #    #define.DifferenceQty('DifferenceQty')
+        #    #define._DocumentHash('_DocumentHash')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #exists_DocumentHash
+        #public boolean exists_DocumentHash()
+        #{
+        #    return this.exists(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #existsDifferenceQty
+        #public boolean existsDifferenceQty()
+        #{
+        #    return this.exists(#DifferenceQty);
+        #}
+      ENDSOURCE
+      SOURCE #existsError
+        #public boolean existsError()
+        #{
+        #    return this.exists(#Error);
+        #}
+      ENDSOURCE
+      SOURCE #existsErrorTxt
+        #public boolean existsErrorTxt()
+        #{
+        #    return this.exists(#ErrorTxt);
+        #}
+      ENDSOURCE
+      SOURCE #existsInventLocationIdFrom
+        #public boolean existsInventLocationIdFrom()
+        #{
+        #    return this.exists(#InventLocationIdFrom);
+        #}
+      ENDSOURCE
+      SOURCE #existsInventLocationIdTo
+        #public boolean existsInventLocationIdTo()
+        #{
+        #    return this.exists(#InventLocationIdTo);
+        #}
+      ENDSOURCE
+      SOURCE #existsItemId
+        #public boolean existsItemId()
+        #{
+        #    return this.exists(#ItemId);
+        #}
+      ENDSOURCE
+      SOURCE #existsQty
+        #public boolean existsQty()
+        #{
+        #    return this.exists(#Qty);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsRefRecId
+        #public boolean existsRefRecId()
+        #{
+        #    return this.exists(#RefRecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRefTableId
+        #public boolean existsRefTableId()
+        #{
+        #    return this.exists(#RefTableId);
+        #}
+      ENDSOURCE
+      SOURCE #existsStockTransferId
+        #public boolean existsStockTransferId()
+        #{
+        #    return this.exists(#StockTransferId);
+        #}
+      ENDSOURCE
+      SOURCE #existsStockTransferType
+        #public boolean existsStockTransferType()
+        #{
+        #    return this.exists(#StockTransferType);
+        #}
+      ENDSOURCE
+      SOURCE #existsUpdated
+        #public boolean existsUpdated()
+        #{
+        #    return this.exists(#Updated);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAStockTransfer_WPAStockTransfer_1);
+        #}
+      ENDSOURCE
+      SOURCE #parm_DocumentHash
+        #public str parm_DocumentHash(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#_DocumentHash, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #parmDifferenceQty
+        #public WPAQty parmDifferenceQty(WPAQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DifferenceQty, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DifferenceQty);
+        #}
+      ENDSOURCE
+      SOURCE #parmError
+        #public NoYes parmError(NoYes _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Error, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Error);
+        #}
+      ENDSOURCE
+      SOURCE #parmErrorTxt
+        #public WPAErrorTxt parmErrorTxt(WPAErrorTxt _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ErrorTxt, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ErrorTxt);
+        #}
+      ENDSOURCE
+      SOURCE #parmInventLocationIdFrom
+        #public InventLocationIdFrom parmInventLocationIdFrom(InventLocationIdFrom _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#InventLocationIdFrom, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#InventLocationIdFrom);
+        #}
+      ENDSOURCE
+      SOURCE #parmInventLocationIdTo
+        #public InventLocationIdTo parmInventLocationIdTo(InventLocationIdTo _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#InventLocationIdTo, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#InventLocationIdTo);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemId
+        #public WPAItemId parmItemId(WPAItemId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemId);
+        #}
+      ENDSOURCE
+      SOURCE #parmQty
+        #public WPAQty parmQty(WPAQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Qty, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Qty);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public recVersion parmRecVersion(recVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmRefRecId
+        #public RefRecId parmRefRecId(RefRecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RefRecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RefRecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRefTableId
+        #public RefTableId parmRefTableId(RefTableId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RefTableId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RefTableId);
+        #}
+      ENDSOURCE
+      SOURCE #parmStockTransferId
+        #public WPAGUID parmStockTransferId(WPAGUID _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#StockTransferId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#StockTransferId);
+        #}
+      ENDSOURCE
+      SOURCE #parmStockTransferType
+        #public WPAStockTransferType parmStockTransferType(WPAStockTransferType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#StockTransferType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#StockTransferType);
+        #}
+      ENDSOURCE
+      SOURCE #parmUpdated
+        #public NoYes parmUpdated(NoYes _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Updated, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Updated);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

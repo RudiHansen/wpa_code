@@ -1,0 +1,55 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBE
+
+; Microsoft Dynamics AX Enumtype : WPATransactionType unloaded
+; --------------------------------------------------------------------------------
+  ENUMTYPEVERSION 1
+  
+  ENUMTYPE #WPATransactionType
+    PROPERTIES
+      Name                #WPATransactionType
+      Label               #@SYS54087
+      Help                #@SYS79023
+      UseEnumValue        #Yes
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+      #Hour
+      PROPERTIES
+        Name                #Hour
+        Label               #@SYS5269
+        ConfigurationKey    #ProjBasicHour
+        EnumValue           #1
+      ENDPROPERTIES
+      
+      #Expense
+      PROPERTIES
+        Name                #Expense
+        Label               #@SYS78349
+        ConfigurationKey    #ProjBasicCost
+        EnumValue           #2
+      ENDPROPERTIES
+      
+      #Item
+      PROPERTIES
+        Name                #Item
+        Label               #@SYS7407
+        ConfigurationKey    #LogisticsBasic
+        EnumValue           #3
+      ENDPROPERTIES
+      
+      #Fee
+      PROPERTIES
+        Name                #Fee
+        Label               #@SYS9154
+        ConfigurationKey    #ProjBasicRevenue
+        EnumValue           #4
+      ENDPROPERTIES
+      
+    ENDTYPEELEMENTS
+  ENDENUMTYPE
+  
+
+***Element: END

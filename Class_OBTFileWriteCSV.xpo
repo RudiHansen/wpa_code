@@ -1,0 +1,72 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: OBTFileWriteCSV unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #OBTFileWriteCSV
+    PROPERTIES
+      Name                #OBTFileWriteCSV
+      Extends             #OBTFileWrite
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class OBTFileWriteCSV extends OBTFileWrite
+        #{
+        #    CommaIo commaIo;
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion, #CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #preFile
+        #void preFile()
+        #{
+        #    super();
+        #
+        #    new FileIOPermission(currentFile, #io_write).assert();
+        #    commaIo = new CommaIo(currentFile, #io_write);
+        #    commaIo.outFieldDelimiter(";");
+        #    commaIo.outRecordDelimiter(#delimiterEnter);
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #    Integer         version        = conpeek(_packedClass,1);
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList] = _packedClass;
+        #            break;
+        #        default:
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #writeLine
+        #boolean writeLine(container _data)
+        #{
+        #    ;
+        #    recordsProcessed ++;
+        #
+        #    return commaIo.writeExp(_data);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,629 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAServiceOrder_SMAServiceOrderTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAServiceOrder_SMAServiceOrderTable
+    PROPERTIES
+      Name                #WPAServiceOrder_SMAServiceOrderTable
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAServiceOrder_SMAServiceOrderTable extends AfStronglyTypedDataContainer
+        #{
+        #    #define.StageId('StageId')
+        #    #define.SignOff('SignOff')
+        #    #define.ServiceOrderId('ServiceOrderId')
+        #    #define.ServiceLevelAgreementStatus('ServiceLevelAgreementStatus')
+        #    #define.ServiceLevelAgreement('ServiceLevelAgreement')
+        #    #define.ServiceDateTime('ServiceDateTime')
+        #    #define.ServiceCountryRegionId('ServiceCountryRegionId')
+        #    #define.ServiceAddressZipCode('ServiceAddressZipCode')
+        #    #define.ServiceAddressStreet('ServiceAddressStreet')
+        #    #define.ServiceAddressState('ServiceAddressState')
+        #    #define.ServiceAddressName('ServiceAddressName')
+        #    #define.ServiceAddressCounty('ServiceAddressCounty')
+        #    #define.ServiceAddressCountryRegion('ServiceAddressCountryRegion')
+        #    #define.ServiceAddressCity('ServiceAddressCity')
+        #    #define.ServiceAddress('ServiceAddress')
+        #    #define.Responsible('Responsible')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.ProjId('ProjId')
+        #    #define.Progress('Progress')
+        #    #define.Priority('Priority')
+        #    #define.PreferredTechnician('PreferredTechnician')
+        #    #define.Origin('Origin')
+        #    #define.IncomingWebOrder('IncomingWebOrder')
+        #    #define.Description('Description')
+        #    #define.CustAccount('CustAccount')
+        #    #define.Compliance('Compliance')
+        #    #define.CalendarConflict('CalendarConflict')
+        #    #define.AgreementId('AgreementId')
+        #    #define.AddressRefTableId('AddressRefTableId')
+        #    #define.AddressRefRecId('AddressRefRecId')
+        #    #define.ActivityTypeId('ActivityTypeId')
+        #    #define.ActivityNumber('ActivityNumber')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsActivityNumber
+        #public boolean existsActivityNumber()
+        #{
+        #    return this.exists(#ActivityNumber);
+        #}
+      ENDSOURCE
+      SOURCE #existsActivityTypeId
+        #public boolean existsActivityTypeId()
+        #{
+        #    return this.exists(#ActivityTypeId);
+        #}
+      ENDSOURCE
+      SOURCE #existsAddressRefRecId
+        #public boolean existsAddressRefRecId()
+        #{
+        #    return this.exists(#AddressRefRecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsAddressRefTableId
+        #public boolean existsAddressRefTableId()
+        #{
+        #    return this.exists(#AddressRefTableId);
+        #}
+      ENDSOURCE
+      SOURCE #existsAgreementId
+        #public boolean existsAgreementId()
+        #{
+        #    return this.exists(#AgreementId);
+        #}
+      ENDSOURCE
+      SOURCE #existsCalendarConflict
+        #public boolean existsCalendarConflict()
+        #{
+        #    return this.exists(#CalendarConflict);
+        #}
+      ENDSOURCE
+      SOURCE #existsCompliance
+        #public boolean existsCompliance()
+        #{
+        #    return this.exists(#Compliance);
+        #}
+      ENDSOURCE
+      SOURCE #existsCustAccount
+        #public boolean existsCustAccount()
+        #{
+        #    return this.exists(#CustAccount);
+        #}
+      ENDSOURCE
+      SOURCE #existsDescription
+        #public boolean existsDescription()
+        #{
+        #    return this.exists(#Description);
+        #}
+      ENDSOURCE
+      SOURCE #existsIncomingWebOrder
+        #public boolean existsIncomingWebOrder()
+        #{
+        #    return this.exists(#IncomingWebOrder);
+        #}
+      ENDSOURCE
+      SOURCE #existsOrigin
+        #public boolean existsOrigin()
+        #{
+        #    return this.exists(#Origin);
+        #}
+      ENDSOURCE
+      SOURCE #existsPreferredTechnician
+        #public boolean existsPreferredTechnician()
+        #{
+        #    return this.exists(#PreferredTechnician);
+        #}
+      ENDSOURCE
+      SOURCE #existsPriority
+        #public boolean existsPriority()
+        #{
+        #    return this.exists(#Priority);
+        #}
+      ENDSOURCE
+      SOURCE #existsProgress
+        #public boolean existsProgress()
+        #{
+        #    return this.exists(#Progress);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjId
+        #public boolean existsProjId()
+        #{
+        #    return this.exists(#ProjId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsResponsible
+        #public boolean existsResponsible()
+        #{
+        #    return this.exists(#Responsible);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceAddress
+        #public boolean existsServiceAddress()
+        #{
+        #    return this.exists(#ServiceAddress);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceAddressCity
+        #public boolean existsServiceAddressCity()
+        #{
+        #    return this.exists(#ServiceAddressCity);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceAddressCountryRegion
+        #public boolean existsServiceAddressCountryRegion()
+        #{
+        #    return this.exists(#ServiceAddressCountryRegion);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceAddressCounty
+        #public boolean existsServiceAddressCounty()
+        #{
+        #    return this.exists(#ServiceAddressCounty);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceAddressName
+        #public boolean existsServiceAddressName()
+        #{
+        #    return this.exists(#ServiceAddressName);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceAddressState
+        #public boolean existsServiceAddressState()
+        #{
+        #    return this.exists(#ServiceAddressState);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceAddressStreet
+        #public boolean existsServiceAddressStreet()
+        #{
+        #    return this.exists(#ServiceAddressStreet);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceAddressZipCode
+        #public boolean existsServiceAddressZipCode()
+        #{
+        #    return this.exists(#ServiceAddressZipCode);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceCountryRegionId
+        #public boolean existsServiceCountryRegionId()
+        #{
+        #    return this.exists(#ServiceCountryRegionId);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceDateTime
+        #public boolean existsServiceDateTime()
+        #{
+        #    return this.exists(#ServiceDateTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceLevelAgreement
+        #public boolean existsServiceLevelAgreement()
+        #{
+        #    return this.exists(#ServiceLevelAgreement);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceLevelAgreementStatus
+        #public boolean existsServiceLevelAgreementStatus()
+        #{
+        #    return this.exists(#ServiceLevelAgreementStatus);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceOrderId
+        #public boolean existsServiceOrderId()
+        #{
+        #    return this.exists(#ServiceOrderId);
+        #}
+      ENDSOURCE
+      SOURCE #existsSignOff
+        #public boolean existsSignOff()
+        #{
+        #    return this.exists(#SignOff);
+        #}
+      ENDSOURCE
+      SOURCE #existsStageId
+        #public boolean existsStageId()
+        #{
+        #    return this.exists(#StageId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAServiceOrder_SMAServiceOrderTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmActivityNumber
+        #public smmActivityId parmActivityNumber(smmActivityId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ActivityNumber, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ActivityNumber);
+        #}
+      ENDSOURCE
+      SOURCE #parmActivityTypeId
+        #public smmActivityTypeId parmActivityTypeId(smmActivityTypeId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ActivityTypeId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ActivityTypeId);
+        #}
+      ENDSOURCE
+      SOURCE #parmAddressRefRecId
+        #public AddressRefRecId parmAddressRefRecId(AddressRefRecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AddressRefRecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AddressRefRecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmAddressRefTableId
+        #public AddressRefTableId parmAddressRefTableId(AddressRefTableId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AddressRefTableId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AddressRefTableId);
+        #}
+      ENDSOURCE
+      SOURCE #parmAgreementId
+        #public SMAAgreementId parmAgreementId(SMAAgreementId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AgreementId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AgreementId);
+        #}
+      ENDSOURCE
+      SOURCE #parmCalendarConflict
+        #public NoYesId parmCalendarConflict(NoYesId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CalendarConflict, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CalendarConflict);
+        #}
+      ENDSOURCE
+      SOURCE #parmCompliance
+        #public SMAServiceLevelAgreementCompliance parmCompliance(SMAServiceLevelAgreementCompliance _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Compliance, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Compliance);
+        #}
+      ENDSOURCE
+      SOURCE #parmCustAccount
+        #public str parmCustAccount(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CustAccount, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CustAccount);
+        #}
+      ENDSOURCE
+      SOURCE #parmDescription
+        #public Description parmDescription(Description _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Description, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Description);
+        #}
+      ENDSOURCE
+      SOURCE #parmIncomingWebOrder
+        #public NoYes parmIncomingWebOrder(NoYes _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#IncomingWebOrder, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#IncomingWebOrder);
+        #}
+      ENDSOURCE
+      SOURCE #parmOrigin
+        #public SMAServiceOrderOrigin parmOrigin(SMAServiceOrderOrigin _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Origin, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Origin);
+        #}
+      ENDSOURCE
+      SOURCE #parmPreferredTechnician
+        #public SMAPreferredTechnician parmPreferredTechnician(SMAPreferredTechnician _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PreferredTechnician, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PreferredTechnician);
+        #}
+      ENDSOURCE
+      SOURCE #parmPriority
+        #public smmActivityPriority parmPriority(smmActivityPriority _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Priority, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Priority);
+        #}
+      ENDSOURCE
+      SOURCE #parmProgress
+        #public SMAServiceOrderProgress parmProgress(SMAServiceOrderProgress _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Progress, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Progress);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjId
+        #public ProjId parmProjId(ProjId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public recVersion parmRecVersion(recVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmResponsible
+        #public SMAResponsible parmResponsible(SMAResponsible _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Responsible, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Responsible);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceAddress
+        #public Addressing parmServiceAddress(Addressing _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceAddress, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceAddress);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceAddressCity
+        #public AddressCity parmServiceAddressCity(AddressCity _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceAddressCity, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceAddressCity);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceAddressCountryRegion
+        #public str parmServiceAddressCountryRegion(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceAddressCountryRegion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceAddressCountryRegion);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceAddressCounty
+        #public str parmServiceAddressCounty(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceAddressCounty, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceAddressCounty);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceAddressName
+        #public CustName parmServiceAddressName(CustName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceAddressName, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceAddressName);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceAddressState
+        #public str parmServiceAddressState(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceAddressState, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceAddressState);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceAddressStreet
+        #public AddressStreet parmServiceAddressStreet(AddressStreet _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceAddressStreet, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceAddressStreet);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceAddressZipCode
+        #public str parmServiceAddressZipCode(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceAddressZipCode, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceAddressZipCode);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceCountryRegionId
+        #public str parmServiceCountryRegionId(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceCountryRegionId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceCountryRegionId);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceDateTime
+        #public SMAPreferredServiceDateTime parmServiceDateTime(SMAPreferredServiceDateTime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceDateTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceDateTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceLevelAgreement
+        #public SMAServiceLevelAgreementId parmServiceLevelAgreement(SMAServiceLevelAgreementId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceLevelAgreement, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceLevelAgreement);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceLevelAgreementStatus
+        #public SMAServiceOrderSLAStatus parmServiceLevelAgreementStatus(SMAServiceOrderSLAStatus _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceLevelAgreementStatus, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceLevelAgreementStatus);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceOrderId
+        #public SMAServiceOrderId parmServiceOrderId(SMAServiceOrderId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceOrderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceOrderId);
+        #}
+      ENDSOURCE
+      SOURCE #parmSignOff
+        #public NoYes parmSignOff(NoYes _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SignOff, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SignOff);
+        #}
+      ENDSOURCE
+      SOURCE #parmStageId
+        #public SMAStageId parmStageId(SMAStageId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#StageId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#StageId);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

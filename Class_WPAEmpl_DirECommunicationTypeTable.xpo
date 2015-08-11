@@ -1,0 +1,71 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAEmpl_DirECommunicationTypeTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAEmpl_DirECommunicationTypeTable
+    PROPERTIES
+      Name                #WPAEmpl_DirECommunicationTypeTable
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAEmpl_DirECommunicationTypeTable extends AfStronglyTypedDataContainer
+        #{
+        #    #define.RecId('RecId')
+        #    #define.ECommunicationTypeId('ECommunicationTypeId')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsECommunicationTypeId
+        #public boolean existsECommunicationTypeId()
+        #{
+        #    return this.exists(#ECommunicationTypeId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#Empl_DirECommunicationTypeTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmECommunicationTypeId
+        #public DirECommunicationTypeId parmECommunicationTypeId(DirECommunicationTypeId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ECommunicationTypeId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ECommunicationTypeId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

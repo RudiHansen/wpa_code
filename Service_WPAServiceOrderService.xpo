@@ -1,0 +1,59 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: SVC
+
+; Microsoft Dynamics AX SERVICE : WPAServiceOrderService unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  SERVICE #WPAServiceOrderService
+    PROPERTIES
+      Name                #WPAServiceOrderService
+      ExternalName        #WPAServiceOrderService
+      Namespace           #
+      Class               #WPAServiceOrderService
+      SecurityKey         #WPAServices
+      Description         #
+    ENDPROPERTIES
+    
+    OPERATIONS
+      OPERATION #create
+        PROPERTIES
+          Name                #create
+          Method              #create
+        ENDPROPERTIES
+        
+      ENDOPERATION
+      
+      OPERATION #delete
+        PROPERTIES
+          Name                #delete
+          Method              #delete
+        ENDPROPERTIES
+        
+      ENDOPERATION
+      
+      OPERATION #find
+        PROPERTIES
+          Name                #find
+          Method              #find
+          EnableIdempotence   #No
+        ENDPROPERTIES
+        
+      ENDOPERATION
+      
+      OPERATION #update
+        PROPERTIES
+          Name                #update
+          Method              #update
+        ENDPROPERTIES
+        
+      ENDOPERATION
+      
+    ENDOPERATIONS
+    
+  ENDSERVICE
+  
+
+***Element: END

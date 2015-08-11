@@ -1,0 +1,1816 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FRM
+
+; Microsoft Dynamics AX Forms unloaded
+; --------------------------------------------------------------------------------
+FRMVERSION 5
+
+FORM #ProjForecastEmpl
+  PROPERTIES
+    Name                #ProjForecastEmpl
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #ClassDeclaration
+      #class FormRun extends ObjectRun
+      #{
+      #    ProjId                  projId;
+      #    ForecastModelId         modelId;
+      #    ProjCategoryId          categoryId;
+      #    EmplId                  emplId;
+      #
+      #    // Range projTable
+      #    QueryBuildRange         criteriaWIPProjId;
+      #    QueryBuildRange         criteriaProjId;
+      #
+      #    QueryBuildRange         criteriaProjInvoiceProjId;
+      #    QueryBuildRange         criteriaFixedPrice;
+      #    QueryBuildRange         criteriaTimeMaterial;
+      #    QueryBuildRange         criteriaInternal;
+      #    QueryBuildRange         criteriaCost;
+      #    QueryBuildRange         criteriaInvestment;
+      #    QueryBuildRange         criteriaTime;
+      #    QueryBuildRange         criteriaSorting1;
+      #    QueryBuildRange         criteriaSorting2;
+      #    QueryBuildRange         criteriaSorting3;
+      #    QueryBuildRange         criteriaGroupId;
+      #    QueryBuildRange         criteriaCustAccount;
+      #
+      #    QueryBuildRange         criteriaModelId;
+      #    QueryBuildRange         criteriaActivityId;
+      #
+      #    QueryBuildRange         criteriaControlId;
+      #    QueryBuildRange         criteriaCostGroupId;
+      #
+      #    // Range projCategoryId
+      #    QueryBuildRange         criteriaCategoryGroupId;
+      #
+      #    // Range projEmplTrans
+      #    QueryBuildRange         criteriaEmplId;
+      #    QueryBuildRange         criteriaTransDate;
+      #    QueryBuildRange         criteriaCategoryId;
+      #
+      #    QueryBuildDataSource    qb2;
+      #    QueryBuildDataSource    qb3;
+      #
+      #    ProjControlId           controlId;
+      #    ProjCostGroupId         costGroupid;
+      #
+      #    boolean                 showChild;
+      #
+      #    TransDate               ledgerFromDate;
+      #    TransDate               ledgerToDate;
+      #    ProjStatistic           projStatistic;
+      #    ProjCostControl         projCostControl;
+      #    ProjCashFlow            projCashFlow;
+      #
+      #    boolean                 linkProjUtil;
+      #
+      #    ProjUtilCalcParams      projUtil;
+      #
+      #    #DEFINE.projUtil('projUtil') //if altered, remember to also change in ProjUtil and Forecast forms
+      #
+      #
+      #}
+    ENDSOURCE
+    SOURCE #linkProjCostControl
+      #void linkProjCostControl()
+      #{
+      #    #define.star('*')
+      #    ;
+      #    switch(projCostControl.parmModelType())
+      #    {
+      #        case ProjForecastModelType::Original:
+      #        {
+      #            modelId     = projCostControl.parmOriginalForecastModelId();
+      #            break;
+      #        }
+      #        case ProjForecastModelType::Remaining:
+      #        {
+      #            modelId     = projCostControl.parmRemainingForecastModelId();
+      #            break;
+      #        }
+      #        case ProjForecastModelType::Total:
+      #        {
+      #            modelId     = projCostControl.parmTotalForecastModelId();
+      #            break;
+      #        }
+      #    }
+      #
+      #    projId      = projCostControl.parmProjId();
+      #    categoryId  = projCostControl.parmProjCategoryId();
+      #    emplId      = projCostControl.parmEmplId();
+      #
+      #    if (projCostControl.parmHour())
+      #    {
+      #        ledgerFromDate  = projCostControl.parmLedgerTransDateFrom();
+      #        ledgerToDate    = projCostControl.parmLedgerTransDateTo();
+      #        if (projCostControl.parmProjTransDateFrom() || projCostControl.parmProjTransDateTo())
+      #            criteriaTransDate.value(strfmt('%1..%2',queryValue(projCostControl.parmProjTransDateFrom()),queryValue(projCostControl.parmProjTransDateTo())));
+      #
+      #        if (modelId)
+      #            criteriaModelId.value(modelId);
+      #
+      #        if (projCostControl.parmEmplId())
+      #            criteriaEmplId.value(projCostControl.parmEmplId());
+      #
+      #        if (projCostControl.parmProjCategoryId())
+      #            criteriaCategoryId.value(projCostControl.parmProjCategoryId());
+      #
+      #        if (projCostControl.parmCategoryGroupId() && criteriaCategoryGroupId )
+      #            criteriaCategoryGroupId.value(projCostControl.parmCategoryGroupId());
+      #
+      #//        if (element.categoryTable(element.args().parmObject()))
+      #//            criteriaCategoryGroupId.value(projCostControl.parmCategoryGroupId());
+      #
+      #        if (projCostControl.parmFixedPrice())
+      #            criteriaFixedPrice.value(queryValue(ProjType::FixedPrice));
+      #        if (projCostControl.parmTimeMaterial())
+      #            criteriaTimeMaterial.value(queryValue(ProjType::TimeMaterial));
+      #        if (projCostControl.parmInternalCost())
+      #            criteriaInternal.value(queryValue(ProjType::Cost));
+      #        if (projCostControl.parmInternalCost())
+      #            criteriaCost.value(queryValue(ProjType::Internal));
+      #        if (projCostControl.parmInvestment())
+      #            criteriaInvestment.value(queryValue(ProjType::Investment));
+      #        if (projCostControl.parmTime())
+      #            criteriaTime.value(queryValue(ProjType::Time));
+      #
+      #        if (projCostControl.parmProjSorting1())
+      #            criteriaSorting1.value(queryValue(projCostControl.parmProjSorting1()));
+      #        if (projCostControl.parmProjSorting2())
+      #            criteriaSorting2.value(queryValue(projCostControl.parmProjSorting2()));
+      #        if (projCostControl.parmProjSorting3())
+      #            criteriaSorting3.value(queryValue(projCostControl.parmProjSorting3()));
+      #
+      #        if (projCostControl.parmCustomerAccount())
+      #            criteriaCustAccount.value(queryValue(projCostControl.parmCustomerAccount()));
+      #        if (projCostControl.parmProjGroupId())
+      #            criteriaGroupId.value(queryValue(projCostControl.parmProjGroupId()));
+      #
+      #        if (projCostControl.parmProjTree())
+      #            criteriaProjId.value(projCostControl.parmProjId()+ #star);
+      #        else
+      #            if (projCostControl.parmProjId())
+      #                criteriaProjId.value(queryValue(projCostControl.parmProjId()));
+      #
+      #        if (projCostControl.parmProjWIPId())
+      #            criteriaWIPProjId.value(queryValue(projCostControl.parmProjWIPId()));
+      #
+      #        if (projCostControl.parmProjInvoiceProjId())
+      #            criteriaProjInvoiceProjId.value(queryValue(projCostControl.parmProjInvoiceProjId()));
+      #
+      #    }
+      #    else
+      #        criteriaProjId.value(queryValue(SysQuery::valueEmptyString()));
+      #}
+      #
+    ENDSOURCE
+    SOURCE #categoryTableCashFlow
+      #boolean categoryTableCashFlow(ProjCashFlow _projCashFlow = projCashFlow)
+      #{;
+      #    return (_projCashFlow && _projCashFlow.parmCategoryGroupId());
+      #}
+      #
+    ENDSOURCE
+    SOURCE #linkProjCashFlow
+      #void linkProjCashFlow()
+      #{
+      #    #define.star('*')
+      #    ;
+      #
+      #    modelId     = projCashFlow.parmForecastModelId();
+      #    projId      = projCashFlow.parmProjId();
+      #    categoryId  = projCashFlow.parmCategoryId();
+      #    emplId      = projCashFlow.parmEmplId();
+      #
+      #    if (projCashFlow.parmHour())
+      #    {
+      #/*        ledgerFromDate  = projCashFlow.parmLedgerFromDate();
+      #        ledgerToDate    = projCashFlow.parmLedgerToDate(); */
+      #
+      #        if (projCashFlow.parmProjectFromDate() || projCashFlow.parmProjectToDate())
+      #            criteriaTransDate.value(strfmt('%1..%2',queryValue(projCashFlow.parmProjectFromDate()),queryValue(projCashFlow.parmProjectToDate())));
+      #
+      #        if (projCashFlow.parmEmplId())
+      #            criteriaEmplId.value(projCashFlow.parmEmplId());
+      #
+      #        if (projCashFlow.parmForecastModelId())
+      #            criteriaModelId.value(projCashFlow.parmForecastModelId());
+      #
+      #        if (projCashFlow.parmCategoryId())
+      #            criteriaCategoryId.value(projCashFlow.parmCategoryId());
+      #
+      #        if (element.categoryTableCashFlow(element.args().parmObject()))
+      #            criteriaCategoryGroupId.value(projCashFlow.parmCategoryGroupId());
+      #
+      #        if (projCashFlow.parmFixedPrice())
+      #            criteriaFixedPrice.value(queryValue(ProjType::FixedPrice));
+      #        if (projCashFlow.parmTimeMaterial())
+      #            criteriaTimeMaterial.value(queryValue(ProjType::TimeMaterial));
+      #        if (projCashFlow.parmInternalCost())
+      #            criteriaInternal.value(queryValue(ProjType::Cost));
+      #        if (projCashFlow.parmInternalCost())
+      #            criteriaCost.value(queryValue(ProjType::Internal));
+      #        if (projCashFlow.parmInvestment())
+      #            criteriaInvestment.value(queryValue(ProjType::Investment));
+      #        if (projCashFlow.parmTimeProject())
+      #            criteriaTime.value(queryValue(ProjType::Time));
+      #
+      #        if (projCashFlow.parmSorting1())
+      #            criteriaSorting1.value(queryValue(projCashFlow.parmSorting1()));
+      #        if (projCashFlow.parmSorting2())
+      #            criteriaSorting2.value(queryValue(projCashFlow.parmSorting2()));
+      #        if (projCashFlow.parmSorting3())
+      #            criteriaSorting3.value(queryValue(projCashFlow.parmSorting3()));
+      #        if (projCashFlow.parmCustAccount())
+      #            criteriaCustAccount.value(queryValue(projCashFlow.parmCustAccount()));
+      #        if (projCashFlow.parmProjGroupId())
+      #            criteriaGroupId.value(queryValue(projCashFlow.parmProjGroupId()));
+      #
+      #        if (projCashFlow.parmProjTree())
+      #            criteriaProjId.value(projCashFlow.parmProjId()+ #star);
+      #        else
+      #            if (projCashFlow.parmProjId())
+      #                criteriaProjId.value(queryValue(projCashFlow.parmProjId()));
+      #
+      #        if (projCashFlow.parmProjWIPId())
+      #            criteriaWIPProjId.value(queryValue(projCashFlow.parmProjWIPId()));
+      #
+      #        if (projCashFlow.parmProjInvoiceProjId())
+      #            criteriaProjInvoiceProjId.value(queryValue(projCashFlow.parmProjInvoiceProjId()));
+      #    }
+      #    else
+      #        criteriaProjId.value(queryValue(SysQuery::valueEmptyString()));
+      #}
+      #
+    ENDSOURCE
+    SOURCE #doReFreshDatasource
+      #void doReFreshDatasource()
+      #{
+      #    projForecastEmpl_ds.executeQuery();
+      #}
+    ENDSOURCE
+    SOURCE #categoryTable
+      #boolean categoryTable(ProjStatistic _projStatistic = projStatistic)
+      #{;
+      #    return (_projStatistic && _projStatistic.parmCategoryGroupId());
+      #}
+    ENDSOURCE
+    SOURCE #linkProjStatistic
+      #void linkProjStatistic()
+      #{
+      #    #define.star('*')
+      #    ;
+      #
+      #    modelId     = projStatistic.parmForecastModelId();
+      #    projId      = projStatistic.parmProjId();
+      #    categoryId  = projStatistic.parmProjCategoryId();
+      #    emplId      = projStatistic.parmEmplId();
+      #
+      #    if (projStatistic.parmHour())
+      #    {
+      #        ledgerFromDate  = projStatistic.parmLedgerFromDate();
+      #        ledgerToDate    = projStatistic.parmLedgerToDate();
+      #        if (projStatistic.parmProjFromDate() || projStatistic.parmProjToDate())
+      #            criteriaTransDate.value(strfmt('%1..%2',queryValue(projStatistic.parmProjFromDate()),queryValue(projStatistic.parmProjToDate())));
+      #
+      #        if (projStatistic.parmEmplId())
+      #            criteriaEmplId.value(projStatistic.parmEmplId());
+      #
+      #        if (projStatistic.parmForecastModelId())
+      #            criteriaModelId.value(projStatistic.parmForecastModelId());
+      #
+      #        if (projStatistic.parmProjCategoryId())
+      #            criteriaCategoryId.value(projStatistic.parmProjCategoryId());
+      #
+      #        if (element.categoryTable())
+      #            criteriaCategoryGroupId.value(projStatistic.parmCategoryGroupId());
+      #
+      #        if (projStatistic.parmFixedPrice())
+      #            criteriaFixedPrice.value(queryValue(ProjType::FixedPrice));
+      #        if (projStatistic.parmTimeMaterial())
+      #            criteriaTimeMaterial.value(queryValue(ProjType::TimeMaterial));
+      #        if (projStatistic.parmInternalCost())
+      #            criteriaInternal.value(queryValue(ProjType::Cost));
+      #        if (projStatistic.parmInternalCost())
+      #            criteriaCost.value(queryValue(ProjType::Internal));
+      #        if (projStatistic.parmInvestment())
+      #            criteriaInvestment.value(queryValue(ProjType::Investment));
+      #        if (projStatistic.parmTime())
+      #            criteriaTime.value(queryValue(ProjType::Time));
+      #
+      #        if (projStatistic.parmSorting1())
+      #            criteriaSorting1.value(queryValue(projStatistic.parmSorting1()));
+      #        if (projStatistic.parmSorting2())
+      #            criteriaSorting2.value(queryValue(projStatistic.parmSorting2()));
+      #        if (projStatistic.parmSorting3())
+      #            criteriaSorting3.value(queryValue(projStatistic.parmSorting3()));
+      #        if (projStatistic.parmCustAccount())
+      #            criteriaCustAccount.value(queryValue(projStatistic.parmCustAccount()));
+      #        if (projStatistic.parmProjGroupId())
+      #            criteriaGroupId.value(queryValue(projStatistic.parmProjGroupId()));
+      #
+      #        if (projStatistic.parmProjTree())
+      #            criteriaProjId.value(projStatistic.parmProjId()+ #star);
+      #        else
+      #            if (projStatistic.parmProjId())
+      #                criteriaProjId.value(queryValue(projStatistic.parmProjId()));
+      #
+      #        if (projStatistic.parmProjWIPId())
+      #            criteriaWIPProjId.value(queryValue(projStatistic.parmProjWIPId()));
+      #
+      #        if (projStatistic.parmProjInvoiceProjId())
+      #            criteriaProjInvoiceProjId.value(queryValue(projStatistic.parmProjInvoiceProjId()));
+      #    }
+      #    else
+      #        criteriaProjId.value(queryValue(SysQuery::valueEmptyString()));
+      #
+      #}
+    ENDSOURCE
+    SOURCE #projControlId
+      #ProjControlId projControlId()
+      #{;
+      #    return controlId;
+      #}
+    ENDSOURCE
+    SOURCE #projCostGroupId
+      #ProjCostGroupId projCostGroupId()
+      #{;
+      #    return costGroupid;
+      #}
+    ENDSOURCE
+    SOURCE #setLinePropertyId
+      #void setLinePropertyId()
+      #{;
+      #    projForecastEmpl.setLinePropertyId();
+      #}
+      #
+    ENDSOURCE
+    SOURCE #Init
+      #void init()
+      #{;
+      #    if (element.args().dataset() == tablenum(ProjTable) || element.args().dataset() == tablenum(ProjActivity))
+      #        showChild   = element.args().caller().showChild();
+      #
+      #    //determine if called from utilization form must know
+      #    //this before super() to use linkProjUtil in executeQuery
+      #    //
+      #    if(element.args() && element.args().parm() == #projUtil)
+      #    {
+      #        linkProjUtil = true;
+      #        projUtil = element.args().parmObject();
+      #    }
+      #    else
+      #    {
+      #        linkProjUtil = false;
+      #    }
+      #
+      #    super();
+      #}
+    ENDSOURCE
+    SOURCE #DoResearch
+      #void doResearch()
+      #{;
+      #    projForecastEmpl_ds.research();
+      #}
+    ENDSOURCE
+    SOURCE #linkProjUtilization
+      #void linkProjUtilization()
+      #{
+      #    #define.star('*')
+      #
+      #    ProjUtilCalcFilterType filterType;
+      #    ;
+      #
+      #    //check if the forecast transaction form has been
+      #    //called from utilization form
+      #    //
+      #    if(!linkProjUtil)
+      #    {
+      #        return;
+      #    }
+      #
+      #
+      #    //if showing from project utility and showing Budget(Forecast) transactions
+      #    if (projUtil && projUtil.paramIsBudget())
+      #    {
+      #
+      #        if (projUtil.paramFromDate() || projUtil.paramToDate())
+      #            criteriaTransDate.value(strfmt('%1..%2',queryValue(projUtil.paramFromDate()),queryValue(projUtil.paramToDate())));
+      #
+      #        if (projUtil.paramForecastModelId())
+      #        {
+      #            criteriaModelId.value(projUtil.paramForecastModelId());
+      #        }
+      #
+      #        filterType = projUtil.paramFilterType();
+      #
+      #        switch (filterType)
+      #        {
+      #            case ProjUtilCalcFilterType::Employee:
+      #                criteriaEmplId.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::Category:
+      #                criteriaCategoryId.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::CategoryGroup:
+      #                criteriaCategoryGroupId.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::Customer:
+      #                criteriaCustAccount.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::EstimateProject:
+      #                criteriaWIPProjId.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::InvoiceProject:
+      #                criteriaProjInvoiceProjId.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::Project:
+      #                criteriaProjId.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::ProjectGroup:
+      #                criteriaGroupId.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::ProjectWithSubprojects:
+      #                criteriaProjId.value(projUtil.paramFilterValue() + #star);
+      #                break;
+      #            case ProjUtilCalcFilterType::Sorting1:
+      #                criteriaSorting1.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::Sorting2:
+      #                criteriaSorting2.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #            case ProjUtilCalcFilterType::Sorting3:
+      #                criteriaSorting3.value(queryValue(projUtil.paramFilterValue()));
+      #                break;
+      #        }//end switch
+      #    }
+      #    else
+      #    {
+      #        //make sure nothing is included
+      #        criteriaProjId.value(queryValue(SysQuery::valueEmptyString()));
+      #    }//end if
+      #
+      #
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  OBJECTBANK
+    PROPERTIES
+    ENDPROPERTIES
+    
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #ProjForecastEmpl
+          Table               #ProjForecastEmpl
+          Index               #ProjIdx
+          CounterField        #LineNum
+          LinkType            #Active
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD ActivityNumber
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #lookup
+                #public void lookup(FormControl _formControl, str _filterStr)
+                #{
+                #;
+                #    HierarchyTreeTable::lookupHierarchyTree(_formControl, ProjTable::find(projForecastEmpl.ProjId));
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #findCaller
+          #void findCaller()
+          #{
+          #    ProjForecastEmpl    projForecastEmplTmp;
+          #    ;
+          #    switch (element.args().dataset())
+          #    {
+          #        case (tablenum(ProjForecastEmpl)):
+          #
+          #            projForecastEmplTmp = element.args().record();
+          #
+          #            if(projForecastEmplTmp.RecId)
+          #            {
+          #                projForecastEmpl_ds.findRecord(projForecastEmplTmp);
+          #            }
+          #
+          #            break;
+          #    }
+          #}
+        ENDSOURCE
+        SOURCE #buildCaptionTextForActiveHourItem
+          #str buildCaptionTextForActiveHourItem()
+          #{
+          #    str activeHourItemLabel;
+          #    ;
+          #
+          #    // Build the string with details of the active forcast expense item to use as label on the form caption
+          #    activeHourItemLabel = strfmt("%1 - %2: %3, %4","@SYS60276","@SYS82923",projForecastEmpl.ModelId,date2StrUsr(projForecastEmpl.SchedFromDate,DateFlags::FormatAll));
+          #
+          #    return activeHourItemLabel;
+          #
+          #}
+        ENDSOURCE
+        SOURCE #linkActive
+          #public void linkActive()
+          #{
+          #    #define.star("*")
+          #
+          #    ProjTable                   projTable;
+          #    ProjControlPeriodCostGroup  projControlPeriodCostGroup;
+          #    ProjInvoiceTable            projInvoiceTable;
+          #    ProjWIPTable                projWIPTable;
+          #    QueryBuildRange             rangeProjId;
+          #
+          #    HierarchyTreeTable          hierarchyTreeTable;
+          #    smmActivities               smmActivities;
+          #    ;
+          #
+          #    // Reset the Form Caption to just show the title of the primary datasource
+          #    // If forcast expense items exists for the current project, the Active method will be called
+          #    // and it will update the caption to include details of the forcast expanse item
+          #    element.design().caption(strfmt("@SYS60276"));
+          #
+          #    switch(element.args().dataset())
+          #    {
+          #        case(tablenum(ProjTable)):
+          #            projTable   = element.args().record();
+          #            projId      = projTable.ProjId;
+          #            showChild   = element.args().caller().showChild();
+          #            if (showChild)
+          #                criteriaProjId.value(projId + #star);
+          #            else
+          #                criteriaProjId.value(projId);
+          #            break;
+          #
+          #        case (tablenum(HierarchyTreeTable)):
+          #            hierarchyTreeTable = element.args().record();
+          #
+          #            if (hierarchyTreeTable.ElementNodeType == ElementNodeType::Activity)
+          #            {
+          #                smmActivities = smmActivities::findWithRecId(hierarchyTreeTable.RefRecId);
+          #                criteriaActivityId.value(queryValue(smmActivities.ActivityNumber));
+          #                projTable = HierarchyTreeTable::findAssociation(smmActivities, tablenum(ProjTable));
+          #
+          #                criteriaProjId.value(projTable.ProjId);
+          #            }
+          #            else
+          #            {
+          #                criteriaActivityId.value(SysQuery::valueEmptyString());
+          #                criteriaProjId.value(SysQuery::valueEmptyString());
+          #            }
+          #            break;
+          #
+          #
+          #        case(tablenum(ProjControlPeriodCostGroup)):
+          #            projControlPeriodCostGroup  = element.args().record();
+          #
+          #            if (projControlPeriodCostGroup.costType() != ProjCostType::Hour)
+          #                element.close();
+          #
+          #            projId                      = projControlPeriodCostGroup.ProjId;
+          #            modelId                     = projControlPeriodCostGroup.projControlPeriod().ModelId;
+          #
+          #            costGroupid                 = projControlPeriodCostGroup.CostGroupId;
+          #            controlId                   = projControlPeriodCostGroup.ControlId;
+          #
+          #            criteriaWIPProjId.value(projId);
+          #
+          #            criteriaModelId.value(projControlPeriodCostGroup.projControlPeriod().ModelId);
+          #            criteriaControlId.value(projControlPeriodCostGroup.ControlId);
+          #
+          #            qb2.joinMode(JoinMode::ExistsJoin);
+          #
+          #            criteriaCostGroupId.value(projControlPeriodCostGroup.CostGroupId);
+          #            qb3.joinMode(JoinMode::ExistsJoin);
+          #
+          #            criteriaCostGroupId.value(projControlPeriodCostGroup.CostGroupId);
+          #            break;
+          #
+          #        case(tablenum(TmpProjStatistic)):
+          #//          linkActive called again .criteria changed... close form
+          #            if (projStatistic)
+          #                element.close();
+          #
+          #            projStatistic   = element.args().parmObject();
+          #            element.linkProjStatistic();
+          #
+          #            break;
+          #
+          #        case(tablenum(TmpProjCostControl)):
+          #//          linkActive called again .criteria changed... close form
+          #            if (projCostControl)
+          #                element.close();
+          #
+          #            projCostControl   = element.args().parmObject();
+          #            element.linkProjCostControl();
+          #
+          #            break;
+          #
+          #        case(tablenum(TmpProjCashFlow)):
+          #//          linkActive called again .criteria changed... close form
+          #            if (projCashFlow)
+          #                element.close();
+          #
+          #            projCashFlow   = element.args().parmObject();
+          #            element.linkProjCashFlow();
+          #
+          #            break;
+          #        case tablenum(ProjInvoiceTable):
+          #            rangeProjId    = projForecastEmpl_ds.query().dataSourceTable(tablenum(ProjForecastEmpl)).findRange(fieldnum(ProjForecastEmpl,ProjId));
+          #
+          #            while (rangeProjId)
+          #            {
+          #                projForecastEmpl_ds.query().dataSourceTable(tablenum(ProjForecastEmpl)).clearRange(fieldnum(ProjForecastEmpl,ProjId));
+          #                rangeProjId    = projForecastEmpl_ds.query().dataSourceTable(tablenum(ProjForecastEmpl)).findRange(fieldnum(ProjForecastEmpl,ProjId));
+          #            }
+          #
+          #            projInvoiceTable   = element.args().record();
+          #
+          #            while select ProjId from projTable
+          #                where projTable.ProjInvoiceProjId   == projInvoiceTable.ProjInvoiceProjId
+          #            {
+          #                projForecastEmpl_ds.query().dataSourceTable(tablenum(ProjForecastEmpl)).addRange(fieldnum(ProjForecastEmpl,ProjId)).value(projTable.ProjId);
+          #            }
+          #            modelId = ProjParameters::find().ModelId;
+          #            break;
+          #
+          #        case tablenum(ProjWIPTable)     :
+          #            rangeProjId    = projForecastEmpl_ds.query().dataSourceTable(tablenum(ProjForecastEmpl)).findRange(fieldnum(ProjForecastEmpl,ProjId));
+          #
+          #            while (rangeProjId)
+          #            {
+          #                projForecastEmpl_ds.query().dataSourceTable(tablenum(ProjForecastEmpl)).clearRange(fieldnum(ProjForecastEmpl,ProjId));
+          #                rangeProjId    = projForecastEmpl_ds.query().dataSourceTable(tablenum(ProjForecastEmpl)).findRange(fieldnum(ProjForecastEmpl,ProjId));
+          #            }
+          #
+          #            projWIPTable   =   element.args().record();
+          #
+          #            while select ProjId from projTable
+          #                where projTable.wipProject  == projWIPTable.ProjId
+          #            {
+          #                projForecastEmpl_ds.query().dataSourceTable(tablenum(ProjForecastEmpl)).addRange(fieldnum(ProjForecastEmpl,ProjId)).value(projTable.ProjId);
+          #            }
+          #            modelId = ProjParameters::find().ModelId;
+          #            break;
+          #    }
+          #
+          #    super();
+          #
+          #
+          #}
+        ENDSOURCE
+        SOURCE #active
+          #public int active()
+          #{
+          #    boolean         canEdit = true;
+          #    ForecastModel   forecastModel;
+          #    int             ret;
+          #    ;
+          #
+          #    ret = super();
+          #
+          #    // Set the Form Caption with the caption text used for the active forcast hour item
+          #    element.design().caption(this.buildCaptionTextForActiveHourItem());
+          #
+          #    if (projForecastEmpl.ModelId)
+          #    {
+          #        forecastModel = ForecastModel::find(HeadingSub::Heading, projForecastEmpl.ModelId);
+          #
+          #        if (forecastModel && forecastModel.Blocked)
+          #            canEdit = false;
+          #    }
+          #
+          #    this.allowEdit(canEdit);
+          #    this.allowDelete(canEdit);
+          #    manipulation.enabled(canEdit);
+          #
+          #    return ret;
+          #}
+        ENDSOURCE
+        SOURCE #executeQuery
+          #public void executeQuery()
+          #{;
+          #
+          #    //Add criteria based on proj utilization parameter.
+          #    //Only applicable if called from ProjUtil form;
+          #    //linkProjUtilization will do nothing if called from
+          #    //somewhere else.
+          #    element.linkProjUtilization();
+          #
+          #    super();
+          #
+          #    if (element.args().dataset() == tablenum(ProjControlPeriodCostGroup))
+          #    {
+          #        qb2.joinMode(JoinMode::ExistsJoin);
+          #        qb3.joinMode(JoinMode::ExistsJoin);
+          #    }
+          #
+          #    projForecastEmpl_ds.findCaller();
+          #}
+        ENDSOURCE
+        SOURCE #Init
+          #void init()
+          #{
+          #    Query                       q = new Query();
+          #    QueryBuildDataSource        qb_projTable;
+          #    QueryBuildDataSource        qb_ProjCategory;
+          #    QueryBuildDataSource        qb_projForecastTrans;
+          #    ;
+          #
+          #    super();
+          #
+          #    projForecastEmpl_ds.autoQuery(false);
+          #
+          #    qb_projForecastTrans = q.addDataSource(tablenum(ProjForecastEmpl));
+          #
+          #    criteriaModelId     = qb_projForecastTrans.addRange(fieldnum(ProjForecastEmpl, ModelId));
+          #    criteriaActivityId  = qb_projForecastTrans.addRange(fieldnum(ProjForecastEmpl, ActivityNumber));
+          #    criteriaEmplId      = qb_projForecastTrans.addRange(fieldnum(ProjForecastEmpl, EmplId));
+          #    criteriaTransDate   = qb_projForecastTrans.addRange(fieldnum(ProjForecastEmpl, SchedFromDate));
+          #    criteriaCategoryId  = qb_projForecastTrans.addRange(fieldnum(ProjForecastEmpl, CategoryId));
+          #    criteriaProjId      = qb_projForecastTrans.addRange(fieldnum(ProjForecastEmpl, ProjId));
+          #
+          #    //if called from statistic or utilization modules, and category table is necessary, attach it.
+          #    if ((element.args().dataset() == tablenum(TmpProjStatistic) && element.categoryTable(element.args().parmObject()))
+          #        || (linkProjUtil && projUtil.paramFilterType() == ProjUtilCalcFilterType::CategoryGroup)
+          #        ||  element.args().dataset() == tablenum(TmpProjCostControl))
+          #    {
+          #        qb_ProjCategory = qb_projForecastTrans.addDataSource(tablenum(ProjCategory));
+          #        qb_ProjCategory.relations(true);
+          #        qb_ProjCategory.fetchMode(QueryFetchMode::One2One);
+          #
+          #        criteriaCategoryGroupId = qb_ProjCategory.addRange(fieldnum(ProjCategory, CategoryGroupId));
+          #    }
+          #    else if (element.args().dataset() == tablenum(ProjControlPeriodCostGroup))
+          #    {
+          #        qb2 = qb_projForecastTrans.addDataSource(tablenum(ProjTable));
+          #
+          #        qb2.addLink(fieldnum(ProjForecastEmpl, ProjId), fieldnum(ProjTable, ProjId));
+          #
+          #        criteriaWIPProjId = qb2.addRange(fieldnum(ProjTable, wipProject));
+          #
+          #        qb2.fetchMode(0);
+          #
+          #        qb3 = qb_projForecastTrans.addDataSource(tablenum(ProjControlCategory));
+          #
+          #        qb3.addLink(fieldnum(ProjForecastEmpl, CategoryId), fieldnum(ProjControlCategory, CategoryId));
+          #
+          #        criteriaControlId   = qb3.addRange(fieldnum(ProjControlCategory, ControlId));
+          #        criteriaCostGroupId = qb3.addRange(fieldnum(ProjControlCategory, CostGroupId));
+          #
+          #        qb3.fetchMode(0);
+          #    }
+          #
+          #    qb_projTable = qb_projForecastTrans.addDataSource(tablenum(ProjTable));
+          #    qb_projTable.addLink(fieldnum(ProjForecastEmpl, ProjId), fieldnum(ProjTable, ProjId));
+          #    qb_projTable.fetchMode(0);
+          #    qb_projTable.joinMode(JoinMode::ExistsJoin);
+          #//    qB_projTable.relations(true);
+          #
+          #    criteriaProjInvoiceProjId   = qb_projTable.addRange(fieldnum(ProjTable, ProjInvoiceProjId));
+          #    criteriaWIPProjId           = qb_projTable.addRange(fieldnum(ProjTable, wipProject));
+          #    criteriaFixedPrice          = qb_projTable.addRange(fieldnum(ProjTable, Type));
+          #    criteriaTimeMaterial        = qb_projTable.addRange(fieldnum(ProjTable, Type));
+          #    criteriaInternal            = qb_projTable.addRange(fieldnum(ProjTable, Type));
+          #    criteriaCost                = qb_projTable.addRange(fieldnum(ProjTable, Type));
+          #    criteriaInvestment          = qb_projTable.addRange(fieldnum(ProjTable, Type));
+          #    criteriaTime                = qb_projTable.addRange(fieldnum(ProjTable, Type));
+          #    criteriaSorting1            = qb_projTable.addRange(fieldId2Ext(fieldnum(ProjTable, SortingId), 1));
+          #    criteriaSorting2            = qb_projTable.addRange(fieldId2Ext(fieldnum(ProjTable, SortingId), 2));
+          #    criteriaSorting3            = qb_projTable.addRange(fieldId2Ext(fieldnum(ProjTable, SortingId), 3));
+          #    criteriaGroupId             = qb_projTable.addRange(fieldnum(ProjTable, ProjGroupId));
+          #    criteriaCustAccount         = qb_projTable.addRange(fieldnum(ProjTable, CustAccount));
+          #
+          #    this.query(q);
+          #}
+        ENDSOURCE
+        SOURCE #InitValue
+          #void initValue()
+          #{;
+          #    projForecastEmpl.ProjId     = projId;
+          #    projForecastEmpl.EmplId     = emplId;
+          #    projForecastEmpl.CategoryId = categoryId;
+          #    projForecastEmpl.ModelId    = modelId;
+          #
+          #    projForecastEmpl.initFromProjTable(ProjTable::find(projForecastEmpl.ProjId));
+          #
+          #    super();
+          #
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+  ENDOBJECTBANK
+  
+  JOINS
+  ENDJOINS
+  
+  DESIGN
+    PROPERTIES
+      Caption             #@SYS60276
+      HTMLHelpFile        #HTMLHelpFileIWorker
+      HTMLHelpTopic       #AxShared.chm::/html/179C621A-1342-43F2-92D0-EEEA76F12A34.htm
+      DataSource          #ProjForecastEmpl
+      TopMargin           #12
+      BottomMargin        #12
+      LeftMargin          #12
+      RightMargin         #12
+      HideIfEmpty         #No
+    ENDPROPERTIES
+    
+    CONTAINER
+      CONTROL TAB
+        PROPERTIES
+          Name                #Tab
+          Width               #Column width
+          Height              #Column height
+          Tabs                #5
+          DataSource          #ProjForecastEmpl
+          Columns             #1
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #Overview
+              Width               #Column width
+              Height              #Column height
+              Caption             #@SYS9039
+              DataSource          #ProjForecastEmpl
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GRID
+                PROPERTIES
+                  Name                #Grid
+                  Width               #Column width
+                  Height              #Column height
+                  DataSource          #ProjForecastEmpl
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjectEmployeeBudget_ModelNum
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/fc3fc613-29c4-4b26-9a3a-3a2c24d766be.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #ModelId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedFromDate1
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/b70fc832-a6fe-40d3-a68b-3cdf43c76f56.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedFromDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_ProjId
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/76f4f773-d1eb-4aff-bc4a-2cb0eb4d9445.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #ProjId
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    Name callerForm;
+                          #
+                          #    if (element.args().caller())
+                          #        callerForm  = element.args().caller().name();
+                          #
+                          #    if (callerForm ==  formstr(ProjTable))
+                          #        super();
+                          #    else
+                          #        ProjTable::lookupProjWIPProj(this,projForecastEmpl.ProjId);
+                          #}
+                        ENDSOURCE
+                        SOURCE #modified
+                          #boolean modified()
+                          #{
+                          #    boolean ret;
+                          #
+                          #    ret = super();
+                          #
+                          #    ctrlGridActivityNumber.allowEdit(ProjTable::activityExists(projForecastEmpl.ProjId));
+                          #    identification_ActivityNumber.allowEdit(ProjTable::activityExists(projForecastEmpl.ProjId));
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #CtrlGridActivityNumber
+                        AutoDeclaration     #Yes
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/38e8197f-9b13-4175-8b33-81c41fa10701.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #ActivityNumber
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_CategoryId
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/fa104128-190f-4260-999f-cdf7c22f7b15.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #CategoryId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_EmplId
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/75df0ea9-090b-4299-b084-306db424556f.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #EmplId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjectEmployeeBudget_Comment
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/dffd049b-6848-468a-8cf5-b2f0c1bfc9ed.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #Txt
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL REALEDIT
+                      PROPERTIES
+                        Name                #ProjectEmployeeBudget_Qty
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/908e7530-7bab-4f00-922c-4f2d9da414b5.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #Qty
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjForecastEmpl_LinePropertyId
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/cf69136d-21e7-4e22-b582-c05210c6f2b2.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #LinePropertyId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL COMBOBOX
+                      PROPERTIES
+                        Name                #WPAWorkcardStatus
+                        DataSource          #ProjForecastEmpl
+                        DataMethod          #wPAWorkcardStatus
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #General
+              Caption             #@SYS2952
+              DataSource          #ProjForecastEmpl
+              Columns             #3
+              ArrangeGuide        
+                ARRAY INDEX Columns 
+                  #0
+                  #0
+                  #0
+                ENDARRAY
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #GroupLeft
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/ABB7FD85-494F-4F50-AC4F-48CE140D43B6.htm
+                  FrameType           #None
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Identification
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/96CC1F19-2D7D-4239-9BCA-6E52CCBDB8EA.htm
+                        DataSource          #ProjForecastEmpl
+                        DataGroup           #Identification
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Identification_ModelId
+                              DataSource          #ProjForecastEmpl
+                              DataField           #ModelId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL DATEEDIT
+                            PROPERTIES
+                              Name                #Identification_SchedFromDate
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SchedFromDate
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Identification_ProjId
+                              DataSource          #ProjForecastEmpl
+                              DataField           #ProjId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Identification_CategoryId
+                              DataSource          #ProjForecastEmpl
+                              DataField           #CategoryId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Identification_EmplId
+                              DataSource          #ProjForecastEmpl
+                              DataField           #EmplId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Identification_LinePropertyId
+                              DataSource          #ProjForecastEmpl
+                              DataField           #LinePropertyId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Identification_ActivityNumber
+                              AutoDeclaration     #Yes
+                              DataSource          #ProjForecastEmpl
+                              DataField           #ActivityNumber
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Transaction
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/88B72FF9-8A4B-4303-8243-EE21956FDFED.htm
+                        DataSource          #ProjForecastEmpl
+                        DataGroup           #Transaction
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Group_TransId
+                              DataSource          #ProjForecastEmpl
+                              DataField           #TransId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Group_Txt
+                              DataSource          #ProjForecastEmpl
+                              DataField           #Txt
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #GroupMiddle
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/010BB636-E257-4E90-B84A-E42223EE75C5.htm
+                  FrameType           #None
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #CostPrice
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/766C489C-295E-4297-9547-5F4E35466813.htm
+                        DataSource          #ProjForecastEmpl
+                        DataGroup           #CostPrice
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #CostPrice_Qty
+                              DataSource          #ProjForecastEmpl
+                              DataField           #Qty
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #CostPrice_CostPrice
+                              DataSource          #ProjForecastEmpl
+                              DataField           #CostPrice
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #CostPrice_M_costAmount
+                              AllowEdit           #No
+                              DataSource          #ProjForecastEmpl
+                              DataMethod          #costAmount
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #SalesPrice
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/4010CE38-FBFA-4591-A02A-2CCB4BEEB80C.htm
+                        DataSource          #ProjForecastEmpl
+                        DataGroup           #SalesPrice
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #SalesPrice_CurrencyId
+                              DataSource          #ProjForecastEmpl
+                              DataField           #CurrencyId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #SalesPrice_ExchRate
+                              DataSource          #ProjForecastEmpl
+                              DataField           #ExchRate
+                              MinNoOfDecimals     #4
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #SalesPrice_SalesPrice
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SalesPrice
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Administration
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/F0968A6E-F8ED-46AA-B3E7-3F7E9C0E7507.htm
+                        DataSource          #ProjForecastEmpl
+                        DataGroup           #Administration
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL CHECKBOX
+                            PROPERTIES
+                              Name                #Active
+                              DataSource          #ProjForecastEmpl
+                              DataField           #Active
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #ModifiedBy
+                              HelpText            #@SYS76669
+                              Label               #@SYS75729
+                              DataSource          #ProjForecastEmpl
+                              DataField           #modifiedBy
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #Administration_LineNum
+                              DataSource          #ProjForecastEmpl
+                              DataField           #LineNum
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #GroupRight
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/5948B75A-7010-476E-A37C-E003D99F24D1.htm
+                  FrameType           #None
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #SchedulingGroup
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/9474793F-D539-4B08-A9C8-15A5E7E7497C.htm
+                        DataSource          #ProjForecastEmpl
+                        DataGroup           #Scheduling
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #Scheduling_SchedWrkCtrId
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SchedWrkCtrId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #SchedLoadPct
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SchedLoadPct
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL COMBOBOX
+                            PROPERTIES
+                              Name                #SchedLink
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SchedLink
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL COMBOBOX
+                            PROPERTIES
+                              Name                #SchedLinkType
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SchedLinkType
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL CHECKBOX
+                            PROPERTIES
+                              Name                #SchedWorkTime
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SchedWorkTime
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL CHECKBOX
+                            PROPERTIES
+                              Name                #SchedCapacity
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SchedCapacity
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #ResourceAlternative
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/881CD161-A5C8-45DC-8751-3308610024D6.htm
+                        DataSource          #ProjForecastEmpl
+                        DataGroup           #WorkCenterAlternative
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #SchedTaskGroupId
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SchedTaskGroupId
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL REALEDIT
+                            PROPERTIES
+                              Name                #SchedTaskDemand
+                              DataSource          #ProjForecastEmpl
+                              DataField           #SchedTaskDemand
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                          CONTROL STRINGEDIT
+                            PROPERTIES
+                              Name                #RessourceAlternative_WrkCtrNum
+                              DataSource          #ProjForecastEmpl
+                              DataField           #WrkCtrNum
+                            ENDPROPERTIES
+                            
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabDates
+              Caption             #@SYS80293
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #Dates
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/D618E27E-EDE1-4351-8501-1A633CD9E3CC.htm
+                  DataSource          #ProjForecastEmpl
+                  DataGroup           #Dates
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #Dates_SchedFromDate
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedFromDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #Dates_InvoiceDate
+                        DataSource          #ProjForecastEmpl
+                        DataField           #InvoiceDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #Dates_EliminationDate
+                        DataSource          #ProjForecastEmpl
+                        DataField           #EliminationDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #Dates_CostPaymDate
+                        ConfigurationKey    #ProjAdvCashFlow
+                        DataSource          #ProjForecastEmpl
+                        DataField           #CostPaymDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #Dates_SalesPaymDate
+                        ConfigurationKey    #ProjAdvCashFlow
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SalesPaymDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #SchedulingTab
+              Width               #Column width
+              Height              #Column height
+              Caption             #@SYS21838
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GRID
+                PROPERTIES
+                  Name                #Grid1
+                  Width               #Column width
+                  Height              #Column height
+                  DataSource          #ProjForecastEmpl
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_ActivityId1
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/38e8197f-9b13-4175-8b33-81c41fa10701.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #ActivityNumber
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL COMBOBOX
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedLink1
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/1baa12df-95b6-4b92-9156-7ddd58c653bc.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedLink
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL COMBOBOX
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedLinkType
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/f19ca06e-3798-4f03-a1a8-56cf381cc204.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedLinkType
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedWorkTime
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/1e4f7a50-ec56-4cad-8e9b-279ae41a9326.htm
+                        BackgroundColor     #Window background
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedWorkTime
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedCapacity
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/5a15346c-b48b-4c19-99d3-84ec8794ae85.htm
+                        BackgroundColor     #Window background
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedCapacity
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedWrkCtrId
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/55a4d4cc-3874-41c0-87b0-bcb9acb04a8c.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedWrkCtrId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL REALEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedTimeHours
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/68a9d549-75e9-4991-ba3a-2a977b3893f8.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedTimeHours
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedFromDate
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/b70fc832-a6fe-40d3-a68b-3cdf43c76f56.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedFromDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL TIMEEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedFromTime
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/01fb58a6-673e-4dce-8f30-193b4c839f12.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedFromTime
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL DATEEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedToDate
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/d96d564f-6dfd-4d91-b06d-343179393191.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedToDate
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL TIMEEDIT
+                      PROPERTIES
+                        Name                #ProjBudgetEmpl_SchedToTime
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/4487d544-60e1-4c3e-a50a-2c8c3eeb22e4.htm
+                        DataSource          #ProjForecastEmpl
+                        DataField           #SchedToTime
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #Dimension
+              Caption             #@SYS14926
+              DataSource          #ProjForecastEmpl
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #DimensionGroup
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/238B0770-0600-4394-A30C-C6120AA270B3.htm
+                  FrameType           #None
+                  DataSource          #ProjForecastEmpl
+                  DataGroup           #Dimension
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjectEmployeeBudget_Dimension[1]
+                        DataSource          #ProjForecastEmpl
+                        DataField           #Dimension[1]
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjectEmployeeBudget_Dimension[2]
+                        DataSource          #ProjForecastEmpl
+                        DataField           #Dimension[2]
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #ProjectEmployeeBudget_Dimension[3]
+                        DataSource          #ProjForecastEmpl
+                        DataField           #Dimension[3]
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+      CONTROL BUTTONGROUP
+        PROPERTIES
+          Name                #ButtonGroup
+          DataSource          #ProjForecastEmpl
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #Manipulation
+              AutoDeclaration     #Yes
+              MenuItemType        #Action
+              MenuItemName        #BudgetManipulation1
+              DataSource          #ProjForecastEmpl
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #Clicked
+                #void clicked()
+                #{
+                #    super();
+                #
+                #    projForecastEmpl_ds.research();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #ProjTransBudget
+              MenuItemName        #ProjTransBudget
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #Scheduling
+              MenuItemType        #Action
+              MenuItemName        #ProjScheduling
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #WrkCtrCapResSum
+              MenuItemName        #WrkCtrCapResSum
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #ProjForecastTransferFromQuotationHour
+              HelpText            #@SYS84495
+              Text                #@SYS84496
+              MenuItemName        #ProjForecastTransferFromQuotationHour
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+          CONTROL MENUBUTTON
+            PROPERTIES
+              Name                #TradeAgreement
+              HelpText            #@SYS104597
+              ConfigurationKey    #PriceDisc
+              Text                #@SYS13768
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL MENUITEMBUTTON
+                PROPERTIES
+                  Name                #SalesPriceHour
+                  MenuItemName        #ProjSalesPriceHour
+                ENDPROPERTIES
+                
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #ForecastSalesProj
+              MenuItemName        #ForecastSalesProj
+              DataSource          #ProjForecastEmpl
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #WPASend
+              MultiSelect         #Yes
+              MenuItemType        #Action
+              MenuItemName        #WPASend
+              DataSource          #ProjForecastEmpl
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+    ENDCONTAINER
+    
+  ENDDESIGN
+  
+ENDFORM
+
+
+***Element: END

@@ -1,0 +1,378 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AifQueryCriteria unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AifQueryCriteria
+    PROPERTIES
+      Name                #AifQueryCriteria
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #addCriteriaElement
+        #public void addCriteriaElement(AifCriteriaElement _criteriaElement)
+        #{
+        #    if(isQuery)
+        #        //Criteria Elements can not be added when the object contains a query
+        #        throw error(strfmt("@SYS93363"));
+        #
+        #    criteriaElementArray.value(criteriaElementCount+1, _criteriaElement);
+        #    criteriaElementCount++;
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AifQueryCriteria implements SysPackable, AifXmlSerializable
+        #{
+        #    Array           criteriaElementArray;
+        #    int             criteriaElementCount;
+        #    boolean         isQuery;
+        #    Query           query;
+        #
+        #    #Aif
+        #    #Axd
+        #    #define.CurrentVersion(1)
+        #    #define.version1(1)
+        #
+        #    #localmacro.CurrentList
+        #        criteriaElementCount,
+        #        isQuery
+        #        //criteriaElementArray and query have to be handled manually
+        #    #endmacro
+        #
+        #}
+      ENDSOURCE
+      SOURCE #deserialize
+        #public void deserialize(AifXml queryCriteriaXml)
+        #{
+        #    /*
+        #        Instantiates a new AifQueryCriteria object, initializing it with the
+        #        queryCriteriaXml XML passed in.
+        #
+        #        The schema is manually validated as it is read.  Therefore the sequence
+        #        of the elements must match what is expected.
+        #    */
+        #
+        #    AifCriteriaElement      criteriaElement;
+        #    XmlTextReader           xmlTextReader;
+        #    str                     dataSourceName;
+        #    FieldName               fieldName;
+        #    AifCriteriaOperator     operator;
+        #    str                     value1, value2;
+        #    str                     operatorSymbol;
+        #    DictEnum                dictEnum;
+        #    AifDocumentXmlNamespace documentNamespace;
+        #    ;
+        #
+        #    // Get the namespace of AifQueryCriteria
+        #    documentNamespace = #QueryCriteriaNamespace;
+        #
+        #    // Initialize instance
+        #    criteriaElementArray = new Array(Types::Class);
+        #    criteriaElementCount = 0;
+        #    isQuery = false;
+        #    query = new Query();
+        #
+        #    xmlTextReader = XmlTextReader::newXml(queryCriteriaXml);
+        #    //Turn off Whitespace handling so we avoid doing seperate reads just for whitespace
+        #    xmlTextReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #
+        #    try
+        #    {
+        #        //Position the reader on the first Element - QueryCriteria
+        #        xmlTextReader.moveToContent();
+        #
+        #        // First node must be the root QueryCriteria element
+        #        xmlTextReader.readStartElement3(#QueryCriteriaRoot, documentNamespace);
+        #
+        #        xmlTextReader.moveToContent();
+        #
+        #        //We should now be on the first CriteriaElement, if there are any
+        #        if(xmlTextReader.localName() == #CriteriaElement)
+        #        {
+        #            //Loop through each CriteriaElement
+        #            do
+        #            {
+        #                //Read to the DataSourceName element
+        #                xmlTextReader.readToDescendant2(#DataSourceName, documentNamespace);
+        #
+        #                //Read the DataSourceName
+        #                dataSourceName = xmlTextReader.readElementString3(#DataSourceName, documentNamespace);
+        #
+        #                //This is only need if WhitespaceHandling is on
+        #                xmlTextReader.moveToContent();
+        #
+        #                //Read the FieldName
+        #                fieldName = xmlTextReader.readElementString3(#FieldName, documentNamespace);
+        #
+        #                //This is only need if WhitespaceHandling is on
+        #                xmlTextReader.moveToContent();
+        #
+        #                //Read the operator
+        #                operatorSymbol = xmlTextReader.readElementString3(#Operator, documentNamespace);
+        #                dictEnum = new DictEnum(enumnum(AifCriteriaOperator));
+        #                operator = dictEnum.symbol2Value(operatorSymbol);
+        #                if (dictEnum.value2Symbol(operator) != operatorSymbol)
+        #                    //Operator '%1' used in query criteria is not a valid operator
+        #                    throw error(strfmt("@SYS99454", operatorSymbol));
+        #
+        #                //This is only need if WhitespaceHandling is on
+        #                xmlTextReader.moveToContent();
+        #
+        #                //Read the Value1
+        #                value1 = xmlTextReader.readElementString3(#Value1, documentNamespace);
+        #
+        #                //This is only need if WhitespaceHandling is on
+        #                xmlTextReader.moveToContent();
+        #
+        #                if ((xmlTextReader.isEmptyElement()) ||
+        #                    (xmlTextReader.isStartElement3(#Value2, documentNamespace)))
+        #                {
+        #                    //Read the Value2
+        #                    value2 = xmlTextReader.readElementString3(#Value2, documentNamespace);
+        #
+        #
+        #                    //This is only need if WhitespaceHandling is on
+        #                    xmlTextReader.moveToContent();
+        #                }
+        #
+        #                //Create a new CriteriaElement object
+        #                if(operator == AifCriteriaOperator::Range)
+        #                {
+        #                    criteriaElement = AifCriteriaElement::newCriteriaElement(dataSourceName,
+        #                                                                                fieldName,
+        #                                                                                operator,
+        #                                                                                value1,
+        #                                                                                value2);
+        #                }
+        #                else
+        #                {
+        #                    criteriaElement = AifCriteriaElement::newCriteriaElement(dataSourceName,
+        #                                                                                fieldName,
+        #                                                                                operator,
+        #                                                                                value1);
+        #
+        #                }
+        #                //Add the new Criteria Element to the QueryQriteria
+        #                this.addCriteriaElement(criteriaElement);
+        #
+        #            }
+        #            while(xmlTextReader.readToNextSibling2(#CriteriaElement, documentNamespace));
+        #        }
+        #        xmlTextReader.close();
+        #
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        //"Invalid QueryCriteria schema."
+        #        throw error(strfmt("@SYS93020"));
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #getCriteriaElement
+        #public AifCriteriaElement getCriteriaElement(int _index)
+        #{
+        #
+        #//    if(_index< 1 || _index > entityKeyArrayCount)
+        #//        //Throw an error
+        #//        throw error(strfmt("Index out of range"));
+        #
+        #    return criteriaElementArray.value(_index);
+        #}
+      ENDSOURCE
+      SOURCE #getCriteriaElementCount
+        #public int getCriteriaElementCount()
+        #{
+        #    return criteriaElementCount;
+        #}
+      ENDSOURCE
+      SOURCE #getRootName
+        #public AifDocumentName getRootName()
+        #{
+        #    ;
+        #
+        #    return #QueryCriteriaRoot;
+        #}
+      ENDSOURCE
+      SOURCE #getSchema
+        #public AifXml getSchema()
+        #{
+        #    ;
+        #
+        #    return AifUtil::getSchema(classnum(AifQueryCriteria));
+        #}
+      ENDSOURCE
+      SOURCE #isQuery
+        #public boolean isQuery()
+        #{
+        #    return isQuery;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    criteriaElementArray = new Array(Types::Class);
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    container       criteriaElementArrayCon;
+        #    container       queryContainer;
+        #    ;
+        #
+        #    if (criteriaElementArray)
+        #        criteriaElementArrayCon = criteriaElementArray.pack();
+        #
+        #    if (query && criteriaElementArray.lastIndex()<=0)
+        #        queryContainer = query.pack();
+        #
+        #    return [#CurrentVersion,#CurrentList, criteriaElementArrayCon, queryContainer];
+        #
+        #}
+      ENDSOURCE
+      SOURCE #parmMessageId
+        #// WPA import
+        #public AifMessageId parmMessageId(AifMessageId _messageId)
+        #{
+        #    ;
+        #    return _messageId;
+        #}
+      ENDSOURCE
+      SOURCE #parmQuery
+        #public Query parmQuery(Query _query = query)
+        #{
+        #    if(!prmisdefault(_query))
+        #    {
+        #        if(criteriaElementCount>0)
+        #            //Query can not be set when the object already contains Criteria Elements
+        #            throw error(strfmt("@SYS93364"));
+        #
+        #        query = _query;
+        #        isQuery = true;
+        #
+        #    }
+        #
+        #    return query;
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public AifXml serialize()
+        #{
+        #    /*
+        #        Generates a queryCriteria XML string based on the AifQueryCriteria object passed in.
+        #    */
+        #
+        #    AifXml                  queryCriteriaXml;
+        #    XmlTextWriter           xmlTextWriter;
+        #    AifCriteriaElement      criteriaElement;
+        #    int                     x;
+        #    DictEnum                dictEnum;
+        #    AifDocumentXmlNamespace documentNamespace;
+        #    ;
+        #
+        #    // Get the namespace of AifQueryCriteria
+        #    documentNamespace = #QueryCriteriaNamespace;
+        #
+        #    xmlTextWriter = XmlTextWriter::newXml();
+        #    //Don't include indentation - this should help reduce the size of the file
+        #    xmlTextWriter.formatting(XmlFormatting::None);
+        #
+        #    // Start the XMl
+        #    xmlTextWriter.writeStartDocument();
+        #
+        #    //Write the QueryCriteria root element
+        #    xmlTextWriter.writeStartElement2(#QueryCriteriaRoot, documentNamespace);
+        #
+        #    //Serialize each CriteriaElement in the QueryCriteria
+        #    for(x=1; x <= this.getCriteriaElementCount(); x++)
+        #    {
+        #        criteriaElement  = this.getCriteriaElement(x);
+        #        //Write the CriteriaElement element
+        #        xmlTextWriter.writeStartElement2(#CriteriaElement, documentNamespace);
+        #
+        #        //Write the DataSourceName
+        #        xmlTextWriter.writeElementString(#DataSourceName,criteriaElement.getDataSourceName() );
+        #
+        #        //Write the FieldName
+        #        xmlTextWriter.writeElementString(#FieldName,criteriaElement.getFieldName());
+        #
+        #        //Write the Operator
+        #        dictEnum = new DictEnum(enumnum(AifCriteriaOperator));
+        #        xmlTextWriter.writeElementString(#Operator,dictEnum.value2Symbol(criteriaElement.getOperator()));
+        #
+        #        //Write the Value1
+        #        xmlTextWriter.writeElementString(#Value1,criteriaElement.getValue1());
+        #
+        #        //Write the Value2
+        #        xmlTextWriter.writeElementString(#Value2,criteriaElement.getValue2());
+        #
+        #        //End the CriteriaElement
+        #        xmlTextWriter.writeEndElement();
+        #    }
+        #
+        #    //End the QueryCriteria
+        #    xmlTextWriter.writeEndElement();
+        #
+        #    //End the document
+        #    xmlTextWriter.writeEndDocument();
+        #
+        #    queryCriteriaXml = xmlTextWriter.writeToString();
+        #    xmlTextWriter.close();
+        #
+        #    return queryCriteriaXml;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #
+        #    int version     = RunBase::getVersion(_packedClass);
+        #    container       criteriaElementArrayCon;
+        #    container       queryContainer;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version,#CurrentList,criteriaElementArrayCon, queryContainer] = _packedClass;
+        #            if(criteriaElementArrayCon != connull())
+        #                criteriaElementArray = Array::create(criteriaElementArrayCon);
+        #
+        #            if(queryContainer != connull() && criteriaElementArray.lastIndex()<=0)
+        #                query = new Query(queryContainer);
+        #
+        #            return true;
+        #        default :
+        #            return false;
+        #    }
+        #
+        #    return false;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static AifQueryCriteria construct()
+        #{
+        #    return new AifQueryCriteria();
+        #}
+      ENDSOURCE
+      SOURCE #create
+        #public static AifQueryCriteria create(AifQueryCriteriaContainer _queryCriteria)
+        #{
+        #    AifQueryCriteria queryCriteria = new AifQueryCriteria();
+        #    ;
+        #    queryCriteria.unpack(_queryCriteria);
+        #    return queryCriteria;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

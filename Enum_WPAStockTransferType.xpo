@@ -1,0 +1,37 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBE
+
+; Microsoft Dynamics AX Enumtype : WPAStockTransferType unloaded
+; --------------------------------------------------------------------------------
+  ENUMTYPEVERSION 1
+  
+  ENUMTYPE #WPAStockTransferType
+    PROPERTIES
+      Name                #WPAStockTransferType
+      Label               #@WPA205
+      ConfigurationKey    #WPAWarehouseManagement
+      UseEnumValue        #Yes
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+      #Counting
+      PROPERTIES
+        Name                #Counting
+        Label               #@SYS2828
+        EnumValue           #0
+      ENDPROPERTIES
+      
+      #Transfer
+      PROPERTIES
+        Name                #Transfer
+        Label               #@SYS13891
+        EnumValue           #1
+      ENDPROPERTIES
+      
+    ENDTYPEELEMENTS
+  ENDENUMTYPE
+  
+
+***Element: END

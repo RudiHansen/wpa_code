@@ -1,0 +1,387 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAServiceOrder unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAServiceOrder
+    PROPERTIES
+      Name                #WPAServiceOrder
+      Extends             #AifDocument
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAServiceOrder extends AifDocument
+        #{
+        #    #define.SMAServiceOrderLine('SMAServiceOrderLine')
+        #    #define.SenderId('SenderId')
+        #    #define.DocPurpose('DocPurpose')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createSMAServiceOrderLine
+        #public AfStronglyTypedDataContainerList createSMAServiceOrderLine()
+        #{
+        #    return this.get_NewList(#SMAServiceOrderLine);
+        #}
+      ENDSOURCE
+      SOURCE #existsDocPurpose
+        #public boolean existsDocPurpose()
+        #{
+        #    return this.exists(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #existsSenderId
+        #public boolean existsSenderId()
+        #{
+        #    return this.exists(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #existsSMAServiceOrderLine
+        #public boolean existsSMAServiceOrderLine()
+        #{
+        #    return this.exists(#SMAServiceOrderLine);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAServiceOrder);
+        #}
+      ENDSOURCE
+      SOURCE #parmDocPurpose
+        #public XMLDocPurpose parmDocPurpose(XMLDocPurpose _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DocPurpose, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #parmSenderId
+        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SenderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #parmSMAServiceOrderLine
+        #public AfStronglyTypedDataContainerList parmSMAServiceOrderLine(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#SMAServiceOrderLine, _value);
+        #    }
+        #
+        #    return this.get_List(#SMAServiceOrderLine);
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public AifXml serialize()
+        #{
+        #    XmlDocument                     doc = XmlDocument::newBlank();
+        #    XmlElement                      root;
+        #    XmlElement                      node;
+        #    XmlElement                      subNode;
+        #    XmlElement                      lineNode;
+        #
+        #    XMLWriterSettings               xmlWriterSettings = new XMLwriterSettings();
+        #    XMLWriter                       localXmlWriter;
+        #
+        #    QueryRun                        queryRun;
+        #
+        #    SMAServiceOrderTable            sMAServiceOrderTable;
+        #    SMAServiceOrderLine             sMAServiceOrderLineHour;
+        #    SMAServiceOrderLine             sMAServiceOrderLineLocal;
+        #    EmplTable                       emplTable;
+        #    SMAServiceTaskRelation          sMAServiceTaskRelation;
+        #    DirPartyTable                   dirPartyTable;
+        #    CustTable                       custTable;
+        #    InventItemBarCode               inventItemBarCode;
+        #    InventDim                       inventDim;
+        #    WPAWorkcardTable                workcardTable;
+        #    WPAWorkcardLine                 workcardLine;
+        #    utcdatetime                     startTime;
+        #    utcdatetime                     endTime;
+        #
+        #    str                             itemId;
+        #    ProjCategoryType                categoryType;
+        #
+        #    #define.LineBreak               ('\n')
+        #    #define.ERPTOWPA                ('ERP_TO_WPA')
+        #    #define.InstallationName        ('InstallationName')
+        #    #define.DataReceiverName        ('DataReceiverName')
+        #    #define.Workcard                ('Workcard')
+        #
+        #    #define.OrderId                 ('OrderId')
+        #    #define.WorkCardId              ('WorkcardId')
+        #    #define.EmploymentCode          ('EmploymentCode')
+        #    #define.AccountId               ('AccountId')
+        #    #define.AreaId                  ('AreaId')
+        #    #define.StartTime               ('StartTime')
+        #    #define.EndTime                 ('EndTime')
+        #    #define.Description             ('Description')
+        #    #define.Responsible             ('Responsible')
+        #    #define.CrmInfo1                ('CrmInfo1')
+        #    #define.CrmInfo2                ('CrmInfo2')
+        #    #define.Status                  ('Status')
+        #    #define.PurchaseOrderNumber     ('PurchaseOrderNumber')
+        #    #define.AttentionName           ('AttentionName')
+        #    #define.Urgent                  ('Urgent')
+        #    #define.Zero                    ('0')
+        #
+        #    #define.Debitor                 ('Debitor')
+        #    #define.DebitorId               ('DebitorId')
+        #
+        #    #define.WorkcardType            ('WorkcardType')
+        #    #define.WorkcardTypeId          ('WorkcardTypeId')
+        #
+        #    #define.Site                    ('Site')
+        #    #define.SiteId                  ('SiteId')
+        #
+        #    #define.ServiceObjects          ('ServiceObjects')
+        #    #define.ServiceObjectId         ('ServiceObjectId')
+        #
+        #    #define.WorkcardItems           ('WorkcardItems')
+        #    #define.WorkcardItem            ('WorkcardItem')
+        #    #define.WorkcardItemStatus      ('WorkcardItemStatus')
+        #    #define.ItemId                  ('ItemId')
+        #    #define.ItemEanNumber           ('ItemEanNumber')
+        #    #define.WorkcardItemId          ('WorkcardItemId')
+        #    #define.ItemUnitPrice           ('ItemUnitPrice')
+        #    #define.ItemDescription1        ('ItemDescription1')
+        #    #define.ItemDescription2        ('ItemDescription2')
+        #    #define.Quantity                ('Quantity')
+        #    #define.Price                   ('Price')
+        #    #define.ItemUnit                ('ItemUnit')
+        #    #define.StockLocationId         ('StockLocationId')
+        #    #define.ItemLineType            ('ItemTypeId')
+        #    #define.ProductEmploymentCode   ('ProductEmploymentCode')
+        #    #define.Item                    ('0')//Item
+        #    #define.Hours                   ('1')//Hours
+        #    #define.Expense                 ('2')
+        #    #define.Fee                     ('3')
+        #    ;
+        #
+        #    root = doc.appendChild(doc.createElement(#ERPTOWPA));
+        #    root.appendChild(doc.createElement(#InstallationName));
+        #
+        #    xmlWriterSettings.indent(true);
+        #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
+        #
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #
+        #    while(queryRun.next())
+        #    {
+        #        sMAServiceOrderLineHour = queryRun.get(tablenum(SMAServiceOrderLine));
+        #        if (WPAWorkcardTable::validateWorkcard(sMAServiceOrderLineHour))
+        #        {
+        #            sMAServiceOrderTable    = SMAServiceOrderTable::find(sMAServiceOrderLineHour.ServiceOrderId, true);
+        #
+        #            select firstonly PartyId, DispatchTeamId from emplTable
+        #                where emplTable.EmplId == sMAServiceOrderLineHour.EmplId;
+        #
+        #            select firstonly ServiceTaskId, DescriptionInternal, DescriptionExternal from sMAServiceTaskRelation
+        #                where sMAServiceTaskRelation.RelTableId == tablenum(SMAServiceOrderTable)
+        #                && sMAServiceTaskRelation.RelKeyId      == sMAServiceOrderTable.ServiceOrderId
+        #                && sMAServiceTaskRelation.ServiceTaskId == sMAServiceOrderLineHour.ServiceTaskId;
+        #
+        #            select firstonly Name from dirPartyTable
+        #                where dirPartyTable.PartyId == emplTable.PartyId;
+        #
+        #            select firstonly TableId, RecId, PartyId, AccountNum from custTable
+        #                where custTable.AccountNum == sMAServiceOrderTable.CustAccount;
+        #
+        #//            this.wpa_addNotEmpty(root, doc, #DataReceiverName, sMAServiceOrderTable.dataAreaId);
+        #
+        #            node = root.appendChild(doc.createElement(#Workcard));
+        #            this.wpa_addNotEmpty(node, doc, #DataReceiverName, sMAServiceOrderTable.dataAreaId);
+        #
+        #            workcardTable   = WPAWorkcardTable::findOrCreateFromService(sMAServiceOrderTable, sMAServiceOrderLineHour, emplTable, dirPartyTable, sMAServiceTaskRelation);
+        #            startTime       = DateTimeUtil::applyTimeZoneOffset(sMAServiceOrderTable.ServiceDateTime, DateTimeUtil::getCompanyTimeZone());
+        #            endTime         = DateTimeUtil::applyTimeZoneOffset(DateTimeUtil::addHours(sMAServiceOrderTable.ServiceDateTime, max(sMAServiceOrderLineHour.Qty, 2)),DateTimeUtil::getCompanyTimeZone());
+        #
+        #            this.wpa_addNotEmpty(node, doc, #OrderId, sMAServiceOrderTable.ServiceOrderId);
+        #            this.wpa_addNotEmpty(node, doc, #WorkCardId, sMAServiceOrderLineHour.ProjTransId);
+        #            this.wpa_addNotEmpty(node, doc, #EmploymentCode, SMADispatchTeamTable::find(sMAServiceOrderLineHour.EmplId).RecId ? "" : sMAServiceOrderLineHour.EmplId);
+        #            this.wpa_addNotEmpty(node, doc, #AccountId, sMAServiceOrderTable.CustAccount);
+        #            this.wpa_addNotEmpty(node, doc, #AreaId, emplTable.DispatchTeamId);
+        #            //WPA 5.5 upgrade Date format-->
+        #            this.wpa_addNotEmpty(node, doc, #StartTime, strfmt("%1 %2", date2str(DateTimeUtil::date(startTime), 123, 2, 4, 2, 4, 4), substr(time2str(DateTimeUtil::time(startTime),1,1),1,5)));
+        #            this.wpa_addNotEmpty(node, doc, #EndTime,  strfmt("%1 %2", date2str(DateTimeUtil::date(endTime), 123, 2, 4, 2, 4, 4), substr(time2str(DateTimeUtil::time(endTime),1,1),1,5)));
+        #            //WPA 5.5 upgrade Date format<--
+        #            this.wpa_addNotEmpty(node, doc, #Description, sMAServiceOrderTable.Description  +
+        #                                                          #LineBreak +
+        #                                                          sMAServiceTaskRelation.taskDesciption() +
+        #                                                          #LineBreak +
+        #                                                          sMAServiceTaskRelation.DescriptionExternal);
+        #            this.wpa_addNotEmpty(node, doc, #Responsible, EmplTable::emplId2Name(sMAServiceOrderTable.Responsible));
+        #            this.wpa_addNotEmpty(node, doc, #CrmInfo1, sMAServiceTaskRelation.DescriptionInternal);
+        #            this.wpa_addNotEmpty(node, doc, #CrmInfo2, '');
+        #            this.wpa_addNotEmpty(node, doc, #Status, WPAParameters::find().WorkcardsDefaultActivated ? '2' : '1');
+        #            this.wpa_addNotEmpty(node, doc, #PurchaseOrderNumber, '');
+        #            this.wpa_addNotEmpty(node, doc, #AttentionName, sMAServiceOrderTable.ServiceAddressName);
+        #
+        #            if(sMAServiceOrderTable.Priority == smmActivityPriority::High)
+        #                this.wpa_addNotEmpty(node, doc, #Urgent, '1');
+        #            else
+        #                this.wpa_addNotEmpty(node, doc, #Urgent, '0');
+        #
+        #            if(custTable.AccountNum)
+        #            {
+        #                subNode = node.appendChild(doc.createElement(#Debitor));
+        #                this.wpa_addNotEmpty(subNode, doc, #DebitorId, custTable.AccountNum);
+        #            }
+        #
+        #            this.wpa_addNotEmpty(node, doc, #WorkcardTypeId, '0');
+        #
+        #            if(sMAServiceOrderTable.ProjId)
+        #            {
+        #                subNode = node.appendChild(doc.createElement(#Site));
+        #                this.wpa_addNotEmpty(subNode, doc, #SiteId, sMAServiceOrderTable.ProjId);
+        #            }
+        #
+        #            if(sMAServiceOrderLineHour.ServiceObjectRelationId)
+        #            {
+        #                subNode = node.appendChild(doc.createElement(#ServiceObjects));
+        #                this.wpa_addNotEmpty(subNode, doc, #ServiceObjectId, sMAServiceOrderLineHour.ServiceObjectRelationId);
+        #            }
+        #
+        #            node = root.appendChild(doc.createElement(#WorkcardItems));
+        #
+        #            while select sMAServiceOrderLineLocal
+        #                where sMAServiceOrderLineLocal.ServiceOrderId           == sMAServiceOrderTable.ServiceOrderId                  &&
+        #                      sMAServiceOrderLineLocal.EmplId                   == sMAServiceOrderLineHour.EmplId                    &&
+        #                      sMAServiceOrderLineLocal.ServiceObjectRelationId  == sMAServiceOrderLineHour.ServiceObjectRelationId   &&
+        #                      sMAServiceOrderLineLocal.ServiceTaskId            == sMAServiceOrderLineHour.ServiceTaskId
+        #            {
+        #
+        #                itemId = '';
+        #
+        #                lineNode = node.appendChild(doc.createElement(#WorkcardItem));
+        #                this.wpa_addNotEmpty(lineNode, doc, #WorkcardItemStatus, "1");
+        #
+        #
+        #
+        #                categoryType = ProjCategory::find(sMAServiceOrderLineLocal.ProjCategoryId).CategoryType;
+        #                if(categoryType == ProjCategoryType::Hour || categoryType == ProjCategoryType::Cost || categoryType == ProjCategoryType::Revenue)
+        #                {
+        #                    if(WPAParameters::find().UsePrefix && WPAParameters::find().CategoryPrefix)
+        #                        itemId = WPAParameters::find().CategoryPrefix;
+        #
+        #                    itemId += sMAServiceOrderLineLocal.ProjCategoryId;
+        #
+        #                    if(WPAParameters::find().LinePropertyCaregory == NoYes::Yes)
+        #                    {
+        #                        itemId = strltrim(itemId);
+        #                        itemId += WPAParameters::find().Separator + sMAServiceOrderLineLocal.ProjLinePropertyId;
+        #                    }
+        #
+        #                    workcardLine    = WPAWorkcardLine::findOrCreateFromService(sMAServiceOrderLineLocal, sMAServiceOrderLineHour.ProjTransId, itemId, "", "1");
+        #
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemId, itemId);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #WorkcardItemId, workcardLine.GUID);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemEanNumber, '');
+        #                    if(WPAParameters::find().CategorySalesPrice == NoYes::Yes)
+        #                    {
+        #                        this.wpa_addNotEmpty(lineNode, doc, #ItemUnitPrice, num2str(sMAServiceOrderLineLocal.ProjSalesPrice, 1, 2, 2, 0));
+        #                    }
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemDescription1, sMAServiceOrderLineLocal.Description);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemDescription2, sMAServiceOrderLineLocal.DescriptionService);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #Quantity, num2str(sMAServiceOrderLineLocal.Qty, 1, 2, 2, 0));
+        #                    if(WPAParameters::find().CategoryCostPrice == NoYes::Yes)
+        #                    {
+        #                        this.wpa_addNotEmpty(lineNode, doc, #Price, num2str(sMAServiceOrderLineLocal.Qty*sMAServiceOrderLineLocal.ProjSalesPrice, 1, 2, 2, 0));
+        #                    }
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemUnit, sMAServiceOrderLineLocal.Unit);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #StockLocationId, '');
+        #                    switch (categoryType)
+        #                    {
+        #                        case ProjCategoryType::Hour     :   this.wpa_addNotEmpty(lineNode, doc, #ItemLineType, #Hours);
+        #                                                            break;
+        #                        case ProjCategoryType::Cost     :   this.wpa_addNotEmpty(lineNode, doc, #ItemLineType, #Expense);
+        #                                                            break;
+        #                        case ProjCategoryType::Revenue  :   this.wpa_addNotEmpty(lineNode, doc, #ItemLineType, #Fee);
+        #                                                            break;
+        #                        default                         :   this.wpa_addNotEmpty(lineNode, doc, #ItemLineType, #Hours);
+        #                                                            break;
+        #                    }
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ProductEmploymentCode, '');
+        #                }
+        #                else if(categoryType == ProjCategoryType::Item)
+        #                {
+        #                    if(WPAParameters::find().UsePrefix && WPAParameters::find().ItemPrefix)
+        #                        itemId = WPAParameters::find().ItemPrefix;
+        #
+        #                    select firstonly itemBarCode from inventItemBarCode
+        #                        where inventItemBarCode.itemId == sMAServiceOrderLineLocal.ItemId;
+        #
+        #                    inventDim = sMAServiceOrderLineLocal.inventDim();
+        #
+        #                    itemId += sMAServiceOrderLineLocal.ItemId;
+        #
+        #                    if(inventDim.configId)
+        #                        itemId += WPAParameters::find().Separator
+        #                                + inventDim.configId;
+        #                    if(inventDim.InventSizeId)
+        #                        itemId += WPAParameters::find().Separator
+        #                                + inventDim.InventSizeId;
+        #                    if(inventDim.InventColorId)
+        #                        itemId += WPAParameters::find().Separator
+        #                                + inventDim.InventColorId;
+        #                    if(WPAParameters::find().LinePropertyCaregory)
+        #                        itemId += WPAParameters::find().Separator
+        #                                + sMAServiceOrderLineLocal.ProjLinePropertyId;
+        #
+        #                    workcardLine    = WPAWorkcardLine::findOrCreateFromService(sMAServiceOrderLineLocal, sMAServiceOrderLineHour.ProjTransId, itemId, inventItemBarCode.itemBarCode, #Zero);
+        #
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemId, itemId);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #WorkcardItemId, workcardLine.GUID);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemEanNumber, inventItemBarCode.itemBarCode);
+        #                    if(WPAParameters::find().ItemSalesPrice == NoYes::Yes)
+        #                    {
+        #                        this.wpa_addNotEmpty(lineNode, doc, #ItemUnitPrice, num2str(sMAServiceOrderLineLocal.ProjSalesPrice, 1, 2, 2, 0));
+        #                    }
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemDescription1, sMAServiceOrderLineLocal.Description);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemDescription2, sMAServiceOrderLineLocal.DescriptionService);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #Quantity, num2str(sMAServiceOrderLineLocal.Qty, 1, 2, 2, 0));
+        #                    if(WPAParameters::find().ItemCostPrice == NoYes::Yes)
+        #                    {
+        #                        this.wpa_addNotEmpty(lineNode, doc, #Price, num2str(sMAServiceOrderLineLocal.Qty*sMAServiceOrderLineLocal.ProjSalesPrice, 1, 2, 2, 0));
+        #                    }
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemUnit, sMAServiceOrderLineLocal.Unit);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #StockLocationId, sMAServiceOrderLineLocal.inventDim().InventLocationId);
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ItemLineType, '0');
+        #                    this.wpa_addNotEmpty(lineNode, doc, #ProductEmploymentCode, '');
+        #                }
+        #            }
+        #
+        #            sMAServiceOrderTable.StageId    = WPAParameters::find().StageIdToWPA;
+        #            sMAServiceOrderTable.update();
+        #        }
+        #    }
+        #
+        #    doc.writeTo(localXmlWriter);
+        #    localXmlWriter.flush();
+        #
+        #    return localXmlWriter.writeToString();
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

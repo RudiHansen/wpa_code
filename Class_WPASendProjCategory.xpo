@@ -1,0 +1,134 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendProjCategory unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendProjCategory
+    PROPERTIES
+      Name                #WPASendProjCategory
+      Extends             #AxdSend
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPASendProjCategory extends AxdSend
+        #{
+        #    ProjCategoryId  projCategoryId;
+        #}
+      ENDSOURCE
+      SOURCE #getEndpoint
+        #AifEndpointId getEndpoint()
+        #{
+        #    ;
+        #    this.retrieveEndPoints();
+        #
+        #    select firstonly tmpAifEndPoint;
+        #
+        #    return tmpAifEndPoint.EndpointId;
+        #}
+      ENDSOURCE
+      SOURCE #parmProjCategoryId
+        #public ProjCategoryId parmProjCategoryId(ProjCategoryId _projCategoryId = projCategoryId)
+        #{
+        #    ;
+        #    projCategoryId = _projCategoryId;
+        #
+        #    return projCategoryId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun            ret;
+        #    QueryBuildRange     qbr_ProjCategoryId;
+        #    ;
+        #    if (!ret)
+        #    {
+        #        ret = super();
+        #        qbr_ProjCategoryId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(ProjCategory)), fieldnum(ProjCategory, CategoryId));
+        #        if (projCategoryId)
+        #        {
+        #            qbr_ProjCategoryId.value(projCategoryId);
+        #            qbr_ProjCategoryId.status(RangeStatus::Locked);
+        #        }
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    boolean ret;
+        #    ;
+        #    if (projCategoryId)
+        #    {
+        #        ret = false;
+        #    }
+        #    else
+        #    {
+        #        ret = true;
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args args)
+        #{
+        #    WPASendProjCategory WPASendProjCategory;
+        #    AifConstraintList   aifConstraintList;
+        #    AifConstraint       aifConstraint;
+        #    CategoryTable       categoryTable;
+        #    ;
+        #
+        #    WPASendProjCategory = new WPASendProjCategory();
+        #    aifConstraintList   = new AifConstraintList();
+        #    aifConstraint       = new AifConstraint();
+        #
+        #    if (args.record())
+        #    {
+        #        categoryTable    = args.record();
+        #        WPASendProjCategory.parmProjCategoryId(categoryTable.CategoryId);
+        #    }
+        #
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    WPASendProjCategory.parmShowDocPurpose(true) ;
+        #    WPASendProjCategory.parmServiceClassId(classnum(WPAProjCategoryService));
+        #    WPASendProjCategory.parmSendActionType(AifSendActionType::SendByQuery);
+        #    WPASendProjCategory.parmEndPoint(WPASendProjCategory.getEndpoint());
+        #
+        #    WPASendProjCategory.sendMultipleDocuments(classnum(WPAProjCategory), classnum(WPAProjCategoryService), AifSendMode::Async, aifConstraintList);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

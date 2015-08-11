@@ -1,0 +1,498 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAImport unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAImport
+    PROPERTIES
+      Name                #WPAImport
+      Extends             #RunBaseBatch
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAImport extends RunBaseBatch
+        #{
+        #    #WinAPI
+        #    #File
+        #
+        #    Counter                 progressCounter;
+        #    FilePath                filePath;
+        #    FilePath                archiveFilePath;
+        #    DialogField             filePath_df;
+        #    DialogField             archiveFilePath_df;
+        #
+        #
+        #    #define.CurrentVersion(4)
+        #
+        #    #localmacro.CurrentList
+        #         filePath,
+        #         archiveFilePath
+        #    #endmacro
+        #}
+      ENDSOURCE
+      SOURCE #dialog
+        #public Object dialog()
+        #{
+        #    DialogRunbase   dialogRunbase = super();
+        #    ;
+        #
+        #    filePath_df         = dialogRunbase.addFieldValue(TypeId(FilePath), filePath, "Import file path");
+        #    archiveFilePath_df  = dialogRunbase.addFieldValue(TypeId(FilePath), archiveFilePath, "Archive file path");
+        #
+        #    return dialogRunbase;
+        #}
+      ENDSOURCE
+      SOURCE #getFilesInDirectory
+        #private List getFilesInDirectory(FilePath dir, str filePattern)
+        #{
+        #    List            fileList = new List(Types::String);
+        #    int             i;
+        #    int             length;
+        #    str             nextFile;
+        #    System.Array    files;
+        #    ;
+        #
+        #    // get CLR interop permission
+        #    new InteropPermission(InteropKind::ClrInterop).assert();
+        #
+        #    files = System.IO.Directory::GetFiles(dir, filePattern);
+        #
+        #    if(files)
+        #    {
+        #        length =files.get_Length();
+        #        for(i=0;i<length;i++)
+        #        {
+        #            nextFile = files.GetValue(i);
+        #            fileList.addEnd(nextFile);
+        #        }
+        #    }
+        #
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    return fileList;
+        #}
+      ENDSOURCE
+      SOURCE #getFromDialog
+        #public boolean getFromDialog()
+        #{
+        #    boolean ret;
+        #    ;
+        #
+        #    filePath        = filePath_df.value();
+        #    archiveFilePath = archiveFilePath_df.value();
+        #
+        #    ret             = super();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #moveFile
+        #void moveFile(FileName  _fileName)
+        #{
+        #    #define.read('R')
+        #    #define.write('W')
+        #
+        #    FileName            processedFileName;
+        #    FileIOPermission    sourceFileWritePerm;
+        #    Set                 permissionSet;
+        #    Filename            filePathLocal;
+        #    Filename            fileNameLocal;
+        #    Filename            fileExtLocal;
+        #    ;
+        #    [filepathLocal, fileNameLocal, fileExtLocal] = Global::fileNameSplit(_fileName);
+        #    processedFileName   = archiveFilePath + '\\' + fileNameLocal + fileExtLocal;
+        #
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    // Assert permission
+        #    permissionSet = new Set(Types::Class);
+        #    permissionSet.add(new FileIOPermission(_fileName, #read));
+        #    permissionSet.add(new FileIOPermission(processedFileName, #write));
+        #
+        #    CodeAccessPermission::assertMultiple(permissionSet);
+        #
+        #    // Move to processed folder
+        #    // BP Deviation Documented
+        #    WinAPIServer::copyFile(_fileName, processedFileName);
+        #
+        #    // Revert permissions
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    sourceFileWritePerm = new FileIOPermission(_fileName, #write);
+        #    sourceFileWritePerm.assert();
+        #
+        #    // BP Deviation Documented
+        #    WinAPIServer::deleteFile(_fileName);
+        #
+        #    // Revert permissions
+        #    CodeAccessPermission::revertAssert();
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion, #CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #readFile
+        #void readFile(FileName  _fileName)
+        #{
+        #    CompanyId               refCompany;
+        #
+        #    XmlReader               xmlReader;
+        #    XmlReaderSettings       xmlSettings = new XmlReaderSettings();
+        #    Map                     fieldValues;
+        #    str                     name;
+        #    str                     value;
+        #    boolean                 workcardFieldsCollected;
+        #    boolean                 itemFieldsCollected;
+        #    Filename                filePathLocal;
+        #    Filename                fileName;
+        #    Filename                fileExt;
+        #
+        #    WPAWorkcardTable        workcardTable;
+        #    WPAWorkcardLine         workcardLine;
+        #
+        #    SMAServiceOrderId       orderId;
+        #    WPAWorkcardId           workCardId;
+        #    int                     successRecords = 0;
+        #    int                     errorRecords = 0;
+        #    WPAGUID                 wPAGUID;
+        #    #WPAWorkcardMacro
+        #
+        #    xmlSettings.ignoreComments(true);
+        #    xmlSettings.ignoreWhitespace(true);
+        #
+        #    new FileIoPermission(_filename, 'r').assert();
+        #    //  BP Deviation Documented
+        #    xmlReader = XmlReader::newFile(_filename, xmlSettings);
+        #
+        #    xmlReader.moveToContent();
+        #    fieldValues = new Map(Types::String, Types::String);
+        #
+        #    ttsbegin;
+        #    while(!xmlReader.eof())
+        #    {
+        #        workcardFieldsCollected = false;
+        #        itemFieldsCollected = false;
+        #
+        #        if (xmlReader.read())
+        #        {
+        #            name = xmlReader.localName();
+        #            switch(xmlReader.localName())
+        #            {
+        #                case #Workcard:
+        #                    if (xmlReader.read())
+        #                    {
+        #                        fieldValues = new Map(Types::String, Types::String);
+        #                        while(true)
+        #                        {
+        #                            value = '';
+        #                            name = xmlReader.localName();
+        #                            switch(name)
+        #                            {
+        #                                case #Debitor:
+        #                                    if (xmlReader.read())
+        #                                    {
+        #                                        name = xmlReader.localName();
+        #                                        if(name == #DebitorId)
+        #                                        {
+        #                                            value = xmlReader.readElementString2(name);
+        #                                            //xmlReader.read();//WPA 5.5 upgrade
+        #                                        }
+        #                                    }
+        #                                    break;
+        #                                case #WorkcardTypeId:
+        #                                    //if (xmlReader.read())//WPA 5.5 upgrade
+        #                                    //{
+        #                                     //   name = xmlReader.localName();
+        #                                     //   if(name == #WorkcardTypeId)
+        #                                        {
+        #                                            value = xmlReader.readElementString2(name);
+        #                                            xmlReader.read();
+        #                                        }
+        #                                    //}
+        #                                    break;
+        #                                case #Site:
+        #                                    if (xmlReader.read())
+        #                                    {
+        #                                        name = xmlReader.localName();
+        #                                        if(name == #SiteId)
+        #                                        {
+        #                                            value = xmlReader.readElementString2(name);
+        #                                            xmlReader.read();
+        #                                        }
+        #                                    }
+        #                                    break;
+        #                                case #ServiceObject:
+        #                                    if (xmlReader.read())
+        #                                    {
+        #                                        name = xmlReader.localName();
+        #                                        if(name == #ServiceObjectId)
+        #                                        {
+        #                                            value = xmlReader.readElementString2(name);
+        #                                            // WPA_5_5_2 xmlReader.read();
+        #                                        }
+        #                                    }
+        #                                    break;
+        #                                case #Postal, "Location":
+        #                                    xmlReader.read();
+        #                                    break;
+        #
+        #                                default:
+        #                                    if (xmlReader.nodeType() != XmlNodeType::EndElement)
+        #                                        value = xmlReader.readElementString2(name);
+        #                                    break;
+        #                            }
+        #                            if(value != '')
+        #                                fieldValues.insert(name, value);
+        #                            if (xmlReader.nodeType() == XmlNodeType::EndElement)
+        #                            {
+        #                                if (xmlReader.name() == #Workcard)
+        #                                {
+        #                                    workcardFieldsCollected = true;
+        #                                    xmlReader.read();
+        #                                    break;
+        #                                }
+        #                                else
+        #                                {
+        #                                    xmlReader.read();
+        #                                }
+        #                            }
+        #                            if (xmlReader.eof())
+        #                            {
+        #                                workcardFieldsCollected = true;
+        #                                break;
+        #                            }
+        #                        }
+        #                    }
+        #                    break;
+        #                case #Item:
+        #                    if (xmlReader.read())
+        #                    {
+        #                        while(true)
+        #                        {
+        #                            value = '';
+        #                            name = xmlReader.localName();
+        #                            value = xmlReader.readElementString2(name);
+        #                            fieldValues.insert(name, value);
+        #                            if (xmlReader.nodeType() == XmlNodeType::EndElement)
+        #                            {
+        #                                itemFieldsCollected = true;
+        #//                                xmlReader.read();
+        #                                break;
+        #                            }
+        #                            if (xmlReader.eof())
+        #                            {
+        #                                itemFieldsCollected = true;
+        #                                break;
+        #                            }
+        #                        }
+        #                    }
+        #            }
+        #        }
+        #        if (workcardFieldsCollected)
+        #        {
+        #            //Check if serviceOrder field was read
+        #            if (!fieldValues.exists(#OrderId) || !fieldValues.lookup(#OrderId))
+        #            {
+        #                error("@WPA124");
+        #                errorRecords++;
+        #                continue;
+        #            }
+        #            orderId = fieldValues.lookup(#OrderId);
+        #            if (fieldValues.exists(#WorkcardId))
+        #            {
+        #                workCardId                          = fieldValues.lookup(#WorkcardId);
+        #            }
+        #            if (WPAWorkcardTable::exist(orderId, WorkcardId, WPADirection::Incoming))
+        #            {
+        #                workcardTable = WPAWorkcardTable::find(orderId, WorkcardId, WPADirection::Incoming, true);
+        #            }
+        #            else
+        #            {
+        #                workcardTable.OrderId               = orderId;
+        #                workcardTable.WorkcardId            = workCardId;
+        #                workcardTable.Direction             = WPADirection::Incoming;
+        #                workcardTable.RefCompany            = refCompany;
+        #            }
+        #            if (fieldValues.exists(#EmploymentCode))
+        #                workcardTable.EmploymentCode        = fieldValues.lookup(#EmploymentCode);
+        #            if (fieldValues.exists(#AccountId))
+        #                workcardTable.AccountId             = fieldValues.lookup(#AccountId);
+        #            if (fieldValues.exists(#AreaId))
+        #                workcardTable.AreaId                = fieldValues.lookup(#AreaId);
+        #            if (fieldValues.exists(#StartTime))
+        #                workcardTable.StartTime             = DateTimeUtil::newDateTime(
+        #                                                            str2date(substr(fieldValues.lookup(#StartTime), 1, 10), 123),
+        #                                                            str2time(substr(fieldValues.lookup(#StartTime), 12, 8)));
+        #            if (fieldValues.exists(#EndTime))
+        #                workcardTable.EndTime               = DateTimeUtil::newDateTime(
+        #                                                            str2date(substr(fieldValues.lookup(#EndTime), 1, 10), 123),
+        #                                                            str2time(substr(fieldValues.lookup(#EndTime), 12, 8)));
+        #            if (fieldValues.exists(#Description))
+        #                workcardTable.Description           = fieldValues.lookup(#Description);
+        #            if (fieldValues.exists(#Responsible))
+        #                workcardTable.Responsible           = fieldValues.lookup(#Responsible);
+        #            if (fieldValues.exists(#CrmInfo1))
+        #                workcardTable.CrmInfo1              = fieldValues.lookup(#CrmInfo1);
+        #            if (fieldValues.exists(#CrmInfo2))
+        #                workcardTable.CrmInfo2              = fieldValues.lookup(#CrmInfo2);
+        #            if (fieldValues.exists(#Status))
+        #            {
+        #                if (workcardTable.Status < "7" || workcardTable.Status < fieldValues.lookup(#Status))
+        #                    workcardTable.Status            = fieldValues.lookup(#Status);
+        #            }
+        #            if (fieldValues.exists(#PurchaseOrderNumber))
+        #                workcardTable.PurchaseOrderNumber   = fieldValues.lookup(#PurchaseOrderNumber);
+        #            if (fieldValues.exists(#AttentionName))
+        #                workcardTable.AttentionName         = fieldValues.lookup(#AttentionName);
+        #            if (fieldValues.exists(#Urgent))
+        #                workcardTable.Urgent                = fieldValues.lookup(#Urgent);
+        #            if (fieldValues.exists(#DebitorId))
+        #                workcardTable.DebitorId             = fieldValues.lookup(#DebitorId);
+        #            if (fieldValues.exists(#WorkcardTypeId))
+        #                workcardTable.WorkcardTypeId        = fieldValues.lookup(#WorkcardTypeId);
+        #            if (fieldValues.exists(#SiteId))
+        #                workcardTable.SiteId                = fieldValues.lookup(#SiteId);
+        #            if (fieldValues.exists(#ServiceObjectId))
+        #                workcardTable.ServiceObjectId       = fieldValues.lookup(#ServiceObjectId);
+        #            workcardTable.Transferred = WPATransferredEnum::Imported;
+        #            workcardTable.write();
+        #
+        #            successRecords++;
+        #        }
+        #        if (itemFieldsCollected)
+        #        {
+        #            if (fieldValues.exists(#GUID))
+        #                wPAGUID                             = fieldValues.lookup(#GUID);
+        #
+        #            if (!WPAWorkcardLine::existGUID(wPAGUID, WPADirection::Incoming))
+        #            {
+        #                workcardLine.OrderId                    = orderId;
+        #                workcardLine.WorkcardId                 = workCardId;
+        #                if (fieldValues.exists(#ItemId))
+        #                    workcardLine.ItemId                 = fieldValues.lookup(#ItemId);
+        #                if (fieldValues.exists(#GUID))
+        #                    workcardLine.GUID                   = fieldValues.lookup(#GUID);
+        #                if (fieldValues.exists(#ItemEanNumber))
+        #                    workcardLine.ItemEanNumber          = fieldValues.lookup(#ItemEanNumber);
+        #                if (fieldValues.exists(#ItemUnitPrice))
+        #                    workcardLine.ItemUnitPrice          = str2num(strReplace(fieldValues.lookup(#ItemUnitPrice), ",", "."));
+        #                if (fieldValues.exists(#ItemDescription1))
+        #                    workcardLine.ItemDescription1       = fieldValues.lookup(#ItemDescription1);
+        #                if (fieldValues.exists(#ItemDescription2))
+        #                    workcardLine.ItemDescription2       = fieldValues.lookup(#ItemDescription2);
+        #                if (fieldValues.exists(#Qty))
+        #                    workcardLine.Qty                    = str2num(strReplace(fieldValues.lookup(#Qty), ",", "."));
+        #                if (fieldValues.exists(#Price))
+        #                    workcardLine.Price                  = str2num(strReplace(fieldValues.lookup(#Price), ",", "."));
+        #                if (fieldValues.exists(#ItemUnit))
+        #                    workcardLine.ItemUnit               = fieldValues.lookup(#ItemUnit);
+        #                if (fieldValues.exists(#StockLocationId))
+        #                    workcardLine.StockLocationId        = fieldValues.lookup(#StockLocationId);
+        #                if (fieldValues.exists(#ItemLineType))
+        #                    workcardLine.ItemLineType           = fieldValues.lookup(#ItemLineType);
+        #                if (fieldValues.exists(#ProductEmploymentCode))
+        #                    workcardLine.ProductEmploymentCode  = fieldValues.lookup(#ProductEmploymentCode);
+        #                if (fieldValues.exists(#TransDate))
+        #                    workcardLine.TransDate              = str2Date(fieldValues.lookup(#TransDate),123);
+        #
+        #                workcardLine.Direction                  = WPADirection::Incoming;
+        #                workcardLine.Transferred                = WPATransferredEnum::Imported;
+        #                workcardLine.insert();
+        #            }
+        #        }
+        #    }
+        #
+        #
+        #    if (errorRecords)
+        #    {
+        #        info(strfmt("@WPA125", successRecords + errorRecords, errorRecords));
+        #        ttsabort;
+        #    }
+        #    else if (!successRecords)
+        #    {
+        #        info("@WPA126");
+        #        ttscommit;
+        #    }
+        #    else
+        #    {
+        #        info(strfmt("@WPA127", successRecords));
+        #        ttscommit;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    ListIterator    listIterator;
+        #    List            folderItems;
+        #    ;
+        #
+        #    //  BP deviation documented
+        #    folderItems     = this.getFilesInDirectory(filePath, "*.xml");
+        #    listIterator    = new ListIterator(folderItems);
+        #
+        #    while (listIterator.more())
+        #    {
+        #        this.readFile(listIterator.value());
+        #        this.moveFile(listIterator.value());
+        #        listIterator.next();
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #    Integer         version        = conpeek(_packedClass,1);
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList] = _packedClass;
+        #            break;
+        #        default:
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAImport construct()
+        #{
+        #    return new WPAImport();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #public client server static ClassDescription description()
+        #{
+        #    return "Import from WPA";
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #public static void main(Args _args)
+        #{
+        #    WPAImport wPAImport = WPAImport::construct();
+        #    ;
+        #
+        #    if (wPAImport.prompt())
+        #    {
+        #        wPAImport.run();
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

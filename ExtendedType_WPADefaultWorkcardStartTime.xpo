@@ -1,0 +1,27 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: UTT
+
+; Microsoft Dynamics AX Time: WPADefaultWorkcardStartTime unloaded
+; --------------------------------------------------------------------------------
+  USERTYPEVERSION 6
+  
+  USERTYPE #WPADefaultWorkcardStartTime
+  TIME
+    PROPERTIES
+      Name                #WPADefaultWorkcardStartTime
+      Label               #@WPA229
+      HelpText            #@WPA230
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+    ENDTYPEELEMENTS
+    
+    TYPEREFERENCES
+    ENDTYPEREFERENCES
+    
+  ENDUSERTYPE
+  
+
+***Element: END

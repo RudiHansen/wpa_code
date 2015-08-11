@@ -1,0 +1,232 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AifMessageParts unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AifMessageParts
+    PROPERTIES
+      Name                #AifMessageParts
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #addPart
+        #public void addPart(AifXml partXml)
+        #{
+        #    partArray.value(partCount+1, partXml);
+        #    partTypeArray.value(partCount+1, '');
+        #    partCount++;
+        #}
+      ENDSOURCE
+      SOURCE #addPartAndType
+        #private void addPartAndType(AifXml partXml, str partType)
+        #{
+        #    partArray.value(partCount+1, partXml);
+        #    partTypeArray.value(partCount+1, partType);
+        #    partCount++;
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #// This is a framework class. Customizing this class may cause problems with future upgrades to the software.
+        #class AifMessageParts
+        #{
+        #    Array   partArray;
+        #    Array   partTypeArray;
+        #    int     partCount;
+        #    str     rootLocalName;
+        #    str     rootNamespaceURI;
+        #}
+      ENDSOURCE
+      SOURCE #getPart
+        #public AifXml getPart(int partIndex)
+        #{
+        #    if ((partIndex < 1) || (partIndex > partCount))
+        #    {
+        #        // "The parameter index is invalid."
+        #        throw error(strfmt("@SYS104608"));
+        #    }
+        #
+        #    return partArray.value(partIndex);
+        #}
+      ENDSOURCE
+      SOURCE #getpartCount
+        #public int getPartCount()
+        #{
+        #    return partCount;
+        #}
+      ENDSOURCE
+      SOURCE #getPartType
+        #public str getPartType(int partIndex)
+        #{
+        #    if ((partIndex < 1) || (partIndex > partCount))
+        #    {
+        #        // "The parameter index is invalid."
+        #        throw error(strfmt("@SYS104608"));
+        #    }
+        #
+        #    if (!partTypeArray.exists(partIndex) || (partTypeArray.value(partIndex) == ''))
+        #        partTypeArray.value(partIndex, AifUtil::getDocumentType(partArray.value(partIndex)));
+        #
+        #    return partTypeArray.value(partIndex);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    partArray = new Array(Types::String);
+        #    partTypeArray = new Array(Types::String);
+        #    partCount = 0;
+        #}
+      ENDSOURCE
+      SOURCE #removePart
+        #public void removePart(int partIndex)
+        #{
+        #    if ((partIndex < 1) || (partIndex > partCount))
+        #    {
+        #        // "The parameter index is invalid."
+        #        throw error(strfmt("@SYS104608"));
+        #    }
+        #
+        #    // Shift values up
+        #    while (partIndex < partCount)
+        #    {
+        #        partArray.value(partIndex, partArray.value(partIndex + 1));
+        #        partTypeArray.value(partIndex, partTypeArray.value(partIndex + 1));
+        #        partIndex = partIndex + 1;
+        #    }
+        #
+        #    // Free the last one
+        #    partArray.value(partIndex, '');
+        #    partTypeArray.value(partIndex, '');
+        #
+        #    // Reduce the count
+        #    partCount = partCount - 1;
+        #}
+      ENDSOURCE
+      SOURCE #setPart
+        #public void setPart(int partIndex, AifXml partXml)
+        #{
+        #    if ((partIndex < 1) || (partIndex > partCount))
+        #    {
+        #        // "The parameter index is invalid."
+        #        throw error(strfmt("@SYS104608"));
+        #    }
+        #
+        #    partArray.value(partIndex, partXml);
+        #    partTypeArray.value(partIndex, '');
+        #}
+      ENDSOURCE
+      SOURCE #deserialize
+        #public static AifMessageParts deserialize(AifXml messagePartsXml)
+        #{
+        #    AifMessageParts messageParts;
+        #    XmlTextReader xmlReader;
+        #    str partType;
+        #    str namespaceUri;
+        #;
+        #
+        ##Aif
+        #
+        #    xmlReader = XmlTextReader::newXml(messagePartsXml);
+        #    //Turn off Whitespace handling so we avoid doing seperate reads just for whitespace
+        #    xmlReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #
+        #    xmlReader.moveToContent();
+        #    while ((xmlReader.nodeType() != XmlNodeType::Element) && !xmlReader.eof())
+        #        xmlReader.read();
+        #
+        #    if (!xmlReader.eof() && xmlReader.isStartElement())
+        #    {
+        #        messageParts = new AifMessageParts();
+        #        // WPA import ->
+        #        xmlReader.read();
+        #        if(xmlReader.localName() == #MessageParts)
+        #        // WPA import <-
+        #            xmlReader.readStartElement3(#MessageParts, #MessageNamespace);
+        #        while ((xmlReader.nodeType() != XmlNodeType::EndElement) && !xmlReader.eof())
+        #        {
+        #            namespaceUri = xmlReader.namespaceURI();
+        #            if (namespaceUri == '')
+        #                partType = xmlReader.localName();
+        #            else
+        #                partType = namespaceUri + #DocTypeDelimiter + xmlReader.localName();
+        #
+        #            messageParts.addPartAndType(xmlReader.readOuterXml(), partType);
+        #        }
+        #    }
+        #
+        #    return messageParts;
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public static AifXml serialize(AifMessageParts messageParts)
+        #{
+        #    /*
+        #        Generates an MessageParts XML string based on the AifMessageParts object passed in.
+        #    */
+        #
+        #    AifXml                  partListXml;
+        #    XmlTextWriter           xmlTextWriter;
+        #    XmlTextReader           xmlTextReader;
+        #    int                     i;
+        #    int                     partCount;
+        #    ;
+        #
+        ##Aif
+        #
+        #    xmlTextWriter = XmlTextWriter::newXml();
+        #    //Don't include indentation - this should help reduce the size of the file
+        #    xmlTextWriter.formatting(XmlFormatting::None);
+        #
+        #    // Start the XMl
+        #    xmlTextWriter.writeStartDocument();
+        #
+        #    //Write the PartList root element
+        #    xmlTextWriter.writeStartElement2(#MessageParts, #MessageNamespace);
+        #
+        #    partCount = messageParts.getPartCount();
+        #
+        #    for (i = 1; i <= partCount; i++)
+        #    {
+        #        try
+        #        {
+        #            //The XML returned above will include the declaration,
+        #            // we we need to trim it off.
+        #            xmlTextReader = XmlTextReader::newXml(messageParts.getPart(i));
+        #            xmlTextReader.namespaces(true);
+        #            xmlTextReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #            //Move past the declaration
+        #            xmlTextReader.moveToContent();
+        #            xmlTextWriter.writeNode(xmlTextReader, false);
+        #            xmlTextReader.close();
+        #        }
+        #        catch(Exception::Error)
+        #        {
+        #            //"A parameter could not be serialized."
+        #            throw error(strfmt("@SYS104609"));
+        #        }
+        #    }
+        #
+        #    //End the PartList
+        #    xmlTextWriter.writeEndElement();
+        #
+        #    //End the document
+        #    xmlTextWriter.writeEndDocument();
+        #
+        #    partListXml = xmlTextWriter.writeToString();
+        #    xmlTextWriter.close();
+        #
+        #    return partListXml;
+        #
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

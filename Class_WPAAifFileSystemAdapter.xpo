@@ -1,0 +1,41 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAAifFileSystemAdapter unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAAifFileSystemAdapter
+    PROPERTIES
+      Name                #WPAAifFileSystemAdapter
+      Extends             #AifFileSystemAdapter
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAAifFileSystemAdapter extends AifFileSystemAdapter
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #getLabel
+        #LabelString getLabel()
+        #{
+        #    LabelString label = "@WPA168";
+        #
+        #    return label;
+        #}
+      ENDSOURCE
+      SOURCE #getSendAdapter
+        #public AifSendAdapter getSendAdapter()
+        #{
+        #    return new WPAAifFileSystemSendAdapter();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

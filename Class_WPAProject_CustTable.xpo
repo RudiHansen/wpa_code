@@ -1,0 +1,149 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProject_CustTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProject_CustTable
+    PROPERTIES
+      Name                #WPAProject_CustTable
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProject_CustTable extends AfStronglyTypedDataContainer
+        #{
+        #    #define.Phone('Phone')
+        #    #define.PartyId('PartyId')
+        #    #define.Email('Email')
+        #    #define.DirPartyAddressRelationship('DirPartyAddressRelationship')
+        #    #define.CellularPhone('CellularPhone')
+        #    #define.AccountNum('AccountNum')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createDirPartyAddressRelationship
+        #public AfStronglyTypedDataContainerList createDirPartyAddressRelationship()
+        #{
+        #    return this.get_NewList(#DirPartyAddressRelationship);
+        #}
+      ENDSOURCE
+      SOURCE #existsAccountNum
+        #public boolean existsAccountNum()
+        #{
+        #    return this.exists(#AccountNum);
+        #}
+      ENDSOURCE
+      SOURCE #existsCellularPhone
+        #public boolean existsCellularPhone()
+        #{
+        #    return this.exists(#CellularPhone);
+        #}
+      ENDSOURCE
+      SOURCE #existsDirPartyAddressRelationship
+        #public boolean existsDirPartyAddressRelationship()
+        #{
+        #    return this.exists(#DirPartyAddressRelationship);
+        #}
+      ENDSOURCE
+      SOURCE #existsEmail
+        #public boolean existsEmail()
+        #{
+        #    return this.exists(#Email);
+        #}
+      ENDSOURCE
+      SOURCE #existsPartyId
+        #public boolean existsPartyId()
+        #{
+        #    return this.exists(#PartyId);
+        #}
+      ENDSOURCE
+      SOURCE #existsPhone
+        #public boolean existsPhone()
+        #{
+        #    return this.exists(#Phone);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAProject_CustTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmAccountNum
+        #public str parmAccountNum(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AccountNum, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AccountNum);
+        #}
+      ENDSOURCE
+      SOURCE #parmCellularPhone
+        #public PhoneMobile parmCellularPhone(PhoneMobile _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CellularPhone, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CellularPhone);
+        #}
+      ENDSOURCE
+      SOURCE #parmDirPartyAddressRelationship
+        #public AfStronglyTypedDataContainerList parmDirPartyAddressRelationship(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#DirPartyAddressRelationship, _value);
+        #    }
+        #
+        #    return this.get_List(#DirPartyAddressRelationship);
+        #}
+      ENDSOURCE
+      SOURCE #parmEmail
+        #public Email parmEmail(Email _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Email, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Email);
+        #}
+      ENDSOURCE
+      SOURCE #parmPartyId
+        #public str parmPartyId(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PartyId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PartyId);
+        #}
+      ENDSOURCE
+      SOURCE #parmPhone
+        #public Phone parmPhone(Phone _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Phone, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Phone);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,147 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: OBTFileWrite unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #OBTFileWrite
+    PROPERTIES
+      Name                #OBTFileWrite
+      Extends             #OBTFileReadWrite
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class OBTFileWrite extends OBTFileReadWrite
+        #{
+        #    FilePath    tempFilePath;
+        #    FilePath    destinationFilePath;
+        #    FileName    fileName;
+        #    FileName    currentFileName;
+        #
+        #    DialogField tempFilePath_df;
+        #    DialogField destinationFilePath_df;
+        #    DialogField fileName_df;
+        #
+        #    #define.CurrentVersion(1)
+        #
+        #    #localmacro.CurrentList
+        #         tempFilePath,
+        #         destinationFilePath,
+        #         fileName
+        #    #endmacro
+        #}
+      ENDSOURCE
+      SOURCE #dialog
+        #protected Object dialog(DialogRunbase   _dialog,
+        #                        boolean         _forceOnClient)
+        #{
+        #    DialogRunbase dialog;
+        #    ;
+        #    dialog                  = super(_dialog, _forceOnClient);
+        #    tempFilePath_df         = dialog.addFieldValue(typeid(FilePath), tempFilePath, "Temp folder");
+        #    destinationFilePath_df  = dialog.addFieldValue(typeid(FilePath), destinationFilePath, "Destination folder");
+        #    fileName_df             = dialog.addFieldValue(typeid(FilenameSave), fileName, "@SYS16423", "Specify file name, where %1 = date and %2 = time.");
+        #
+        #    return dialog;
+        #}
+      ENDSOURCE
+      SOURCE #getFromDialog
+        #public boolean getFromDialog()
+        #{
+        #    boolean ret;
+        #    ;
+        #    tempFilePath        = tempFilePath_df.value();
+        #    destinationFilePath = destinationFilePath_df.value();
+        #    fileName            = fileName_df.value();
+        #
+        #    ret                 = super();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #initFile
+        #void initFile(FileName  _fileName)
+        #{
+        #    #File
+        #    ;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion, #CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #postFile
+        #void postFile()
+        #{
+        #    ;
+        #    super();
+        #
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    if (destinationFilePath && destinationFilePath != tempFilePath)
+        #    {
+        #        this.moveFile(currentFile, this.ensureLastBackSlash(destinationFilePath) + currentFileName);
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    ;
+        #    if (this.validatePath(tempFilePath) && (!destinationFilePath || this.validatePath(destinationFilePath)))
+        #    {
+        #        currentFileName     = strfmt(fileName,
+        #                                     date2str(systemdateget(),123,2,0,2,0,4),
+        #                                     strReplace(time2StrHMS(timenow()),":",""));
+        #        currentFile         = this.ensureLastBackSlash(tempFilePath) + currentFileName;
+        #        try
+        #        {
+        #            ttsbegin;
+        #            this.preFile();
+        #            this.writeFile();
+        #            this.postFile();
+        #            ttscommit;
+        #        }
+        #        catch (Exception::Deadlock)
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #    Integer         version        = conpeek(_packedClass,1);
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList] = _packedClass;
+        #            break;
+        #        default:
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #writeFile
+        #void writeFile()
+        #{
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

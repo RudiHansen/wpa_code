@@ -1,0 +1,310 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: OBTExportLocations unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #OBTExportLocations
+    PROPERTIES
+      Name                #OBTExportLocations
+      Extends             #RunBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class OBTExportLocations extends RunBase
+        #{
+        #    #File
+        #    QueryRun    queryRun;
+        #    CommaIo     commaIo;
+        #    FileName    currentFile;
+        #
+        #    FilePath    tempFilePath;
+        #    FilePath    destinationFilePath;
+        #    FileName    fileName;
+        #    FileName    currentFileName;
+        #
+        #    DialogField tempFilePath_df;
+        #    DialogField destinationFilePath_df;
+        #    DialogField fileName_df;
+        #
+        #    #define.CurrentVersion(1)
+        #
+        #    #localmacro.CurrentList
+        #         tempFilePath,
+        #         destinationFilePath,
+        #         fileName
+        #    #endmacro
+        #}
+      ENDSOURCE
+      SOURCE #dialog
+        #protected Object dialog(DialogRunbase   _dialog,
+        #                        boolean         _forceOnClient)
+        #{
+        #    DialogRunbase dialog;
+        #    ;
+        #    dialog                  = super(_dialog, _forceOnClient);
+        #    tempFilePath_df         = dialog.addFieldValue(typeid(FilePath), tempFilePath, "Temp folder");
+        #    destinationFilePath_df  = dialog.addFieldValue(typeid(FilePath), destinationFilePath, "Destination folder");
+        #    fileName_df             = dialog.addFieldValue(typeid(FilenameSave), fileName, "@SYS16423", "Specify file name, where %1 = date and %2 = time.");
+        #
+        #    return dialog;
+        #}
+      ENDSOURCE
+      SOURCE #ensureLastBackSlash
+        #FilePath ensureLastBackSlash(FilePath   _filePath)
+        #{
+        #    FilePath    ret;
+        #    ;
+        #    if(substr(_filePath,strLen(_filePath),1) != '\\')
+        #    {
+        #        ret = _filePath + '\\';
+        #    }
+        #    else
+        #    {
+        #        ret = _filePath;
+        #    }
+        #
+        #    return ret;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #getFromDialog
+        #public boolean getFromDialog()
+        #{
+        #    boolean ret;
+        #    ;
+        #    tempFilePath        = tempFilePath_df.value();
+        #    destinationFilePath = destinationFilePath_df.value();
+        #    fileName            = fileName_df.value();
+        #
+        #    ret                 = super();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #moveFile
+        #void moveFile(FileName  _fromFile,
+        #              FileName  _toFile)
+        #{
+        #    Set                 permissionSet;
+        #    FileIOPermission    fromFileWritePerm;
+        #    InteropPermission   perm;
+        #    ;
+        #    // Revert permissions
+        #   CodeAccessPermission::revertAssert();
+        #
+        #    // Assert permission
+        #    permissionSet = new Set(Types::Class);
+        #    permissionSet.add(new FileIOPermission(_fromFile, #io_read));
+        #    permissionSet.add(new FileIOPermission(_toFile, #io_write));
+        #
+        #    CodeAccessPermission::assertMultiple(permissionSet);
+        #
+        #    // Move to processed folder
+        #    // BP Deviation Documented
+        #    WinAPIServer::copyFile(_fromFile, _toFile);
+        #
+        #    // Revert permissions
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    permissionSet = new Set(Types::Class);
+        #    permissionSet.add(new FileIOPermission(_fromFile, #io_read));
+        #    permissionSet.add(new FileIOPermission(_fromFile, #io_write));
+        #    CodeAccessPermission::assertMultiple(permissionSet);
+        #
+        #/*    fromFileWritePerm   = new FileIOPermission(_fromFile, #io_write);
+        #    fromFileWritePerm.assert();
+        #
+        #    perm                = new InteropPermission(InteropKind::DllInterop);
+        #    perm.assert();*/
+        #    // BP Deviation Documented
+        #    WinAPIServer::deleteFile(_fromFile);
+        #
+        #    // Revert permissions
+        #    CodeAccessPermission::revertAssert();
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    ;
+        #    super();
+        #
+        #    queryRun = new QueryRun(this.queryBuild());
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion, #CurrentList, queryRun.pack()];
+        #}
+      ENDSOURCE
+      SOURCE #postFile
+        #void postFile()
+        #{
+        #    ;
+        #
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    if (destinationFilePath && destinationFilePath != tempFilePath)
+        #    {
+        #        this.moveFile(currentFile, this.ensureLastBackSlash(destinationFilePath) + currentFileName);
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #preFile
+        #void preFile()
+        #{
+        #
+        #    new FileIOPermission(currentFile, #io_write).assert();
+        #    commaIo = new CommaIo(currentFile, #io_write);
+        #    commaIo.outFieldDelimiter(";");
+        #    commaIo.outRecordDelimiter(#delimiterEnter);
+        #}
+      ENDSOURCE
+      SOURCE #queryBuild
+        #Query queryBuild()
+        #{
+        #    Query   query;
+        #    ;
+        #    query = new Query(querystr(WPAProject));
+        #
+        #    return query;
+        #}
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    return queryRun;
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    ;
+        #    currentFileName     = strfmt(fileName,
+        #                                 date2str(systemdateget(),123,2,0,2,0,4),
+        #                                 strReplace(time2StrHMS(timenow()),":",""));
+        #    currentFile         = this.ensureLastBackSlash(tempFilePath) + currentFileName;
+        #    try
+        #    {
+        #        ttsbegin;
+        #        this.preFile();
+        #        this.writeFile();
+        #        this.postFile();
+        #        ttscommit;
+        #    }
+        #    catch (Exception::Deadlock)
+        #    {
+        #        retry;
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #    Integer         version        = conpeek(_packedClass,1);
+        #    container   packedQuery;
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList, packedQuery] = _packedClass;
+        #            if (packedQuery)
+        #            {
+        #                queryRun = new QueryRun(packedQuery);
+        #            }
+        #            break;
+        #        default:
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #validatePath
+        #boolean validatePath(FilePath   _filePath)
+        #{
+        #    boolean ret = true;
+        #    ;
+        #    new FileIOPermission(_filePath, "R").assert();
+        #    if (!WinApiServer::pathExists(_filePath))
+        #    {
+        #        ret = checkfailed(strfmt("The path %1 is not accessible.", _filePath));
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #writeFile
+        #void writeFile()
+        #{
+        #    ProjTable                       projTable;
+        #    CustTable                       custTable;
+        #    Address                         address;
+        #    ;
+        #
+        #    while(queryRun.next())
+        #    {
+        #        projTable = queryRun.get(tablenum(projTable));
+        #        custTable = queryRun.get(tablenum(CustTable));
+        #        address   = queryRun.get(tablenum(Address));
+        #
+        #        custTable   = queryRun.get(tablenum(CustTable));
+        #        address     = queryRun.get(tablenum(Address));
+        #        this.writeLine([int642str(projTable.RecId),
+        #                        projTable.dataAreaId + "_" + int2str(projTable.TableId) + "_" + int642str(projTable.RecId)]);
+        #
+        #        this.writeLine([int642str(custTable.RecId),
+        #                        custTable.dataAreaId + "_" + int2str(custTable.TableId) + "_" + int642str(custTable.RecId)]);
+        #
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #writeLine
+        #boolean writeLine(container _data)
+        #{
+        #    ;
+        #
+        #    return commaIo.writeExp(_data);
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static OBTExportLocations construct()
+        #{
+        #    return new OBTExportLocations();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #public static client server ClassDescription description()
+        #{
+        #    ;
+        #
+        #    return "Export of Location id's";
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #public static void main(Args    _args)
+        #{
+        #    OBTExportLocations   OBTExportLocations = OBTExportLocations::construct();
+        #    ;
+        #    if (OBTExportLocations.prompt())
+        #    {
+        #        OBTExportLocations.run();
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

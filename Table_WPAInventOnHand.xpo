@@ -1,0 +1,122 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : WPAInventOnHand unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #WPAInventOnHand
+    PROPERTIES
+      Name                #WPAInventOnHand
+      ConfigurationKey    #WPAWarehouseManagement
+      SecurityKey         #WPATables
+      PrimaryIndex        #ItemIdx
+      ClusterIndex        #ItemIdx
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #ItemId
+        STRING
+        PROPERTIES
+          Name                #ItemId
+          Table               #WPAInventOnHand
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemId
+              #
+            ENDARRAY
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #OnHand
+        REAL
+        PROPERTIES
+          Name                #OnHand
+          Table               #WPAInventOnHand
+          ExtendedDataType    
+            ARRAY 
+              #InventQtyPhysicalOnhand
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #ItemIdx
+      PROPERTIES
+        Name                #ItemIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ItemId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #exist
+        #static boolean exist(WPAItemId  _itemId)
+        #{
+        #    return _itemId && (select RecId from WPAInventOnHand
+        #                where WPAInventOnHand.ItemId == _itemId
+        #           ).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #static WPAInventOnHand find(WPAItemId   _itemId,
+        #                            boolean     _update = false)
+        #{
+        #    WPAInventOnHand  wPAInventOnHand;
+        #    ;
+        #
+        #    wPAInventOnHand.selectForUpdate(_update);
+        #
+        #    if (_itemId)
+        #    {
+        #        select firstonly wPAInventOnHand
+        #            where wPAInventOnHand.ItemId == _itemId;
+        #    }
+        #
+        #    return wPAInventOnHand;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #updateLog
+        #public static void updateLog(WPAItemId  _itemId,
+        #                             Qty        _onHand)
+        #{
+        #    WPAInventOnHand  wPAInventOnHand;
+        #    ;
+        #    ttsbegin;
+        #    wPAInventOnHand         = WPAInventOnHand::find(_itemId, true);
+        #    if (wPAInventOnHand)
+        #    {
+        #        wPAInventOnHand.OnHand  = _onHand;
+        #        wPAInventOnHand.update();
+        #    }
+        #    else
+        #    {
+        #        wPAInventOnHand.ItemId  = _itemId;
+        #        wPAInventOnHand.OnHand  = _onHand;
+        #        wPAInventOnHand.insert();
+        #    }
+        #    ttscommit;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

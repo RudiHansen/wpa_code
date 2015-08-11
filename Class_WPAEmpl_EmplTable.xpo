@@ -1,0 +1,131 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAEmpl_EmplTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAEmpl_EmplTable
+    PROPERTIES
+      Name                #WPAEmpl_EmplTable
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAEmpl_EmplTable extends AfStronglyTypedDataContainer
+        #{
+        #    #define.RecId('RecId')
+        #    #define.EmplId('EmplId')
+        #    #define.DispatchTeamId('DispatchTeamId')
+        #    #define.DirPartyTable('DirPartyTable')
+        #    #define._DocumentHash('_DocumentHash')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createDirPartyTable
+        #public AfStronglyTypedDataContainerList createDirPartyTable()
+        #{
+        #    return this.get_NewList(#DirPartyTable);
+        #}
+      ENDSOURCE
+      SOURCE #exists_DocumentHash
+        #public boolean exists_DocumentHash()
+        #{
+        #    return this.exists(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #existsDirPartyTable
+        #public boolean existsDirPartyTable()
+        #{
+        #    return this.exists(#DirPartyTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsDispatchTeamId
+        #public boolean existsDispatchTeamId()
+        #{
+        #    return this.exists(#DispatchTeamId);
+        #}
+      ENDSOURCE
+      SOURCE #existsEmplId
+        #public boolean existsEmplId()
+        #{
+        #    return this.exists(#EmplId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#Empl_EmplTable);
+        #}
+      ENDSOURCE
+      SOURCE #parm_DocumentHash
+        #public str parm_DocumentHash(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#_DocumentHash, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #parmDirPartyTable
+        #public AfStronglyTypedDataContainerList parmDirPartyTable(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#DirPartyTable, _value);
+        #    }
+        #
+        #    return this.get_List(#DirPartyTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmDispatchTeamId
+        #public SMADispatchTeamId parmDispatchTeamId(SMADispatchTeamId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DispatchTeamId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DispatchTeamId);
+        #}
+      ENDSOURCE
+      SOURCE #parmEmplId
+        #public EmplId parmEmplId(EmplId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#EmplId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#EmplId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

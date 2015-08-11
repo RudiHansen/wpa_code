@@ -1,0 +1,208 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: QUE
+
+; Microsoft Dynamics AX Query: WPAInventSum unloaded
+; --------------------------------------------------------------------------------
+VERSION 18
+
+QUERY #WPAInventSum
+  PROPERTIES
+    Name                #WPAInventSum
+    Version             #37
+    NextUniqueId        #1004
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class QueryRun extends ObjectRun
+      #{
+      #}
+    ENDSOURCE
+    SOURCE #init
+      #public void init()
+      #{
+      #    QueryBuildDataSource    qbsSum;
+      #    QueryBuildDataSource    qbsDim;
+      #    QueryBuildRange         queryRange;
+      #    InventDim               inventDimCriteria;
+      #    InventDimParm           inventDimParmCriteria;
+      #    InventDimParm           inventDimParmGroupBy;
+      #    container               dimFields = InventDim::dimFieldList();
+      #    boolean                 doFindRange;
+      #    ;
+      #    super();
+      #    inventDimParmCriteria.ItemIdFlag            = NoYes::Yes;
+      #    inventDimParmGroupBy.InventLocationIdFlag   = NoYes::Yes;
+      #    inventDimParmGroupBy.ItemIdFlag             = NoYes::Yes;
+      #    inventDimParmGroupBy.ConfigIdFlag           = NoYes::Yes;
+      #    inventDimParmGroupBy.InventColorIdFlag      = NoYes::Yes;
+      #    inventDimParmGroupBy.InventSizeIdFlag       = NoYes::Yes;
+      #
+      #    query = this.query();
+      #
+      #    if (query.dataSourceTable(tablenum(InventSum)))
+      #    {
+      #        qbsSum = query.dataSourceTable(tablenum(InventSum));
+      #        qbsSum.sortClear();
+      #
+      #        doFindRange = true;
+      #    }
+      #    else
+      #        qbsSum = query.addDataSource(tablenum(InventSum));
+      #
+      #    if (query.dataSourceTable(tablenum(InventDim)))
+      #    {
+      #        qbsDim = query.dataSourceTable(tablenum(InventDim));
+      #        qbsDim.sortClear();
+      #
+      #        doFindRange = true;
+      #    }
+      #    else
+      #        qbsDim = qbsSum.addDataSource(tablenum(InventDim));
+      #
+      #    qbsDim.joinMode(JoinMode::InnerJoin);
+      #    qbsDim.relations(true);
+      #
+      #    //if (!inventDimParmCriteria.ClosedFlag)
+      #    {
+      #        queryRange = SysQuery::findOrCreateRange(qbsSum, fieldnum(InventSum,Closed));
+      #        queryRange.value(queryValue(NoYes::No));
+      #    }
+      #
+      #    if (inventDimParmCriteria.ItemIdFlag)
+      #    {
+      #        queryRange = doFindRange ? qbsSum.findRange(fieldnum(InventSum,ItemId)) : null;
+      #        if (! queryRange)
+      #            queryRange = qbsSum.addRange(fieldnum(InventSum,ItemId));
+      #
+      #        /*if (itemId)
+      #            queryRange.value(queryValue(itemId));
+      #        else
+      #            queryRange.value(SysQuery::valueEmptyString());*/
+      #    }
+      #
+      #    if (inventDimParmGroupBy.ItemIdFlag)
+      #    {
+      #        qbsSum.addSortField(fieldnum(InventSum,ItemId));
+      #        qbsSum.orderMode(OrderMode::GroupBy);
+      #    }
+      #
+      #    InventSum::queryAddSumFields(qbsSum);
+      #    InventDim::queryDatasourceAddRangeSortFromParms(qbsDim,doFindRange,inventDimCriteria,inventDimParmCriteria,inventDimParmGroupBy,dimFields);
+      #    InventSum::queryAddHint(query,inventDimCriteria,inventDimParmCriteria,qbsSum,qbsDim);
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  BLOCKS
+    BLOCK #InventSum
+      PROPERTIES
+        Name                #InventSum_1
+        Table               #InventSum
+        UniqueId            #1000
+      ENDPROPERTIES
+      
+      FIELDLIST
+        PROPERTIES
+        ENDPROPERTIES
+        
+      ENDFIELDLIST
+      SORTING
+      ENDSORTING
+      LINES
+      ENDLINES
+      BLOCKS
+        BLOCK #InventDim
+          PROPERTIES
+            Name                #InventDim_1
+            Table               #InventDim
+            UniqueId            #1001
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+            ENDPROPERTIES
+            
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+          ENDLINES
+          BLOCKS
+            BLOCK #InventLocation
+              PROPERTIES
+                Name                #InventLocation_1
+                Table               #InventLocation
+                UniqueId            #1002
+                FetchMode           #1:1
+                Relations           #Yes
+              ENDPROPERTIES
+              
+              FIELDLIST
+                PROPERTIES
+                ENDPROPERTIES
+                
+              ENDFIELDLIST
+              SORTING
+              ENDSORTING
+              LINES
+              ENDLINES
+              BLOCKS
+                BLOCK #WPAIntegrationLog
+                  PROPERTIES
+                    Name                #WPAIntegrationLog_1
+                    Table               #WPAIntegrationLog
+                    UniqueId            #1003
+                    FetchMode           #1:1
+                  ENDPROPERTIES
+                  
+                  FIELDLIST
+                    PROPERTIES
+                    ENDPROPERTIES
+                    
+                  ENDFIELDLIST
+                  SORTING
+                  ENDSORTING
+                  LINES
+                  ENDLINES
+                  BLOCKS
+                  ENDBLOCKS
+                  ASSOCIATIONS
+                    ASSOCIATION
+                      JOINDATASOURCE #InventLocation_1
+                      MASTERFIELD  #RecId
+                      DETAILSFIELD #RefRecId
+                    ASSOCIATION
+                      JOINDATASOURCE #InventLocation_1
+                      MASTERFIELD  #TableId
+                      DETAILSFIELD #RefTableId
+                  ENDASSOCIATIONS
+                ENDBLOCK
+              ENDBLOCKS
+              ASSOCIATIONS
+                ASSOCIATION
+                  MASTERFIELD  #InventLocationId
+                  DETAILSFIELD #InventLocationId
+              ENDASSOCIATIONS
+            ENDBLOCK
+          ENDBLOCKS
+          ASSOCIATIONS
+          ENDASSOCIATIONS
+        ENDBLOCK
+      ENDBLOCKS
+      GROUPBY
+      ENDGROUPBY
+      ORDERBY
+      ENDORDERBY
+    ENDBLOCK
+  ENDBLOCKS
+  DEPENDENTS
+  ENDDEPENDENTS
+  COMPOSITEQUERIES
+  ENDCOMPOSITEQUERIES
+ENDQUERY
+
+
+***Element: END

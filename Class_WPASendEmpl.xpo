@@ -1,0 +1,132 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendEmpl unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendEmpl
+    PROPERTIES
+      Name                #WPASendEmpl
+      Extends             #AxdSend
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPASendEmpl extends AxdSend
+        #{
+        #    EmplId  emplId;
+        #}
+      ENDSOURCE
+      SOURCE #getEndpoint
+        #AifEndpointId getEndpoint()
+        #{
+        #    ;
+        #    this.retrieveEndPoints();
+        #
+        #    select firstonly tmpAifEndPoint;
+        #
+        #    return tmpAifEndPoint.EndpointId;
+        #}
+      ENDSOURCE
+      SOURCE #parmEmplId
+        #public EmplId parmEmplId(EmplId _emplId = emplId)
+        #{
+        #    ;
+        #    emplId = _emplId;
+        #
+        #    return emplId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun            ret;
+        #    QueryBuildRange     qbr_TransId;
+        #    ;
+        #    if (!ret)
+        #    {
+        #        ret = super();
+        #        qbr_TransId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(EmplTable)), fieldnum(EmplTable, EmplId));
+        #        if (emplId)
+        #        {
+        #            qbr_TransId.value(emplId);
+        #            qbr_TransId.status(RangeStatus::Locked);
+        #        }
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    boolean ret;
+        #    ;
+        #    if (emplId)
+        #    {
+        #        ret = false;
+        #    }
+        #    else
+        #    {
+        #        ret = true;
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args args)
+        #{
+        #    WPASendEmpl         WPASendEmpl;
+        #    AifConstraintList   aifConstraintList;
+        #    AifConstraint       aifConstraint;
+        #    EmplTable           emplTable;
+        #    ;
+        #
+        #    WPASendEmpl         = new WPASendEmpl();
+        #    aifConstraintList   = new AifConstraintList();
+        #    aifConstraint       = new AifConstraint();
+        #    if (args.record())
+        #    {
+        #        emplTable    = args.record();
+        #        WPASendEmpl.parmEmplId(emplTable.EmplId);
+        #    }
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    WPASendEmpl.parmShowDocPurpose(true) ;
+        #    WPASendEmpl.parmServiceClassId(classnum(WPAEmplService));
+        #    WPASendEmpl.parmSendActionType(AifSendActionType::SendByQuery);
+        #    WPASendEmpl.parmEndPoint(WPASendEmpl.getEndpoint());
+        #
+        #    WPASendEmpl.sendMultipleDocuments(classnum(WPAEmpl), classnum(WPAEmplService), AifSendMode::Async, aifConstraintList);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

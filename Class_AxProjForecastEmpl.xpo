@@ -1,0 +1,1024 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxProjForecastEmpl unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxProjForecastEmpl
+    PROPERTIES
+      Name                #AxProjForecastEmpl
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxProjForecastEmpl axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxProjForecastEmpl extends AxInternalBase
+        #{
+        #    ProjForecastEmpl ProjForecastEmpl;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public ProjForecastEmpl currentRecord(ProjForecastEmpl _ProjForecastEmpl = ProjForecastEmpl)
+        #{
+        #    if (!prmisdefault(_ProjForecastEmpl))
+        #    {
+        #        super(_ProjForecastEmpl);
+        #        ProjForecastEmpl = _ProjForecastEmpl;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return ProjForecastEmpl;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected ProjForecastEmpl emptyRecord()
+        #{
+        #    ProjForecastEmpl localProjForecastEmpl;
+        #    ;
+        #    return localProjForecastEmpl;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getDimensionelement
+        #public SysDim getDimensionelement(int _array)
+        #{
+        #    ;
+        #    return projForecastEmpl.Dimension[_array];
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmActive
+        #public BudgetActive parmActive(BudgetActive _active = NoYes::No)
+        #{
+        #    if (!prmisdefault(_active))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, Active), _active);
+        #    }
+        #
+        #    return projForecastEmpl.Active;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmActivityNumber
+        #public ProjActivityNumber parmActivityNumber(ProjActivityNumber _activityNumber = '')
+        #{
+        #    if (!prmisdefault(_activityNumber))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, ActivityNumber), _activityNumber);
+        #    }
+        #
+        #    return projForecastEmpl.ActivityNumber;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCategoryId
+        #public ProjCategoryId parmCategoryId(ProjCategoryId _categoryId = '')
+        #{
+        #    if (!prmisdefault(_categoryId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, CategoryId), _categoryId);
+        #    }
+        #
+        #    return projForecastEmpl.CategoryId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCostPaymDate
+        #public ProjForecastCostPaymDate parmCostPaymDate(ProjForecastCostPaymDate _costPaymDate = dateNull())
+        #{
+        #    if (!prmisdefault(_costPaymDate))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, CostPaymDate), _costPaymDate);
+        #    }
+        #
+        #    return projForecastEmpl.CostPaymDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCostPrice
+        #public ProjCostPriceEmpl parmCostPrice(ProjCostPriceEmpl _costPrice = 0)
+        #{
+        #    if (!prmisdefault(_costPrice))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, CostPrice), _costPrice);
+        #    }
+        #
+        #    return projForecastEmpl.CostPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCovStatus
+        #public CovStatus parmCovStatus(CovStatus _covStatus = 0)
+        #{
+        #    if (!prmisdefault(_covStatus))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, CovStatus), _covStatus);
+        #    }
+        #
+        #    return projForecastEmpl.CovStatus;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCurrencyId
+        #public str parmCurrencyId(str _currencyId = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_currencyId))
+        #    {
+        #        dictField = new DictField(tablenum(ProjForecastEmpl),fieldnum(ProjForecastEmpl,CurrencyId));
+        #        this.validateInboundCurrencyString(_currencyId,dictField);
+        #
+        #        if(this.valueMappingInbound())
+        #        {
+        #            _currencyId = this.axCurrencyCode(_currencyId);
+        #        }
+        #
+        #        this.setField(fieldNum(ProjForecastEmpl, CurrencyId), _currencyId);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axCurrencyCode(projForecastEmpl.CurrencyId);
+        #    }
+        #    else
+        #    {
+        #        return projForecastEmpl.CurrencyId;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDimension
+        #public Dimension parmDimension(Dimension _dimension = Dimensions::emptyDimension())
+        #{
+        #    SysDictField    sysDictField;
+        #    int             array;
+        #    ;
+        #    if (!prmisdefault(_dimension))
+        #    {
+        #        sysDictField = new SysDictField(tableNum(ProjForecastEmpl),fieldnum(ProjForecastEmpl,Dimension));
+        #        for (array = 1; array <= sysDictField.arraySize(); array++)
+        #        {
+        #            this.setDimensionElement(array,_dimension[array]);
+        #        }
+        #    }
+        #
+        #    return projForecastEmpl.Dimension;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEliminationDate
+        #public ProjForecastEliminationDate parmEliminationDate(ProjForecastEliminationDate _eliminationDate = dateNull())
+        #{
+        #    if (!prmisdefault(_eliminationDate))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, EliminationDate), _eliminationDate);
+        #    }
+        #
+        #    return projForecastEmpl.EliminationDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEmplId
+        #public EmplIdProj parmEmplId(EmplIdProj _emplId = '')
+        #{
+        #    if (!prmisdefault(_emplId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, EmplId), _emplId);
+        #    }
+        #
+        #    return projForecastEmpl.EmplId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmExchRate
+        #public ExchRate parmExchRate(ExchRate _exchRate = 0)
+        #{
+        #    if (!prmisdefault(_exchRate))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, ExchRate), _exchRate);
+        #    }
+        #
+        #    return projForecastEmpl.ExchRate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmInvoiceDate
+        #public ProjForecastInvoiceDate parmInvoiceDate(ProjForecastInvoiceDate _invoiceDate = dateNull())
+        #{
+        #    if (!prmisdefault(_invoiceDate))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, InvoiceDate), _invoiceDate);
+        #    }
+        #
+        #    return projForecastEmpl.InvoiceDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmJobId
+        #public JmgJobId parmJobId(JmgJobId _jobId = '')
+        #{
+        #    if (!prmisdefault(_jobId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, JobId), _jobId);
+        #    }
+        #
+        #    return projForecastEmpl.JobId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmLineNum
+        #public LineNum parmLineNum(LineNum _lineNum = 0)
+        #{
+        #    if (!prmisdefault(_lineNum))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, LineNum), _lineNum);
+        #    }
+        #
+        #    return projForecastEmpl.LineNum;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmLinePropertyId
+        #public ProjLinePropertyId parmLinePropertyId(ProjLinePropertyId _linePropertyId = '')
+        #{
+        #    if (!prmisdefault(_linePropertyId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, LinePropertyId), _linePropertyId);
+        #    }
+        #
+        #    return projForecastEmpl.LinePropertyId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmModelId
+        #public ProjForecastModelId parmModelId(ProjForecastModelId _modelId = '')
+        #{
+        #    if (!prmisdefault(_modelId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, ModelId), _modelId);
+        #    }
+        #
+        #    return projForecastEmpl.ModelId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjId
+        #public ProjId parmProjId(ProjId _projId = '')
+        #{
+        #    if (!prmisdefault(_projId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, ProjId), _projId);
+        #    }
+        #
+        #    return projForecastEmpl.ProjId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmQty
+        #public ProjQtyEmpl parmQty(ProjQtyEmpl _qty = 0)
+        #{
+        #    if (!prmisdefault(_qty))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, Qty), _qty);
+        #    }
+        #
+        #    return projForecastEmpl.Qty;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmReport
+        #public ReportType parmReport(ReportType _report = NoYes::No)
+        #{
+        #    if (!prmisdefault(_report))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, Report), _report);
+        #    }
+        #
+        #    return projForecastEmpl.Report;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSalesPaymDate
+        #public ProjForecastSalesPaymDate parmSalesPaymDate(ProjForecastSalesPaymDate _salesPaymDate = dateNull())
+        #{
+        #    if (!prmisdefault(_salesPaymDate))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SalesPaymDate), _salesPaymDate);
+        #    }
+        #
+        #    return projForecastEmpl.SalesPaymDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSalesPrice
+        #public ProjSalesPriceEmpl parmSalesPrice(ProjSalesPriceEmpl _salesPrice = 0)
+        #{
+        #    if (!prmisdefault(_salesPrice))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SalesPrice), _salesPrice);
+        #    }
+        #
+        #    return projForecastEmpl.SalesPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedCapacity
+        #public NoYes parmSchedCapacity(NoYes _schedCapacity = NoYes::No)
+        #{
+        #    if (!prmisdefault(_schedCapacity))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedCapacity), _schedCapacity);
+        #    }
+        #
+        #    return projForecastEmpl.SchedCapacity;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedFromDate
+        #public SchedFromDate parmSchedFromDate(SchedFromDate _schedFromDate = dateNull())
+        #{
+        #    if (!prmisdefault(_schedFromDate))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedFromDate), _schedFromDate);
+        #    }
+        #
+        #    return projForecastEmpl.SchedFromDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedFromTime
+        #public SchedFromTime parmSchedFromTime(SchedFromTime _schedFromTime = 0)
+        #{
+        #    if (!prmisdefault(_schedFromTime))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedFromTime), _schedFromTime);
+        #    }
+        #
+        #    return projForecastEmpl.SchedFromTime;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedLink
+        #public SchedJobLink parmSchedLink(SchedJobLink _schedLink = SchedJobLink::None)
+        #{
+        #    if (!prmisdefault(_schedLink))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedLink), _schedLink);
+        #    }
+        #
+        #    return projForecastEmpl.SchedLink;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedLinkType
+        #public SchedJobLinkType parmSchedLinkType(SchedJobLinkType _schedLinkType = SchedJobLinkType::None)
+        #{
+        #    if (!prmisdefault(_schedLinkType))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedLinkType), _schedLinkType);
+        #    }
+        #
+        #    return projForecastEmpl.SchedLinkType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedLoadPct
+        #public WrkCtrLoadPct parmSchedLoadPct(WrkCtrLoadPct _schedLoadPct = 0)
+        #{
+        #    if (!prmisdefault(_schedLoadPct))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedLoadPct), _schedLoadPct);
+        #    }
+        #
+        #    return projForecastEmpl.SchedLoadPct;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedTaskDemand
+        #public WrkCtrTaskDemand parmSchedTaskDemand(WrkCtrTaskDemand _schedTaskDemand = 0)
+        #{
+        #    if (!prmisdefault(_schedTaskDemand))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedTaskDemand), _schedTaskDemand);
+        #    }
+        #
+        #    return projForecastEmpl.SchedTaskDemand;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedTaskGroupId
+        #public TaskGroupId parmSchedTaskGroupId(TaskGroupId _schedTaskGroupId = '')
+        #{
+        #    if (!prmisdefault(_schedTaskGroupId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedTaskGroupId), _schedTaskGroupId);
+        #    }
+        #
+        #    return projForecastEmpl.SchedTaskGroupId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedTimeHours
+        #public RouteJobSchedTimeHours parmSchedTimeHours(RouteJobSchedTimeHours _schedTimeHours = 0)
+        #{
+        #    if (!prmisdefault(_schedTimeHours))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedTimeHours), _schedTimeHours);
+        #    }
+        #
+        #    return projForecastEmpl.SchedTimeHours;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedToDate
+        #public SchedToDate parmSchedToDate(SchedToDate _schedToDate = dateNull())
+        #{
+        #    if (!prmisdefault(_schedToDate))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedToDate), _schedToDate);
+        #    }
+        #
+        #    return projForecastEmpl.SchedToDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedToTime
+        #public SchedToTime parmSchedToTime(SchedToTime _schedToTime = 0)
+        #{
+        #    if (!prmisdefault(_schedToTime))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedToTime), _schedToTime);
+        #    }
+        #
+        #    return projForecastEmpl.SchedToTime;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedWorkTime
+        #public NoYes parmSchedWorkTime(NoYes _schedWorkTime = NoYes::No)
+        #{
+        #    if (!prmisdefault(_schedWorkTime))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedWorkTime), _schedWorkTime);
+        #    }
+        #
+        #    return projForecastEmpl.SchedWorkTime;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSchedWrkCtrId
+        #public WrkCtrId parmSchedWrkCtrId(WrkCtrId _schedWrkCtrId = '')
+        #{
+        #    if (!prmisdefault(_schedWrkCtrId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, SchedWrkCtrId), _schedWrkCtrId);
+        #    }
+        #
+        #    return projForecastEmpl.SchedWrkCtrId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTaxGroupId
+        #public TaxGroup parmTaxGroupId(TaxGroup _taxGroupId = '')
+        #{
+        #    if (!prmisdefault(_taxGroupId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, TaxGroupId), _taxGroupId);
+        #    }
+        #
+        #    return projForecastEmpl.TaxGroupId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTransId
+        #public ProjEmplForecastTransId parmTransId(ProjEmplForecastTransId _transId = '')
+        #{
+        #    if (!prmisdefault(_transId))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, TransId), _transId);
+        #    }
+        #
+        #    return projForecastEmpl.TransId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTxt
+        #public TransTxt parmTxt(TransTxt _txt = '')
+        #{
+        #    if (!prmisdefault(_txt))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, Txt), _txt);
+        #    }
+        #
+        #    return projForecastEmpl.Txt;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmWrkCtrNum
+        #public WrkCtrIdBase parmWrkCtrNum(WrkCtrIdBase _wrkCtrNum = '')
+        #{
+        #    if (!prmisdefault(_wrkCtrNum))
+        #    {
+        #        this.setField(fieldNum(ProjForecastEmpl, WrkCtrNum), _wrkCtrNum);
+        #    }
+        #
+        #    return projForecastEmpl.WrkCtrNum;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #ProjForecastEmpl
+        #public ProjForecastEmpl projForecastEmpl(ProjForecastEmpl _projForecastEmpl = projForecastEmpl)
+        #{
+        #    if (!prmisdefault(_projForecastEmpl))
+        #    {
+        #        this.setCurrentRecordFromExternal(_projForecastEmpl);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setActive
+        #protected void setActive()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, Active)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setActivityNumber
+        #protected void setActivityNumber()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, ActivityNumber)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCategoryId
+        #protected void setCategoryId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, CategoryId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCostPaymDate
+        #protected void setCostPaymDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, CostPaymDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCostPrice
+        #protected void setCostPrice()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, CostPrice)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCovStatus
+        #protected void setCovStatus()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, CovStatus)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCurrencyId
+        #protected void setCurrencyId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, CurrencyId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDimension
+        #protected void setDimension()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, Dimension)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDimensionelement
+        #public void setDimensionelement(int _array, SysDim _Dimensionelement)
+        #{
+        #    ;
+        #    if (!prmisdefault(_Dimensionelement))
+        #    {
+        #        if (_array > 0 || _array <= new SysDictField(tablenum(ProjForecastEmpl), fieldnum(ProjForecastEmpl, Dimension)).arraySize())
+        #        {
+        #            this.setField(new SysDictField(tablenum(ProjForecastEmpl), fieldnum(ProjForecastEmpl,Dimension), _array).id(), _DimensionElement);
+        #        }
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setEliminationDate
+        #protected void setEliminationDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, EliminationDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setEmplId
+        #protected void setEmplId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, EmplId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setExchRate
+        #protected void setExchRate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, ExchRate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setInvoiceDate
+        #protected void setInvoiceDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, InvoiceDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setJobId
+        #protected void setJobId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, JobId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setLineNum
+        #protected void setLineNum()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, LineNum)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setLinePropertyId
+        #protected void setLinePropertyId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, LinePropertyId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setModelId
+        #protected void setModelId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, ModelId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjId
+        #protected void setProjId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, ProjId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setQty
+        #protected void setQty()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, Qty)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setReport
+        #protected void setReport()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, Report)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSalesPaymDate
+        #protected void setSalesPaymDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SalesPaymDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSalesPrice
+        #protected void setSalesPrice()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SalesPrice)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedCapacity
+        #protected void setSchedCapacity()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedCapacity)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedFromDate
+        #protected void setSchedFromDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedFromDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedFromTime
+        #protected void setSchedFromTime()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedFromTime)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedLink
+        #protected void setSchedLink()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedLink)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedLinkType
+        #protected void setSchedLinkType()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedLinkType)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedLoadPct
+        #protected void setSchedLoadPct()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedLoadPct)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedTaskDemand
+        #protected void setSchedTaskDemand()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedTaskDemand)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedTaskGroupId
+        #protected void setSchedTaskGroupId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedTaskGroupId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedTimeHours
+        #protected void setSchedTimeHours()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedTimeHours)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedToDate
+        #protected void setSchedToDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedToDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedToTime
+        #protected void setSchedToTime()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedToTime)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedWorkTime
+        #protected void setSchedWorkTime()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedWorkTime)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSchedWrkCtrId
+        #protected void setSchedWrkCtrId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, SchedWrkCtrId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setProjId();
+        #    this.setEmplId();
+        #    this.setCategoryId();
+        #    this.setLinePropertyId();
+        #    this.setQty();
+        #    this.setCostPrice();
+        #    this.setSalesPrice();
+        #    this.setDimension();
+        #    this.setModelId();
+        #    this.setReport();
+        #    this.setTxt();
+        #    this.setTaxGroupId();
+        #    this.setCurrencyId();
+        #    this.setActive();
+        #    this.setActivityNumber();
+        #    this.setWrkCtrNum();
+        #    this.setCovStatus();
+        #    this.setSchedLink();
+        #    this.setSchedWorkTime();
+        #    this.setSchedCapacity();
+        #    this.setSchedLinkType();
+        #    this.setSchedToTime();
+        #    this.setSchedToDate();
+        #    this.setSchedFromTime();
+        #    this.setSchedFromDate();
+        #    this.setSchedWrkCtrId();
+        #    this.setSchedTaskDemand();
+        #    this.setSchedTaskGroupId();
+        #    this.setSchedLoadPct();
+        #    this.setLineNum();
+        #    this.setSchedTimeHours();
+        #    this.setTransId();
+        #    this.setSalesPaymDate();
+        #    this.setCostPaymDate();
+        #    this.setInvoiceDate();
+        #    this.setEliminationDate();
+        #    this.setExchRate();
+        #    this.setJobId();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTaxGroupId
+        #protected void setTaxGroupId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, TaxGroupId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTransId
+        #protected void setTransId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, TransId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTxt
+        #protected void setTxt()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, Txt)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setWrkCtrNum
+        #protected void setWrkCtrNum()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjForecastEmpl, WrkCtrNum)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxProjForecastEmpl construct()
+        #{
+        #    return new AxProjForecastEmpl();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newProjForecastEmpl
+        #public static AxProjForecastEmpl newProjForecastEmpl(ProjForecastEmpl _ProjForecastEmpl)
+        #{
+        #    AxProjForecastEmpl AxProjForecastEmpl = AxProjForecastEmpl::construct();
+        #    ;
+        #    AxProjForecastEmpl.ProjForecastEmpl(_ProjForecastEmpl);
+        #
+        #    return AxProjForecastEmpl;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

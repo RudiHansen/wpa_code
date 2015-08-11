@@ -1,0 +1,20 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: SEC
+
+; Microsoft Dynamics AX SECURITYKEY : WPADaily unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  SECURITYKEY #WPADaily
+    PROPERTIES
+      Name                #WPADaily
+      Label               #@SYS7394
+      ParentKey           #WPA
+    ENDPROPERTIES
+    
+  ENDSECURITYKEY
+  
+
+***Element: END

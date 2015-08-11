@@ -1,0 +1,113 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjForecastEmpl_DirPartyAddrRelMap unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjForecastEmpl_DirPartyAddrRelMap
+    PROPERTIES
+      Name                #WPAProjForecastEmpl_DirPartyAddrRelMap
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProjForecastEmpl_DirPartyAddrRelMap extends AfStronglyTypedDataContainer
+        #{
+        #    #define.RefCompanyId('RefCompanyId')
+        #    #define.PartyAddressRelationshipRecId('PartyAddressRelationshipRecId')
+        #    #define.AddressRecId('AddressRecId')
+        #    #define.Address('Address')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createAddress
+        #public AfStronglyTypedDataContainerList createAddress()
+        #{
+        #    return this.get_NewList(#Address);
+        #}
+      ENDSOURCE
+      SOURCE #existsAddress
+        #public boolean existsAddress()
+        #{
+        #    return this.exists(#Address);
+        #}
+      ENDSOURCE
+      SOURCE #existsAddressRecId
+        #public boolean existsAddressRecId()
+        #{
+        #    return this.exists(#AddressRecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsPartyAddressRelationshipRecId
+        #public boolean existsPartyAddressRelationshipRecId()
+        #{
+        #    return this.exists(#PartyAddressRelationshipRecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRefCompanyId
+        #public boolean existsRefCompanyId()
+        #{
+        #    return this.exists(#RefCompanyId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAProjForecastEmpl_DirPartyAddrRelMap);
+        #}
+      ENDSOURCE
+      SOURCE #parmAddress
+        #public AfStronglyTypedDataContainerList parmAddress(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#Address, _value);
+        #    }
+        #
+        #    return this.get_List(#Address);
+        #}
+      ENDSOURCE
+      SOURCE #parmAddressRecId
+        #public AddressRefRecId parmAddressRecId(AddressRefRecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AddressRecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AddressRecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmPartyAddressRelationshipRecId
+        #public RefRecId parmPartyAddressRelationshipRecId(RefRecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PartyAddressRelationshipRecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PartyAddressRelationshipRecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRefCompanyId
+        #public dataAreaId parmRefCompanyId(dataAreaId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RefCompanyId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RefCompanyId);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

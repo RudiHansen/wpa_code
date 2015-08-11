@@ -1,0 +1,57 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: OBTLogMediaBase unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #OBTLogMediaBase
+    PROPERTIES
+      Name                #OBTLogMediaBase
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class OBTLogMediaBase
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #logDelete
+        #public void logDelete(Common    _recordDeleted)
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #logInsert
+        #public void logInsert(Common    _recordInserted)
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #logRenameKey
+        #public void logRenameKey(Common     _recordOrig,
+        #                         Common     _recordUpdated,
+        #                         container  _changedFields)
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #logUpdate
+        #public void logUpdate(Common    _recordOrig,
+        #                      Common    _recordUpdated,
+        #                      container _changedFields)
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #description
+        #public client server static ClassDescription description()
+        #{
+        #    return "@OBT7";
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

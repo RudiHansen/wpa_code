@@ -1,0 +1,25 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPASendInventSumAll unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPASendInventSumAll
+    Type: 3
+    PROPERTIES
+      Name                #WPASendInventSumAll
+      Label               #@WPA228
+      HelpText            #@WPA227
+      ObjectType          #Class
+      Object              #WPASendInventSumAll
+      ConfigurationKey    #WPAWarehouseManagement
+      SecurityKey         #WPAPeriodic
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

@@ -1,0 +1,23 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: TCL
+
+; Microsoft Dynamics AX Table Collection: WPA unloaded
+; --------------------------------------------------------------------------------
+  TABLECOLLECTIONVERSION 1
+  
+  TABLECOLLECTION #WPA
+    PROPERTIES
+      Name                #WPA
+    ENDPROPERTIES
+    
+    TABLES
+      #WPAStockTransfer
+      #WPAWorkcardLine
+      #WPAWorkcardTable
+    ENDTABLES
+  ENDTABLECOLLECTION
+  
+
+***Element: END

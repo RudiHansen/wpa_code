@@ -1,0 +1,22 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPAProjJournalsPost unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPAProjJournalsPost
+    Type: 3
+    PROPERTIES
+      Name                #WPAProjJournalsPost
+      Label               #@WPA233
+      ObjectType          #Class
+      Object              #WPAProjJournalsPost
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

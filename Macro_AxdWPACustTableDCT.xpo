@@ -1,0 +1,15 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPACustTableDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPACustTableDCT
+    ##define.WPACustTable('WPACustTable')
+    ##define.WPACustTable_CustTable('WPACustTable.CustTable')
+  ENDSOURCE
+
+***Element: END

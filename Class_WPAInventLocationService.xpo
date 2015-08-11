@@ -1,0 +1,51 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAInventLocationService unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAInventLocationService
+    PROPERTIES
+      Name                #WPAInventLocationService
+      Extends             #AifDocumentService
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAInventLocationService extends AifDocumentService
+        #{
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #find
+        #public WPAInventLocation find(AifQueryCriteria _queryCriteria)
+        #{
+        #    WPAInventLocation wPAInventLocation = new WPAInventLocation();
+        #    ;
+        #    this.findList(_queryCriteria, wPAInventLocation);
+        #    return wPAInventLocation;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #protected void new()
+        #{
+        #    ;
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAInventLocationService construct()
+        #{
+        #    return new WPAInventLocationService();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

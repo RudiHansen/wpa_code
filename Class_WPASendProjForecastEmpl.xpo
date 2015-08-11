@@ -1,0 +1,126 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendProjForecastEmpl unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendProjForecastEmpl
+    PROPERTIES
+      Name                #WPASendProjForecastEmpl
+      Extends             #AxdSend
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPASendProjForecastEmpl extends AxdSend
+        #{
+        #    ProjEmplForecastTransId transId;
+        #}
+      ENDSOURCE
+      SOURCE #getEndpoint
+        #AifEndpointId getEndpoint()
+        #{
+        #    ;
+        #    this.retrieveEndPoints();
+        #
+        #    select firstonly tmpAifEndPoint;
+        #
+        #    return tmpAifEndPoint.EndpointId;
+        #}
+      ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTransId
+        #public ProjEmplForecastTransId parmTransId(ProjEmplForecastTransId _transId = transId)
+        #{
+        #    ;
+        #    transId = _transId;
+        #
+        #    return transId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun            ret;
+        #    QueryBuildRange     qbr_TransId;
+        #    ;
+        #    if (!ret)
+        #    {
+        #        ret = super();
+        #        qbr_TransId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(ProjForecastEmpl)), fieldnum(ProjForecastEmpl, TransId));
+        #        if (transId)
+        #        {
+        #            qbr_TransId.value(transId);
+        #            qbr_TransId.status(RangeStatus::Locked);
+        #        }
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    boolean ret;
+        #
+        #    ret = false;
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args args)
+        #{
+        #    WPASendProjForecastEmpl WPASendProjForecastEmpl;
+        #    AifConstraintList       aifConstraintList;
+        #    AifConstraint           aifConstraint;
+        #    ProjForecastEmpl        projForecastEmpl;
+        #    ;
+        #
+        #    WPASendProjForecastEmpl = new WPASendProjForecastEmpl();
+        #    aifConstraintList       = new AifConstraintList();
+        #    aifConstraint           = new AifConstraint();
+        #    if (args.record())
+        #    {
+        #        projForecastEmpl    = args.record();
+        #        WPASendProjForecastEmpl.parmTransId(projForecastEmpl.TransId);
+        #    }
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    WPASendProjForecastEmpl.parmShowDocPurpose(true) ;
+        #    WPASendProjForecastEmpl.parmServiceClassId(classnum(WPAProjForecastEmplService));
+        #    WPASendProjForecastEmpl.parmSendActionType(AifSendActionType::SendByQuery);
+        #    WPASendProjForecastEmpl.parmEndPoint(WPASendProjForecastEmpl.getEndpoint());
+        #
+        #    WPASendProjForecastEmpl.sendMultipleDocuments(classnum(WPAProjForecastEmpl), classnum(WPAProjForecastEmplService), AifSendMode::Async, aifConstraintList);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

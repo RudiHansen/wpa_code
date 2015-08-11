@@ -1,0 +1,146 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: OBTFileWriteCSV_LocationIds unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #OBTFileWriteCSV_LocationIds
+    PROPERTIES
+      Name                #OBTFileWriteCSV_LocationIds
+      Extends             #OBTFileWriteCSV
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class OBTFileWriteCSV_LocationIds extends OBTFileWriteCSV
+        #{
+        #    QueryRun    queryRun;
+        #
+        #    #define.CurrentVersion(1)
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    ;
+        #    super();
+        #
+        #    queryRun = new QueryRun(this.queryBuild());
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion, #CurrentList, queryRun.pack()];
+        #}
+      ENDSOURCE
+      SOURCE #queryBuild
+        #Query queryBuild()
+        #{
+        #    Query   query;
+        #    ;
+        #    query = new Query(querystr(WPAProject));
+        #
+        #    return query;
+        #}
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    return queryRun;
+        #}
+      ENDSOURCE
+      SOURCE #showQueryValues
+        #public boolean showQueryValues()
+        #{
+        #    boolean ret;
+        #    ;
+        #    ret = true;
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #    Integer         version        = conpeek(_packedClass,1);
+        #    container   packedQuery;
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList, packedQuery] = _packedClass;
+        #            if (packedQuery)
+        #            {
+        #                queryRun = new QueryRun(packedQuery);
+        #            }
+        #            break;
+        #        default:
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #writeFile
+        #void writeFile()
+        #{
+        #    ProjTable                       projTable;
+        #    CustTable                       custTable;
+        #    Address                         address;
+        #    ;
+        #
+        #    while(queryRun.next())
+        #    {
+        #        projTable = queryRun.get(tablenum(projTable));
+        #        custTable = queryRun.get(tablenum(CustTable));
+        #        address   = queryRun.get(tablenum(Address));
+        #
+        #        custTable   = queryRun.get(tablenum(CustTable));
+        #        address     = queryRun.get(tablenum(Address));
+        #        this.writeLine([int642str(projTable.RecId),
+        #                        projTable.dataAreaId + "_" + int2str(projTable.TableId) + "_" + int642str(projTable.RecId)]);
+        #
+        #        this.writeLine([int642str(custTable.RecId),
+        #                        custTable.dataAreaId + "_" + int2str(custTable.TableId) + "_" + int642str(custTable.RecId)]);
+        #
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static OBTFileWriteCSV_LocationIds construct()
+        #{
+        #    return new OBTFileWriteCSV_LocationIds();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #public static client server ClassDescription description()
+        #{
+        #    ;
+        #
+        #    return "Export of Location id's";
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #public static void main(Args    _args)
+        #{
+        #    OBTFileWriteCSV_LocationIds   fileWriteCSV_LocationIds = OBTFileWriteCSV_LocationIds::construct();
+        #    ;
+        #    if (fileWriteCSV_LocationIds.prompt())
+        #    {
+        #        fileWriteCSV_LocationIds.run();
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

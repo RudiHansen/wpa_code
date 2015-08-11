@@ -1,0 +1,138 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: OBTFileReadWrite unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #OBTFileReadWrite
+    PROPERTIES
+      Name                #OBTFileReadWrite
+      Extends             #RunBaseBatch
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class OBTFileReadWrite extends RunBaseBatch
+        #{
+        #    #File
+        #
+        #    OBTFileHistory  fileHistory;
+        #    FileName        currentFile;
+        #    Counter         recordsProcessed;
+        #
+        #    #define.CurrentVersion(1)
+        #
+        #    #localmacro.CurrentList
+        #         currentFile
+        #    #endmacro
+        #}
+      ENDSOURCE
+      SOURCE #ensureLastBackSlash
+        #FilePath ensureLastBackSlash(FilePath   _filePath)
+        #{
+        #    FilePath    ret;
+        #    ;
+        #    if(substr(_filePath,strLen(_filePath),1) != '\\')
+        #    {
+        #        ret = _filePath + '\\';
+        #    }
+        #    else
+        #    {
+        #        ret = _filePath;
+        #    }
+        #
+        #    return ret;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #moveFile
+        #void moveFile(FileName  _fromFile,
+        #              FileName  _toFile)
+        #{
+        #    Set                 permissionSet;
+        #    FileIOPermission    fromFileWritePerm;
+        #    InteropPermission   perm;
+        #    ;
+        #    // Revert permissions
+        #   CodeAccessPermission::revertAssert();
+        #
+        #    // Assert permission
+        #    permissionSet = new Set(Types::Class);
+        #    permissionSet.add(new FileIOPermission(_fromFile, #io_read));
+        #    permissionSet.add(new FileIOPermission(_toFile, #io_write));
+        #
+        #    CodeAccessPermission::assertMultiple(permissionSet);
+        #
+        #    // Move to processed folder
+        #    // BP Deviation Documented
+        #    WinAPIServer::copyFile(_fromFile, _toFile);
+        #
+        #    // Revert permissions
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    permissionSet = new Set(Types::Class);
+        #    permissionSet.add(new FileIOPermission(_fromFile, #io_read));
+        #    permissionSet.add(new FileIOPermission(_fromFile, #io_write));
+        #    CodeAccessPermission::assertMultiple(permissionSet);
+        #
+        #/*    fromFileWritePerm   = new FileIOPermission(_fromFile, #io_write);
+        #    fromFileWritePerm.assert();
+        #
+        #    perm                = new InteropPermission(InteropKind::DllInterop);
+        #    perm.assert();*/
+        #    // BP Deviation Documented
+        #    WinAPIServer::deleteFile(_fromFile);
+        #
+        #    // Revert permissions
+        #    CodeAccessPermission::revertAssert();
+        #}
+      ENDSOURCE
+      SOURCE #postFile
+        #void postFile()
+        #{
+        #    ;
+        #    fileHistory.RecordsProcessed    = recordsProcessed;
+        #    fileHistory.EndDateTime         = DateTimeUtil::utcNow();
+        #    fileHistory.insert();
+        #}
+      ENDSOURCE
+      SOURCE #preFile
+        #void preFile()
+        #{
+        #    ;
+        #    fileHistory.clear();
+        #    fileHistory.initValue();
+        #    fileHistory.StartDateTime   = DateTimeUtil::utcNow();
+        #    fileHistory.Filename        = currentFile;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #validatePath
+        #boolean validatePath(FilePath   _filePath)
+        #{
+        #    boolean ret = true;
+        #    ;
+        #    new FileIOPermission(_filePath, "R").assert();
+        #    if (!WinApiServer::pathExists(_filePath))
+        #    {
+        #        ret = checkfailed(strfmt("The path %1 is not accessible.", _filePath));
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #writeFile
+        #void writeFile()
+        #{
+        #    ;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,433 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAStockTransfer_Update unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAStockTransfer_Update
+    PROPERTIES
+      Name                #WPAStockTransfer_Update
+      Extends             #RunBaseBatch
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAStockTransfer_Update extends RunBaseBatch
+        #{
+        #    InventJournalTable  inventJournalTableCounting;
+        #    InventJournalTable  inventJournalTableTransfer;
+        #    InventParameters    inventParameters;
+        #    UserID              userId;
+        #
+        #    #define.CurrentVersion(1)
+        #    #localmacro.CurrentList
+        #        userId
+        #    #endmacro
+        #}
+      ENDSOURCE
+      SOURCE #createCounting
+        #void createCounting(WPAStockTransfer    _wPAStockTransfer)
+        #{
+        #    InventJournalTrans  inventJournalTrans;
+        #    InventDim           inventDim;
+        #    ItemId              itemId;
+        #    InventTable         inventTable;
+        #    ;
+        #    if (!inventParameters.CountJournalNameId)
+        #    {
+        #        throw error("@WPA210");
+        #    }
+        #
+        #    if (!inventJournalTableCounting)
+        #    {
+        #        select firstonly inventJournalTableCounting
+        #            where inventJournalTableCounting.JournalNameId  == inventParameters.CountJournalNameId  &&
+        #                  inventJournalTableCounting.Posted         == NoYes::No;
+        #    }
+        #
+        #    if (!inventJournalTableCounting)
+        #    {
+        #        inventJournalTableCounting = this.createInventJournalTable(inventParameters.CountJournalNameId);
+        #    }
+        #    if (inventJournalTableCounting)
+        #    {
+        #        itemId = _wPAStockTransfer.ItemId;
+        #        [itemId, inventDim.configId, inventDim.InventSizeId, inventDim.InventColorId] = this.splitItemId(itemId);
+        #        inventDim.InventLocationId      = _wPAStockTransfer.InventLocationIdTo;
+        #        inventDim.InventSiteId          = InventLocation::find(inventDim.InventLocationId).InventSiteId;
+        #        inventTable                     = InventTable::find(itemId);
+        #
+        #        inventJournalTrans.clear();
+        #        inventJournalTrans.initValue();
+        #        inventJournalTrans.initFromInventJournalTable(inventJournalTableCounting);
+        #        inventJournalTrans.ItemId       = itemId;
+        #        inventJournalTrans.InventDimId  = InventDim::findOrCreate(inventDim).inventDimId;
+        #        inventJournalTrans.initFromInventTable(inventTable, false, false);
+        #        inventJournalTrans.TransDate    = systemdateget();
+        #        inventJournalTrans.Qty          = _wPAStockTransfer.DifferenceQty;
+        #        inventJournalTrans.insert();
+        #        if (inventJournalTrans)
+        #        {
+        #            _wPAStockTransfer.RefTableId    = inventJournalTrans.TableId;
+        #            _wPAStockTransfer.RefRecId      = inventJournalTrans.RecId;
+        #        }
+        #    }
+        #    else
+        #    {
+        #        throw error("@WPA211");
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #createInventJournalTable
+        #InventJournalTable createInventJournalTable(InventJournalNameId _inventJournalNameId)
+        #{
+        #    InventJournalTable  inventJournalTable;
+        #    InventDimParm       inventDimParm;
+        #    ;
+        #    inventJournalTable.clear();
+        #    inventJournalTable.initValue();
+        #    inventJournalTable.initFromInventJournalName(InventJournalName::find(_inventJournalNameId));
+        #    if (inventJournalTable.JournalType == InventJournalType::Count)
+        #    {
+        #        inventDimParm.initConsistentDimensionsGeneral();
+        #        inventDimParm.initConsistentDimAllGrp();
+        #        inventDimParm.InventLocationIdFlag  = NoYes::Yes;
+        #        inventJournalTable.InventDimFixed   = inventDimParm.inventDimFixed();
+        #    }
+        #    inventJournalTable.insert();
+        #
+        #    return inventJournalTable;
+        #}
+      ENDSOURCE
+      SOURCE #createTransfer
+        #void createTransfer(WPAStockTransfer    _wPAStockTransfer)
+        #{
+        #    InventJournalTrans  inventJournalTrans;
+        #    InventDim           inventDimFrom;
+        #    InventDim           inventDimTo;
+        #    ItemId              itemId;
+        #    InventTable         inventTable;
+        #    ;
+        #    if (!inventParameters.TransferJournalNameId)
+        #    {
+        #        throw error("@WPA212");
+        #    }
+        #
+        #    if (!inventJournalTableTransfer)
+        #    {
+        #        select firstonly inventJournalTableTransfer
+        #            where inventJournalTableTransfer.JournalNameId  == inventParameters.TransferJournalNameId  &&
+        #                  inventJournalTableTransfer.Posted         == NoYes::No;
+        #    }
+        #
+        #    if (!inventJournalTableTransfer)
+        #    {
+        #        inventJournalTableTransfer = this.createInventJournalTable(inventParameters.TransferJournalNameId);
+        #    }
+        #    if (inventJournalTableTransfer)
+        #    {
+        #        itemId = _wPAStockTransfer.ItemId;
+        #        [itemId, inventDimFrom.configId, inventDimFrom.InventSizeId, inventDimFrom.InventColorId] = this.splitItemId(itemId);
+        #        inventDimFrom.InventLocationId      = _wPAStockTransfer.InventLocationIdFrom;
+        #        inventDimFrom.InventSiteId          = InventLocation::find(inventDimFrom.InventLocationId).InventSiteId;
+        #        inventDimTo.data(inventDimFrom);
+        #        inventDimTo.InventLocationId        = _wPAStockTransfer.InventLocationIdTo;
+        #        inventDimTo.InventSiteId            = InventLocation::find(inventDimTo.InventLocationId).InventSiteId;
+        #
+        #        inventTable                         = InventTable::find(itemId);
+        #
+        #        inventJournalTrans.clear();
+        #        inventJournalTrans.initValue();
+        #        inventJournalTrans.initFromInventJournalTable(inventJournalTableTransfer);
+        #        inventJournalTrans.ItemId           = itemId;
+        #        inventJournalTrans.InventDimId      = InventDim::findOrCreate(inventDimFrom).inventDimId;
+        #        inventJournalTrans.ToInventDimId    = InventDim::findOrCreate(inventDimTo).inventDimId;
+        #        inventJournalTrans.initFromInventTable(inventTable, false, false);
+        #        inventJournalTrans.TransDate        = systemdateget();
+        #        inventJournalTrans.Qty              = _wPAStockTransfer.DifferenceQty;
+        #        inventJournalTrans.insert();
+        #        if (inventJournalTrans)
+        #        {
+        #            _wPAStockTransfer.RefTableId    = inventJournalTrans.TableId;
+        #            _wPAStockTransfer.RefRecId      = inventJournalTrans.RecId;
+        #        }
+        #    }
+        #    else
+        #    {
+        #        throw error("@WPA213");
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    ;
+        #
+        #    return [#CurrentVersion, #CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #refCompany
+        #CompanyId refCompany(WPAStockTransfer   _wPAStockTransfer)
+        #{
+        #    DataArea            dataArea;
+        #    VirtualDataAreaList virtualDataAreaList;
+        #    CompanyId           refCompany;
+        #    ;
+        #    select firstonly dataArea
+        #        where dataArea.Id == _wPAStockTransfer.dataAreaId;
+        #
+        #    if (dataArea.isVirtual)
+        #    {
+        #        while select virtualDataAreaList
+        #            where virtualDataAreaList.virtualDataArea == dataArea.Id
+        #        {
+        #            changecompany(virtualDataAreaList.Id)
+        #            {
+        #                if (InventLocation::exist(_wPAStockTransfer.InventLocationIdTo))
+        #                {
+        #                    refCompany = virtualDataAreaList.Id;
+        #                }
+        #            }
+        #        }
+        #    }
+        #
+        #    if (!refCompany)
+        #    {
+        #        refCompany = curext();
+        #    }
+        #
+        #    return refCompany;
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    #OccRetryCount
+        #
+        #    WPAStockTransfer    wPAStockTransfer;
+        #    ;
+        #    inventParameters = InventParameters::find();
+        #    try
+        #    {
+        #        ttsbegin;
+        #        while select forupdate wPAStockTransfer
+        #            where wPAStockTransfer.Updated  == NoYes::No &&
+        #                  wPAStockTransfer.Error    == NoYes::No
+        #        {
+        #            changecompany(this.refCompany(wPAStockTransfer))
+        #            {
+        #                switch (wPAStockTransfer.StockTransferType)
+        #                {
+        #                    case WPAStockTransferType::Counting     :   this.createCounting(wPAStockTransfer);
+        #                                                                break;
+        #                    case WPAStockTransferType::Transfer     :   this.createTransfer(wPAStockTransfer);
+        #                                                                break;
+        #                    default                                 :   throw error("@WPA209");
+        #                }
+        #            }
+        #            wPAStockTransfer.Updated    = NoYes::Yes;
+        #            wPAStockTransfer.update();
+        #        }
+        #        ttscommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (appl.ttsLevel() == 0)
+        #        {
+        #            if (xSession::currentRetryCount() >= #RetryNum)
+        #            {
+        #                throw error("@WPA208");
+        #            }
+        #            else
+        #            {
+        #                ttsbegin;
+        #                wPAStockTransfer               = WPAStockTransfer::find(wPAStockTransfer.StockTransferId, true);
+        #                if (wPAStockTransfer)
+        #                {
+        #                    wPAStockTransfer.Error      = NoYes::Yes;
+        #                    wPAStockTransfer.ErrorTxt   = conpeek(conpeek(infolog.cut(infolog.line(),infolog.line()),2),2);
+        #                    wPAStockTransfer.update();
+        #                }
+        #                ttscommit;
+        #                error("@WPA208");
+        #                retry;
+        #            }
+        #        }
+        #        else
+        #        {
+        #            throw error("@WPA208");
+        #        }
+        #    }
+        #    catch(Exception::DuplicateKeyException)
+        #    {
+        #        if (appl.ttsLevel() == 0)
+        #        {
+        #            if (xSession::currentRetryCount() >= #RetryNum)
+        #            {
+        #                throw error("@WPA208");
+        #            }
+        #            else
+        #            {
+        #                ttsbegin;
+        #                wPAStockTransfer               = WPAStockTransfer::find(wPAStockTransfer.StockTransferId, true);
+        #                if (wPAStockTransfer)
+        #                {
+        #                    wPAStockTransfer.Error      = NoYes::Yes;
+        #                    wPAStockTransfer.ErrorTxt   = conpeek(conpeek(infolog.cut(infolog.line(),infolog.line()),2),2);
+        #                    wPAStockTransfer.update();
+        #                }
+        #                ttscommit;
+        #                error("@WPA208");
+        #                retry;
+        #            }
+        #        }
+        #        else
+        #        {
+        #            throw error("@WPA208");
+        #        }
+        #
+        #    }
+        #    catch(Exception::Deadlock)
+        #    {
+        #        if (xSession::currentRetryCount() >= #RetryNum)
+        #        {
+        #            throw Exception::Deadlock;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #    catch (Exception::UpdateConflict)
+        #    {
+        #        if (appl.ttsLevel() == 0)
+        #        {
+        #            if (xSession::currentRetryCount() >= #RetryNum)
+        #            {
+        #                throw Exception::UpdateConflictNotRecovered;
+        #            }
+        #            else
+        #            {
+        #                retry;
+        #            }
+        #        }
+        #        else
+        #        {
+        #            throw Exception::UpdateConflict;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #splitItemId
+        #container splitItemId(ItemId    _itemId)
+        #{
+        #    WPAParameters       wPAParameters   = WPAParameters::find();
+        #    ItemId              itemId          = _itemId;
+        #    InventTable         inventTable;
+        #    str                 dimensions;
+        #    ConfigId            configId;
+        #    InventSizeId        inventSizeId;
+        #    InventColorId       inventColorId;
+        #    ProjLinePropertyId  projLinePropertyId;
+        #    ;
+        #
+        #    if (wPAParameters.UsePrefix)
+        #    {
+        #        if (wPAParameters.CategoryPrefix && strscan(itemId, wPAParameters.CategoryPrefix,1,20) != 0)
+        #        {
+        #            itemId  = strrem(itemId,wPAParameters.CategoryPrefix);
+        #        }
+        #        else if (wPAParameters.ItemPrefix && strscan(itemId, wPAParameters.ItemPrefix,1,20) != 0)
+        #        {
+        #            itemId = strrem(itemId,wPAParameters.ItemPrefix);
+        #        }
+        #    }
+        #
+        #    if (strscan(itemId, wPAParameters.Separator,1,20) != 0)
+        #    {
+        #        itemId      = substr(itemId, 1, strscan(itemId, wPAParameters.Separator,1,20) - 1);
+        #        dimensions  = strdel(_itemId,1,strlen(itemId) + strlen(wPAParameters.Separator));
+        #        if (ProjCategory::exist(itemId))
+        #        {
+        #            projLinePropertyId = strrem(dimensions, wPAParameters.Separator);
+        #        }
+        #        else
+        #        {
+        #            inventTable = InventTable::find(itemId);
+        #            if (inventTable.configActive())
+        #            {
+        #                configId        = substr(dimensions, 1, strscan(dimensions, wPAParameters.Separator,1,20) ? strscan(dimensions, wPAParameters.Separator,1,20) - 1 : strlen(dimensions));
+        #                dimensions      = strdel(dimensions,1,strlen(configId)+1);
+        #            }
+        #            if (inventTable.sizeActive())
+        #            {
+        #                inventSizeId    = substr(dimensions, 1, strscan(dimensions, wPAParameters.Separator,1,20) ? strscan(dimensions, wPAParameters.Separator,1,20) - 1 : strlen(dimensions));
+        #                dimensions      = strdel(dimensions,1,strlen(inventSizeId)+1);
+        #            }
+        #            if (inventTable.colorActive())
+        #            {
+        #                inventColorId   = substr(dimensions, 1, strscan(dimensions, wPAParameters.Separator,1,20) ? strscan(dimensions, wPAParameters.Separator,1,20) - 1 : strlen(dimensions));
+        #                dimensions      = strdel(dimensions,1,strlen(inventColorId)+1);
+        #            }
+        #            projLinePropertyId = dimensions;
+        #        }
+        #    }
+        #
+        #    return [itemId, configId, inventSizeId, inventColorId, projLinePropertyId];
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container packedClass)
+        #{
+        #    Version version = RunBase::getVersion(packedClass);
+        #
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList] = packedClass;
+        #            break;
+        #        default :
+        #            return false;
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAStockTransfer_Update construct()
+        #{
+        #    return new WPAStockTransfer_Update();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #client server public static ClassDescription description()
+        #{
+        #    return ("@WPA224");
+        #
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static void main(Args   _args)
+        #{
+        #    WPAStockTransfer_Update stockTransfer_Update;
+        #    ;
+        #    stockTransfer_Update = WPAStockTransfer_Update::construct();
+        #
+        #    if(stockTransfer_Update.prompt())
+        #    {
+        #        stockTransfer_Update.run();
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

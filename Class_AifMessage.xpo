@@ -1,0 +1,1031 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AifMessage unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AifMessage
+    PROPERTIES
+      Name                #AifMessage
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #actionId
+        #public AifActionId actionId(AifActionId _actionId = actionId)
+        #{
+        #    if(!prmisdefault(_actionId))
+        #    {
+        #        actionId = _actionId;
+        #        hasChanged = true;
+        #    }
+        #    return actionId;
+        #}
+      ENDSOURCE
+      SOURCE #addMessagePart
+        #public void addMessagePart(AifXml partXml)
+        #{
+        #    this.getMessageParts().addPart(partXml);
+        #    hasXmlChanged = true;
+        #    isSerialized = false;
+        #}
+      ENDSOURCE
+      SOURCE #address
+        #public AifTransportAddress address(AifTransportAddress _address = transportAddress)
+        #{
+        #    if(!prmisdefault(_address))
+        #    {
+        #        transportAddress = _address;
+        #        hasChanged = true;
+        #    }
+        #
+        #    return transportAddress;
+        #}
+      ENDSOURCE
+      SOURCE #channelId
+        #public AifChannelId channelId(AifChannelId _channelId = channelId)
+        #{
+        #    if(!prmisdefault(_channelId))
+        #    {
+        #        channelId = _channelId;
+        #        hasChanged = true;
+        #    }
+        #    return channelId;
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #// This is a framework class. Customizing this class may cause problems with future upgrades to the software.
+        #class AifMessage
+        #{
+        #    #Axd
+        #    #Aif
+        #    #define.notSet('')
+        #
+        #    AifMessageId                messageId;
+        #    AifEndpointBase             sourceEndpointId;
+        #    AifEndpointBase             destinationEndpointId;
+        #    AifActionId                 actionId;
+        #    AifActionBase               externalAction;
+        #    AifMessageDirection         direction;
+        #    AifChannelId                channelId;
+        #    AifTransportBase            transportName;
+        #    AifTransportAddress         transportAddress; //X++ doesn't seem to like "address"
+        #    AifPipelineId               pipelineId;
+        #    AifDocumentXml              documentXml;
+        #    AifWindowsUser              sourceEndpointUserId;
+        #    userId                      sourceEndpointAxUserId;
+        #    AifWindowsUser              submittingUserId;
+        #    userId                      submittingAxUserId;
+        #    AifMessageId                requestMessageId;
+        #    AifMessageStatus            status;
+        #    boolean                     hasChanged;
+        #    boolean                     hasXmlChanged;
+        #    boolean                     isSerialized;
+        #    boolean                     duplicateRequest;
+        #    AifMessageEncoding          encoding;
+        #    AifMessageParts             messageParts;
+        #    AifServiceNamespace         serviceNamespace;
+        #    AifServiceName              serviceName;
+        #    AifOperationName            operationName;
+        #    AifOperationContext         operationContext;
+        #    Map                         propertyBag;
+        #    AifConversationId           conversationId;
+        #
+        #
+        #    #define.CurrentVersion(2)
+        #    #define.version1(2)
+        #
+        #    #localmacro.CurrentList
+        #        messageId,
+        #        sourceEndpointId,
+        #        destinationEndpointId,
+        #        actionId,
+        #        externalAction,
+        #        direction,
+        #        channelId,
+        #        transportName,
+        #        transportAddress,
+        #        pipelineId,
+        #        documentXml,
+        #        sourceEndpointUserId,
+        #        sourceEndpointAxUserId,
+        #        submittingUserId,
+        #        submittingAxUserId,
+        #        requestMessageId,
+        #        status,
+        #        hasChanged,
+        #        hasXmlChanged,
+        #        duplicateRequest,
+        #        encoding
+        #    #endmacro
+        #
+        #}
+      ENDSOURCE
+      SOURCE #clone
+        #public AifMessage clone(AifMessageId _newMessageId = messageId)
+        #{
+        #    AifMessage message = new AifMessage(
+        #                                _newMessageId,
+        #                                this.sourceEndpointUserId(),
+        #                                this.submittingUserId());
+        #    ;
+        #    message.actionId(this.actionId());
+        #    message.address(this.address());
+        #    message.channelId(this.channelId());
+        #    message.conversationId(this.conversationId());
+        #    message.destinationEndpointId(this.destinationEndpointId());
+        #    message.direction(this.direction());
+        #    message.duplicateRequest(this.duplicateRequest());
+        #    message.encoding(this.encoding());
+        #    message.externalAction(this.externalAction());
+        #    message.pipelineId(this.pipelineId());
+        #    message.requestMessageId(this.requestMessageId());
+        #    message.setXml(this.getXml());
+        #    message.sourceEndpointId(this.sourceEndpointId());
+        #    message.status(this.status());
+        #    message.transportName(this.transportName());
+        #    message.getAxUsers();
+        #
+        #    message.hasChanged(this.hasChanged());
+        #    message.hasXmlChanged(this.hasXmlChanged());
+        #
+        #    return message;
+        #}
+      ENDSOURCE
+      SOURCE #conversationId
+        #public AifConversationId conversationId(AifConversationId _conversationId = conversationId)
+        #{
+        #    if(!prmisdefault(_conversationId))
+        #    {
+        #        conversationId = _conversationId;
+        #        hasChanged = true;
+        #    }
+        #    return conversationId;
+        #}
+      ENDSOURCE
+      SOURCE #destinationEndpointId
+        #public AifEndpointBase destinationEndpointId(AifEndpointBase _destinationEndpointId = destinationEndpointId)
+        #{
+        #    if(!prmisdefault(_destinationEndpointId))
+        #    {
+        #        destinationEndpointId = _destinationEndpointId;
+        #        hasChanged = true;
+        #    }
+        #    return destinationEndpointId;
+        #}
+      ENDSOURCE
+      SOURCE #direction
+        #public AifMessageDirection direction(AifMessageDirection _direction = direction)
+        #{
+        #    if(!prmisdefault(_direction))
+        #    {
+        #        direction  = _direction;
+        #        hasChanged = true;
+        #    }
+        #
+        #    return direction;
+        #}
+      ENDSOURCE
+      SOURCE #duplicateRequest
+        #public boolean duplicateRequest(boolean _duplicateRequest = duplicateRequest)
+        #{
+        #    ;
+        #    if(!prmisdefault(_duplicateRequest))
+        #    {
+        #        duplicateRequest = _duplicateRequest;
+        #    }
+        #
+        #    return duplicateRequest;
+        #}
+      ENDSOURCE
+      SOURCE #encoding
+        #public AifMessageEncoding encoding (AifMessageEncoding _encoding = encoding)
+        #{
+        #    if(!prmisdefault(_encoding))
+        #    {
+        #        encoding = _encoding;
+        #        hasChanged = true;
+        #    }
+        #
+        #    if (encoding == #notSet)
+        #        return enum2str(AifEndpoint::getEncoding(destinationEndpointId));
+        #    else
+        #        return encoding;
+        #}
+      ENDSOURCE
+      SOURCE #externalAction
+        #public AifActionBase externalAction(AifActionBase _externalAction = externalAction)
+        #{
+        #    if(!prmisdefault(_externalAction))
+        #    {
+        #        externalAction = _externalAction;
+        #        hasChanged = true;
+        #    }
+        #    return externalAction;
+        #}
+      ENDSOURCE
+      SOURCE #getAxUsers
+        #void getAxUsers()
+        #{
+        #    if (sourceEndpointUserId == '')
+        #    {
+        #        sourceEndpointUserId = submittingUserId;
+        #    }
+        #
+        #    //Lookup the Axapta user Ids
+        #    sourceEndpointAxUserId = AifEndpointUser::getAxaptaUser(sourceEndpointUserId).Id;
+        #    submittingAxUserId = AifEndpointUser::getAxaptaUser(submittingUserId).Id;
+        #}
+      ENDSOURCE
+      SOURCE #getMessagePart
+        #public AifXml getMessagePart(int partIndex)
+        #{
+        #    return this.getMessageParts().getPart(partIndex);
+        #}
+      ENDSOURCE
+      SOURCE #getMessagePartCount
+        #public int getMessagePartCount()
+        #{
+        #    return this.getMessageParts().getPartCount();
+        #}
+      ENDSOURCE
+      SOURCE #getMessageParts
+        #public AifMessageParts getMessageParts()
+        #{
+        #    if (messageParts == null)
+        #    {
+        #        if (documentXml != '')
+        #            messageParts = AifMessageParts::deserialize(documentXml);
+        #        else
+        #            messageParts = new AifMessageParts();
+        #    }
+        #
+        #    return messageParts;
+        #}
+      ENDSOURCE
+      SOURCE #getMessagePartType
+        #public str getMessagePartType(int partIndex)
+        #{
+        #    return this.getMessageParts().getPartType(partIndex);
+        #}
+      ENDSOURCE
+      SOURCE #getOperationContext
+        #public AifOperationContext getOperationContext()
+        #{
+        #    if (operationContext == null)
+        #        this.initializeOperationContext();
+        #
+        #    return operationContext;
+        #}
+      ENDSOURCE
+      SOURCE #getOperationName
+        #public AifOperationName getOperationName()
+        #{
+        #    if (operationName == '')
+        #    {
+        #        operationName = this.getOperationContext().getOperationName();
+        #    }
+        #
+        #    return operationName;
+        #}
+      ENDSOURCE
+      SOURCE #getPropertyBag
+        #public Map getPropertyBag()
+        #{
+        #    if (propertyBag == null)
+        #    {
+        #        propertyBag = new Map(Types::String, Types::Container);
+        #    }
+        #
+        #    return propertyBag;
+        #}
+      ENDSOURCE
+      SOURCE #getServiceName
+        #public AifServiceName getServiceName()
+        #{
+        #    if (serviceName == '')
+        #    {
+        #        serviceName = this.getOperationContext().getServiceName();
+        #    }
+        #
+        #    return serviceName;
+        #}
+      ENDSOURCE
+      SOURCE #getServiceNamespace
+        #public str getServiceNamespace()
+        #{
+        #    if (serviceNamespace == '')
+        #    {
+        #        // This will initialize the service namespace
+        #        this.getOperationContext();
+        #    }
+        #
+        #    return serviceNamespace;
+        #}
+      ENDSOURCE
+      SOURCE #getXml
+        #public AifDocumentXml getXml()
+        #{
+        #    ;
+        #    if (!isSerialized && (messageParts != null))
+        #    {
+        #        documentXml = AifMessageParts::serialize(messageParts);
+        #        isSerialized = true;
+        #    }
+        #
+        #    return documentXml;
+        #}
+      ENDSOURCE
+      SOURCE #hasChanged
+        #public boolean hasChanged(boolean _hasChanged = hasChanged)
+        #{
+        #    hasChanged = _hasChanged;
+        #    return hasChanged;
+        #}
+      ENDSOURCE
+      SOURCE #hasXmlChanged
+        #public boolean hasXmlChanged(boolean _hasXmlChanged = hasXmlChanged)
+        #{
+        #    hasXmlChanged = _hasXmlChanged;
+        #    return hasXmlChanged;
+        #}
+      ENDSOURCE
+      SOURCE #initializeOperationContext
+        #private void initializeOperationContext()
+        #{
+        #    AifExternalName _serviceExternalName;
+        #    AifService service;
+        #    DictMethod dictMethod;
+        #    AifAction action;
+        #    container actionTokens;
+        #
+        #    if (actionId == '')
+        #    {
+        #        // No action Id available.  Parse the external action for the service data and then find the action.
+        #
+        #        if (externalAction == '')
+        #            throw error("@SYS118925");
+        #
+        #        // Parse the external action. External action = <ServiceNamepace>/<ServiceExternalName>/<OperationName>
+        #        actionTokens = AifUtil::parseExternalAction(externalAction);
+        #
+        #        if (actionTokens == connull())
+        #            throw error(strfmt("@SYS118926", externalAction));
+        #
+        #        [serviceNamespace, _serviceExternalName, operationName] = actionTokens;
+        #
+        #        // Find the service record
+        #        service = AifService::findService(serviceNamespace, _serviceExternalName);
+        #
+        #        if (!service)
+        #        {
+        #            throw error(strfmt("@SYS118927", serviceNamespace, _serviceExternalName));
+        #        }
+        #        else
+        #        {
+        #            // Find the action for the service operation
+        #            action = AifAction::findServiceAction(service.Name, operationName);
+        #
+        #            if (!action)
+        #            {
+        #                throw error(strfmt("@SYS118928", service.Name, operationName));
+        #            }
+        #        }
+        #    }
+        #    else
+        #    {
+        #        // Action Id is available.  Get the service data from the action.
+        #        action = AifAction::find(actionId);
+        #
+        #        if (!action)
+        #        {
+        #            throw error(strfmt("@SYS118929", actionId));
+        #        }
+        #        else
+        #        {
+        #            // Find the service for the action
+        #            service = AifService::find(action.ServiceName);
+        #            if (!service)
+        #            {
+        #                throw error(strfmt("@SYS118930", action.ServiceName));
+        #            }
+        #        }
+        #    }
+        #
+        #    // Verify that the service is enabled
+        #    if ((service.Enabled == NoYes::No) || (service.ErrorState == AifServiceGenerationErrorState::RegistrationError))
+        #    {
+        #        throw error(strfmt("@SYS118931", service.Name));
+        #    }
+        #
+        #    // Verify that the service class exists
+        #    if (classId2Name(service.ClassId) == '')
+        #    {
+        #        // This should never happen since we've already validated the service operation before this
+        #        throw error("@SYS112328");
+        #    }
+        #
+        #    // Action must be a service operation
+        #    if (action.ActionType != AifActionType::ServiceOperation)
+        #    {
+        #        throw error(strfmt("@SYS118932", action.Name));
+        #    }
+        #
+        #    // Verify that the class method exists
+        #    dictMethod = new DictMethod(UtilElementType::ClassInstanceMethod, service.ClassId, action.MethodName);
+        #    if ((dictMethod == null) || !dictMethod.compiledOk())
+        #    {
+        #        throw error(strfmt("@SYS118933", service.ClassId, action.MethodName));
+        #    }
+        #
+        #    // Initialize message fields
+        #    actionId = action.ActionId;
+        #    operationName = action.ExternalAction;
+        #    serviceName = service.Name;
+        #    serviceNamespace = service.Namespace;
+        #
+        #    // Create the operation context
+        #    operationContext = new AifOperationContext(actionId, service.Name, service.ClassId, action.ExternalAction, action.MethodName, sourceEndpointId, destinationEndpointId, direction, this.getPropertyBag());
+        #}
+      ENDSOURCE
+      SOURCE #isDefaultEndpoint
+        #public boolean isDefaultEndpoint()
+        #{
+        #    return ((sourceEndpointId == '') ||  (sourceEndpointId == #DefaultEndpointId));
+        #}
+      ENDSOURCE
+      SOURCE #isDuplicate
+        #public boolean isDuplicate(AifMessage message)
+        #{
+        #    /*
+        #        This method compares the properties of the message
+        #        passed in to the existing message and returns to true if
+        #        they are the same.
+        #    */
+        #
+        #    if(this.actionId() != message.actionId())
+        #        return false;
+        #    if(this.destinationEndpointId() != message.destinationEndpointId())
+        #        return false;
+        #    if(this.direction() != message.direction())
+        #        return false;
+        #    if(this.externalAction() != message.externalAction())
+        #        return false;
+        #    if(this.messageId() != message.messageId())
+        #        return false;
+        #    if(this.sourceEndpointId() != message.sourceEndpointId())
+        #        return false;
+        #    if(this.sourceEndpointUserId() != message.sourceEndpointUserId())
+        #        return false;
+        #
+        #    //If we made it here then all the properties are the same
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #messageId
+        #public AifMessageId messageId ()
+        #{
+        #    return messageId;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new(AifMessageId _messageId, AifWindowsUser _sourceEndpointUserId,
+        #                AifWindowsUser _submittingUserId)
+        #{
+        #    /*
+        #    This method is used to construct a new AifMessage object and populate its read-only fields
+        #    */
+        #
+        #
+        #    //Populate the readonly properties passed in
+        #    messageId = _messageId;
+        #    sourceEndpointUserId = _sourceEndpointUserId;
+        #    submittingUserId = _submittingUserId;
+        #    hasChanged = true; // to make sure message is logged
+        #    hasXmlChanged = false;
+        #    isSerialized = false;
+        #    duplicateRequest = false;
+        #    encoding = #notSet;
+        #    direction = AifMessageDirection::Inbound;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion,#CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #pipelineId
+        #public AifPipelineId pipelineId(AifPipelineId _pipelineId = pipelineId)
+        #{
+        #    if(!prmisdefault(_pipelineId))
+        #    {
+        #        pipelineId = _pipelineId;
+        #        hasChanged = true;
+        #    }
+        #
+        #    return pipelineId;
+        #}
+      ENDSOURCE
+      SOURCE #removeMessagePart
+        #public void removeMessagePart(int partIndex)
+        #{
+        #    this.getMessageParts().removePart(partIndex);
+        #}
+      ENDSOURCE
+      SOURCE #requestMessageId
+        #public AifMessageId requestMessageId(AifMessageId _requestMessageId = requestMessageId)
+        #{
+        #    if(!prmisdefault(_requestMessageId))
+        #    {
+        #        requestMessageId = _requestMessageId;
+        #        hasChanged = true;
+        #    }
+        #    return requestMessageId;
+        #}
+      ENDSOURCE
+      SOURCE #setMessagePart
+        #public void setMessagePart(int partIndex, AifXml partXml)
+        #{
+        #    this.getMessageParts().setPart(partIndex, partXml);
+        #    hasXmlChanged = true;
+        #    isSerialized = false;
+        #}
+      ENDSOURCE
+      SOURCE #setXml
+        #public void setXml(AifDocumentXml _xml)
+        #{
+        #    documentXml = _xml;
+        #    isSerialized = true;
+        #    messageParts = null;   // the part list is not valid anymore.
+        #    hasXmlChanged = true;
+        #}
+      ENDSOURCE
+      SOURCE #sourceEndpointAxUserId
+        #public userId sourceEndpointAxUserId()
+        #{
+        #    return sourceEndpointAxUserId;
+        #}
+      ENDSOURCE
+      SOURCE #SourceEndpointId
+        #public AifEndpointBase sourceEndpointId (AifEndpointBase _sourceEndpointId = sourceEndpointId)
+        #{
+        #    if(!prmisdefault(_sourceEndpointId))
+        #    {
+        #        sourceEndpointId = (_sourceEndpointId == '')? #DefaultEndpointId : _sourceEndpointId;
+        #        hasChanged = true;
+        #    }
+        #
+        #    return sourceEndpointId;
+        #}
+      ENDSOURCE
+      SOURCE #sourceEndpointUserId
+        #public AifWindowsUser sourceEndpointUserId()
+        #{
+        #    return sourceEndpointUserId;
+        #}
+      ENDSOURCE
+      SOURCE #status
+        #public AifMessageStatus status(AifMessageStatus _status = status)
+        #{
+        #    if(!prmisdefault(_status))
+        #    {
+        #        status  = _status;
+        #        hasChanged = true;
+        #    }
+        #
+        #    return status;
+        #}
+      ENDSOURCE
+      SOURCE #submittingAxUserId
+        #public userId submittingAxUserId()
+        #{
+        #    return submittingAxUserId;
+        #}
+      ENDSOURCE
+      SOURCE #submittingUserId
+        #public AifWindowsUser submittingUserId()
+        #{
+        #    return submittingUserId;
+        #}
+      ENDSOURCE
+      SOURCE #transportName
+        #public AifTransportBase transportName(AifTransportBase _transportName = transportName)
+        #{
+        #    if(!prmisdefault(_transportName))
+        #    {
+        #        transportName = _transportName;
+        #        hasChanged = true;
+        #    }
+        #    return transportName;
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container packedClass)
+        #{
+        #    int version     = RunBase::getVersion(packedClass);
+        #
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version,#CurrentList] = packedClass;
+        #            return true;
+        #        default :
+        #            return false;
+        #    }
+        #
+        #    return false;
+        #}
+      ENDSOURCE
+      SOURCE #create
+        #public static AifMessage create(container _message)
+        #{
+        #    guid    blankMessageId;
+        #    AifMessage message = new AifMessage(blankMessageId,'','');
+        #    ;
+        #    message.unpack(_message);
+        #    return message;
+        #}
+      ENDSOURCE
+      SOURCE #deserialize
+        #public static AifMessage deserialize(AifMessageXml messageXml, AifWindowsUser submittingUserId, AifMessageEncoding encoding = '')
+        #{
+        #    /*
+        #        Instantiates a new message object, initializing it with the Message XML passed in.
+        #
+        #        The schema is manually validated as it is read.  Therefore the sequence
+        #        of the elements must match what is expected.
+        #    */
+        #    AifMessage              message;
+        #    AifMessageId            messageId;
+        #    XmlTextReader           xmlTextReader;
+        #    str                     elementString;
+        #    AifDocumentXmlNamespace documentNamespace;
+        #    str                     sourceEndpoint, destinationEndpoint, sourceEndpointUserId, externalAction, conversationId, requestMessageId;
+        #    UserInfo    userInfo;
+        #
+        #    #WPAWorkcardMacro
+        #    #WPAStockTransferMacro
+        #    #define.delimiter('\\')
+        #
+        #    // Get the namespace of AifMessage
+        #    documentNamespace = #MessageNamespace;
+        #
+        #    xmlTextReader = XmlTextReader::newXml(messageXml);
+        #
+        #    //Turn off Whitespace handling so we avoid doing seperate reads just for whitespace
+        #    xmlTextReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #
+        #    try
+        #    {
+        #        //Position the reader on the first Element - Envelope
+        #         xmlTextReader.moveToContent();
+        #
+        #        // WPA integration ->
+        #        if(xmlTextReader.localName() == #WPA_TO_ERP)
+        #        {
+        #            select firstonly userInfo where userInfo.id == curuserid();
+        #            // Create the message
+        #            message = new AifMessage(newguid(), userInfo.networkDomain + #delimiter + userInfo.networkAlias, userInfo.networkDomain + #delimiter + userInfo.networkAlias);
+        #            while (!xmlTextReader.eof())
+        #            {
+        #                xmlTextReader.read();
+        #                if (xmlTextReader.localName() == #StockTransfer)
+        #                {
+        #                    message.sourceEndpointId(#StockTransferEndpointId);
+        #                    message.destinationEndpointId(curext());
+        #                    message.externalAction(#StockTransferAction);
+        #                    break;
+        #                }
+        #                else if (xmlTextReader.localName() == #Workcard)
+        #                {
+        #                    message.sourceEndpointId(#WorkcardEndpointId);
+        #                    message.destinationEndpointId(curext());
+        #                    message.externalAction(#WorkcardAction);
+        #                    break;
+        #                }
+        #            }
+        #
+        #            message.conversationId('1');
+        #
+        #            //Read the Body
+        #            message.setXml(messageXml);
+        #            message.encoding(encoding);
+        #        }
+        #        // WPA integration <-
+        #        else
+        #        {
+        #            // First node must be the root Envelope element
+        #            xmlTextReader.readStartElement3(#MessageEnvelope,documentNamespace);
+        #
+        #            //The next node should be the Header.
+        #            xmlTextReader.readStartElement3(#MessageHeader, documentNamespace);
+        #
+        #            //Read the MessageId (optional)
+        #            elementString = AifMessage::readHeaderField(xmlTextReader, #MessageId, false, '');
+        #            // Message Id does not need to be populated for read requests.  But if it is then assign.
+        #            if(elementString)
+        #                messageId = AifMessage::validateGuid(elementString);
+        #            else
+        #                messageId = newguid();  // Create new message Id
+        #
+        #            //Read the Source Endpoint User (optional)
+        #            sourceEndpointUserId = AifMessage::readHeaderField(xmlTextReader, #MessageSourceUser, false, submittingUserId);
+        #            //Read the SourceEndpoint (optional)
+        #            sourceEndpoint = AifMessage::readHeaderField(xmlTextReader, #MessageSourceEndpoint, false, '');
+        #            //Read the DestEndpoint (optional)
+        #            destinationEndpoint = AifMessage::readHeaderField(xmlTextReader, #MessageDestEndpoint, false, '');
+        #            //Read the Action (required)
+        #            externalAction = AifMessage::readHeaderField(xmlTextReader, #MessageAction, true, '');
+        #            // Read the ConversationId (optional)
+        #            conversationId = AifMessage::readHeaderField(xmlTextReader, #MessageConversationId, false, '');
+        #            // Read the RequestMessageId (optional)
+        #            requestMessageId = AifMessage::readHeaderField(xmlTextReader, #MessageRequestId, false, '');
+        #
+        #            // Now that we have read everything, lets validate the lengths.
+        #            AifMessage::validateHeader(sourceEndpoint, destinationEndpoint, sourceEndpointUserId, externalAction, conversationId);
+        #
+        #            //Only needed incase WhitespaceHandling is on
+        #            xmlTextReader.moveToContent();
+        #
+        #            // End of Header
+        #            xmlTextReader.readEndElement();
+        #
+        #            //Only needed incase WhitespaceHandling is on
+        #            xmlTextReader.moveToContent();
+        #
+        #            //We should now be on the Body element
+        #            if ((xmlTextReader.namespaceURI() != documentNamespace) && (xmlTextReader.localName() != #MessageBody))
+        #            {
+        #                //Invalid Message schema.
+        #                throw error(strfmt('@SYS89762'));
+        #            }
+        #
+        #            // Create the message
+        #            message = new AifMessage(messageId, sourceEndpointUserId, submittingUserId);
+        #            message.sourceEndpointId(sourceEndpoint);
+        #            message.destinationEndpointId(destinationEndpoint);
+        #            message.externalAction(externalAction);
+        #            message.conversationId(conversationId);
+        #            //The RequestId does not need to be populated. But if it is, make sure its a valid Guid
+        #            if (requestMessageId)
+        #                message.requestMessageId(AifMessage::validateGuid(requestMessageId));
+        #
+        #            //Read the Body
+        #            //If xmlTextReader.namespaces=true,  the xmlTextReader will append
+        #            //the message's namespace to the root element returned by the following call
+        #            //This is fine so long as they are both using the same namespace.
+        #            message.setXml(xmlTextReader.readInnerXml());
+        #            message.encoding(encoding);
+        #
+        #            // End of Envelope
+        #            xmlTextReader.readEndElement();
+        #        }
+        #
+        #        xmlTextReader.close();
+        #
+        #        return message;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        //Invalid Message schema.
+        #        throw error(strfmt('@SYS89762'));
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #getEdtLength
+        #static private int getEdtLength( int _typeId)
+        #{
+        #    DictType    dictType;
+        #    ;
+        #    dictType = new DictType(_typeId);
+        #
+        #    if(!dictType)
+        #        //"The data type is unknown."
+        #        throw error(strfmt('@SYS73449'));
+        #
+        #    return dictType.stringLen();
+        #
+        #}
+      ENDSOURCE
+      SOURCE #readHeaderField
+        #static private str readHeaderField(XmlTextReader xmlReader, str fieldName, boolean isRequired, str defaultValue)
+        #{
+        #    str fieldValue;
+        #
+        ##Aif;
+        #
+        #    xmlReader.moveToContent();
+        #
+        #    if (isRequired || ((xmlReader.namespaceURI() == #MessageNamespace) && (xmlReader.localName() == fieldName)))
+        #        fieldValue = xmlReader.readElementString3(fieldName, #MessageNamespace);
+        #
+        #    return fieldValue? fieldValue : defaultValue;
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public static AifMessageXml serialize(AifMessage message)
+        #{
+        #    /*
+        #        Generates a Message XML string based on the AifMessage object passed in.
+        #    */
+        #
+        #    AifMessageXml           messageXml;
+        #    XmlTextWriter           xmlTextWriter;
+        #    XmlTextReader           xmlTextReader;
+        #    AifDocumentXmlNamespace documentNamespace;
+        #    AifXmlEncoding encoding;
+        #    ;
+        #
+        #    // Swap UTF-16BE for UTF-16 if applicable.
+        #    encoding = AifUtil::updateEncodingAttribute(message.encoding());
+        #
+        #    // Get the namespace of AifMessage
+        #    documentNamespace = #MessageNamespace;
+        #
+        #    xmlTextWriter = XmlTextWriter::newXml();
+        #    //Don't include indentation - this should help reduce the size of the file
+        #    xmlTextWriter.formatting(XmlFormatting::None);
+        #
+        #    // Start the XMl
+        #    AifUtil::writeXmlDeclaration(xmlTextWriter, encoding);
+        #        //Write the Envelope element
+        #    // WPA import ->
+        #    if(AifEndpoint::find(message.destinationEndpointId()).SimpleXml == NoYes::Yes)
+        #    {
+        #        if(message.getXml())
+        #        {
+        #            try
+        #            {
+        #                xmlTextReader = XmlTextReader::newXml(message.getXml());
+        #                xmlTextReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #                //Move past the declaration
+        #                xmlTextReader.moveToContent();
+        #                xmlTextWriter.writeRaw(xmlTextReader.readOuterXml());
+        #                xmlTextReader.close();
+        #            }
+        #            catch(Exception::Error)
+        #            {
+        #                //Unable to serialize the contents of the Xml property.
+        #                throw error(strfmt('@SYS89763'));
+        #            }
+        #        }
+        #    }
+        #    else
+        #    // WPA import <-
+        #    {
+        #        xmlTextWriter.writeStartElement2(#MessageEnvelope, documentNamespace);
+        #            //Write the Header element
+        #            xmlTextWriter.writeStartElement(#MessageHeader);
+        #                xmlTextWriter.writeElementString(#MessageId, guid2str(message.messageId()));
+        #                // The source endpoint user is not sent on outbound messages for security reasons
+        #                if (message.direction() != AifMessageDirection::Outbound)
+        #                    xmlTextWriter.writeElementString(#MessageSourceUser, message.sourceEndpointUserId());
+        #                xmlTextWriter.writeElementString(#MessageSourceEndpoint, message.sourceEndpointId());
+        #                xmlTextWriter.writeElementString(#MessageDestEndpoint, message.destinationEndpointId());
+        #                xmlTextWriter.writeElementString(#MessageAction, message.externalAction());
+        #                if(message.requestMessageId())
+        #                    xmlTextWriter.writeElementString(#MessageRequestId, guid2str(message.requestMessageId()));
+        #            //End the Header
+        #            xmlTextWriter.writeEndElement();
+        #            //Write the Body element
+        #            xmlTextWriter.writeStartElement(#MessageBody);
+        #                //The DocumentXml may have an XML Declaration that needs to be removed
+        #                //before writing it into the messageXml
+        #                if(message.getXml())
+        #                {
+        #                    try
+        #                    {
+        #                        xmlTextReader = XmlTextReader::newXml(message.getXml());
+        #                        xmlTextReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #                        //Move past the declaration
+        #                        xmlTextReader.moveToContent();
+        #                        xmlTextWriter.writeRaw(xmlTextReader.readOuterXml());
+        #                        xmlTextReader.close();
+        #                    }
+        #                    catch(Exception::Error)
+        #                    {
+        #                        //Unable to serialize the contents of the Xml property.
+        #                        throw error(strfmt('@SYS89763'));
+        #                    }
+        #                }
+        #            //End the Body
+        #            xmlTextWriter.writeEndElement();
+        #        //End the Envelope
+        #        xmlTextWriter.writeEndElement();
+        #    }
+        #
+        #    messageXml = xmlTextWriter.writeToString();
+        #    xmlTextWriter.close();
+        #
+        #    return messageXml;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #validateGuid
+        #private static guid validateGuid(str value)
+        #{
+        #    /*
+        #        This method checks to see if a given string value is valid
+        #        for the GUID Data Type.
+        #    */
+        #
+        #    guid        id;
+        #    ;
+        #
+        #    id = str2guid(value);
+        #    if(!id)
+        #        //"The string '%1' is not a valid GUID."
+        #        throw error(strfmt('@SYS92750', value));
+        #
+        #    return id;
+        #}
+      ENDSOURCE
+      SOURCE #validateHeader
+        #static private void validateHeader(str sourceEndpointId, str destinationEndpointId, str sourceUserId, str externalAction, str conversationId)
+        #{
+        #    int sourceEndpointLen, destinationEndpointLen, sourceUserIdLen, actionLen, conversationIdLen;
+        #    TextBuffer                  errorBuff;
+        #    AifRuntimeCacheEntryKey     cacheKey;
+        #    AifRuntimeCacheEntryValue   cacheValue;
+        #
+        #    #File
+        #    #localmacro.ValidateEDTCache
+        #        sourceUserIdLen,
+        #        sourceEndpointLen,
+        #        destinationEndpointLen,
+        #        actionLen,
+        #        conversationIdLen
+        #    #endmacro
+        #
+        #    ;
+        #
+        #    errorBuff = new TextBuffer();
+        #    cacheKey = 'MessageHeaderEDTLengthKey';
+        #
+        #    cacheValue = AifRuntimeCacheManager::retrieveEntry(AifRuntimeCacheEntryType::AifMessageHeaderEDTLength, cacheKey);
+        #    if(conlen(cacheValue) == 0)
+        #    {
+        #        // Get the lengths and then create the container
+        #        sourceEndpointLen = AifMessage::getEdtLength(extendedtypenum(AifEndpointBase));
+        #        destinationEndpointLen = sourceEndpointLen;
+        #        sourceUserIdLen = AifMessage::getEdtLength(extendedtypenum(AifWindowsUser));
+        #        actionLen = AifMessage::getEdtLength(extendedtypenum(AifActionBase));
+        #        conversationIdLen = AifMessage::getEdtLength(extendedtypenum(AifConversationId));
+        #
+        #        cacheValue = [#ValidateEDTCache];
+        #        AifRuntimeCacheManager::cacheEntry(AifRuntimeCacheEntryType::AifMessageHeaderEDTLength, cacheKey, cacheValue);
+        #    }
+        #    else
+        #    {
+        #        [#ValidateEDTCache] = cacheValue;
+        #    }
+        #
+        #    // Validate header details.
+        #    if (strlen(sourceUserId) > sourceUserIdLen)
+        #    {
+        #        errorBuff.appendText(strfmt("@SYS119300", #MessageSourceUser));
+        #        errorBuff.appendText(#delimiterEnter);
+        #    }
+        #
+        #    if( strlen(sourceEndpointId) > sourceEndpointLen)
+        #    {
+        #        errorBuff.appendText(strfmt("@SYS119300", #MessageSourceEndpoint));
+        #        errorBuff.appendText(#delimiterEnter);
+        #    }
+        #
+        #    if( strlen(destinationEndpointId) > destinationEndpointLen)
+        #    {
+        #        errorBuff.appendText(strfmt("@SYS119300", #MessageDestEndpoint));
+        #        errorBuff.appendText(#delimiterEnter);
+        #    }
+        #
+        #    if( strlen(externalAction) > actionLen)
+        #    {
+        #        errorBuff.appendText(strfmt("@SYS119300", #MessageAction));
+        #        errorBuff.appendText(#delimiterEnter);
+        #    }
+        #
+        #    if( strlen(conversationId) > conversationIdLen)
+        #    {
+        #        errorBuff.appendText(strfmt("@SYS119300", #MessageConversationId));
+        #        errorBuff.appendText(#delimiterEnter);
+        #    }
+        #
+        #    if(errorBuff.size() > 0)
+        #        throw error(errorBuff.getText());
+        #}
+        #
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,251 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAEmpl unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAEmpl
+    PROPERTIES
+      Name                #WPAEmpl
+      Extends             #AifDocument
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAEmpl extends AifDocument
+        #{
+        #    #define.SenderId('SenderId')
+        #    #define.EmplTable('EmplTable')
+        #    #define.DocPurpose('DocPurpose')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createEmplTable
+        #public AfStronglyTypedDataContainerList createEmplTable()
+        #{
+        #    return this.get_NewList(#EmplTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsDocPurpose
+        #public boolean existsDocPurpose()
+        #{
+        #    return this.exists(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #existsEmplTable
+        #public boolean existsEmplTable()
+        #{
+        #    return this.exists(#EmplTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsSenderId
+        #public boolean existsSenderId()
+        #{
+        #    return this.exists(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#Empl);
+        #}
+      ENDSOURCE
+      SOURCE #parmDocPurpose
+        #public XMLDocPurpose parmDocPurpose(XMLDocPurpose _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DocPurpose, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #parmEmplTable
+        #public AfStronglyTypedDataContainerList parmEmplTable(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#EmplTable, _value);
+        #    }
+        #
+        #    return this.get_List(#EmplTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmSenderId
+        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SenderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public AifXml serialize()
+        #{
+        #    XmlDocument                 doc = XmlDocument::newBlank();
+        #    XmlElement                  root;
+        #    XmlElement                  node;
+        #
+        #    XMLWriterSettings           xmlWriterSettings = new XMLwriterSettings();
+        #    XMLWriter                   localXmlWriter;
+        #
+        #    QueryRun                    queryRun;
+        #
+        #    EmplTable                   emplTable;
+        #    DirPartyTable               dirPartyTable;
+        #    DirPartyECommunicationRelationship  dirPartyECommunicationRelationshipEmail;
+        #    DirPartyECommunicationRelationship  dirPartyECommunicationRelationshipPhone;
+        #    DirECommunicationAddress    dirECommunicationAddressEmail;
+        #    DirECommunicationAddress    dirECommunicationAddressPhone;
+        #    UtcDateTime                 currentDateTime = datetimeutil::getSystemDateTime();
+        #
+        #    #define.Parameters      ('Parameters')
+        #    #define.User            ('User')
+        #    #define.AreaId          ('AreaId')
+        #    #define.Location        ('Location')
+        #    #define.Name            ('FullName')
+        #    #define.EmploymentCode  ('EmploymentCode')
+        #    #define.EmploymentType  ('EmploymentType')
+        #    #define.Password        ('Password')
+        #    #define.EmailAddress    ('EmailAddress')
+        #    #define.PhoneNumber     ('PhoneNumber')
+        #    #define.Code            ('Code')
+        #    #define.LocationCode    ('LocationCode')
+        #    #define.LocationName    ('LocationName')
+        #    #define.CreateOrder     ('CreateOrder')
+        #    #define.IsActive        ('IsActive')
+        #    #define.IsMobileUser    ('IsMobileUser')
+        #    ;
+        #    root = doc.appendChild(doc.createElement(#Parameters));
+        #
+        #    xmlWriterSettings.indent(true);
+        #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
+        #
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #
+        #    while(queryRun.next())
+        #    {
+        #        emplTable = queryRun.get(tablenum(EmplTable));
+        #        if (emplTable.EmplId != emplTable.DispatchTeamId)
+        #        {
+        #            dirPartyTable = queryRun.get(tablenum(DirPartyTable));
+        #
+        #            select firstonly dirECommunicationAddressEmail
+        #                where dirECommunicationAddressEmail.ECommunicationTypeId            == WPAParameters::find().TypeEmail
+        #                exists join dirPartyECommunicationRelationshipEmail
+        #                    where dirPartyECommunicationRelationshipEmail.PartyId           == dirPartyTable.PartyId                &&
+        #                          dirPartyECommunicationRelationshipEmail.ValuesRecId       == dirECommunicationAddressEmail.RecId  &&
+        #                          dirPartyECommunicationRelationshipEmail.ValidFromDateTime < currentDateTime                       &&
+        #                          dirPartyECommunicationRelationshipEmail.ValidToDateTime   > currentDateTime;
+        #
+        #            select firstonly dirECommunicationAddressPhone
+        #                where dirECommunicationAddressPhone.ECommunicationTypeId            == WPAParameters::find().PhoneType
+        #                exists join dirPartyECommunicationRelationshipPhone
+        #                    where dirPartyECommunicationRelationshipPhone.PartyId           == dirPartyTable.PartyId                &&
+        #                          dirPartyECommunicationRelationshipPhone.ValuesRecId       == dirECommunicationAddressPhone.RecId  &&
+        #                          dirPartyECommunicationRelationshipPhone.ValidFromDateTime < currentDateTime                       &&
+        #                          dirPartyECommunicationRelationshipPhone.ValidToDateTime   > currentDateTime;
+        #
+        #            if (WPAEmpl::validateData(emplTable, dirECommunicationAddressEmail, dirECommunicationAddressPhone))
+        #            {
+        #                WPAIntegrationLog::updateLog(emplTable.TableId, emplTable.RecId);
+        #                node = root.appendChild(doc.createElement(#User));
+        #                this.wpa_addNotEmpty(node, doc, #Name,           dirPartyTable.Name);
+        #                this.wpa_addNotEmpty(node, doc, #EmploymentCode, emplTable.EmplId);
+        #                this.wpa_addNotEmpty(node, doc, #AreaId,       emplTable.DispatchTeamId ? emplTable.DispatchTeamId : "Alle");
+        #                this.wpa_addNotEmpty(node, doc, #EmploymentType, '');
+        #                this.wpa_addNotEmpty(node, doc, #Password,       '1234');
+        #                this.wpa_addNotEmpty(node, doc, #EmailAddress, dirECommunicationAddressEmail.Email);
+        #                this.wpa_addNotEmpty(node, doc, #PhoneNumber, dirECommunicationAddressPhone.Phone);
+        #                this.wpa_addNotEmpty(node, doc, #IsActive, 'True');
+        #                if (WPAParameters::find().DefaultMobileUser == NoYes::Yes)
+        #                {
+        #                    this.wpa_addNotEmpty(node, doc, #IsMobileUser, 'True');
+        #                }
+        #                if(emplTable.DispatchTeamId)
+        #                {
+        #                    node = root.appendChild(doc.createElement(#AreaId));
+        #                    this.wpa_addNotEmpty(node, doc, #Code, emplTable.DispatchTeamId);
+        #                    this.wpa_addNotEmpty(node, doc, #Name, SMADispatchTeamTable::find(emplTable.DispatchTeamId).Description);
+        #                }
+        #    //        node = root.appendChild(doc.createElement(#Location));
+        #    //        this.wpa_addNotEmpty(node, doc, #LocationCode, '');
+        #    //        this.wpa_addNotEmpty(node, doc, #LocationName, '');
+        #            }
+        #        }
+        #    }
+        #
+        #    doc.writeTo(localXmlWriter);
+        #    localXmlWriter.flush();
+        #
+        #    return localXmlWriter.writeToString();
+        #}
+      ENDSOURCE
+      SOURCE #validateData
+        #public static boolean validateData(EmplTable                _emplTable,
+        #                                   DirECommunicationAddress _dirECommunicationAddressEmail = null,
+        #                                   DirECommunicationAddress _dirECommunicationAddressPhone = null)
+        #{
+        #    Email   email;
+        #    boolean ret = true;
+        #    ;
+        #    if (WPAParameters::find().ValidateEmail)
+        #        {
+        #        if (_dirECommunicationAddressEmail)
+        #        {
+        #            email = _dirECommunicationAddressEmail.Email;
+        #        }
+        #        else
+        #        {
+        #            email = _emplTable.email();
+        #        }
+        #
+        #        if (!WPAEmpl::validateEmail(email))
+        #        {
+        #            ret = checkfailed(strfmt("Bruger %1: Email %2 er ikke valid", _emplTable.EmplId, _dirECommunicationAddressEmail.Email));
+        #        }
+        #    }
+        #    if (_emplTable.WPAIsDepartment)
+        #    {
+        #        WPAIntegrationLog::updateLog(_emplTable.TableId, _emplTable.RecId);
+        #        ret = false;
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #validateEmail
+        #public static server boolean validateEmail(Email    _email)
+        #{
+        #    Str                                     matchEmailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+        #    System.Text.RegularExpressions.Match    myMatch;
+        #    boolean                                 ret;
+        #    ;
+        #
+        #    new InterOppermission(InteropKind::ClrInterop).assert();
+        #
+        #    try
+        #    {
+        #        myMatch = System.Text.RegularExpressions.Regex::Match(_eMail, matchEmailPattern);
+        #        ret     = myMatch.get_Success();
+        #    }
+        #    catch (Exception::Error)
+        #    {
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,25 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: GenerateXSDSchema_AxdWPAStockTransfer unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #GenerateXSDSchema_AxdWPAStockTransfer
+    #static void GenerateXSDSchema_AxdWPAStockTransfer(Args _args)
+    #{
+    #    AxdWPAStockTransfer    AxdWPAStockTransfer;
+    #    XML                 xml;
+    #    XMLDocument         xmlDocument;
+    #    ;
+    #    AxdWPAStockTransfer = AxdBase::newClassId(classnum(AxdWPAStockTransfer));
+    #    xml = AxdWPAStockTransfer.getSchema();
+    #    xmlDocument = XMLDocument::newXML(xml);
+    #    xmlDocument.save("c:\\XSDSchema_AxdWPAStockTransfer.xml");
+    #}
+    #
+  ENDSOURCE
+
+***Element: END

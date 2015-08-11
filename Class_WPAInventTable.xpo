@@ -1,0 +1,240 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAInventTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAInventTable
+    PROPERTIES
+      Name                #WPAInventTable
+      Extends             #AifDocument
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAInventTable extends AifDocument
+        #{
+        #    #define.SenderId('SenderId')
+        #    #define.InventTable('InventTable')
+        #    #define.DocPurpose('DocPurpose')
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createInventTable
+        #public AfStronglyTypedDataContainerList createInventTable()
+        #{
+        #    return this.get_NewList(#InventTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsDocPurpose
+        #public boolean existsDocPurpose()
+        #{
+        #    return this.exists(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #existsInventTable
+        #public boolean existsInventTable()
+        #{
+        #    return this.exists(#InventTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsSenderId
+        #public boolean existsSenderId()
+        #{
+        #    return this.exists(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAInventTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmDocPurpose
+        #public XMLDocPurpose parmDocPurpose(XMLDocPurpose _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DocPurpose, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #parmInventTable
+        #public AfStronglyTypedDataContainerList parmInventTable(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#InventTable, _value);
+        #    }
+        #
+        #    return this.get_List(#InventTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmSenderId
+        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SenderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public AifXml serialize()
+        #{
+        #    XmlDocument             doc = XmlDocument::newBlank();
+        #    XmlElement              root;
+        #    XmlElement              node;
+        #
+        #    XMLWriterSettings       xmlWriterSettings = new XMLwriterSettings();
+        #    XMLWriter               localXmlWriter;
+        #
+        #    QueryRun                queryRun;
+        #
+        #    InventTable             inventTable;
+        #    InventTableModule       inventTableModuleInvent;
+        #    InventTableModule       inventTableModuleSales;
+        #    InventItemBarCode       inventItemBarCode;
+        #    InventTxt               inventTxt;
+        #    InventDimCombination    inventDimCombination;
+        #    ProjLineProperty        projLineProperty;
+        #
+        #    str                     itemId;
+        #
+        #    #define.ERP_STOCK           ('ERP_STOCK')
+        #    #define.Item                ('Item')
+        #    #define.ItemId              ('ItemId')
+        #    #define.ItemEanNumber       ('ItemEanNumber')
+        #    #define.ItemDescription1    ('ItemDescription1')
+        #    #define.ItemDescription2    ('ItemDescription2')
+        #    #define.ItemUnit            ('ItemUnit')
+        #    #define.ItemPurchasePrice   ('ItemPurchasePrice')
+        #    #define.ItemUnitPrice       ('ItemUnitPrice')
+        #    #define.ItemTypeId          ('ItemTypeId')
+        #
+        #
+        #    void exportItem(str _itemId)
+        #    {
+        #        node = root.appendChild(doc.createElement(#Item));
+        #
+        #        this.wpa_addNotEmpty(node, doc, #ItemId             , _itemId);
+        #        this.wpa_addNotEmpty(node, doc, #ItemEanNumber      , inventItemBarCode.itemBarCode);
+        #        this.wpa_addNotEmpty(node, doc, #ItemDescription1   , strrem(InventTable.ItemName, ""));
+        #        this.wpa_addNotEmpty(node, doc, #ItemDescription2   , inventTxt.Txt);
+        #        this.wpa_addNotEmpty(node, doc, #ItemUnit           , inventTableModuleSales.UnitId);
+        #        if(WPAParameters::find().ItemCostPrice)
+        #            this.wpa_addNotEmpty(node, doc, #ItemPurchasePrice, num2str(inventTableModuleInvent.Price, 1, 2, 2, 0));
+        #        else
+        #            node.appendChild(doc.createElement(#ItemPurchasePrice)).innerText('0,00');
+        #        if(WPAParameters::find().ItemSalesPrice)
+        #            this.wpa_addNotEmpty(node, doc, #ItemUnitPrice, num2str(inventTableModuleSales.Price, 1, 2, 2, 0));
+        #        else
+        #            node.appendChild(doc.createElement(#ItemUnitPrice)) .innerText('0,00');
+        #        this.wpa_addNotEmpty(node, doc, #ItemTypeId , inventTable.ItemType == ItemType::Service ? "4" : "0");
+        #    }
+        #    ;
+        #
+        #    root = doc.appendChild(doc.createElement(#ERP_STOCK));
+        #
+        #    xmlWriterSettings.indent(true);
+        #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
+        #
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #
+        #    while(queryRun.next())
+        #    {
+        #        inventTable = queryRun.get(tablenum(InventTable));
+        #        inventTableModuleInvent = queryRun.get(tablenum(InventTableModule), 1);
+        #        inventTableModuleSales = queryRun.get(tablenum(InventTableModule), 2);
+        #        inventItemBarCode = queryRun.get(tablenum(InventItemBarCode));
+        #        inventTxt = queryRun.get(tablenum(InventTxt));
+        #
+        #        WPAIntegrationLog::updateLog(inventTable.TableId, inventTable.RecId);
+        #
+        #        if(WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
+        #            itemId = WPAParameters::find().ItemPrefix + inventTable.ItemId;
+        #        else
+        #            itemId = inventTable.ItemId;
+        #
+        #        select count(RecId) from inventDimCombination
+        #            where inventDimCombination.ItemId == inventTable.ItemId;
+        #
+        #        if(inventDimCombination.RecId)
+        #        {
+        #            if (WPAParameters::find().ItemWithoutDim)
+        #            {
+        #                exportItem(itemId);
+        #            }
+        #            while select ConfigId, InventSizeId, InventColorId from inventDimCombination
+        #                where inventDimCombination.ItemId == inventTable.ItemId
+        #            {
+        #                if(WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
+        #                    itemId = WPAParameters::find().ItemPrefix + inventTable.ItemId;
+        #                else
+        #                    itemId = inventTable.ItemId;
+        #
+        #                if(inventDimCombination.ConfigId)
+        #                    itemId += WPAParameters::find().Separator
+        #                            + inventDimCombination.ConfigId;
+        #                if(inventDimCombination.InventSizeId)
+        #                    itemId += WPAParameters::find().Separator
+        #                            + inventDimCombination.InventSizeId;
+        #                if(inventDimCombination.InventColorId)
+        #                    itemId += WPAParameters::find().Separator
+        #                            + inventDimCombination.InventColorId;
+        #
+        #                if (WPAParameters::find().LinePropertyItem)
+        #                {
+        #                    while select projLineProperty
+        #                    {
+        #                        exportItem(itemId + WPAParameters::find().Separator + projLineProperty.LinePropertyId);
+        #
+        #                    }
+        #                }
+        #                else
+        #                {
+        #                    exportItem(itemId);
+        #                }
+        #            }
+        #        }
+        #        else
+        #        {
+        #            if(WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
+        #                itemId = WPAParameters::find().ItemPrefix + inventTable.ItemId;
+        #            else
+        #                itemId = inventTable.ItemId;
+        #
+        #            if (WPAParameters::find().LinePropertyItem)
+        #            {
+        #                while select projLineProperty
+        #                {
+        #                    exportItem(itemId + WPAParameters::find().Separator + projLineProperty.LinePropertyId);
+        #                }
+        #            }
+        #            else
+        #            {
+        #                exportItem(itemId);
+        #            }
+        #
+        #        }
+        #    }
+        #
+        #    doc.writeTo(localXmlWriter);
+        #    localXmlWriter.flush();
+        #
+        #    return localXmlWriter.writeToString();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

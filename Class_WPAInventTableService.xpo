@@ -1,0 +1,50 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAInventTableService unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAInventTableService
+    PROPERTIES
+      Name                #WPAInventTableService
+      Extends             #AifDocumentService
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAInventTableService extends AifDocumentService
+        #{
+        #}
+        #
+      ENDSOURCE
+      SOURCE #find
+        #public WPAInventTable find(AifQueryCriteria _queryCriteria)
+        #{
+        #    WPAInventTable wPAInventTable = new WPAInventTable();
+        #    ;
+        #    this.findList(_queryCriteria, wPAInventTable);
+        #    return wPAInventTable;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #protected void new()
+        #{
+        #    ;
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAInventTableService construct()
+        #{
+        #    return new WPAInventTableService();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,16 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAWorkcardDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAWorkcardDCT
+    ##define.WPAWorkcard('WPAWorkcard')
+    ##define.WPAWorkcard_WPAWorkcardTable('WPAWorkcard.WPAWorkcardTable')
+    ##define.WPAWorkcard_WPAWorkcardLine_1('WPAWorkcard.WPAWorkcardLine_1')
+  ENDSOURCE
+
+***Element: END

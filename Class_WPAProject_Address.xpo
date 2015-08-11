@@ -1,0 +1,215 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProject_Address unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProject_Address
+    PROPERTIES
+      Name                #WPAProject_Address
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProject_Address extends AfStronglyTypedDataContainer
+        #{
+        #    #define.ZipCode('ZipCode')
+        #    #define.type('type')
+        #    #define.Street('Street')
+        #    #define.State('State')
+        #    #define.RecId('RecId')
+        #    #define.Name('Name')
+        #    #define.County('County')
+        #    #define.CountryRegionId('CountryRegionId')
+        #    #define.City('City')
+        #    #define.Address('Address')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsAddress
+        #public boolean existsAddress()
+        #{
+        #    return this.exists(#Address);
+        #}
+      ENDSOURCE
+      SOURCE #existsCity
+        #public boolean existsCity()
+        #{
+        #    return this.exists(#City);
+        #}
+      ENDSOURCE
+      SOURCE #existsCountryRegionId
+        #public boolean existsCountryRegionId()
+        #{
+        #    return this.exists(#CountryRegionId);
+        #}
+      ENDSOURCE
+      SOURCE #existsCounty
+        #public boolean existsCounty()
+        #{
+        #    return this.exists(#County);
+        #}
+      ENDSOURCE
+      SOURCE #existsName
+        #public boolean existsName()
+        #{
+        #    return this.exists(#Name);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsState
+        #public boolean existsState()
+        #{
+        #    return this.exists(#State);
+        #}
+      ENDSOURCE
+      SOURCE #existsStreet
+        #public boolean existsStreet()
+        #{
+        #    return this.exists(#Street);
+        #}
+      ENDSOURCE
+      SOURCE #existstype
+        #public boolean existstype()
+        #{
+        #    return this.exists(#type);
+        #}
+      ENDSOURCE
+      SOURCE #existsZipCode
+        #public boolean existsZipCode()
+        #{
+        #    return this.exists(#ZipCode);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAProject_Address);
+        #}
+      ENDSOURCE
+      SOURCE #parmAddress
+        #public Addressing parmAddress(Addressing _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Address, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Address);
+        #}
+      ENDSOURCE
+      SOURCE #parmCity
+        #public AddressCity parmCity(AddressCity _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#City, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#City);
+        #}
+      ENDSOURCE
+      SOURCE #parmCountryRegionId
+        #public str parmCountryRegionId(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CountryRegionId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CountryRegionId);
+        #}
+      ENDSOURCE
+      SOURCE #parmCounty
+        #public str parmCounty(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#County, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#County);
+        #}
+      ENDSOURCE
+      SOURCE #parmName
+        #public Name parmName(Name _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Name, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Name);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmState
+        #public str parmState(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#State, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#State);
+        #}
+      ENDSOURCE
+      SOURCE #parmStreet
+        #public AddressStreet parmStreet(AddressStreet _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Street, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Street);
+        #}
+      ENDSOURCE
+      SOURCE #parmtype
+        #public AddressType parmtype(AddressType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#type, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#type);
+        #}
+      ENDSOURCE
+      SOURCE #parmZipCode
+        #public str parmZipCode(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ZipCode, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ZipCode);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

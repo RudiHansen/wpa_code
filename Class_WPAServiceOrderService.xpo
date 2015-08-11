@@ -1,0 +1,86 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAServiceOrderService unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAServiceOrderService
+    PROPERTIES
+      Name                #WPAServiceOrderService
+      Extends             #AifDocumentService
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAServiceOrderService extends AifDocumentService
+        #{
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #create
+        #
+        #public AifEntityKeyList create(WPAServiceOrder _wPAServiceOrder)
+        #{
+        #    return this.createList(_wPAServiceOrder);
+        #}
+      ENDSOURCE
+      SOURCE #delete
+        #
+        #public void delete(AifEntityKeyList _entityKeyList)
+        #{
+        #    WPAServiceOrder wPAServiceOrder = new WPAServiceOrder();
+        #    this.deleteList(_entityKeyList, wPAServiceOrder);
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #public WPAServiceOrder find(AifQueryCriteria _queryCriteria)
+        #{
+        #    WPAServiceOrder wPAServiceOrder = new WPAServiceOrder();
+        #    this.findList(_queryCriteria, wPAServiceOrder);
+        #    return wPAServiceOrder;
+        #}
+      ENDSOURCE
+      SOURCE #findKeys
+        #public AifEntityKeyList findKeys(AifQueryCriteria _queryCriteria)
+        #{
+        #    WPAServiceOrder wPAServiceOrder = new WPAServiceOrder();
+        #    return this.findKeyList(_queryCriteria, wPAServiceOrder);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #protected void new()
+        #{
+        #    ;
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #read
+        #public WPAServiceOrder read(AifEntityKeyList _entityKeyList)
+        #{
+        #    WPAServiceOrder wPAServiceOrder = new WPAServiceOrder();
+        #    this.readList(_entityKeyList, wPAServiceOrder);
+        #    return wPAServiceOrder;
+        #}
+      ENDSOURCE
+      SOURCE #update
+        #public void update(AifEntityKeyList _entityKeyList, WPAServiceOrder _wPAServiceOrder)
+        #{
+        #    this.updateList(_entityKeyList, _wPAServiceOrder);
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAServiceOrderService construct()
+        #{
+        #    return new WPAServiceOrderService();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,835 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AifDispatcher unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AifDispatcher
+    PROPERTIES
+      Name                #AifDispatcher
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #/// <summary>
+        #/// This class is used to process AIF service operations.
+        #/// </summary>
+        #// This is a framework class. Customizing this class may cause problems with future upgrades to the software.
+        #class AifDispatcher
+        #{
+        #    #Aif
+        #}
+      ENDSOURCE
+      SOURCE #callServiceMethod
+        #static private anytype callServiceMethod(AifMessage message, Struct parameterList)
+        #{
+        #    anytype returnValue;
+        #    anytype dataToReturn;
+        #    int parameterCount;
+        #    AifServiceClassId serviceClassId;
+        #    AifMethodName methodName;
+        #    SysDictClass dictClass;
+        #    DictMethod dictMethod;
+        #    Types returnType;
+        #    ExecutePermission perm;
+        #    Object serviceClassInstance;
+        #    AifCustomizableService customizableService;
+        #    AifEntityKeyList entityKeyList;
+        #    AifConstraintListCollection constraintListCollection;
+        #    AifOperationContext operationContext;
+        #;
+        #
+        #    operationContext = message.getOperationContext();
+        #    parameterCount = parameterList.fields();
+        #    serviceClassId = operationContext.getServiceClassId();
+        #    methodName = operationContext.getOperationMethodName();
+        #
+        #    dictClass = new SysDictClass(serviceClassId);
+        #
+        #    if (dictClass == null)
+        #        throw error("@SYS112328");
+        #
+        #    dictMethod = new DictMethod(UtilElementType::ClassInstanceMethod, serviceClassId, methodName);
+        #
+        #    if ((dictMethod == null) || !dictMethod.compiledOk())
+        #        throw error("@SYS112395");
+        #
+        #    returnType = dictMethod.returnType();
+        #
+        #    // get service class instance
+        #    serviceClassInstance = AifDispatcher::getServiceClassInstance(dictClass);
+        #    if(serviceClassInstance == null)
+        #        throw error(strfmt("@SYS110935", dictClass.name()));
+        #
+        #    // Grants permission to execute the DictClass.callObject method.
+        #    // DictClass.callObject runs under code access security.
+        #    perm = new ExecutePermission();
+        #    perm.assert();
+        #    if (dictClass.isImplementing(classnum(AifCustomizableService)))
+        #    {
+        #        customizableService = serviceClassInstance;
+        #        customizableService.setOperationContext(operationContext);
+        #    }
+        #
+        #    switch(parameterCount)
+        #    {
+        #        case 0:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(methodName, serviceClassInstance);
+        #            break;
+        #
+        #        case 1:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'));
+        #            break;
+        #
+        #        case 2:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'),
+        #                            parameterList.value('2'));
+        #            break;
+        #
+        #        case 3:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'),
+        #                            parameterList.value('2'),
+        #                            parameterList.value('3'));
+        #            break;
+        #        case 4:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'),
+        #                            parameterList.value('2'),
+        #                            parameterList.value('3'),
+        #                            parameterList.value('4'));
+        #            break;
+        #        case 5:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'),
+        #                            parameterList.value('2'),
+        #                            parameterList.value('3'),
+        #                            parameterList.value('4'),
+        #                            parameterList.value('5'));
+        #            break;
+        #        case 6:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'),
+        #                            parameterList.value('2'),
+        #                            parameterList.value('3'),
+        #                            parameterList.value('4'),
+        #                            parameterList.value('5'),
+        #                            parameterList.value('6'));
+        #            break;
+        #        case 7:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'),
+        #                            parameterList.value('2'),
+        #                            parameterList.value('3'),
+        #                            parameterList.value('4'),
+        #                            parameterList.value('5'),
+        #                            parameterList.value('6'),
+        #                            parameterList.value('7'));
+        #            break;
+        #        case 8:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'),
+        #                            parameterList.value('2'),
+        #                            parameterList.value('3'),
+        #                            parameterList.value('4'),
+        #                            parameterList.value('5'),
+        #                            parameterList.value('6'),
+        #                            parameterList.value('7'),
+        #                            parameterList.value('8'));
+        #            break;
+        #        case 9:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'),
+        #                            parameterList.value('2'),
+        #                            parameterList.value('3'),
+        #                            parameterList.value('4'),
+        #                            parameterList.value('5'),
+        #                            parameterList.value('6'),
+        #                            parameterList.value('7'),
+        #                            parameterList.value('8'),
+        #                            parameterList.value('9'));
+        #            break;
+        #        case 10:
+        #            // BP deviation documented
+        #            returnValue = dictClass.callObject(
+        #                            methodName,
+        #                            serviceClassInstance,
+        #                            parameterList.value('1'),
+        #                            parameterList.value('2'),
+        #                            parameterList.value('3'),
+        #                            parameterList.value('4'),
+        #                            parameterList.value('5'),
+        #                            parameterList.value('6'),
+        #                            parameterList.value('7'),
+        #                            parameterList.value('8'),
+        #                            parameterList.value('9'),
+        #                            parameterList.value('10'));
+        #            break;
+        #        default:
+        #            throw error("@SYS112329");
+        #    }
+        #
+        #    // Closes the code access permission scope.
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    if (returnType == Types::Class)
+        #        dataToReturn = returnValue;
+        #    else if (returnType != Types::void)
+        #        dataToReturn = [returnValue];
+        #
+        #    if (customizableService != null)
+        #    {
+        #        if (AifDispatcher::constraintCheckRequired(operationContext, message.direction()))
+        #        {
+        #            // Validate constraints
+        #            constraintListCollection = customizableService.getConstraints();
+        #            AifDispatcher::validateConstraints(operationContext.getExternalEndpointId(), constraintListCollection);
+        #        }
+        #
+        #        // Correlate entity keys
+        #        entityKeyList = customizableService.getCorrelationEntityKeys();
+        #        AifDispatcher::correlateMessage(message.messageId(), entityKeyList);
+        #    }
+        #
+        #    return dataToReturn;
+        #}
+      ENDSOURCE
+      SOURCE #constraintCheckRequired
+        #static private boolean constraintCheckRequired(AifOperationContext operationContext, AifMessageDirection messageDirection)
+        #{
+        ##Aif;
+        #
+        #    // Check constraints only if:
+        #    // - message is inbound, AND
+        #    // - source endpoint is specified, AND
+        #    // - source endpoint is not default
+        #    return ((messageDirection == AifMessageDirection::Inbound) && (operationContext.getSourceEndpointId() != '') && (operationContext.getSourceEndpointId() != #DefaultEndpointId));
+        #}
+      ENDSOURCE
+      SOURCE #correlateMessage
+        #private static void correlateMessage(AifMessageId messageId, AifEntityKeyList entityKeyList)
+        #{
+        #    int i;
+        #
+        ##Aif
+        #
+        #    // Need a valid message Id and entity key list
+        #    if ((entityKeyList != null) && (messageId != str2guid(#EmptyGuidString)))
+        #    {
+        #        for (i = 1; i <= entityKeyList.getEntityKeyCount(); i++)
+        #        {
+        #            AifCorrelation::correlateMessage(messageId, entityKeyList.getEntityKey(i));
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #deserializeClrType
+        #static private AnyType deserializeClrType(str xml, str clrTypeName)
+        #{
+        #    ClrObject deserializedClrObject;
+        #    AnyType deserializedValue;
+        #
+        #     // BP Deviation Documented
+        #    deserializedClrObject = Microsoft.Dynamics.IntegrationFramework.Util::DeserializeObject(xml, clrTypeName, false);
+        #    if (!ClrInterop::isNull(deserializedClrObject))
+        #    {
+        #        // BP Deviation Documented
+        #        deserializedValue = ClrInterop::getAnyTypeForObject(deserializedClrObject);
+        #    }
+        #
+        #    return deserializedValue;
+        #}
+      ENDSOURCE
+      SOURCE #deserializeDateTime
+        #static private AnyType deserializeDateTime(str valueXml, Types type, boolean convertToUtc)
+        #{
+        #    AnyType         dateTimeValue;
+        #    utcdatetime     dateTime;
+        #    ClrObject       deserializedObject;
+        #    System.DateTime clrDateTime;
+        #    timeofday       timeValue;
+        #    System.TimeSpan timeSpan;
+        #
+        #    boolean isNullDateTime(System.DateTime systemDateTime)
+        #    {
+        #        System.DateTime nullDateTime = utcDateTime2SystemDateTime(utcDateTimeNull());
+        #        return systemDateTime.Equals(nullDateTime);
+        #    }
+        #
+        #     // BP Deviation Documented
+        #    deserializedObject = Microsoft.Dynamics.IntegrationFramework.Util::DeserializeDateTime(valueXml, convertToUtc, false);
+        #    if (!ClrInterop::isNull(deserializedObject))
+        #    {
+        #        // Get the utcdatetime
+        #        // BP Deviation Documented
+        #        dateTime = ClrInterop::getAnyTypeForObject(deserializedObject);
+        #
+        #        switch (type)
+        #        {
+        #            case Types::Date:
+        #                if (dateTime != utcDateTimeNull() || isNullDateTime(deserializedObject))
+        #                {
+        #                    // Valid utc date time.  Get the date component
+        #                    dateTimeValue = DateTimeUtil::date(dateTime);
+        #                }
+        #                break;
+        #
+        #            case Types::Time:
+        #                if (dateTime != utcDateTimeNull())
+        #                {
+        #                    // Valid utc date time.  Get the time component
+        #                    dateTimeValue = DateTimeUtil::time(dateTime);
+        #                }
+        #                else
+        #                {
+        #                    // The date is invalid, get only the time.  The time must be valid because there is a valid System.DateTime
+        #                    clrDateTime = deserializedObject;
+        #                    timeSpan = clrDateTime.get_TimeOfDay();
+        #                    timeValue = timeSpan.get_TotalSeconds();
+        #                    dateTimeValue = timeValue;
+        #                }
+        #                break;
+        #
+        #            case Types::UtcDateTime:
+        #                if (dateTime != utcDateTimeNull() || isNullDateTime(deserializedObject))
+        #                {
+        #                    dateTimeValue = dateTime;
+        #                }
+        #                break;
+        #        }
+        #    }
+        #
+        #    return dateTimeValue;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #deserializeObject
+        #static private Object deserializeObject(classId xmlSerializableClassId, AifXml xml)
+        #{
+        #    SysDictClass dictClass = new SysDictClass(xmlSerializableClassId);
+        #    AifXmlSerializable parameterInstance = null;
+        #
+        #    //Make sure we were able to get the DictClass
+        #    if(!dictClass)
+        #        throw error(strfmt("@SYS112330", xmlSerializableClassId));
+        #
+        #    // Check if the class implements AifXmlSerializable
+        #    if (!dictClass.isImplementing(classnum(AifXmlSerializable)))
+        #        throw error(strfmt("@SYS112331", classId2Name(xmlSerializableClassId)));
+        #
+        #    if (!AifDispatcher::isNilXml(xml))
+        #    {
+        #        // Instantiate the class
+        #        parameterInstance = dictClass.makeObject();
+        #
+        #        if(!parameterInstance)
+        #            throw error(strfmt("@SYS112332", classId2Name(xmlSerializableClassId)));
+        #
+        #        // deserialize the parameter
+        #        parameterInstance.deserialize(xml);
+        #    }
+        #
+        #    return parameterInstance;
+        #}
+      ENDSOURCE
+      SOURCE #deserializeParameter
+        #static private anytype deserializeParameter(Types type, int id, AifXml parameterXml)
+        #{
+        #    anytype value;
+        #
+        #    switch(type)
+        #    {
+        #        case Types::Class:
+        #            value = AifDispatcher::deserializeObject(id, parameterXml);
+        #            break;
+        #
+        #        default:
+        #            value = AifDispatcher::deserializeValueType(type, id, parameterXml);
+        #            break;
+        #    }
+        #
+        #    return value;
+        #}
+      ENDSOURCE
+      SOURCE #deserializeParameters
+        #static private Struct deserializeParameters(AifOperationContext operationContext, AifMessageParts messageParts)
+        #{
+        #    Struct deserializedParameterList = new Struct();
+        #    int parameterCount = messageParts.getPartCount();
+        #    DictMethod dictMethod = new DictMethod(UtilElementType::ClassInstanceMethod, operationContext.getServiceClassId(), operationContext.getOperationMethodName());
+        #    int i;
+        #;
+        #
+        #    if ((dictMethod == null) || !dictMethod.compiledOk())
+        #        throw error("@SYS112395");
+        #
+        #    // Verify that the expected parameter count matches the actual parameter count
+        #    if (dictMethod.parameterCnt() != parameterCount)
+        #        throw error(strfmt("@SYS112333"));
+        #
+        #    for (i = 1; i <= parameterCount; i++)
+        #    {
+        #        deserializedParameterList.add(int2str(i), AifDispatcher::deserializeParameter(dictMethod.parameterType(i), dictMethod.parameterId(i), messageParts.getPart(i)));
+        #    }
+        #
+        #    return deserializedParameterList;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #deserializeValueType
+        #/*
+        #    Deserializes value types from xml using .Net XmlSerializer
+        #
+        #    Type Mapping
+        #
+        #    ====================            ========            ================
+        #    X++                             XML                 .Net
+        #    ====================            ========            ================
+        #
+        #    Types::Guid                     guid                System.Guid
+        #    Types::String                   string              System.String
+        #    Types::RString                  string              System.String
+        #    Types::VarString                string              System.String
+        #    Types::Integer                  int                 System.Int32
+        #    Types::Int64                    long                System.Int64
+        #    Types::Real                     double              System.Double
+        #    Types::Date                     date                System.DateTime
+        #    Types::Time                     time                System.DateTime
+        #    Types::UtcDateTime              dateTime            System.DateTime
+        #    Types::Enum::boolean            boolean             System.Boolean
+        #    Types::Enum                     string              System.String
+        #
+        #*/
+        #static public anytype deserializeValueType(Types valueType, int valueTypeId, str valueXml)
+        #{
+        #     /*  Converts the string value passed in to the correctly typed
+        #        value.  This must be in a separate method because the type assigned
+        #        to an anytype variable can not be changed once the variable has been
+        #        assigned a value.
+        #    */
+        #    anytype         fieldValue;
+        #    DictEnum        dictEnum;
+        #    SysDictType     dictType;
+        #    boolean         valueIsValid = true;
+        #    anytype         deserializedValue;
+        #
+        #    if (valueType == Types::UserType)
+        #    {
+        #        dictType = new SysDictType(valueTypeId);
+        #        valueType = dictType.isTime()? Types::Time : dictType.baseType();
+        #    }
+        #
+        #    // Use .Net XmlSerializer to serialize the data
+        #    new InteropPermission(InteropKind::ClrInterop).assert();
+        #
+        #    switch(valueType)
+        #    {
+        #        case Types::Guid:
+        #            fieldValue = AifDispatcher::deserializeClrType(valueXml, 'System.Guid');
+        #            break;
+        #
+        #        case Types::String, Types::RString, Types::VarString:
+        #            fieldValue = AifDispatcher::deserializeClrType(valueXml, 'System.String');
+        #            break;
+        #
+        #        case Types::Integer:
+        #            fieldValue = AifDispatcher::deserializeClrType(valueXml, 'System.Int32');
+        #            break;
+        #
+        #        case Types::Int64:
+        #            fieldValue = AifDispatcher::deserializeClrType(valueXml, 'System.Int64');
+        #            break;
+        #
+        #        case Types::Real:
+        #            fieldValue = AifDispatcher::deserializeClrType(valueXml, 'System.Double');
+        #            break;
+        #
+        #        case Types::Date:
+        #            fieldValue = AifDispatcher::deserializeDateTime(valueXml, valueType, false);
+        #            break;
+        #
+        #        case Types::Time:
+        #            fieldValue = AifDispatcher::deserializeDateTime(valueXml, valueType, false);
+        #            break;
+        #
+        #        case Types::UtcDateTime:
+        #            fieldValue = AifDispatcher::deserializeDateTime(valueXml, valueType, true);
+        #            break;
+        #
+        #        case Types::Enum:
+        #            deserializedValue = AifDispatcher::deserializeClrType(valueXml, 'System.String');
+        #            if ((typeof(deserializedValue) == Types::String) && (deserializedValue != ''))
+        #            {
+        #                dictEnum = new DictEnum(valueTypeId);
+        #                fieldValue = dictEnum.symbol2Value(deserializedValue);
+        #                valueIsValid = (dictEnum.value2Symbol(fieldValue) == deserializedValue);
+        #            }
+        #            break;
+        #
+        #        default:
+        #            throw error(strfmt("@SYS112334", enum2str(valueType)));
+        #    }
+        #
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    if ((!valueIsValid) || (typeof(fieldValue) == Types::AnyType))
+        #    {
+        #        throw error(strfmt("@SYS112380", valueXml, enum2str(valueType)));
+        #    }
+        #
+        #    return fieldValue;
+        #}
+      ENDSOURCE
+      SOURCE #dispatchOperation
+        #static server public AifXml dispatchOperation(AifMessage message, Struct operationParameters = null)
+        #{
+        #    anytype returnValue;
+        #    AifXml serializedReturnValue;
+        #    AifOperationContext operationContext = message.getOperationContext();
+        #
+        #    if (!operationParameters)
+        #    {
+        #        operationParameters = AifDispatcher::deserializeParameters(operationContext, message.getMessageParts());
+        #    }
+        #    returnValue = AifDispatcher::callServiceMethod(message, operationParameters);
+        #    serializedReturnValue = AifDispatcher::serializeReturnValue(operationContext, returnValue,
+        #                                                                // WPA import ->
+        #                                                                message.messageId());
+        #                                                                // WPA import <-
+        #
+        #    return serializedReturnValue;
+        #}
+      ENDSOURCE
+      SOURCE #getServiceClassInstance
+        #/// <summary>
+        #/// Gets an instance of a service class.
+        #/// </summary>
+        #/// <param name="serviceDictClass">
+        #/// <code>SysDictClass</code> for the service class
+        #/// </param>
+        #/// <returns>
+        #/// A instance of the service class or null if instance could  not be created
+        #/// </returns>
+        #/// <remarks>
+        #/// Method will try to first use the public static construct() method to construct the instance. If it does not exist,
+        #/// will revert to using the default constructor if exists.
+        #/// </remarks>
+        #public static Object getServiceClassInstance(SysDictClass serviceDictClass)
+        #{
+        #    Object          serviceInstance;
+        #    ;
+        #
+        #    new ExecutePermission().assert();
+        #
+        #    // Does static construct exists, if yes then create the instance.
+        #    if(AifUtil::isStaticConstruct(serviceDictClass.id(), #ConstructMethod))
+        #    {
+        #        // BP Deviation documented.
+        #        serviceInstance = serviceDictClass.callStatic(#ConstructMethod);
+        #    }
+        #
+        #    // if no static constructor check for new()
+        #    if(!serviceInstance)
+        #    {
+        #        // BP deviation documented
+        #        if (serviceDictClass.allowMakeObject())
+        #        {
+        #            serviceInstance = serviceDictClass.makeObject();
+        #        }
+        #    }
+        #
+        #    CodeAccessPermission::revertAssert();
+        #    return serviceInstance;
+        #}
+      ENDSOURCE
+      SOURCE #isNilXml
+        #static private boolean isNilXml(AifXml xml)
+        #{
+        #    XmlTextReader xmlReader = XmlTextReader::newXml(xml);
+        #    boolean isNil;
+        #;
+        #
+        ##Aif
+        #
+        #    xmlReader.moveToContent();
+        #    isNil = (xmlReader.getAttribute3(#XsiNil, #XsiNamespace) == #XmlTrue);
+        #    xmlReader.close();
+        #
+        #    return isNil;
+        #}
+      ENDSOURCE
+      SOURCE #serializeNullObject
+        #static private AifXml serializeNullObject(AifDocumentClassId documentClassId)
+        #{
+        #    XmlTextWriter xmlWriter = XmlTextWriter::newXml();
+        #    AifSchemaInfo schemaInfo = AifSchemaRepository::getSchema(documentClassId);
+        #;
+        ##Aif
+        #
+        #    if (schemaInfo == null)
+        #        throw error(strfmt("@SYS118917", documentClassId));
+        #
+        #    xmlWriter.writeStartElement2(schemaInfo.parmSchemaName(), schemaInfo.parmSchemaNamespace());
+        #    xmlWriter.writeAttributeString2(#XsiNil, #XsiNamespace, #XmlTrue);
+        #    xmlWriter.writeEndElement();
+        #    xmlWriter.close();
+        #
+        #    return xmlWriter.writeToString();
+        #}
+      ENDSOURCE
+      SOURCE #serializeObject
+        #static private AifXml serializeObject(classId xmlSerializableClassId, Object object,
+        #                                      // WPA import ->
+        #                                      AifMessageId messageId = str2guid(#EmptyGuidString))
+        #                                      // WPA import <-
+        #{
+        #    AifXmlSerializable serializableObject;
+        #    SysDictClass dictClass;
+        #    AifXml objectXml;
+        #
+        #    if (object == null)
+        #    {
+        #        objectXml = AifDispatcher::serializeNullObject(xmlSerializableClassId);
+        #    }
+        #    else
+        #    {
+        #        dictClass = new SysDictClass(xmlSerializableClassId);
+        #
+        #        if (!dictClass.isImplementing(classnum(AifXmlSerializable)))
+        #            throw error(strfmt("@SYS112335", classId2Name(xmlSerializableClassId)));
+        #
+        #        serializableObject = object;
+        #        // WPA import ->
+        #        serializableObject.parmMessageId(messageId);
+        #        // WPA import <-
+        #        objectXml = serializableObject.serialize();
+        #    }
+        #
+        #    return objectXml;
+        #}
+      ENDSOURCE
+      SOURCE #serializeReturnValue
+        #static private AifXml serializeReturnValue(AifOperationContext operationContext, anytype returnValue,
+        #                                           // WPA import ->
+        #                                           AifMessageId messageId = str2guid(#EmptyGuidString))
+        #                                           // WPA import <-
+        #{
+        #    AifMethodName methodName = operationContext.getOperationMethodName();
+        #    DictMethod dictMethod = new DictMethod(UtilElementType::ClassInstanceMethod, operationContext.getServiceClassId(), methodName);
+        #    AifXml returnValueXml;
+        #    Types type = dictMethod.returnType();
+        #    int id = dictMethod.returnId();
+        #;
+        #
+        #    if (type != Types::void)
+        #    {
+        #        switch(type)
+        #        {
+        #            case Types::Class:
+        #                returnValueXml = AifDispatcher::serializeObject(id, returnValue,
+        #                                                                // WPA import ->
+        #                                                                messageId);
+        #                                                                // WPA import <-
+        #                break;
+        #
+        #            default:
+        #                returnValueXml = AifDispatcher::serializeValueType(type, id, conpeek(returnValue, 1));
+        #                break;
+        #        }
+        #    }
+        #
+        #
+        #    return returnValueXml;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #serializeValueType
+        #/*
+        #    Serializes value types to xml using .Net XmlSerializer
+        #
+        #    Type Mapping
+        #
+        #    ====================            ========            ================
+        #    X++                             XML                 .Net
+        #    ====================            ========            ================
+        #
+        #    Types::Guid                     guid                System.Guid
+        #    Types::String                   string              System.String
+        #    Types::RString                  string              System.String
+        #    Types::VarString                string              System.String
+        #    Types::Integer                  int                 System.Int32
+        #    Types::Int64                    long                System.Int64
+        #    Types::Real                     double              System.Double
+        #    Types::Date                     date                System.DateTime
+        #    Types::Time                     time                System.DateTime
+        #    Types::UtcDateTime              dateTime            System.DateTime
+        #    Types::Enum::boolean            boolean             System.Boolean
+        #    Types::Enum                     string              System.String
+        #
+        #*/
+        #static public AifXml serializeValueType(Types valueType, int valueTypeId, anytype typedValue)
+        #{
+        #    AifXml          xml;
+        #    SysDictType     dictType;
+        #    anytype         valueToSerialize;
+        #    utcDateTime     dateTime;
+        #    str             nodeName = '';
+        ##Axd
+        #    ;
+        #
+        #    if (valueType == Types::UserType)
+        #    {
+        #        // Get the base type for EDTs
+        #        dictType = new SysDictType(valueTypeId);
+        #        valueType = dictType.isTime()? Types::Time : dictType.baseType();
+        #    }
+        #
+        #    new InteropPermission(InteropKind::ClrInterop).assert();
+        #
+        #    switch(valueType)
+        #    {
+        #        case Types::Guid:
+        #        case Types::String:
+        #        case Types::Integer:
+        #        case Types::Int64:
+        #        case Types::Real:
+        #            valueToSerialize = typedValue;
+        #            break;
+        #
+        #        case Types::UtcDateTime:
+        #            dateTime = typedValue;
+        #            valueToSerialize = System.DateTime::SpecifyKind(dateTime, System.DateTimeKind::Utc);
+        #            break;
+        #
+        #        case Types::Date:
+        #            if (typedValue == datenull())
+        #            {
+        #                valueToSerialize = #axdDateNullStr;
+        #            }
+        #            else
+        #            {
+        #                // Format: YYYY-MM-DD
+        #                valueToSerialize = date2str(
+        #                                        typedValue,
+        #                                        321,        /* sequence - year, month, day*/
+        #                                        2,          /* day digits */
+        #                                        3,          /* separator1: hyphen */
+        #                                        2,          /* month digits */
+        #                                        3,          /* separator2: hyphen */
+        #                                        4);         /* year digits */
+        #            }
+        #            nodeName = 'dateTime';
+        #            break;
+        #
+        #        case Types::Time:
+        #            // Format: HH:MM:SS
+        #            valueToSerialize = time2str(
+        #                                    typedValue,
+        #                                    1,      /* separator: colon */
+        #                                    1);     /* 24 hour format */
+        #            nodeName = 'dateTime';
+        #            break;
+        #
+        #        case Types::RString, Types::VarString:
+        #            // Convert to string
+        #            valueToSerialize = any2str(typedValue);
+        #            break;
+        #
+        #        case Types::Enum:
+        #            if (valueTypeId != enumnum(boolean))
+        #            {
+        #                // Enums other than boolean are converted to string -- the enum symbol
+        #                valueToSerialize = enum2symbol(valueTypeId, typedValue);
+        #            }
+        #            else
+        #            {
+        #                // For booleans, preserve the enum type
+        #                valueToSerialize = typedValue;
+        #            }
+        #            break;
+        #
+        #        default:
+        #            throw error(strfmt("@SYS112336", enum2str(valueType)));
+        #    }
+        #
+        #    // Use .Net XmlSerializer to serialize the data
+        #     // BP Deviation Documented
+        #    xml = Microsoft.Dynamics.IntegrationFramework.Util::SerializeObject(valueToSerialize, "", nodeName, true);
+        #
+        #    CodeAccessPermission::revertAssert();
+        #
+        #    return xml;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #validateConstraints
+        #private static void validateConstraints(AifEndpointId externalSourceEndpointId, AifConstraintListCollection constraintListCollection)
+        #{
+        #    /*
+        #        This method checks to make sure the constraints passed in are valid
+        #        for the endpoint.
+        #    */
+        #
+        #    AifConstraintList       constraintList;
+        #    int                     x
+        #    ;
+        #
+        #    setprefix(classstr(AifDispatcher) + '-' + staticmethodstr(AifDispatcher, validateConstraints));
+        #
+        #    if (constraintListCollection)
+        #    {
+        #        // Loop through all the contrainLists in the constraintListCollection
+        #        for(x=1; x <= constraintListCollection.getConstraintListCount(); x++)
+        #        {
+        #            //Extract the next constraintList from the collection
+        #            constraintList = constraintListCollection.getConstraintList(x);
+        #
+        #            //Check to see if the constrainList is valid for the Endpoint
+        #            if(AifEndpointConstraint::isConstraintListValid(externalSourceEndpointId, constraintList)==false)
+        #                // The Endpoint does not have permission to read or write data for this Partner.
+        #                throw error(strfmt("@SYS89268", externalSourceEndpointId));
+        #
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

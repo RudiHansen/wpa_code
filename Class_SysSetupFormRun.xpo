@@ -1,0 +1,329 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: SysSetupFormRun unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #SysSetupFormRun
+    PROPERTIES
+      Name                #SysSetupFormRun
+      Extends             #FormRun
+      RunOn               #Client
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #addButtons
+        #void addButtons()
+        #{
+        #    #define.ButtonGroup         ('ButtonGroup')
+        #    #define.ButtonGroupHeader   ('ButtonGroupHeader')
+        #    #define.ButtonGroupLine     ('ButtonGroupLine')
+        #    #define.Send2WPA            ('Send2WPA')
+        #
+        #    Object                          parentControl;
+        #    FormBuildFunctionButtonControl  button;
+        #    FormDataSource                  dataSource;
+        #    ;
+        #    switch (this.name())
+        #    {
+        #        case formstr(SMAServiceOrderTable)  :   parentControl   = this.design().controlName(#ButtonGroupHeader);
+        #                                                if (parentControl)
+        #                                                {
+        #                                                    button          = parentControl.addControl(FormControlType::MenuFunctionButton, #Send2WPA);
+        #                                                    button.menuItemName(menuitemactionstr(WPASend));
+        #                                                    dataSource      = this.dataSource(tablestr(SMAServiceOrderTable));
+        #                                                }
+        #                                                break;
+        #        case formstr(ProjCategory)          :   parentControl   = this.design().controlName(#ButtonGroup);
+        #                                                if (parentControl)
+        #                                                {
+        #                                                    button          = parentControl.addControl(FormControlType::MenuFunctionButton, #Send2WPA);
+        #                                                    button.menuItemName(menuitemactionstr(WPASend));
+        #                                                    button.multiSelect(true);
+        #                                                    dataSource      = this.dataSource(tablestr(CategoryTable));
+        #                                                }
+        #                                                break;
+        #        case formstr(InventTable)           :   parentControl   = this.design().controlName(#ButtonGroup);
+        #                                                if (parentControl)
+        #                                                {
+        #                                                    button          = parentControl.addControl(FormControlType::MenuFunctionButton, #Send2WPA);
+        #                                                    button.menuItemName(menuitemactionstr(WPASend));
+        #                                                    button.multiSelect(true);
+        #                                                    dataSource      = this.dataSource(tablestr(InventTable));
+        #                                                }
+        #                                                break;
+        #        case formstr(ProjTable)             :   parentControl   = this.design().controlName(#ButtonGroup);
+        #                                                if (parentControl)
+        #                                                {
+        #                                                    button          = parentControl.addControl(FormControlType::MenuFunctionButton, "WPANotInvoiced");
+        #                                                    button.menuItemName(menuitemdisplaystr(WPANotInvoiced));
+        #                                                    dataSource      = this.dataSource(tablestr(ProjTable));
+        #                                                    button.dataSource(dataSource);
+        #                                                    button.text("Work cards not invoiced");
+        #                                                    button          = parentControl.addControl(FormControlType::MenuFunctionButton, #Send2WPA);
+        #                                                    button.menuItemName(menuitemactionstr(WPASendProject));
+        #                                                    dataSource      = this.dataSource(tablestr(ProjTable));
+        #
+        #                                                }
+        #                                                break;
+        #/*        case formstr(ProjForecastEmpl)      :   parentControl   = this.design().controlName(#ButtonGroup);
+        #                                                if (parentControl)
+        #                                                {
+        #                                                    button          = parentControl.addControl(FormControlType::MenuFunctionButton, #Send2WPA);
+        #//                                                    button.menuItemName(menuitemactionstr(WPASend));
+        #//                                                    button.multiSelect(true);
+        #                                                    button.menuItemName(menuitemactionstr(WPASendProjForecastEmpl));
+        #                                                    dataSource      = this.dataSource(tablestr(ProjForecastEmpl));
+        #                                                }
+        #                                                break;
+        #*/
+        #        case formstr(EmplTable)             :   parentControl   = this.design().controlName(#ButtonGroup);
+        #                                                if (parentControl)
+        #                                                {
+        #                                                    button          = parentControl.addControl(FormControlType::MenuFunctionButton, #Send2WPA);
+        #                                                    button.menuItemName(menuitemactionstr(WPASend));
+        #                                                    button.multiSelect(true);
+        #                                                    dataSource      = this.dataSource(tablestr(EmplTable));
+        #                                                }
+        #                                                break;
+        #        default                             :   break;
+        #    }
+        #
+        #    if (button)
+        #    {
+        #        button.dataSource(dataSource);
+        #        button.menuItemType(MenuItemType::Action);
+        #        button.text("@WPA143");
+        #        button.caption("@WPA143");
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #// This is a framework class. Customizing this class may cause problems with future upgrades to the software.
+        #public class SysSetupFormRun extends FormRun
+        #{
+        #    SysWorkflowFormControls     workflowControls;
+        #
+        ##if.never
+        #    #define.CurrentVersion(1)
+        #    #localmacro.CurrentList
+        #    #endmacro
+        ##endif
+        #}
+      ENDSOURCE
+      SOURCE #dimensionFieldCtrls
+        #protected void dimensionFieldCtrls()
+        #{
+        #    int i = this.dataSourceCount();
+        #    ;
+        #    while (i)
+        #    {
+        #        DimensionFieldCtrl::newFormDataSource(this.dataSource(i)).dataSourceInit();
+        #        i--;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #docCursor
+        #Common docCursor()
+        #{
+        #    if (infolog.docuHandlingActive())
+        #    {
+        #        return super();
+        #    }
+        #    else
+        #    {
+        #        return null;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #getActiveWorkflowConfiguration
+        #public Common getActiveWorkflowConfiguration()
+        #{
+        #    Common workflowConfiguration;
+        #
+        #    if (workflowControls)
+        #        workflowConfiguration = workflowControls.getActiveWorkflowConfiguration();
+        #
+        #    return workflowConfiguration;
+        #}
+      ENDSOURCE
+      SOURCE #getActiveWorkflowTrackingStatus
+        #public Common getActiveWorkflowTrackingStatus()
+        #{
+        #    Common trackingStatusTable;
+        #
+        #    if (workflowControls)
+        #        trackingStatusTable = workflowControls.getActiveWorkflowTrackingStatus();
+        #
+        #    return trackingStatusTable;
+        #}
+      ENDSOURCE
+      SOURCE #getActiveWorkflowWorkItem
+        #public Common getActiveWorkflowWorkItem()
+        #{
+        #    Common workItem;
+        #
+        #    if (workflowControls)
+        #        workItem = workflowControls.getActiveWorkflowWorkItem();
+        #
+        #    return workItem;
+        #}
+      ENDSOURCE
+      SOURCE #init
+        #public void init()
+        #{
+        #    super();
+        #    SysSecurityFormSetup::loadSecurity(this);
+        #    this.dimensionFieldCtrls();
+        #    this.inventStorageDimFieldCtrls();
+        #
+        #    if (this.isWorkflowEnabled())
+        #    {
+        #        workflowControls = SysWorkflowFormControls::construct(this);
+        #        workflowControls.initControls();
+        #    }
+        #    this.addButtons();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #inventStorageDimFieldCtrls
+        #protected void inventStorageDimFieldCtrls()
+        #{
+        #    int i;
+        #    ;
+        #    i = this.dataSourceCount();
+        #    while (i)
+        #    {
+        #        InventStorageDimWithoutItemCtrl::newFormDataSource(this.dataSource(i)).dataSourceInit();
+        #        i--;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #isValidForKMButtons
+        #boolean isValidForKMButtons()
+        #{
+        #    #Define.Wizard('wizard')
+        #    #Define.Sys('sys')
+        #    ;
+        #
+        #    if (strscan(this.name(), #Wizard, 1, strlen(this.name())))
+        #        return false;
+        #
+        #    if (strscan(this.name(), #Sys, 1, 3))
+        #        return false;
+        #
+        #    if (! this.form())
+        #        return false;
+        #
+        #    if (! this.form().dataSourceCount())
+        #        return false;
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #loadUserSetting
+        #public void loadUserSetting()
+        #{
+        #    SysSaveSetup    sysSaveSetup;
+        #    super();
+        #
+        #    sysSaveSetup = SysSaveSetup::construct(this);
+        #    sysSaveSetup.loadFormSetup();
+        #}
+      ENDSOURCE
+      SOURCE #loadWorkflowConfiguration
+        #public Common loadWorkflowConfiguration()
+        #{
+        #    Common ret;
+        #
+        #    ret = super();
+        #
+        #    if (ret.RecId == 0)
+        #    {
+        #        if (this.isWorkflowEnabled() && workflowControls != null)
+        #            ret = Workflow::findWorkflowConfigurationToActivate(workflowControls.getWorkflowDocumentTable());
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new(Args args)
+        #{;
+        #
+        #    super(args);
+        #
+        #    // CC Start
+        #    if (this.isValidForKMButtons())
+        #    {
+        #        this.updateKMButtonControls();
+        #    }
+        #    // CC End
+        #}
+      ENDSOURCE
+      SOURCE #saveUserSetting
+        #public void saveUserSetting()
+        #{
+        #    SysSaveSetup    sysSaveSetup = SysSaveSetup::construct(this);
+        #    ;
+        #    sysSaveSetup.saveFormSetup();
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #task
+        #public int task(int _p1)
+        #{
+        #    #task
+        #    FormDataSource formDataSource;
+        #
+        #    int ret;
+        #
+        #    if (_p1 == #taskFilter)
+        #    {
+        #        formDataSource = this.objectSet();
+        #        if (formDataSource &&
+        #            formDataSource.queryRun() &&
+        #            formDataSource.queryRun().args() &&
+        #            !formDataSource.queryRun().args().caller())
+        #        {
+        #            formDataSource.queryRun().args().caller(this);
+        #        }
+        #    }
+        #
+        #    ret = super(_p1);
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #updateKMButtonControls
+        #void updateKMButtonControls()
+        #{
+        #    KMActionMenuButtonAuto              kmActionMenuButtonAuto;
+        #    KMKnowledgeCollectorMenuButtonAuto  kmKnowledgeCollectorMenuButtonAuto;
+        #    ;
+        #
+        #    kmActionMenuButtonAuto  = new KMActionMenuButtonAuto(this);
+        #    if (kmActionMenuButtonAuto.check())
+        #        kmActionMenuButtonAuto.create();
+        #
+        #    kmKnowledgeCollectorMenuButtonAuto= new KMKnowledgeCollectorMenuButtonAuto(this);
+        #    if (kmKnowledgeCollectorMenuButtonAuto.check())
+        #        kmKnowledgeCollectorMenuButtonAuto.create();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #updateWorkflowControls
+        #public void updateWorkflowControls()
+        #{
+        #    if (workflowControls)
+        #        workflowControls.updateControls();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,25 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: GenerateXSDSchema_AxdWPASMADispatchTeam unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #GenerateXSDSchema_AxdWPASMADispatchTeam
+    #static void GenerateXSDSchema_AxdWPASMADispatchTeam(Args _args)
+    #{
+    #    AxdWPASMADispatchTeam    AxdWPASMADispatchTeam;
+    #    XML                 xml;
+    #    XMLDocument         xmlDocument;
+    #    ;
+    #    AxdWPASMADispatchTeam = AxdBase::newClassId(classnum(AxdWPASMADispatchTeam));
+    #    xml = AxdWPASMADispatchTeam.getSchema();
+    #    xmlDocument = XMLDocument::newXML(xml);
+    #    xmlDocument.save("c:\\XSDSchema_AxdWPASMADispatchTeam.xml");
+    #}
+    #
+  ENDSOURCE
+
+***Element: END

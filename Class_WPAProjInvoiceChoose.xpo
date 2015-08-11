@@ -1,0 +1,297 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjInvoiceChoose unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjInvoiceChoose
+    PROPERTIES
+      Name                #WPAProjInvoiceChoose
+      Extends             #ProjInvoiceChoose
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #assignTables
+        #protected void assignTables()
+        #{
+        #    MapEnumerator       markedEnumerator = markedMap.getEnumerator();
+        #    WPAWorkcardTable    wPAWorkcardTable;
+        #    ;
+        #    while (markedEnumerator.moveNext())
+        #    {
+        #        if (markedEnumerator.currentValue() == NoYes::Yes)
+        #        {
+        #            select firstonly wPAWorkcardTable
+        #                where wPAWorkcardTable.RecId    == markedEnumerator.currentKey();
+        #
+        #            pProjTable          = ProjTable::find(wPAWorkcardTable.OrderId);
+        #            pProjInvoiceTable   = pProjTable.projInvoice();
+        #
+        #            break;
+        #        }
+        #    }
+        #    this.parmProjInvoiceTable(pProjInvoiceTable);
+        #    this.parmProjTable(pProjTable);
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class WPAProjInvoiceChoose extends ProjInvoiceChoose
+        #{
+        #    Map markedMap;
+        #}
+      ENDSOURCE
+      SOURCE #dialog
+        #public Object dialog()
+        #{
+        #    DialogRunbase   dialogRunbase = super();
+        #    ;
+        #
+        #
+        #    dialogRunbase.addGroup("@SYS23410");
+        #    dialogInvoiceDate = dialogRunbase.addFieldValue(typeid(InvoiceDate), invoiceDate, "@SYS57610","@SYS90567");
+        #
+        #    return dialogRunbase;
+        #}
+      ENDSOURCE
+      SOURCE #doProposal
+        #protected void doProposal()
+        #{
+        #    MapEnumerator       markedEnumerator = markedMap.getEnumerator();
+        #    WPAWorkcardTable    wPAWorkcardTable;
+        #    ;
+        #    while (markedEnumerator.moveNext())
+        #    {
+        #        if (markedEnumerator.currentValue() == NoYes::Yes)
+        #        {
+        #            select firstonly wPAWorkcardTable
+        #                where wPAWorkcardTable.RecId    == markedEnumerator.currentKey();
+        #
+        #            this.doWorkcard(wPAWorkcardTable);
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #doWorkcard
+        #void doWorkcard(WPAWorkcardTable    _wPAWorkcardTable)
+        #{
+        #    WPAWorkcardLine     wPAWorkcardLine;
+        #    SysDictTable        dictTable;
+        #    Common              common;
+        #    ProjJournalTrans    projJournalTrans;
+        #    InventJournalTrans  inventJournalTrans;
+        #    LedgerJournalTrans  ledgerJournalTrans;
+        #    ProjEmplTrans       projEmplTrans;
+        #    ProjItemTrans       projItemTrans;
+        #    ProjCostTrans       projCostTrans;
+        #    ProjRevenueTrans    projRevenueTrans;
+        #    ;
+        #    while select wPAWorkcardLine
+        #        where wPAWorkcardLine.OrderId       == _wPAWorkcardTable.OrderId        &&
+        #              wPAWorkcardLine.WorkcardId    == _wPAWorkcardTable.WorkcardId     &&
+        #              wPAWorkcardLine.Direction     == _wPAWorkcardTable.Direction      &&
+        #              wPAWorkcardLine.Transferred   == WPATransferredEnum::Transferred  &&
+        #              wPAWorkcardLine.RefTableId
+        #    {
+        #        dictTable   = SysDictTable::newTableId(wPAWorkcardLine.RefTableId);
+        #        common      = dictTable.makeRecord();
+        #
+        #        select firstonly common
+        #            where common.RecId == wPAWorkcardLine.RefRecId;
+        #
+        #        switch (common.TableId)
+        #        {
+        #            case tablenum(ProjJournalTrans)     :   projJournalTrans = common;
+        #                                                    if (projJournalTrans.projJournalTable().JournalType == ProjJournalType::Hour)
+        #                                                    {
+        #                                                        //Hour
+        #                                                        select firstonly projEmplTrans
+        #                                                            where projEmplTrans.ProjId      == projJournalTrans.ProjId  &&
+        #                                                                  projEmplTrans.TransIdRef  == projJournalTrans.TransId;
+        #
+        #                                                        if (projEmplTrans.TransStatus   == ProjTransStatus::Posted)
+        #                                                        {
+        #                                                            this.parmProjEmplTrans(projEmplTrans);
+        #                                                            this.doEmpl();
+        #                                                        }
+        #                                                    }
+        #                                                    else
+        #                                                    {
+        #                                                        //Fee
+        #                                                        select firstonly projRevenueTrans
+        #                                                            where projRevenueTrans.ProjId       == projJournalTrans.ProjId  &&
+        #                                                                  projRevenueTrans.TransIdRef   == projJournalTrans.TransId;
+        #
+        #                                                        if (projRevenueTrans.TransStatus   == ProjTransStatus::Posted)
+        #                                                        {
+        #                                                            this.parmProjRevenueTrans(projRevenueTrans);
+        #                                                            this.doRevenue();
+        #                                                        }
+        #
+        #                                                    }
+        #                                                    break;
+        #
+        #            case tablenum(InventJournalTrans)   :   //Item
+        #                                                    inventJournalTrans = common;
+        #                                                    select firstonly projItemTrans
+        #                                                        where projItemTrans.ProjId          == inventJournalTrans.ProjId    &&
+        #                                                              projItemTrans.ProjTransIdRef  == inventJournalTrans.ProjTransId;
+        #
+        #                                                    if (projItemTrans.TransStatus   == ProjTransStatus::Posted)
+        #                                                    {
+        #                                                        this.parmProjItemTrans(projItemTrans);
+        #                                                        this.doItem();
+        #                                                    }
+        #                                                    break;
+        #            case tablenum(LedgerJournalTrans)   :   //Expense
+        #                                                    LedgerJournalTrans = common;
+        #                                                    select firstonly projCostTrans
+        #                                                        where projCostTrans.ProjId          == inventJournalTrans.ProjId    &&
+        #                                                              projCostTrans.TransIdRef      == inventJournalTrans.ProjTransId;
+        #
+        #                                                    if (projCostTrans.TransStatus   == ProjTransStatus::Posted)
+        #                                                    {
+        #                                                        this.parmProjCostTrans(projCostTrans);
+        #                                                        this.doCost();
+        #                                                    }
+        #                                                    break;
+        #            default                             :   break;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #getFromDialog
+        #public boolean getFromDialog()
+        #{
+        #    boolean ret;
+        #    ;
+        #    ret = true;
+        #
+        #    this.parmInvoiceDate(dialogInvoiceDate.value());
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new(ProjProposalJour _projProposalJour = null)
+        #{
+        #    ;
+        #    projInvoiceType = ProjInvoiceType::Invoice;
+        #
+        #    super(_projProposalJour);
+        #
+        #}
+      ENDSOURCE
+      SOURCE #parmMarkedMap
+        #public Map parmMarkedMap(Map _markedMap = markedMap)
+        #{
+        #    ;
+        #    markedMap = _markedMap;
+        #
+        #    return markedMap;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryBuild
+        #protected QueryRun queryBuild()
+        #{
+        #    ;
+        #
+        #
+        #    return queryRun;
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    ;
+        #
+        #    #OCCRetryCount
+        #
+        #    try
+        #    {
+        #        ttsbegin;
+        #
+        #        this.progressInit("@SYS54552", progressTotal, #AviFormLetter);
+        #        progress.setText("@SYS26577");
+        #
+        #        this.assignTables();
+        #
+        #        //check permissions if we need to create an invoice
+        #        //don't worry about it if updating
+        #        if(this.createProposal() && !pProjTable.status().checkRule(ProjStatusRule::CreateInvoiceProposal))
+        #        {
+        #            throw error(strfmt("@SYS113136", pProjTable.ProjId, pProjTable.Type, pProjTable.Status));
+        #        }
+        #
+        #        this.doProposal();
+        #
+        #        this.updateInvoiceTotal();
+        #
+        #        ttscommit;
+        #    }
+        #
+        #    catch (Exception::Deadlock)
+        #    {
+        #        retry;
+        #    }
+        #
+        #    catch (Exception::UpdateConflict)
+        #    {
+        #        if (appl.ttsLevel() == 0)
+        #        {
+        #            if (xSession::currentRetryCount() >= #RetryNum)
+        #            {
+        #                throw Exception::UpdateConflictNotRecovered;
+        #            }
+        #            else
+        #            {
+        #                retry;
+        #            }
+        #        }
+        #        else
+        #        {
+        #            throw Exception::UpdateConflict;
+        #        }
+        #    }
+        #
+        #    catch (Exception::Error)
+        #    {
+        #        // Update has been canceled.
+        #        throw error("@SYS18447");
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAProjInvoiceChoose construct()
+        #{
+        #    return new WPAProjInvoiceChoose();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #static public ClassDescription description()
+        #{
+        #    return strfmt("@SYS106000");
+        #
+        #}
+      ENDSOURCE
+      SOURCE #newMap
+        #public static WPAProjInvoiceChoose newMap(Map   _markedMap)
+        #{
+        #    WPAProjInvoiceChoose    wPAProjInvoiceChoose = WPAProjInvoiceChoose::construct();
+        #    ;
+        #    wPAProjInvoiceChoose.parmMarkedMap(_markedMap);
+        #
+        #    return wPAProjInvoiceChoose;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

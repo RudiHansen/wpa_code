@@ -1,0 +1,203 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAEmpl_DirECommunicationAddress unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAEmpl_DirECommunicationAddress
+    PROPERTIES
+      Name                #WPAEmpl_DirECommunicationAddress
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAEmpl_DirECommunicationAddress extends AfStronglyTypedDataContainer
+        #{
+        #    #define.URL('URL')
+        #    #define.Telex('Telex')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.PhoneLocal('PhoneLocal')
+        #    #define.Phone('Phone')
+        #    #define.Email('Email')
+        #    #define.ECommunicationTypeId('ECommunicationTypeId')
+        #    #define.DirECommunicationTypeTable('DirECommunicationTypeTable')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createDirECommunicationTypeTable
+        #public AfStronglyTypedDataContainerList createDirECommunicationTypeTable()
+        #{
+        #    return this.get_NewList(#DirECommunicationTypeTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsDirECommunicationTypeTable
+        #public boolean existsDirECommunicationTypeTable()
+        #{
+        #    return this.exists(#DirECommunicationTypeTable);
+        #}
+      ENDSOURCE
+      SOURCE #existsECommunicationTypeId
+        #public boolean existsECommunicationTypeId()
+        #{
+        #    return this.exists(#ECommunicationTypeId);
+        #}
+      ENDSOURCE
+      SOURCE #existsEmail
+        #public boolean existsEmail()
+        #{
+        #    return this.exists(#Email);
+        #}
+      ENDSOURCE
+      SOURCE #existsPhone
+        #public boolean existsPhone()
+        #{
+        #    return this.exists(#Phone);
+        #}
+      ENDSOURCE
+      SOURCE #existsPhoneLocal
+        #public boolean existsPhoneLocal()
+        #{
+        #    return this.exists(#PhoneLocal);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsTelex
+        #public boolean existsTelex()
+        #{
+        #    return this.exists(#Telex);
+        #}
+      ENDSOURCE
+      SOURCE #existsURL
+        #public boolean existsURL()
+        #{
+        #    return this.exists(#URL);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#Empl_DirECommunicationAddress);
+        #}
+      ENDSOURCE
+      SOURCE #parmDirECommunicationTypeTable
+        #public AfStronglyTypedDataContainerList parmDirECommunicationTypeTable(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#DirECommunicationTypeTable, _value);
+        #    }
+        #
+        #    return this.get_List(#DirECommunicationTypeTable);
+        #}
+      ENDSOURCE
+      SOURCE #parmECommunicationTypeId
+        #public DirECommunicationTypeId parmECommunicationTypeId(DirECommunicationTypeId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ECommunicationTypeId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ECommunicationTypeId);
+        #}
+      ENDSOURCE
+      SOURCE #parmEmail
+        #public Email parmEmail(Email _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Email, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Email);
+        #}
+      ENDSOURCE
+      SOURCE #parmPhone
+        #public Phone parmPhone(Phone _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Phone, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Phone);
+        #}
+      ENDSOURCE
+      SOURCE #parmPhoneLocal
+        #public PhoneLocal parmPhoneLocal(PhoneLocal _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PhoneLocal, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PhoneLocal);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public recVersion parmRecVersion(recVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmTelex
+        #public Telex parmTelex(Telex _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Telex, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Telex);
+        #}
+      ENDSOURCE
+      SOURCE #parmURL
+        #public URL parmURL(URL _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#URL, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#URL);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

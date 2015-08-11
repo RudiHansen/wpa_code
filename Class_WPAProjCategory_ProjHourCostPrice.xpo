@@ -1,0 +1,161 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjCategory_ProjHourCostPrice unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjCategory_ProjHourCostPrice
+    PROPERTIES
+      Name                #WPAProjCategory_ProjHourCostPrice
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProjCategory_ProjHourCostPrice extends AfStronglyTypedDataContainer
+        #{
+        #    #define.TransDate('TransDate')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.ProjId('ProjId')
+        #    #define.EmplId('EmplId')
+        #    #define.CostPrice('CostPrice')
+        #    #define.CategoryId('CategoryId')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsCategoryId
+        #public boolean existsCategoryId()
+        #{
+        #    return this.exists(#CategoryId);
+        #}
+      ENDSOURCE
+      SOURCE #existsCostPrice
+        #public boolean existsCostPrice()
+        #{
+        #    return this.exists(#CostPrice);
+        #}
+      ENDSOURCE
+      SOURCE #existsEmplId
+        #public boolean existsEmplId()
+        #{
+        #    return this.exists(#EmplId);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjId
+        #public boolean existsProjId()
+        #{
+        #    return this.exists(#ProjId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsTransDate
+        #public boolean existsTransDate()
+        #{
+        #    return this.exists(#TransDate);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAProjCategory_ProjHourCostPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmCategoryId
+        #public ProjCategoryId parmCategoryId(ProjCategoryId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CategoryId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CategoryId);
+        #}
+      ENDSOURCE
+      SOURCE #parmCostPrice
+        #public ProjCostPriceCost parmCostPrice(ProjCostPriceCost _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CostPrice, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CostPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmEmplId
+        #public EmplIdProj parmEmplId(EmplIdProj _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#EmplId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#EmplId);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjId
+        #public ProjId parmProjId(ProjId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public recVersion parmRecVersion(recVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmTransDate
+        #public TransDate parmTransDate(TransDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#TransDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#TransDate);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

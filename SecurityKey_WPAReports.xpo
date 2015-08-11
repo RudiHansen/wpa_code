@@ -1,0 +1,20 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: SEC
+
+; Microsoft Dynamics AX SECURITYKEY : WPAReports unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  SECURITYKEY #WPAReports
+    PROPERTIES
+      Name                #WPAReports
+      Label               #@SYS80071
+      ParentKey           #WPA
+    ENDPROPERTIES
+    
+  ENDSECURITYKEY
+  
+
+***Element: END

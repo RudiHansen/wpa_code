@@ -1,0 +1,160 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : OBTLogTrans unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #OBTLogTrans
+    PROPERTIES
+      Name                #OBTLogTrans
+      Label               #@OBT3
+      TitleField1         #RefRecId
+      TitleField2         #RefCompanyId
+      ConfigurationKey    #SysDatabaseLog
+      SecurityKey         #AdminInquiries
+      SaveDataPerCompany  #No
+      PrimaryIndex        #RefIdx
+      ClusterIndex        #RefIdx
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #RefRecId
+        INT64
+        PROPERTIES
+          Name                #RefRecId
+          Table               #OBTLogTrans
+          ExtendedDataType    
+            ARRAY 
+              #RefRecId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #RefTableId
+        INT
+        PROPERTIES
+          Name                #RefTableId
+          Table               #OBTLogTrans
+          ExtendedDataType    
+            ARRAY 
+              #RefTableId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #RefCompanyId
+        STRING
+        PROPERTIES
+          Name                #RefCompanyId
+          Table               #OBTLogTrans
+          ExtendedDataType    
+            ARRAY 
+              #OBTRefCompanyId
+              #
+            ENDARRAY
+          StringSize          #4
+        ENDPROPERTIES
+        
+      FIELD #KeyValue
+        STRING
+        PROPERTIES
+          Name                #KeyValue
+          Table               #OBTLogTrans
+          ExtendedDataType    
+            ARRAY 
+              #KeyValue
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DatabaseLogType
+        ENUM
+        PROPERTIES
+          Name                #DatabaseLogType
+          Table               #OBTLogTrans
+          EnumType            #DatabaseLogType
+        ENDPROPERTIES
+        
+      FIELD #SendDate
+        DATE
+        PROPERTIES
+          Name                #SendDate
+          Label               #@OBT12
+          HelpText            #@OBT13
+          Table               #OBTLogTrans
+          ExtendedDataType    
+            ARRAY 
+              #TransDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #RefRecId
+          #RefTableId
+          #RefCompanyId
+          #KeyValue
+          #DatabaseLogType
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Reference
+        PROPERTIES
+          Name                #Reference
+          Label               #@SYS41041
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #RefRecId
+          #RefTableId
+          #RefCompanyId
+          #KeyValue
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Type
+        PROPERTIES
+          Name                #Type
+          Label               #@SYS97129
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #DatabaseLogType
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #RefIdx
+      PROPERTIES
+        Name                #RefIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #RefCompanyId
+        #RefTableId
+        #RefRecId
+        #SendDate
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+  ENDTABLE
+  
+
+***Element: END

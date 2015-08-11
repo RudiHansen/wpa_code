@@ -1,0 +1,25 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPAStockTransfer_Update unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPAStockTransfer_Update
+    Type: 3
+    PROPERTIES
+      Name                #WPAStockTransfer_Update
+      Label               #@WPA224
+      HelpText            #@WPA225
+      ObjectType          #Class
+      Object              #WPAStockTransfer_Update
+      ConfigurationKey    #WPAWarehouseManagement
+      SecurityKey         #WPAPeriodic
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

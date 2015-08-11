@@ -1,0 +1,240 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendItemsAll unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendItemsAll
+    PROPERTIES
+      Name                #WPASendItemsAll
+      Extends             #RunBaseBatch
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #buildQuery
+        #public Query buildQuery()
+        #{
+        #    Query   query = new Query();
+        #    ;
+        #    query.addDataSource(tablenum(InventTable));
+        #    query.dataSourceTable(tablenum(InventTable)).addSortField(fieldnum(InventTable, ItemId));
+        #
+        #    return query;
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class WPASendItemsAll extends RunBaseBatch
+        #{
+        #    int         itemsPrFile;
+        #    QueryRun    queryRun;
+        #    DialogField itemsPrFile_df;
+        #
+        #    #define.CurrentVersion(1)
+        #    #localmacro.CurrentList
+        #        itemsPrFile
+        #    #endmacro
+        #}
+      ENDSOURCE
+      SOURCE #dialog
+        #protected Object dialog(DialogRunbase dialog, boolean forceOnClient)
+        #{
+        #    Object ret;
+        #    ;
+        #    ret             = super(dialog, forceOnClient);
+        #
+        #    itemsPrFile_df  = ret.addFieldValue(typeId(integer), itemsPrFile, "@WPA239");
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #getFromDialog
+        #public boolean getFromDialog()
+        #{
+        #    boolean ret;
+        #
+        #    ret         = super();
+        #
+        #    itemsPrFile = itemsPrFile_df.value();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    ;
+        #    super();
+        #
+        #    queryRun = new QueryRun(this.buildQuery());
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    ;
+        #
+        #    return [#CurrentVersion, #CurrentList, queryRun.pack()];
+        #}
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun ret;
+        #
+        #    ret = queryRun;
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    #OCCRetryCount
+        #    InventTable inventTable;
+        #    ItemId      itemIdFrom;
+        #    ItemId      itemIdTo;
+        #    counter     itemCounter;
+        #    ;
+        #    try
+        #    {
+        #        ttsbegin;
+        #        while (queryRun.next())
+        #        {
+        #            inventTable = queryRun.get(tablenum(InventTable));
+        #            itemCounter++;
+        #            if (itemCounter == 1)
+        #            {
+        #                itemIdFrom = inventTable.ItemId;
+        #            }
+        #            if (itemCounter mod itemsPrFile == 0)
+        #            {
+        #                this.sendItems(itemIdFrom, inventTable.ItemId);
+        #                itemIdFrom = inventTable.ItemId;
+        #            }
+        #            itemIdTo = inventTable.ItemId;
+        #        }
+        #        this.sendItems(itemIdFrom, itemIdTo);
+        #        ttscommit;
+        #        progress = null;
+        #    }
+        #    catch (Exception::Deadlock)
+        #    {
+        #        retry;
+        #    }
+        #    catch (Exception::UpdateConflict)
+        #    {
+        #        if (appl.ttsLevel() == 0)
+        #        {
+        #            if (xSession::currentRetryCount() >= #RetryNum)
+        #            {
+        #                throw Exception::UpdateConflictNotRecovered;
+        #            }
+        #            else
+        #            {
+        #                retry;
+        #            }
+        #        }
+        #        else
+        #        {
+        #            throw Exception::UpdateConflict;
+        #        }
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #sendItems
+        #void sendItems(ItemId   _itemIdFrom,
+        #               ItemId   _itemIdTo)
+        #{
+        #    WPASendItems        WPASendItems;
+        #    AifConstraintList   aifConstraintList;
+        #    AifConstraint       aifConstraint;
+        #    InventTable         inventTable;
+        #    ;
+        #
+        #    WPASendItems        = new WPASendItems();
+        #    aifConstraintList   = new AifConstraintList();
+        #    aifConstraint       = new AifConstraint();
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    WPASendItems.parmShowDocPurpose(true) ;
+        #    WPASendItems.parmServiceClassId(classnum(WPAInventTableService));
+        #    WPASendItems.parmSendActionType(AifSendActionType::SendByQuery);
+        #    WPASendItems.parmEndPoint(WPASendItems.getEndpoint());
+        #    WPASendItems.updateQuery(_itemIdFrom, _itemIdTo);
+        #    WPASendItems.parmServiceClassId(classnum(WPAInventTableService));
+        #
+        #//    WPASendItems.sendMultipleDocuments(classnum(WPAInventTable), classnum(WPAInventTableService), AifSendMode::Async, aifConstraintList);
+        #    WPASendItems.run();
+        #    info(strfmt("%1 - %2", _itemIdFrom, _itemIdTo));
+        #}
+      ENDSOURCE
+      SOURCE #showQueryValues
+        #public boolean showQueryValues()
+        #{
+        #    boolean ret;
+        #
+        #    ret = true;
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container packedClass)
+        #{
+        #    Version         version = RunBase::getVersion(packedClass);
+        #    PackedQueryRun  packedQuery;
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList, packedQuery] = packedClass;
+        #            if (queryIsPackedOk(packedQuery))
+        #            {
+        #                queryRun = new QueryRun(packedQuery);
+        #            }
+        #            break;
+        #        default :
+        #            return false;
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPASendItemsAll construct()
+        #{
+        #    return new WPASendItemsAll();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #client server public static ClassDescription description()
+        #{
+        #    return ("@WPA240");
+        #
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static void main(Args   _args)
+        #{
+        #    WPASendItemsAll wPASendItemsAll;
+        #    ;
+        #    wPASendItemsAll = WPASendItemsAll::construct();
+        #
+        #    if(wPASendItemsAll.prompt())
+        #    {
+        #        wPASendItemsAll.run();
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

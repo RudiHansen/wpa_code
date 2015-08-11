@@ -1,0 +1,305 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAAifDocument unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAAifDocument
+    PROPERTIES
+      Name                #WPAAifDocument
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAAifDocument //extends AifDocument
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #wpaSerialize
+        #public AifXml wpaSerialize(AfDataContainer  _dataContainer)
+        #{
+        #    AxdXmlWriter        xmlWriter;
+        #    //---------------------------------------------------------------------------------------------------
+        #    void serializeDataItems(AfDataContainer localDataContainer)
+        #    {
+        #        AfDataContainerEnumerator       dataContainerEnumerator;
+        #        AfArray                         array;
+        #        int                             elementIndex, elementCount;
+        #        AfDataContainerList             dataContainerList;
+        #        AfDataContainerListEnumerator   dataContainerListEnumerator;
+        #        AfDataItemDescriptor            dataItemDescriptor;
+        #        AfDataItemTypeDescriptor        dataItemTypeDescriptor, arrayElementTypeDescriptor;
+        #        str                             dataItemName;
+        #        str                             dataItemAltName;
+        #        Map                             dataItemMap;
+        #        MapEnumerator                   dataItemMapEnumerator;
+        #        boolean                         isTimeType;
+        #        enumId                          enumId;
+        #        int                             noOfDecimals;
+        #        Types                           type;
+        #
+        #        ;
+        #
+        #        // Build a map of data item names sorted in the serialization order.
+        #        dataItemMap = new Map(Types::Integer, Types::String);
+        #        dataContainerEnumerator = localDataContainer.get_Enumerator();
+        #        while (dataContainerEnumerator.moveNext())
+        #        {
+        #            dataItemDescriptor = localDataContainer.get_Descriptor().getDataItemDescriptor(dataContainerEnumerator.get_CurrentName());
+        #            dataItemMap.insert(dataItemDescriptor.get_SerializationOrder(), dataItemDescriptor.get_Name());
+        #        }
+        #
+        #        // Serialize data items
+        #        dataItemMapEnumerator = dataItemMap.getEnumerator();
+        #        while (dataItemMapEnumerator.moveNext())
+        #        {
+        #            // Get data item name
+        #            dataItemName = dataItemMapEnumerator.currentValue();
+        #
+        #            // Skip null data items
+        #            if (AfDataContainerUtilities::isNullDataItemValue(localDataContainer.get_Item(dataItemName)))
+        #            {
+        #                continue;
+        #            }
+        #
+        #            // Get data item type descriptor
+        #            dataItemTypeDescriptor = localDataContainer.get_Descriptor().getDataItemDescriptor(dataItemName).get_TypeDescriptor();
+        #
+        #            // Serialize array
+        #            if (dataItemTypeDescriptor.get_Type() == DataItemType::Array)
+        #            {
+        #                // Get array element type descriptor
+        #                arrayElementTypeDescriptor = dataItemTypeDescriptor.get_ElementTypeDescriptor();
+        #
+        #                // Get array element type parameters
+        #                type = AfDataContainerUtilities::getType(arrayElementTypeDescriptor.get_Type());
+        #                noOfDecimals = arrayElementTypeDescriptor.get_NoOfDecimals();
+        #                isTimeType = arrayElementTypeDescriptor.get_Type() == DataItemType::Time;
+        #                enumId = WPAAifDocument::getEnumId(arrayElementTypeDescriptor);
+        #
+        #                // Write start element
+        #                xmlWriter.writeStartArray(dataItemName);
+        #
+        #                // Write array elements
+        #                array = localDataContainer.get_Array(dataItemName);
+        #                elementCount = array.get_Length();
+        #                for (elementIndex = 1; elementIndex <= elementCount; elementIndex++)
+        #                {
+        #                    // Write array element
+        #                    xmlWriter.writeArrayElement(array.get_Item(elementIndex), type, noOfDecimals, isTimeType, enumId);
+        #                }
+        #
+        #                // Write end element
+        #                xmlWriter.writeEndArray();
+        #            }
+        #            // Serialize list (sub-records)
+        #            else if (dataItemTypeDescriptor.get_Type() == DataItemType::DataContainerList)
+        #            {
+        #                dataContainerList = localDataContainer.get_List(dataItemName);
+        #                dataContainerListEnumerator = dataContainerList.get_Enumerator();
+        #                while (dataContainerListEnumerator.moveNext())
+        #                {
+        #                    // Serialize list element
+        #                    //xmlWriter.writeStartTable(dataItemName);
+        #                    xmlWriter.writeStartArray(dataItemName);
+        #                    serializeDataItems(dataContainerListEnumerator.get_Current());
+        #                    xmlWriter.writeEndArray();
+        #                    //xmlWriter.writeEndTable();
+        #                }
+        #            }
+        #            // Serialize attribute
+        #            else
+        #            {
+        #                // Get attribute type parameters
+        #                type = AfDataContainerUtilities::getType(dataItemTypeDescriptor.get_Type());
+        #                noOfDecimals = dataItemTypeDescriptor.get_NoOfDecimals();
+        #                isTimeType = dataItemTypeDescriptor.get_Type() == DataItemType::Time;
+        #                enumId = WPAAifDocument::getEnumId(dataItemTypeDescriptor);
+        #
+        #                // Write attribute
+        #                dataItemAltName = AifDocumentField::wpaFind(classidget(this), dataItemName);
+        #                if(!dataItemAltName)
+        #                    dataItemAltName = dataItemName;
+        #
+        #                xmlWriter.writeProperty(dataItemAltName,
+        #                                        localDataContainer.get_Attribute(dataItemName),
+        #                                        type,
+        #                                        noOfDecimals,
+        #                                        isTimeType,
+        #                                        enumId);
+        #            }
+        #        }
+        #    }
+        #    //---------------------------------------------------------------------------------------------------
+        #    ;
+        #    xmlWriter = new AxdXmlWriter();
+        #
+        #    serializeDataItems(_dataContainer);
+        #
+        #    return xmlWriter.getXML();
+        #}
+      ENDSOURCE
+      SOURCE #getAllowedDSForCriteria
+        #// AxdBase::getAllowedDSForCriteria()
+        #static Set getAllowedDSForCriteria(Query _query)
+        #{
+        #    Set                     set = new Set(Types::String);
+        #    QueryBuildDataSource    queryBuildDataSource ;
+        #    int                     noOfDS ;
+        #    int                     i ;
+        #
+        #    void addInnerJoinedDS(QueryBuildDataSource _queryBuildDataSource, Set _resultSet)
+        #    {
+        #        int j ;
+        #        int length ;
+        #        QueryBuildDataSource  curQueryBuildDataSource ;
+        #        ;
+        #        length = _queryBuildDataSource.childDataSourceCount() ;
+        #        for(j=1; j<= length ; j++)
+        #        {
+        #            curQueryBuildDataSource = _queryBuildDataSource.childDataSourceNo(j) ;
+        #            if  (curQueryBuildDataSource.joinMode() == JoinMode::InnerJoin)
+        #            {
+        #                _resultSet.add(curQueryBuildDataSource.name()) ;
+        #                addInnerJoinedDS( curQueryBuildDataSource,_resultSet) ;
+        #            }
+        #        }
+        #    }
+        #
+        #    // Start
+        #    noOfDS = _query.childDataSourceCount() ;
+        #    for(i = 1 ; i<= noOfDs; i++)
+        #    {
+        #       queryBuildDataSource = _query.childDataSourceNo(i) ;
+        #       set.add( queryBuildDataSource.name()) ;
+        #       addInnerJoinedDS(queryBuildDataSource, set) ;
+        #    }
+        #    return set ;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #getEnumId
+        #//-------------------------------------------------------------------------------------------------------
+        #//
+        #//  Class:          AfDataContainerSerializer
+        #//
+        #//  Method:         getEnumId
+        #//
+        #//  Parameters:     _dataItemTypeDescriptor - data item type descriptor
+        #//
+        #//  Return value:   enum id for the specified data item
+        #//
+        #//  Description:    This method returns enum id for the specified data item.
+        #//
+        #//-------------------------------------------------------------------------------------------------------
+        #public static enumId getEnumId(AfDataItemTypeDescriptor _dataItemTypeDescriptor)
+        #{
+        #    enumId enumId = 0;
+        #
+        #    switch (_dataItemTypeDescriptor.get_Type())
+        #    {
+        #        case DataItemType::Enum:
+        #        {
+        #            enumId = _dataItemTypeDescriptor.get_EnumId();
+        #            break;
+        #        }
+        #
+        #        case DataItemType::Boolean:
+        #        {
+        #            enumId = enumnum(boolean);
+        #            break;
+        #        }
+        #    }
+        #
+        #    return enumId;
+        #}
+        #
+        #
+      ENDSOURCE
+      SOURCE #getQueryFromMessage
+        #public static Query getQueryFromMessage(AifMessageId    _messageId,
+        #                                        QueryName       _queryName)
+        #{
+        #    Query                   query;
+        #    Query                   srcQuery ;
+        #    AifQueryCriteria        queryCriteria;
+        #    QueryBuildDataSource    tmpQueryBuildDataSource;
+        #    Set                     allowedCriteriaDSSet ;
+        #    int                     i;
+        #    int                     length ;
+        #    Object                  object;
+        #    AifEntityKey            entityKey;
+        #    AifEntityKeyList        entityKeyList;
+        #    AifQueryCriteria        aifQueryCriteria;
+        #    AifOutboundProcessingQueue  aifOutboundProcessingQueue;
+        #    ;
+        #    select aifOutboundProcessingQueue
+        #        index AifOutboundProcessingQueueIdx
+        #        where aifOutboundProcessingQueue.MessageId == _messageId/*this.parmMessageId()*/;
+        #
+        #    switch(aifOutboundProcessingQueue.DocumentCriteriaClassId)
+        #    {
+        #        case classnum(AifEntityKey):
+        #            //Create an AifEntityKey object from the documentCriteria container
+        #            entityKey = AifEntityKey::create(aifOutboundProcessingQueue.DocumentCriteria);
+        #            object = entityKey;
+        #            break;
+        #
+        #        case classnum(AifEntityKeyList):
+        #            //Create an AifEntityKeyList object from the documentCriteria container
+        #            entityKeyList = AifEntityKeyList::create(aifOutboundProcessingQueue.DocumentCriteria);
+        #            object = entityKeyList;
+        #            break;
+        #
+        #        case classnum(AifQueryCriteria):
+        #            //Create an AifQueryCriteria object from the documentCriteria container
+        #            aifQueryCriteria = AifQueryCriteria::create(aifOutboundProcessingQueue.DocumentCriteria);
+        #            object = aifQueryCriteria;
+        #            break;
+        #        default:
+        #            //Invalid classid '%1'.
+        #            throw error(strfmt("@SYS90313",aifOutboundProcessingQueue.DocumentCriteriaClassId ));
+        #    }
+        #    queryCriteria = object;
+        #
+        #    query = new Query(_queryName/*this.getQueryName()*/);
+        #
+        #    if (query && queryCriteria)
+        #    {
+        #        allowedCriteriaDSSet = WPAAifDocument::getAllowedDSForCriteria(query) ;
+        #        if (queryCriteria.isQuery())
+        #        {
+        #            //Copy ranges from queryCriteria-query to query
+        #            srcQuery=  queryCriteria.parmQuery() ;
+        #            length = srcQuery.dataSourceCount() ;
+        #            for(i=1 ; i<= length; i++)
+        #            {
+        #                tmpQueryBuildDataSource = srcQuery.dataSourceNo(i) ;
+        #                if (tmpQueryBuildDataSource.enabled())
+        #                {
+        #                    if (allowedCriteriaDSSet.in(tmpQueryBuildDataSource.name()))
+        #                    {
+        #                        AxdBase::mergeRanges(query,srcQuery,i);
+        #                    }
+        #                    else
+        #                    {
+        #                        throw error(strfmt("@SYS94059" ,tmpQueryBuildDataSource.name()));
+        #                    }
+        #                }
+        #            }
+        #        }
+        #    }
+        #
+        #    return query;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

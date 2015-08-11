@@ -1,0 +1,99 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendInventSumAll unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendInventSumAll
+    PROPERTIES
+      Name                #WPASendInventSumAll
+      Extends             #RunBaseBatch
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPASendInventSumAll extends RunBaseBatch
+        #{
+        #    UserID              userId;
+        #
+        #    #define.CurrentVersion(1)
+        #    #localmacro.CurrentList
+        #        userId
+        #    #endmacro
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    ;
+        #
+        #    return [#CurrentVersion, #CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    Args                    args;
+        #    MenuFunction            menuFunction;
+        #    ;
+        #    args = new Args();
+        #    args.parmEnumType(enumnum(NoYes));
+        #    args.parmEnum(NoYes::Yes);//Skip dialog
+        #    menuFunction = new MenuFunction('WPASendInventSum',MenuItemType::Action);
+        #    menuFunction.run(args);
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container packedClass)
+        #{
+        #    Version version = RunBase::getVersion(packedClass);
+        #
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList] = packedClass;
+        #            break;
+        #        default :
+        #            return false;
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPASendInventSumAll construct()
+        #{
+        #    return new WPASendInventSumAll();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #client server public static ClassDescription description()
+        #{
+        #    return ("@WPA227");
+        #
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static void main(Args   _args)
+        #{
+        #    WPASendInventSumAll wPASendInventSumAll;
+        #    ;
+        #    wPASendInventSumAll = WPASendInventSumAll::construct();
+        #
+        #    if(wPASendInventSumAll.prompt())
+        #    {
+        #        wPASendInventSumAll.run();
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

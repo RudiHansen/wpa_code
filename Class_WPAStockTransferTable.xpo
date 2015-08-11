@@ -1,0 +1,190 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAStockTransferTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAStockTransferTable
+    PROPERTIES
+      Name                #WPAStockTransferTable
+      Extends             #AifDocument
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAStockTransferTable extends AifDocument
+        #{
+        #    #define.WPAStockTransfer_1('WPAStockTransfer_1')
+        #    #define.SenderId('SenderId')
+        #    #define.DocPurpose('DocPurpose')
+        #    AifMessage  message;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createWPAStockTransfer_1
+        #public AfStronglyTypedDataContainerList createWPAStockTransfer_1()
+        #{
+        #    return this.get_NewList(#WPAStockTransfer_1);
+        #}
+      ENDSOURCE
+      SOURCE #existsDocPurpose
+        #public boolean existsDocPurpose()
+        #{
+        #    return this.exists(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #existsSenderId
+        #public boolean existsSenderId()
+        #{
+        #    return this.exists(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #existsWPAStockTransfer_1
+        #public boolean existsWPAStockTransfer_1()
+        #{
+        #    return this.exists(#WPAStockTransfer_1);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAStockTransfer);
+        #}
+      ENDSOURCE
+      SOURCE #parmDocPurpose
+        #public XMLDocPurpose parmDocPurpose(XMLDocPurpose _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DocPurpose, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #parmMessage
+        #public AifMessage parmMessage(AifMessage _message = message)
+        #{
+        #    message = _message;
+        #
+        #    return message;
+        #}
+      ENDSOURCE
+      SOURCE #parmSenderId
+        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SenderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #parmWPAStockTransfer_1
+        #public AfStronglyTypedDataContainerList parmWPAStockTransfer_1(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#WPAStockTransfer_1, _value);
+        #    }
+        #
+        #    return this.get_List(#WPAStockTransfer_1);
+        #}
+      ENDSOURCE
+      SOURCE #deserialize
+        #public static void deserialize(AifXml xml)
+        #{
+        #    #define.StockTransfer       ("StockTransfer")
+        #    #define.StockTransferId     ("StockTransferId")
+        #    #define.ItemId              ("ItemID")
+        #    #define.Quantity            ("Quantity")
+        #    #define.Difference          ("Difference")
+        #    #define.FromStockLocationId ("FromStockLocationId")
+        #    #define.ToStockLocationId   ("ToStockLocationId")
+        #    #define.StockTransferTypeId ("StockTransferTypeId")
+        #
+        #    XmlTextReader           xmlReader;
+        #    Map                     fieldValues;
+        #    boolean                 fieldsCollected;
+        #    str                     name;
+        #    str                     value;
+        #    WPAStockTransfer        wPAStockTransfer;
+        #    WPAGUID                 wPAGUID;
+        #    ;
+        #    xmlReader = XmlTextReader::newXml(xml);
+        #    // turn off Whitespace handling to avoid extra reads
+        #    xmlReader.whitespaceHandling(XmlWhitespaceHandling::None);
+        #    xmlReader.moveToContent();
+        #    fieldValues = new Map(Types::String, Types::String);
+        #
+        #    ttsbegin;
+        #    while(!xmlReader.eof())
+        #    {
+        #        fieldsCollected = false;
+        #        if (xmlReader.read())
+        #        {
+        #            name = xmlReader.localName();
+        #            switch(xmlReader.localName())
+        #            {
+        #                case #StockTransfer     :   if (xmlReader.read())
+        #                                            {
+        #                                                while(true)
+        #                                                {
+        #                                                    value = '';
+        #                                                    name = xmlReader.localName();
+        #                                                    value = xmlReader.readElementString2(name);
+        #                                                    fieldValues.insert(name, value);
+        #
+        #                                                    if (xmlReader.nodeType() == XmlNodeType::EndElement)
+        #                                                    {
+        #                                                        fieldsCollected = true;
+        #                                                        break;
+        #                                                    }
+        #                                                    if (xmlReader.eof())
+        #                                                    {
+        #                                                        fieldsCollected = true;
+        #                                                        break;
+        #                                                    }
+        #                                                }
+        #                                            }
+        #            }
+        #        }
+        #        if (fieldsCollected)
+        #        {
+        #            if (fieldValues.exists(#StockTransferId))
+        #            {
+        #                wPAGUID = fieldValues.lookup(#StockTransferId);
+        #            }
+        #            if (!WPAStockTransfer::exist(wPAGUID))
+        #            {
+        #                wPAStockTransfer.StockTransferId            = wPAGUID;
+        #                if (fieldValues.exists(#ItemId))
+        #                    wPAStockTransfer.ItemId                 = fieldValues.lookup(#ItemId);
+        #                if (fieldValues.exists(#Quantity))
+        #                    wPAStockTransfer.Qty                    = fieldValues.lookup(#Quantity);
+        #                if (fieldValues.exists(#Difference))
+        #                    wPAStockTransfer.DifferenceQty          = fieldValues.lookup(#Difference);
+        #                if (fieldValues.exists(#FromStockLocationId))
+        #                    wPAStockTransfer.InventLocationIdFrom   = fieldValues.lookup(#FromStockLocationId);
+        #                if (fieldValues.exists(#ToStockLocationId))
+        #                    wPAStockTransfer.InventLocationIdTo     = fieldValues.lookup(#ToStockLocationId);
+        #                if (fieldValues.exists(#StockTransferTypeId))
+        #                    wPAStockTransfer.StockTransferType      = fieldValues.lookup(#StockTransferTypeId);
+        #
+        #                wPAStockTransfer.insert();
+        #            }
+        #        }
+        #    }
+        #    ttscommit;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

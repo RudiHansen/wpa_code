@@ -1,0 +1,146 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: OBTFileWriteCSV_Customers unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #OBTFileWriteCSV_Customers
+    PROPERTIES
+      Name                #OBTFileWriteCSV_Customers
+      Extends             #OBTFileWriteCSV
+      RunOn               #Server
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class OBTFileWriteCSV_Customers extends OBTFileWriteCSV
+        #{
+        #    QueryRun    queryRun;
+        #
+        #    #define.CurrentVersion(3)
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #void new()
+        #{
+        #    ;
+        #    super();
+        #
+        #    queryRun = new QueryRun(this.queryBuild());
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion, #CurrentList, queryRun.pack()];
+        #}
+      ENDSOURCE
+      SOURCE #queryBuild
+        #Query queryBuild()
+        #{
+        #    Query   query;
+        #    ;
+        #    query = new Query(querystr(OBTCustTable));
+        #
+        #    return query;
+        #}
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    return queryRun;
+        #}
+      ENDSOURCE
+      SOURCE #showQueryValues
+        #public boolean showQueryValues()
+        #{
+        #    boolean ret;
+        #    ;
+        #    ret = true;
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #    Integer         version        = conpeek(_packedClass,1);
+        #    container   packedQuery;
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList, packedQuery] = _packedClass;
+        #            if (packedQuery)
+        #            {
+        #                queryRun = new QueryRun(packedQuery);
+        #            }
+        #            break;
+        #        default:
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #writeFile
+        #void writeFile()
+        #{
+        #    CustTable   custTable;
+        #    Address     address;
+        #    ;
+        #
+        #    while (queryRun.next())
+        #    {
+        #        custTable   = queryRun.get(tablenum(CustTable));
+        #        address     = queryRun.get(tablenum(Address));
+        #        this.writeLine([custTable.AccountNum,
+        #                        custTable.Name,
+        #                        address.Street,
+        #                        address.ZipCode,
+        #                        address.City,
+        #                        address.County,
+        #                        address.CountryRegionId,
+        #                        address.State,
+        #                        custTable.Email,
+        #                        custTable.CreditMax,
+        #                        custTable.Currency]);
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static OBTFileWriteCSV_Customers construct()
+        #{
+        #    return new OBTFileWriteCSV_Customers();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #public static client server ClassDescription description()
+        #{
+        #    ;
+        #
+        #    return "Export of customers";
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #public static void main(Args    _args)
+        #{
+        #    OBTFileWriteCSV_Customers   fileWriteCSV_Customers = OBTFileWriteCSV_Customers::construct();
+        #    ;
+        #    if (fileWriteCSV_Customers.prompt())
+        #    {
+        #        fileWriteCSV_Customers.run();
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

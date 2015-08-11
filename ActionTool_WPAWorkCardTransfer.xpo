@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPAWorkCardTransfer unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPAWorkCardTransfer
+    Type: 3
+    PROPERTIES
+      Name                #WPAWorkCardTransfer
+      Label               #@WPA144
+      HelpText            #@WPA145
+      ObjectType          #Class
+      Object              #WPAWorkCardTransfer
+      RunOn               #Called from
+      ConfigurationKey    #WPAIntegration
+      SecurityKey         #WPAPeriodic
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

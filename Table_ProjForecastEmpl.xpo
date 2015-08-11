@@ -1,0 +1,1679 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : ProjForecastEmpl unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #ProjForecastEmpl
+    PROPERTIES
+      Name                #ProjForecastEmpl
+      Label               #@SYS60276
+      FormRef             #ProjForecastEmpl
+      TitleField1         #ModelId
+      TitleField2         #SchedFromDate
+      ConfigurationKey    #ProjBasicForecast
+      SecurityKey         #ProjTables
+      CreateRecIdIndex    #Yes
+      TableGroup          #Transaction
+      PrimaryIndex        #TransIdx
+      ClusterIndex        #TransIdx
+      ModifiedDateTime    #Yes
+      ModifiedBy          #Yes
+      ModifiedTransactionId #Yes
+      CreatedDateTime     #Yes
+      CreatedBy           #Yes
+      CreatedTransactionId #Yes
+      DeveloperDocumentation  #@SYS124885
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #ProjId
+        STRING
+        PROPERTIES
+          Name                #ProjId
+          HelpText            #@SYS19468
+          Mandatory           #Yes
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #EmplId
+        STRING
+        PROPERTIES
+          Name                #EmplId
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #EmplIdProj
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #CategoryId
+        STRING
+        PROPERTIES
+          Name                #CategoryId
+          HelpText            #@SYS15478
+          Mandatory           #Yes
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjCategoryId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #LinePropertyId
+        STRING
+        PROPERTIES
+          Name                #LinePropertyId
+          HelpText            #@SYS14990
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjLinePropertyId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Qty
+        REAL
+        PROPERTIES
+          Name                #Qty
+          HelpText            #@SYS6668
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjQtyEmpl
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CostPrice
+        REAL
+        PROPERTIES
+          Name                #CostPrice
+          HelpText            #@SYS11101
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjCostPriceEmpl
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SalesPrice
+        REAL
+        PROPERTIES
+          Name                #SalesPrice
+          HelpText            #@SYS7830
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjSalesPriceEmpl
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Dimension
+        STRING
+        PROPERTIES
+          Name                #Dimension
+          HelpText            #@SYS5632
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #Dimension
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ModelId
+        STRING
+        PROPERTIES
+          Name                #ModelId
+          Mandatory           #Yes
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjForecastModelId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Report
+        ENUM
+        PROPERTIES
+          Name                #Report
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ReportType
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #Txt
+        STRING
+        PROPERTIES
+          Name                #Txt
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #TransTxt
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #TaxGroupId
+        STRING
+        PROPERTIES
+          Name                #TaxGroupId
+          HelpText            #@SYS23385
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #TaxGroup
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CurrencyId
+        STRING
+        PROPERTIES
+          Name                #CurrencyId
+          Mandatory           #Yes
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjSalesCurrencyCode
+              #
+            ENDARRAY
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #Active
+        ENUM
+        PROPERTIES
+          Name                #Active
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #BudgetActive
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ActivityNumber
+        STRING
+        PROPERTIES
+          Name                #ActivityNumber
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjActivityNumber
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #WrkCtrNum
+        STRING
+        PROPERTIES
+          Name                #WrkCtrNum
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #WrkCtrIdBase
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CovStatus
+        INT
+        PROPERTIES
+          Name                #CovStatus
+          HelpText            #@SYS25965
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #CovStatus
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SchedLink
+        ENUM
+        PROPERTIES
+          Name                #SchedLink
+          ConfigurationKey    #WrkCtr
+          Table               #ProjForecastEmpl
+          EnumType            #SchedJobLink
+        ENDPROPERTIES
+        
+      FIELD #SchedWorkTime
+        ENUM
+        PROPERTIES
+          Name                #SchedWorkTime
+          Label               #@SYS11965
+          HelpText            #@SYS50913
+          Table               #ProjForecastEmpl
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #SchedCapacity
+        ENUM
+        PROPERTIES
+          Name                #SchedCapacity
+          Label               #@SYS8345
+          HelpText            #@SYS50912
+          Table               #ProjForecastEmpl
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #SchedLinkType
+        ENUM
+        PROPERTIES
+          Name                #SchedLinkType
+          ConfigurationKey    #WrkCtr
+          Table               #ProjForecastEmpl
+          EnumType            #SchedJobLinkType
+        ENDPROPERTIES
+        
+      FIELD #SchedToTime
+        TIME
+        PROPERTIES
+          Name                #SchedToTime
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #SchedToTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SchedToDate
+        DATE
+        PROPERTIES
+          Name                #SchedToDate
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #SchedToDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SchedFromTime
+        TIME
+        PROPERTIES
+          Name                #SchedFromTime
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #SchedFromTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SchedFromDate
+        DATE
+        PROPERTIES
+          Name                #SchedFromDate
+          Label               #@SYS54242
+          Mandatory           #Yes
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #SchedFromDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SchedWrkCtrId
+        STRING
+        PROPERTIES
+          Name                #SchedWrkCtrId
+          HelpText            #@SYS50944
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #WrkCtrId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SchedTaskDemand
+        REAL
+        PROPERTIES
+          Name                #SchedTaskDemand
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #WrkCtrTaskDemand
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SchedTaskGroupId
+        STRING
+        PROPERTIES
+          Name                #SchedTaskGroupId
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #TaskGroupId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SchedLoadPct
+        REAL
+        PROPERTIES
+          Name                #SchedLoadPct
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #WrkCtrLoadPct
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DEL_ActivityId
+        STRING
+        PROPERTIES
+          Name                #DEL_ActivityId
+          ConfigurationKey    #SysDeletedObjects41
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjActivityId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #LineNum
+        REAL
+        PROPERTIES
+          Name                #LineNum
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #LineNum
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SchedTimeHours
+        REAL
+        PROPERTIES
+          Name                #SchedTimeHours
+          Label               #@SYS53037
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          ConfigurationKey    #WrkCtr
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #RouteJobSchedTimeHours
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #TransId
+        STRING
+        PROPERTIES
+          Name                #TransId
+          Mandatory           #Yes
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjEmplForecastTransId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #SalesPaymDate
+        DATE
+        PROPERTIES
+          Name                #SalesPaymDate
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjForecastSalesPaymDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CostPaymDate
+        DATE
+        PROPERTIES
+          Name                #CostPaymDate
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjForecastCostPaymDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #InvoiceDate
+        DATE
+        PROPERTIES
+          Name                #InvoiceDate
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjForecastInvoiceDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #EliminationDate
+        DATE
+        PROPERTIES
+          Name                #EliminationDate
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ProjForecastEliminationDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ExchRate
+        REAL
+        PROPERTIES
+          Name                #ExchRate
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #ExchRate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #JobId
+        STRING
+        PROPERTIES
+          Name                #JobId
+          Table               #ProjForecastEmpl
+          ExtendedDataType    
+            ARRAY 
+              #JmgJobId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ModelId
+          #EmplId
+          #ProjId
+          #CategoryId
+          #LinePropertyId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Administration
+        PROPERTIES
+          Name                #Administration
+          Label               #@SYS9853
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Active
+          #modifiedBy
+          #LineNum
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #CostPrice
+        PROPERTIES
+          Name                #CostPrice
+          Label               #@SYS13134
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Qty
+          #CostPrice
+          #costAmount
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Dates
+        PROPERTIES
+          Name                #Dates
+          Label               #@SYS80293
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SchedFromDate
+          #InvoiceDate
+          #EliminationDate
+          #CostPaymDate
+          #SalesPaymDate
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Description
+        PROPERTIES
+          Name                #Description
+          Label               #@SYS7576
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Txt
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Dimension
+        PROPERTIES
+          Name                #Dimension
+          Label               #@SYS14926
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Dimension
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Identification
+        PROPERTIES
+          Name                #Identification
+          Label               #@SYS5711
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ModelId
+          #SchedFromDate
+          #ProjId
+          #ActivityNumber
+          #CategoryId
+          #EmplId
+          #LinePropertyId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #JobId
+        PROPERTIES
+          Name                #JobId
+          Label               #@SYS22890
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #JobId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Project
+        PROPERTIES
+          Name                #Project
+          Label               #@SYS4534
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #CategoryId
+          #LinePropertyId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #SalesPrice
+        PROPERTIES
+          Name                #SalesPrice
+          Label               #@SYS5755
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #CurrencyId
+          #ExchRate
+          #SalesPrice
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #SalesTax
+        PROPERTIES
+          Name                #SalesTax
+          Label               #@SYS5878
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TaxGroupId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Scheduled
+        PROPERTIES
+          Name                #Scheduled
+          Label               #@SYS11771
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SchedWrkCtrId
+          #SchedFromDate
+          #SchedFromTime
+          #SchedToDate
+          #SchedToTime
+          #SchedTimeHours
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Scheduling
+        PROPERTIES
+          Name                #Scheduling
+          Label               #@SYS21838
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SchedWrkCtrId
+          #SchedLoadPct
+          #SchedLink
+          #SchedLinkType
+          #SchedWorkTime
+          #SchedCapacity
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #SpecialReport
+        PROPERTIES
+          Name                #SpecialReport
+          Label               #@SYS10223
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Report
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #System
+        PROPERTIES
+          Name                #System
+          Label               #@SYS4278
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #CovStatus
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Transaction
+        PROPERTIES
+          Name                #Transaction
+          Label               #@SYS15191
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TransId
+          #Txt
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #WorkCenterAlternative
+        PROPERTIES
+          Name                #WorkCenterAlternative
+          Label               #@SYS21680
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SchedTaskGroupId
+          #SchedTaskDemand
+          #WrkCtrNum
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #ProjIdx
+      PROPERTIES
+        Name                #ProjIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ProjId
+        #ModelId
+        #LineNum
+      ENDINDEXFIELDS
+      
+      #projModelIdx
+      PROPERTIES
+        Name                #projModelIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ProjId
+        #ModelId
+        #CategoryId
+      ENDINDEXFIELDS
+      
+      #SchedIdx
+      PROPERTIES
+        Name                #SchedIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #SchedWrkCtrId
+      ENDINDEXFIELDS
+      
+      #TransIdx
+      PROPERTIES
+        Name                #TransIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TransId
+      ENDINDEXFIELDS
+      
+      #JobIdIdx
+      PROPERTIES
+        Name                #JobIdIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #JobId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+      REFERENCE #ProjActivity
+        PROPERTIES
+          Name                #ProjActivity
+          Table               #ProjActivity
+          EntityRelationshipRole  #@SYS124886
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ActivityNumber
+            RelatedField        #ActivityNumber
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+    ENDREFERENCES
+    
+    DELETEACTIONS
+      #ForecastSales
+      PROPERTIES
+        Table               #ForecastSales
+        DeleteAction        #Restricted
+      ENDPROPERTIES
+      
+      #ProjTransBudget
+      PROPERTIES
+        Table               #ProjTransBudget
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #blankDateFields
+        #private void blankDateFields()
+        #{
+        #    this.InvoiceDate        = dateNull();
+        #    this.EliminationDate    = dateNull();
+        #    this.CostPaymDate       = dateNull();
+        #    this.SalesPaymDate      = dateNull();
+        #}
+      ENDSOURCE
+      SOURCE #checkActivity
+        #private boolean checkActivity()
+        #{
+        #    RecId                       projRecId;
+        #
+        #    if (this.ActivityNumber)
+        #    {
+        #        if (! ProjActivity::find(this.ActivityNumber))
+        #            return checkFailed(strfmt("@SYS50966",this.ActivityNumber));
+        #
+        #        //validate activity is associated to Project
+        #        projRecId = ProjTable::find(this.ProjId).RecId;
+        #
+        #        if (smmActivityParentLinkTable::find(this.ActivityNumber, smmActivityParentType::Project, projRecId).RecId == 0)
+        #            return checkFailed(strfmt("@SYS105858",this.ActivityNumber, this.ProjId));
+        #    }
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #checkModel
+        #private boolean checkModel()
+        #{
+        #    ForecastModel   budgetModel = ForecastModel::find(HeadingSub::Heading,this.ModelId);
+        #
+        #    if (! budgetModel)
+        #        return checkFailed(strfmt("@SYS25942",this.ModelId));
+        #
+        #    if (budgetModel.Blocked)
+        #        return checkFailed(strfmt("@SYS25943",budgetModel.ModelId));
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #checkReqActivity
+        #public boolean checkReqActivity(ProjForecastEmpl   projForecastEmpl)
+        #{
+        #    RequireActivity             requireActivity;
+        #    boolean                     ret = true;
+        #    ;
+        #
+        #    requireActivity = ProjTable::checkRequireActivity(projForecastEmpl.ProjId,tablenum(ProjForecastEmpl));
+        #    if (requireActivity && (!projForecastEmpl.ActivityNumber))
+        #    {
+        #        ret = false;
+        #    }
+        #    return ret;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #costAmount
+        #// BP Deviation documented
+        #display ProjCostAmount costAmount()
+        #{
+        #    return this.Qty * this.CostPrice;
+        #}
+      ENDSOURCE
+      SOURCE #DefBudget
+        #private ProjForecastEmpl defBudget()
+        #{
+        #    ProjForecastEmpl projForecastEmpl = null;
+        #    ;
+        #
+        #    return projForecastEmpl;
+        #}
+      ENDSOURCE
+      SOURCE #delete
+        #public void delete()
+        #{
+        #    WrkCtrCapRes    wrkCtrCapRes;
+        #    ;
+        #
+        #    ttsbegin;
+        #
+        #    super();
+        #
+        #    delete_from wrkCtrCapRes
+        #        index hint RefIdx
+        #        where wrkCtrCapRes.RefType      == WrkCtrCapRefType::Project     &&
+        #              wrkCtrCapRes.RefId        == this.ProjId                   &&
+        #              wrkCtrCapRes.JobId        == int642str(this.RecId);
+        #
+        #// Shop Floor Control - begin
+        #    if (Global::isConfigurationkeyEnabled(configurationkeynum(Jmgjob)))
+        #    {
+        #        JmgJobTable::synchronizeProjBudgetEmpl(this, true);
+        #    }
+        #// Shop Floor Control - end
+        #
+        #
+        #    ttscommit;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #initFromCategory
+        #void initFromCategory()
+        #{
+        #    ;
+        #    this.LinePropertyId    = ProjLinePropertySetup::findLinePropertyId(this.ProjId, this.CategoryId);
+        #    this.setCostSalesPrice();
+        #}
+      ENDSOURCE
+      SOURCE #initFromEmpl
+        #void initFromEmpl()
+        #{
+        #    ;
+        #
+        #    if (! ProjValEmplProjSetup::checkEmplProj(this.EmplId,this.ProjId))
+        #        this.ProjId = '';
+        #
+        #    if (! ProjValEmplCategorySetUp::checkEmplCategory(this.EmplId,this.CategoryId))
+        #        this.CategoryId = '';
+        #
+        #    this.setCostSalesPrice();
+        #
+        #}
+      ENDSOURCE
+      SOURCE #initFromInvoiceDate
+        #public void initFromInvoiceDate()
+        #{
+        #    ProjTable       projTable       = this.projTable();
+        #    ProjParameters  projParameters  = ProjParameters::find();
+        #    ;
+        #
+        #    // Sales payment date
+        #    if (projTable.Type   == ProjType::TimeMaterial)
+        #    {
+        #        if (projTable.projInvoice().Payment)
+        #        {
+        #            this.SalesPaymDate = PaymTerm::advanceDate(projTable.projInvoice().Payment, this.InvoiceDate) + projParameters.ForecastBufferDays;
+        #        }
+        #        else
+        #        {
+        #            this.SalesPaymDate = this.InvoiceDate + projParameters.ForecastBufferDays;
+        #        }
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #initFromProjActivity
+        #void initFromProjActivity(ProjActivity _projActivity)
+        #{
+        #
+        #    if (! _projActivity || !_projActivity.CategoryDefault)
+        #    {
+        #        return;
+        #    }
+        #
+        #    this.CategoryId     = _projActivity.CategoryDefault;
+        #
+        #    if (_projActivity.CategoryDefault)
+        #        this.setCostSalesPrice();
+        #
+        #}
+      ENDSOURCE
+      SOURCE #InitFromProjTable
+        #public void initFromProjTable(ProjTable _projTable)
+        #{
+        #    ;
+        #
+        #    if (! _projTable)
+        #    {
+        #        return;
+        #    }
+        #
+        #    this.CurrencyId         = _projTable.currencyId();
+        #    this.ExchRate           = _projTable.exchRateSales(this.SchedFromDate,this.CurrencyId);
+        #    this.TaxGroupId         = _projTable.TaxGroupId;
+        #    if (! this.ModelId)
+        #        this.ModelId        =  ProjTable::modelId(this.ProjId);
+        #    this.Dimension          = _projTable.Dimension;
+        #
+        #    if (!ProjValProjCategorySetUp::checkProjCategory(this.ProjId, this.CategoryId))
+        #        this.CategoryId = '';
+        #
+        #    this.LinePropertyId = ProjLinePropertySetup::findLinePropertyId(this.ProjId, this.CategoryId);
+        #
+        #    this.setCostSalesPrice();
+        #}
+      ENDSOURCE
+      SOURCE #initFromSalesQuotationLine
+        #public void initFromSalesQuotationLine(SalesQuotationLine _salesQuotationLine)
+        #{;
+        #    this.ProjId         = _salesQuotationLine.salesQuotationTable().ProjIdRef;
+        #
+        #    this.initFromProjTable(ProjTable::find(this.ProjId));
+        #
+        #    this.ModelId        = _salesQuotationLine.salesQuotationTable().ModelId;
+        #
+        #    this.CategoryId     = _salesQuotationLine.ProjCategoryId;
+        #    this.EmplId         = _salesQuotationLine.ProjTransCode;
+        #    this.LinePropertyId = _salesQuotationLine.LinePropertyId;
+        #    this.Qty            = _salesQuotationLine.SalesQty;
+        #    this.Dimension      = _salesQuotationLine.Dimension;
+        #    this.SchedFromDate  = _salesQuotationLine.TransDate;
+        #    this.SchedToDate    = _salesQuotationLine.EndDate;
+        #    this.Txt            = _salesQuotationLine.ProjDescription;
+        #    this.CostPrice      = _salesQuotationLine.CostPrice;
+        #    this.CurrencyId     = _salesQuotationLine.CurrencyCode;
+        #
+        #    this.initFromTransDate();
+        #    if(!_salesQuotationLine.SalesPrice && _salesQuotationLine.LineAmount && _salesQuotationLine.SalesQty)
+        #    this.SalesPrice     = _salesQuotationLine.LineAmount / _salesQuotationLine.SalesQty;
+        #    else
+        #    this.SalesPrice     = _salesQuotationLine.SalesPrice;
+        #}
+      ENDSOURCE
+      SOURCE #initFromTransDate
+        #public void initFromTransDate()
+        #{
+        #    ProjTable       projTable       = this.projTable();
+        #    ProjParameters  projParameters  = ProjParameters::find();
+        #    ;
+        #
+        #    if (! this.CurrencyId)
+        #        this.CurrencyId         = projTable.currencyId();
+        #
+        #    if (! this.CurrencyId)
+        #        this.CurrencyId         = Currency::codeCompanyCurrency();
+        #
+        #    this.ExchRate = projTable.exchRateSales(this.SchedFromDate,this.CurrencyId);
+        #
+        #    // Invoice date
+        #    if (projTable.Type == ProjType::TimeMaterial)
+        #    {
+        #        if (projTable.projInvoice().ForecastInvoiceFrequency)
+        #        {
+        #            this.InvoiceDate = ProjInvoiceTable::forecastInvoiceDate(this.SchedFromDate, this.ProjId);
+        #        }
+        #        else
+        #        {
+        #            this.InvoiceDate = this.SchedFromDate;
+        #        }
+        #    }
+        #
+        #    this.initFromInvoiceDate();
+        #
+        #    // Elimination date
+        #    if (projTable.Type == ProjType::FixedPrice || projTable.Type == ProjType::Investment)
+        #    {
+        #        if (ProjTable::exist(projTable.wipProject))
+        #            this.EliminationDate = ProjTable::find(projTable.wipProject).EndDate;
+        #        else
+        #            this.EliminationDate = projTable.EndDate;
+        #
+        #        if (! this.EliminationDate)
+        #            this.EliminationDate    = this.SchedFromDate;
+        #
+        #    }
+        #
+        #    // Cost payment date
+        #    if (projTable.Type != ProjType::Time)
+        #    {
+        #        if (projParameters.ForecastPaymHour)
+        #        {
+        #            this.CostPaymDate = PaymTerm::advanceDate(projParameters.ForecastPaymHour, this.SchedFromDate);
+        #        }
+        #        else
+        #        {
+        #            this.CostPaymDate = this.SchedFromDate;
+        #        }
+        #    }
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #InitFromWrkCtrTable
+        #void initFromWrkCtrTable(WrkCtrTable _wrkCtrTable)
+        #{
+        #    this.EmplId             = _wrkCtrTable.EmplId;
+        #    this.SchedTaskGroupId   = _wrkCtrTable.TaskGroupId;
+        #    this.SchedTaskDemand    = _wrkCtrTable.WrkCtrTaskDemand;
+        #}
+      ENDSOURCE
+      SOURCE #initValue
+        #void initValue()
+        #{
+        #    NumberSeq           numberSeq;
+        #    ;
+        #
+        #    ttsbegin;
+        #
+        #    if (!this.TransId)
+        #    {
+        #        numberSeq       = NumberSeq::newGetNum(ProjParameters::numRefProjTransIdBase());
+        #        this.TransId    = numberSeq.num();
+        #    }
+        #
+        #    ttscommit;
+        #
+        #    this.Active             = NoYes::Yes;
+        #    this.SchedCapacity      = NoYes::Yes;
+        #    this.SchedLink          = SchedJobLink::FS;
+        #    this.SchedLinkType      = SchedJobLinkType::Soft;
+        #    this.SchedWorkTime      = NoYes::Yes;
+        #    this.SchedLoadPct       = 100;
+        #
+        #    this.SchedFromDate= (systemdateget() > this.projTable().StartDate)? systemdateget(): this.projTable().StartDate;
+        #    this.initFromTransDate();
+        #}
+      ENDSOURCE
+      SOURCE #Insert
+        #public void insert()
+        #{
+        #    NumberSeq           numberSeq;
+        #    ;
+        #
+        #    ttsbegin;
+        #
+        #    if (! this.TransId)
+        #    {
+        #        numberSeq = NumberSeq::newGetNum(ProjParameters::numRefProjTransIdBase());
+        #        this.TransId = numberSeq.num();
+        #    }
+        #
+        #    this.LineNum        = this.lineNum();
+        #// Shop Floor Control - begin
+        #    if (Global::isConfigurationkeyEnabled(configurationkeynum(Jmgjob)))
+        #    {
+        #        this.JobId = NumberSeq::newGetNum(JmgParameters::numRefIpcActivityId()).num();
+        #    }
+        #// Shop Floor Control - end
+        #
+        #    super();
+        #
+        #    ProjForecastPost::newPostForecastEmpl(this).run();
+        #
+        #// Shop Floor Control - begin
+        #    if (Global::isConfigurationkeyEnabled(configurationkeynum(Jmgjob)))
+        #    {
+        #        JmgJobTable::synchronizeProjBudgetEmpl(this);
+        #    }
+        #// Shop Floor Control - end
+        #    ttscommit;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #isProjForecastReduced
+        #private boolean isProjForecastReduced()
+        #{
+        #    return ProjForecastReductionHistory::existProjForecastTransId(this.TransId);
+        #}
+      ENDSOURCE
+      SOURCE #lineNum
+        #server LineNum lineNum()
+        #{
+        #    LineNum         lineBefore;
+        #    LineNum         lineAfter;
+        #
+        #    LineNum         lineNum;
+        #
+        #    lineBefore  = (select projForecastEmpl
+        #                    order by LineNum desc
+        #                    where projForecastEmpl.ProjId      == this.ProjId        &&
+        #                          projForecastEmpl.ModelId     == this.ModelId       &&
+        #                          projForecastEmpl.LineNum     <  this.LineNum).LineNum;
+        #
+        #    lineAfter   = (select projForecastEmpl
+        #                    order by LineNum
+        #                    where projForecastEmpl.ProjId      == this.ProjId        &&
+        #                          projForecastEmpl.ModelId     == this.ModelId       &&
+        #                          projForecastEmpl.LineNum     >  this.LineNum).LineNum;
+        #
+        #    if (lineAfter)
+        #        lineNum    = (lineBefore + lineAfter) / 2;
+        #
+        #    lineNum        = this.LineNum ? this.LineNum : 1;
+        #
+        #    return lineNum;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #modifiedField
+        #public void modifiedField(fieldId _fieldId)
+        #{
+        #    super(_fieldId);
+        #
+        #    switch(_fieldId)
+        #    {
+        #        case fieldnum(ProjForecastEmpl, ProjId) :
+        #            this.initFromProjTable(ProjTable::find(this.ProjId));
+        #            // blank and reinitialize the date fields
+        #            this.blankDateFields();
+        #            this.initFromTransDate();
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, EmplId) :
+        #            this.initFromEmpl();
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, CategoryId) :
+        #            this.initFromCategory();
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, LinePropertyId) :
+        #            this.setCostSalesPrice();
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, CurrencyId) :
+        #            if (! this.CurrencyId)
+        #                this.CurrencyId         = ProjTable::find(this.ProjId).currencyId();
+        #            // Update only the sales price based on new currency.
+        #            this.setCostSalesPrice(false);
+        #            this.ExchRate   = this.projTable().exchRateSales(this.SchedFromDate,this.CurrencyId);
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, ActivityNumber) :
+        #            this.initFromProjActivity(ProjActivity::find(this.ActivityNumber));
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, WrkCtrNum) :
+        #            if (!this.RecId)
+        #            {
+        #                this.initFromWrkCtrTable(WrkCtrTable::find(this.WrkCtrNum));
+        #            }
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, SchedFromDate) :
+        #            this.initFromTransDate();
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, InvoiceDate) :
+        #            this.initFromInvoiceDate();
+        #            break;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #projTable
+        #public ProjTable projTable()
+        #{;
+        #    return ProjTable::find(this.ProjId);
+        #}
+      ENDSOURCE
+      SOURCE #SetCostSalesPrice
+        #public void setCostSalesPrice(boolean _setCostPrice = true)
+        #{;
+        #
+        #    if (_setCostPrice)
+        #    {
+        #        this.CostPrice  = ProjHourCostPrice::findCostPrice(this.ProjId,
+        #                                                           this.EmplId,
+        #                                                           this.CategoryId,
+        #                                                           this.LinePropertyId,
+        #                                                           systemdateget());
+        #    }
+        #
+        #    [this.SalesPrice] = ProjHourSalesPrice::findHourSalesPrice(this.ProjId,
+        #                                                             this.EmplId,
+        #                                                             this.CategoryId,
+        #                                                             this.LinePropertyId,
+        #                                                             this.CostPrice,
+        #                                                             this.CurrencyId,
+        #                                                             systemdateget());
+        #}
+      ENDSOURCE
+      SOURCE #setLinePropertyId
+        #public void setLinePropertyId()
+        #{;
+        #    this.LinePropertyId = ProjLinePropertySetup::findLinePropertyId(this.ProjId, this.CategoryId);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #Update
+        #public void update()
+        #{
+        #    FormRun             formRun;
+        #    FormObjectSet       formObjSet;
+        #    int                 i;
+        #    ;
+        #    ttsbegin;
+        #
+        #    this.CovStatus      = (this.CovStatus  == 2 ? 1 : 0);
+        #
+        #    super();
+        #
+        #    ProjForecastPost::newPostForecastEmpl(this).run();
+        #
+        #// Shop Floor Control - begin
+        #    if (Global::isConfigurationkeyEnabled(configurationkeynum(Jmgjob)))
+        #    {
+        #        JmgJobTable::synchronizeProjBudgetEmpl(this);
+        #    }
+        #// Shop Floor Control - end
+        #
+        #    if(ProjParameters::find().HourDeleteZero
+        #    && (this.Qty <=0))
+        #    {
+        #        this.delete();
+        #        if (this.isFormDataSource())
+        #        {
+        #            // refresh and reread ProjForecastEmpl datasource if exists in form
+        #            formRun = this.dataSource().formRun();
+        #            for (i=1; i<= formRun.dataSourceCount(); i++)
+        #            {
+        #                if (formRun.dataSource(i).cursor().TableId == tablenum(ProjForecastEmpl))
+        #                {
+        #                    formObjSet = formRun.dataSource(i);
+        #                    break;
+        #                }
+        #            }
+        #            if (formObjSet)
+        #            {
+        #                formObjSet.refresh();
+        #                formObjSet.reread();
+        #            }
+        #        }
+        #    }
+        #
+        #    ttscommit;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #ValidateDelete
+        #boolean validateDelete()
+        #{
+        #    boolean     ok;
+        #
+        #
+        #    if (! ForecastModel::find(HeadingSub::Heading,this.ModelId).checkOpen())
+        #    {
+        #        ok = checkFailed("@SYS23721");
+        #    }
+        #    else
+        #    {
+        #        ok = super();
+        #    }
+        #
+        #    return ok;
+        #}
+      ENDSOURCE
+      SOURCE #validateField
+        #boolean validateField(fieldId _p1)
+        #{
+        #    ForecastModel   oldBudgetModel;
+        #    ForecastModel   forecastModel;
+        #
+        #    boolean ret;
+        #
+        #    ret = super(_p1);
+        #
+        #    switch(_p1)
+        #    {
+        #        case(fieldnum(ProjForecastEmpl,CategoryId)):
+        #            if (this.CategoryId)
+        #            {
+        #                if (ProjCategory::find(this.CategoryId).CategoryType    != ProjCategoryType::Hour)
+        #                    ret = checkFailed(strfmt("@SYS54897",this.CategoryId));
+        #            }
+        #            break;
+        #
+        #        case(fieldnum(ProjForecastEmpl,ModelId)):
+        #            if (this.ModelId != this.orig().ModelId)
+        #            {
+        #                oldBudgetModel  = ForecastModel::find(HeadingSub::Heading,this.orig().ModelId);
+        #                if (oldBudgetModel.Blocked)
+        #                    ret = checkFailed(strfmt("@SYS25943",oldBudgetModel.ModelId));
+        #                    forecastModel  = ForecastModel::find(HeadingSub::Heading,this.ModelId);
+        #                    if (forecastModel.Blocked)
+        #                        ret = checkFailed(strfmt("@SYS25943",forecastModel.ModelId));
+        #
+        #            }
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, ExchRate):
+        #            if (this.CurrencyId && ! this.ExchRate)
+        #            {
+        #                ret = checkFailed(strfmt("@SYS20792", this.CurrencyId));
+        #            }
+        #            break;
+        #
+        #        case fieldnum(ProjForecastEmpl, ActivityNumber):
+        #            {
+        #                ret = this.checkActivity();
+        #            }
+        #            break;
+        #    }
+        #
+        #    return ret;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #ValidateWrite
+        #public boolean validateWrite()
+        #{
+        #    ProjValCheckTrans   projValCheckTrans   = new ProjValCheckTrans();
+        #    boolean             ret;
+        #    ForecastModel       forecastModel;
+        #    boolean isProjForecastReduced;
+        #    ;
+        #    isProjForecastReduced=this.isProjForecastReduced();
+        #
+        #    ret  = super();
+        #
+        #    if (ret)
+        #    {
+        #        ret = this.checkModel() && ret;
+        #        ret = this.checkActivity() && ret;
+        #        ret = ProjTable::find(this.ProjId).status().validateWriteBudgetEmpl() && ret;
+        #        ret = projValCheckTrans.validateMandatory(this) && ret;
+        #        ret = ProjForecastPost::newPostForecastEmpl(this).runCheck() && ret;
+        #
+        #        if (ret)
+        #        {
+        #            ret = appl.dimensionSetValidation().checkDimension(this, fieldnum(ProjForecastEmpl, Dimension), true);
+        #        }
+        #
+        #        if (ret)
+        #        {
+        #            if(ProjTable::find(this.ProjId).StartDate > this.SchedFromDate)
+        #                ret= checkFailed("@SYS107206");
+        #        }
+        #
+        #        if(ret && isProjForecastReduced)
+        #        {
+        #            if(this.orig().ProjId != this.ProjId)
+        #                ret= checkFailed(strfmt("@SYS113137",fieldstr(ProjForecastEmpl, ProjId)));
+        #            if(this.orig().CategoryId != this.CategoryId)
+        #                ret= checkFailed(strfmt("@SYS113137",fieldstr(ProjForecastEmpl, CategoryId)));
+        #            if(this.orig().ActivityNumber != this.ActivityNumber)
+        #                ret= checkFailed(strfmt("@SYS113137",fieldstr(ProjForecastEmpl, ActivityNumber)));
+        #            if(this.orig().EmplId != this.EmplId)
+        #                ret= checkFailed(strfmt("@SYS113137",fieldstr(ProjForecastEmpl, EmplId)));
+        #            if(this.orig().ModelId != this.ModelId)
+        #                ret= checkFailed(strfmt("@SYS113137",fieldstr(ProjForecastEmpl, ModelId)));
+        #        }
+        #
+        #        if (ret)
+        #        {
+        #            if (this.InvoiceDate != dateNull())
+        #            {
+        #                if (this.InvoiceDate < this.SchedFromDate)
+        #                {
+        #                    ret = checkFailed("@SYS96098") && ret;
+        #                }
+        #            }
+        #            if (this.EliminationDate != dateNull())
+        #            {
+        #                if (this.ModelId)
+        #                {
+        #                    forecastModel = ForecastModel::find(HeadingSub::Heading,this.ModelId);
+        #                    if (forecastModel)
+        #                    {
+        #                        //Check WIP is being used by model
+        #                        switch (ProjTable::find(this.ProjId).Type)
+        #                        {
+        #                            case ProjType::FixedPrice :
+        #                                if (forecastModel.ProjForecastWIPFixedPrice)
+        #                                {
+        #                                    if (this.EliminationDate < this.SchedFromDate)
+        #                                    {
+        #                                    ret = checkFailed("@SYS96097") && ret;
+        #                                    }
+        #                                }
+        #                                break;
+        #
+        #                            case ProjType::TimeMaterial :
+        #                                if (forecastModel.ProjForecastWIPTimeMaterial)
+        #                                {
+        #                                    if (this.EliminationDate < this.SchedFromDate)
+        #                                    {
+        #                                    ret = checkFailed("@SYS96097") && ret;
+        #                                    }
+        #                                }
+        #                                break;
+        #
+        #                            case ProjType::Investment :
+        #                                if (forecastModel.ProjForecastWIPInvestment)
+        #                                {
+        #                                    if (this.EliminationDate < this.SchedFromDate)
+        #                                    {
+        #                                    ret = checkFailed("@SYS96097") && ret;
+        #                                    }
+        #                                }
+        #                                break;
+        #
+        #                            default :
+        #                        }
+        #                    }
+        #                }
+        #            }
+        #        }
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #wPAWorkcardStatus
+        #//BP Deviation documented
+        #display WPAWorkcardStatus wPAWorkcardStatus()
+        #{
+        #    WPAWorkcardTable    wPAWorkcardTable;
+        #    WPAWorkcardLine     wPAWorkcardLine;
+        #
+        #    ;
+        #
+        #    select maxof(Status) from wPAWorkcardTable
+        #        exists join wPAWorkcardLine
+        #            where wPAWorkcardLine.OrderId       == wPAWorkcardTable.OrderId     &&
+        #                  wPAWorkcardLine.WorkcardId    == wPAWorkcardTable.WorkcardId  &&
+        #                  wPAWorkcardLine.RefTableId    == this.TableId                 &&
+        #                  wPAWorkcardLine.RefRecId      == this.RecId;
+        #
+        #    return str2int(wPAWorkcardTable.Status);
+        #}
+      ENDSOURCE
+      SOURCE #estimateInGroup
+        #public static boolean estimateInGroup(ProjId           _projId,
+        #                                      ForecastModelId  _modelId,
+        #                                      ProjCostGroupId  _costGroupId,
+        #                                      ProjControlId    _projControlId = "")
+        #{
+        #    ProjForecastEmpl        projForecastEmpl;
+        #    ProjControlCategory     projControlCategory;
+        #    ;
+        #
+        #    if (!_projControlId)
+        #    {
+        #        _projControlId = ProjWIPTable::find(ProjTable::find(_projId).wipProject).ControlId;
+        #    }
+        #
+        #    select count(RecId) from projForecastEmpl
+        #        where projForecastEmpl.ProjId     == _projId  &&
+        #              projForecastEmpl.ModelId    == _modelId
+        #        join projControlCategory
+        #            where projControlCategory.ControlId     == _projControlId &&
+        #                  projControlCategory.CostGroupId   == _costGroupId &&
+        #                  projControlCategory.CategoryId    == projForecastEmpl.CategoryId;
+        #
+        #    if (projForecastEmpl.RecId > 0)
+        #    {
+        #        return true;
+        #    }
+        #
+        #    return false;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #exist
+        #static boolean exist(ProjId _projId)
+        #
+        #{
+        #    return (select projForecastEmpl
+        #             where projForecastEmpl.ProjId == _projId
+        #            ).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #public static ProjForecastEmpl find(ProjEmplTransId _transId, boolean _forUpdate = false)
+        #{
+        #    ProjForecastEmpl    projForecastEmpl = null;
+        #    ;
+        #
+        #    projForecastEmpl.selectForUpdate(_forUpdate);
+        #
+        #    if (_transId)
+        #    {
+        #        select projForecastEmpl where projForecastEmpl.TransId == _transId;
+        #    }
+        #
+        #    return projForecastEmpl;
+        #}
+      ENDSOURCE
+      SOURCE #findFirst
+        #static ProjForecastEmpl findFirst(ProjId            _projId,
+        #                                  ForecastModelId   _modelId,
+        #                                  boolean           _forUpdate = false)
+        #{
+        #    ProjForecastEmpl    projForecastEmpl;
+        #    ;
+        #    projForecastEmpl.selectForUpdate(_forUpdate);
+        #
+        #    if (_projId && _modelId)
+        #    {
+        #        select firstonly projForecastEmpl
+        #            index ProjIdx
+        #            order by LineNum
+        #            where   projForecastEmpl.ProjId     == _projId &&
+        #                    projForecastEmpl.ModelId    == _modelId;
+        #    }
+        #
+        #    return projForecastEmpl;
+        #}
+      ENDSOURCE
+      SOURCE #findJobId
+        #// Shop Floor Control - Begin
+        #public static ProjForecastEmpl findJobId(JmgJobId _jmgJobId, boolean _forUpdate = false)
+        #{
+        #    ProjForecastEmpl projForecastEmpl;
+        #    ;
+        #    projForecastEmpl.selectForUpdate(_forUpdate);
+        #    if (_jmgJobId)
+        #    {
+        #        select firstonly projForecastEmpl
+        #            where projForecastEmpl.JobId == _jmgJobId;
+        #    }
+        #    return projForecastEmpl;
+        #}
+        #// Shop Floor Control - End
+      ENDSOURCE
+      SOURCE #findLast
+        #static ProjForecastEmpl findLast(ProjId             _projId,
+        #                                 ForecastModelId    _modelId,
+        #                                 boolean            _forUpdate = false)
+        #{
+        #    ProjForecastEmpl    projForecastEmpl;
+        #    ;
+        #    projForecastEmpl.selectForUpdate(_forUpdate);
+        #
+        #    if (_projId && _modelId)
+        #    {
+        #        select firstonly projForecastEmpl
+        #            index ProjIdx
+        #            order by LineNum desc
+        #            where   projForecastEmpl.ProjId     == _projId &&
+        #                    projForecastEmpl.ModelId    == _modelId;
+        #    }
+        #
+        #    return projForecastEmpl;
+        #}
+        #
+        #
+      ENDSOURCE
+      SOURCE #findRecId
+        #static ProjForecastEmpl findRecId(recId     _recId,
+        #                                  boolean   _forUpdate = false)
+        #{
+        #    ProjForecastEmpl    projForecastEmpl;
+        #    ;
+        #    projForecastEmpl.selectForUpdate(_forUpdate);
+        #
+        #    select firstonly projForecastEmpl
+        #        where projForecastEmpl.RecId == _recId;
+        #
+        #    return projForecastEmpl;
+        #}
+        #
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

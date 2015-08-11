@@ -1,0 +1,247 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: QUE
+
+; Microsoft Dynamics AX Query: WPAInventTable unloaded
+; --------------------------------------------------------------------------------
+VERSION 18
+
+QUERY #WPAInventTable
+  PROPERTIES
+    Name                #WPAInventTable
+    Version             #262
+    NextUniqueId        #1008
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class QueryRun extends ObjectRun
+      #{
+      #}
+    ENDSOURCE
+    SOURCE #init
+      #public void init()
+      #{
+      #    super();
+      #    this.query().dataSourceTable(tablenum(InventTxt)).findRange(fieldnum(InventTxt,LanguageId)).
+      #        value(CompanyInfo::languageId());
+      #
+      #//    this.query().dataSourceTable(tablenum(InventTxt)).findRange(fieldnum(InventTxt,InventDimId)).
+      #//        value(InventDim::inventDimIdBlank());
+      #
+      #//    this.query().dataSourceTable(tablenum(InventItemBarcode)).findRange(fieldnum(InventItemBarcode,InventDimId)).
+      #//        value(InventDim::inventDimIdBlank());
+      #
+      #    this.query().dataSourceTable(tablenum(InventItemBarcode)).findRange(fieldnum(InventItemBarcode, barcodeSetupId)).
+      #        value(WPAParameters::find().BarCodeSetupId);
+      #
+      #//    info(this.query().dataSourceNo(1).toString());
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  BLOCKS
+    BLOCK #InventTable
+      PROPERTIES
+        Name                #InventTable
+        Table               #InventTable
+        UniqueId            #1003
+      ENDPROPERTIES
+      
+      FIELDLIST
+        PROPERTIES
+          Dynamic             #No
+        ENDPROPERTIES
+        
+        FIELD #ItemId
+        FIELD #RecId
+        FIELD #ItemName
+        FIELD #ItemType
+      ENDFIELDLIST
+      SORTING
+      ENDSORTING
+      LINES
+      ENDLINES
+      BLOCKS
+        BLOCK #InventTableModule
+          PROPERTIES
+            Name                #InventTableModuleInvent
+            Table               #InventTableModule
+            UniqueId            #1006
+            FetchMode           #1:1
+            JoinMode            #OuterJoin
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+              Dynamic             #No
+            ENDPROPERTIES
+            
+            FIELD #ItemId
+            FIELD #ModuleType
+            FIELD #Price
+            FIELD #RecId
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+            LINE #ModuleType
+            PROPERTIES
+              Name                #ModuleType
+              Table               #InventTableModule
+              Field               #ModuleType
+              Value               #Invent
+            ENDPROPERTIES
+            
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #ItemId
+              DETAILSFIELD #ItemId
+          ENDASSOCIATIONS
+        ENDBLOCK
+        BLOCK #InventTableModule
+          PROPERTIES
+            Name                #InventTableModuleSales
+            Table               #InventTableModule
+            UniqueId            #1007
+            FetchMode           #1:1
+            JoinMode            #OuterJoin
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+              Dynamic             #No
+            ENDPROPERTIES
+            
+            FIELD #ItemId
+            FIELD #Price
+            FIELD #RecId
+            FIELD #UnitId
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+            LINE #ModuleType
+            PROPERTIES
+              Name                #ModuleType
+              Table               #InventTableModule
+              Field               #ModuleType
+              Value               #Sales
+            ENDPROPERTIES
+            
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #ItemId
+              DETAILSFIELD #ItemId
+          ENDASSOCIATIONS
+        ENDBLOCK
+        BLOCK #InventItemBarcode
+          PROPERTIES
+            Name                #InventItemBarcode
+            Table               #InventItemBarcode
+            UniqueId            #1005
+            FetchMode           #1:1
+            JoinMode            #OuterJoin
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+              Dynamic             #No
+            ENDPROPERTIES
+            
+            FIELD #inventDimId
+            FIELD #itemBarCode
+            FIELD #itemId
+            FIELD #RecId
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+            LINE #inventDimId
+            PROPERTIES
+              Name                #inventDimId
+              Table               #InventItemBarcode
+              Field               #inventDimId
+            ENDPROPERTIES
+            
+            LINE #barcodeSetupId
+            PROPERTIES
+              Name                #barcodeSetupId
+              Table               #InventItemBarcode
+              Field               #barcodeSetupId
+            ENDPROPERTIES
+            
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #ItemId
+              DETAILSFIELD #itemId
+          ENDASSOCIATIONS
+        ENDBLOCK
+        BLOCK #InventTxt
+          PROPERTIES
+            Name                #InventTxt
+            Table               #InventTxt
+            UniqueId            #1004
+            FetchMode           #1:1
+            JoinMode            #OuterJoin
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+              Dynamic             #No
+            ENDPROPERTIES
+            
+            FIELD #InventDimId
+            FIELD #ItemId
+            FIELD #LanguageId
+            FIELD #RecId
+            FIELD #Txt
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+            LINE #LanguageId
+            PROPERTIES
+              Name                #LanguageId
+              Table               #InventTxt
+              Field               #LanguageId
+            ENDPROPERTIES
+            
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #ItemId
+              DETAILSFIELD #ItemId
+          ENDASSOCIATIONS
+        ENDBLOCK
+      ENDBLOCKS
+      GROUPBY
+      ENDGROUPBY
+      ORDERBY
+      ENDORDERBY
+    ENDBLOCK
+  ENDBLOCKS
+  DEPENDENTS
+  ENDDEPENDENTS
+  COMPOSITEQUERIES
+  ENDCOMPOSITEQUERIES
+ENDQUERY
+
+
+***Element: END

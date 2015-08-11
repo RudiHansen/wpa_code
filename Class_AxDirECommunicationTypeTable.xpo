@@ -1,0 +1,196 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxDirECommunicationTypeTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxDirECommunicationTypeTable
+    PROPERTIES
+      Name                #AxDirECommunicationTypeTable
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxDirECommunicationTypeTable axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxDirECommunicationTypeTable extends AxInternalBase
+        #{
+        #    DirECommunicationTypeTable DirECommunicationTypeTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public DirECommunicationTypeTable currentRecord(DirECommunicationTypeTable _DirECommunicationTypeTable = DirECommunicationTypeTable)
+        #{
+        #    if (!prmisdefault(_DirECommunicationTypeTable))
+        #    {
+        #        super(_DirECommunicationTypeTable);
+        #        DirECommunicationTypeTable = _DirECommunicationTypeTable;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return DirECommunicationTypeTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #DirECommunicationTypeTable
+        #public DirECommunicationTypeTable dirECommunicationTypeTable(DirECommunicationTypeTable _dirECommunicationTypeTable = dirECommunicationTypeTable)
+        #{
+        #    if (!prmisdefault(_dirECommunicationTypeTable))
+        #    {
+        #        this.setCurrentRecordFromExternal(_dirECommunicationTypeTable);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected DirECommunicationTypeTable emptyRecord()
+        #{
+        #    DirECommunicationTypeTable localDirECommunicationTypeTable;
+        #    ;
+        #    return localDirECommunicationTypeTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDescription
+        #public DirECommunicationTypeDescription parmDescription(DirECommunicationTypeDescription _description = '')
+        #{
+        #    if (!prmisdefault(_description))
+        #    {
+        #        this.setField(fieldNum(DirECommunicationTypeTable, Description), _description);
+        #    }
+        #
+        #    return dirECommunicationTypeTable.Description;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmECommunicationTypeId
+        #public DirECommunicationTypeId parmECommunicationTypeId(DirECommunicationTypeId _eCommunicationTypeId = '')
+        #{
+        #    if (!prmisdefault(_eCommunicationTypeId))
+        #    {
+        #        this.setField(fieldNum(DirECommunicationTypeTable, ECommunicationTypeId), _eCommunicationTypeId);
+        #    }
+        #
+        #    return dirECommunicationTypeTable.ECommunicationTypeId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmMethodType
+        #public DirECommunicationMethodType parmMethodType(DirECommunicationMethodType _methodType = DirECommunicationMethodType::None)
+        #{
+        #    if (!prmisdefault(_methodType))
+        #    {
+        #        this.setField(fieldNum(DirECommunicationTypeTable, MethodType), _methodType);
+        #    }
+        #
+        #    return dirECommunicationTypeTable.MethodType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSystemType
+        #public DirSystemECommunicationType parmSystemType(DirSystemECommunicationType _systemType = DirSystemECommunicationType::None)
+        #{
+        #    if (!prmisdefault(_systemType))
+        #    {
+        #        this.setField(fieldNum(DirECommunicationTypeTable, SystemType), _systemType);
+        #    }
+        #
+        #    return dirECommunicationTypeTable.SystemType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDescription
+        #protected void setDescription()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirECommunicationTypeTable, Description)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setECommunicationTypeId
+        #protected void setECommunicationTypeId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirECommunicationTypeTable, ECommunicationTypeId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setMethodType
+        #protected void setMethodType()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirECommunicationTypeTable, MethodType)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setSystemType
+        #protected void setSystemType()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(DirECommunicationTypeTable, SystemType)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setDescription();
+        #    this.setMethodType();
+        #    this.setECommunicationTypeId();
+        #    this.setSystemType();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxDirECommunicationTypeTable construct()
+        #{
+        #    return new AxDirECommunicationTypeTable();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newDirECommunicationTypeTable
+        #public static AxDirECommunicationTypeTable newDirECommunicationTypeTable(DirECommunicationTypeTable _DirECommunicationTypeTable)
+        #{
+        #    AxDirECommunicationTypeTable AxDirECommunicationTypeTable = AxDirECommunicationTypeTable::construct();
+        #    ;
+        #    AxDirECommunicationTypeTable.DirECommunicationTypeTable(_DirECommunicationTypeTable);
+        #
+        #    return AxDirECommunicationTypeTable;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

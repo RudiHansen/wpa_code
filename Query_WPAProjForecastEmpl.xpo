@@ -1,0 +1,274 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: QUE
+
+; Microsoft Dynamics AX Query: WPAProjForecastEmpl unloaded
+; --------------------------------------------------------------------------------
+VERSION 18
+
+QUERY #WPAProjForecastEmpl
+  PROPERTIES
+    Name                #WPAProjForecastEmpl
+    Version             #985
+    NextUniqueId        #1013
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class QueryRun extends ObjectRun
+      #{
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  BLOCKS
+    BLOCK #ProjForecastEmpl
+      PROPERTIES
+        Name                #ProjForecastEmpl
+        Table               #ProjForecastEmpl
+        UniqueId            #1007
+      ENDPROPERTIES
+      
+      FIELDLIST
+        PROPERTIES
+          Dynamic             #No
+        ENDPROPERTIES
+        
+        FIELD #Active
+        FIELD #ActivityNumber
+        FIELD #CategoryId
+        FIELD #CostPrice
+        FIELD #createdTransactionId
+        FIELD #EmplId
+        FIELD #LinePropertyId
+        FIELD #ModelId
+        FIELD #modifiedTransactionId
+        FIELD #ProjId
+        FIELD #Qty
+        FIELD #TransId
+        FIELD #Txt
+        FIELD #SalesPrice
+        FIELD #SchedFromDate
+        FIELD #SchedFromTime
+        FIELD #SchedToDate
+        FIELD #SchedToTime
+        FIELD #TableId
+        FIELD #RecId
+      ENDFIELDLIST
+      SORTING
+      ENDSORTING
+      LINES
+      ENDLINES
+      BLOCKS
+        BLOCK #ProjTable
+          PROPERTIES
+            Name                #ProjTable
+            Table               #ProjTable
+            UniqueId            #1008
+            FetchMode           #1:1
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+              Dynamic             #No
+            ENDPROPERTIES
+            
+            FIELD #CustAccount
+            FIELD #DeliveryCity
+            FIELD #DeliveryStreet
+            FIELD #DlvAddr
+            FIELD #DlvCountryRegionId
+            FIELD #DlvCounty
+            FIELD #DlvName
+            FIELD #DlvState
+            FIELD #DlvZipCode
+            FIELD #Email
+            FIELD #ProjId
+            FIELD #Type
+            FIELD #Status
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+          ENDLINES
+          BLOCKS
+            BLOCK #CustTable
+              PROPERTIES
+                Name                #CustTable
+                Table               #CustTable
+                UniqueId            #1009
+                FetchMode           #1:1
+              ENDPROPERTIES
+              
+              FIELDLIST
+                PROPERTIES
+                  Dynamic             #No
+                ENDPROPERTIES
+                
+                FIELD #AccountNum
+                FIELD #Address
+                FIELD #CellularPhone
+                FIELD #City
+                FIELD #CountryRegionId
+                FIELD #County
+                FIELD #Email
+                FIELD #PartyId
+                FIELD #Phone
+                FIELD #PhoneLocal
+                FIELD #State
+                FIELD #Street
+                FIELD #TeleFax
+                FIELD #Telex
+                FIELD #ZipCode
+              ENDFIELDLIST
+              SORTING
+              ENDSORTING
+              LINES
+              ENDLINES
+              BLOCKS
+                BLOCK #DirPartyAddressRelationship
+                  PROPERTIES
+                    Name                #DirPartyAddrRel
+                    Table               #DirPartyAddressRelationship
+                    UniqueId            #1010
+                    FetchMode           #1:1
+                  ENDPROPERTIES
+                  
+                  FIELDLIST
+                    PROPERTIES
+                      Dynamic             #No
+                    ENDPROPERTIES
+                    
+                    FIELD #IsPrimary
+                    FIELD #PartyId
+                    FIELD #RecId
+                  ENDFIELDLIST
+                  SORTING
+                  ENDSORTING
+                  LINES
+                    LINE #IsPrimary
+                    PROPERTIES
+                      Name                #IsPrimary
+                      Table               #DirPartyAddressRelationship
+                      Field               #IsPrimary
+                      Value               #Yes
+                    ENDPROPERTIES
+                    
+                  ENDLINES
+                  BLOCKS
+                    BLOCK #DirPartyAddressRelationshipMapping
+                      PROPERTIES
+                        Name                #DirPartyAddrRelMap
+                        Table               #DirPartyAddressRelationshipMapping
+                        UniqueId            #1011
+                        FetchMode           #1:1
+                      ENDPROPERTIES
+                      
+                      FIELDLIST
+                        PROPERTIES
+                          Dynamic             #No
+                        ENDPROPERTIES
+                        
+                        FIELD #AddressRecId
+                        FIELD #PartyAddressRelationshipRecId
+                        FIELD #RefCompanyId
+                      ENDFIELDLIST
+                      SORTING
+                      ENDSORTING
+                      LINES
+                      ENDLINES
+                      BLOCKS
+                        BLOCK #Address
+                          PROPERTIES
+                            Name                #Address
+                            Table               #Address
+                            UniqueId            #1012
+                            FetchMode           #1:1
+                          ENDPROPERTIES
+                          
+                          FIELDLIST
+                            PROPERTIES
+                              Dynamic             #No
+                            ENDPROPERTIES
+                            
+                            FIELD #Address
+                            FIELD #CellularPhone
+                            FIELD #City
+                            FIELD #CountryRegionId
+                            FIELD #County
+                            FIELD #dataAreaId
+                            FIELD #Email
+                            FIELD #Name
+                            FIELD #RecId
+                            FIELD #State
+                            FIELD #Street
+                            FIELD #TaxGroup
+                            FIELD #TeleFax
+                            FIELD #type
+                            FIELD #ZipCode
+                          ENDFIELDLIST
+                          SORTING
+                          ENDSORTING
+                          LINES
+                          ENDLINES
+                          BLOCKS
+                          ENDBLOCKS
+                          ASSOCIATIONS
+                            ASSOCIATION
+                              JOINDATASOURCE #DirPartyAddrRelMap
+                              MASTERFIELD  #RefCompanyId
+                              DETAILSFIELD #dataAreaId
+                            ASSOCIATION
+                              JOINDATASOURCE #DirPartyAddrRelMap
+                              MASTERFIELD  #AddressRecId
+                              DETAILSFIELD #RecId
+                          ENDASSOCIATIONS
+                        ENDBLOCK
+                      ENDBLOCKS
+                      ASSOCIATIONS
+                        ASSOCIATION
+                          JOINDATASOURCE #DirPartyAddrRel
+                          MASTERFIELD  #RecId
+                          DETAILSFIELD #PartyAddressRelationshipRecId
+                      ENDASSOCIATIONS
+                    ENDBLOCK
+                  ENDBLOCKS
+                  ASSOCIATIONS
+                    ASSOCIATION
+                      JOINDATASOURCE #CustTable
+                      MASTERFIELD  #PartyId
+                      DETAILSFIELD #PartyId
+                  ENDASSOCIATIONS
+                ENDBLOCK
+              ENDBLOCKS
+              ASSOCIATIONS
+                ASSOCIATION
+                  JOINDATASOURCE #ProjTable
+                  MASTERFIELD  #CustAccount
+                  DETAILSFIELD #AccountNum
+              ENDASSOCIATIONS
+            ENDBLOCK
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              JOINDATASOURCE #ProjForecastEmpl
+              MASTERFIELD  #ProjId
+              DETAILSFIELD #ProjId
+          ENDASSOCIATIONS
+        ENDBLOCK
+      ENDBLOCKS
+      GROUPBY
+      ENDGROUPBY
+      ORDERBY
+      ENDORDERBY
+    ENDBLOCK
+  ENDBLOCKS
+  DEPENDENTS
+  ENDDEPENDENTS
+  COMPOSITEQUERIES
+  ENDCOMPOSITEQUERIES
+ENDQUERY
+
+
+***Element: END

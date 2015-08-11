@@ -1,0 +1,96 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : OBTLogMediaLookup unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #OBTLogMediaLookup
+    PROPERTIES
+      Name                #OBTLogMediaLookup
+      Label               #@OBT2
+      TitleField1         #className
+      TitleField2         #classId
+      ConfigurationKey    #SysDatabaseLog
+      SecurityKey         #BasicTables
+      CreateRecIdIndex    #Yes
+      SaveDataPerCompany  #No
+      PrimaryIndex        #RecId
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #classId
+        INT
+        PROPERTIES
+          Name                #classId
+          Table               #OBTLogMediaLookup
+          ExtendedDataType    
+            ARRAY 
+              #classId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #className
+        STRING
+        PROPERTIES
+          Name                #className
+          Table               #OBTLogMediaLookup
+          ExtendedDataType    
+            ARRAY 
+              #ClassName
+              #
+            ENDARRAY
+          StringSize          #40
+        ENDPROPERTIES
+        
+      FIELD #formInstanceId
+        GUID
+        PROPERTIES
+          Name                #formInstanceId
+          Label               #@SYS97141
+          HelpText            #@SYS97141
+          Table               #OBTLogMediaLookup
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #Overview
+        PROPERTIES
+          Name                #Overview
+          Label               #@SYS93650
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #formInstanceId
+          #className
+          #classId
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #MediaLookupIdx
+      PROPERTIES
+        Name                #MediaLookupIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #formInstanceId
+        #className
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+  ENDTABLE
+  
+
+***Element: END

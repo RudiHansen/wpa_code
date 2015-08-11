@@ -1,0 +1,24 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPAParameters unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPAParameters
+    Type: 1
+    PROPERTIES
+      Name                #WPAParameters
+      Label               #@WPA1
+      HelpText            #@SYS28007
+      Object              #WPAParameters
+      ConfigurationKey    #WPAIntegration
+      SecurityKey         #WPASetup
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

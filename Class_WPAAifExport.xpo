@@ -1,0 +1,89 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAAifExport unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAAifExport
+    PROPERTIES
+      Name                #WPAAifExport
+      Extends             #RunBaseBatch
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #caption
+        #public ClassDescription caption()
+        #{
+        #    ClassDescription ret;
+        #    ;
+        #    ret = "@WPA165";
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class WPAAifExport extends RunBaseBatch
+        #{
+        #    #define.CurrentVersion(1)
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    return [#CurrentVersion];
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    ;
+        #    new AifOutboundProcessingService().run();
+        #    new AifGatewaySendService().run();
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container _packedClass)
+        #{
+        #    Version version = RunBase::getVersion(_packedClass);
+        #
+        #    switch (version)
+        #    {
+        #        case(#CurrentVersion) :
+        #            [version] = _packedClass;
+        #            break;
+        #
+        #        default :
+        #            return false;
+        #    }
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAAifExport construct()
+        #{
+        #    return new WPAAifExport();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #main
+        #public static void main(Args _args)
+        #{
+        #    WPAAifExport    export = WPAAifExport::construct();
+        #    ;
+        #    if(export.prompt())
+        #    {
+        #        export.run();
+        #    }
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

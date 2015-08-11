@@ -1,0 +1,258 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASend unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASend
+    PROPERTIES
+      Name                #WPASend
+      Extends             #
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPASend
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #void run(Args   _args)
+        #{
+        #    ;
+        #
+        #    if (_args.record())
+        #    {
+        #        switch (_args.record().TableId)
+        #        {
+        #            case tablenum(SMAServiceOrderTable) :   this.sendSMAServiceOrderTable(_args);
+        #                                                    break;
+        #            case tablenum(ProjForecastEmpl)     :   this.sendProjForecastEmpl(_args);
+        #                                                    break;
+        #            case tablenum(EmplTable)            :   this.sendEmplTable(_args);
+        #                                                    break;
+        #            case tablenum(InventTable)          :   this.sendInventTable(_args);
+        #                                                    break;
+        #            case tablenum(CategoryTable),
+        #                 tablenum(ProjCategory)         :   this.sendProjCategory(_args);
+        #                                                    break;
+        #            default                             :   break;
+        #        }
+        #
+        #    }
+        #
+        #    new AifOutboundProcessingService().run();
+        #    new AifGatewaySendService().run();
+        #}
+      ENDSOURCE
+      SOURCE #sendEmplTable
+        #void sendEmplTable(Args _args)
+        #{
+        #    Args                    args;
+        #    FormDataSource          formDataSource;
+        #    MenuFunction            menuFunction;
+        #    Common                  table;
+        #    Counter                 sentRecords;
+        #    ;
+        #    args = new Args();
+        #    menuFunction = new MenuFunction('WPASendEmpl',MenuItemType::Action);
+        #
+        #    if (_args.record().dataSource())
+        #    {
+        #        formDataSource = _args.record().dataSource();
+        #        for (table = formDataSource.getFirst(true) ? formDataSource.getFirst(true) : _args.record(); table; table = formDataSource.getNext())
+        #        {
+        #            if (WPAEmpl::validateData(table))
+        #            {
+        #                args.record(table);
+        #                menuFunction.run(args);
+        #                sentRecords ++;
+        #            }
+        #        }
+        #    }
+        #    else
+        #    {
+        #        table = _args.record();
+        #        args.record(table);
+        #        menuFunction.run(args);
+        #        sentRecords ++;
+        #    }
+        #    info(strfmt("%1 records sent", sentRecords));
+        #}
+      ENDSOURCE
+      SOURCE #sendInventTable
+        #void sendInventTable(Args   _args)
+        #{
+        #    Args                    args;
+        #    FormDataSource          formDataSource;
+        #    MenuFunction            menuFunction;
+        #    Common                  table;
+        #    Counter                 sentRecords;
+        #    ;
+        #    args = new Args();
+        #    menuFunction = new MenuFunction('WPASendItems',MenuItemType::Action);
+        #    if (_args.record().dataSource())
+        #
+        #    {
+        #        formDataSource = _args.record().dataSource();
+        #        for (table = formDataSource.getFirst(true) ? formDataSource.getFirst(true) : _args.record(); table; table = formDataSource.getNext())
+        #        {
+        #            args.record(table);
+        #            menuFunction.run(args);
+        #            sentRecords ++;
+        #        }
+        #    }
+        #    else
+        #    {
+        #        table = _args.record();
+        #        args.record(table);
+        #        menuFunction.run(args);
+        #        sentRecords ++;
+        #    }
+        #
+        #    info(strfmt("%1 records sent", sentRecords));
+        #}
+      ENDSOURCE
+      SOURCE #sendProjCategory
+        #void sendProjCategory(Args  _args)
+        #{
+        #    Args                    args;
+        #    FormDataSource          formDataSource;
+        #    MenuFunction            menuFunction;
+        #    Common                  table;
+        #    Counter                 sentRecords;
+        #    ProjCategory            projCategory;
+        #    ;
+        #    args = new Args();
+        #    menuFunction = new MenuFunction('WPASendProjCategory',MenuItemType::Action);
+        #
+        #    if (_args.record().dataSource())
+        #    {
+        #        formDataSource = _args.record().dataSource();
+        #        for (table = formDataSource.getFirst(true) ? formDataSource.getFirst(true) : _args.record(); table; table = formDataSource.getNext())
+        #        {
+        #            args.record(table);
+        #            menuFunction.run(args);
+        #            sentRecords ++;
+        #        }
+        #    }
+        #    else
+        #    {
+        #        if (_args.record().TableId == tablenum(ProjCategory))
+        #        {
+        #            projCategory = _args.record();
+        #            table = CategoryTable::find(projCategory.CategoryId);
+        #        }
+        #        else
+        #        {
+        #            table = _args.record();
+        #        }
+        #        args.record(table);
+        #        menuFunction.run(args);
+        #        sentRecords ++;
+        #
+        #    }
+        #    info(strfmt("%1 records sent", sentRecords));
+        #}
+      ENDSOURCE
+      SOURCE #sendProjForecastEmpl
+        #void sendProjForecastEmpl(Args  _args)
+        #{
+        #    Args                    args;
+        #    ProjTable               projTable;
+        #    ProjForecastEmpl        projForecastEmpl;
+        #    MenuFunction            menuFunction;
+        #    FormDataSource          formDataSource;
+        #    Common                  table;
+        #    boolean                 projSent;
+        #    Counter                 sentRecords;
+        #    ;
+        #    if (_args.record().dataSource())
+        #    {
+        #        args = new Args();
+        #        menuFunction = new MenuFunction('WPASendProjForecastEmpl',MenuItemType::Action);
+        #        formDataSource = _args.record().dataSource();
+        #        for (table = formDataSource.getFirst(true) ? formDataSource.getFirst(true) : _args.record(); table; table = formDataSource.getNext())
+        #        {
+        #            if (!projSent)
+        #            {
+        #                projForecastEmpl = table;
+        #                projTable        = ProjTable::find(projForecastEmpl.ProjId);
+        #                if (!WPAIntegrationLog::exist(projTable.TableId, projTable.RecId))
+        #                {
+        #                    if (!WPAProject::validateProject(projTable))
+        #                    {
+        #                        throw error("@WPA162");
+        #                    }
+        #
+        #                    WPASendProject::sendProject(projTable);
+        #                }
+        #                projSent = true;
+        #            }
+        #            if (WPAProjForecastEmpl::validateData(table))
+        #            {
+        #                args.record(table);
+        #                menuFunction.run(args);
+        #                sentRecords ++;
+        #            }
+        #        }
+        #    }
+        #    info(strfmt("%1 records sent", sentRecords));
+        #}
+      ENDSOURCE
+      SOURCE #sendSMAServiceOrderTable
+        #void sendSMAServiceOrderTable(Args  _args)
+        #{
+        #    SMAServiceOrderTable    serviceOrderTable;
+        #    SMAServiceOrderLine     serviceOrderLine;
+        #    ProjTable               projTable;
+        #    MenuFunction            menuFunction;
+        #    Args                    args;
+        #    Counter                 sentRecords;
+        #    ;
+        #    args = new Args();
+        #
+        #    serviceOrderTable = _args.record();
+        #    projTable           = ProjTable::find(serviceOrderTable.ProjId);
+        #    if (!WPAIntegrationLog::exist(projTable.TableId, projTable.RecId))
+        #    {
+        #        if (!WPAProject::validateProject(projTable))
+        #        {
+        #            throw error("@WPA162");
+        #        }
+        #        WPASendProject::sendProject(projTable);
+        #    }
+        #    menuFunction = new MenuFunction('WPASendServiceOrder',MenuItemType::Action);
+        #    while select serviceOrderLine
+        #        where serviceOrderLine.ServiceOrderId   == serviceOrderTable.ServiceOrderId &&
+        #              serviceOrderLine.TransactionType  == SMATransactionType::Hour         &&
+        #              serviceOrderLine.SignOff          == NoYes::No
+        #    {
+        #        if (WPAWorkcardTable::validateWorkcard(serviceOrderLine))
+        #        {
+        #            args.record(serviceOrderLine);
+        #            menuFunction.run(args);
+        #            sentRecords ++;
+        #        }
+        #    }
+        #    info(strfmt("%1 records sent", sentRecords));
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args _args)
+        #{
+        #    WPASend                 wPASend = new WPASend();
+        #    ;
+        #
+        #    WPASend.run(_args);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

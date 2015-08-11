@@ -1,0 +1,561 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : WPAWorkcardLine unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #WPAWorkcardLine
+    PROPERTIES
+      Name                #WPAWorkcardLine
+      Label               #@WPA70
+      TitleField1         #WorkcardId
+      TitleField2         #ItemId
+      SecurityKey         #WPATables
+      CreateRecIdIndex    #Yes
+      TableGroup          #WorksheetLine
+      PrimaryIndex        #RecId
+      ClusterIndex        #RecId
+      ModifiedDateTime    #Yes
+      ModifiedBy          #Yes
+      CreatedDateTime     #Yes
+      CreatedBy           #Yes
+      OccEnabled          #No
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #ItemId
+        STRING
+        PROPERTIES
+          Name                #ItemId
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemId
+              #
+            ENDARRAY
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #ItemEanNumber
+        STRING
+        PROPERTIES
+          Name                #ItemEanNumber
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemEanNumber
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ItemUnitPrice
+        REAL
+        PROPERTIES
+          Name                #ItemUnitPrice
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemUnitPrice
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ItemDescription1
+        STRING
+        PROPERTIES
+          Name                #ItemDescription1
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemDescription1
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #ItemDescription2
+        STRING
+        PROPERTIES
+          Name                #ItemDescription2
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemDescription2
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #Qty
+        REAL
+        PROPERTIES
+          Name                #Qty
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAQty
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Price
+        REAL
+        PROPERTIES
+          Name                #Price
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAPrice
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ItemUnit
+        STRING
+        PROPERTIES
+          Name                #ItemUnit
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemUnit
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #StockLocationId
+        STRING
+        PROPERTIES
+          Name                #StockLocationId
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAStockLocationId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ItemLineType
+        STRING
+        PROPERTIES
+          Name                #ItemLineType
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemLineType
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProductEmploymentCode
+        STRING
+        PROPERTIES
+          Name                #ProductEmploymentCode
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAProductEmploymentCode
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Transferred
+        ENUM
+        PROPERTIES
+          Name                #Transferred
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPATransferred
+              #
+            ENDARRAY
+          EnumType            #WPATransferredEnum
+        ENDPROPERTIES
+        
+      FIELD #OrderId
+        STRING
+        PROPERTIES
+          Name                #OrderId
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAOrderId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #WorkcardId
+        STRING
+        PROPERTIES
+          Name                #WorkcardId
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAWorkcardId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #Direction
+        ENUM
+        PROPERTIES
+          Name                #Direction
+          Table               #WPAWorkcardLine
+          EnumType            #WPADirection
+        ENDPROPERTIES
+        
+      FIELD #RefTableId
+        INT
+        PROPERTIES
+          Name                #RefTableId
+          HelpText            #@SYS22567
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #RefTableId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #RefRecId
+        INT64
+        PROPERTIES
+          Name                #RefRecId
+          Label               #@SYS22569
+          HelpText            #@SYS12233
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #RefRecId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #GUID
+        STRING
+        PROPERTIES
+          Name                #GUID
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #WPAGUID
+              #
+            ENDARRAY
+          StringSize          #36
+        ENDPROPERTIES
+        
+      FIELD #TransDate
+        DATE
+        PROPERTIES
+          Name                #TransDate
+          Table               #WPAWorkcardLine
+          ExtendedDataType    
+            ARRAY 
+              #TransDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ItemId
+          #ItemEanNumber
+          #ItemUnitPrice
+          #ItemDescription1
+          #ItemDescription2
+          #Qty
+          #Price
+          #ItemUnit
+          #StockLocationId
+          #ItemLineType
+          #ProductEmploymentCode
+          #Transferred
+          #OrderId
+          #WorkcardId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #AutoLookup
+        PROPERTIES
+          Name                #AutoLookup
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ItemId
+          #ItemEanNumber
+          #ItemUnitPrice
+          #ItemDescription1
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #WorkcardLine
+        PROPERTIES
+          Name                #WorkcardLine
+          Label               #@WPA35
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ItemId
+          #ItemEanNumber
+          #ItemUnitPrice
+          #ItemDescription1
+          #ItemDescription2
+          #Qty
+          #Price
+          #ItemUnit
+          #StockLocationId
+          #ItemLineType
+          #ProductEmploymentCode
+          #Transferred
+          #OrderId
+          #WorkcardId
+          #Direction
+          #RefTableId
+          #RefRecId
+          #GUID
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #TransferredIdx
+      PROPERTIES
+        Name                #TransferredIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Transferred
+      ENDINDEXFIELDS
+      
+      #OrderIdx
+      PROPERTIES
+        Name                #OrderIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #OrderId
+      ENDINDEXFIELDS
+      
+      #OrderWorkcardIdx
+      PROPERTIES
+        Name                #OrderWorkcardIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #OrderId
+        #WorkcardId
+      ENDINDEXFIELDS
+      
+      #RefIdx
+      PROPERTIES
+        Name                #RefIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #RefTableId
+        #RefRecId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+      REFERENCE #WPAWorkcardTable
+        PROPERTIES
+          Name                #WPAWorkcardTable
+          Table               #WPAWorkcardTable
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #Direction
+            RelatedField        #Direction
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #WorkcardId
+            RelatedField        #WorkcardId
+          ENDPROPERTIES
+          
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #OrderId
+            RelatedField        #OrderId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #initValue
+        #public void initValue()
+        #{
+        #    super();
+        #
+        #    this.GUID   = WINAPIServer::createGUID();
+        #}
+      ENDSOURCE
+      SOURCE #existGUID
+        #public static boolean existGUID(WPAGUID         _gUID,
+        #                                WPADirection    _direction = WPADirection::Outgoing)
+        #{
+        #    ;
+        #    return _gUID && (select firstonly RecId from WPAWorkcardLine
+        #                        where WPAWorkcardLine.GUID      == _gUID    &&
+        #                              WPAWorkcardLine.Direction == _direction).RecID != 0;
+        #}
+      ENDSOURCE
+      SOURCE #findGUID
+        #public static WPAWorkcardLine findGUID(WPAGUID      _gUID,
+        #                                       WPADirection _direction = WPADirection::Outgoing,
+        #                                       boolean      _update = false)
+        #{
+        #    WPAWorkcardLine workcardLine;
+        #    ;
+        #    workcardLine.selectForUpdate(_update);
+        #
+        #    if (_gUID)
+        #    {
+        #        select firstonly workcardLine
+        #            where workcardLine.GUID         == _gUID    &&
+        #                  workcardLine.Direction    == _direction;
+        #    }
+        #
+        #    return workcardLine;
+        #}
+      ENDSOURCE
+      SOURCE #findOrCreateFromForecast
+        #public static WPAWorkcardLine findOrCreateFromForecast(ForecastSales    _forecastSales,
+        #                                                       ProjForecastEmpl _projForecastEmpl,
+        #                                                       str              _itemId)
+        #{
+        #    WPAWorkcardLine workcardLine = WPAWorkcardLine::findRef(_forecastSales.TableId, _forecastSales.RecId);
+        #    ;
+        #    if (!workcardLine)
+        #    {
+        #        workcardLine.clear();
+        #        workcardLine.initValue();
+        #        workcardLine.OrderId            = _forecastSales.ProjId;
+        #        workcardLine.WorkcardId         = _projForecastEmpl.TransId;
+        #        workcardLine.ItemId             = _itemId;
+        #        workcardLine.ItemUnitPrice      = _forecastSales.SalesPrice;
+        #        workcardLine.ItemDescription1   = _forecastSales.itemName();
+        #        workcardLine.ItemDescription2   = _forecastSales.Comment;
+        #        workcardLine.Qty                = _forecastSales.SalesQty;
+        #        workcardLine.Price              = _forecastSales.Amount;
+        #        workcardLine.ItemLineType       = "0";
+        #        workcardLine.RefTableId         = _forecastSales.TableId;
+        #        workcardLine.RefRecId           = _forecastSales.RecId;
+        #        workcardLine.insert();
+        #    }
+        #
+        #    return workcardLine;
+        #}
+      ENDSOURCE
+      SOURCE #findOrCreateFromProj
+        #public static WPAWorkcardLine findOrCreateFromProj(ProjForecastEmpl _projForecastEmpl,
+        #                                                   str              _itemId)
+        #{
+        #    WPAWorkcardLine workcardLine = WPAWorkcardLine::findRef(_projForecastEmpl.TableId, _projForecastEmpl.RecId);
+        #    ;
+        #    if (!workcardLine)
+        #    {
+        #        workcardLine.clear();
+        #        workcardLine.initValue();
+        #        workcardLine.OrderId            = _projForecastEmpl.ProjId;
+        #        workcardLine.WorkcardId         = _projForecastEmpl.TransId;
+        #        workcardLine.ItemId             = _itemId;
+        #        workcardLine.ItemUnitPrice      = _projForecastEmpl.SalesPrice;
+        #        workcardLine.ItemDescription1   = _projForecastEmpl.Txt;
+        #        workcardLine.Qty                = _projForecastEmpl.Qty;
+        #        workcardLine.Price              = _projForecastEmpl.Qty*_projForecastEmpl.SalesPrice;
+        #        workcardLine.ItemLineType       = "1";
+        #        workcardLine.RefTableId         = _projForecastEmpl.TableId;
+        #        workcardLine.RefRecId           = _projForecastEmpl.RecId;
+        #        workcardLine.insert();
+        #    }
+        #
+        #    return workcardLine;
+        #}
+      ENDSOURCE
+      SOURCE #findOrCreateFromService
+        #public static WPAWorkcardLine findOrCreateFromService(SMAServiceOrderLine   _sMAServiceOrderLine,
+        #                                                      WPAWorkcardId         _workcardId,
+        #                                                      str                   _itemId,
+        #                                                      ItemBarcode           _barcode,
+        #                                                      str                   _itemLineType)
+        #{
+        #    WPAWorkcardLine workcardLine = WPAWorkcardLine::findRef(_sMAServiceOrderLine.TableId, _sMAServiceOrderLine.RecId, true);
+        #    ;
+        #    if (!workcardLine)
+        #    {
+        #        workcardLine.clear();
+        #        workcardLine.initValue();
+        #        workcardLine.OrderId            = _sMAServiceOrderLine.ServiceOrderId;
+        #        workcardLine.WorkcardId         = _workcardId;
+        #        workcardLine.RefTableId         = _sMAServiceOrderLine.TableId;
+        #        workcardLine.RefRecId           = _sMAServiceOrderLine.RecId;
+        #    }
+        #
+        #    workcardLine.ItemId             = _itemId;
+        #    workcardLine.ItemEanNumber      = _barcode;
+        #    workcardLine.ItemUnitPrice      = _sMAServiceOrderLine.ProjSalesPrice;
+        #    workcardLine.ItemDescription1   = _sMAServiceOrderLine.Description;
+        #    workcardLine.ItemDescription2   = _sMAServiceOrderLine.DescriptionService;
+        #    workcardLine.Qty                = _sMAServiceOrderLine.Qty;
+        #    workcardLine.Price              = _sMAServiceOrderLine.Qty*_sMAServiceOrderLine.ProjSalesPrice;
+        #    workcardLine.ItemUnit           = _sMAServiceOrderLine.Unit;
+        #    workcardLine.ItemLineType       = _itemLineType;
+        #
+        #    if (workcardLine)
+        #    {
+        #        workcardLine.update();
+        #    }
+        #    else
+        #    {
+        #        workcardLine.insert();
+        #    }
+        #
+        #    return workcardLine;
+        #}
+      ENDSOURCE
+      SOURCE #findRef
+        #public static WPAWorkcardLine findRef(RefTableId    _refTableId,
+        #                                      RefRecId      _refRecId,
+        #                                      boolean       _update = false)
+        #{
+        #    WPAWorkcardLine workcardLine;
+        #    ;
+        #    workcardLine.selectForUpdate(_update);
+        #
+        #    if (_refTableId && _refRecId)
+        #    {
+        #        select firstonly workcardLine
+        #            where workcardLine.RefTableId   == _refTableId &&
+        #                  workcardLine.RefRecId     == _refRecId;
+        #    }
+        #
+        #    return workcardLine;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

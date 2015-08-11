@@ -1,0 +1,2354 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : ForecastSales unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #ForecastSales
+    PROPERTIES
+      Name                #ForecastSales
+      Label               #@SYS15056
+      FormRef             #ForecastSales
+      TitleField1         #ModelId
+      TitleField2         #ItemId
+      ConfigurationKey    #Forecast
+      SecurityKey         #InventTables
+      CreateRecIdIndex    #Yes
+      TableGroup          #WorksheetLine
+      PrimaryIndex        #RecId
+      ClusterIndex        #RecId
+      ModifiedBy          #Yes
+      DeveloperDocumentation  #@SYS124107
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #ItemId
+        STRING
+        PROPERTIES
+          Name                #ItemId
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ItemId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #StartDate
+        DATE
+        PROPERTIES
+          Name                #StartDate
+          Label               #@SYS7402
+          HelpText            #@SYS13097
+          Mandatory           #Yes
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #StartDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #EndDate
+        DATE
+        PROPERTIES
+          Name                #EndDate
+          Label               #@SYS101261
+          HelpText            #@SYS9830
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #EndDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #FreqCode
+        ENUM
+        PROPERTIES
+          Name                #FreqCode
+          HelpText            #@SYS25972
+          Table               #ForecastSales
+          EnumType            #PeriodUnit
+        ENDPROPERTIES
+        
+      FIELD #Active
+        ENUM
+        PROPERTIES
+          Name                #Active
+          Label               #@Sys14584
+          HelpText            #@SYS25049
+          Table               #ForecastSales
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #InventQty
+        REAL
+        PROPERTIES
+          Name                #InventQty
+          Label               #@SYS21676
+          HelpText            #@SYS10309
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #InventQty
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SalesPrice
+        REAL
+        PROPERTIES
+          Name                #SalesPrice
+          Label               #@SYS3987
+          HelpText            #@SYS1174
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #SalesPrice
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DiscPercent
+        REAL
+        PROPERTIES
+          Name                #DiscPercent
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #DiscPct
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Comment
+        STRING
+        PROPERTIES
+          Name                #Comment
+          HelpText            #@SYS25971
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #BudgetComment
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #Dimension
+        STRING
+        PROPERTIES
+          Name                #Dimension
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #Dimension
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CustGroupId
+        STRING
+        PROPERTIES
+          Name                #CustGroupId
+          HelpText            #@SYS16732
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #CustGroupId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ItemGroupId
+        STRING
+        PROPERTIES
+          Name                #ItemGroupId
+          HelpText            #@SYS20801
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ItemGroupId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CustAccountId
+        STRING
+        PROPERTIES
+          Name                #CustAccountId
+          HelpText            #@SYS3649
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #CustAccount
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #KeyId
+        STRING
+        PROPERTIES
+          Name                #KeyId
+          HelpText            #@SYS16394
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #LedgerAllocateKeyId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Currency
+        STRING
+        PROPERTIES
+          Name                #Currency
+          HelpText            #@SYS25969
+          Mandatory           #Yes
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #CurrencyCode
+              #
+            ENDARRAY
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #ExpandId
+        INT64
+        PROPERTIES
+          Name                #ExpandId
+          Label               #@Sys21776
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Visible             #No
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ForecastSalesRefRecId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Report
+        ENUM
+        PROPERTIES
+          Name                #Report
+          Label               #@Sys16399
+          HelpText            #@SYS10846
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ForecastSales
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #SalesQty
+        REAL
+        PROPERTIES
+          Name                #SalesQty
+          HelpText            #@SYS8586
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #SalesQty
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SalesUnitId
+        STRING
+        PROPERTIES
+          Name                #SalesUnitId
+          HelpText            #@SYS6379
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #UnitID
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SalesMarkup
+        REAL
+        PROPERTIES
+          Name                #SalesMarkup
+          HelpText            #@SYS16916
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #SalesMarkup
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #DiscAmount
+        REAL
+        PROPERTIES
+          Name                #DiscAmount
+          HelpText            #@SYS9155
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #DiscAmount
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #PriceUnit
+        REAL
+        PROPERTIES
+          Name                #PriceUnit
+          HelpText            #@SYS12723
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #PriceUnit
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CostPrice
+        REAL
+        PROPERTIES
+          Name                #CostPrice
+          HelpText            #@SYS8787
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #CostPrice
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #TaxItemGroupId
+        STRING
+        PROPERTIES
+          Name                #TaxItemGroupId
+          HelpText            #@SYS25966
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #TaxItemGroup
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Cov
+        ENUM
+        PROPERTIES
+          Name                #Cov
+          HelpText            #@SYS7656
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #LedgerAppropriation
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #CovStatus
+        INT
+        PROPERTIES
+          Name                #CovStatus
+          HelpText            #@SYS25965
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Visible             #No
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #CovStatus
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ItemAllocateId
+        STRING
+        PROPERTIES
+          Name                #ItemAllocateId
+          HelpText            #@SYS25964
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ForecastItemAllocationId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #TaxGroupId
+        STRING
+        PROPERTIES
+          Name                #TaxGroupId
+          HelpText            #@SYS25963
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #TaxGroup
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Freq
+        INT
+        PROPERTIES
+          Name                #Freq
+          HelpText            #@SYS4591
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #Periods
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Amount
+        REAL
+        PROPERTIES
+          Name                #Amount
+          Label               #@SYS12227
+          HelpText            #@SYS25962
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #AmountCur
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ModelId
+        STRING
+        PROPERTIES
+          Name                #ModelId
+          HelpText            #@SYS25961
+          Mandatory           #Yes
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ForecastModelHeadId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #AllocateMethod
+        ENUM
+        PROPERTIES
+          Name                #AllocateMethod
+          Table               #ForecastSales
+          EnumType            #BudgetAllocateMethod
+        ENDPROPERTIES
+        
+      FIELD #ItemBOMId
+        STRING
+        PROPERTIES
+          Name                #ItemBOMId
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ItemBOMId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ItemRouteId
+        STRING
+        PROPERTIES
+          Name                #ItemRouteId
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ItemRouteId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ProjId
+        STRING
+        PROPERTIES
+          Name                #ProjId
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ProjId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProjCategoryId
+        STRING
+        PROPERTIES
+          Name                #ProjCategoryId
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ProjCategoryId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProjLinePropertyId
+        STRING
+        PROPERTIES
+          Name                #ProjLinePropertyId
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ProjLinePropertyId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #InventDimId
+        STRING
+        PROPERTIES
+          Name                #InventDimId
+          Visible             #No
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #InventDimId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ProjTransId
+        STRING
+        PROPERTIES
+          Name                #ProjTransId
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ProjTransIdBase
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ProjForecastSalesPaymDate
+        DATE
+        PROPERTIES
+          Name                #ProjForecastSalesPaymDate
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ProjForecastSalesPaymDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProjForecastCostPaymDate
+        DATE
+        PROPERTIES
+          Name                #ProjForecastCostPaymDate
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ProjForecastCostPaymDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProjForecastInvoiceDate
+        DATE
+        PROPERTIES
+          Name                #ProjForecastInvoiceDate
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ProjForecastInvoiceDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ProjForecastEliminationDate
+        DATE
+        PROPERTIES
+          Name                #ProjForecastEliminationDate
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ProjForecastEliminationDate
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ActivityNumber
+        STRING
+        PROPERTIES
+          Name                #ActivityNumber
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #ProjActivityNumber
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #RefRecId
+        INT64
+        PROPERTIES
+          Name                #RefRecId
+          Table               #ForecastSales
+          ExtendedDataType    
+            ARRAY 
+              #RefRecId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ModelId
+          #ItemId
+          #StartDate
+          #SalesQty
+          #SalesUnitId
+          #SalesPrice
+          #DiscAmount
+          #Amount
+          #AllocateMethod
+          #Freq
+          #FreqCode
+          #EndDate
+          #KeyId
+          #ItemAllocateId
+          #CustAccountId
+          #CustGroupId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Allocation
+        PROPERTIES
+          Name                #Allocation
+          Label               #@SYS12895
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #AllocateMethod
+          #Freq
+          #FreqCode
+          #StartDate
+          #EndDate
+          #KeyId
+          #ItemAllocateId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Amount
+        PROPERTIES
+          Name                #Amount
+          Label               #@SYS6928
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Amount
+          #Currency
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #BOMRoute
+        PROPERTIES
+          Name                #BOMRoute
+          Label               #@SYS22227
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ItemBOMId
+          #ItemRouteId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Dates
+        PROPERTIES
+          Name                #Dates
+          Label               #@SYS80293
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #StartDate
+          #ProjForecastInvoiceDate
+          #ProjForecastEliminationDate
+          #ProjForecastCostPaymDate
+          #ProjForecastSalesPaymDate
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Dimension
+        PROPERTIES
+          Name                #Dimension
+          Label               #@SYS14926
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Dimension
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Discount
+        PROPERTIES
+          Name                #Discount
+          Label               #@SYS11829
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #DiscAmount
+          #DiscPercent
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Identification
+        PROPERTIES
+          Name                #Identification
+          Label               #@SYS5711
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ItemId
+          #ItemGroupId
+          #CustAccountId
+          #CustGroupId
+          #ModelId
+          #Report
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #InventoryQuantity
+        PROPERTIES
+          Name                #InventoryQuantity
+          Label               #@SYS21676
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #InventQty
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Price
+        PROPERTIES
+          Name                #Price
+          Label               #@SYS11865
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SalesPrice
+          #CostPrice
+          #PriceUnit
+          #SalesMarkup
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ProjectAdministration
+        PROPERTIES
+          Name                #ProjectAdministration
+          Label               #@SYS9853
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Active
+          #modifiedBy
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ProjectCostPrice
+        PROPERTIES
+          Name                #ProjectCostPrice
+          Label               #@SYS13134
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SalesQty
+          #CostPrice
+          #costAmount
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ProjectIdentification
+        PROPERTIES
+          Name                #ProjectIdentification
+          Label               #@SYS89920
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #StartDate
+          #ProjId
+          #ActivityNumber
+          #ProjCategoryId
+          #ItemId
+          #ProjLinePropertyId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ProjectSalesPrice
+        PROPERTIES
+          Name                #ProjectSalesPrice
+          Label               #@SYS5755
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Currency
+          #SalesUnitId
+          #SalesPrice
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ProjectTransaction
+        PROPERTIES
+          Name                #ProjectTransaction
+          Label               #@SYS15191
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ProjTransId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #SalesForecast
+        PROPERTIES
+          Name                #SalesForecast
+          Label               #@SYS15056
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Comment
+          #Active
+          #Cov
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #SalesQuantity
+        PROPERTIES
+          Name                #SalesQuantity
+          Label               #@SYS11990
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SalesQty
+          #SalesUnitId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #SalesTax
+        PROPERTIES
+          Name                #SalesTax
+          Label               #@SYS5878
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TaxGroupId
+          #TaxItemGroupId
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #ItemIdx
+      PROPERTIES
+        Name                #ItemIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ItemId
+        #ModelId
+        #StartDate
+      ENDINDEXFIELDS
+      
+      #ModelIdx
+      PROPERTIES
+        Name                #ModelIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ModelId
+      ENDINDEXFIELDS
+      
+      #AccountIdx
+      PROPERTIES
+        Name                #AccountIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #CustAccountId
+        #ModelId
+        #StartDate
+      ENDINDEXFIELDS
+      
+      #ItemGroupIdx
+      PROPERTIES
+        Name                #ItemGroupIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ItemGroupId
+        #ItemId
+        #ModelId
+        #StartDate
+      ENDINDEXFIELDS
+      
+      #AccounGrouptIdx
+      PROPERTIES
+        Name                #AccounGrouptIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #CustGroupId
+        #CustAccountId
+        #ModelId
+        #StartDate
+      ENDINDEXFIELDS
+      
+      #ExpandIdx
+      PROPERTIES
+        Name                #ExpandIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ExpandId
+        #RecId
+      ENDINDEXFIELDS
+      
+      #CovIdx
+      PROPERTIES
+        Name                #CovIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #CovStatus
+      ENDINDEXFIELDS
+      
+      #ProjIdx
+      PROPERTIES
+        Name                #ProjIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ProjCategoryId
+        #ProjId
+        #ModelId
+      ENDINDEXFIELDS
+      
+      #ProjTransIdx
+      PROPERTIES
+        Name                #ProjTransIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ProjTransId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+      REFERENCE #ProjForecastEmpl
+        PROPERTIES
+          Name                #ProjForecastEmpl
+          Table               #ProjForecastEmpl
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #RefRecId
+            RelatedField        #RecId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+    ENDREFERENCES
+    
+    DELETEACTIONS
+      #ProjTransBudget
+      PROPERTIES
+        Table               #ProjTransBudget
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #AccountClearing
+        #LedgerAccount accountClearing()
+        #{
+        #    return CustLedgerAccounts::clearingAccount(this.invoiceAccount(),
+        #        CustParameters::find().PostingProfile);
+        #}
+      ENDSOURCE
+      SOURCE #AccountConsumption
+        #LedgerAccount accountConsumption()
+        #{
+        #    return InventPosting::accountItem(
+        #        InventAccountType::SalesConsump,
+        #        this.ItemId,
+        #        this.ItemGroupId,
+        #        this.CustAccountId,
+        #        this.CustGroupId,
+        #        this.TaxGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #AccountCust
+        #LedgerAccount accountCust(TransStatusCode postingProfile  ='')
+        #{
+        #    return CustLedgerAccounts::sumAccount(this.invoiceAccount(),postingProfile);
+        #}
+      ENDSOURCE
+      SOURCE #AccountDisc
+        #LedgerAccount accountDisc()
+        #{
+        #    return InventPosting::accountItem(
+        #        InventAccountType::SalesDisc,
+        #        this.ItemId,
+        #        this.ItemGroupId,
+        #        this.CustAccountId,
+        #        this.CustGroupId,
+        #        this.TaxGroupId);
+        #
+        #}
+      ENDSOURCE
+      SOURCE #AccountIssue
+        #LedgerAccount accountIssue()
+        #{
+        #    return InventPosting::accountItem(
+        #        InventAccountType::SalesIssue,
+        #        this.ItemId,
+        #        this.ItemGroupId,
+        #        this.CustAccountId,
+        #        this.CustGroupId,
+        #        this.TaxGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #AccountSales
+        #LedgerAccount accountSales()
+        #{
+        #    return InventPosting::accountItem(
+        #        InventAccountType::SalesRevenue,
+        #        this.ItemId,
+        #        this.ItemGroupId,
+        #        this.CustAccountId,
+        #        this.CustGroupId,
+        #        this.TaxGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #blankDateFields
+        #private void blankDateFields()
+        #{
+        #    this.ProjForecastInvoiceDate        = dateNull();
+        #    this.ProjForecastEliminationDate    = dateNull();
+        #    this.ProjForecastCostPaymDate       = dateNull();
+        #    this.ProjForecastSalesPaymDate      = dateNull();
+        #}
+      ENDSOURCE
+      SOURCE #calcGrossAmount
+        #Amount calcGrossAmount(Qty    qty   = this.SalesQty)
+        #{
+        #    return this.SalesPurchLine::calcGrossAmount(qty);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #CalcLineAmount
+        #Amount calcLineAmount(Qty    qty   = this.SalesQty)
+        #{
+        #    return this.SalesPurchLine::calcLineAmount(qty);
+        #}
+      ENDSOURCE
+      SOURCE #CalcLineDisc
+        #DiscAmount calcLineDisc(Qty    qty   = realMin())
+        #{
+        #    return this.SalesPurchLine::calcLineDisc(qty);
+        #}
+      ENDSOURCE
+      SOURCE #calcPrice2LineAmount
+        #AmountCur  calcPrice2LineAmount(Qty _qty, boolean _forceLineAmountCalculation)
+        #{
+        #    return this.SalesPurchLine::calcPrice2LineAmount(_qty, _forceLineAmountCalculation);
+        #}
+      ENDSOURCE
+      SOURCE #CalcQtyOrdered
+        #InventQty   calcQtyOrdered(Qty    salesQty  = this.SalesQty)
+        #{
+        #    return this.SalesPurchLine::calcQtyOrdered(salesQty);
+        #}
+      ENDSOURCE
+      SOURCE #canEditDisc
+        #// This method is called when setting disc fields
+        #boolean canEditDisc()
+        #{
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #checkActivity
+        #private boolean checkActivity()
+        #{
+        #    if (this.ActivityNumber && ! ProjActivity::find(this.ActivityNumber))
+        #        return checkFailed(strfmt("@SYS50966",this.ActivityNumber));
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #checkColor
+        #server boolean checkColor()
+        #{
+        #    if (this.ItemId)
+        #    {
+        #        if (this.inventTable().colorActive())
+        #        {
+        #            if (InventDim::find(this.InventDimId).InventColorId)
+        #            {
+        #                return InventTable::checkColor(this.ItemId,InventDim::find(this.InventDimId).InventColorId);
+        #            }
+        #            else
+        #            {
+        #                if (! this.ItemAllocateId)
+        #                {
+        #                    return checkFailed(strfmt("@SYS73929",InventColor::label()));
+        #                }
+        #            }
+        #        }
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #CheckConfig
+        #server boolean checkConfig()
+        #{
+        #    if (this.ItemId)
+        #    {
+        #        if (this.inventTable().configActive())
+        #        {
+        #            if (InventDim::find(this.InventDimId).ConfigId)
+        #            {
+        #                return InventTable::checkConfig(this.ItemId,InventDim::find(this.InventDimId).ConfigId);
+        #            }
+        #            else
+        #            {
+        #                if (! this.ItemAllocateId)
+        #                {
+        #                    return checkFailed("@SYS26797");
+        #                }
+        #            }
+        #        }
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #checkItemDim
+        #server boolean checkItemDim()
+        #{
+        #    boolean ok;
+        #    ;
+        #
+        #    ok =       this.checkConfig();
+        #    ok = ok && this.checkSize();
+        #    ok = ok && this.checkColor();
+        #    ok = ok && this.checkItemDimCombination();
+        #
+        #    return ok;
+        #}
+      ENDSOURCE
+      SOURCE #checkItemDimCombination
+        #boolean checkItemDimCombination()
+        #{
+        #    ;
+        #
+        #    if (this.ItemId)
+        #        return this.inventDim().validateWriteItemDimCombination(this.ItemId);
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #CheckModel
+        #boolean checkModel()
+        #{
+        #    return ForecastModel::checkModel(this.ModelId);
+        #}
+      ENDSOURCE
+      SOURCE #checkProject
+        #boolean checkProject()
+        #{
+        #    ProjValCheckTrans   projValCheckTrans   = new ProjValCheckTrans();
+        #    boolean             ret = true;
+        #    ForecastModel       forecastModel;
+        #
+        #    if (this.ProjId)
+        #    {
+        #        ret = ProjTable::find(this.ProjId).status().validateWriteBudgetItem()   && ret;
+        #        ret = ProjForecastPost::newPostForecastItem(this).runCheck() && ret;
+        #
+        #        if (this.ProjId)
+        #            ret  = projValCheckTrans.validateMandatory(this) && ret;
+        #
+        #        if (this.ProjForecastInvoiceDate != dateNull())
+        #        {
+        #            if (this.ProjForecastInvoiceDate < this.StartDate)
+        #            {
+        #                ret = checkFailed("@SYS96098") && ret;
+        #            }
+        #        }
+        #        if (this.ProjForecastEliminationDate != dateNull())
+        #        {
+        #            if (this.ModelId)
+        #            {
+        #                forecastModel = ForecastModel::find(HeadingSub::Heading,this.ModelId);
+        #                if (forecastModel)
+        #                {
+        #                    //Check WIP is being used by model
+        #                    switch (ProjTable::find(this.ProjId).Type)
+        #                    {
+        #                        case ProjType::FixedPrice :
+        #                            if (forecastModel.ProjForecastWIPFixedPrice)
+        #                            {
+        #                                if (this.ProjForecastEliminationDate < this.StartDate)
+        #                                {
+        #                                ret = checkFailed("@SYS96097") && ret;
+        #                                }
+        #                            }
+        #                            break;
+        #
+        #                        case ProjType::TimeMaterial :
+        #                            if (forecastModel.ProjForecastWIPTimeMaterial)
+        #                            {
+        #                                if (this.ProjForecastEliminationDate < this.StartDate)
+        #                                {
+        #                                ret = checkFailed("@SYS96097") && ret;
+        #                                }
+        #                            }
+        #                            break;
+        #
+        #                        case ProjType::Investment :
+        #                            if (forecastModel.ProjForecastWIPInvestment)
+        #                            {
+        #                                if (this.ProjForecastEliminationDate < this.StartDate)
+        #                                {
+        #                                ret = checkFailed("@SYS96097") && ret;
+        #                                }
+        #                            }
+        #                            break;
+        #
+        #                        default :
+        #                    }
+        #                }
+        #            }
+        #        }
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #checkReqActivity
+        #public boolean checkReqActivity(ForecastSales   forecastSales)
+        #{
+        #    RequireActivity             requireActivity;
+        #    boolean                     ret = true;
+        #    ;
+        #
+        #    requireActivity = ProjTable::checkRequireActivity(forecastSales.ProjId,tablenum(ForecastSales));
+        #    if (requireActivity && (!forecastSales.ActivityNumber))
+        #    {
+        #        ret = false;
+        #    }
+        #    return ret;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #checkSize
+        #server boolean checkSize()
+        #{
+        #    if (this.ItemId)
+        #    {
+        #        if (this.inventTable().sizeActive())
+        #        {
+        #            if (InventDim::find(this.InventDimId).InventSizeId)
+        #            {
+        #                return InventTable::checkSize(this.ItemId,InventDim::find(this.InventDimId).InventSizeId);
+        #            }
+        #            else
+        #            {
+        #                if (! this.ItemAllocateId)
+        #                {
+        #                    return checkFailed(strfmt("@SYS73929",InventSize::label()));
+        #                }
+        #            }
+        #        }
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #ClearingPeriod
+        #ClearingPeriod clearingPeriod()
+        #{
+        #    CustTable       custTable;
+        #    CustGroup       custGroup;
+        #
+        #    if (this.CustAccountId)
+        #    {
+        #        custTable= this.custTable();
+        #
+        #        return custTable.clearingPeriod();
+        #    }
+        #
+        #    if (this.CustGroupId)
+        #    {
+        #        custGroup = this.custGroup();
+        #
+        #        return custGroup.clearingPeriod();
+        #    }
+        #
+        #    return CustParameters::find().Due2Payment;
+        #}
+      ENDSOURCE
+      SOURCE #ContributionMarginMST
+        #ContributionMargin contributionMarginMST()
+        #{
+        #    return this.BudgetMap::amountMST() - this.costValue();
+        #}
+      ENDSOURCE
+      SOURCE #copyDimension
+        #/// <summary>
+        #/// Returns a dimension set that can be applied to the ForecastSales.dimension field.
+        #/// The method ensures that potential linked dimensions are not overwritten.
+        #/// </summary>
+        #/// <param name="_dimension">
+        #/// A dimension set that should be applied to the ForecastSales.dimension field.
+        #/// </param>
+        #/// <param name="_dimensionCopy">
+        #/// A dimensionCopy object previously instantiated using the current ForecastSales buffer; optional.
+        #/// </param>
+        #/// <returns>
+        #/// Dimension set that can be applied to the ForecastSales.dimension field.
+        #/// </returns>
+        #public Dimension copyDimension(Dimension _dimension, DimensionCopy _dimensionCopy = DimensionCopy::newFromTable(this))
+        #{
+        #    return _dimensionCopy.copy(_dimension);
+        #}
+      ENDSOURCE
+      SOURCE #costAmount
+        #//BP Deviation documented
+        #display ProjCostAmount costAmount()
+        #{
+        #    return this.SalesQty * this.CostPrice;
+        #}
+      ENDSOURCE
+      SOURCE #CostValue
+        #public CostAmount costValue()
+        #{
+        #    return this.CostPrice * this.InventQty;
+        #}
+      ENDSOURCE
+      SOURCE #createPaymentSched
+        #server void createPaymentSched(ForecastSalesCalcTotals _forecastSalesCalcTotals)
+        #{
+        #    CustVendPaymSched   custVendPaymSched;
+        #    ;
+        #
+        #    custVendPaymSched = CustVendPaymSched::construct(SysModule::Cust, this);
+        #    custVendPaymSched.setForecastSalesTotals(_forecastSalesCalcTotals);
+        #    custVendPaymSched.createPaymSched(PaymSched::find(this.custTable().PaymSched));
+        #}
+      ENDSOURCE
+      SOURCE #CustGroup
+        #CustGroup custGroup()
+        #{
+        #    return CustGroup::find(this.CustGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #CustTable
+        #CustTable custTable()
+        #{
+        #    return CustTable::find(this.CustAccountId);
+        #}
+      ENDSOURCE
+      SOURCE #DefBudget
+        #ForecastSales defBudget()
+        #{
+        #    ForecastSales forecastSales;
+        #
+        #    return forecastSales;
+        #}
+      ENDSOURCE
+      SOURCE #delete
+        #void delete(NoYes deleteExpand= NoYes::Yes)
+        #{
+        #    ttsbegin;
+        #
+        #    this.BudgetMap::delete(deleteExpand);
+        #
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #Derived
+        #//BP Deviation documented
+        #display ForecastDerived derived()
+        #{
+        #    return (this.ExpandId ? true : false);
+        #}
+      ENDSOURCE
+      SOURCE #DiscAmount
+        #DiscAmount discAmount()
+        #{
+        #    return this.DiscAmount;
+        #}
+      ENDSOURCE
+      SOURCE #DiscPercent
+        #DiscPct  discPercent()
+        #{
+        #    return this.DiscPercent;
+        #}
+      ENDSOURCE
+      SOURCE #GrossAmount
+        #//BP Deviation documented
+        #edit ForecastGrossAmount grossAmount(
+        #    boolean     set         = false,
+        #    AmountCur   grossAmount = 0)
+        #{
+        #    return this.SalesPurchLine::grossAmount(set,grossAmount);
+        #}
+      ENDSOURCE
+      SOURCE #inclTax
+        #boolean inclTax()
+        #{;
+        #    return this.SalesPurchLine::inclTax();
+        #}
+      ENDSOURCE
+      SOURCE #InitFromCustGroup
+        #void initFromCustGroup()
+        #{
+        #    CustGroup custGroup = CustGroup::find(this.CustGroupId);
+        #
+        #    if (! custGroup)
+        #        return;
+        #
+        #    if (this.CustGroupId != CustTable::find(this.CustAccountId).CustGroup)
+        #        this.CustAccountId = '';
+        #
+        #    this.Comment    = custGroup.Name;
+        #}
+      ENDSOURCE
+      SOURCE #InitFromCustTable
+        #void initFromCustTable()
+        #{
+        #    CustTable custTable= this.custTable();
+        #;
+        #    if (! custTable)
+        #        return;
+        #
+        #    this.CustGroupId    = custTable.CustGroup;
+        #    this.TaxGroupId     = custTable.TaxGroup;
+        #    this.Comment        = custTable.Name;
+        #    this.Currency       = custTable.Currency;
+        #    this.Dimension      = this.copyDimension(Dimensions::findDimension(custTable, InventTable::find(this.ItemId), this.Dimension));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #InitFromForecastModel
+        #void initFromForecastModel()
+        #{
+        #    ForecastModel   forecastModel = ForecastModel::find(HeadingSub::Heading,this.ModelId);
+        #
+        #    if (! forecastModel)
+        #        return;
+        #
+        #    this.Cov          = forecastModel.Cov;
+        #}
+      ENDSOURCE
+      SOURCE #InitFromInventTable
+        #void initFromInventTable()
+        #{
+        #    InventTable         inventTable         = InventTable::find(this.ItemId);
+        #    InventTableModule   inventTableModule   = this.inventTableModule();
+        #    InventDim           inventDim;
+        #    ;
+        #
+        #    if (! inventTable)
+        #        return;
+        #
+        #    this.ItemGroupId        = inventTable.ItemGroupId;
+        #    this.SalesUnitId        = inventTableModule.UnitId;
+        #    this.TaxItemGroupId     = inventTableModule.TaxItemGroupId;
+        #    this.Comment            = inventTable.ItemName;
+        #    this.ProjCategoryId     = inventTable.ProjCategoryId;
+        #    this.Dimension          = this.copyDimension(Dimensions::findDimension(CustTable::find(this.CustAccountId), inventTable, this.Dimension));
+        #
+        #    if (this.InventDimId)
+        #        inventDim = InventDim::find(this.InventDimId);
+        #
+        #    #InventDimDevelop
+        #
+        #    inventDim.initFromInventTable(inventTable, InventItemOrderSetupType::Invent, inventDim);
+        #
+        #    inventDim   = InventDim::findOrCreate(inventDim);
+        #    this.setInventDimId(inventDim.InventDimId, inventDim);
+        #
+        #    this.CostPrice              = inventTable.costPcsPrice(this.InventDimId,inventDim);
+        #}
+      ENDSOURCE
+      SOURCE #InitFromItemGroup
+        #void initFromItemGroup()
+        #{
+        #    InventItemGroup itemGroup   = InventItemGroup::find(this.ItemGroupId);
+        #
+        #    if (! itemGroup)
+        #        return;
+        #
+        #    if (this.ItemGroupId != InventTable::find(this.ItemId).ItemGroupId)
+        #        this.ItemId = '';
+        #
+        #    this.ItemAllocateId = itemGroup.StandardItemAllocateId;
+        #    this.Comment        = itemGroup.Name;
+        #}
+      ENDSOURCE
+      SOURCE #InitFromPriceDisc
+        #server void initFromPriceDisc(PriceDisc priceDisc)
+        #{
+        #    this.SalesPrice         = priceDisc.price();
+        #    this.PriceUnit          = priceDisc.priceUnit();
+        #    this.SalesMarkup        = priceDisc.markup();
+        #}
+      ENDSOURCE
+      SOURCE #initFromProjInvoiceDate
+        #void initFromProjInvoiceDate()
+        #{
+        #    ProjTable       projTable       = this.projTable();
+        #    ProjParameters  projParameters  = ProjParameters::find();
+        #    ;
+        #
+        #// sales payment date
+        #    if (projTable.Type   == ProjType::TimeMaterial)
+        #    {
+        #        if (projTable.projInvoice().Payment)
+        #        {
+        #            this.ProjForecastSalesPaymDate = PaymTerm::advanceDate(projTable.projInvoice().Payment, this.ProjForecastInvoiceDate) + projParameters.ForecastBufferDays;
+        #        }
+        #        else
+        #            this.ProjForecastSalesPaymDate  = this.ProjForecastInvoiceDate+ projParameters.ForecastBufferDays;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #initFromprojTable
+        #void initFromProjTable(ProjTable   projTable)
+        #{
+        #    if (! projTable)
+        #        return;
+        #
+        #    this.ProjId                 = projTable.ProjId;
+        #    this.CustAccountId          = projTable.CustAccount;
+        #    this.initFromCustTable();
+        #
+        #    this.TaxGroupId             = projTable.TaxGroupId;
+        #    this.Comment                = projTable.Name;
+        #    this.Currency               = projTable.currencyId();
+        #
+        #    this.SalesPrice = 0;
+        #    this.SalesMarkup= 0;
+        #    this.SalesPurchLine::setPriceAgreement();
+        #
+        #    if (! this.ModelId)
+        #    {
+        #        this.ModelId                = ProjTable::modelId(this.ProjId);
+        #        this.initFromForecastModel();
+        #    }
+        #
+        #    this.Dimension              = this.copyDimension(projTable.Dimension);
+        #
+        #    if (! ProjValProjCategorySetUp::checkProjCategory(this.ProjId,this.ProjCategoryId))
+        #        this.ProjCategoryId = '';
+        #
+        #    this.ProjLinePropertyId     = ProjLinePropertySetup::findLinePropertyId(this.ProjId, this.ProjCategoryId);
+        #
+        #    this.initFromTransDate();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #initFromSalesQuotationLine
+        #void initFromSalesQuotationLine(SalesQuotationLine      _salesQuotationLine)
+        #{
+        #    ;
+        #
+        #    this.ProjId             = _salesQuotationLine.salesQuotationTable().ProjIdRef;
+        #    this.initFromProjTable(ProjTable::find(this.ProjId));
+        #
+        #    this.Active             = NoYes::Yes;
+        #
+        #    this.ModelId            = _salesQuotationLine.salesQuotationTable().ModelId;
+        #
+        #    this.ItemId             = _salesQuotationLine.ProjTransCode;
+        #    this.initFromInventTable();
+        #
+        #    this.setInventDimId(_salesQuotationLine.InventDimId);
+        #    this.ProjCategoryId     = _salesQuotationLine.ProjCategoryId;
+        #    this.ProjLinePropertyId = _salesQuotationLine.LinePropertyId;
+        #
+        #    this.InventQty          = _salesQuotationLine.SalesQty;
+        #    this.SalesQty           = _salesQuotationLine.SalesQty;
+        #
+        #    this.Dimension          = this.copyDimension(_salesQuotationLine.Dimension);
+        #
+        #    this.StartDate          = _salesQuotationLine.StartDate ? _salesQuotationLine.StartDate : systemdateget();
+        #    this.EndDate            = _salesQuotationLine.EndDate;
+        #
+        #    this.CostPrice          = InventTableModule::find(_salesQuotationLine.ProjTransCode, ModuleInventPurchSales::Invent).Price;
+        #    this.Currency           = _salesQuotationLine.CurrencyCode;
+        #    this.PriceUnit          = _salesQuotationLine.PriceUnit;
+        #
+        #    this.initFromTransDate();
+        #    if(!_salesQuotationLine.SalesPrice && _salesQuotationLine.LineAmount && _salesQuotationLine.SalesQty)
+        #    this.SalesPrice     = _salesQuotationLine.LineAmount / _salesQuotationLine.SalesQty;
+        #    else
+        #    this.SalesPrice     = _salesQuotationLine.SalesPrice;
+        #
+        #    this.Amount         = _salesQuotationLine.LineAmount;
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #initFromTransDate
+        #void initFromTransDate()
+        #{
+        #    ProjTable       projTable       = this.projTable();
+        #    ProjParameters  projParameters  = ProjParameters::find();
+        #    ;
+        #
+        #//  invoice date
+        #    if (projTable.Type   == ProjType::TimeMaterial)
+        #    {
+        #        if (projTable.projInvoice().ForecastInvoiceFrequency)
+        #            this.ProjForecastInvoiceDate    = ProjInvoiceTable::forecastInvoiceDate(this.StartDate,this.ProjId);
+        #        else
+        #            this.ProjForecastInvoiceDate    = this.StartDate;
+        #    }
+        #
+        #    this.initFromProjInvoiceDate();
+        #
+        #//  elimination date
+        #    if (projTable.Type   == ProjType::FixedPrice ||   projTable.Type   == ProjType::Investment)
+        #    {
+        #        if (ProjTable::exist(projTable.wipProject))
+        #            this.ProjForecastEliminationDate = ProjTable::find(projTable.wipProject).EndDate;
+        #        else
+        #            this.ProjForecastEliminationDate = projTable.EndDate;
+        #    }
+        #
+        #// cost payment date
+        #    if (projTable.Type   != ProjType::Time)
+        #    {
+        #        if (projParameters.ForecastPaymItem)
+        #            this.ProjForecastCostPaymDate   = PaymTerm::advanceDate(projParameters.ForecastPaymItem,this.StartDate);
+        #        else
+        #            this.ProjForecastCostPaymDate   = this.StartDate;
+        #    }
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #InitValue
+        #void initValue()
+        #{
+        #    this.BudgetMap::initValue();
+        #
+        #    this.initFromInventTable();
+        #    this.initFromItemGroup();
+        #    this.initFromCustTable();
+        #    this.initFromCustGroup();
+        #}
+      ENDSOURCE
+      SOURCE #insert
+        #void insert()
+        #{
+        #    NumberSeq           numberSeq;
+        #
+        #    ttsbegin;
+        #
+        #    if (this.ProjId && ! this.ProjTransId)
+        #    {
+        #        numberSeq = NumberSeq::newGetNum(ProjParameters::numRefProjTransIdBase());
+        #        this.ProjTransId = numberSeq.num();
+        #    }
+        #
+        #    this.BudgetMap::insert();
+        #
+        #    if (this.ProjId)
+        #        ProjForecastPost::newPostForecastItem(this).run();
+        #
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #inventDim
+        #InventDim inventDim(boolean _forUpdate = false)
+        #{
+        #    return InventDim::find(this.InventDimId,_forUpdate);
+        #}
+      ENDSOURCE
+      SOURCE #InventTable
+        #InventTable inventTable()
+        #{
+        #    return InventTable::find(this.ItemId);
+        #}
+      ENDSOURCE
+      SOURCE #InventTableModule
+        #InventTableModule inventTableModule()
+        #{
+        #    return InventTableModule::find(this.ItemId,ModuleInventPurchSales::Sales);
+        #}
+      ENDSOURCE
+      SOURCE #invoiceAccount
+        #CustAccount invoiceAccount()
+        #{
+        #    return this.custTable().InvoiceAccount ? this.custTable().InvoiceAccount : this.CustAccountId;
+        #}
+      ENDSOURCE
+      SOURCE #isProjForecastReduced
+        #private boolean isProjForecastReduced()
+        #{
+        #    return ProjForecastReductionHistory::existProjForecastTransId(this.ProjTransId);
+        #}
+      ENDSOURCE
+      SOURCE #isProjLumpSum
+        #boolean isProjLumpSum()
+        #{
+        #    ProjParameters      projParameters=ProjParameters::find(false);
+        #
+        #    ;
+        #
+        #    if (this.ProjId && this.ItemAllocateId && this.ItemAllocateId == projParameters.ItemLumpSumAllocationKey)
+        #        return true;
+        #
+        #    return false;
+        #}
+      ENDSOURCE
+      SOURCE #itemIdSmall
+        #// AOSRunMode::Called
+        #//BP Deviation documented
+        #edit ItemIdSmall itemIdSmall(boolean         set,
+        #                             ForecastSales   _forecastSales,
+        #                             ItemIdSmall    _itemId)
+        #{
+        #    if (set)
+        #        _forecastSales.ItemId    = _itemId;
+        #
+        #    return _forecastSales.ItemId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #ItemLineDisc
+        #LineDiscCode itemLineDisc()
+        #{
+        #    return this.inventTable().salesLineDisc();
+        #}
+      ENDSOURCE
+      SOURCE #itemName
+        #//BP Deviation documented
+        #display ItemName itemName()
+        #{
+        #    return InventTable::find(this.ItemId).itemName(this.inventDim());
+        #}
+      ENDSOURCE
+      SOURCE #LineDisc
+        #LineDiscCode lineDisc()
+        #{;
+        #    return this.custTable().LineDisc;
+        #}
+      ENDSOURCE
+      SOURCE #linkInventDim2Dimension
+        #/// <summary>
+        #/// Defaults ForecastSales.dimension values based on the InventDim record buffer values.
+        #/// </summary>
+        #/// <param name="_newInventDim">
+        #/// The InventDim record buffer linked to the current ForecastSales record buffer;
+        #/// </param>
+        #/// <param name="_oldInventDim">
+        #/// The InventDim record buffer that was previously linked to the current ForecastSales record buffer;
+        #/// </param>
+        #public void linkInventDim2Dimension(InventDim _newInventDim, InventDim _oldInventDim)
+        #{
+        #    ;
+        #    _newInventDim.setInventSiteFromParentIfModified(this, _oldInventDim);
+        #}
+      ENDSOURCE
+      SOURCE #modifiedField
+        #public void modifiedField(fieldId _fieldId)
+        #{
+        #    super(_fieldId);
+        #
+        #    switch (_fieldId)
+        #    {
+        #        case fieldnum(ForecastSales, ProjCategoryId):
+        #            this.ProjLinePropertyId = ProjLinePropertySetup::findLinePropertyId(this.ProjId,this.ProjCategoryId);
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, ProjId):
+        #            this.initFromProjTable(ProjTable::find(this.ProjId));
+        #            // blank and reinitialize the Project Forecast date fields
+        #            this.blankDateFields();
+        #            if (this.ProjId)
+        #            {
+        #                this.initFromTransDate();
+        #            }
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, AllocateMethod):
+        #            this.BudgetMap::setAfterAllocateMethod();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, ModelId):
+        #            this.initFromForecastModel();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, Amount):
+        #            this.SalesPurchLine::lineAmountModified();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, SalesUnitId):
+        #        case fieldnum(ForecastSales, SalesQty):
+        #            this.InventQty  = this.calcQtyOrdered();
+        #            this.SalesPurchLine::setPriceAgreement();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, Currency):
+        #            this.SalesPrice = 0;
+        #            this.SalesMarkup= 0;
+        #            this.SalesPurchLine::setPriceAgreement();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, CustAccountId):
+        #            this.initFromCustTable();
+        #            this.SalesPurchLine::setPriceAgreement();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, ItemGroupId):
+        #            this.initFromItemGroup();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, CustGroupId):
+        #            this.initFromCustGroup();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, StartDate):
+        #            this.SalesPurchLine::setPriceAgreement();
+        #            if (this.ProjId)
+        #                this.initFromTransDate();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, ProjForecastInvoiceDate):
+        #            this.initFromProjInvoiceDate();
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, ItemId):
+        #            if(! this.isProjLumpSum())
+        #            {
+        #                this.initFromInventTable();
+        #                this.SalesPurchLine::setPriceAgreement();
+        #            }
+        #            break;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #modifyItemDim
+        #public boolean modifyItemDim(
+        #    InventDim                           _inventDim,
+        #    FieldId                             _dimFieldId,
+        #    InventDimGroupId                    _inventDimGroupId)
+        #{
+        #    if (InventDim::mustUseFieldSalesPriceDisc(_dimFieldId, _inventDimGroupId))
+        #    {
+        #        this.SalesPurchLine::setPriceAgreement(_inventDim);
+        #        return true;
+        #    }
+        #    return false;
+        #}
+      ENDSOURCE
+      SOURCE #ModuleType
+        #ModuleInventPurchSales moduleType()
+        #{
+        #    return ModuleInventPurchSales::Sales;
+        #}
+      ENDSOURCE
+      SOURCE #MustBeCovPlanned
+        #boolean mustBeCovPlanned()
+        #{
+        #    return this.Report      &&
+        #           this.Active      &&
+        #           this.Cov         &&
+        #           ForecastModel::cov(this.ModelId);
+        #
+        #}
+      ENDSOURCE
+      SOURCE #OrderAccount
+        #CustVendAC orderAccount()
+        #{;
+        #    return this.CustAccountId;
+        #}
+      ENDSOURCE
+      SOURCE #Payment
+        #PaymTermId payment()
+        #{
+        #    PaymTermId  payment;
+        #
+        #    if (this.CustAccountId)
+        #    {
+        #        payment  = CustTable::find(this.CustAccountId).PaymTermId;
+        #    }
+        #
+        #    if (! payment  && this.CustGroupId)
+        #    {
+        #        payment  = CustGroup::find(this.CustGroupId).PaymTermId;
+        #    }
+        #
+        #    if (! payment)
+        #    {
+        #        payment  = CustParameters::find().Invoice2Due;
+        #    }
+        #
+        #    return payment;
+        #}
+      ENDSOURCE
+      SOURCE #PriceGroupId
+        #PriceGroupId priceGroupId()
+        #{
+        #    return this.custTable().PriceGroup;
+        #}
+      ENDSOURCE
+      SOURCE #projTable
+        #ProjTable projTable()
+        #{
+        #    return ProjTable::find(this.ProjId);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setInventDimId
+        #/// <summary>
+        #/// Applies the InventDimId parameter to the ForecastSales.inventDimId field and defaults values based on the new inventory dimensions.
+        #/// </summary>
+        #/// <param name="_inventDimId">
+        #/// The InventDimId value that should be applied to the ForecastSales.InventDimId field.
+        #/// </param>
+        #/// <param name="_inventDim">
+        #/// The InventDim record buffer related to the InventDimId parameters; optional.
+        #/// </param>
+        #public void setInventDimId(InventDimId _inventDimId, InventDim _inventDim = InventDim::find(_inventDimId))
+        #{
+        #    InventDim   currentInventDim = this.InventDimId == _inventDimId ? _inventDim : this.inventDim();
+        #    ;
+        #    this.InventDimId = _inventDimId;
+        #    this.linkInventDim2Dimension(_inventDim, currentInventDim);
+        #}
+      ENDSOURCE
+      SOURCE #setInventDimIdFromInventDim
+        #/// <summary>
+        #/// Finds or create an InventDimId for the InventDim parameter and applies the found InventDimId to the ForecastSales.inventDimId field.
+        #/// </summary>
+        #/// <param name="_inventDim">
+        #/// An InventDim record buffer that should be referenced by the current ForecastSales record buffer.
+        #/// </param>
+        #public void setInventDimIdFromInventDim(InventDim _inventDim)
+        #{
+        #    InventDim   inventDim;
+        #    ;
+        #    inventDim = InventDim::findOrCreate(_inventDim);
+        #    this.setInventDimId(inventDim.InventDimId, inventDim);
+        #}
+      ENDSOURCE
+      SOURCE #Update
+        #public void update()
+        #{
+        #    NumberSeq           numberSeq;
+        #    FormRun             formRun;
+        #    FormObjectSet       formObjSet;
+        #    int                 i;
+        #
+        #    ttsbegin;
+        #
+        #    if (this.ProjId && ! this.ProjTransId)
+        #    {
+        #        numberSeq = NumberSeq::newGetNum(ProjParameters::numRefProjTransIdBase());
+        #        this.ProjTransId = numberSeq.num();
+        #    }
+        #
+        #    this.BudgetMap::update();
+        #
+        #    if (this.ProjId)
+        #    {
+        #        if(ProjParameters::find().ItemDeleteZero
+        #        && ((this.isProjLumpSum() && this.CostPrice <=0)
+        #           ||(!this.isProjLumpSum() && this.SalesQty <=0)))
+        #        {
+        #            this.delete();
+        #            if (this.isFormDataSource())
+        #            {
+        #                // refresh and reread forecastSales datasource if exists in form
+        #                formRun = this.dataSource().formRun();
+        #                for (i=1; i<= formRun.dataSourceCount(); i++)
+        #                {
+        #                    if (formRun.dataSource(i).cursor().TableId == tablenum(ForecastSales))
+        #                    {
+        #                        formObjSet = formRun.dataSource(i);
+        #                        break;
+        #                    }
+        #                }
+        #                if (formObjSet)
+        #                {
+        #                    formObjSet.refresh();
+        #                    formObjSet.reread();
+        #                }
+        #            }
+        #        }
+        #        else
+        #            ProjForecastPost::newPostForecastItem(this).run();
+        #    }
+        #
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #UpdateLedgerCov
+        #server void updateLedgerCov()
+        #{
+        #    LedgerCoverage      cov;
+        #    AmountCur           invoiceAmount;
+        #    AmountCur           lineValue;
+        #    AmountCur           discValue;
+        #    AmountMST           costValue;
+        #    TaxBudget           taxBudget;
+        #    TaxAmountCur        taxAmountCur;
+        #    ForecastSales       forecastSalesExpansion;
+        #    ;
+        #
+        #    cov         = new LedgerCoverage(this.Dimension,this);
+        #
+        #    if (this.mustBeCovPlanned())
+        #    {
+        #
+        #        cov.setRemainPercent(this.StartDate,CustParameters::find().BudgetSettle);
+        #
+        #        lineValue  = this.calcLineAmount();
+        #
+        #        if (this.accountDisc())
+        #        {
+        #            discValue       = this.calcLineDisc(this.SalesQty);
+        #            lineValue       = lineValue  + discValue;
+        #        }
+        #
+        #        costValue = Currency::amount(this.InventQty  * this.CostPrice,'');
+        #
+        #        if (this.TaxGroupId)
+        #        {
+        #            taxBudget   = new TaxBudget(
+        #                NoYes::Yes,
+        #                this,
+        #                cov,
+        #                this.Dimension);
+        #
+        #            taxAmountCur = taxBudget.calcAndPost();
+        #        }
+        #        else
+        #            taxAmountCur = 0;
+        #
+        #
+        #        if (lineValue)
+        #        {
+        #            cov.updateSum(
+        #                this.StartDate,
+        #                LedgerPostingType::SalesRevenue,
+        #                this.accountSales(),
+        #                this.Dimension,
+        #                this.Currency,
+        #                -lineValue
+        #                );
+        #            invoiceAmount -= cov.lastAmount();
+        #        }
+        #
+        #        if (discValue)
+        #        {
+        #            cov.updateSum(
+        #                this.StartDate,
+        #                LedgerPostingType::SalesDisc,
+        #                this.accountDisc(),
+        #                this.Dimension,
+        #                this.Currency,
+        #                discValue
+        #                );
+        #
+        #            invoiceAmount-=  cov.lastAmount();
+        #        }
+        #
+        #        if (costValue)
+        #        {
+        #            cov.updateSum(
+        #                this.StartDate,
+        #                 LedgerPostingType::InventIssue,
+        #                 this.accountIssue(),
+        #                 this.Dimension,
+        #                 CompanyInfo::standardCurrency(),
+        #                 -costValue
+        #                 );
+        #
+        #            cov.updateSum(
+        #                this.StartDate,
+        #                LedgerPostingType::SalesConsump,
+        #                this.accountConsumption(),
+        #                this.Dimension,
+        #                CompanyInfo::standardCurrency(),
+        #                costValue
+        #                );
+        #        }
+        #
+        #        if (invoiceAmount)
+        #        {
+        #            cov.updateSum(
+        #                this.StartDate,
+        #                LedgerPostingType::CustBalance,
+        #                this.accountCust(),
+        #                this.Dimension,
+        #                this.Currency,
+        #                invoiceAmount - taxAmountCur,
+        #                0,
+        #                this.accountClearing(),
+        #                this.payment(),
+        #                this.clearingPeriod(),
+        #                CustTable::find(this.CustAccountId).PaymDayId
+        #                );
+        #        }
+        #    }
+        #
+        #    cov.endCov();
+        #
+        #    if (this.BudgetMap::expansion().mustBeExploded())
+        #    {
+        #        while select forupdate forecastSalesExpansion
+        #            where forecastSalesExpansion.ExpandId == this.RecId
+        #        {
+        #            forecastSalesExpansion.updateLedgerCov();
+        #        }
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #validateDelete
+        #boolean validateDelete()
+        #{
+        #    boolean ret;
+        #
+        #    ret = this.BudgetMap::validateDelete();
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #validateField
+        #boolean validateField(fieldId p1)
+        #{
+        #    ForecastModel   forecastModel;
+        #
+        #    boolean ret;
+        #
+        #    ret = super(p1);
+        #
+        #    switch(p1)
+        #    {
+        #        case(fieldnum(ForecastSales,ProjCategoryId)):
+        #            if (this.ProjCategoryId)
+        #            {
+        #                if (ProjCategory::find(this.ProjCategoryId).CategoryType    != ProjCategoryType::Item)
+        #                    ret = checkFailed(strfmt("@SYS54897",this.ProjCategoryId));
+        #            }
+        #            break;
+        #        case(fieldnum(ForecastSales,ModelId)):
+        #            if (this.ModelId != this.orig().ModelId)
+        #            {
+        #                forecastModel  = ForecastModel::find(HeadingSub::Heading,this.orig().ModelId);
+        #                if (forecastModel.Blocked)
+        #                    ret = checkFailed(strfmt("@SYS25943",forecastModel.ModelId));
+        #                else
+        #                {
+        #                    forecastModel  = ForecastModel::find(HeadingSub::Heading,this.ModelId);
+        #                    if (forecastModel.Blocked)
+        #                        ret = checkFailed(strfmt("@SYS25943",forecastModel.ModelId));
+        #                }
+        #
+        #            }
+        #            break;
+        #        case(fieldnum(ForecastSales,SalesQty)):
+        #            if (this.SalesQty < 0)
+        #                ret = checkFailed("@SYS50502");
+        #            break;
+        #
+        #        case fieldnum(ForecastSales, ActivityNumber):
+        #        {
+        #            ret = this.checkActivity();
+        #        }
+        #        break;
+        #}
+        #
+        #    return ret;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #validateItemInfo
+        #boolean validateItemInfo()
+        #{   // Validate item allocation key information etc
+        #
+        #    if (this.ItemId)
+        #    {
+        #        if (!InventTable::exist(this.ItemId))
+        #            return false; // error message given elsewhere
+        #
+        #        if (this.ItemAllocateId && !ForecastItemAllocationLine::existItem(this.ItemAllocateId, this.ItemId))
+        #            warning(strfmt("@SYS85028", this.ItemAllocateId, this.ItemId));
+        #        return true;
+        #    }
+        #
+        #    if (this.ItemGroupId)
+        #    {
+        #        if (!this.ItemAllocateId)
+        #            return checkFailed("@SYS85029");
+        #
+        #        if (!ForecastItemAllocationLine::existItemGroup(this.ItemAllocateId, this.ItemGroupId))
+        #            warning(strfmt("@SYS85031", this.ItemAllocateId, this.ItemGroupId));
+        #        return true;
+        #    }
+        #
+        #    if (!this.ItemAllocateId)
+        #        return checkFailed("@SYS85030");
+        #
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #ValidateWrite
+        #server boolean validateWrite()
+        #{
+        #    boolean ok = true;
+        #    boolean isProjForecastReduced;
+        #    ;
+        #    isProjForecastReduced=this.ProjId!='' && this.isProjForecastReduced();
+        #
+        #
+        #    setprefix(strfmt("@SYS14077", this.ItemId));
+        #
+        #    if(this.isProjLumpSum())
+        #    {
+        #        if( this.SalesQty!=1)
+        #            ok = checkFailed("@SYS107838");
+        #
+        #        if( this.ItemId!='' )
+        #            ok = checkFailed("@SYS108570");
+        #    }
+        #
+        #    if(isProjForecastReduced)
+        #    {
+        #        if(this.orig().ProjId != this.ProjId)
+        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ProjId)));
+        #        if(this.orig().ProjCategoryId != this.ProjCategoryId)
+        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ProjCategoryId)));
+        #        if(this.orig().ActivityNumber != this.ActivityNumber)
+        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ActivityNumber)));
+        #        if(this.orig().ItemId != this.ItemId)
+        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ItemId)));
+        #        if(this.orig().ModelId != this.ModelId)
+        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ModelId)));
+        #    }
+        #
+        #    if(this.ProjId && !this.ProjCategoryId)
+        #        ok = checkFailed("@SYS12362");
+        #
+        #    if (this.ItemId && !InventTable::exist(this.ItemId))
+        #        ok = checkFailed(strfmt("@SYS5307", this.ItemId));
+        #
+        #    if (this.SalesQty < 0)
+        #        ok = checkFailed("@SYS50502");
+        #
+        #    if (!this.isProjLumpSum())
+        #    {
+        #        ok = ok && this.validateItemInfo();
+        #    }
+        #    ok = ok && this.checkItemDim();
+        #    ok = ok && this.checkProject();
+        #    ok = ok && this.checkActivity();
+        #    ok = ok && this.BudgetMap::validateWrite();
+        #    ok = ok && appl.dimensionSetValidation().checkDimension(this, fieldnum(ForecastSales, Dimension), true);
+        #
+        #    return ok;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #estimateInGroup
+        #static boolean estimateInGroup(ProjId           _projId,
+        #                               ForecastModelId  _modelId,
+        #                               ProjCostGroupId  _costGroupId,
+        #                               ProjControlId    _projControlId = "")
+        #{
+        #    ForecastSales       forecastSales;
+        #    ProjControlCategory projControlCategory;
+        #
+        #    if (!_projControlId)
+        #    {
+        #        _projControlId = ProjWIPTable::find(ProjTable::find(_projId).wipProject).ControlId;
+        #    }
+        #
+        #    select count(RecId) from forecastSales
+        #        where forecastSales.ProjId     == _projId  &&
+        #              forecastSales.ModelId    == _modelId
+        #        join projControlCategory
+        #            where projControlCategory.ControlId     == _projControlId                       &&
+        #                  projControlCategory.CostGroupId   == _costGroupId                         &&
+        #                  projControlCategory.CategoryId    == forecastSales.ProjCategoryId;
+        #
+        #    if (forecastSales.RecId > 0)
+        #        return true;
+        #
+        #    return false;
+        #}
+      ENDSOURCE
+      SOURCE #existProjLumpSumAllocation
+        #static boolean existProjLumpSumAllocation(ForecastItemAllocationId _allocateId)
+        #{
+        #    ForecastSales   forecastSales;
+        #    ;
+        #    select firstonly forecastSales
+        #    where forecastSales.ItemAllocateId == _allocateId &&
+        #          forecastSales.ProjId != '';
+        #
+        #    if(forecastSales)
+        #        return true;
+        #    else
+        #        return false;
+        #}
+      ENDSOURCE
+      SOURCE #findProjTransId
+        #static ForecastSales findProjTransId(
+        #    ProjEmplTransId _transId,
+        #    boolean         _forUpdate = false)
+        #{
+        #    ForecastSales    forecastSales;
+        #    ;
+        #    forecastSales.selectForUpdate(_forUpdate);
+        #
+        #    if (_transId)
+        #        select forecastSales
+        #            where forecastSales.ProjTransId == _transId;
+        #
+        #    return forecastSales;
+        #}
+      ENDSOURCE
+      SOURCE #setCustGroupId
+        #server static void setCustGroupId(
+        #    CustAccount     accountNum,
+        #    CustGroupId     orig_Group,
+        #    CustGroupId     newGroup)
+        #
+        #{
+        #    ForecastSales forecastSales;
+        #
+        #    ttsbegin;
+        #    while select forupdate forecastSales
+        #        where forecastSales.CustAccountId   == accountNum   &&
+        #              forecastSales.CustGroupId     == orig_Group   &&
+        #              forecastSales.ExpandId        == 0
+        #    {
+        #
+        #        forecastSales.CustGroupId = newGroup;
+        #        forecastSales.update();
+        #    }
+        #    ttscommit;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

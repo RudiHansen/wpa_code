@@ -1,0 +1,21 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAProjCategoryDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAProjCategoryDCT
+    ##define.WPAProjCategory('WPAProjCategory')
+    ##define.WPAProjCategory_ProjCategory('WPAProjCategory.ProjCategory')
+    ##define.WPAProjCategory_ProjHourCostPrice('WPAProjCategory.ProjHourCostPrice')
+    ##define.WPAProjCategory_ProjCostPriceExpense('WPAProjCategory.ProjCostPriceExpense')
+    ##define.WPAProjCategory_ProjHourSalesPrice('WPAProjCategory.ProjHourSalesPrice')
+    ##define.WPAProjCategory_ProjRevenueSalesPrice('WPAProjCategory.ProjRevenueSalesPrice')
+    ##define.WPAProjCategory_ProjCostSalesPrice('WPAProjCategory.ProjCostSalesPrice')
+    ##define.WPAProjCategory_ProjLinePropertySetup('WPAProjCategory.ProjLinePropertySetup')
+  ENDSOURCE
+
+***Element: END

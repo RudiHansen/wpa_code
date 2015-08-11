@@ -1,0 +1,173 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxSMADispatchTeamTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxSMADispatchTeamTable
+    PROPERTIES
+      Name                #AxSMADispatchTeamTable
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxSMADispatchTeamTable axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxSMADispatchTeamTable extends AxInternalBase
+        #{
+        #    SMADispatchTeamTable SMADispatchTeamTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public SMADispatchTeamTable currentRecord(SMADispatchTeamTable _SMADispatchTeamTable = SMADispatchTeamTable)
+        #{
+        #    if (!prmisdefault(_SMADispatchTeamTable))
+        #    {
+        #        super(_SMADispatchTeamTable);
+        #        SMADispatchTeamTable = _SMADispatchTeamTable;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return SMADispatchTeamTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected SMADispatchTeamTable emptyRecord()
+        #{
+        #    SMADispatchTeamTable localSMADispatchTeamTable;
+        #    ;
+        #    return localSMADispatchTeamTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDescription
+        #public Description parmDescription(Description _description = '')
+        #{
+        #    if (!prmisdefault(_description))
+        #    {
+        #        this.setField(fieldNum(SMADispatchTeamTable, Description), _description);
+        #    }
+        #
+        #    return sMADispatchTeamTable.Description;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDispatchTeamId
+        #public SMADispatchTeamId parmDispatchTeamId(SMADispatchTeamId _dispatchTeamId = '')
+        #{
+        #    if (!prmisdefault(_dispatchTeamId))
+        #    {
+        #        this.setField(fieldNum(SMADispatchTeamTable, DispatchTeamId), _dispatchTeamId);
+        #    }
+        #
+        #    return sMADispatchTeamTable.DispatchTeamId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmOwner
+        #public EmplId parmOwner(EmplId _owner = '')
+        #{
+        #    if (!prmisdefault(_owner))
+        #    {
+        #        this.setField(fieldNum(SMADispatchTeamTable, Owner), _owner);
+        #    }
+        #
+        #    return sMADispatchTeamTable.Owner;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDescription
+        #protected void setDescription()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(SMADispatchTeamTable, Description)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDispatchTeamId
+        #protected void setDispatchTeamId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(SMADispatchTeamTable, DispatchTeamId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setOwner
+        #protected void setOwner()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(SMADispatchTeamTable, Owner)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setDispatchTeamId();
+        #    this.setDescription();
+        #    this.setOwner();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #SMADispatchTeamTable
+        #public SMADispatchTeamTable sMADispatchTeamTable(SMADispatchTeamTable _sMADispatchTeamTable = sMADispatchTeamTable)
+        #{
+        #    if (!prmisdefault(_sMADispatchTeamTable))
+        #    {
+        #        this.setCurrentRecordFromExternal(_sMADispatchTeamTable);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxSMADispatchTeamTable construct()
+        #{
+        #    return new AxSMADispatchTeamTable();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newSMADispatchTeamTable
+        #public static AxSMADispatchTeamTable newSMADispatchTeamTable(SMADispatchTeamTable _SMADispatchTeamTable)
+        #{
+        #    AxSMADispatchTeamTable AxSMADispatchTeamTable = AxSMADispatchTeamTable::construct();
+        #    ;
+        #    AxSMADispatchTeamTable.SMADispatchTeamTable(_SMADispatchTeamTable);
+        #
+        #    return AxSMADispatchTeamTable;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

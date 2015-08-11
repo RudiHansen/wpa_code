@@ -1,0 +1,381 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxWPAStockTransfer unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxWPAStockTransfer
+    PROPERTIES
+      Name                #AxWPAStockTransfer
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxWPAStockTransfer axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxWPAStockTransfer extends AxInternalBase
+        #{
+        #    WPAStockTransfer WPAStockTransfer;
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public WPAStockTransfer currentRecord(WPAStockTransfer _WPAStockTransfer = WPAStockTransfer)
+        #{
+        #    if (!prmisdefault(_WPAStockTransfer))
+        #    {
+        #        super(_WPAStockTransfer);
+        #        WPAStockTransfer = _WPAStockTransfer;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return WPAStockTransfer;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected WPAStockTransfer emptyRecord()
+        #{
+        #    WPAStockTransfer localWPAStockTransfer;
+        #    ;
+        #    return localWPAStockTransfer;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDifferenceQty
+        #public WPAQty parmDifferenceQty(WPAQty _differenceQty = 0)
+        #{
+        #    if (!prmisdefault(_differenceQty))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, DifferenceQty), _differenceQty);
+        #    }
+        #
+        #    return wPAStockTransfer.DifferenceQty;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmError
+        #public NoYes parmError(NoYes _error = NoYes::No)
+        #{
+        #    if (!prmisdefault(_error))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, Error), _error);
+        #    }
+        #
+        #    return wPAStockTransfer.Error;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmErrorTxt
+        #public WPAErrorTxt parmErrorTxt(WPAErrorTxt _errorTxt = '')
+        #{
+        #    if (!prmisdefault(_errorTxt))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, ErrorTxt), _errorTxt);
+        #    }
+        #
+        #    return wPAStockTransfer.ErrorTxt;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmInventLocationIdFrom
+        #public InventLocationIdFrom parmInventLocationIdFrom(InventLocationIdFrom _inventLocationIdFrom = '')
+        #{
+        #    if (!prmisdefault(_inventLocationIdFrom))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, InventLocationIdFrom), _inventLocationIdFrom);
+        #    }
+        #
+        #    return wPAStockTransfer.InventLocationIdFrom;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmInventLocationIdTo
+        #public InventLocationIdTo parmInventLocationIdTo(InventLocationIdTo _inventLocationIdTo = '')
+        #{
+        #    if (!prmisdefault(_inventLocationIdTo))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, InventLocationIdTo), _inventLocationIdTo);
+        #    }
+        #
+        #    return wPAStockTransfer.InventLocationIdTo;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmItemId
+        #public WPAItemId parmItemId(WPAItemId _itemId = '')
+        #{
+        #    if (!prmisdefault(_itemId))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, ItemId), _itemId);
+        #    }
+        #
+        #    return wPAStockTransfer.ItemId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmQty
+        #public WPAQty parmQty(WPAQty _qty = 0)
+        #{
+        #    if (!prmisdefault(_qty))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, Qty), _qty);
+        #    }
+        #
+        #    return wPAStockTransfer.Qty;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRefRecId
+        #public RefRecId parmRefRecId(RefRecId _refRecId = 0)
+        #{
+        #    if (!prmisdefault(_refRecId))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, RefRecId), _refRecId);
+        #    }
+        #
+        #    return wPAStockTransfer.RefRecId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRefTableId
+        #public RefTableId parmRefTableId(RefTableId _refTableId = 0)
+        #{
+        #    if (!prmisdefault(_refTableId))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, RefTableId), _refTableId);
+        #    }
+        #
+        #    return wPAStockTransfer.RefTableId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmStockTransferId
+        #public WPAGUID parmStockTransferId(WPAGUID _stockTransferId = '')
+        #{
+        #    if (!prmisdefault(_stockTransferId))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, StockTransferId), _stockTransferId);
+        #    }
+        #
+        #    return wPAStockTransfer.StockTransferId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmStockTransferType
+        #public WPAStockTransferType parmStockTransferType(WPAStockTransferType _stockTransferType = WPAStockTransferType::Counting)
+        #{
+        #    if (!prmisdefault(_stockTransferType))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, StockTransferType), _stockTransferType);
+        #    }
+        #
+        #    return wPAStockTransfer.StockTransferType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmUpdated
+        #public NoYes parmUpdated(NoYes _updated = NoYes::No)
+        #{
+        #    if (!prmisdefault(_updated))
+        #    {
+        #        this.setField(fieldNum(WPAStockTransfer, Updated), _updated);
+        #    }
+        #
+        #    return wPAStockTransfer.Updated;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDifferenceQty
+        #protected void setDifferenceQty()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, DifferenceQty)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setError
+        #protected void setError()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, Error)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setErrorTxt
+        #protected void setErrorTxt()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, ErrorTxt)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setInventLocationIdFrom
+        #protected void setInventLocationIdFrom()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, InventLocationIdFrom)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setInventLocationIdTo
+        #protected void setInventLocationIdTo()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, InventLocationIdTo)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setItemId
+        #protected void setItemId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, ItemId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setQty
+        #protected void setQty()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, Qty)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setRefRecId
+        #protected void setRefRecId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, RefRecId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setRefTableId
+        #protected void setRefTableId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, RefTableId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setStockTransferId
+        #protected void setStockTransferId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, StockTransferId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setStockTransferType
+        #protected void setStockTransferType()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, StockTransferType)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setStockTransferId();
+        #    this.setItemId();
+        #    this.setQty();
+        #    this.setDifferenceQty();
+        #    this.setInventLocationIdFrom();
+        #    this.setInventLocationIdTo();
+        #    this.setStockTransferType();
+        #    this.setUpdated();
+        #    this.setErrorTxt();
+        #    this.setError();
+        #    this.setRefTableId();
+        #    this.setRefRecId();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setUpdated
+        #protected void setUpdated()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAStockTransfer, Updated)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #WPAStockTransfer
+        #public WPAStockTransfer wPAStockTransfer(WPAStockTransfer _wPAStockTransfer = wPAStockTransfer)
+        #{
+        #    if (!prmisdefault(_wPAStockTransfer))
+        #    {
+        #        this.setCurrentRecordFromExternal(_wPAStockTransfer);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxWPAStockTransfer construct()
+        #{
+        #    return new AxWPAStockTransfer();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newWPAStockTransfer
+        #public static AxWPAStockTransfer newWPAStockTransfer(WPAStockTransfer _WPAStockTransfer)
+        #{
+        #    AxWPAStockTransfer AxWPAStockTransfer = AxWPAStockTransfer::construct();
+        #    ;
+        #    AxWPAStockTransfer.WPAStockTransfer(_WPAStockTransfer);
+        #
+        #    return AxWPAStockTransfer;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -1,0 +1,16 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: WPAStockTransferMacro unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #WPAStockTransferMacro
+    ##define.StockTransferAction('http://tempuri.org/WPAStockTransferService/create')
+    ##define.StockTransfer("StockTransfer")
+    ##define.StockTransferEndpointId ("StockTransfer")
+  ENDSOURCE
+
+***Element: END

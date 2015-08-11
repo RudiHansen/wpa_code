@@ -1,0 +1,19 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAInventTableDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAInventTableDCT
+    ##define.WPAInventTable('WPAInventTable')
+    ##define.WPAInventTable_InventTable('WPAInventTable.InventTable')
+    ##define.WPAInventTable_InventTableModuleInvent('WPAInventTable.InventTableModuleInvent')
+    ##define.WPAInventTable_InventTableModuleSales('WPAInventTable.InventTableModuleSales')
+    ##define.WPAInventTable_InventItemBarcode('WPAInventTable.InventItemBarcode')
+    ##define.WPAInventTable_InventTxt('WPAInventTable.InventTxt')
+  ENDSOURCE
+
+***Element: END

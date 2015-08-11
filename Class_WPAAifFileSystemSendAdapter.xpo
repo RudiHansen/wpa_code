@@ -1,0 +1,91 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAAifFileSystemSendAdapter unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAAifFileSystemSendAdapter
+    PROPERTIES
+      Name                #WPAAifFileSystemSendAdapter
+      Extends             #AifFileSystemSendAdapter
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAAifFileSystemSendAdapter extends AifFileSystemSendAdapter
+        #{
+        #    #define.ParamFileName ('Param')
+        #}
+      ENDSOURCE
+      SOURCE #sendMessage
+        #public void sendMessage(AifGatewayMessage gatewayMessage)
+        #{
+        #    AifMessageLog   aifMessageLog;
+        #    AifEndpoint     aifEndpoint;
+        #    AifGatewayQueue aifGatewayQueue;
+        #    DataAreaId      company;
+        #    Filename        fileName;
+        #    ;
+        #    if (!adapterIntialized)
+        #        throw error("@SYS95134");
+        #
+        #     select firstonly aifGatewayQueue
+        #        where aifGatewayQueue.MessageId == gatewayMessage.parmMessageId();
+        #
+        #    if (aifGatewayQueue.SourceEndpointId)
+        #    {
+        #        changecompany(AifLocalEndpoint::getCompanyId(aifGatewayQueue.SourceEndpointId))
+        #        {
+        #            select firstonly aifMessageLog
+        #                where aifMessageLog.MessageId == gatewayMessage.parmMessageId();
+        #
+        #            fileName = AifEndpoint::find(aifMessageLog.DestinationEndpointId).SpecificFileName;
+        #        }
+        #    }
+        #
+        #    if (fileName)
+        #    {
+        #        outputFileWritten       = false;
+        #        currentOutputFileName   = fileName + #XMLFileExtension;
+        #        currentWipFileName      = currentOutputFileName + #WipFileExtension;
+        #        this.writeFileWPA(outputDirectory + currentWipFileName, gatewayMessage);
+        #        outputFileWritten       = true;
+        #    }
+        #    else
+        #    {
+        #        super(gatewayMessage);
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #writeFileWPA
+        #public void writeFileWPA(str filePath, AifGatewayMessage gatewayMessage)
+        #{
+        #    // BP Deviation Documented
+        #    transportMessage.set_SubmittingUser('');
+        #    // BP Deviation Documented
+        #    transportMessage.set_MessageXml(gatewayMessage.parmMessageXml());
+        #    // BP Deviation Documented
+        #    transportMessage.set_Encoding(gatewayMessage.parmEncoding());
+        #
+        #    try
+        #    {
+        #        // BP Deviation Documented
+        #        fileSystem.WriteFile(filePath, transportMessage);
+        #    }
+        #    catch (Exception::CLRError)
+        #    {
+        #        throw error(strfmt("@SYS95800", filePath, AifUtil::getClrErrorMessage()));
+        #    }
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

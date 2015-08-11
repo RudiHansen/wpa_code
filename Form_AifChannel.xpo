@@ -1,0 +1,1095 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FRM
+
+; Microsoft Dynamics AX Forms unloaded
+; --------------------------------------------------------------------------------
+FRMVERSION 5
+
+FORM #AifChannel
+  PROPERTIES
+    Name                #AifChannel
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class FormRun extends ObjectRun
+      #{
+      #    AifIntegrationAdapter integrationAdapter;
+      #    AifAdapterClassId currentAdapterClassId;
+      #    AifChannel currentChannel;
+      #    #Aif
+      #}
+    ENDSOURCE
+    SOURCE #init
+      #public void init()
+      #{
+      #    super();
+      #    AifSetup::initialize();
+      #}
+    ENDSOURCE
+    SOURCE #fillChannelDirectionCombo
+      #void fillChannelDirectionCombo(FormComboBoxControl directionComboBox, int integrationAdapterType)
+      #{
+      #    directionComboBox.clear();
+      #
+      #    if (integrationAdapterType > 0)
+      #    {
+      #        switch (integrationAdapterType)
+      #        {
+      #            case AifIntegrationAdapterType::ReceiveOnly:
+      #                directionComboBox.add(enum2str(AifChannelDirection::Inbound));
+      #                break;
+      #
+      #            case AifIntegrationAdapterType::SendOnly:
+      #                directionComboBox.add(enum2str(AifChannelDirection::Inbound));
+      #                break;
+      #
+      #            case AifIntegrationAdapterType::ReceiveOrSend:
+      #                directionComboBox.add(enum2str(AifChannelDirection::Inbound));
+      #                directionComboBox.add(enum2str(AifChannelDirection::Outbound));
+      #                break;
+      #
+      #            case AifIntegrationAdapterType::ReceiveAndRespond:
+      #                directionComboBox.add(enum2str(AifChannelDirection::Both));
+      #                break;
+      #        }
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #isValidDirection
+      #boolean isValidDirection(AifChannelDirection newChannelDirection)
+      #{
+      #    boolean isValid = true;
+      #
+      #    if (integrationAdapter != null)
+      #    {
+      #        switch (integrationAdapter.getAdapterType())
+      #        {
+      #            case AifIntegrationAdapterType::ReceiveOnly:
+      #                isValid = (newChannelDirection == AifChannelDirection::Inbound);
+      #                break;
+      #
+      #            case AifIntegrationAdapterType::SendOnly:
+      #                isValid = (newChannelDirection == AifChannelDirection::Outbound);
+      #                break;
+      #
+      #            case AifIntegrationAdapterType::ReceiveOrSend:
+      #                isValid = (newChannelDirection == AifChannelDirection::Inbound) || (newChannelDirection == AifChannelDirection::Outbound);
+      #                break;
+      #
+      #            case AifIntegrationAdapterType::ReceiveAndRespond:
+      #                isValid = (newChannelDirection == AifChannelDirection::Both);
+      #                break;
+      #        }
+      #    }
+      #
+      #    return isValid;
+      #}
+    ENDSOURCE
+    SOURCE #onChannelDirectionChanged
+      #void onChannelDirectionChanged()
+      #{
+      #
+      #    boolean enableResponseChannel = currentChannel.Direction == AifChannelDirection::Inbound;
+      #    boolean enableParallelProcessing = (currentChannel.Direction == AifChannelDirection::Inbound || currentChannel.Direction == AifChannelDirection::Both);
+      #    ;
+      #    if(currentChannel.Direction == AifChannelDirection::Outbound)
+      #    {
+      #        // clear ParallelProcessing and responseChannel fields.
+      #        currentChannel.ParallelProcessing = NoYes::No;
+      #        currentChannel.ResponseChannel = #EmptyString;
+      #    }
+      #
+      #    // Enable Response Channel only for inbound channels.
+      #    overview_ResponseChannel.enabled(enableResponseChannel);
+      #    general_ResponseChannel.enabled(enableResponseChannel);
+      #
+      #    // Enable Parallel Processing only for inbound channels.
+      #    overview_ParallelProcessing.enabled(enableParallelProcessing);
+      #    general_ParallelProcessing.enabled(enableParallelProcessing);
+      #}
+    ENDSOURCE
+    SOURCE #setNewAdapterClass
+      #void setNewAdapterClass()
+      #{
+      #    AifChannel channel;
+      #    AifAdapterClassId newAdapterClassId;
+      #    MenuItemNameDisplay browseMenuItemName = '';
+      #    MenuItemNameDisplay configureMenuItemName = '';
+      #    boolean isAdapterSelected;
+      #
+      #    channel = aifChannel_ds.cursor();
+      #    newAdapterClassId = channel.AdapterClassId;
+      #
+      #    if (currentAdapterClassId != newAdapterClassId)
+      #    {
+      #        currentAdapterClassId = newAdapterClassId;
+      #        if (currentAdapterClassId == 0)
+      #            integrationAdapter = null;
+      #        else
+      #            integrationAdapter = AifAdapterManager::getIntegrationAdapter(currentAdapterClassId);
+      #    }
+      #
+      #    isAdapterSelected = (integrationAdapter != null);
+      #
+      #    if (isAdapterSelected)
+      #    {
+      #        configureMenuItemName = strrtrim(strltrim(integrationAdapter.getConfigurationDisplayMenuItem()));
+      #        browseMenuItemName = strrtrim(strltrim(integrationAdapter.getAddressDisplayMenuItem()));
+      #
+      #        switch (integrationAdapter.getAdapterType())
+      #        {
+      #            case AifIntegrationAdapterType::ReceiveOnly:
+      #                currentChannel.Direction = AifChannelDirection::Inbound;
+      #                break;
+      #
+      #            case AifIntegrationAdapterType::SendOnly:
+      #                currentChannel.Direction = AifChannelDirection::Outbound;
+      #                break;
+      #
+      #            case AifIntegrationAdapterType::ReceiveOrSend:
+      #                if ((currentChannel.Direction != AifChannelDirection::Inbound) && (currentChannel.Direction != AifChannelDirection::Outbound))
+      #                    currentChannel.Direction = AifChannelDirection::Inbound;
+      #                break;
+      #
+      #            case AifIntegrationAdapterType::ReceiveAndRespond:
+      #                currentChannel.Direction = AifChannelDirection::Both;
+      #                break;
+      #        }
+      #    }
+      #
+      #    overview_Direction.enabled(isAdapterSelected);
+      #    general_Direction.enabled(isAdapterSelected);
+      #    general_TransportAddress.enabled(isAdapterSelected);
+      #    overview_TransportAddress.enabled(isAdapterSelected);
+      #    general_ResponseChannel.enabled(isAdapterSelected);
+      #    overview_ResponseChannel.enabled(isAdapterSelected);
+      #
+      #    // Set configure button state
+      #    configureButton.enabled(configureMenuItemName != '');
+      #    configureButton.menuItemName(configureMenuItemName);
+      #
+      #    // Set browse button state
+      #    if (browseMenuItemName == '')
+      #    {
+      #        general_TransportAddress.lookupButton(3);
+      #        overview_TransportAddress.lookupButton(3);
+      #    }
+      #    else
+      #    {
+      #        general_TransportAddress.lookupButton(2);
+      #        overview_TransportAddress.lookupButton(2);
+      #    }
+      #
+      #    this.onChannelDirectionChanged();
+      #
+      #    if (currentChannel.RecId == 0)
+      #    {
+      #        if (currentChannel.Direction == AifChannelDirection::Both)
+      #            currentChannel.ResponseChannel = currentChannel.ChannelId;
+      #        else
+      #            currentChannel.ResponseChannel = '';
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #lookupAdapterNames
+      #void lookupAdapterNames(FormControl control)
+      #{
+      #    Query                   query = new Query();
+      #    QueryBuildDataSource    queryBuildDataSource;
+      #    QueryBuildRange         queryBuildRange;
+      #    SysTableLookup          sysTableLookup;
+      #    ;
+      #
+      #    //Create an instance of SysTableLookup with the form control passed in
+      #    sysTableLookup = SysTableLookup::newParameters(tablenum(AifAdapter), control);
+      #
+      #    //Add the fields to be shown in the lookup form
+      #    sysTableLookup.addLookupfield(fieldnum(AifAdapter, Name), true);
+      #    sysTableLookup.addLookupfield(fieldnum(AifAdapter, Type), false);
+      #
+      #    //create the query datasource
+      #    queryBuildDataSource = query.addDataSource(tablenum(AifAdapter));
+      #    queryBuildRange = queryBuildDataSource.addRange(fieldnum(AifAdapter, Enabled));
+      #    queryBuildRange.value(enum2str(NoYes::Yes));
+      #
+      #    //add the query to the lookup form
+      #    sysTableLookup.parmQuery(query);
+      #
+      #    // Perform lookup
+      #    sysTableLookup.performFormLookup();
+      #}
+    ENDSOURCE
+    SOURCE #lookupResponseChannels
+      #void lookupResponseChannels(FormControl control)
+      #{
+      #    Query                   query = new Query();
+      #    QueryBuildDataSource    queryBuildDataSource;
+      #    QueryBuildRange         queryBuildRange;
+      #    QueryBuildRange         queryBuildRange2;
+      #    SysTableLookup          sysTableLookup;
+      #    ;
+      #
+      #    //Create an instance of SysTableLookup with the form control passed in
+      #    sysTableLookup = SysTableLookup::newParameters(tablenum(AifChannel), control);
+      #
+      #    //Add the fields to be shown in the lookup form
+      #    sysTableLookup.addLookupfield(fieldnum(AifChannel, ChannelId), true);
+      #    sysTableLookup.addLookupfield(fieldnum(AifChannel, Name), false);
+      #
+      #    //create the query datasource
+      #    queryBuildDataSource = query.addDataSource(tablenum(AifChannel));
+      #    queryBuildRange = queryBuildDataSource.addRange(fieldnum(AifChannel, Direction));
+      #    queryBuildRange.value(enum2str(AifChannelDirection::Outbound));
+      #
+      #    queryBuildRange2 = queryBuildDataSource.addRange(fieldnum(AifChannel, Enabled));
+      #    queryBuildRange2.value(enum2str(NoYes::Yes));
+      #
+      #    //add the query to the lookup form
+      #    sysTableLookup.parmQuery(query);
+      #
+      #    // Perform lookup
+      #    sysTableLookup.performFormLookup();
+      #}
+    ENDSOURCE
+    SOURCE #browseTransportAddress
+      #void browseTransportAddress(FormStringControl control)
+      #{
+      #    Args args;
+      #    MenuFunction menuFunction;
+      #    MenuItemNameDisplay browseMenuItem;
+      #    FormRun formRun;
+      #;
+      #
+      #    args = new Args();
+      #
+      #    browseMenuItem = integrationAdapter.getAddressDisplayMenuItem();
+      #    menuFunction = new MenuFunction(browseMenuItem, MenuItemType::Display);
+      #    //menuFunction.run(args);
+      #    args = new Args(menuFunction.object());
+      #    args.lookupValue(control.text());
+      #
+      #    formRun = ClassFactory::formRunClassOnClient(args);
+      #    control.performFormLookup(formRun);
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  OBJECTBANK
+    PROPERTIES
+    ENDPROPERTIES
+    
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifChannel
+          Table               #AifChannel
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        Version: 3
+        SOURCE #validateWrite
+          #public boolean validateWrite()
+          #{
+          #    boolean ret;
+          #    AifChannel aifChannelTable;
+          #    ;
+          #
+          #    ret = super();
+          #
+          #    // Reject if there's a channel that (1) uses this same address
+          #    // and (2) is not the current record (ie, a new channel)
+          #    select aifChannelTable where
+          #        aifChannelTable.TransportAddress == aifChannel.TransportAddress;
+          #    if(aifChannelTable && aifChannel.RecId != aifChannelTable.RecId)
+          #        throw error(strfmt("@SYS98606", aifChannel.TransportAddress));
+          #
+          #    if (ret)
+          #    {
+          #        integrationAdapter.validateConfiguration(currentChannel.TransportAddress, currentChannel.Direction);
+          #    }
+          #
+          #    return ret;
+          #}
+        ENDSOURCE
+        SOURCE #active
+          #public int active()
+          #{
+          #    int ret;
+          #    classId newAdapterClassId = 0;
+          #    boolean isNewRecord = (this.cursor().RecId == 0);
+          #
+          #    ret = super();
+          #
+          #    currentChannel = this.cursor();
+          #
+          #    element.setNewAdapterClass();
+          #    element.onChannelDirectionChanged();
+          #
+          #    if (isNewRecord || currentChannel.MaximumBatchSize == 0)
+          #        radioButtonUnlimited.clicked();
+          #    else
+          #        radioButtonMaxBatchSize.clicked();
+          #
+          #    overview_AdapterName.enabled(isNewRecord);
+          #    general_AdapterName.enabled(isNewRecord);
+          #
+          #    // If this is a new record we need to set the focus correctly
+          #    if(!aifChannel)
+          #        element.design().controlName(identifierstr(Overview_ChannelId)).setFocus();
+          #
+          #    return ret;
+          #}
+        ENDSOURCE
+        SOURCE #channelDirection
+          #// This method is used represent the channel direction
+          #//BP Deviation Documented
+          #edit int channelDirection(boolean set, AifChannel channel, int value)
+          #{
+          #    int integrationAdapterType = 0;
+          #    AifChannelDirection channelDirection;
+          #
+          #    if (integrationAdapter != null)
+          #        integrationAdapterType = integrationAdapter.getAdapterType();
+          #
+          #    element.fillChannelDirectionCombo(element.design().controlName(identifierstr(Overview_Direction)), integrationAdapterType);
+          #    element.fillChannelDirectionCombo(element.design().controlName(identifierstr(General_Direction)), integrationAdapterType);
+          #
+          #//    element.fillChannelDirectionCombo(Overview_Direction, integrationAdapterType);
+          #//    element.fillChannelDirectionCombo(General_Direction, integrationAdapterType);
+          #
+          #    if (set)
+          #    {
+          #
+          #        if (integrationAdapterType > 0)
+          #        {
+          #            switch (integrationAdapterType)
+          #            {
+          #                case AifIntegrationAdapterType::ReceiveOnly:
+          #                    channelDirection = AifChannelDirection::Inbound;
+          #                    break;
+          #
+          #                case AifIntegrationAdapterType::SendOnly:
+          #                    channelDirection = AifChannelDirection::Outbound;
+          #                    break;
+          #
+          #                case AifIntegrationAdapterType::ReceiveOrSend:
+          #                    if (value == 0)
+          #                        channelDirection = AifChannelDirection::Inbound;
+          #                    else
+          #                        channelDirection = AifChannelDirection::Outbound;
+          #                    break;
+          #
+          #                case AifIntegrationAdapterType::ReceiveAndRespond:
+          #                    channelDirection = AifChannelDirection::Both;
+          #                    break;
+          #            }
+          #
+          #            channel.Direction = channelDirection;
+          #        }
+          #    }
+          #
+          #    if (integrationAdapterType > 0)
+          #    {
+          #        switch (integrationAdapterType)
+          #        {
+          #            case AifIntegrationAdapterType::ReceiveOnly:
+          #                value = 0;
+          #                break;
+          #
+          #            case AifIntegrationAdapterType::SendOnly:
+          #                value = 0;
+          #                break;
+          #
+          #            case AifIntegrationAdapterType::ReceiveOrSend:
+          #                if (channel.Direction == AifChannelDirection::Inbound)
+          #                    value = 0;
+          #                else
+          #                    value = 1;
+          #                break;
+          #
+          #            case AifIntegrationAdapterType::ReceiveAndRespond:
+          #                value = 0;
+          #                break;
+          #        }
+          #    }
+          #    else
+          #        value = -1;
+          #
+          #    return value;
+          #}
+          #
+        ENDSOURCE
+        SOURCE #transportAddress
+          #// This method is used represent the name of the adapter class
+          #//BP Deviation Documented
+          #edit AifTransportAddress transportAddress(boolean set, AifChannel channel, AifTransportAddress value)
+          #{
+          #
+          #    if (set)
+          #    {
+          #        channel.TransportAddress = integrationAdapter.getCanonicalTransportAddress(value);
+          #    }
+          #    else
+          #    {
+          #        value = channel.TransportAddress;
+          #    }
+          #
+          #    return value;
+          #}
+          #
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+  ENDOBJECTBANK
+  
+  JOINS
+  ENDJOINS
+  
+  DESIGN
+    PROPERTIES
+      Width               #Column width
+      Caption             #@SYS97124
+      SetCompany          #No
+      HTMLHelpFile        #HTMLHelpFileIWorker
+      HTMLHelpTopic       #AxShared.chm::/html/6F61F78D-1E84-4995-9D5B-A713CF2022CD.htm
+    ENDPROPERTIES
+    
+    CONTAINER
+      CONTROL TAB
+        PROPERTIES
+          Name                #Tab
+          Width               #Column width
+          Height              #Column height
+          Tabs                #2
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabOverview
+              Caption             #@SYS97145
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GRID
+                PROPERTIES
+                  Name                #GridChannel
+                  Width               #Column width
+                  Height              #Column height
+                  DataSource          #AifChannel
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_ChannelId
+                        Label               #@SYS97147
+                        DataSource          #AifChannel
+                        DataField           #ChannelId
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #modified
+                          #public boolean modified()
+                          #{
+                          #    boolean ret;
+                          #
+                          #    ret = super();
+                          #
+                          #    if ((currentChannel.RecId == 0) && (currentChannel.Direction == AifChannelDirection::Both))
+                          #        currentChannel.ResponseChannel = currentChannel.ChannelId;
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_Name
+                        Label               #@SYS97148
+                        DataSource          #AifChannel
+                        DataField           #Name
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #Overview_Enabled
+                        BackgroundColor     #Window background
+                        Label               #@SYS97150
+                        DataSource          #AifChannel
+                        DataField           #Enabled
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_AdapterName
+                        AutoDeclaration     #Yes
+                        HelpText            #@SYS98598
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/A1A83CC6-65DD-4C08-9A02-EB0108C9DB22.htm
+                        Label               #@SYS97149
+                        DataSource          #AifChannel
+                        Mandatory           #Yes
+                        DataMethod          #adapterName
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #modified
+                          #public boolean modified()
+                          #{
+                          #    boolean ret;
+                          #
+                          #    ret = super();
+                          #    element.setNewAdapterClass();
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    element.lookupAdapterNames(this);
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL COMBOBOX
+                      PROPERTIES
+                        Name                #Overview_Direction
+                        AutoDeclaration     #Yes
+                        HelpText            #@SYS97155
+                        Label               #@SYS97151
+                        DataSource          #AifChannel
+                        DataField           #Direction
+                        ComboType           #List
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #modified
+                          #public boolean modified()
+                          #{
+                          #    boolean ret;
+                          #
+                          #    ret = super();
+                          #    element.onChannelDirectionChanged();
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                        SOURCE #validate
+                          #public boolean validate()
+                          #{
+                          #    boolean ret;
+                          #    AifChannelDirection direction;
+                          #
+                          #    ret = super();
+                          #
+                          #    if (ret)
+                          #        ret = element.isValidDirection(str2enum(direction, this.getEditText()));
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #Overview_ParallelProcessing
+                        AutoDeclaration     #Yes
+                        BackgroundColor     #Window background
+                        DataSource          #AifChannel
+                        DataField           #ParallelProcessing
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_TransportAddress
+                        AutoDeclaration     #Yes
+                        HelpText            #@SYS98599
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/37F111CF-0EB6-4E3A-ADA0-3565742D352F.htm
+                        Label               #@SYS97152
+                        DataSource          #AifChannel
+                        Mandatory           #Yes
+                        DataMethod          #transportAddress
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #validate
+                          #public boolean validate()
+                          #{
+                          #    boolean ret;
+                          #    AifTransportAddress originalAddress;
+                          #    AifTransportAddress canonicalAddress;
+                          #
+                          #    ret = super();
+                          #
+                          #    if (ret)
+                          #    {
+                          #        try
+                          #        {
+                          #            originalAddress = this.text();
+                          #            canonicalAddress = integrationAdapter.getCanonicalTransportAddress(originalAddress);
+                          #        }
+                          #        catch(Exception::Error)
+                          #        {
+                          #            ret = false;
+                          #        }
+                          #    }
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    element.browseTransportAddress(this);
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #Overview_ResponseChannel
+                        AutoDeclaration     #Yes
+                        Label               #@SYS97153
+                        DataSource          #AifChannel
+                        DataField           #ResponseChannel
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    element.lookupResponseChannels(this);
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #AifChannel_EndpointId
+                        DataSource          #AifChannel
+                        DataField           #DestinationEndpointId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #TabGeneral
+              Caption             #@SYS97146
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #Identification
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/8B067E9F-B237-40FA-99DD-88FE32012D8A.htm
+                  Caption             #@SYS97156
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #General_ChannelId
+                        Label               #@SYS97147
+                        DataSource          #AifChannel
+                        DataField           #ChannelId
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #General_Name
+                        Label               #@SYS97148
+                        DataSource          #AifChannel
+                        DataField           #Name
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #General_AdapterName
+                        AutoDeclaration     #Yes
+                        Label               #@SYS97149
+                        DataSource          #AifChannel
+                        Mandatory           #Yes
+                        DataMethod          #adapterName
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #modified
+                          #public boolean modified()
+                          #{
+                          #    boolean ret;
+                          #
+                          #    ret = super();
+                          #    element.setNewAdapterClass();
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    element.lookupAdapterNames(this);
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #Properties
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/E3784E92-6AD4-4D84-98B1-60EEC5FAD71E.htm
+                  Caption             #@SYS97157
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #General_Enabled
+                        HelpText            #@SYS98600
+                        BackgroundColor     #Window background
+                        Label               #@SYS97150
+                        DataSource          #AifChannel
+                        DataField           #Enabled
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL COMBOBOX
+                      PROPERTIES
+                        Name                #General_Direction
+                        AutoDeclaration     #Yes
+                        HelpText            #@SYS97155
+                        Label               #@SYS97151
+                        DataSource          #AifChannel
+                        DataField           #Direction
+                        ComboType           #List
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #modified
+                          #public boolean modified()
+                          #{
+                          #    boolean ret;
+                          #
+                          #    ret = super();
+                          #    element.onChannelDirectionChanged();
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                        SOURCE #validate
+                          #public boolean validate()
+                          #{
+                          #    boolean ret;
+                          #    AifChannelDirection direction;
+                          #
+                          #    ret = super();
+                          #
+                          #    if (ret)
+                          #        ret = element.isValidDirection(str2enum(direction, this.getEditText()));
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #General_ParallelProcessing
+                        AutoDeclaration     #Yes
+                        BackgroundColor     #Window background
+                        DataSource          #AifChannel
+                        DataField           #ParallelProcessing
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #General_TransportAddress
+                        AutoDeclaration     #Yes
+                        HelpText            #@SYS98601
+                        DisplayLength       #50
+                        Label               #@SYS97152
+                        DataSource          #AifChannel
+                        Mandatory           #Yes
+                        DataMethod          #transportAddress
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #validate
+                          #public boolean validate()
+                          #{
+                          #    boolean ret;
+                          #    AifTransportAddress originalAddress;
+                          #    AifTransportAddress canonicalAddress;
+                          #
+                          #    ret = super();
+                          #
+                          #    if (ret)
+                          #    {
+                          #        try
+                          #        {
+                          #            originalAddress = this.text();
+                          #            canonicalAddress = integrationAdapter.getCanonicalTransportAddress(originalAddress);
+                          #        }
+                          #        catch(Exception::Error)
+                          #        {
+                          #            ret = false;
+                          #        }
+                          #    }
+                          #
+                          #    return ret;
+                          #}
+                        ENDSOURCE
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    element.browseTransportAddress(this);
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #MaxBatchSizeGroup
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/DCA4AAA4-85A3-45C2-BBF5-C50BCEF72740.htm
+                  Caption             #@SYS97154
+                  ArrangeMethod       #Horizontal, flush left
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL GROUP
+                      PROPERTIES
+                        Name                #Group1
+                        HTMLHelpFile        #HTMLHelpFileAxShared
+                        HTMLHelpTopic       #html/740BE0D6-4C9F-4A2C-88F1-53C825209702.htm
+                        FrameType           #None
+                        ArrangeMethod       #Horizontal, flush right
+                      ENDPROPERTIES
+                      
+                        CONTAINER
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #RadioButtonUnlimited
+                              AutoDeclaration     #Yes
+                              HelpText            #@SYS98602
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/757C2D14-87FD-4ED6-942F-ED15C3C9A62D.htm
+                              FrameType           #None
+                              Caption             #@SYS97438
+                              FrameOptionButton   #Radio
+                              OptionValue         #0
+                              HideIfEmpty         #No
+                            ENDPROPERTIES
+                            
+                            METHODS
+                              Version: 3
+                              SOURCE #clicked
+                                #public void clicked()
+                                #{
+                                #    super();
+                                #    currentChannel.MaximumBatchSize = 0;
+                                #    maxBatchSize.enabled(false);
+                                #    maxBatchSize.value(currentChannel.MaximumBatchSize);
+                                #}
+                              ENDSOURCE
+                            ENDMETHODS
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL GROUP
+                            PROPERTIES
+                              Name                #RadioButtonMaxBatchSize
+                              AutoDeclaration     #Yes
+                              HelpText            #@SYS98602
+                              HTMLHelpFile        #HTMLHelpFileAxShared
+                              HTMLHelpTopic       #html/8B1DBC12-1EBA-416D-BC8F-47B44F2BB65B.htm
+                              FrameType           #None
+                              Caption             #@SYS97154
+                              FrameOptionButton   #Radio
+                              ArrangeMethod       #Horizontal, flush right
+                              HideIfEmpty         #No
+                            ENDPROPERTIES
+                            
+                            METHODS
+                              Version: 3
+                              SOURCE #clicked
+                                #public void clicked()
+                                #{
+                                #    super();
+                                #    maxBatchSize.enabled(true);
+                                #//    MaxBatchSize.value(currentChannel.MaximumBatchSize);
+                                #}
+                              ENDSOURCE
+                            ENDMETHODS
+                              CONTAINER
+                              ENDCONTAINER
+                              
+                          ENDCONTROL 
+                          
+                          CONTROL INTEDIT
+                            PROPERTIES
+                              Name                #MaxBatchSize
+                              AutoDeclaration     #Yes
+                              HelpText            #@SYS98603
+                              AllowNegative       #No
+                              DataSource          #AifChannel
+                              DataField           #MaximumBatchSize
+                            ENDPROPERTIES
+                            
+                            METHODS
+                              Version: 3
+                              SOURCE #modified
+                                #public boolean modified()
+                                #{
+                                #    boolean ret;
+                                #
+                                #    ret = super();
+                                #
+                                #//    if (maxBatchSize.enabled())
+                                #//        currentChannel.MaximumBatchSize = MaxBatchSize.value();
+                                #    currentChannel.MaximumBatchSize = maxBatchSize.value();
+                                #
+                                #    return ret;
+                                #}
+                              ENDSOURCE
+                            ENDMETHODS
+                          ENDCONTROL 
+                          
+                        ENDCONTAINER
+                        
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+              CONTROL GROUP
+                PROPERTIES
+                  Name                #Responses
+                  HTMLHelpFile        #HTMLHelpFileAxShared
+                  HTMLHelpTopic       #html/3E93F346-CEAF-482E-9046-84BE4F3541D0.htm
+                  Caption             #@SYS97440
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #General_ResponseChannel
+                        AutoDeclaration     #Yes
+                        HelpText            #@SYS98604
+                        Label               #@SYS97153
+                        DataSource          #AifChannel
+                        DataField           #ResponseChannel
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    element.lookupResponseChannels(this);
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+      CONTROL BUTTONGROUP
+        PROPERTIES
+          Name                #ButtonGroup
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL MENUITEMBUTTON
+            PROPERTIES
+              Name                #ConfigureButton
+              AutoDeclaration     #Yes
+              Enabled             #No
+              HelpText            #@SYS98597
+              Text                #@SYS97439
+              MenuItemName        #AifChannel
+            ENDPROPERTIES
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+    ENDCONTAINER
+    
+  ENDDESIGN
+  
+ENDFORM
+
+
+***Element: END

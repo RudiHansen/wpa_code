@@ -1,0 +1,141 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: QUE
+
+; Microsoft Dynamics AX Query: SMAServiceOrderSelect unloaded
+; --------------------------------------------------------------------------------
+VERSION 18
+
+QUERY #SMAServiceOrderSelect
+  PROPERTIES
+    Name                #SMAServiceOrderSelect
+    Title               #@SYS79051
+    Version             #62
+    NextUniqueId        #1003
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class QueryRun extends ObjectRun
+      #{
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  BLOCKS
+    BLOCK #SMAServiceOrderLine
+      PROPERTIES
+        Name                #SMAServiceOrderLine
+        Table               #SMAServiceOrderLine
+        UniqueId            #1001
+      ENDPROPERTIES
+      
+      FIELDLIST
+        PROPERTIES
+          Dynamic             #No
+        ENDPROPERTIES
+        
+        FIELD #ActivityId
+        FIELD #ActivityNumber
+        FIELD #AgreementId
+        FIELD #AgreementLineNum
+        FIELD #CurrencyIdCost
+        FIELD #dataAreaId
+        FIELD #DateCalculated
+        FIELD #DateExecution
+        FIELD #DateRangeFrom
+        FIELD #DateRangeTo
+        FIELD #DEL_ProjActivityId
+        FIELD #Description
+        FIELD #DescriptionService
+        FIELD #Dimension
+        FIELD #EmplId
+        FIELD #InventDimId
+        FIELD #InvoiceId
+        FIELD #ItemId
+        FIELD #OffsetAccountExpense
+        FIELD #OffsetAccountTypeExpense
+        FIELD #Origin
+        FIELD #ProjCategoryId
+        FIELD #ProjCostPrice
+        FIELD #ProjCurrencyCode
+        FIELD #ProjId
+        FIELD #ProjLinePropertyId
+        FIELD #ProjSalesPrice
+        FIELD #ProjTaxGroup
+        FIELD #ProjTaxItemGroup
+        FIELD #ProjTransId
+        FIELD #ProjTransTxt
+        FIELD #Qty
+        FIELD #RecId
+        FIELD #recVersion
+        FIELD #ServiceObjectId
+        FIELD #ServiceObjectRelationId
+        FIELD #ServiceOrderId
+        FIELD #ServiceOrderLineNum
+        FIELD #ServiceOrderStatus
+        FIELD #ServiceTaskId
+        FIELD #ServiceTimeEndBefore
+        FIELD #ServiceTimeStartAfter
+        FIELD #SignOff
+        FIELD #TaxGroupExpense
+        FIELD #TaxItemGroupExpense
+        FIELD #TimeSheetEndTime
+        FIELD #TimeSheetStartTime
+        FIELD #TransactionType
+        FIELD #Unit
+        FIELD #TableId
+      ENDFIELDLIST
+      SORTING
+      ENDSORTING
+      LINES
+        LINE #TransactionType
+        PROPERTIES
+          Name                #TransactionType
+          Table               #SMAServiceOrderLine
+          Field               #TransactionType
+          Value               #Hour
+        ENDPROPERTIES
+        
+      ENDLINES
+      BLOCKS
+      ENDBLOCKS
+      GROUPBY
+      ENDGROUPBY
+      ORDERBY
+        FIELD
+          PROPERTIES
+            DataSource          #SMAServiceOrderLine
+            Field               #ServiceOrderId
+          ENDPROPERTIES
+          
+        FIELD
+          PROPERTIES
+            DataSource          #SMAServiceOrderLine
+            Field               #EmplId
+          ENDPROPERTIES
+          
+        FIELD
+          PROPERTIES
+            DataSource          #SMAServiceOrderLine
+            Field               #ServiceObjectRelationId
+          ENDPROPERTIES
+          
+        FIELD
+          PROPERTIES
+            DataSource          #SMAServiceOrderLine
+            Field               #ServiceTaskId
+          ENDPROPERTIES
+          
+      ENDORDERBY
+    ENDBLOCK
+  ENDBLOCKS
+  DEPENDENTS
+  ENDDEPENDENTS
+  COMPOSITEQUERIES
+  ENDCOMPOSITEQUERIES
+ENDQUERY
+
+
+***Element: END

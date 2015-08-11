@@ -1,0 +1,155 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : WPAIntegrationLog unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #WPAIntegrationLog
+    PROPERTIES
+      Name                #WPAIntegrationLog
+      SecurityKey         #WPATables
+      ModifiedDateTime    #Yes
+      CreatedDateTime     #Yes
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #RefTableId
+        INT
+        PROPERTIES
+          Name                #RefTableId
+          HelpText            #@SYS22567
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAIntegrationLog
+          ExtendedDataType    
+            ARRAY 
+              #RefTableId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #RefRecId
+        INT64
+        PROPERTIES
+          Name                #RefRecId
+          Label               #@SYS22569
+          HelpText            #@SYS12233
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAIntegrationLog
+          ExtendedDataType    
+            ARRAY 
+              #RefRecId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ExportDateTime
+        DATETIME
+        PROPERTIES
+          Name                #ExportDateTime
+          Table               #WPAIntegrationLog
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #RefIdx
+      PROPERTIES
+        Name                #RefIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #RefTableId
+        #RefRecId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #create
+        #public static WPAIntegrationLog create(RefTableId   _refTableId,
+        #                                       RefRecId     _refRecId,
+        #                                       UtcDateTime  _exportDateTime = DateTimeUtil::utcNow())
+        #{
+        #    WPAIntegrationLog   integrationLog;
+        #    ;
+        #    ttsbegin;
+        #    integrationLog.clear();
+        #    integrationLog.initValue();
+        #    integrationLog.RefTableId       = _refTableId;
+        #    integrationLog.RefRecId         = _refRecId;
+        #    integrationLog.ExportDateTime   = _exportDateTime;
+        #    integrationLog.insert();
+        #    ttscommit;
+        #
+        #    return integrationLog;
+        #}
+      ENDSOURCE
+      SOURCE #exist
+        #public static boolean exist(RefTableId   _refTableId,
+        #                            RefRecId     _refRecId)
+        #{
+        #    return _refTableId && _refRecId &&
+        #        (select firstonly RecId from WPAIntegrationLog
+        #            where WPAIntegrationLog.RefTableId  == _refTableId &&
+        #                  WPAIntegrationLog.RefRecId    == _refRecId).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #public static WPAIntegrationLog find(RefTableId _refTableId,
+        #                                     RefRecId   _refRecId,
+        #                                     boolean    _forUpdate = false)
+        #{
+        #    WPAIntegrationLog   integrationLog;
+        #    ;
+        #    integrationLog.selectForUpdate(_forUpdate);
+        #
+        #    if (_refTableId && _refRecId)
+        #    {
+        #        select firstonly integrationLog
+        #            where integrationLog.RefTableId == _refTableId  &&
+        #                  integrationLog.RefRecId   == _refRecId;
+        #    }
+        #
+        #    return integrationLog;
+        #}
+      ENDSOURCE
+      SOURCE #updateLog
+        #public static void updateLog(RefTableId     _refTableId,
+        #                             RefRecId       _refRecId,
+        #                             UtcDateTime    _exportDateTime = DateTimeUtil::utcNow())
+        #{
+        #    WPAIntegrationLog   integrationLog;
+        #    ;
+        #    ttsbegin;
+        #    integrationLog = WPAIntegrationLog::find(_refTableId, _refRecId, true);
+        #    if (integrationLog)
+        #    {
+        #        integrationLog.ExportDateTime = _exportDateTime;
+        #        integrationLog.update();
+        #    }
+        #    else
+        #    {
+        #        WPAIntegrationLog::create(_refTableId, _refRecId, _exportDateTime);
+        #    }
+        #    ttscommit;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

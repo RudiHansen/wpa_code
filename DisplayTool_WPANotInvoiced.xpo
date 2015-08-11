@@ -1,0 +1,21 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPANotInvoiced unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPANotInvoiced
+    Type: 1
+    PROPERTIES
+      Name                #WPANotInvoiced
+      Label               #@WPA232
+      Object              #WPANotInvoiced
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

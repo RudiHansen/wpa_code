@@ -1,0 +1,147 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendItems unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendItems
+    PROPERTIES
+      Name                #WPASendItems
+      Extends             #AxdSend
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPASendItems extends AxdSend
+        #{
+        #    ItemId  itemId;
+        #}
+      ENDSOURCE
+      SOURCE #getEndpoint
+        #AifEndpointId getEndpoint()
+        #{
+        #    ;
+        #    this.retrieveEndPoints();
+        #
+        #    select firstonly tmpAifEndPoint;
+        #
+        #    return tmpAifEndPoint.EndpointId;
+        #}
+      ENDSOURCE
+      SOURCE #parmItemId
+        #public ItemId parmItemId(ItemId _itemId = itemId)
+        #{
+        #    ;
+        #    itemId = _itemId;
+        #
+        #    return itemId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun            ret;
+        #    QueryBuildRange     qbr_ItemId;
+        #    ;
+        #    if (!ret)
+        #    {
+        #        ret = super();
+        #        qbr_ItemId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(InventTable)), fieldnum(InventTable, ItemId));
+        #        if (itemId)
+        #        {
+        #            qbr_ItemId.value(itemId);
+        #            qbr_ItemId.status(RangeStatus::Locked);
+        #        }
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    boolean ret;
+        #    ;
+        #    if (itemId)
+        #    {
+        #        ret = false;
+        #    }
+        #    else
+        #    {
+        #        ret = true;
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #updateQuery
+        #public void updateQuery(ItemId  _itemIdFrom,
+        #                        ItemId  _itemIdTo)
+        #{
+        #    Query               queryLocal;
+        #    QueryBuildRange     qbr_ItemId;
+        #    ;
+        #    aifDocumentClassId  = classnum(WPAInventTable);
+        #    aifSendMode         = AifSendMode::Async ;
+        #    sendActionType      = AifSendActionType::SendByQuery;
+        #    aifActionId = this.getActionId() ;
+        #    queryLocal  = this.queryRun().query();
+        #    qbr_ItemId  = SysQuery::findOrCreateRange(queryLocal.dataSourceTable(tablenum(InventTable)), fieldnum(InventTable, ItemId));
+        #    qbr_ItemId.value(SysQuery::range(_itemIdFrom, _itemIdTo));
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args args)
+        #{
+        #    WPASendItems        WPASendItems;
+        #    AifConstraintList   aifConstraintList;
+        #    AifConstraint       aifConstraint;
+        #    InventTable         inventTable;
+        #    ;
+        #
+        #    WPASendItems        = new WPASendItems();
+        #    aifConstraintList   = new AifConstraintList();
+        #    aifConstraint       = new AifConstraint();
+        #    if (args.record())
+        #    {
+        #        inventTable = args.record();
+        #        WPASendItems.parmItemId(inventTable.ItemId);
+        #    }
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    WPASendItems.parmShowDocPurpose(true) ;
+        #    WPASendItems.parmServiceClassId(classnum(WPAInventTableService));
+        #    WPASendItems.parmSendActionType(AifSendActionType::SendByQuery);
+        #    WPASendItems.parmEndPoint(WPASendItems.getEndpoint());
+        #    WPASendItems.sendMultipleDocuments(classnum(WPAInventTable), classnum(WPAInventTableService), AifSendMode::Async, aifConstraintList);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

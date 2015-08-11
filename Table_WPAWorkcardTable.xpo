@@ -1,0 +1,820 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : WPAWorkcardTable unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #WPAWorkcardTable
+    PROPERTIES
+      Name                #WPAWorkcardTable
+      Label               #@WPA142
+      FormRef             #wpaworkcardTable
+      TitleField1         #OrderId
+      TitleField2         #WorkcardId
+      SecurityKey         #WPATables
+      CacheLookup         #NotInTTS
+      CreateRecIdIndex    #Yes
+      TableGroup          #WorksheetHeader
+      PrimaryIndex        #OrderWorkcardDirectionIdx
+      ClusterIndex        #OrderWorkcardDirectionIdx
+      ModifiedDateTime    #Yes
+      ModifiedBy          #Yes
+      CreatedDateTime     #Yes
+      CreatedBy           #Yes
+      OccEnabled          #No
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #OrderId
+        STRING
+        PROPERTIES
+          Name                #OrderId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAOrderId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #WorkcardId
+        STRING
+        PROPERTIES
+          Name                #WorkcardId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAWorkcardId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #EmploymentCode
+        STRING
+        PROPERTIES
+          Name                #EmploymentCode
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAEmploymentCode
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #AccountId
+        STRING
+        PROPERTIES
+          Name                #AccountId
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAAccountId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #AreaId
+        STRING
+        PROPERTIES
+          Name                #AreaId
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAAreaId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #StartTime
+        DATETIME
+        PROPERTIES
+          Name                #StartTime
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAStartTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #EndTime
+        DATETIME
+        PROPERTIES
+          Name                #EndTime
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAEndTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Description
+        STRING
+        PROPERTIES
+          Name                #Description
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPADescription
+              #
+            ENDARRAY
+          StringSize          #1000
+        ENDPROPERTIES
+        
+      FIELD #Responsible
+        STRING
+        PROPERTIES
+          Name                #Responsible
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAResponsible
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #CrmInfo1
+        STRING
+        PROPERTIES
+          Name                #CrmInfo1
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPACrmInfo1
+              #
+            ENDARRAY
+          StringSize          #1000
+        ENDPROPERTIES
+        
+      FIELD #CrmInfo2
+        STRING
+        PROPERTIES
+          Name                #CrmInfo2
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPACrmInfo2
+              #
+            ENDARRAY
+          StringSize          #1000
+        ENDPROPERTIES
+        
+      FIELD #Status
+        STRING
+        PROPERTIES
+          Name                #Status
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAStatus
+              #
+            ENDARRAY
+          StringSize          #2
+        ENDPROPERTIES
+        
+      FIELD #PurchaseOrderNumber
+        STRING
+        PROPERTIES
+          Name                #PurchaseOrderNumber
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAPurchaseOrderNumber
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #AttentionName
+        STRING
+        PROPERTIES
+          Name                #AttentionName
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAAttentionName
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #Urgent
+        STRING
+        PROPERTIES
+          Name                #Urgent
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAUrgent
+              #
+            ENDARRAY
+          StringSize          #2
+        ENDPROPERTIES
+        
+      FIELD #DebitorId
+        STRING
+        PROPERTIES
+          Name                #DebitorId
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPADebitorId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #WorkcardTypeId
+        STRING
+        PROPERTIES
+          Name                #WorkcardTypeId
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAWorkcardTypeId
+              #
+            ENDARRAY
+          StringSize          #1
+        ENDPROPERTIES
+        
+      FIELD #SiteId
+        STRING
+        PROPERTIES
+          Name                #SiteId
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPASiteId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ServiceObjectId
+        STRING
+        PROPERTIES
+          Name                #ServiceObjectId
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAServiceObjectId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Transferred
+        ENUM
+        PROPERTIES
+          Name                #Transferred
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPATransferred
+              #
+            ENDARRAY
+          EnumType            #WPATransferredEnum
+        ENDPROPERTIES
+        
+      FIELD #Direction
+        ENUM
+        PROPERTIES
+          Name                #Direction
+          AllowEdit           #No
+          Table               #WPAWorkcardTable
+          EnumType            #WPADirection
+        ENDPROPERTIES
+        
+      FIELD #RefTableId
+        INT
+        PROPERTIES
+          Name                #RefTableId
+          HelpText            #@SYS22567
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #RefTableId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #RefRecId
+        INT64
+        PROPERTIES
+          Name                #RefRecId
+          Label               #@SYS22569
+          HelpText            #@SYS12233
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #RefRecId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ErrorTxt
+        STRING
+        PROPERTIES
+          Name                #ErrorTxt
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #WPAErrorTxt
+              #
+            ENDARRAY
+          StringSize          #130
+        ENDPROPERTIES
+        
+      FIELD #RefCompany
+        STRING
+        PROPERTIES
+          Name                #RefCompany
+          Table               #WPAWorkcardTable
+          ExtendedDataType    
+            ARRAY 
+              #CompanyId
+              #
+            ENDARRAY
+          StringSize          #4
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #OrderId
+          #WorkcardId
+          #EmploymentCode
+          #AccountId
+          #AreaId
+          #StartTime
+          #EndTime
+          #Description
+          #Responsible
+          #CrmInfo1
+          #CrmInfo2
+          #Status
+          #PurchaseOrderNumber
+          #AttentionName
+          #Urgent
+          #DebitorId
+          #WorkcardTypeId
+          #SiteId
+          #ServiceObjectId
+          #Transferred
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #AutoLookup
+        PROPERTIES
+          Name                #AutoLookup
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #OrderId
+          #WorkcardId
+          #EmploymentCode
+          #AccountId
+          #AreaId
+          #StartTime
+          #EndTime
+          #Description
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #CRMInfo
+        PROPERTIES
+          Name                #CRMInfo
+          Label               #@WPA42
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #CrmInfo1
+          #CrmInfo2
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Customer
+        PROPERTIES
+          Name                #Customer
+          Label               #@SYS11779
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #AccountId
+          #DebitorId
+          #SiteId
+          #OrderId
+          #WorkcardId
+          #AttentionName
+          #PurchaseOrderNumber
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Description
+        PROPERTIES
+          Name                #Description
+          Label               #@SYS6303
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Description
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Employee
+        PROPERTIES
+          Name                #Employee
+          Label               #@SYS4705
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #AreaId
+          #Responsible
+          #EmploymentCode
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Identification
+        PROPERTIES
+          Name                #Identification
+          Label               #@SYS5711
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #OrderId
+          #WorkcardId
+          #Direction
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Overview
+        PROPERTIES
+          Name                #Overview
+          Label               #@SYS9039
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #OrderId
+          #WorkcardId
+          #PurchaseOrderNumber
+          #WorkcardTypeId
+          #StartTime
+          #EndTime
+          #AccountId
+          #Transferred
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Status
+        PROPERTIES
+          Name                #Status
+          Label               #@SYS25587
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Transferred
+          #ErrorTxt
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #TimeSheet
+        PROPERTIES
+          Name                #TimeSheet
+          Label               #@SYS716
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #StartTime
+          #EndTime
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Workcard
+        PROPERTIES
+          Name                #Workcard
+          Label               #@WPA72
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #OrderId
+          #WorkcardId
+          #EmploymentCode
+          #AccountId
+          #AreaId
+          #StartTime
+          #EndTime
+          #Description
+          #Responsible
+          #CrmInfo1
+          #CrmInfo2
+          #Status
+          #PurchaseOrderNumber
+          #AttentionName
+          #Urgent
+          #DebitorId
+          #WorkcardTypeId
+          #SiteId
+          #ServiceObjectId
+          #Transferred
+          #RefTableId
+          #RefRecId
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #TransferredIdx
+      PROPERTIES
+        Name                #TransferredIdx
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Transferred
+      ENDINDEXFIELDS
+      
+      #OrderWorkcardDirectionIdx
+      PROPERTIES
+        Name                #OrderWorkcardDirectionIdx
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #OrderId
+        #WorkcardId
+        #Direction
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+      #WPAWorkcardLine
+      PROPERTIES
+        Table               #WPAWorkcardLine
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #isLastWorkcard
+        #public boolean isLastWorkcard()
+        #{
+        #    SMAServiceOrderLine serviceOrderLine;
+        #    WPAWorkcardTable    workcardTable;
+        #    WPAWorkcardLine     workcardLine;
+        #    boolean             ret;
+        #    ;
+        #
+        #    select firstonly serviceOrderLine
+        #        where serviceOrderLine.ServiceOrderId   == this.OrderId                     &&
+        #              serviceOrderLine.SignOff          == NoYes::No
+        #        exists join workcardLine
+        #            where workcardLine.RefTableId       == serviceOrderLine.TableId         &&
+        #                  workcardLine.RefRecId         == serviceOrderLine.RecId           &&
+        #                  workcardLine.WorkcardId       != this.WorkcardId
+        #            notexists join workcardTable
+        #            where workcardTable.OrderId         == workcardLine.OrderId             &&
+        #                  workcardTable.WorkcardId      == workcardLine.WorkcardId          &&
+        #                  workcardTable.Direction       == WPADirection::Incoming           &&
+        #                  workcardTable.Status          >= "7"                              &&
+        #                  workcardTable.Transferred     == WPATransferredEnum::Transferred;
+        #
+        #    ret = !serviceOrderLine.RecId;
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #exist
+        #static boolean exist(WPAOrderId     _orderId,
+        #                     WPAWorkcardId  _workcardId,
+        #                     WPADirection   _direction)
+        #{
+        #    return _orderId && _workcardId &&
+        #           (select RecId from WPAWorkcardTable
+        #                where WPAWorkcardTable.OrderId      == _orderId     &&
+        #                      WPAWorkcardTable.WorkcardId   == _workcardId  &&
+        #                      WPAWorkcardTable.Direction    == _direction
+        #           ).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #static WPAWorkcardTable find(WPAOrderId     _orderId,
+        #                             WPAWorkcardId  _workcardId,
+        #                             WPADirection   _direction,
+        #                             boolean        _update = false)
+        #{
+        #    WPAWorkcardTable    workcardTable;
+        #    ;
+        #
+        #    workcardTable.selectForUpdate(_update);
+        #
+        #    if (_orderId && _workcardId)
+        #    {
+        #        select firstonly workcardTable
+        #            where workcardTable.OrderId     == _orderId     &&
+        #                  workcardTable.WorkcardId  == _workcardId  &&
+        #                  workcardTable.Direction   == _direction;
+        #    }
+        #
+        #    return workcardTable;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findOrCreateFromProj
+        #public static WPAWorkcardTable findOrCreateFromProj(ProjTable         _projTable,
+        #                                                    ProjForecastEmpl  _projForecastEmpl,
+        #                                                    EmplTable         _emplTable,
+        #                                                    DirPartyTable     _dirPartyTable,
+        #                                                    DocuRef           _docuRef)
+        #{
+        #    #define.Zero    ('0')
+        #    #define.One     ('1')
+        #    #define.Two     ('2')
+        #
+        #    WPAWorkcardTable    workcardTable = WPAWorkcardTable::find(_projForecastEmpl.ProjId, _projForecastEmpl.TransId, WPADirection::Outgoing);
+        #    ;
+        #    if (!workcardTable)
+        #    {
+        #        workcardTable.clear();
+        #        workcardTable.OrderId           = _projForecastEmpl.ProjId;
+        #        workcardTable.WorkcardId        = _projForecastEmpl.TransId;
+        #        workcardTable.EmploymentCode    = _projForecastEmpl.EmplId;
+        #        workcardTable.AccountId         = _projTable.CustAccount;
+        #        workcardTable.AreaId            = _emplTable.DispatchTeamId;
+        #        workcardTable.StartTime         = DateTimeUtil::newDateTime(_projForecastEmpl.SchedFromDate, _projForecastEmpl.SchedFromTime);
+        #        workcardTable.EndTime           = DateTimeUtil::addHours(DateTimeUtil::newDateTime(_projForecastEmpl.SchedFromDate, _projForecastEmpl.SchedFromTime),_projForecastEmpl.Qty);
+        #        workcardTable.Description       = _projForecastEmpl.Txt;
+        #        workcardTable.CrmInfo1          = _docuRef.Notes;
+        #        workcardTable.Responsible       = _dirPartyTable.Name;
+        #        workcardTable.Status            = WPAParameters::find().WorkcardsDefaultActivated ? #Two : #One;
+        #        workcardTable.Urgent            = #Zero;
+        #        workcardTable.Direction         = WPADirection::Outgoing;
+        #        workcardTable.RefCompany        = _projForecastEmpl.dataAreaId;
+        #        workcardTable.RefTableId        = _projForecastEmpl.TableId;
+        #        workcardTable.RefRecId          = _projForecastEmpl.RecId;
+        #        workcardTable.insert();
+        #    }
+        #
+        #    return workcardTable;
+        #}
+      ENDSOURCE
+      SOURCE #findOrCreateFromService
+        #public static WPAWorkcardTable findOrCreateFromService(SMAServiceOrderTable     _sMAServiceOrderTable,
+        #                                                       SMAServiceOrderLine      _sMAServiceOrderLine,
+        #                                                       EmplTable                _emplTable,
+        #                                                       DirPartyTable            _dirPartyTable,
+        #                                                       SMAServiceTaskRelation   _sMAServiceTaskRelation)
+        #{
+        #    #define.Zero    ('0')
+        #    #define.One     ('1')
+        #    #define.Two     ('2')
+        #
+        #    WPAWorkcardTable    workcardTable = WPAWorkcardTable::find(_sMAServiceOrderTable.ServiceOrderId, _sMAServiceOrderLine.ProjTransId, WPADirection::Outgoing);
+        #    ;
+        #    if (!workcardTable)
+        #    {
+        #        workcardTable.clear();
+        #        workcardTable.OrderId           = _sMAServiceOrderTable.ServiceOrderId;
+        #        workcardTable.WorkcardId        = _sMAServiceOrderLine.ProjTransId;
+        #        workcardTable.EmploymentCode    = _sMAServiceOrderLine.EmplId;
+        #        workcardTable.AccountId         = _sMAServiceOrderTable.CustAccount;
+        #        workcardTable.AreaId            = _emplTable.DispatchTeamId;
+        #        workcardTable.StartTime         = _sMAServiceOrderTable.ServiceDateTime;
+        #        workcardTable.EndTime           = DateTimeUtil::addHours(_sMAServiceOrderTable.ServiceDateTime, 2);
+        #        workcardTable.Description       = _sMAServiceOrderTable.Description
+        #                                          + _sMAServiceTaskRelation.taskDesciption()
+        #                                          + _sMAServiceTaskRelation.DescriptionExternal;
+        #        workcardTable.Responsible       = _dirPartyTable.Name;
+        #        workcardTable.CrmInfo1          = _sMAServiceTaskRelation.DescriptionInternal;
+        #        workcardTable.Status            = WPAParameters::find().WorkcardsDefaultActivated ? #Two : #One;
+        #        workcardTable.Urgent            = #Zero;
+        #        workcardTable.Direction         = WPADirection::Outgoing;
+        #        workcardTable.RefCompany        = _sMAServiceOrderLine.dataAreaId;
+        #        workcardTable.RefTableId        = _sMAServiceOrderLine.TableId;
+        #        workcardTable.RefRecId          = _sMAServiceOrderLine.RecId;
+        #        workcardTable.AttentionName     = _sMAServiceOrderTable.ServiceAddressName;
+        #        workcardTable.insert();
+        #    }
+        #
+        #    return workcardTable;
+        #}
+      ENDSOURCE
+      SOURCE #validateWorkcard
+        #public static boolean validateWorkcard(Common  _common)
+        #{
+        #    SMAServiceOrderLine sMAServiceOrderLine;
+        #    ProjForecastEmpl    projForecastEmpl;
+        #    ForecastSales       forecastSales;
+        #    WPAWorkcardTable    workcardTable;
+        #    WPAWorkcardLine     workcardLine;
+        #    InventTable         inventTable;
+        #    ProjCategory        projCategory;
+        #    EmplTable           emplTable;
+        #    boolean             ret;
+        #    ;
+        #    switch (_common.TableId)
+        #    {
+        #        case tablenum(SMAServiceOrderLine)  :   sMAServiceOrderLine = _common;
+        #                                                select firstonly workcardLine
+        #                                                    where workcardLine.RefTableId       == sMAServiceOrderLine.TableId &&
+        #                                                          workcardLine.RefRecId         == sMAServiceOrderLine.RecId
+        #                                                    exists join workcardTable
+        #                                                        where workcardTable.WorkcardId  != sMAServiceOrderLine.ProjTransId;
+        #
+        #                                                ret = workcardLine.RecId ? false : true;
+        #
+        #                                                if (ret)
+        #                                                {
+        #                                                    if (sMAServiceOrderLine.ItemId)
+        #                                                    {
+        #                                                        inventTable = InventTable::find(sMAServiceOrderLine.ItemId);
+        #                                                        if (!WPAIntegrationLog::exist(inventTable.TableId, inventTable.RecId))
+        #                                                        {
+        #                                                            ret = false;
+        #                                                            error(strfmt("@WPA196", sMAServiceOrderLine.ItemId));
+        #                                                        }
+        #                                                    }
+        #                                                    if (sMAServiceOrderLine.EmplId)
+        #                                                    {
+        #                                                        emplTable = EmplTable::find(sMAServiceOrderLine.EmplId);
+        #                                                        if (!SMADispatchTeamTable::find(sMAServiceOrderLine.EmplId).RecId && !WPAIntegrationLog::exist(emplTable.TableId, emplTable.RecId))
+        #                                                        {
+        #                                                            ret = false;
+        #                                                            error(strfmt("@WPA197", emplTable.EmplId));
+        #                                                        }
+        #                                                    }
+        #                                                    projCategory = ProjCategory::find(sMAServiceOrderLine.ProjCategoryId);
+        #                                                    if (!WPAIntegrationLog::exist(projCategory.TableId, projCategory.RecId))
+        #                                                    {
+        #                                                        ret = false;
+        #                                                        error(strfmt("@WPA198", projCategory.CategoryId));
+        #                                                    }
+        #                                                }
+        #                                                break;
+        #        case tablenum(ProjForecastEmpl)     :   projForecastEmpl = _common;
+        #                                                select firstonly workcardLine
+        #                                                    where workcardLine.RefTableId       == projForecastEmpl.TableId &&
+        #                                                          workcardLine.RefRecId         == projForecastEmpl.RecId
+        #                                                    exists join workcardTable
+        #                                                        where workcardTable.WorkcardId  != projForecastEmpl.TransId;
+        #
+        #                                                ret = workcardLine.RecId ? false : true;
+        #
+        #                                                if (ret)
+        #                                                {
+        #                                                    if (projForecastEmpl.EmplId)
+        #                                                    {
+        #                                                        emplTable = EmplTable::find(projForecastEmpl.EmplId);
+        #                                                        if (!SMADispatchTeamTable::find(projForecastEmpl.EmplId).RecId && !WPAIntegrationLog::exist(emplTable.TableId, emplTable.RecId))
+        #                                                        {
+        #                                                            ret = false;
+        #                                                            error(strfmt("@WPA197", emplTable.EmplId));
+        #                                                        }
+        #                                                    }
+        #                                                    projCategory = ProjCategory::find(projForecastEmpl.CategoryId);
+        #                                                    if (!WPAIntegrationLog::exist(projCategory.TableId, projCategory.RecId))
+        #                                                    {
+        #                                                        ret = false;
+        #                                                        error(strfmt("@WPA198", projCategory.CategoryId));
+        #                                                    }
+        #                                                }
+        #                                                break;
+        #        case tablenum(ForecastSales)        :   forecastSales = _common;
+        #                                                ret = true;
+        #                                                if (ret)
+        #                                                {
+        #                                                    if (forecastSales.ItemId)
+        #                                                    {
+        #                                                        inventTable = InventTable::find(forecastSales.ItemId);
+        #                                                        if (!WPAIntegrationLog::exist(inventTable.TableId, inventTable.RecId))
+        #                                                        {
+        #                                                            ret = false;
+        #                                                            error(strfmt("@WPA196", forecastSales.ItemId));
+        #                                                        }
+        #                                                    }
+        #                                                }
+        #                                                break;
+        #
+        #
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

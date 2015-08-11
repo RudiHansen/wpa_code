@@ -1,0 +1,219 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxProjHourCostPrice unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxProjHourCostPrice
+    PROPERTIES
+      Name                #AxProjHourCostPrice
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxProjHourCostPrice axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxProjHourCostPrice extends AxInternalBase
+        #{
+        #    ProjHourCostPrice ProjHourCostPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public ProjHourCostPrice currentRecord(ProjHourCostPrice _ProjHourCostPrice = ProjHourCostPrice)
+        #{
+        #    if (!prmisdefault(_ProjHourCostPrice))
+        #    {
+        #        super(_ProjHourCostPrice);
+        #        ProjHourCostPrice = _ProjHourCostPrice;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return ProjHourCostPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected ProjHourCostPrice emptyRecord()
+        #{
+        #    ProjHourCostPrice localProjHourCostPrice;
+        #    ;
+        #    return localProjHourCostPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCategoryId
+        #public ProjCategoryId parmCategoryId(ProjCategoryId _categoryId = '')
+        #{
+        #    if (!prmisdefault(_categoryId))
+        #    {
+        #        this.setField(fieldNum(ProjHourCostPrice, CategoryId), _categoryId);
+        #    }
+        #
+        #    return projHourCostPrice.CategoryId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmCostPrice
+        #public ProjCostPriceCost parmCostPrice(ProjCostPriceCost _costPrice = 0)
+        #{
+        #    if (!prmisdefault(_costPrice))
+        #    {
+        #        this.setField(fieldNum(ProjHourCostPrice, CostPrice), _costPrice);
+        #    }
+        #
+        #    return projHourCostPrice.CostPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmEmplId
+        #public EmplIdProj parmEmplId(EmplIdProj _emplId = '')
+        #{
+        #    if (!prmisdefault(_emplId))
+        #    {
+        #        this.setField(fieldNum(ProjHourCostPrice, EmplId), _emplId);
+        #    }
+        #
+        #    return projHourCostPrice.EmplId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProjId
+        #public ProjId parmProjId(ProjId _projId = '')
+        #{
+        #    if (!prmisdefault(_projId))
+        #    {
+        #        this.setField(fieldNum(ProjHourCostPrice, ProjId), _projId);
+        #    }
+        #
+        #    return projHourCostPrice.ProjId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTransDate
+        #public TransDate parmTransDate(TransDate _transDate = dateNull())
+        #{
+        #    if (!prmisdefault(_transDate))
+        #    {
+        #        this.setField(fieldNum(ProjHourCostPrice, TransDate), _transDate);
+        #    }
+        #
+        #    return projHourCostPrice.TransDate;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #ProjHourCostPrice
+        #public ProjHourCostPrice projHourCostPrice(ProjHourCostPrice _projHourCostPrice = projHourCostPrice)
+        #{
+        #    if (!prmisdefault(_projHourCostPrice))
+        #    {
+        #        this.setCurrentRecordFromExternal(_projHourCostPrice);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCategoryId
+        #protected void setCategoryId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjHourCostPrice, CategoryId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setCostPrice
+        #protected void setCostPrice()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjHourCostPrice, CostPrice)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setEmplId
+        #protected void setEmplId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjHourCostPrice, EmplId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProjId
+        #protected void setProjId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjHourCostPrice, ProjId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setCategoryId();
+        #    this.setEmplId();
+        #    this.setProjId();
+        #    this.setCostPrice();
+        #    this.setTransDate();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTransDate
+        #protected void setTransDate()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(ProjHourCostPrice, TransDate)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxProjHourCostPrice construct()
+        #{
+        #    return new AxProjHourCostPrice();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newProjHourCostPrice
+        #public static AxProjHourCostPrice newProjHourCostPrice(ProjHourCostPrice _ProjHourCostPrice)
+        #{
+        #    AxProjHourCostPrice AxProjHourCostPrice = AxProjHourCostPrice::construct();
+        #    ;
+        #    AxProjHourCostPrice.ProjHourCostPrice(_ProjHourCostPrice);
+        #
+        #    return AxProjHourCostPrice;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

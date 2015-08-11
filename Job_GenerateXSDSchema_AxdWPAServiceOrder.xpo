@@ -1,0 +1,25 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: GenerateXSDSchema_AxdWPAServiceOrder unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #GenerateXSDSchema_AxdWPAServiceOrder
+    #static void GenerateXSDSchema_AxdWPAServiceOrder(Args _args)
+    #{
+    #    AxdWPAServiceOrder    AxdWPAServiceOrder;
+    #    XML                 xml;
+    #    XMLDocument         xmlDocument;
+    #    ;
+    #    AxdWPAServiceOrder = AxdBase::newClassId(classnum(AxdWPAServiceOrder));
+    #    xml = AxdWPAServiceOrder.getSchema();
+    #    xmlDocument = XMLDocument::newXML(xml);
+    #    xmlDocument.save("c:\\XSDSchema_AxdWPAServiceOrder.xml");
+    #}
+    #
+  ENDSOURCE
+
+***Element: END

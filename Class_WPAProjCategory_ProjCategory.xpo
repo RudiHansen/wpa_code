@@ -1,0 +1,395 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjCategory_ProjCategory unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjCategory_ProjCategory
+    PROPERTIES
+      Name                #WPAProjCategory_ProjCategory
+      Extends             #AfStronglyTypedDataContainer
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProjCategory_ProjCategory extends AfStronglyTypedDataContainer
+        #{
+        #    #define.TaxItemGroupId('TaxItemGroupId')
+        #    #define.SetupSubscription('SetupSubscription')
+        #    #define.SetupEstimate('SetupEstimate')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.ProjRevenueSalesPrice('ProjRevenueSalesPrice')
+        #    #define.ProjLinePropertySetup('ProjLinePropertySetup')
+        #    #define.ProjHourSalesPrice('ProjHourSalesPrice')
+        #    #define.ProjHourCostPrice('ProjHourCostPrice')
+        #    #define.ProjCostSalesPrice('ProjCostSalesPrice')
+        #    #define.ProjCostPriceExpense('ProjCostPriceExpense')
+        #    #define.ProjCategoryEmplOption('ProjCategoryEmplOption')
+        #    #define.Name('Name')
+        #    #define.CategoryType('CategoryType')
+        #    #define.CategoryId('CategoryId')
+        #    #define.CategoryGroupId('CategoryGroupId')
+        #    #define.Active('Active')
+        #    #define._DocumentHash('_DocumentHash')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createProjCostPriceExpense
+        #public AfStronglyTypedDataContainerList createProjCostPriceExpense()
+        #{
+        #    return this.get_NewList(#ProjCostPriceExpense);
+        #}
+      ENDSOURCE
+      SOURCE #createProjCostSalesPrice
+        #public AfStronglyTypedDataContainerList createProjCostSalesPrice()
+        #{
+        #    return this.get_NewList(#ProjCostSalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #createProjHourCostPrice
+        #public AfStronglyTypedDataContainerList createProjHourCostPrice()
+        #{
+        #    return this.get_NewList(#ProjHourCostPrice);
+        #}
+      ENDSOURCE
+      SOURCE #createProjHourSalesPrice
+        #public AfStronglyTypedDataContainerList createProjHourSalesPrice()
+        #{
+        #    return this.get_NewList(#ProjHourSalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #createProjLinePropertySetup
+        #public AfStronglyTypedDataContainerList createProjLinePropertySetup()
+        #{
+        #    return this.get_NewList(#ProjLinePropertySetup);
+        #}
+      ENDSOURCE
+      SOURCE #createProjRevenueSalesPrice
+        #public AfStronglyTypedDataContainerList createProjRevenueSalesPrice()
+        #{
+        #    return this.get_NewList(#ProjRevenueSalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #exists_DocumentHash
+        #public boolean exists_DocumentHash()
+        #{
+        #    return this.exists(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #existsActive
+        #public boolean existsActive()
+        #{
+        #    return this.exists(#Active);
+        #}
+      ENDSOURCE
+      SOURCE #existsCategoryGroupId
+        #public boolean existsCategoryGroupId()
+        #{
+        #    return this.exists(#CategoryGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #existsCategoryId
+        #public boolean existsCategoryId()
+        #{
+        #    return this.exists(#CategoryId);
+        #}
+      ENDSOURCE
+      SOURCE #existsCategoryType
+        #public boolean existsCategoryType()
+        #{
+        #    return this.exists(#CategoryType);
+        #}
+      ENDSOURCE
+      SOURCE #existsName
+        #public boolean existsName()
+        #{
+        #    return this.exists(#Name);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjCategoryEmplOption
+        #public boolean existsProjCategoryEmplOption()
+        #{
+        #    return this.exists(#ProjCategoryEmplOption);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjCostPriceExpense
+        #public boolean existsProjCostPriceExpense()
+        #{
+        #    return this.exists(#ProjCostPriceExpense);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjCostSalesPrice
+        #public boolean existsProjCostSalesPrice()
+        #{
+        #    return this.exists(#ProjCostSalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjHourCostPrice
+        #public boolean existsProjHourCostPrice()
+        #{
+        #    return this.exists(#ProjHourCostPrice);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjHourSalesPrice
+        #public boolean existsProjHourSalesPrice()
+        #{
+        #    return this.exists(#ProjHourSalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjLinePropertySetup
+        #public boolean existsProjLinePropertySetup()
+        #{
+        #    return this.exists(#ProjLinePropertySetup);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjRevenueSalesPrice
+        #public boolean existsProjRevenueSalesPrice()
+        #{
+        #    return this.exists(#ProjRevenueSalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsSetupEstimate
+        #public boolean existsSetupEstimate()
+        #{
+        #    return this.exists(#SetupEstimate);
+        #}
+      ENDSOURCE
+      SOURCE #existsSetupSubscription
+        #public boolean existsSetupSubscription()
+        #{
+        #    return this.exists(#SetupSubscription);
+        #}
+      ENDSOURCE
+      SOURCE #existsTaxItemGroupId
+        #public boolean existsTaxItemGroupId()
+        #{
+        #    return this.exists(#TaxItemGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAProjCategory_ProjCategory);
+        #}
+      ENDSOURCE
+      SOURCE #parm_DocumentHash
+        #public str parm_DocumentHash(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#_DocumentHash, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #parmActive
+        #public ProjCategoryActive parmActive(ProjCategoryActive _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Active, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Active);
+        #}
+      ENDSOURCE
+      SOURCE #parmCategoryGroupId
+        #public ProjCategoryGroupId parmCategoryGroupId(ProjCategoryGroupId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CategoryGroupId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CategoryGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #parmCategoryId
+        #public ProjCategoryId parmCategoryId(ProjCategoryId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CategoryId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CategoryId);
+        #}
+      ENDSOURCE
+      SOURCE #parmCategoryType
+        #public ProjCategoryType parmCategoryType(ProjCategoryType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CategoryType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CategoryType);
+        #}
+      ENDSOURCE
+      SOURCE #parmName
+        #public ProjCategoryName parmName(ProjCategoryName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Name, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Name);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjCategoryEmplOption
+        #public ProjCategoryEmplOption parmProjCategoryEmplOption(ProjCategoryEmplOption _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjCategoryEmplOption, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjCategoryEmplOption);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjCostPriceExpense
+        #public AfStronglyTypedDataContainerList parmProjCostPriceExpense(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#ProjCostPriceExpense, _value);
+        #    }
+        #
+        #    return this.get_List(#ProjCostPriceExpense);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjCostSalesPrice
+        #public AfStronglyTypedDataContainerList parmProjCostSalesPrice(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#ProjCostSalesPrice, _value);
+        #    }
+        #
+        #    return this.get_List(#ProjCostSalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjHourCostPrice
+        #public AfStronglyTypedDataContainerList parmProjHourCostPrice(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#ProjHourCostPrice, _value);
+        #    }
+        #
+        #    return this.get_List(#ProjHourCostPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjHourSalesPrice
+        #public AfStronglyTypedDataContainerList parmProjHourSalesPrice(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#ProjHourSalesPrice, _value);
+        #    }
+        #
+        #    return this.get_List(#ProjHourSalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjLinePropertySetup
+        #public AfStronglyTypedDataContainerList parmProjLinePropertySetup(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#ProjLinePropertySetup, _value);
+        #    }
+        #
+        #    return this.get_List(#ProjLinePropertySetup);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjRevenueSalesPrice
+        #public AfStronglyTypedDataContainerList parmProjRevenueSalesPrice(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#ProjRevenueSalesPrice, _value);
+        #    }
+        #
+        #    return this.get_List(#ProjRevenueSalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public recId parmRecId(recId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public recVersion parmRecVersion(recVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmSetupEstimate
+        #public ProjCategorySetupEstimate parmSetupEstimate(ProjCategorySetupEstimate _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SetupEstimate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SetupEstimate);
+        #}
+      ENDSOURCE
+      SOURCE #parmSetupSubscription
+        #public ProjCategorySetupSubscription parmSetupSubscription(ProjCategorySetupSubscription _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SetupSubscription, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SetupSubscription);
+        #}
+      ENDSOURCE
+      SOURCE #parmTaxItemGroupId
+        #public TaxItemGroup parmTaxItemGroupId(TaxItemGroup _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#TaxItemGroupId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#TaxItemGroupId);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

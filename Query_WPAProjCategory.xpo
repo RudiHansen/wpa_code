@@ -1,0 +1,290 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: QUE
+
+; Microsoft Dynamics AX Query: WPAProjCategory unloaded
+; --------------------------------------------------------------------------------
+VERSION 18
+
+QUERY #WPAProjCategory
+  PROPERTIES
+    Name                #WPAProjCategory
+    Version             #232
+    NextUniqueId        #1007
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class QueryRun extends ObjectRun
+      #{
+      #}
+    ENDSOURCE
+    SOURCE #init
+      #public void init()
+      #{
+      #    CurrencyCode    currencyCode = CompanyInfo::find().CurrencyCode;
+      #    ;
+      #
+      #    super();
+      #
+      #    this.query().dataSourceTable(tablenum(ProjHourCostPrice)).addSortField(fieldnum(ProjHourCostPrice, TransDate), SortOrder::Descending);
+      #    this.query().dataSourceTable(tablenum(ProjCostPriceExpense)).addSortField(fieldnum(ProjCostPriceExpense, TransDate), SortOrder::Descending);
+      #    this.query().dataSourceTable(tablenum(ProjCategory)).findRange(fieldnum(ProjCategory, CategoryType)).value(SysQuery::valueNot(ProjCategoryType::Item));
+      #    this.query().dataSourceTable(tablenum(ProjHourSalesPrice)).findRange(fieldnum(ProjHourSalesPrice, CurrencyId)).value(SysQuery::value(currencyCode));
+      #    this.query().dataSourceTable(tablenum(ProjHourSalesPrice)).findRange(fieldnum(ProjHourSalesPrice, ProjValidFor)).value(SysQuery::value(TableGroupAll::All));
+      #    this.query().dataSourceTable(tablenum(ProjHourSalesPrice)).findRange(fieldnum(ProjHourSalesPrice, ProjSalesPriceModel)).value(SysQuery::value(ProjSalesPriceModel::Qty));
+      #    this.query().dataSourceTable(tablenum(ProjHourSalesPrice)).addSortField(fieldnum(ProjHourSalesPrice, TransDate), SortOrder::Descending);
+      #    this.query().dataSourceTable(tablenum(ProjRevenueSalesPrice)).findRange(fieldnum(ProjRevenueSalesPrice, CurrencyId)).value(SysQuery::value(currencyCode));
+      #    this.query().dataSourceTable(tablenum(ProjRevenueSalesPrice)).findRange(fieldnum(ProjRevenueSalesPrice, ProjValidFor)).value(SysQuery::value(TableGroupAll::All));
+      #    this.query().dataSourceTable(tablenum(ProjRevenueSalesPrice)).addSortField(fieldnum(ProjRevenueSalesPrice, TransDate), SortOrder::Descending);
+      #    this.query().dataSourceTable(tablenum(ProjCostSalesPrice)).findRange(fieldnum(ProjCostSalesPrice, CurrencyId)).value(SysQuery::value(currencyCode));
+      #    this.query().dataSourceTable(tablenum(ProjCostSalesPrice)).findRange(fieldnum(ProjCostSalesPrice, ProjValidFor)).value(SysQuery::value(TableGroupAll::All));
+      #    this.query().dataSourceTable(tablenum(ProjCostSalesPrice)).findRange(fieldnum(ProjCostSalesPrice, ProjSalesPriceModel)).value(SysQuery::value(ProjSalesPriceModel::Qty));
+      #    this.query().dataSourceTable(tablenum(ProjCostSalesPrice)).addSortField(fieldnum(ProjCostSalesPrice, TransDate), SortOrder::Descending);
+      #
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  BLOCKS
+    BLOCK #ProjCategory
+      PROPERTIES
+        Name                #ProjCategory
+        Table               #ProjCategory
+        UniqueId            #1000
+      ENDPROPERTIES
+      
+      FIELDLIST
+        PROPERTIES
+        ENDPROPERTIES
+        
+      ENDFIELDLIST
+      SORTING
+      ENDSORTING
+      LINES
+        LINE #Active
+        PROPERTIES
+          Name                #Active
+          Table               #ProjCategory
+          Field               #Active
+          Value               #Yes
+          Status              #Lock
+        ENDPROPERTIES
+        
+        LINE #CategoryType
+        PROPERTIES
+          Name                #CategoryType
+          Table               #ProjCategory
+          Field               #CategoryType
+        ENDPROPERTIES
+        
+      ENDLINES
+      BLOCKS
+        BLOCK #ProjHourCostPrice
+          PROPERTIES
+            Name                #ProjHourCostPrice
+            Table               #ProjHourCostPrice
+            UniqueId            #1001
+            FetchMode           #1:1
+            JoinMode            #OuterJoin
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+            ENDPROPERTIES
+            
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #CategoryId
+              DETAILSFIELD #CategoryId
+          ENDASSOCIATIONS
+        ENDBLOCK
+        BLOCK #ProjCostPriceExpense
+          PROPERTIES
+            Name                #ProjCostPriceExpense
+            Table               #ProjCostPriceExpense
+            UniqueId            #1003
+            FetchMode           #1:1
+            JoinMode            #OuterJoin
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+            ENDPROPERTIES
+            
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #CategoryId
+              DETAILSFIELD #CategoryId
+          ENDASSOCIATIONS
+        ENDBLOCK
+        BLOCK #ProjHourSalesPrice
+          PROPERTIES
+            Name                #ProjHourSalesPrice
+            Table               #ProjHourSalesPrice
+            UniqueId            #1002
+            FetchMode           #1:1
+            JoinMode            #OuterJoin
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+            ENDPROPERTIES
+            
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+            LINE #CurrencyId
+            PROPERTIES
+              Name                #CurrencyId
+              Table               #ProjHourSalesPrice
+              Field               #CurrencyId
+            ENDPROPERTIES
+            
+            LINE #ProjValidFor
+            PROPERTIES
+              Name                #ProjValidFor
+              Table               #ProjHourSalesPrice
+              Field               #ProjValidFor
+            ENDPROPERTIES
+            
+            LINE #ProjSalesPriceModel
+            PROPERTIES
+              Name                #ProjSalesPriceModel
+              Table               #ProjHourSalesPrice
+              Field               #ProjSalesPriceModel
+            ENDPROPERTIES
+            
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #CategoryId
+              DETAILSFIELD #CategoryId
+          ENDASSOCIATIONS
+        ENDBLOCK
+        BLOCK #ProjRevenueSalesPrice
+          PROPERTIES
+            Name                #ProjRevenueSalesPrice
+            Table               #ProjRevenueSalesPrice
+            UniqueId            #1004
+            FetchMode           #1:1
+            JoinMode            #OuterJoin
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+            ENDPROPERTIES
+            
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+            LINE #CurrencyId
+            PROPERTIES
+              Name                #CurrencyId
+              Table               #ProjRevenueSalesPrice
+              Field               #CurrencyId
+            ENDPROPERTIES
+            
+            LINE #ProjValidFor
+            PROPERTIES
+              Name                #ProjValidFor
+              Table               #ProjRevenueSalesPrice
+              Field               #ProjValidFor
+            ENDPROPERTIES
+            
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #CategoryId
+              DETAILSFIELD #CategoryId
+          ENDASSOCIATIONS
+        ENDBLOCK
+        BLOCK #ProjCostSalesPrice
+          PROPERTIES
+            Name                #ProjCostSalesPrice
+            Table               #ProjCostSalesPrice
+            UniqueId            #1005
+            FetchMode           #1:1
+            JoinMode            #OuterJoin
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+            ENDPROPERTIES
+            
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+            LINE #CurrencyId
+            PROPERTIES
+              Name                #CurrencyId
+              Table               #ProjCostSalesPrice
+              Field               #CurrencyId
+              Status              #Lock
+            ENDPROPERTIES
+            
+            LINE #ProjValidFor
+            PROPERTIES
+              Name                #ProjValidFor
+              Table               #ProjCostSalesPrice
+              Field               #ProjValidFor
+            ENDPROPERTIES
+            
+            LINE #ProjSalesPriceModel
+            PROPERTIES
+              Name                #ProjSalesPriceModel
+              Table               #ProjCostSalesPrice
+              Field               #ProjSalesPriceModel
+            ENDPROPERTIES
+            
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              MASTERFIELD  #CategoryId
+              DETAILSFIELD #CategoryId
+          ENDASSOCIATIONS
+        ENDBLOCK
+      ENDBLOCKS
+      GROUPBY
+      ENDGROUPBY
+      ORDERBY
+      ENDORDERBY
+    ENDBLOCK
+  ENDBLOCKS
+  DEPENDENTS
+  ENDDEPENDENTS
+  COMPOSITEQUERIES
+  ENDCOMPOSITEQUERIES
+ENDQUERY
+
+
+***Element: END

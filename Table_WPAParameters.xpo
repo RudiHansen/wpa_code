@@ -1,0 +1,784 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : WPAParameters unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #WPAParameters
+    PROPERTIES
+      Name                #WPAParameters
+      Label               #@WPA1
+      TableContents       #Default data
+      SecurityKey         #WPATables
+      CacheLookup         #Found
+      CreateRecIdIndex    #Yes
+      TableGroup          #Parameter
+      PrimaryIndex        #Key
+      ClusterIndex        #Key
+      ModifiedDateTime    #Yes
+      ModifiedBy          #Yes
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Separator
+        STRING
+        PROPERTIES
+          Name                #Separator
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPASeparator
+              #
+            ENDARRAY
+          StringSize          #1
+        ENDPROPERTIES
+        
+      FIELD #LinePropertyCaregory
+        ENUM
+        PROPERTIES
+          Name                #LinePropertyCaregory
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPALinePropertyCaregory
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #UsePrefix
+        ENUM
+        PROPERTIES
+          Name                #UsePrefix
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAUsePrefix
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ItemPrefix
+        STRING
+        PROPERTIES
+          Name                #ItemPrefix
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemPrefix
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ItemCostPrice
+        ENUM
+        PROPERTIES
+          Name                #ItemCostPrice
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemCostPrice
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ItemSalesPrice
+        ENUM
+        PROPERTIES
+          Name                #ItemSalesPrice
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemSalesPrice
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #LinePropertyItem
+        ENUM
+        PROPERTIES
+          Name                #LinePropertyItem
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPALinePropertyItem
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #BarCodeSetupId
+        STRING
+        PROPERTIES
+          Name                #BarCodeSetupId
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPABarCodeSetupId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CategoryPrefix
+        STRING
+        PROPERTIES
+          Name                #CategoryPrefix
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPACategoryPrefix
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #CategorySalesPrice
+        ENUM
+        PROPERTIES
+          Name                #CategorySalesPrice
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPACategorySalesPrice
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #CategoryCostPrice
+        ENUM
+        PROPERTIES
+          Name                #CategoryCostPrice
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPACategoryCostPrice
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #TypeEmail
+        STRING
+        PROPERTIES
+          Name                #TypeEmail
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPATypeEmail
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #PhoneType
+        STRING
+        PROPERTIES
+          Name                #PhoneType
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAPhoneType
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #AgreementId_OLD
+        STRING
+        PROPERTIES
+          Name                #AgreementId_OLD
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAAgreementId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #TaskId
+        STRING
+        PROPERTIES
+          Name                #TaskId
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPATaskId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #StageIdEndedWPA
+        STRING
+        PROPERTIES
+          Name                #StageIdEndedWPA
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAStageIdEndedWPA
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #StageIdToWPA
+        STRING
+        PROPERTIES
+          Name                #StageIdToWPA
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAStageIdToWPA
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ForecastModel
+        STRING
+        PROPERTIES
+          Name                #ForecastModel
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAForecastModel
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #EmplJournalNameId
+        STRING
+        PROPERTIES
+          Name                #EmplJournalNameId
+          Label               #@SYS5269
+          HelpText            #@SYS23982
+          ConfigurationKey    #ProjBasicHour
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #ProjJournalNameId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #inventJournalNameId
+        STRING
+        PROPERTIES
+          Name                #inventJournalNameId
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #InventJournalNameProject
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #RevenueJournalNameId
+        STRING
+        PROPERTIES
+          Name                #RevenueJournalNameId
+          Label               #@SYS9154
+          HelpText            #@SYS23982
+          ConfigurationKey    #ProjBasicRevenue
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #ProjJournalNameId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #LedgerJournalNameId
+        STRING
+        PROPERTIES
+          Name                #LedgerJournalNameId
+          Label               #@SYS90729
+          HelpText            #@SYS23982
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #LedgerJournalNameId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Key
+        INT
+        PROPERTIES
+          Name                #Key
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Visible             #No
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #ParametersKey
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ItemWithoutDim
+        ENUM
+        PROPERTIES
+          Name                #ItemWithoutDim
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAItemWithoutDim
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #CategoryWithoutProperty
+        ENUM
+        PROPERTIES
+          Name                #CategoryWithoutProperty
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPACategoryWithoutProperty
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #InventLocationIdDefault
+        STRING
+        PROPERTIES
+          Name                #InventLocationIdDefault
+          Label               #@SYS104490
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #InventLocationIdDefault
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #SmartlineItemId
+        STRING
+        PROPERTIES
+          Name                #SmartlineItemId
+          Label               #Smartline varenummer
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #ItemId
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #DefaultMobileUser
+        ENUM
+        PROPERTIES
+          Name                #DefaultMobileUser
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPADefaultMobileUser
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #DocuTypeId
+        STRING
+        PROPERTIES
+          Name                #DocuTypeId
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPADocuTypeId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ValidateEmail
+        ENUM
+        PROPERTIES
+          Name                #ValidateEmail
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAValidateEmail
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #WorkcardsDefaultActivated
+        ENUM
+        PROPERTIES
+          Name                #WorkcardsDefaultActivated
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPAWorkcardsDefaultActivated
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #SendOnlyInventoryChanges
+        ENUM
+        PROPERTIES
+          Name                #SendOnlyInventoryChanges
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPASendOnlyInventoryChanges
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #DefaultWorkcardStartTime
+        TIME
+        PROPERTIES
+          Name                #DefaultWorkcardStartTime
+          Table               #WPAParameters
+          ExtendedDataType    
+            ARRAY 
+              #WPADefaultWorkcardStartTime
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #AutoCopyServiceTasks
+        ENUM
+        PROPERTIES
+          Name                #AutoCopyServiceTasks
+          Label               #@WPA241
+          HelpText            #@WPA242
+          Table               #WPAParameters
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Separator
+          #LinePropertyCaregory
+          #UsePrefix
+          #ItemPrefix
+          #ItemCostPrice
+          #ItemSalesPrice
+          #LinePropertyItem
+          #BarCodeSetupId
+          #CategoryPrefix
+          #CategorySalesPrice
+          #CategoryCostPrice
+          #TypeEmail
+          #PhoneType
+          #AgreementId_OLD
+          #TaskId
+          #StageIdEndedWPA
+          #StageIdToWPA
+          #ForecastModel
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #AutoLookup
+        PROPERTIES
+          Name                #AutoLookup
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #Separator
+          #LinePropertyCaregory
+          #UsePrefix
+          #ItemPrefix
+          #ItemCostPrice
+          #ItemSalesPrice
+          #LinePropertyItem
+          #BarCodeSetupId
+          #CategoryPrefix
+          #CategorySalesPrice
+          #CategoryCostPrice
+          #TypeEmail
+          #PhoneType
+          #AgreementId_OLD
+          #TaskId
+          #StageIdEndedWPA
+          #StageIdToWPA
+          #ForecastModel
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Category
+        PROPERTIES
+          Name                #Category
+          Label               #@SYS69410
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #CategoryPrefix
+          #CategoryCostPrice
+          #CategorySalesPrice
+          #LinePropertyCaregory
+          #CategoryWithoutProperty
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Empl
+        PROPERTIES
+          Name                #Empl
+          Label               #@SYS80745
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #TypeEmail
+          #PhoneType
+          #DefaultMobileUser
+          #ValidateEmail
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #General
+        PROPERTIES
+          Name                #General
+          Label               #@SYS19924
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #UsePrefix
+          #Separator
+          #WorkcardsDefaultActivated
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Item
+        PROPERTIES
+          Name                #Item
+          Label               #@SYS14428
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ItemPrefix
+          #ItemCostPrice
+          #ItemSalesPrice
+          #LinePropertyItem
+          #ItemWithoutDim
+          #BarCodeSetupId
+          #InventLocationIdDefault
+          #SmartlineItemId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Journals
+        PROPERTIES
+          Name                #Journals
+          Label               #@SYS9020
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #LedgerJournalNameId
+          #RevenueJournalNameId
+          #inventJournalNameId
+          #EmplJournalNameId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Prefix
+        PROPERTIES
+          Name                #Prefix
+          Label               #@SYS22501
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #UsePrefix
+          #ItemPrefix
+          #CategoryPrefix
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Project
+        PROPERTIES
+          Name                #Project
+          Label               #@SYS80304
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ForecastModel
+          #DocuTypeId
+          #DefaultWorkcardStartTime
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #ServiceOrder
+        PROPERTIES
+          Name                #ServiceOrder
+          Label               #@SYS79051
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #AgreementId_OLD
+          #TaskId
+          #StageIdToWPA
+          #StageIdEndedWPA
+          #AutoCopyServiceTasks
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #WarehouseManagement
+        PROPERTIES
+          Name                #WarehouseManagement
+          Label               #@SYS50169
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SendOnlyInventoryChanges
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #Key
+      PROPERTIES
+        Name                #Key
+        AllowDuplicates     #No
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Key
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+      REFERENCE #InventJournalName
+        PROPERTIES
+          Name                #InventJournalName
+          Table               #InventJournalName
+          EntityRelationshipRole  #@SYS124944
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #inventJournalNameId
+            RelatedField        #JournalNameId
+          ENDPROPERTIES
+          
+          REFERENCETYPE EXTERNFIXED
+          PROPERTIES
+            Value               #5
+            Table               #InventJournalName
+            RelatedField        #JournalType
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #LedgerJournalName
+        PROPERTIES
+          Name                #LedgerJournalName
+          Table               #LedgerJournalName
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #LedgerJournalNameId
+            RelatedField        #JournalName
+          ENDPROPERTIES
+          
+          REFERENCETYPE EXTERNFIXED
+          PROPERTIES
+            Value               #8
+            Table               #LedgerJournalName
+            RelatedField        #JournalType
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjJournalEmpl
+        PROPERTIES
+          Name                #ProjJournalEmpl
+          Table               #ProjJournalName
+          EntityRelationshipRole  #@SYS124945
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #EmplJournalNameId
+            RelatedField        #JournalNameId
+          ENDPROPERTIES
+          
+          REFERENCETYPE EXTERNFIXED
+          PROPERTIES
+            Table               #ProjJournalName
+            RelatedField        #JournalType
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjJournalRevenue
+        PROPERTIES
+          Name                #ProjJournalRevenue
+          Table               #ProjJournalName
+          EntityRelationshipRole  #@SYS124946
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #RevenueJournalNameId
+            RelatedField        #JournalNameId
+          ENDPROPERTIES
+          
+          REFERENCETYPE EXTERNFIXED
+          PROPERTIES
+            Value               #1
+            Table               #ProjJournalName
+            RelatedField        #JournalType
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #modifiedField
+        #public void modifiedField(fieldId _fieldId)
+        #{
+        #    ;
+        #    super(_fieldId);
+        #
+        #    switch (_fieldId)
+        #    {
+        #        case fieldnum(WPAParameters, LinePropertyCaregory)  :   if (!this.LinePropertyCaregory)
+        #                                                                {
+        #                                                                    this.CategoryWithoutProperty = NoYes::No;
+        #                                                                }
+        #                                                                break;
+        #        default                                             :   break;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #client server static WPAParameters find(boolean _forupdate = false)
+        #{
+        #    WPAParameters parameter;
+        #    ;
+        #    parameter.selectForUpdate(_forupdate);
+        #
+        #    select firstonly parameter index Key where parameter.Key == 0;
+        #
+        #    if (!parameter && !parameter.isTmp())
+        #    {
+        #        Company::createParameter(parameter);
+        #    }
+        #
+        #    return parameter;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

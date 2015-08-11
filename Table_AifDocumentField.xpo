@@ -1,0 +1,401 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : AifDocumentField unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #AifDocumentField
+    PROPERTIES
+      Name                #AifDocumentField
+      Label               #@SYS89269
+      TitleField1         #DocumentClassId
+      TitleField2         #Xpath
+      ConfigurationKey    #AIF
+      SecurityKey         #BasicTables
+      CreateRecIdIndex    #Yes
+      SaveDataPerCompany  #No
+      PrimaryIndex        #DocumentFieldXPathIdx
+      ClusterIndex        #DocumentFieldXPathIdx
+      DeveloperDocumentation  #@SYS125191
+      EntityRelationshipType  #Relationship
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #DocumentClassId
+        INT
+        PROPERTIES
+          Name                #DocumentClassId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #AifDocumentField
+          ExtendedDataType    
+            ARRAY 
+              #AifDocumentClassId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #Xpath
+        STRING
+        PROPERTIES
+          Name                #Xpath
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #AifDocumentField
+          ExtendedDataType    
+            ARRAY 
+              #AifXPath
+              #
+            ENDARRAY
+          StringSize          #500
+        ENDPROPERTIES
+        
+      FIELD #Name
+        STRING
+        PROPERTIES
+          Name                #Name
+          AllowEdit           #No
+          Table               #AifDocumentField
+          ExtendedDataType    
+            ARRAY 
+              #AifXsdElementName
+              #
+            ENDARRAY
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #MinOccurs
+        INT
+        PROPERTIES
+          Name                #MinOccurs
+          Table               #AifDocumentField
+          ExtendedDataType    
+            ARRAY 
+              #AifXsdMinOccurs
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #ExtendedDataTypeId
+        INT
+        PROPERTIES
+          Name                #ExtendedDataTypeId
+          Table               #AifDocumentField
+          ExtendedDataType    
+            ARRAY 
+              #extendedTypeId
+              #
+            ENDARRAY
+        ENDPROPERTIES
+        
+      FIELD #XsdDataTypeName
+        STRING
+        PROPERTIES
+          Name                #XsdDataTypeName
+          Table               #AifDocumentField
+          ExtendedDataType    
+            ARRAY 
+              #AifXsdDataTypeName
+              #
+            ENDARRAY
+          StringSize          #100
+        ENDPROPERTIES
+        
+      FIELD #MarkForDelete
+        ENUM
+        PROPERTIES
+          Name                #MarkForDelete
+          Visible             #No
+          Table               #AifDocumentField
+          EnumType            #boolean
+        ENDPROPERTIES
+        
+      FIELD #WPAName
+        STRING
+        PROPERTIES
+          Name                #WPAName
+          Label               #@WPA28
+          HelpText            #@WPA29
+          Table               #AifDocumentField
+          ExtendedDataType    
+            ARRAY 
+              #AifXsdElementName
+              #
+            ENDARRAY
+          StringSize          #50
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #DocumentClassId
+          #Xpath
+          #Name
+          #ExtendedDataTypeId
+          #XsdDataTypeName
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Overview
+        PROPERTIES
+          Name                #Overview
+          Label               #@SYS9039
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #DocumentClassId
+          #Xpath
+          #Name
+          #MinOccurs
+          #ExtendedDataTypeId
+          #XsdDataTypeName
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #WPAName
+        PROPERTIES
+          Name                #WPAName
+          Label               #@WPA73
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #WPAName
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #DocumentFieldXPathIdx
+      PROPERTIES
+        Name                #DocumentFieldXPathIdx
+        AllowDuplicates     #No
+        ConfigurationKey    #AIF
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #DocumentClassId
+        #Xpath
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #DataTypeName
+        #// The display method will return the name of the extended data type
+        #// based on the value of the extended data type id.
+        #//BP Deviation Documented
+        #display ExtendedDataTypeName dataTypeName()
+        #{
+        #    Dictionary dictionary;
+        #    ExtendedDataTypeName name;
+        #    ;
+        #
+        #    dictionary = new Dictionary();
+        #
+        #    name = dictionary.typeName(this.ExtendedDataTypeId);
+        #
+        #    return name;
+        #}
+      ENDSOURCE
+      SOURCE #modifiedField
+        #// WPA import
+        #public void modifiedField(fieldId _fieldId)
+        #{
+        #    super(_fieldId);
+        #
+        #    switch (_fieldId)
+        #    {
+        #        case fieldnum(AifDocumentField, WPAName):
+        #            this.modifyWPANAme();
+        #        break;
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #modifyWPANAme
+        #// WPA import
+        #public void modifyWPAName()
+        #{
+        #    AifDocumentField    aifDocumentField;
+        #    ;
+        #    ttsbegin;
+        #
+        #    while select forupdate aifDocumentField
+        #        where aifDocumentField.DocumentClassId == this.DocumentClassId
+        #           && aifDocumentField.Name == this.Name
+        #           && aifDocumentField.RecId != this.RecId
+        #    {
+        #        aifDocumentField.WPAName = this.WPAName;
+        #        aifDocumentField.doUpdate();
+        #    }
+        #
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #static AifDocumentField find(AifDocumentClassId classId, AifXPath xpath, boolean update = false)
+        #{
+        #    AifDocumentField  documentField;
+        #    ;
+        #
+        #    documentField.selectForUpdate(update);
+        #
+        #    if (classId)
+        #    {
+        #        select firstonly documentField
+        #            where documentField.DocumentClassId == classId
+        #            && documentField.Xpath == xpath;
+        #    }
+        #
+        #    return documentField;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findByRecId
+        #static AifDocumentField findByRecId(RecId recId, boolean update = false)
+        #{
+        #    AifDocumentField  documentField;
+        #    ;
+        #
+        #    documentField.selectForUpdate(update);
+        #
+        #    if (recId)
+        #    {
+        #        select firstonly documentField
+        #            where documentField.RecId == recId;
+        #    }
+        #
+        #    return documentField;
+        #}
+      ENDSOURCE
+      SOURCE #synchronize
+        #static public void synchronize(AifDocumentClassId documentClassId, AifXml schemaXml, AifDocumentName documentName = '')
+        #{
+        #    // Tables
+        #    AifDocumentField                 field;
+        #    AifEndpointActionParameterSchema endpointActionParamSchema;
+        #    DataArea dataArea;
+        #
+        #    // Variables
+        #    AifSchemaParser parser;
+        #    AifSchemaElement element;
+        #    XmlSchemaElement schemaElement;
+        #    DictClass dictClass;
+        #    AifXmlSerializable document;
+        #    Map fields;
+        #    MapEnumerator enumerator;
+        #    ;
+        #
+        #    if (prmisdefault(documentName))
+        #    {
+        #        // Create the serviceable document, so we can get the name of the document.
+        #        dictClass = new DictClass(documentClassId);
+        #        document = dictClass.makeObject();
+        #        documentName = document.getRootName();
+        #    }
+        #
+        #    // Parse the schema.
+        #    parser = new AifSchemaParser();
+        #    parser.parse(documentName, schemaXml);
+        #
+        #    // Get map that contains the list of fields.
+        #    // and initialize the map enumerator.
+        #    fields = parser.parmFieldMap();
+        #    enumerator = fields.getEnumerator();
+        #
+        #    ttsbegin;
+        #
+        #    // Assume we will delete all existing fields.
+        #    // When we loop through the fields, we will
+        #    // un-flag any existing records.
+        #    update_recordset field
+        #        setting MarkForDelete = true
+        #        where field.DocumentClassId == documentClassId;
+        #
+        #    while (enumerator.moveNext())
+        #    {
+        #        element = enumerator.currentValue();
+        #        schemaElement = element.parmSchemaElement();
+        #
+        #        field = AifDocumentField::find(documentClassId, enumerator.currentKey(), true);
+        #
+        #        // Whether this is a new or existing, update the following fields.
+        #        field.MinOccurs = real2int(schemaElement.minOccurs());
+        #        field.ExtendedDataTypeId = element.parmExtendedTypeId();
+        #        field.XsdDataTypeName = element.parmXsdDatatype();
+        #
+        #        if (field)
+        #        {
+        #            // Un-mark for deletion.  We want to re-use the
+        #            // existing record so we don't lose the recId.
+        #            field.MarkForDelete = false;
+        #            field.update();
+        #        }
+        #        else
+        #        {
+        #            // New field; initialize the rest of the fields.
+        #            field.DocumentClassId = documentClassId;
+        #            field.Xpath = element.parmXpath();
+        #            field.Name = schemaElement.name();
+        #            field.insert();
+        #        }
+        #
+        #    }
+        #
+        #    // Delete fields that no longer exist.
+        #    delete_from field
+        #    where field.DocumentClassId == documentClassId
+        #    && field.MarkForDelete == true;
+        #
+        #    // Update the appropriate endpoint action parameter schema records
+        #    // indicating that the endpoint schema will need to be synchronized and regenerated.
+        #    while select * from dataArea where dataArea.isVirtual == false
+        #    {
+        #        // Set the data area Id to which
+        #        // the action policy update will apply.
+        #        endpointActionParamSchema.company(dataArea.Id);
+        #
+        #        // Set endpointparam schema datasync flag to false for all schemas for the given document classId.
+        #        update_recordset endpointActionParamSchema
+        #            setting DataPolicySynchronized = false
+        #            where endpointActionParamSchema.DocumentClassId == documentClassId;
+        #
+        #    }
+        #
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #wpaFind
+        #// WPA import
+        #static AifXsdElementName wpaFind(AifDocumentClassId classId, AifXsdElementName name)
+        #{
+        #    AifDocumentField  documentField;
+        #    ;
+        #
+        #    if (classId)
+        #    {
+        #        select firstonly documentField
+        #            where documentField.DocumentClassId == classId
+        #            && documentField.Name == name;
+        #    }
+        #
+        #    return documentField.WPAName;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

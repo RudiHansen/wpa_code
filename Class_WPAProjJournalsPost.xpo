@@ -1,0 +1,312 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAProjJournalsPost unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAProjJournalsPost
+    PROPERTIES
+      Name                #WPAProjJournalsPost
+      Extends             #RunBaseBatch
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAProjJournalsPost extends RunBaseBatch
+        #{
+        #    WPAParameters   wPAParameters;
+        #    BatchHeader     batchHeader;
+        #    boolean         postHourJournals;
+        #    boolean         postItemJournals;
+        #    boolean         postFeeJournals;
+        #    boolean         postExpenseJournals;
+        #
+        #    DialogField     postHourJournals_df;
+        #    DialogField     postItemJournals_df;
+        #    DialogField     postFeeJournals_df;
+        #    DialogField     postExpenseJournals_df;
+        #
+        #    #define.CurrentVersion(1)
+        #    #localmacro.CurrentList
+        #        postHourJournals,
+        #        postItemJournals,
+        #        postFeeJournals,
+        #        postExpenseJournals
+        #    #endmacro
+        #}
+      ENDSOURCE
+      SOURCE #dialog
+        #public Object dialog()
+        #{
+        #    DialogRunbase       dialog = super();
+        #    ;
+        #
+        #    postHourJournals_df     = dialog.addFieldValue(typeid(NoYesId), postHourJournals, "@WPA234");
+        #    postItemJournals_df     = dialog.addFieldValue(typeid(NoYesId), postItemJournals, "@WPA235");
+        #    postFeeJournals_df      = dialog.addFieldValue(typeid(NoYesId), postFeeJournals, "@WPA236");
+        #    postExpenseJournals_df  = dialog.addFieldValue(typeid(NoYesId), postExpenseJournals, "@WPA237");
+        #
+        #    return dialog;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getFromDialog
+        #public boolean getFromDialog()
+        #{
+        #    ;
+        #
+        #    postHourJournals    = postHourJournals_df.value();
+        #    postItemJournals    = postItemJournals_df.value();
+        #    postFeeJournals     = postFeeJournals_df.value();
+        #    postExpenseJournals = postExpenseJournals_df.value();
+        #
+        #    return super();
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    ;
+        #
+        #    return [#CurrentVersion, #CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #post
+        #void post()
+        #{
+        #    ;
+        #    if (this.isInBatch())
+        #    {
+        #        batchHeader = BatchHeader::construct(this.parmCurrentBatch().BatchJobId);
+        #    }
+        #
+        #    if (postHourJournals)
+        #    {
+        #        this.postHourJournals();
+        #    }
+        #    if (postItemJournals)
+        #    {
+        #        this.postItemJournals();
+        #    }
+        #    if (postFeeJournals)
+        #    {
+        #        this.postFeeJournals();
+        #    }
+        #    if (postExpenseJournals)
+        #    {
+        #        this.postExpenseJournals();
+        #    }
+        #
+        #    if (this.isInBatch())
+        #    {
+        #        batchHeader.save();
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #postExpenseJournals
+        #void postExpenseJournals()
+        #{
+        #    LedgerJournalTable      ledgerJournalTable;
+        #    LedgerJournalMultiPost  ledgerJournalMultiPost;
+        #    LedgerJournalCheckPost  ledgerJournalCheckPost;
+        #    RecordSortedList        recordSortedList = new RecordSortedList(tablenum(LedgerJournalTable));
+        #    ;
+        #    recordSortedList.sortOrder(fieldnum(LedgerJournalTable, JournalNum));
+        #    while select ledgerJournalTable
+        #        where ledgerJournalTable.JournalName    == wPAParameters.LedgerJournalNameId    &&
+        #              ledgerJournalTable.Posted         == NoYes::No
+        #    {
+        #
+        #        if (this.isInBatch())
+        #        {
+        #            recordSortedList.ins(ledgerJournalTable);
+        #        }
+        #        else
+        #        {
+        #            ledgerJournalCheckPost = ledgerJournalCheckPost::newLedgerJournalTable(ledgerJournalTable, NoYes::Yes);
+        #            ledgerJournalCheckPost.run();
+        #        }
+        #    }
+        #    if (this.isInBatch() && recordSortedList.len() > 0)
+        #    {
+        #        ledgerJournalMultiPost = LedgerJournalTable::insertJournalsInLedgerJournalMultiPost(recordSortedList);
+        #        this.setBatchInfo(ledgerJournalMultiPost);
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #postFeeJournals
+        #void postFeeJournals()
+        #{
+        #    ProjJournalTable        projJournalTable;
+        #    ProjJournalCheckPost    projJournalCheckPost;
+        #    ;
+        #    while select projJournalTable
+        #        where projJournalTable.JournalNameId    == wPAParameters.RevenueJournalNameId   &&
+        #              projJournalTable.Posted           == NoYes::No
+        #    {
+        #        projJournalCheckPost = ProjJournalCheckPost::newJournalCheckPost(true, true, JournalCheckPostType::Post, projJournalTable.TableId, projJournalTable.JournalId);
+        #        if (this.isInBatch())
+        #        {
+        #            this.setBatchInfo(projJournalCheckPost);
+        #        }
+        #        else
+        #        {
+        #            projJournalCheckPost.run();
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #postHourJournals
+        #void postHourJournals()
+        #{
+        #    ProjJournalTable        projJournalTable;
+        #    ProjJournalCheckPost    projJournalCheckPost;
+        #    ;
+        #    while select projJournalTable
+        #        where projJournalTable.JournalNameId    == wPAParameters.EmplJournalNameId  &&
+        #              projJournalTable.Posted           == NoYes::No
+        #    {
+        #        projJournalCheckPost = ProjJournalCheckPost::newJournalCheckPost(true, true, JournalCheckPostType::Post, projJournalTable.TableId, projJournalTable.JournalId);
+        #        if (this.isInBatch())
+        #        {
+        #            this.setBatchInfo(projJournalCheckPost);
+        #        }
+        #        else
+        #        {
+        #            projJournalCheckPost.run();
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #postItemJournals
+        #void postItemJournals()
+        #{
+        #    InventJournalTable      inventJournalTable;
+        #    InventJournalCheckPost  inventJournalCheckPost;
+        #    ;
+        #    while select inventJournalTable
+        #        where inventJournalTable.JournalNameId  == WPAParameters.inventJournalNameId    &&
+        #              inventJournalTable.Posted         == NoYes::No
+        #    {
+        #        inventJournalCheckPost = InventJournalCheckPost::newPostJournal(inventJournalTable);
+        #        if (this.isInBatch())
+        #        {
+        #            this.setBatchInfo(inventJournalCheckPost);
+        #        }
+        #        else
+        #        {
+        #            inventJournalCheckPost.run();
+        #        }
+        #    }
+        #
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    #OCCRetryCount
+        #    ;
+        #
+        #    this.progressInit("@SYS89665",0, #Avifilemove);
+        #
+        #    if (! this.validate())
+        #        throw error("");
+        #
+        #    wPAParameters   = WPAParameters::find();
+        #
+        #    startLengthyOperation();
+        #
+        #    try
+        #    {
+        #        this.post();
+        #    }
+        #    catch (Exception::Deadlock)
+        #    {
+        #        retry;
+        #    }
+        #    catch (Exception::UpdateConflict)
+        #    {
+        #        if (appl.ttsLevel() == 0)
+        #        {
+        #            if (xSession::currentRetryCount() >= #RetryNum)
+        #            {
+        #                throw Exception::UpdateConflictNotRecovered;
+        #            }
+        #            else
+        #            {
+        #                retry;
+        #            }
+        #        }
+        #        else
+        #        {
+        #            throw Exception::UpdateConflict;
+        #        }
+        #    }
+        #
+        #        endLengthyOperation();
+        #}
+      ENDSOURCE
+      SOURCE #setBatchInfo
+        #void setBatchInfo(Batchable _journalPost)
+        #{
+        #    ;
+        #    _journalPost.batchInfo().parmGroupId(this.parmCurrentBatch().GroupId);
+        #    batchHeader.addRuntimeTask(_journalPost, this.parmCurrentBatch().RecId);
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container packedClass)
+        #{
+        #    Version version = RunBase::getVersion(packedClass);
+        #
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList] = packedClass;
+        #            break;
+        #        default :
+        #            return false;
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAProjJournalsPost construct()
+        #{
+        #    return new WPAProjJournalsPost();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #public client server static ClassDescription description()
+        #{
+        #    return "@WPA233";
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static void main(Args args)
+        #{
+        #    WPAProjJournalsPost  projJournalsPost;
+        #    ;
+        #
+        #    projJournalsPost = WPAProjJournalsPost::construct();
+        #
+        #
+        #    if (projJournalsPost.prompt())
+        #    {
+        #       projJournalsPost.run();
+        #    }
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

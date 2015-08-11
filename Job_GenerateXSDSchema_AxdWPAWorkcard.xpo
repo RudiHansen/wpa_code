@@ -1,0 +1,25 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: GenerateXSDSchema_AxdWPAWorkcard unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #GenerateXSDSchema_AxdWPAWorkcard
+    #static void GenerateXSDSchema_AxdWPAWorkcard(Args _args)
+    #{
+    #    AxdWPAWorkcard    AxdWPAWorkcard;
+    #    XML                 xml;
+    #    XMLDocument         xmlDocument;
+    #    ;
+    #    AxdWPAWorkcard = AxdBase::newClassId(classnum(AxdWPAWorkcard));
+    #    xml = AxdWPAWorkcard.getSchema();
+    #    xmlDocument = XMLDocument::newXML(xml);
+    #    xmlDocument.save("c:\\XSDSchema_AxdWPAWorkcard.xml");
+    #}
+    #
+  ENDSOURCE
+
+***Element: END

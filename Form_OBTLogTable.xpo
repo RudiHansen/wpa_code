@@ -1,0 +1,244 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FRM
+
+; Microsoft Dynamics AX Forms unloaded
+; --------------------------------------------------------------------------------
+FRMVERSION 5
+
+FORM #OBTLogTable
+  PROPERTIES
+    Name                #OBTLogTable
+  ENDPROPERTIES
+  
+  METHODS
+    Version: 3
+    SOURCE #classDeclaration
+      #public class FormRun extends ObjectRun
+      #{
+      #    boolean hasMedia;
+      #    Guid    currentFormInstanceId;
+      #}
+    ENDSOURCE
+    SOURCE #currentFormInstanceId
+      #public guid currentFormInstanceId()
+      #{
+      #    return currentFormInstanceId;
+      #}
+    ENDSOURCE
+    SOURCE #lookupMediaClasses
+      #void lookupMediaClasses(FormControl _control,
+      #                        Guid        _formInstanceId)
+      #{
+      #    Query                   query = new Query();
+      #    QueryBuildDataSource    queryBuildDataSource;
+      #    QueryBuildRange         queryBuildRange;
+      #    SysTableLookup          sysTableLookup;
+      #    ;
+      #
+      #    sysTableLookup = SysTableLookup::newParameters(tablenum(OBTLogMediaLookup), _control);
+      #
+      #    sysTableLookup.addLookupfield(fieldnum(OBTLogMediaLookup, ClassName), true);
+      #
+      #    queryBuildDataSource = query.addDataSource(tablenum(OBTLogMediaLookup));
+      #    queryBuildRange = queryBuildDataSource.addRange(fieldnum(OBTLogMediaLookup, FormInstanceId));
+      #    queryBuildRange.value(guid2str(_formInstanceId));
+      #
+      #    sysTableLookup.parmQuery(query);
+      #
+      #    sysTableLookup.performFormLookup();
+      #}
+    ENDSOURCE
+    SOURCE #close
+      #public void close()
+      #{
+      #    super();
+      #
+      #    this.deleteLookupData(currentFormInstanceId);
+      #}
+    ENDSOURCE
+    SOURCE #deleteLookupData
+      #void deleteLookupData(Guid  _formInstanceId)
+      #{
+      #    OBTLogMediaLookup       logMediaLookup;
+      #
+      #    delete_from logMediaLookup where logMediaLookup.FormInstanceId == _formInstanceId;
+      #}
+    ENDSOURCE
+    SOURCE #run
+      #public void run()
+      #{
+      #    super();
+      #
+      #    currentFormInstanceId   = newguid();
+      #    hasMedia                = false;
+      #}
+    ENDSOURCE
+    SOURCE #getMediaClasses
+      #public void getMediaClasses(Guid    _formInstanceId)
+      #{
+      #    List                    classes;
+      #    ListEnumerator          classEnumerator;
+      #    SysDictClass            baseClass;
+      #    SysDictClass            childClass;
+      #    OBTLogMediaLookup       logMediaLookup;
+      #    ;
+      #
+      #    if(hasMedia)
+      #    {
+      #        return;
+      #    }
+      #
+      #    baseClass       = new SysDictClass(classnum(OBTLogMediaBase));
+      #    classes         = baseClass.extendedBy();
+      #    if (classes)
+      #    {
+      #        classEnumerator = classes.getEnumerator();
+      #        while (classEnumerator.moveNext())
+      #        {
+      #            childClass = new SysDictClass(classEnumerator.current());
+      #            if (childClass)
+      #            {
+      #                logMediaLookup.clear();
+      #                logMediaLookup.className        = childClass.name();
+      #                logMediaLookup.classId          = childClass.id();
+      #                logMediaLookup.formInstanceId   = _formInstanceId;
+      #                logMediaLookup.insert();
+      #            }
+      #        }
+      #    }
+      #    hasMedia = true;
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  OBJECTBANK
+    PROPERTIES
+    ENDPROPERTIES
+    
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #OBTLogTable
+          Table               #OBTLogTable
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD LogMedia
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              Version: 3
+              SOURCE #lookup
+                #public void lookup(FormControl _formControl, str _filterStr)
+                #{
+                #    ;
+                #    element.getMediaClasses(element.currentFormInstanceId());
+                #    element.lookupMediaClasses(_formControl, element.currentFormInstanceId());
+                #
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+    ENDDATASOURCE
+  ENDOBJECTBANK
+  
+  JOINS
+  ENDJOINS
+  
+  DESIGN
+    PROPERTIES
+      Caption             #@OBT1
+      TitleDatasource     #OBTLogTable
+      SetCompany          #No
+    ENDPROPERTIES
+    
+    CONTAINER
+      CONTROL TAB
+        PROPERTIES
+          Name                #Tab
+          Width               #Column width
+          Height              #Column height
+        ENDPROPERTIES
+        
+        CONTAINER
+          CONTROL TABPAGE
+            PROPERTIES
+              Name                #Overview
+              Caption             #@SYS9039
+              DataSource          #OBTLogTable
+            ENDPROPERTIES
+            
+            CONTAINER
+              CONTROL GRID
+                PROPERTIES
+                  Name                #Grid
+                  Width               #Column width
+                  Height              #Column height
+                  DataSource          #OBTLogTable
+                ENDPROPERTIES
+                
+                  CONTAINER
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #OBTLogTable_TableName
+                        DataSource          #OBTLogTable
+                        DataField           #TableName
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL CHECKBOX
+                      PROPERTIES
+                        Name                #OBTLogTable_UseStandardLog
+                        BackgroundColor     #Window background
+                        DataSource          #OBTLogTable
+                        DataField           #UseStandardLog
+                      ENDPROPERTIES
+                      
+                    ENDCONTROL 
+                    
+                    CONTROL STRINGEDIT
+                      PROPERTIES
+                        Name                #OBTLogTable_LogMedia
+                        DataSource          #OBTLogTable
+                        DataMethod          #LogMedia
+                      ENDPROPERTIES
+                      
+                      METHODS
+                        Version: 3
+                        SOURCE #lookup
+                          #public void lookup()
+                          #{
+                          #    ;
+                          #    element.getMediaClasses(element.currentFormInstanceId());
+                          #    element.lookupMediaClasses(this, element.currentFormInstanceId());
+                          #}
+                        ENDSOURCE
+                      ENDMETHODS
+                    ENDCONTROL 
+                    
+                  ENDCONTAINER
+                  
+              ENDCONTROL 
+              
+            ENDCONTAINER
+            
+          ENDCONTROL 
+          
+        ENDCONTAINER
+        
+      ENDCONTROL 
+      
+    ENDCONTAINER
+    
+  ENDDESIGN
+  
+ENDFORM
+
+
+***Element: END

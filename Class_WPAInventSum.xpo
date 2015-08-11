@@ -1,0 +1,212 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAInventSum unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAInventSum
+    PROPERTIES
+      Name                #WPAInventSum
+      Extends             #AifDocument
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPAInventSum extends AifDocument
+        #{
+        #    #define.SenderId('SenderId')
+        #    #define.InventSum_1('InventSum_1')
+        #    #define.DocPurpose('DocPurpose')
+        #
+        #    WPAParameters   wPAParameters;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createInventSum_1
+        #public AfStronglyTypedDataContainerList createInventSum_1()
+        #{
+        #    return this.get_NewList(#InventSum_1);
+        #}
+      ENDSOURCE
+      SOURCE #existsDocPurpose
+        #public boolean existsDocPurpose()
+        #{
+        #    return this.exists(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #existsInventSum_1
+        #public boolean existsInventSum_1()
+        #{
+        #    return this.exists(#InventSum_1);
+        #}
+      ENDSOURCE
+      SOURCE #existsSenderId
+        #public boolean existsSenderId()
+        #{
+        #    return this.exists(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super(#WPAInventSum);
+        #}
+      ENDSOURCE
+      SOURCE #parmDocPurpose
+        #public XMLDocPurpose parmDocPurpose(XMLDocPurpose _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DocPurpose, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #parmInventSum_1
+        #public AfStronglyTypedDataContainerList parmInventSum_1(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#InventSum_1, _value);
+        #    }
+        #
+        #    return this.get_List(#InventSum_1);
+        #}
+      ENDSOURCE
+      SOURCE #parmSenderId
+        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SenderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public AifXml serialize()
+        #{
+        #    XmlDocument             doc = XmlDocument::newBlank();
+        #    XmlElement              root;
+        #    XmlElement              node;
+        #    XmlElement              subNode;
+        #
+        #    XMLWriterSettings       xmlWriterSettings = new XMLwriterSettings();
+        #    XMLWriter               localXmlWriter;
+        #
+        #    QueryRun                queryRun;
+        #
+        #    InventSum               inventSum;
+        #    InventTable             inventTable;
+        #    InventDim               inventDim;
+        #
+        #    str                     wPAItemId;
+        #    str                     wPAItemIdLast;
+        #    ItemId                  itemId;
+        #
+        #    #define.ERP_STOCK           ('ERP_STOCK')
+        #    #define.Item                ('Item')
+        #    #define.ItemId              ('ItemId')
+        #    #define.StockLocationItem   ('StockLocationItem')
+        #    #define.StockLocationId     ('StockLocationId')
+        #    #define.Quantity            ('Quantity')
+        #
+        #
+        #    void exportItem(str _wPAItemId)
+        #    {
+        #        Qty onHand = inventSum.physicalInvent();
+        #        ;
+        #        if (this.validateItem(inventTable, _wPAItemId, onHand))
+        #        {
+        #            WPAInventOnHand::updateLog(_wPAItemId, onHand);
+        #
+        #            if (_wPAItemId != wPAItemIdLast)
+        #            {
+        #                node    = root.appendChild(doc.createElement(#Item));
+        #
+        #                this.wpa_addNotEmpty(node, doc, #ItemId             , _wPAItemId);
+        #
+        #                itemId          = inventSum.ItemId;
+        #                wPAItemIdLast   = _wPAItemId;
+        #            }
+        #            subNode = node.appendChild(doc.createElement(#StockLocationItem));
+        #            this.wpa_addNotEmpty(subNode, doc, #StockLocationId    , inventDim.InventLocationId);
+        #            this.wpa_addNotEmpty(subNode, doc, #Quantity           , num2str(onHand,1,2,2,0));
+        #        }
+        #    }
+        #    ;
+        #    wPAParameters   = WPAParameters::find();
+        #
+        #    root = doc.appendChild(doc.createElement(#ERP_STOCK));
+        #
+        #    xmlWriterSettings.indent(true);
+        #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
+        #
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #
+        #    while(queryRun.next())
+        #    {
+        #        if (queryRun.changed(tablenum(InventSum)))
+        #        {
+        #            inventSum   = queryRun.get(tablenum(InventSum));
+        #            if (itemId != inventSum.ItemId)
+        #            {
+        #                inventTable = InventTable::find(inventSum.ItemId);
+        #            }
+        #        }
+        #        inventDim   = queryRun.get(tablenum(InventDim));
+        #
+        #        if(WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
+        #        {
+        #            wPAItemId = WPAParameters::find().ItemPrefix + inventSum.ItemId;
+        #        }
+        #        else
+        #        {
+        #            wPAItemId = inventSum.ItemId;
+        #        }
+        #        if(inventDim.ConfigId)
+        #            wPAItemId += WPAParameters::find().Separator
+        #                    + inventDim.ConfigId;
+        #        if(inventDim.InventSizeId)
+        #            wPAItemId += WPAParameters::find().Separator
+        #                    + inventDim.InventSizeId;
+        #        if(inventDim.InventColorId)
+        #            wPAItemId += WPAParameters::find().Separator
+        #                    + inventDim.InventColorId;
+        #
+        #        exportItem(wPAItemId);
+        #    }
+        #
+        #    doc.writeTo(localXmlWriter);
+        #    localXmlWriter.flush();
+        #
+        #    return localXmlWriter.writeToString();
+        #}
+      ENDSOURCE
+      SOURCE #validateItem
+        #boolean validateItem(InventTable    _inventTable,
+        #                     WPAItemId      _itemId,
+        #                     Qty            _onHand)
+        #{
+        #    boolean ret = false;
+        #    ;
+        #    if (WPAIntegrationLog::exist(_inventTable.TableId, _inventTable.RecId) &&
+        #       (!wPAParameters.SendOnlyInventoryChanges || WPAInventOnHand::find(_itemId).OnHand != _onHand))
+        #    {
+        #        ret = true;
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

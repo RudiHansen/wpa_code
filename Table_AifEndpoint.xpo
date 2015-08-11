@@ -1,0 +1,802 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : AifEndpoint unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #AifEndpoint
+    PROPERTIES
+      Name                #AifEndpoint
+      Label               #@SYS88573
+      TitleField1         #EndpointId
+      TitleField2         #Status
+      ConfigurationKey    #LogisticsBasic
+      SecurityKey         #BasicTables
+      CacheLookup         #FoundAndEmpty
+      PrimaryIndex        #AifEndpointIdx
+      ClusterIndex        #AifEndpointIdx
+      DeveloperDocumentation  #@SYS125195
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #EndpointId
+        STRING
+        PROPERTIES
+          Name                #EndpointId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #AifEndpoint
+          ExtendedDataType    
+            ARRAY 
+              #AifEndpointId
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #OutboundChannelId
+        STRING
+        PROPERTIES
+          Name                #OutboundChannelId
+          Table               #AifEndpoint
+          ExtendedDataType    
+            ARRAY 
+              #AifChannelId
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #Status
+        ENUM
+        PROPERTIES
+          Name                #Status
+          Mandatory           #Yes
+          Table               #AifEndpoint
+          EnumType            #AifEndpointStatus
+        ENDPROPERTIES
+        
+      FIELD #InterCompanyCompanyId
+        STRING
+        PROPERTIES
+          Name                #InterCompanyCompanyId
+          Table               #AifEndpoint
+          ExtendedDataType    
+            ARRAY 
+              #InterCompanyCompanyId
+              #
+            ENDARRAY
+          StringSize          #4
+        ENDPROPERTIES
+        
+      FIELD #InterCompanyOrg
+        ENUM
+        PROPERTIES
+          Name                #InterCompanyOrg
+          Label               #@SYS74372
+          HelpText            #@SYS79199
+          Table               #AifEndpoint
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #LocalEndpointId
+        STRING
+        PROPERTIES
+          Name                #LocalEndpointId
+          Table               #AifEndpoint
+          ExtendedDataType    
+            ARRAY 
+              #AifLocalEndpointId
+              #
+            ENDARRAY
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #Encoding
+        ENUM
+        PROPERTIES
+          Name                #Encoding
+          Table               #AifEndpoint
+          EnumType            #AifEncoding
+        ENDPROPERTIES
+        
+      FIELD #Name
+        STRING
+        PROPERTIES
+          Name                #Name
+          Mandatory           #Yes
+          Table               #AifEndpoint
+          ExtendedDataType    
+            ARRAY 
+              #Name
+              #
+            ENDARRAY
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #PreventLoopbackSend
+        ENUM
+        PROPERTIES
+          Name                #PreventLoopbackSend
+          Label               #@SYS105780
+          HelpText            #@SYS105782
+          Table               #AifEndpoint
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #PropagateErrors
+        ENUM
+        PROPERTIES
+          Name                #PropagateErrors
+          Label               #@SYS117925
+          HelpText            #@SYS117926
+          Table               #AifEndpoint
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #SimpleXml
+        ENUM
+        PROPERTIES
+          Name                #SimpleXml
+          Label               #@SYS24899
+          HelpText            #@WPA30
+          Table               #AifEndpoint
+          ExtendedDataType    
+            ARRAY 
+              #NoYesId
+              #
+            ENDARRAY
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #SpecificFileName
+        STRING
+        PROPERTIES
+          Name                #SpecificFileName
+          Table               #AifEndpoint
+          ExtendedDataType    
+            ARRAY 
+              #WPAFileName
+              #
+            ENDARRAY
+          StringSize          #20
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #LocalEndpointId
+          #Status
+          #EndpointId
+          #OutboundChannelId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Channel
+        PROPERTIES
+          Name                #Channel
+          Label               #@SYS88788
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #OutboundChannelId
+          #LocalEndpointId
+          #Encoding
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Identificaiton
+        PROPERTIES
+          Name                #Identificaiton
+          Label               #@SYS36443
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #EndpointId
+          #Name
+          #Status
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #InterCompany
+        PROPERTIES
+          Name                #InterCompany
+          Label               #@SYS9039
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #InterCompanyOrg
+          #InterCompanyCompanyId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Overview
+        PROPERTIES
+          Name                #Overview
+          Label               #@SYS9039
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #EndpointId
+          #Name
+          #Status
+          #InterCompanyOrg
+          #OutboundChannelId
+          #PreventLoopbackSend
+          #PropagateErrors
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #XmlMode
+        PROPERTIES
+          Name                #XmlMode
+          Label               #@WPA128
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SimpleXml
+          #SpecificFileName
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #AifEndpointIdx
+      PROPERTIES
+        Name                #AifEndpointIdx
+        AllowDuplicates     #No
+        ConfigurationKey    #LogisticsBasic
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #EndpointId
+      ENDINDEXFIELDS
+      
+      #InterCompanyIdx
+      PROPERTIES
+        Name                #InterCompanyIdx
+        ConfigurationKey    #LogisticsBasic
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #InterCompanyOrg
+        #InterCompanyCompanyId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+      #InterCompanyEndpointActionPolicy
+      PROPERTIES
+        Table               #InterCompanyEndpointActionPolicy
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #AifEndpointConstraint
+      PROPERTIES
+        Table               #AifEndpointConstraint
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #AifEndpointActionPolicy
+      PROPERTIES
+        Table               #AifEndpointActionPolicy
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+      #AifEndpointUser
+      PROPERTIES
+        Table               #AifEndpointUser
+        DeleteAction        #Cascade
+      ENDPROPERTIES
+      
+    ENDDELETEACTIONS
+    
+    METHODS
+      Version: 3
+      SOURCE #checkInterCompany
+        #public boolean checkInterCompany()
+        #{
+        #    boolean checkPassed = true;
+        #    ;
+        #    if (this.InterCompanyOrg == NoYes::Yes)
+        #    {
+        #        if ( (this.InterCompanyCompanyId != this.orig().InterCompanyCompanyId) &&
+        #             (AifEndpoint::existInterCompany(this.InterCompanyCompanyId)) )
+        #        {
+        #            checkPassed = checkFailed(strfmt("@SYS62886", this.InterCompanyCompanyId));
+        #        }
+        #    }
+        #
+        #    return checkPassed;
+        #}
+      ENDSOURCE
+      SOURCE #hasIntermediaryUsers
+        #public boolean hasIntermediaryUsers()
+        #{
+        #    /*
+        #        This methods checks to see if the current endpoint
+        #        has any intermediary users.  An intermediary user is
+        #        and endpoint user with a EndpointUserType = SubmittingUser
+        #    */
+        #
+        #    AifEndpointUser             endpointUser;
+        #    ;
+        #
+        #
+        #    //See of there is at least one submitting user for this Endpoint.
+        #    select firstonly endpointUser
+        #        where endpointUser.EndpointId == this.EndpointId
+        #            && endpointUser.EndpointUserType == AifEndpointUserType::SubmittingUser;
+        #
+        #    if(endpointUser)
+        #        return true;
+        #    else
+        #        return false;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #hasNoConstraintsConstraint
+        #boolean hasNoConstraintsConstraint()
+        #{
+        #    /*
+        #        This method returns TRUE if there are valid constraints with NoConstraint constraint type.
+        #    */
+        #
+        #    AifEndpointConstraint aifEndpointConstraint;
+        #    ;
+        #    select aifEndpointConstraint
+        #        where aifEndpointConstraint.EndpointId == this.EndpointId &&
+        #              aifEndpointConstraint.ConstraintType == AifConstraintType::NoConstraint;
+        #
+        #    return (aifEndpointConstraint.RecId != 0);
+        #}
+      ENDSOURCE
+      SOURCE #hasValidRegularConstraints
+        #public boolean hasValidRegularConstraints()
+        #{
+        #    /*
+        #        This methods checks to see if the current endpoint
+        #        has any contraints.
+        #    */
+        #
+        #    AifEndpointConstraint      endpointConstraint;
+        #    ;
+        #
+        #    //See if there is at least one contraint.
+        #    select endpointConstraint
+        #        where endpointConstraint.EndpointId == this.EndpointId
+        #            && endpointConstraint.ConstraintType != AifConstraintType::NoConstraint;
+        #
+        #    if(endpointConstraint)
+        #        return true;
+        #    else
+        #        return false;
+        #}
+      ENDSOURCE
+      SOURCE #initValue
+        #public void initValue()
+        #{
+        #    super();
+        #
+        #    //See if the AIF configuration key is enabled
+        #    if(isConfigurationkeyEnabled(configurationkeynum(Aif)))
+        #        //Set the default encoding using the global setting
+        #        this.Encoding = AifGlobalSettings::getEncodingFormat();
+        #}
+      ENDSOURCE
+      SOURCE #isActive
+        #//BP deviation documented
+        #edit boolean isActive(boolean set, boolean newValue)
+        #{
+        #    /*
+        #        This Edit method is used by the Endpoint Form to
+        #        bind a checkbox control to the Status field, which
+        #        is actually an Enum.  It basically just maps the enum value
+        #        to true or false.
+        #    */
+        #
+        #    if(set)
+        #    {
+        #        if(newValue == true)
+        #            this.Status = AifEndpointStatus::Enabled;
+        #        else
+        #            this.Status = AifEndpointStatus::Disabled;
+        #    }
+        #
+        #    if(this.Status == AifEndpointStatus::Enabled)
+        #        return true;
+        #    else
+        #        return false;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #removeIntermediaryUsers
+        #void removeIntermediaryUsers()
+        #{
+        #    /*
+        #        This method is used to remove all intermediary users
+        #        when the a checkbox on the AifEndpoint form is unchecked.
+        #    */
+        #
+        #    AifEndpointUser             endpointUser;
+        #
+        #
+        #    //The user has chosen not to use a Trusted Intermediary,
+        #    //so remove all submitting users for this Endpoint
+        #    ttsbegin;
+        #    delete_from endpointUser
+        #        where endpointUser.EndpointId == this.EndpointId
+        #            && endpointUser.EndpointUserType == AifEndpointUserType::SubmittingUser;
+        #    ttscommit;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #requiresIntermediaryUser
+        #public boolean requiresIntermediaryUser()
+        #{
+        #    /*
+        #        This method checks to see if the current Endpoint has any Endpoint
+        #        Users that are external users.  An Intermediary User is required if
+        #        any of the Endpoint Users are external users.
+        #        The isExternal() method on the AifEndpointUser table contains the logic
+        #        for determining if a user is external or if a group contains an external
+        #        user.
+        #    */
+        #
+        #    AifEndpointUser             endpointUser;
+        #    boolean                     isExternal;
+        #    ;
+        #
+        #    //If any of the regular users are external users or any of the groups
+        #    //contain external users, then an IntermediaryUser is required.
+        #    while select endpointUser
+        #        where endpointUser.EndpointId == this.EndpointId
+        #            && endpointUser.EndpointUserType == AifEndpointUserType::SourceUser
+        #    {
+        #        //See if the current user an external users or, if its a group, if it has any
+        #        //external users
+        #        if(endpointUser.isExternal() == true)
+        #        {
+        #            isExternal = true;
+        #            break;
+        #        }
+        #    }
+        #
+        #    return isExternal;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #setNoConstraints
+        #void setNoConstraints(boolean newValue)
+        #{
+        #    /*
+        #        This method sets/unsets NoConstraints constraint -- used by NoConstraints checkbox.
+        #    */
+        #
+        #    AifEndpointConstraint   aifEndpointConstraint;
+        #    boolean                 currentValue = this.hasNoConstraintsConstraint();
+        #    ;
+        #    if(currentValue != newValue)
+        #    {
+        #        if(newValue == true)
+        #        {
+        #            //Clear out all the existing constraints - we need to do this whether
+        #            //we are changing from a NoConstraint to specific constraints or from
+        #            //specific constraints to a NoConstraint.
+        #            delete_from aifEndpointConstraint
+        #                where aifEndpointConstraint.EndpointId == this.EndpointId;
+        #
+        #            //Now create one NoConstraint type constraint
+        #            aifEndpointConstraint.EndpointId = this.EndpointId;
+        #            aifEndpointConstraint.ConstraintType = AifConstraintType::NoConstraint;
+        #            aifEndpointConstraint.ConstraintId = '';
+        #            aifEndpointConstraint.insert();
+        #        }
+        #        else
+        #        {
+        #            //Clears the NoConstraint constraint
+        #            delete_from aifEndpointConstraint
+        #                where aifEndpointConstraint.EndpointId == this.EndpointId &&
+        #                      aifEndpointConstraint.ConstraintType == AifConstraintType::NoConstraint;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #update
+        #public void update()
+        #{
+        #    AifEndpointActionValueMap endpointActionValueMap;
+        #    ;
+        #    ttsbegin;
+        #    if (this.InterCompanyOrg == NoYes::Yes && this.orig().InterCompanyOrg == NoYes::No)
+        #    {
+        #        while select forupdate endpointActionValueMap
+        #        where endpointActionValueMap.EndpointId == this.EndpointId
+        #        {
+        #            endpointActionValueMap.Defaulting    = NoYes::Yes;
+        #            endpointActionValueMap.ValidateInput = NoYes::Yes;
+        #            endpointActionValueMap.update();
+        #        }
+        #    }
+        #    super();
+        #
+        #    ttscommit;
+        #}
+      ENDSOURCE
+      SOURCE #validateDelete
+        #public boolean validateDelete()
+        #{
+        #    boolean ret;
+        ##Aif
+        #
+        #    ret = super();
+        #
+        #    if (ret)
+        #    {
+        #        ret = !((this.RecId != 0) && (this.EndpointId == #DefaultEndpointId));
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #validateWrite
+        #public boolean validateWrite()
+        #{
+        #    boolean ret;
+        #
+        ##Aif;
+        #
+        #    ret = super();
+        #
+        #    if(ret)
+        #    {
+        #
+        #        //The following validation is different for Intercompany Endpoints vs. regular endpoints
+        #        if(this.InterCompanyOrg == NoYes::No)
+        #        {
+        #            // Does not apply to default endpoint
+        #            if (this.EndpointId != #DefaultEndpointId)
+        #            {
+        #                //Make sure the LocalEndpoint is populated
+        #                if(!this.LocalEndpointId)
+        #                    //Local Endpoint cannot be blank
+        #                    ret = checkFailed(strfmt("@SYS94974"));
+        #
+        #                //Make sure the LocalEndpoint is for the current company only
+        #                if(this.LocalEndpointId && AifLocalEndpoint::getCompanyId(this.LocalEndpointId)!=curext())
+        #                    //Local Endpoint must belong to the same company as the Endpoint.
+        #                    ret=checkFailed(strfmt("@SYS94977"));
+        #            }
+        #        }
+        #        else
+        #        {
+        #            //Make sure the Intercompany CompanyId is populated
+        #            if(!this.InterCompanyCompanyId)
+        #                //Intercompany Company Id cannot be blank.
+        #                ret = checkFailed(strfmt("@SYS94975"));
+        #
+        #            /*
+        #             * Removing the below check. We have a request from Intercompany team to allow this.
+        #             * PS Bug# 29002
+        #            //Make sure the Intercompany CompanyId different from the current company.
+        #            if(this.InterCompanyCompanyId == this.DataAreaId)
+        #                //Intercompany Company Id must be different from the company where the Endpoint exists.
+        #                ret = checkFailed(strfmt("@SYS94976"));
+        #            */
+        #
+        #            ret = this.checkInterCompany() && ret;
+        #        }
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #createDefaultEndpoint
+        #/// <summary>
+        #/// Creates a default endpoint for the current company.
+        #/// </summary>
+        #/// <returns>
+        #/// The created or existing endpoint record.
+        #/// </returns>
+        #/// <remarks>
+        #/// If a default endpoint exists, then it is left untouched.
+        #/// </remarks>
+        #static public AifEndpoint createDefaultEndpoint()
+        #{
+        #    AifEndpoint endpoint;
+        #;
+        ##Aif
+        #    select forupdate * from endpoint where endpoint.EndpointId == #DefaultEndpointId;
+        #
+        #    if (endpoint.RecId == 0)
+        #    {
+        #        endpoint.EndpointId = #DefaultEndpointId;
+        #        endpoint.Name = #DefaultEndpointName;
+        #        endpoint.InterCompanyOrg = NoYes::No;
+        #        endpoint.Status = AifEndpointStatus::Enabled;
+        #        endpoint.insert();
+        #    }
+        #
+        #    return endpoint;
+        #}
+      ENDSOURCE
+      SOURCE #existInterCompany
+        #static boolean existInterCompany(dataAreaId  _companyId)
+        #{
+        #    if (! _companyId)
+        #        return false;
+        #
+        #    return (select aifEndpoint
+        #                   where aifEndpoint.InterCompanyCompanyId == _companyId
+        #                    &&    aifEndpoint.InterCompanyOrg       == true).RecId != 0;
+        #}
+      ENDSOURCE
+      SOURCE #existInterCompanyOrg
+        #static boolean existInterCompanyOrg()
+        #{
+        #    ;
+        #    return (select firstonly aifEndpoint
+        #                   index hint InterCompanyIdx
+        #                   where aifEndpoint.InterCompanyOrg == true
+        #                   &&    aifEndpoint.Status          == AifEndpointStatus::Enabled).RecId;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #public static AifEndpoint find(AifEndpointId endpointId, boolean update = false)
+        #{
+        #
+        #    AifEndpoint         endpoint;
+        #    ;
+        #
+        #    endpoint.selectForUpdate(update);
+        #
+        #    select firstonly endpoint
+        #        index hint AifEndpointIdx
+        #        where endpoint.EndpointId == endpointId;
+        #
+        #    return endpoint;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #findInterCompany
+        #static AifEndpoint findInterCompany(dataAreaId  _companyId,
+        #                                    boolean     _forUpdate = false)
+        #{
+        #    AifEndpoint  endpoint;
+        #    ;
+        #
+        #    if (! _companyId)
+        #        return endpoint;
+        #
+        #    endpoint.selectForUpdate(_forUpdate);
+        #
+        #    select firstonly endpoint
+        #           where endpoint.InterCompanyCompanyId == _companyId
+        #           &&    endpoint.InterCompanyOrg       == true
+        #           &&    endpoint.Status                == AifEndpointStatus::Enabled;
+        #
+        #    return endpoint;
+        #}
+      ENDSOURCE
+      SOURCE #findInterCompanyEnabled
+        #public static AifEndpoint findInterCompanyEnabled(AifEndpointId _endpointId, boolean _forUpdate = false)
+        #{
+        #    AifEndpoint endpoint;
+        #    ;
+        #
+        #    endpoint = AifEndpoint::find(_endpointId, _forUpdate);
+        #    if (!endpoint.InterCompanyOrg)
+        #        endpoint.clear();
+        #    if (endpoint.Status == AifEndpointStatus::Disabled)
+        #        endpoint.clear();
+        #
+        #    return endpoint;
+        #}
+      ENDSOURCE
+      SOURCE #getEncoding
+        #public static AifEncoding getEncoding(AifEndpointId externalEndpoint)
+        #{
+        #    /*
+        #        Returns the xml encoding for the endpoint
+        #
+        #    */
+        #
+        #    AifEndpoint         endpoint;
+        #    ;
+        #
+        #    select firstonly Encoding from endpoint
+        #        where endpoint.EndpointId == externalEndpoint;
+        #
+        #    return endpoint.Encoding;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #getLocalEndpoint
+        #public static AifLocalEndpointId getLocalEndpoint(AifEndpointId externalEndpoint)
+        #{
+        #    /*
+        #        Returns the LocalEndpointId configured for a given
+        #        endpoint.
+        #
+        #    */
+        #
+        #    AifEndpoint         endpoint;
+        #    ;
+        #
+        #    select firstonly LocalEndpointId from endpoint
+        #        where endpoint.EndpointId == externalEndpoint;
+        #
+        #    return endpoint.LocalEndpointId;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #isEnabled
+        #public static boolean isEnabled(AifEndpointId endpointId)
+        #{
+        #    /*
+        #     * This method checks to see if the endpoint is enabled.
+        #     * Returns false if the endpoint is enabled or if it does
+        #     * not exist.
+        #     * Returns true if the endpoint exists and is enabled
+        #     */
+        #
+        #    AifEndpoint         endpoint;
+        #    boolean             isEnabled=false;
+        #    ;
+        ##Aif
+        #
+        #    //Make sure the an endpointId was passed in
+        #    if(endpointId)
+        #         select firstonly endpoint
+        #            where endpoint.EndpointId == endpointId;
+        #
+        #    //Return True if the endpoint exists and is enabled
+        #    if(endpoint.RecId)
+        #    {
+        #        // There is an endpoint record -- check if it is enabled
+        #        isEnabled = (endpoint.Status == AifEndpointStatus::Enabled);
+        #    }
+        #    else
+        #    {
+        #        // No endpoint record.  If this is the default endpoint, it is considered enabled unless explicitly disabled
+        #        isEnabled = (endpointId == #DefaultEndpointId);
+        #    }
+        #
+        #    return isEnabled;
+        #}
+      ENDSOURCE
+      SOURCE #propagateErrors
+        #/// <summary>
+        #/// Determines if the endpoint is allowed to propagate errors to the end user.
+        #/// </summary>
+        #/// <param name="endpointId">The ID of the <c>AifEndpoint</c>.</param>
+        #/// <returns>true, if endpoint can propagate errors; otherwise, false.</returns>
+        #public static boolean propagateErrors(AifEndpointId endpointId)
+        #{
+        #    AifEndpoint  endpoint;
+        #    boolean      propagateErrorsEnabled = false;
+        #    ;
+        #
+        #    endpoint  = AifEndpoint::find(endpointId);
+        #
+        #    //Return True if the endpoint exists and is enabled
+        #    if(endpoint.RecId)
+        #    {
+        #        if(endpoint.PropagateErrors == NoYes::Yes)
+        #                propagateErrorsEnabled = true;
+        #    }
+        #
+        #    return propagateErrorsEnabled;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

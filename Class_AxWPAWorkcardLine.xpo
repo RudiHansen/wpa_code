@@ -1,0 +1,488 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxWPAWorkcardLine unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxWPAWorkcardLine
+    PROPERTIES
+      Name                #AxWPAWorkcardLine
+      Extends             #AxInternalBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #axOrig
+        #public AxWPAWorkcardLine axOrig()
+        #{
+        #    return super();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #classDeclaration
+        #class AxWPAWorkcardLine extends AxInternalBase
+        #{
+        #    WPAWorkcardLine WPAWorkcardLine;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #currentRecord
+        #public WPAWorkcardLine currentRecord(WPAWorkcardLine _WPAWorkcardLine = WPAWorkcardLine)
+        #{
+        #    if (!prmisdefault(_WPAWorkcardLine))
+        #    {
+        #        super(_WPAWorkcardLine);
+        #        WPAWorkcardLine = _WPAWorkcardLine;
+        #    }
+        #    else
+        #    {
+        #        super();
+        #    }
+        #
+        #    return WPAWorkcardLine;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #emptyRecord
+        #protected WPAWorkcardLine emptyRecord()
+        #{
+        #    WPAWorkcardLine localWPAWorkcardLine;
+        #    ;
+        #    return localWPAWorkcardLine;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmDirection
+        #public WPADirection parmDirection(WPADirection _direction = WPADirection::Outgoing)
+        #{
+        #    if (!prmisdefault(_direction))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, Direction), _direction);
+        #    }
+        #
+        #    return wPAWorkcardLine.Direction;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmGUID
+        #public WPAGUID parmGUID(WPAGUID _GUID = '')
+        #{
+        #    if (!prmisdefault(_GUID))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, GUID), _GUID);
+        #    }
+        #
+        #    return wPAWorkcardLine.GUID;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmItemDescription1
+        #public WPAItemDescription1 parmItemDescription1(WPAItemDescription1 _itemDescription1 = '')
+        #{
+        #    if (!prmisdefault(_itemDescription1))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, ItemDescription1), _itemDescription1);
+        #    }
+        #
+        #    return wPAWorkcardLine.ItemDescription1;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmItemDescription2
+        #public WPAItemDescription2 parmItemDescription2(WPAItemDescription2 _itemDescription2 = '')
+        #{
+        #    if (!prmisdefault(_itemDescription2))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, ItemDescription2), _itemDescription2);
+        #    }
+        #
+        #    return wPAWorkcardLine.ItemDescription2;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmItemEanNumber
+        #public WPAItemEanNumber parmItemEanNumber(WPAItemEanNumber _itemEanNumber = '')
+        #{
+        #    if (!prmisdefault(_itemEanNumber))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, ItemEanNumber), _itemEanNumber);
+        #    }
+        #
+        #    return wPAWorkcardLine.ItemEanNumber;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmItemId
+        #public WPAItemId parmItemId(WPAItemId _itemId = '')
+        #{
+        #    if (!prmisdefault(_itemId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, ItemId), _itemId);
+        #    }
+        #
+        #    return wPAWorkcardLine.ItemId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmItemLineType
+        #public WPAItemLineType parmItemLineType(WPAItemLineType _itemLineType = '')
+        #{
+        #    if (!prmisdefault(_itemLineType))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, ItemLineType), _itemLineType);
+        #    }
+        #
+        #    return wPAWorkcardLine.ItemLineType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmItemUnit
+        #public str parmItemUnit(str _itemUnit = '')
+        #{
+        #    DictField   dictField;
+        #    ;
+        #    if (!prmisdefault(_itemUnit))
+        #    {
+        #        dictField = new DictField(tablenum(WPAWorkcardLine),fieldnum(WPAWorkcardLine,ItemUnit));
+        #        if(this.valueMappingInbound())
+        #        {
+        #            this.validateInboundString(_itemUnit,dictField,this.mapPolicy().xMLMapUnitId());
+        #            _itemUnit = this.axUnitId(_itemUnit);
+        #        }
+        #        else
+        #        {
+        #            this.validateInboundString(_itemUnit,dictField);
+        #        }
+        #        this.setField(fieldNum(WPAWorkcardLine, ItemUnit), _itemUnit);
+        #    }
+        #
+        #    if (this.valueMappingOutbound())
+        #    {
+        #        return this.axUnitId(wPAWorkcardLine.ItemUnit);
+        #    }
+        #    else
+        #    {
+        #        return wPAWorkcardLine.ItemUnit;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmItemUnitPrice
+        #public WPAItemUnitPrice parmItemUnitPrice(WPAItemUnitPrice _itemUnitPrice = 0)
+        #{
+        #    if (!prmisdefault(_itemUnitPrice))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, ItemUnitPrice), _itemUnitPrice);
+        #    }
+        #
+        #    return wPAWorkcardLine.ItemUnitPrice;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmOrderId
+        #public WPAOrderId parmOrderId(WPAOrderId _orderId = '')
+        #{
+        #    if (!prmisdefault(_orderId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, OrderId), _orderId);
+        #    }
+        #
+        #    return wPAWorkcardLine.OrderId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmPrice
+        #public WPAPrice parmPrice(WPAPrice _price = 0)
+        #{
+        #    if (!prmisdefault(_price))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, Price), _price);
+        #    }
+        #
+        #    return wPAWorkcardLine.Price;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmProductEmploymentCode
+        #public WPAProductEmploymentCode parmProductEmploymentCode(WPAProductEmploymentCode _productEmploymentCode = '')
+        #{
+        #    if (!prmisdefault(_productEmploymentCode))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, ProductEmploymentCode), _productEmploymentCode);
+        #    }
+        #
+        #    return wPAWorkcardLine.ProductEmploymentCode;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmQty
+        #public WPAQty parmQty(WPAQty _qty = 0)
+        #{
+        #    if (!prmisdefault(_qty))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, Qty), _qty);
+        #    }
+        #
+        #    return wPAWorkcardLine.Qty;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmStockLocationId
+        #public WPAStockLocationId parmStockLocationId(WPAStockLocationId _stockLocationId = '')
+        #{
+        #    if (!prmisdefault(_stockLocationId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, StockLocationId), _stockLocationId);
+        #    }
+        #
+        #    return wPAWorkcardLine.StockLocationId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTransferred
+        #public WPATransferred parmTransferred(WPATransferred _transferred = WPATransferredEnum::Imported)
+        #{
+        #    if (!prmisdefault(_transferred))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, Transferred), _transferred);
+        #    }
+        #
+        #    return wPAWorkcardLine.Transferred;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmWorkcardId
+        #public WPAWorkcardId parmWorkcardId(WPAWorkcardId _workcardId = '')
+        #{
+        #    if (!prmisdefault(_workcardId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, WorkcardId), _workcardId);
+        #    }
+        #
+        #    return wPAWorkcardLine.WorkcardId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setDirection
+        #protected void setDirection()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, Direction)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setGUID
+        #protected void setGUID()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, GUID)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setItemDescription1
+        #protected void setItemDescription1()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemDescription1)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setItemDescription2
+        #protected void setItemDescription2()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemDescription2)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setItemEanNumber
+        #protected void setItemEanNumber()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemEanNumber)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setItemId
+        #protected void setItemId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setItemLineType
+        #protected void setItemLineType()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemLineType)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setItemUnit
+        #protected void setItemUnit()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemUnit)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setItemUnitPrice
+        #protected void setItemUnitPrice()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemUnitPrice)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setOrderId
+        #protected void setOrderId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, OrderId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setPrice
+        #protected void setPrice()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, Price)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setProductEmploymentCode
+        #protected void setProductEmploymentCode()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ProductEmploymentCode)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setQty
+        #protected void setQty()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, Qty)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setStockLocationId
+        #protected void setStockLocationId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, StockLocationId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTableFields
+        #protected void setTableFields()
+        #{
+        #    super();
+        #
+        #    useMapPolicy = false;
+        #
+        #    this.setItemId();
+        #    this.setItemEanNumber();
+        #    this.setItemUnitPrice();
+        #    this.setItemDescription1();
+        #    this.setItemDescription2();
+        #    this.setQty();
+        #    this.setPrice();
+        #    this.setItemUnit();
+        #    this.setStockLocationId();
+        #    this.setItemLineType();
+        #    this.setProductEmploymentCode();
+        #    this.setTransferred();
+        #    this.setOrderId();
+        #
+        #    useMapPolicy = true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setTransferred
+        #protected void setTransferred()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, Transferred)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #setWorkcardId
+        #protected void setWorkcardId()
+        #{
+        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, WorkcardId)))
+        #    {
+        #        return;
+        #    }
+        #}
+        #
+      ENDSOURCE
+      SOURCE #WPAWorkcardLine
+        #public WPAWorkcardLine wPAWorkcardLine(WPAWorkcardLine _wPAWorkcardLine = wPAWorkcardLine)
+        #{
+        #    if (!prmisdefault(_wPAWorkcardLine))
+        #    {
+        #        this.setCurrentRecordFromExternal(_wPAWorkcardLine);
+        #    }
+        #
+        #    return this.currentRecord();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #construct
+        #static AxWPAWorkcardLine construct()
+        #{
+        #    return new AxWPAWorkcardLine();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #newWPAWorkcardLine
+        #public static AxWPAWorkcardLine newWPAWorkcardLine(WPAWorkcardLine _WPAWorkcardLine)
+        #{
+        #    AxWPAWorkcardLine AxWPAWorkcardLine = AxWPAWorkcardLine::construct();
+        #    ;
+        #    AxWPAWorkcardLine.WPAWorkcardLine(_WPAWorkcardLine);
+        #
+        #    return AxWPAWorkcardLine;
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

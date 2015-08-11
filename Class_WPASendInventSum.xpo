@@ -1,0 +1,148 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendInventSum unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendInventSum
+    PROPERTIES
+      Name                #WPASendInventSum
+      Extends             #AxdSend
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class WPASendInventSum extends AxdSend
+        #{
+        #    NoYes   skipDialog;
+        #    ItemId  itemId;
+        #}
+      ENDSOURCE
+      SOURCE #getEndpoint
+        #AifEndpointId getEndpoint()
+        #{
+        #    ;
+        #    this.retrieveEndPoints();
+        #
+        #    select firstonly tmpAifEndPoint;
+        #
+        #    return tmpAifEndPoint.EndpointId;
+        #}
+      ENDSOURCE
+      SOURCE #parmItemId
+        #public ItemId parmItemId(ItemId _itemId = itemId)
+        #{
+        #    ;
+        #    itemId = _itemId;
+        #
+        #    return itemId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSkipDialog
+        #public NoYes parmSkipDialog(NoYes _skipDialog = skipDialog)
+        #{
+        #    ;
+        #    skipDialog = _skipDialog;
+        #
+        #    return skipDialog;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun                ret;
+        #    QueryBuildRange         qbr_ItemId;
+        #    ;
+        #    if (!ret)
+        #    {
+        #        ret = super();
+        #        qbr_ItemId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(InventSum)), fieldnum(InventSum, ItemId));
+        #        if (itemId)
+        #        {
+        #            qbr_ItemId.value(itemId);
+        #            qbr_ItemId.status(RangeStatus::Locked);
+        #        }
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    boolean ret;
+        #    ;
+        #    if (itemId)
+        #    {
+        #        ret = false;
+        #    }
+        #    else
+        #    {
+        #        ret = true;
+        #    }
+        #    if (skipDialog)
+        #    {
+        #        ret = false;
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args args)
+        #{
+        #    WPASendInventSum    WPASendInventSum;
+        #    AifConstraintList   aifConstraintList;
+        #    AifConstraint       aifConstraint;
+        #    InventTable         inventTable;
+        #    ;
+        #
+        #    WPASendInventSum    = new WPASendInventSum();
+        #    aifConstraintList   = new AifConstraintList();
+        #    aifConstraint       = new AifConstraint();
+        #    if (args.record())
+        #    {
+        #        inventTable = args.record();
+        #        WPASendInventSum.parmItemId(inventTable.ItemId);
+        #    }
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    WPASendInventSum.parmShowDocPurpose(true);
+        #    WPASendInventSum.parmSkipDialog(args.parmEnum());
+        #    WPASendInventSum.parmServiceClassId(classnum(WPAInventSumService));
+        #    WPASendInventSum.parmSendActionType(AifSendActionType::SendByQuery);
+        #    WPASendInventSum.parmEndPoint(WPASendInventSum.getEndpoint());
+        #    WPASendInventSum.sendMultipleDocuments(classnum(WPAInventSum), classnum(WPAInventSumService), AifSendMode::Async, aifConstraintList);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

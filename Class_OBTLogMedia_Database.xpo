@@ -1,0 +1,82 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: OBTLogMedia_Database unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #OBTLogMedia_Database
+    PROPERTIES
+      Name                #OBTLogMedia_Database
+      Extends             #OBTLogMediaBase
+      RunOn               #Called from
+    ENDPROPERTIES
+    
+    METHODS
+      Version: 3
+      SOURCE #classDeclaration
+        #class OBTLogMedia_Database extends OBTLogMediaBase
+        #{
+        #}
+      ENDSOURCE
+      SOURCE #insertLogTrans
+        #void insertLogTrans(DatabaseLogType _logType,
+        #                    Common          _recordOrig,
+        #                    KeyValue        _keyValue   = "",
+        #                    TransDate       _sendDate   = systemdateget())
+        #{
+        #    OBTLogTrans logTrans;
+        #    ;
+        #    delete_from logTrans
+        #        where logTrans.RefCompanyId == curext()             &&
+        #              logTrans.RefTableId   == _recordOrig.TableId  &&
+        #              logTrans.RefRecId     == _recordOrig.RecId    &&
+        #              logTrans.SendDate     == _sendDate;
+        #
+        #    logTrans.clear();
+        #    logTrans.initValue();
+        #    logTrans.RefCompanyId       = curext();
+        #    logTrans.RefTableId         = _recordOrig.TableId;
+        #    logTrans.RefRecId           = _recordOrig.RecId;
+        #    logTrans.SendDate           = _sendDate;
+        #    logTrans.DatabaseLogType    = _logType;
+        #    logTrans.KeyValue           = _keyValue;
+        #    logTrans.insert();
+        #}
+      ENDSOURCE
+      SOURCE #logDelete
+        #public void logDelete(Common _recordDeleted)
+        #{
+        #    ;
+        #    this.insertLogTrans(DatabaseLogType::Delete, _recordDeleted);
+        #}
+      ENDSOURCE
+      SOURCE #logInsert
+        #public void logInsert(Common _recordInserted)
+        #{
+        #    ;
+        #    this.insertLogTrans(DatabaseLogType::Insert, _recordInserted);
+        #}
+      ENDSOURCE
+      SOURCE #logUpdate
+        #public void logUpdate(Common    _recordOrig,
+        #                      Common    _recordUpdated,
+        #                      container _changedFields)
+        #{
+        #    ;
+        #
+        #    this.insertLogTrans(DatabaseLogType::Update, _recordOrig);
+        #}
+      ENDSOURCE
+      SOURCE #description
+        #public client server static ClassDescription description()
+        #{
+        #    return "@OBT6";
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END
