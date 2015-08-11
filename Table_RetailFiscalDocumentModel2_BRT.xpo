@@ -1,0 +1,282 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalDocumentModel2_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalDocumentModel2_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalDocumentModel2_BRT
+      Label               #@RET4040070
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{28E2194E-AACA-4B20-867F-4B30F111433D}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #ConsumerCNPJCPFNumber
+        STRING
+        PROPERTIES
+          Name                #ConsumerCNPJCPFNumber
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{2E292B15-B9AB-4F93-A554-7C8E6663EED0}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentAccountNum
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentAccountNum
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{2155EBDA-C895-4DE1-8CFD-2BBA91040674}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentDate
+        DATE
+        PROPERTIES
+          Name                #FiscalDocumentDate
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{AE6FCB86-22C2-482D-98CC-1AA6F5AF754B}
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentNumber
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{F21B3B7E-9BA9-432B-AC86-ABE6F44E6BF6}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentSeries
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentSeries
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{966DE0DA-209E-4FDB-A9C3-3EE7CF1A6081}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{A0A105D4-E49E-4F4C-AF15-7EA23D8BF850}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{DC2E9D6E-99E9-4D26-8DE2-FDD3DF8292D9}
+        ENDPROPERTIES
+        
+      FIELD #Status
+        ENUM
+        PROPERTIES
+          Name                #Status
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{B817AC39-1B75-4E3A-A269-BF80FBD1AEC6}
+          EnumType            #FiscalDocumentStatus_BR
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{A5E0FB1B-C27B-40B6-81E0-9626306BDB22}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{0D7F927A-F113-4AEB-84DA-4DDD044DD87E}
+        ENDPROPERTIES
+        
+      FIELD #TotalAmount
+        REAL
+        PROPERTIES
+          Name                #TotalAmount
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{55502456-1DA7-43BA-BC4C-2490D9A5FE2C}
+        ENDPROPERTIES
+        
+      FIELD #TotalDiscountAmount
+        REAL
+        PROPERTIES
+          Name                #TotalDiscountAmount
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{C4E3A342-DD20-4601-9673-73F4BB0DA547}
+        ENDPROPERTIES
+        
+      FIELD #TotalSurchargeAmount
+        REAL
+        PROPERTIES
+          Name                #TotalSurchargeAmount
+          Label               #@RET4040081
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{99201880-65A1-4DF4-A35C-EF4B9877191D}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailFiscalDocumentModel2_BRT
+          Origin              #{3EBEA438-9172-4892-A7DD-CC6963D2E3FD}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{13BC0FDA-66F0-4F1E-81A9-E0A0734DCC19}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #StoreId
+        #TerminalId
+        #FiscalDocumentSeries
+        #FiscalDocumentNumber
+        #FiscalDocumentDate
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalDocumentModel2_BRT cursor)
+        #{
+        #    RetailFiscalDocumentModel2_BR target;
+        #    RetailFiscalDocumentModel2_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint SeriesNumberDateIdx
+        #                where (target.@FiscalDocumentDate==cursor2.@FiscalDocumentDate && target.@FiscalDocumentNumber==cursor2.@FiscalDocumentNumber && target.@FiscalDocumentSeries==cursor2.@FiscalDocumentSeries && target.@TerminalId==cursor2.@TerminalId && target.@StoreId==cursor2.@StoreId);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @ConsumerCNPJCPFNumber,
+        #                    @FiscalDocumentAccountNum,
+        #                    @FiscalDocumentDate,
+        #                    @FiscalDocumentNumber,
+        #                    @FiscalDocumentSeries,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @Status,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TotalAmount,
+        #                    @TotalDiscountAmount,
+        #                    @TotalSurchargeAmount,
+        #                    @TransactionId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @ConsumerCNPJCPFNumber,
+        #                    @FiscalDocumentAccountNum,
+        #                    @FiscalDocumentDate,
+        #                    @FiscalDocumentNumber,
+        #                    @FiscalDocumentSeries,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @Status,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TotalAmount,
+        #                    @TotalDiscountAmount,
+        #                    @TotalSurchargeAmount,
+        #                    @TransactionId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailFiscalDocumentModel2_BRT cursor)
+        #{
+        #    RetailFiscalDocumentModel2_BRT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailFiscalDocumentModel2_BR), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

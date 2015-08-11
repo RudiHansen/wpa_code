@@ -1,0 +1,22 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: createAllBudgetConrolSQLObjects unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #createAllBudgetConrolSQLObjects
+    #static void createAllBudgetConrolSQLObjects(Args _args)
+    #{
+    #    BudgetControlSQLObjects::createAll(true);
+    #    info('Budget control SQL objects updated.');
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{027F9946-08E6-4AC3-9D00-3CDE26E5A04E}
+  ENDPROPERTIES
+  
+
+***Element: END

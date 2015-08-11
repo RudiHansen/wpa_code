@@ -1,0 +1,1402 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: PRS
+
+; Microsoft Dynamics AX Perspective : SharedDimensions unloaded
+; --------------------------------------------------------------------------------
+  PERSPECTIVEVERSION 1
+  
+  PERSPECTIVE #SharedDimensions
+    PROPERTIES
+      Name                #SharedDimensions
+      ConfigurationKey    #ReportingServices
+      Label               #@sys313073
+      HelpText            #@SYs313082
+      Usage               #OLAP
+      SharedDimensionContainer    #Yes
+      Origin              #{498A4B43-F2C5-4C37-8548-65EDFCF83A7E}
+      LegacyId            #67
+    ENDPROPERTIES
+    
+    TABLES
+      TABLE #EcoResColor
+        PROPERTIES
+          Table               #EcoResColor
+          AnalysisIdentifier  #Name
+          AnalysisDimensionLabel  #@SYS314947
+          AnalysisKeyAttributeLabel     #@SYS314948
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            Table               #EcoResColor
+            DataField           #Name
+            AnalysisLabel       #@SYS314947
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDTABLE
+      
+      TABLE #EcoResConfiguration
+        PROPERTIES
+          Table               #EcoResConfiguration
+          AnalysisIdentifier  #Name
+          AnalysisDimensionLabel  #@SYS314949
+          AnalysisKeyAttributeLabel     #@SYS314950
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            Table               #EcoResConfiguration
+            DataField           #Name
+            AnalysisLabel       #@SYS314949
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDTABLE
+      
+      TABLE #EcoResSize
+        PROPERTIES
+          Table               #EcoResSize
+          AnalysisIdentifier  #Name
+          AnalysisDimensionLabel  #@SYS322236
+          AnalysisKeyAttributeLabel     #@SYS314951
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            Table               #EcoResSize
+            DataField           #Name
+            AnalysisLabel       #@SYS322236
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDTABLE
+      
+      TABLE #EcoResStyle
+        PROPERTIES
+          Table               #EcoResStyle
+          AnalysisIdentifier  #Name
+          AnalysisDimensionLabel  #@FPK270006
+          AnalysisKeyAttributeLabel     #@FPK270049
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            Table               #EcoResStyle
+            DataField           #Name
+            AnalysisLabel       #@FPK270006
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDTABLE
+      
+      TABLE #UnitOfMeasure
+        PROPERTIES
+          Table               #UnitOfMeasure
+          AnalysisIdentifier  #Symbol
+          AnalysisDimensionLabel  #@SYS314952
+          AnalysisKeyAttributeLabel     #@SYS314952
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Symbol
+          PROPERTIES
+            Table               #UnitOfMeasure
+            DataField           #Symbol
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #UnitOfMeasureClass
+          PROPERTIES
+            Table               #UnitOfMeasure
+            DataField           #UnitOfMeasureClass
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SystemOfUnits
+          PROPERTIES
+            Table               #UnitOfMeasure
+            DataField           #SystemOfUnits
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DecimalPrecision
+          PROPERTIES
+            Table               #UnitOfMeasure
+            DataField           #DecimalPrecision
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #IsBaseUnit
+          PROPERTIES
+            Table               #UnitOfMeasure
+            DataField           #IsBaseUnit
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #IsSystemUnit
+          PROPERTIES
+            Table               #UnitOfMeasure
+            DataField           #IsSystemUnit
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDTABLE
+      
+    ENDTABLES
+    
+    VIEWS
+      VIEW #CustTableCube
+        PROPERTIES
+          View                #CustTableCube
+          AnalysisDimensionLabel  #@SYS80104
+          AnalysisKeyAttributeLabel     #@SYS80104
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+            Dynamic             #No
+          ENDPROPERTIES
+          
+          FIELD #AccountNum
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #AccountNum
+            AnalysisLabel       #@SYS24500
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Blocked
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #Blocked
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Currency
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #Currency
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CreditMax
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CreditMax
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PaymTermId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #PaymTermId
+            AnalysisLabel       #@SYS48
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CommissionGroupId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CommissionGroupId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CommissionName
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CommissionName
+            AnalysisLabel       #@SYS318621
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CustGroup
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CustGroup
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #GroupName
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #GroupName
+            AnalysisLabel       #@SYS318631
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #City
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #City
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #County
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #County
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Name
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #Name
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #State
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #State
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ZipCode
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #ZipCode
+            AnalysisLabel       #@SYS318633
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CountryRegionId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CountryRegionId
+            AnalysisLabel       #@SYS318634
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #LocationName
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #LocationName
+            AnalysisLabel       #@sys328187
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventLocation
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #InventLocation
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CustomerIndustry
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CustomerIndustry
+            AnalysisLabel       #@SYS4010120
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CustomerRegion
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CustomerRegion
+            AnalysisLabel       #@SYS4010121
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PriceGroup
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #PriceGroup
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesGroup
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SalesGroup
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesPoolId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SalesPoolId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SegmentId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SegmentId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SubsegmentId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SubsegmentId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StatisticsGroup
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #StatisticsGroup
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesDistrictId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SalesDistrictId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #EcoResProcurementCategoryExpanded
+        PROPERTIES
+          View                #EcoResProcurementCategoryExpanded
+          AnalysisIdentifier  #Name
+          AnalysisDimensionLabel  #@SYS314965
+          AnalysisKeyAttributeLabel     #@SYS314965
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            View                #EcoResProcurementCategoryExpanded
+            DataField           #Name
+            AnalysisLabel       #@SYS313084
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ParentCategory
+          PROPERTIES
+            View                #EcoResProcurementCategoryExpanded
+            DataField           #ParentCategory
+            AnalysisLabel       #@SYS130485
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #EcoResSalesCategoryExpanded
+        PROPERTIES
+          View                #EcoResSalesCategoryExpanded
+          AnalysisIdentifier  #Name
+          AnalysisDimensionLabel  #@SYS314998
+          AnalysisKeyAttributeLabel     #@SYS314998
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            View                #EcoResSalesCategoryExpanded
+            DataField           #Name
+            AnalysisLabel       #@SYS314987
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ParentCategory
+          PROPERTIES
+            View                #EcoResSalesCategoryExpanded
+            DataField           #ParentCategory
+            AnalysisLabel       #@SYS130485
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #HcmWorkerCubeDimension
+        PROPERTIES
+          View                #HcmWorkerCubeDimension
+          AnalysisDimensionLabel  #@SYS305602
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #PersonnelNumber
+          PROPERTIES
+            View                #HcmWorkerCubeDimension
+            DataField           #PersonnelNumber
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Name
+          PROPERTIES
+            View                #HcmWorkerCubeDimension
+            DataField           #Name
+            AnalysisLabel       #@SYS343307
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #InventLocationExpanded
+        PROPERTIES
+          View                #InventLocationExpanded
+          AnalysisDimensionLabel  #@SYS314954
+          AnalysisKeyAttributeLabel     #@SYS314954
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            View                #InventLocationExpanded
+            DataField           #Name
+            AnalysisLabel       #@SYS330274
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventLocationType
+          PROPERTIES
+            View                #InventLocationExpanded
+            DataField           #InventLocationType
+            AnalysisLabel       #@SYS314933
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventLocationId
+          PROPERTIES
+            View                #InventLocationExpanded
+            DataField           #InventLocationId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventSiteId
+          PROPERTIES
+            View                #InventLocationExpanded
+            DataField           #InventSiteId
+            AnalysisLabel       #@SYS313278
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #InventTableExpanded
+        PROPERTIES
+          View                #InventTableExpanded
+          AnalysisIdentifier  #ItemId
+          AnalysisDimensionLabel  #@SYS340557
+          AnalysisKeyAttributeLabel     #@SYS340557
+          AnalysisMeasureGroupLabel     #@SYS340557
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #ABCTieUp
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ABCTieUp
+            AnalysisLabel       #@SYS313764
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ABCContributionMargin
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ABCContributionMargin
+            AnalysisLabel       #@SYS313765
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ABCRevenue
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ABCRevenue
+            AnalysisLabel       #@SYS313766
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ABCValue
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ABCValue
+            AnalysisLabel       #@SYS313767
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CountryRegionId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #CountryRegionId
+            AnalysisLabel       #@SYS314934
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ShortName
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ShortName
+            AnalysisLabel       #@SYS314935
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemGroupId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ItemGroupId
+            AnalysisLabel       #@SYS340558
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemGroupName
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ItemGroupName
+            AnalysisLabel       #@SYS340559
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ItemId
+            AnalysisLabel       #@SYS314936
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductName
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ProductName
+            AnalysisLabel       #@SYS314937
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DisplayProductNumber
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #DisplayProductNumber
+            AnalysisLabel       #@SYS314938
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductType
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ProductType
+            AnalysisLabel       #@SYS314939
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductSubtype
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ProductSubtype
+            AnalysisLabel       #@SYS314940
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemBuyerGroupId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ItemBuyerGroupId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StandardConfigId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #StandardConfigId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StandardInventColorId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #StandardInventColorId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StandardInventSizeId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #StandardInventSizeId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Count
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #Count
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PrimaryVendorId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #PrimaryVendorId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CurrencyCode
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #CurrencyCode
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductSubtypeName
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ProductSubtypeName
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StandardInventStyleId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #StandardInventStyleId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RecIdCategory
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #RecIdCategory
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #LedgerDerivedFinAttrValueCombinations
+        PROPERTIES
+          View                #LedgerDerivedFinAttrValueCombinations
+          AnalysisDimensionLabel  #@SPS981
+          AnalysisKeyAttributeLabel     #@SPS981
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #DisplayValue
+          PROPERTIES
+            View                #LedgerDerivedFinAttrValueCombinations
+            DataField           #DisplayValue
+            AnalysisLabel       #@SPS989
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #LedgerPeriodDateDimensionView
+        PROPERTIES
+          View                #LedgerPeriodDateDimensionView
+          AnalysisIdentifier  #GregorianDate
+          AnalysisDimensionLabel  #@SYS319567
+          AnalysisKeyAttributeLabel     #@sys7402
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #DataArea
+          PROPERTIES
+            View                #LedgerPeriodDateDimensionView
+            DataField           #DataArea
+            AnalysisLabel       #@SYS16939
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Month
+          PROPERTIES
+            View                #LedgerPeriodDateDimensionView
+            DataField           #Month
+            AnalysisLabel       #@sys11451
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Quarter
+          PROPERTIES
+            View                #LedgerPeriodDateDimensionView
+            DataField           #Quarter
+            AnalysisLabel       #@sys4759
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #GregorianDate
+          PROPERTIES
+            View                #LedgerPeriodDateDimensionView
+            DataField           #GregorianDate
+            AnalysisLabel       #@sys7402
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PeriodName
+          PROPERTIES
+            View                #LedgerPeriodDateDimensionView
+            DataField           #PeriodName
+            AnalysisLabel       #@sys40858
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #YearName
+          PROPERTIES
+            View                #LedgerPeriodDateDimensionView
+            DataField           #YearName
+            AnalysisLabel       #@sys107162
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CalendarId
+          PROPERTIES
+            View                #LedgerPeriodDateDimensionView
+            DataField           #CalendarId
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #LogisticsPostalAddressExpanded
+        PROPERTIES
+          View                #LogisticsPostalAddressExpanded
+          AnalysisIdentifier  #RecId1
+          AnalysisDimensionLabel  #@SYS313591
+          AnalysisKeyAttributeLabel     #@SYS313591
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #ZipCode
+          PROPERTIES
+            View                #LogisticsPostalAddressExpanded
+            DataField           #ZipCode
+            AnalysisLabel       #@SYS313777
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #State
+          PROPERTIES
+            View                #LogisticsPostalAddressExpanded
+            DataField           #State
+            AnalysisLabel       #@SYS21816
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #County
+          PROPERTIES
+            View                #LogisticsPostalAddressExpanded
+            DataField           #County
+            AnalysisLabel       #@SYS314942
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #City
+          PROPERTIES
+            View                #LogisticsPostalAddressExpanded
+            DataField           #City
+            AnalysisLabel       #@SYS129977
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #District
+          PROPERTIES
+            View                #LogisticsPostalAddressExpanded
+            DataField           #District
+            AnalysisLabel       #@SYS314945
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CountryRegion
+          PROPERTIES
+            View                #LogisticsPostalAddressExpanded
+            DataField           #CountryRegion
+            AnalysisLabel       #@GLS92544
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RecId1
+          PROPERTIES
+            View                #LogisticsPostalAddressExpanded
+            DataField           #RecId1
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ValidFrom
+          PROPERTIES
+            View                #LogisticsPostalAddressExpanded
+            DataField           #ValidFrom
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ValidTo
+          PROPERTIES
+            View                #LogisticsPostalAddressExpanded
+            DataField           #ValidTo
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #MainAccountCube
+        PROPERTIES
+          View                #MainAccountCube
+          AnalysisDimensionLabel  #@SYS40787
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+            Dynamic             #No
+          ENDPROPERTIES
+          
+          FIELD #DataArea
+          PROPERTIES
+            View                #MainAccountCube
+            DataField           #DataArea
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #MainAccountId
+          PROPERTIES
+            View                #MainAccountCube
+            DataField           #MainAccountId
+            AnalysisLabel       #@SYS1996
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Name
+          PROPERTIES
+            View                #MainAccountCube
+            DataField           #Name
+            AnalysisLabel       #@SYS329898
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Type
+          PROPERTIES
+            View                #MainAccountCube
+            DataField           #Type
+            AnalysisLabel       #@SYS329897
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #AccountCategoryRef
+          PROPERTIES
+            View                #MainAccountCube
+            DataField           #AccountCategoryRef
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #AccountCategory
+          PROPERTIES
+            View                #MainAccountCube
+            DataField           #AccountCategory
+            AnalysisLabel       #@SYS312820
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Description
+          PROPERTIES
+            View                #MainAccountCube
+            DataField           #Description
+            AnalysisLabel       #@SYS111840
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #MainAccountRecId
+          PROPERTIES
+            View                #MainAccountCube
+            DataField           #MainAccountRecId
+            AnalysisLabel       #@sys129344
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #ProjTableCube
+        PROPERTIES
+          View                #ProjTableCube
+          AnalysisDimensionType #MasterLeftOuter
+          AnalysisDimensionLabel  #@SYS36368
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #ProjGroupId
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #ProjGroupId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjId
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #ProjId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Name
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #Name
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CustAccount
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #CustAccount
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjInvoiceProjId
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #ProjInvoiceProjId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ParentId
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #ParentId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SortingId
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #SortingId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Status
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #Status
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #WIProject
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #WIProject
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Type
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #Type
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DefaultDimension
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #DefaultDimension
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #WorkerResponsibleFinancial
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #WorkerResponsibleFinancial
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #WorkerResponsible
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #WorkerResponsible
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #WorkerResponsibleSales
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #WorkerResponsibleSales
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #WorkerResponsibleName
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #WorkerResponsibleName
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #WorkerResponsibleSalesName
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #WorkerResponsibleSalesName
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #WorkerResponsibleFinancialName
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #WorkerResponsibleFinancialName
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjGroupName
+          PROPERTIES
+            View                #ProjTableCube
+            DataField           #ProjGroupName
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #VendTableCube
+        PROPERTIES
+          View                #VendTableCube
+          AnalysisDimensionLabel  #@SYS9455
+          AnalysisKeyAttributeLabel     #@SYS9455
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #AccountNum
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #AccountNum
+            AnalysisLabel       #@SYS24500
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Blocked
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #Blocked
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Currency
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #Currency
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #FemaleOwned
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #FemaleOwned
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #MinorityOwned
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #MinorityOwned
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OneTimeVendor
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #OneTimeVendor
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PaymTermId
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #PaymTermId
+            AnalysisLabel       #@SYS48
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #VendGroup
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #VendGroup
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #GroupName
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #GroupName
+            AnalysisLabel       #Vendor group name
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #City
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #City
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #County
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #County
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Name
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #Name
+            AnalysisLabel       #@SYS7399
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #State
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #State
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ZipCode
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #ZipCode
+            AnalysisLabel       #Zip or postal code
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CountryRegionId
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #CountryRegionId
+            AnalysisLabel       #Country or region ID
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #LocationName
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #LocationName
+            AnalysisLabel       #@sys328187
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceAccount
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #InvoiceAccount
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventLocation
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #InventLocation
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SmallBusiness
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #SmallBusiness
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #LocallyOwned
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #LocallyOwned
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #VeteranOwned
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #VeteranOwned
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #isDiverse
+          PROPERTIES
+            View                #VendTableCube
+            DataField           #isDiverse
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+    ENDVIEWS
+    
+  ENDPERSPECTIVE
+  
+
+***Element: END

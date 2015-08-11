@@ -1,0 +1,21 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CON
+
+; Microsoft Dynamics AX CONFIGURATIONKEY : WPASerialNumbers unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  CONFIGURATIONKEY #WPASerialNumbers
+    PROPERTIES
+      Name                #WPASerialNumbers
+      Label               #@WPA237
+      ParentKey           #WPAWarehouseManagement
+      Origin              #{9AB4FB27-72F8-4F5F-B78F-8C9AC22ABFDC}
+    ENDPROPERTIES
+    
+  ENDCONFIGURATIONKEY
+  
+
+***Element: END

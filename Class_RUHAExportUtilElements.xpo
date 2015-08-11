@@ -12,10 +12,10 @@ Formatversion: 1
       Name                #RUHAExportUtilElements
       Extends             #RunBaseBatch
       RunOn               #Client
+      Origin              #{70710B9F-1F20-4BB8-8F37-92BA9105C0B5}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #checkExportStatus
         #boolean checkExportStatus(UtilElements  _utilElements)
         #{
@@ -71,10 +71,10 @@ Formatversion: 1
         #{
         #    dialogRunBase  dialog = new DialogRunBase("Scan development elements", this);
         #    ;
-        #    dialog_ExportPath = dialog.addField(typeid(FilePath));
+        #    dialog_ExportPath = dialog.addField(extendedTypeStr(FilePath));
         #    dialog_ExportPath.value(exportFilePath);
         #
-        #    dialog_LastRunDateTime = dialog.addField(typeId(DateTimeExecuted));
+        #    dialog_LastRunDateTime = dialog.addField(extendedTypeStr(DateTimeExecuted));
         #    dialog_LastRunDateTime.value(lastRunDateTime);
         #
         #    return dialog;
@@ -135,6 +135,7 @@ Formatversion: 1
         #    if(_utilElements.recordType  == UtilElementType::SharedProject)
         #    {
         #        //this.exportSharedProj(_utilElements.name,exportFileName,true);
+        #        sleep(1);
         #    }
         #    else
         #    {
@@ -185,12 +186,6 @@ Formatversion: 1
         #    return super();
         #}
       ENDSOURCE
-      SOURCE #new
-        #void new()
-        #{
-        #
-        #}
-      ENDSOURCE
       SOURCE #pack
         #public container pack()
         #{
@@ -223,7 +218,7 @@ Formatversion: 1
         #        &&    utilElements.recordType       != UtilElementType::ReportLibrary
         #        &&    utilElements.recordType       != UtilElementType::PrivateProject
         #        &&    utilElements.recordType       != UtilElementType::SharedProject
-        #        &&    utilElements.utilLevel        >  UtilEntryLevel::sl3;
+        #        &&    utilElements.utilLevel        >  UtilEntryLevel::isp;
         #//        &&    (utilElements.modifiedBy       == curuserid()     || utilElements.createdBy       == curuserid())
         #//            &&    (utilElements.modifiedDateTime >= lastRunDateTime || utilElements.createdDateTime >= lastRunDateTime);
         #    numRecords = any2int(utilElements.RecId);
@@ -236,7 +231,7 @@ Formatversion: 1
         #        &&    utilElements.recordType       != UtilElementType::ReportLibrary
         #        &&    utilElements.recordType       != UtilElementType::PrivateProject
         #        &&    utilElements.recordType       != UtilElementType::SharedProject
-        #        &&    utilElements.utilLevel        >  UtilEntryLevel::sl3
+        #        &&    utilElements.utilLevel        >  UtilEntryLevel::isp
         #//        &&    (utilElements.modifiedBy       == curuserid()     || utilElements.createdBy       == curuserid())
         #//        &&    (utilElements.modifiedDateTime >= lastRunDateTime || utilElements.createdDateTime >= lastRunDateTime)
         #        {

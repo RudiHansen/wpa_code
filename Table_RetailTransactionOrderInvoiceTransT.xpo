@@ -1,0 +1,262 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionOrderInvoiceTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionOrderInvoiceTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionOrderInvoiceTransT
+      Label               #@RET4869
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{458D3D5E-7A7A-453A-A562-330E6A4220D8}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #amountCur
+        REAL
+        PROPERTIES
+          Name                #amountCur
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{FCAC1719-A552-4323-AE51-E7921C157F73}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{67F4629C-2D94-4EA0-AEF5-0641F2E001F7}
+        ENDPROPERTIES
+        
+      FIELD #invoiceId
+        STRING
+        PROPERTIES
+          Name                #invoiceId
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{481876DB-E7A2-44DA-9300-3C1F0AE9AF0F}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #lineNum
+        REAL
+        PROPERTIES
+          Name                #lineNum
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{9EFA0D45-5A44-450F-8FDE-32473BC56416}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{E5C38392-0400-4B5D-9F9A-9605203B813D}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #replicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #replicationCounterFromOrigin
+          Label               #@RET3920
+          HelpText            #@RET3921
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{DCC2FCC5-9AE0-40E0-8759-63A4AE5AAD10}
+        ENDPROPERTIES
+        
+      FIELD #salesId
+        STRING
+        PROPERTIES
+          Name                #salesId
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{1EAB1A0D-52CA-490C-A1AE-A638142D2DB9}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #salesOrderInvoiceType
+        ENUM
+        PROPERTIES
+          Name                #salesOrderInvoiceType
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{4ECA1FE5-EB22-478E-9825-E3E4E4048573}
+          EnumType            #RetailSalesOrderInvoiceType
+        ENDPROPERTIES
+        
+      FIELD #storeId
+        STRING
+        PROPERTIES
+          Name                #storeId
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{77F73DD6-DABE-42CB-BD42-A49B1EEF833F}
+        ENDPROPERTIES
+        
+      FIELD #terminalId
+        STRING
+        PROPERTIES
+          Name                #terminalId
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{9470C031-F94E-4CE5-AB48-EDA3D4EC2433}
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{6241DA0A-934F-41D7-8DDD-5C88BF9A3D7A}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #transactionStatus
+        ENUM
+        PROPERTIES
+          Name                #transactionStatus
+          Table               #RetailTransactionOrderInvoiceTransT
+          Origin              #{F1FCCA85-3111-4016-AE19-F6F400E9A1AD}
+          EnumType            #RetailEntryStatus
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{A5B68A57-08B3-4372-AD70-BADE6739C12E}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #lineNum
+        #transactionId
+        #terminalId
+        #storeId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionOrderInvoiceTransT cursor)
+        #{
+        #    RetailTransactionOrderInvoiceTrans target;
+        #    RetailTransactionOrderInvoiceTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint transactionLineIdx
+        #                where (target.@storeId==cursor2.@storeId && target.@terminalId==cursor2.@terminalId && target.@transactionId==cursor2.@transactionId && target.@lineNum==cursor2.@lineNum && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @amountCur,
+        #                    @Channel,
+        #                    @invoiceId,
+        #                    @lineNum,
+        #                    @replicationCounterFromOrigin,
+        #                    @salesId,
+        #                    @salesOrderInvoiceType,
+        #                    @storeId,
+        #                    @terminalId,
+        #                    @transactionId,
+        #                    @transactionStatus,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @amountCur,
+        #                    @Channel,
+        #                    @invoiceId,
+        #                    @lineNum,
+        #                    @replicationCounterFromOrigin,
+        #                    @salesId,
+        #                    @salesOrderInvoiceType,
+        #                    @storeId,
+        #                    @terminalId,
+        #                    @transactionId,
+        #                    @transactionStatus,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionOrderInvoiceTransT cursor)
+        #{
+        #    RetailTransactionOrderInvoiceTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(replicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionOrderInvoiceTrans), cursor2.replicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

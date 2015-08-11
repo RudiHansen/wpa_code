@@ -11,10 +11,9 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProjCategoryService
       ExternalName        #WPAProjCategoryService
-      Namespace           #
       Class               #WPAProjCategoryService
       SecurityKey         #WPAServices
-      Description         #
+      Origin              #{B64515DE-7A0F-44DA-BF73-3A16028B5193}
     ENDPROPERTIES
     
     OPERATIONS
@@ -22,14 +21,28 @@ Formatversion: 1
         PROPERTIES
           Name                #find
           Method              #find
-          EnableIdempotence   #No
         ENDPROPERTIES
         
-      ENDOPERATION
+        PERMISSIONSET #Permissions
+          PROPERTIES
+          ENDPROPERTIES
+          
+          TABLES #Tables
+          ENDTABLES
+          
+        SERVERMETHODS #Server Methods
+        ENDSERVERMETHODS
+        
+      ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+      ENDASSOCIATEDCODEPERMISSIONS
       
-    ENDOPERATIONS
-    
-  ENDSERVICE
+  ENDPERMISSIONSET
   
+ENDOPERATION
+
+ENDOPERATIONS
+
+ENDSERVICE
+
 
 ***Element: END

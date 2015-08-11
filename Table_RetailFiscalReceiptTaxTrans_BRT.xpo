@@ -1,0 +1,305 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalReceiptTaxTrans_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalReceiptTaxTrans_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalReceiptTaxTrans_BRT
+      Label               #@RET4040071
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{B31B82F8-48F4-4EDA-81AD-296761CF2DE0}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #FiscalValue
+        ENUM
+        PROPERTIES
+          Name                #FiscalValue
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{D4BA0B2C-0305-4355-8D83-64FB7A6BB285}
+          EnumType            #TaxFiscalValue_BR
+        ENDPROPERTIES
+        
+      FIELD #LineNum
+        REAL
+        PROPERTIES
+          Name                #LineNum
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{0C24996E-D39E-45FD-B000-963AACCC5731}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{016BB610-BA8F-4D32-A41E-2AA24FFBB719}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{09249333-7C4C-4DA5-A469-CE19022D3709}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{B7007CC4-4DDB-4997-8D7D-3F40A21FFC36}
+        ENDPROPERTIES
+        
+      FIELD #TaxAmount
+        REAL
+        PROPERTIES
+          Name                #TaxAmount
+          Label               #@GLS100079
+          HelpText            #@GLS220755
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{5887C1E7-4E17-4DD6-B170-E8B2053A6DE2}
+        ENDPROPERTIES
+        
+      FIELD #TaxationCode
+        STRING
+        PROPERTIES
+          Name                #TaxationCode
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{9D055A51-AD99-4AE3-B63C-BF013E6C7D9C}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #TaxationOrigin
+        ENUM
+        PROPERTIES
+          Name                #TaxationOrigin
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{1E6D21D7-4944-42EC-BD34-7A0B9C1C7F03}
+          EnumType            #FITaxationOrigin_BR
+        ENDPROPERTIES
+        
+      FIELD #TaxBaseAmount
+        REAL
+        PROPERTIES
+          Name                #TaxBaseAmount
+          Label               #@SYS79666
+          HelpText            #@SYS4001049
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{1B34F6ED-E8DA-454F-BE97-3A0BDDF615F2}
+        ENDPROPERTIES
+        
+      FIELD #TaxCode
+        STRING
+        PROPERTIES
+          Name                #TaxCode
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{FE234E22-C4D0-49CE-B338-3F91C63B4BBB}
+        ENDPROPERTIES
+        
+      FIELD #TaxType
+        ENUM
+        PROPERTIES
+          Name                #TaxType
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{CDF247CC-0C42-436F-A272-9C02E99128C0}
+          EnumType            #TaxType_BR
+        ENDPROPERTIES
+        
+      FIELD #TaxValue
+        REAL
+        PROPERTIES
+          Name                #TaxValue
+          Label               #@SYS87995
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{34D3943F-E586-4228-A3C1-BD270BE54D4A}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{35D3EC3C-705B-4414-B60D-8DBC8EBFD881}
+        ENDPROPERTIES
+        
+      FIELD #TotalizerIndex
+        INT
+        PROPERTIES
+          Name                #TotalizerIndex
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{8137F0F6-44CD-4F2A-A1E1-6E7E1E109703}
+        ENDPROPERTIES
+        
+      FIELD #TotalizerName
+        STRING
+        PROPERTIES
+          Name                #TotalizerName
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{85CB6448-7AB4-45D2-BEEF-1D93A3221587}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailFiscalReceiptTaxTrans_BRT
+          Origin              #{FA75BB3C-9F87-42BB-8D47-0025902A6E4A}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{13234111-CC93-451D-B91C-0945DD1FC318}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TaxType
+        #LineNum
+        #TransactionId
+        #TerminalId
+        #StoreId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalReceiptTaxTrans_BRT cursor)
+        #{
+        #    RetailFiscalReceiptTaxTrans_BR target;
+        #    RetailFiscalReceiptTaxTrans_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint TaxLineIdx
+        #                where (target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@TransactionId==cursor2.@TransactionId && target.@LineNum==cursor2.@LineNum && target.@TaxType==cursor2.@TaxType);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @FiscalValue,
+        #                    @LineNum,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @StoreId,
+        #                    @TaxAmount,
+        #                    @TaxationCode,
+        #                    @TAXATIONORIGIN,
+        #                    @TaxBaseAmount,
+        #                    @TaxCode,
+        #                    @TaxType,
+        #                    @TaxValue,
+        #                    @TerminalId,
+        #                    @TotalizerIndex,
+        #                    @TotalizerName,
+        #                    @TransactionId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @FiscalValue,
+        #                    @LineNum,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @StoreId,
+        #                    @TaxAmount,
+        #                    @TaxationCode,
+        #                    @TAXATIONORIGIN,
+        #                    @TaxBaseAmount,
+        #                    @TaxCode,
+        #                    @TaxType,
+        #                    @TaxValue,
+        #                    @TerminalId,
+        #                    @TotalizerIndex,
+        #                    @TotalizerName,
+        #                    @TransactionId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailFiscalReceiptTaxTrans_BRT cursor)
+        #{
+        #    RetailFiscalReceiptTaxTrans_BRT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailFiscalReceiptTaxTrans_BR), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

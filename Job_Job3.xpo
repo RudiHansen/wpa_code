@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: Job3 unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #Job3
+    #static void Job3(Args _args)
+    #{
+    #    OBTLogTable OBTLogTable;
+    #    ;
+    #    while select OBTLogTable
+    #    {
+    #        OBTLogTable.addToDatabaseLog();
+    #    }
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{5E47B21F-5848-49D4-95FC-6ACB8F674B7C}
+  ENDPROPERTIES
+  
+
+***Element: END

@@ -1,0 +1,38 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: LBL
+
+; Microsoft Dynamics AX LABELFILE : WPA unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  LABELFILE #WPA
+    PROPERTIES
+      Name                #WPA
+      Origin              #{DCF41DB7-65B0-4A2D-B386-87B917E7229C}
+    ENDPROPERTIES
+    
+    LANGUAGES #Languages
+      LANGUAGE #DA
+        PROPERTIES
+          Name                #DA
+          Filename            #AxWPADA.ald
+        ENDPROPERTIES
+        
+      ENDLANGUAGE
+      
+    LANGUAGE #en_us
+      PROPERTIES
+        Name                #en_us
+        Filename            #AxWPAen-us.ald
+      ENDPROPERTIES
+      
+    ENDLANGUAGE
+    
+ENDLANGUAGES
+
+ENDLABELFILE
+
+
+***Element: END

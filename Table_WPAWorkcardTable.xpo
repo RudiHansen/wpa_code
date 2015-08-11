@@ -8,6 +8,7 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #WPAWorkcardTable
+    EnforceFKRelation 0
     PROPERTIES
       Name                #WPAWorkcardTable
       Label               #@WPA142
@@ -24,62 +25,19 @@ Formatversion: 1
       ModifiedBy          #Yes
       CreatedDateTime     #Yes
       CreatedBy           #Yes
-      OccEnabled          #No
+      Origin              #{03635D46-3882-4FB2-B0B7-F73273592F7B}
+      LegacyId            #50007
     ENDPROPERTIES
     
     FIELDS
-      FIELD #OrderId
-        STRING
-        PROPERTIES
-          Name                #OrderId
-          Mandatory           #Yes
-          AllowEdit           #No
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAOrderId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #WorkcardId
-        STRING
-        PROPERTIES
-          Name                #WorkcardId
-          Mandatory           #Yes
-          AllowEdit           #No
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAWorkcardId
-              #
-            ENDARRAY
-          StringSize          #20
-        ENDPROPERTIES
-        
-      FIELD #EmploymentCode
-        STRING
-        PROPERTIES
-          Name                #EmploymentCode
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAEmploymentCode
-              #
-            ENDARRAY
-          StringSize          #20
-        ENDPROPERTIES
-        
       FIELD #AccountId
         STRING
         PROPERTIES
           Name                #AccountId
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAAccountId
-              #
-            ENDARRAY
+          Origin              #{5D4E7333-3D6A-4137-A110-11F8D9060EEE}
+          LegacyId            #50004
+          ExtendedDataType    #WPAAccountId
           StringSize          #20
         ENDPROPERTIES
         
@@ -88,60 +46,19 @@ Formatversion: 1
         PROPERTIES
           Name                #AreaId
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAAreaId
-              #
-            ENDARRAY
+          Origin              #{77827206-771B-4DD0-AC6F-930951660AAA}
+          LegacyId            #50005
+          ExtendedDataType    #WPAAreaId
         ENDPROPERTIES
         
-      FIELD #StartTime
-        DATETIME
-        PROPERTIES
-          Name                #StartTime
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAStartTime
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #EndTime
-        DATETIME
-        PROPERTIES
-          Name                #EndTime
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAEndTime
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #Description
+      FIELD #AttentionName
         STRING
         PROPERTIES
-          Name                #Description
+          Name                #AttentionName
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPADescription
-              #
-            ENDARRAY
-          StringSize          #1000
-        ENDPROPERTIES
-        
-      FIELD #Responsible
-        STRING
-        PROPERTIES
-          Name                #Responsible
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAResponsible
-              #
-            ENDARRAY
+          Origin              #{CBD97075-B0A4-4836-9A41-BDEDBD8A6700}
+          LegacyId            #50014
+          ExtendedDataType    #WPAAttentionName
           StringSize          #60
         ENDPROPERTIES
         
@@ -150,11 +67,9 @@ Formatversion: 1
         PROPERTIES
           Name                #CrmInfo1
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPACrmInfo1
-              #
-            ENDARRAY
+          Origin              #{CE713C9F-57C4-4A26-8112-83CFD865890D}
+          LegacyId            #50010
+          ExtendedDataType    #WPACrmInfo1
           StringSize          #1000
         ENDPROPERTIES
         
@@ -163,63 +78,10 @@ Formatversion: 1
         PROPERTIES
           Name                #CrmInfo2
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPACrmInfo2
-              #
-            ENDARRAY
+          Origin              #{18E652EE-8482-4787-9D52-8F6A5314F894}
+          LegacyId            #50011
+          ExtendedDataType    #WPACrmInfo2
           StringSize          #1000
-        ENDPROPERTIES
-        
-      FIELD #Status
-        STRING
-        PROPERTIES
-          Name                #Status
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAStatus
-              #
-            ENDARRAY
-          StringSize          #2
-        ENDPROPERTIES
-        
-      FIELD #PurchaseOrderNumber
-        STRING
-        PROPERTIES
-          Name                #PurchaseOrderNumber
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAPurchaseOrderNumber
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #AttentionName
-        STRING
-        PROPERTIES
-          Name                #AttentionName
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAAttentionName
-              #
-            ENDARRAY
-          StringSize          #60
-        ENDPROPERTIES
-        
-      FIELD #Urgent
-        STRING
-        PROPERTIES
-          Name                #Urgent
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAUrgent
-              #
-            ENDARRAY
-          StringSize          #2
         ENDPROPERTIES
         
       FIELD #DebitorId
@@ -227,62 +89,21 @@ Formatversion: 1
         PROPERTIES
           Name                #DebitorId
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPADebitorId
-              #
-            ENDARRAY
+          Origin              #{ECD5F2A5-37F6-47F7-BEAD-DD9745963740}
+          LegacyId            #50016
+          ExtendedDataType    #WPADebitorId
           StringSize          #20
         ENDPROPERTIES
         
-      FIELD #WorkcardTypeId
+      FIELD #Description
         STRING
         PROPERTIES
-          Name                #WorkcardTypeId
+          Name                #Description
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAWorkcardTypeId
-              #
-            ENDARRAY
-          StringSize          #1
-        ENDPROPERTIES
-        
-      FIELD #SiteId
-        STRING
-        PROPERTIES
-          Name                #SiteId
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPASiteId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #ServiceObjectId
-        STRING
-        PROPERTIES
-          Name                #ServiceObjectId
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAServiceObjectId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #Transferred
-        ENUM
-        PROPERTIES
-          Name                #Transferred
-          Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPATransferred
-              #
-            ENDARRAY
-          EnumType            #WPATransferredEnum
+          Origin              #{FDE78C68-CB1B-4ADF-821F-8278539E0AF4}
+          LegacyId            #50008
+          ExtendedDataType    #WPADescription
+          StringSize          #1000
         ENDPROPERTIES
         
       FIELD #Direction
@@ -291,22 +112,74 @@ Formatversion: 1
           Name                #Direction
           AllowEdit           #No
           Table               #WPAWorkcardTable
+          Origin              #{E6EB2B3F-DBEE-4586-A21D-0625256F216A}
+          LegacyId            #50021
           EnumType            #WPADirection
         ENDPROPERTIES
         
-      FIELD #RefTableId
-        INT
+      FIELD #EmploymentCode
+        INT64
         PROPERTIES
-          Name                #RefTableId
-          HelpText            #@SYS22567
+          Name                #EmploymentCode
+          Table               #WPAWorkcardTable
+          Origin              #{3179157A-4991-4F20-800E-42EE5F2B5019}
+          ExtendedDataType    #WPAEmploymentCode
+        ENDPROPERTIES
+        
+      FIELD #EndTime
+        DATETIME
+        PROPERTIES
+          Name                #EndTime
+          Table               #WPAWorkcardTable
+          Origin              #{264161DC-0BBD-41A4-8279-A99D5B3C539C}
+          LegacyId            #50007
+          ExtendedDataType    #WPAEndTime
+        ENDPROPERTIES
+        
+      FIELD #ErrorTxt
+        STRING
+        PROPERTIES
+          Name                #ErrorTxt
           AllowEditOnCreate   #No
           AllowEdit           #No
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #RefTableId
-              #
-            ENDARRAY
+          Origin              #{2364525C-FF1F-4962-9E25-227EB133E8C1}
+          LegacyId            #50024
+          ExtendedDataType    #WPAErrorTxt
+          StringSize          #130
+        ENDPROPERTIES
+        
+      FIELD #OrderId
+        STRING
+        PROPERTIES
+          Name                #OrderId
+          Mandatory           #Yes
+          Table               #WPAWorkcardTable
+          Origin              #{9A0C30AF-EC51-4057-8C2C-71661262F4F1}
+          LegacyId            #50001
+          ExtendedDataType    #WPAOrderId
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #PurchaseOrderNumber
+        STRING
+        PROPERTIES
+          Name                #PurchaseOrderNumber
+          Table               #WPAWorkcardTable
+          Origin              #{E2CA2177-96F0-4DA0-8C94-ACD3F3293D86}
+          LegacyId            #50013
+          ExtendedDataType    #WPAPurchaseOrderNumber
+        ENDPROPERTIES
+        
+      FIELD #RefCompany
+        STRING
+        PROPERTIES
+          Name                #RefCompany
+          Table               #WPAWorkcardTable
+          Origin              #{AD2AD354-5822-406F-AB5D-402BE6B59B1C}
+          LegacyId            #50025
+          ExtendedDataType    #CompanyId
+          StringSize          #4
         ENDPROPERTIES
         
       FIELD #RefRecId
@@ -318,39 +191,121 @@ Formatversion: 1
           AllowEditOnCreate   #No
           AllowEdit           #No
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #RefRecId
-              #
-            ENDARRAY
+          Origin              #{3F53A5A7-54BB-45CD-B1AF-52AA6D25EBA8}
+          LegacyId            #50023
+          ExtendedDataType    #RefRecId
         ENDPROPERTIES
         
-      FIELD #ErrorTxt
-        STRING
+      FIELD #RefTableId
+        INT
         PROPERTIES
-          Name                #ErrorTxt
+          Name                #RefTableId
+          HelpText            #@SYS22567
           AllowEditOnCreate   #No
           AllowEdit           #No
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #WPAErrorTxt
-              #
-            ENDARRAY
-          StringSize          #130
+          Origin              #{716DE528-5711-4CF0-A4FF-2CC80984149C}
+          LegacyId            #50022
+          ExtendedDataType    #RefTableId
         ENDPROPERTIES
         
-      FIELD #RefCompany
+      FIELD #Responsible
         STRING
         PROPERTIES
-          Name                #RefCompany
+          Name                #Responsible
           Table               #WPAWorkcardTable
-          ExtendedDataType    
-            ARRAY 
-              #CompanyId
-              #
-            ENDARRAY
-          StringSize          #4
+          Origin              #{A2EA83CC-B7D6-4255-99DB-0C1C6B86C18A}
+          LegacyId            #50009
+          ExtendedDataType    #WPAResponsible
+          StringSize          #100
+        ENDPROPERTIES
+        
+      FIELD #ServiceObjectId
+        STRING
+        PROPERTIES
+          Name                #ServiceObjectId
+          Table               #WPAWorkcardTable
+          Origin              #{695175F6-C4F4-45FB-B81D-2C21415C29B2}
+          LegacyId            #50019
+          ExtendedDataType    #WPAServiceObjectId
+        ENDPROPERTIES
+        
+      FIELD #SiteId
+        STRING
+        PROPERTIES
+          Name                #SiteId
+          Table               #WPAWorkcardTable
+          Origin              #{3AC91241-E4A4-4F6E-85A0-040A4BA134C2}
+          LegacyId            #50018
+          ExtendedDataType    #WPASiteId
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #StartTime
+        DATETIME
+        PROPERTIES
+          Name                #StartTime
+          Table               #WPAWorkcardTable
+          Origin              #{03869EB8-DB96-4749-9914-6A0D6A56270A}
+          LegacyId            #50006
+          ExtendedDataType    #WPAStartTime
+        ENDPROPERTIES
+        
+      FIELD #Status
+        STRING
+        PROPERTIES
+          Name                #Status
+          Table               #WPAWorkcardTable
+          Origin              #{1C82EF41-B617-4753-BED9-F5E9EAB667F5}
+          LegacyId            #50012
+          ExtendedDataType    #WPAStatus
+          StringSize          #2
+        ENDPROPERTIES
+        
+      FIELD #Transferred
+        ENUM
+        PROPERTIES
+          Name                #Transferred
+          Table               #WPAWorkcardTable
+          Origin              #{745696F4-DB4E-435F-AACB-0E176FA3A5CF}
+          LegacyId            #50020
+          ExtendedDataType    #WPATransferred
+          EnumType            #WPATransferredEnum
+        ENDPROPERTIES
+        
+      FIELD #Urgent
+        STRING
+        PROPERTIES
+          Name                #Urgent
+          Table               #WPAWorkcardTable
+          Origin              #{6A768294-D12A-4F0A-A49D-521A25CB6933}
+          LegacyId            #50015
+          ExtendedDataType    #WPAUrgent
+          StringSize          #2
+        ENDPROPERTIES
+        
+      FIELD #WorkcardId
+        STRING
+        PROPERTIES
+          Name                #WorkcardId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #WPAWorkcardTable
+          Origin              #{670FE3A1-8C95-41F7-855E-6D7C40CFAD26}
+          LegacyId            #50002
+          ExtendedDataType    #WPAWorkcardId
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #WorkcardTypeId
+        STRING
+        PROPERTIES
+          Name                #WorkcardTypeId
+          Table               #WPAWorkcardTable
+          Origin              #{28D2A548-EAF9-4C8C-83BC-47CC10E5464B}
+          LegacyId            #50017
+          ExtendedDataType    #WPAWorkcardTypeId
+          StringSize          #1
         ENDPROPERTIES
         
     ENDFIELDS
@@ -363,7 +318,6 @@ Formatversion: 1
         GROUPFIELDS
           #OrderId
           #WorkcardId
-          #EmploymentCode
           #AccountId
           #AreaId
           #StartTime
@@ -391,7 +345,6 @@ Formatversion: 1
         GROUPFIELDS
           #OrderId
           #WorkcardId
-          #EmploymentCode
           #AccountId
           #AreaId
           #StartTime
@@ -445,7 +398,6 @@ Formatversion: 1
         GROUPFIELDS
           #AreaId
           #Responsible
-          #EmploymentCode
         ENDGROUPFIELDS
       ENDGROUP
       GROUP #Identification
@@ -508,7 +460,6 @@ Formatversion: 1
         GROUPFIELDS
           #OrderId
           #WorkcardId
-          #EmploymentCode
           #AccountId
           #AreaId
           #StartTime
@@ -536,6 +487,8 @@ Formatversion: 1
       #TransferredIdx
       PROPERTIES
         Name                #TransferredIdx
+        Origin              #{AF7DCF8B-88A8-4A7A-8A3B-0DC070C280DB}
+        LegacyId            #50001
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -546,6 +499,8 @@ Formatversion: 1
       PROPERTIES
         Name                #OrderWorkcardDirectionIdx
         AllowDuplicates     #No
+        Origin              #{7559746E-11DC-4C2A-B487-1AAFD3E12E4E}
+        LegacyId            #50002
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -554,8 +509,36 @@ Formatversion: 1
         #Direction
       ENDINDEXFIELDS
       
+      #HcmWorkerIdx
+      PROPERTIES
+        Name                #HcmWorkerIdx
+        Origin              #{AF0CC854-F3BC-4177-86AE-2213D82DA8C1}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #EmploymentCode
+      ENDINDEXFIELDS
+      
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
+      REFERENCE #HcmWorker
+        PROPERTIES
+          Name                #HcmWorker
+          Table               #HcmWorker
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #EmploymentCode
+            RelatedField        #RecId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
     ENDREFERENCES
     
     DELETEACTIONS
@@ -568,7 +551,6 @@ Formatversion: 1
     ENDDELETEACTIONS
     
     METHODS
-      Version: 3
       SOURCE #isLastWorkcard
         #public boolean isLastWorkcard()
         #{
@@ -636,8 +618,7 @@ Formatversion: 1
       SOURCE #findOrCreateFromProj
         #public static WPAWorkcardTable findOrCreateFromProj(ProjTable         _projTable,
         #                                                    ProjForecastEmpl  _projForecastEmpl,
-        #                                                    EmplTable         _emplTable,
-        #                                                    DirPartyTable     _dirPartyTable,
+        #                                                    HcmWorker         _worker,
         #                                                    DocuRef           _docuRef)
         #{
         #    #define.Zero    ('0')
@@ -645,20 +626,29 @@ Formatversion: 1
         #    #define.Two     ('2')
         #
         #    WPAWorkcardTable    workcardTable = WPAWorkcardTable::find(_projForecastEmpl.ProjId, _projForecastEmpl.TransId, WPADirection::Outgoing);
+        #    SMADispatchTeamTable    dispatchTeamTable;
+        #
         #    ;
         #    if (!workcardTable)
         #    {
         #        workcardTable.clear();
         #        workcardTable.OrderId           = _projForecastEmpl.ProjId;
         #        workcardTable.WorkcardId        = _projForecastEmpl.TransId;
-        #        workcardTable.EmploymentCode    = _projForecastEmpl.EmplId;
+        #
+        #        workcardTable.EmploymentCode    = _projForecastEmpl.Worker;
+        #
         #        workcardTable.AccountId         = _projTable.CustAccount;
-        #        workcardTable.AreaId            = _emplTable.DispatchTeamId;
+        #
+        #        select firstOnly dispatchTeamTable
+        #            where dispatchTeamTable.WorkerOwner == _worker.RecId;
+        #        workcardTable.AreaId            = dispatchTeamTable.DispatchTeamId;
         #        workcardTable.StartTime         = DateTimeUtil::newDateTime(_projForecastEmpl.SchedFromDate, _projForecastEmpl.SchedFromTime);
-        #        workcardTable.EndTime           = DateTimeUtil::addHours(DateTimeUtil::newDateTime(_projForecastEmpl.SchedFromDate, _projForecastEmpl.SchedFromTime),_projForecastEmpl.Qty);
+        #        workcardTable.EndTime           = DateTimeUtil::addHours(DateTimeUtil::newDateTime(_projForecastEmpl.SchedFromDate, _projForecastEmpl.SchedFromTime),real2UnsignedInt(_projForecastEmpl.Qty));
         #        workcardTable.Description       = _projForecastEmpl.Txt;
         #        workcardTable.CrmInfo1          = _docuRef.Notes;
-        #        workcardTable.Responsible       = _dirPartyTable.Name;
+        #
+        #        workcardTable.Responsible       = HcmWorker::find(_projForecastEmpl.projTable().WorkerResponsible).PersonnelNumber;
+        #
         #        workcardTable.Status            = WPAParameters::find().WorkcardsDefaultActivated ? #Two : #One;
         #        workcardTable.Urgent            = #Zero;
         #        workcardTable.Direction         = WPADirection::Outgoing;
@@ -674,30 +664,43 @@ Formatversion: 1
       SOURCE #findOrCreateFromService
         #public static WPAWorkcardTable findOrCreateFromService(SMAServiceOrderTable     _sMAServiceOrderTable,
         #                                                       SMAServiceOrderLine      _sMAServiceOrderLine,
-        #                                                       EmplTable                _emplTable,
-        #                                                       DirPartyTable            _dirPartyTable,
+        #                                                       HcmWorker         _worker,
         #                                                       SMAServiceTaskRelation   _sMAServiceTaskRelation)
         #{
         #    #define.Zero    ('0')
         #    #define.One     ('1')
         #    #define.Two     ('2')
         #
-        #    WPAWorkcardTable    workcardTable = WPAWorkcardTable::find(_sMAServiceOrderTable.ServiceOrderId, _sMAServiceOrderLine.ProjTransId, WPADirection::Outgoing);
+        #    WPAWorkcardTable        workcardTable = WPAWorkcardTable::find(_sMAServiceOrderTable.ServiceOrderId, _sMAServiceOrderLine.ProjTransId, WPADirection::Outgoing);
+        #    SMADispatchWorkerSetup  SMADispatchWorkerSetup;
+        #    SMADispatchTeamTable    dispatchTeamTable;
         #    ;
+        #
         #    if (!workcardTable)
         #    {
         #        workcardTable.clear();
         #        workcardTable.OrderId           = _sMAServiceOrderTable.ServiceOrderId;
         #        workcardTable.WorkcardId        = _sMAServiceOrderLine.ProjTransId;
-        #        workcardTable.EmploymentCode    = _sMAServiceOrderLine.EmplId;
+        #
+        #        workcardTable.EmploymentCode    = _sMAServiceOrderLine.Worker;
+        #
         #        workcardTable.AccountId         = _sMAServiceOrderTable.CustAccount;
-        #        workcardTable.AreaId            = _emplTable.DispatchTeamId;
+        #
+        #        select firstOnly SMADispatchWorkerSetup
+        #            where SMADispatchWorkerSetup.Worker == _worker.RecId
+        #                join firstOnly dispatchTeamTable
+        #                    where dispatchTeamTable.DispatchTeamId == SMADispatchWorkerSetup.DispatchTeamId;
+        #
+        #        workcardTable.AreaId            = dispatchTeamTable.DispatchTeamId;
+        #
         #        workcardTable.StartTime         = _sMAServiceOrderTable.ServiceDateTime;
         #        workcardTable.EndTime           = DateTimeUtil::addHours(_sMAServiceOrderTable.ServiceDateTime, 2);
         #        workcardTable.Description       = _sMAServiceOrderTable.Description
         #                                          + _sMAServiceTaskRelation.taskDesciption()
         #                                          + _sMAServiceTaskRelation.DescriptionExternal;
-        #        workcardTable.Responsible       = _dirPartyTable.Name;
+        #
+        #        workcardTable.Responsible       = _sMAServiceOrderTable.responsibleFullName();
+        #
         #        workcardTable.CrmInfo1          = _sMAServiceTaskRelation.DescriptionInternal;
         #        workcardTable.Status            = WPAParameters::find().WorkcardsDefaultActivated ? #Two : #One;
         #        workcardTable.Urgent            = #Zero;
@@ -722,7 +725,7 @@ Formatversion: 1
         #    WPAWorkcardLine     workcardLine;
         #    InventTable         inventTable;
         #    ProjCategory        projCategory;
-        #    EmplTable           emplTable;
+        #    HcmWorker           worker;
         #    boolean             ret;
         #    ;
         #    switch (_common.TableId)
@@ -747,13 +750,14 @@ Formatversion: 1
         #                                                            error(strfmt("@WPA196", sMAServiceOrderLine.ItemId));
         #                                                        }
         #                                                    }
-        #                                                    if (sMAServiceOrderLine.EmplId)
+        #                                                    if (sMAServiceOrderLine.Worker)
         #                                                    {
-        #                                                        emplTable = EmplTable::find(sMAServiceOrderLine.EmplId);
-        #                                                        if (!SMADispatchTeamTable::find(sMAServiceOrderLine.EmplId).RecId && !WPAIntegrationLog::exist(emplTable.TableId, emplTable.RecId))
+        #                                                        worker = HcmWorker::find(sMAServiceOrderLine.Worker);
+        #
+        #                                                        if (!SMADispatchTeamTable::find(worker.PersonnelNumber).RecId && !WPAIntegrationLog::exist(worker.TableId, worker.RecId))
         #                                                        {
         #                                                            ret = false;
-        #                                                            error(strfmt("@WPA197", emplTable.EmplId));
+        #                                                            error(strfmt("@WPA197", worker.name()));
         #                                                        }
         #                                                    }
         #                                                    projCategory = ProjCategory::find(sMAServiceOrderLine.ProjCategoryId);
@@ -775,13 +779,13 @@ Formatversion: 1
         #
         #                                                if (ret)
         #                                                {
-        #                                                    if (projForecastEmpl.EmplId)
+        #                                                    if (projForecastEmpl.Worker)
         #                                                    {
-        #                                                        emplTable = EmplTable::find(projForecastEmpl.EmplId);
-        #                                                        if (!SMADispatchTeamTable::find(projForecastEmpl.EmplId).RecId && !WPAIntegrationLog::exist(emplTable.TableId, emplTable.RecId))
+        #                                                        worker = HcmWorker::find(projForecastEmpl.Worker);
+        #                                                        if (!SMADispatchTeamTable::find(worker.PersonnelNumber).RecId && !WPAIntegrationLog::exist(worker.TableId, worker.RecId))
         #                                                        {
         #                                                            ret = false;
-        #                                                            error(strfmt("@WPA197", emplTable.EmplId));
+        #                                                            error(strfmt("@WPA197", worker.name()));
         #                                                        }
         #                                                    }
         #                                                    projCategory = ProjCategory::find(projForecastEmpl.CategoryId);
@@ -805,6 +809,7 @@ Formatversion: 1
         #                                                            error(strfmt("@WPA196", forecastSales.ItemId));
         #                                                        }
         #                                                    }
+        #
         #                                                }
         #                                                break;
         #

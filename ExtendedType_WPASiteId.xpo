@@ -13,6 +13,9 @@ Formatversion: 1
       Name                #WPASiteId
       Label               #@WPA57
       HelpText            #@WPA58
+      Origin              #{DD64BA38-4235-4358-9139-622B110437A4}
+      LegacyId            #50046
+      StringSize          #20
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

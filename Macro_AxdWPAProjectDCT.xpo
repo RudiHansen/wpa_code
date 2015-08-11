@@ -10,10 +10,10 @@ Formatversion: 1
   SOURCE #AxdWPAProjectDCT
     ##define.WPAProject('WPAProject')
     ##define.WPAProject_ProjTable('WPAProject.ProjTable')
-    ##define.WPAProject_CustTable('WPAProject.CustTable')
-    ##define.WPAProject_DirPartyAddressRelationship('WPAProject.DirPartyAddressRelationship')
-    ##define.WPAProject_DirPartyAddRelMapping('WPAProject.DirPartyAddRelMapping')
-    ##define.WPAProject_Address('WPAProject.Address')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{7D930D55-08DC-4F4D-A600-72701A87F531}
+  ENDPROPERTIES
+  
 
 ***Element: END

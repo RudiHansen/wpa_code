@@ -17,9 +17,14 @@ Formatversion: 1
     #    AxdWPAProjForecastEmpl = AxdBase::newClassId(classnum(AxdWPAProjForecastEmpl));
     #    xml = AxdWPAProjForecastEmpl.getSchema();
     #    xmlDocument = XMLDocument::newXML(xml);
+    #    //TODO Select file to write XML output to
     #    xmlDocument.save("c:\\XSDSchema_AxdWPAProjForecastEmpl.xml");
     #}
     #
   ENDSOURCE
+  PROPERTIES
+    Origin              #{80149725-5A6C-416E-805B-BF6A89F67844}
+  ENDPROPERTIES
+  
 
 ***Element: END

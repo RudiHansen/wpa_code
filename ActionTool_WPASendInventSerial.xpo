@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : WPASendInventSerial unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #WPASendInventSerial
+    Type: 3
+    PROPERTIES
+      Name                #WPASendInventSerial
+      Label               #@WPA236
+      HelpText            #@WPA235
+      ObjectType          #Class
+      Object              #WPASendInventSerial
+      ConfigurationKey    #WPASerialNumbers
+      CountryConfigurationkey   #WPASerialNumbers
+      Origin              #{821BFC77-6E4C-476B-A500-97BE7A503021}
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

@@ -1,0 +1,212 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailEFDocContingencyModeT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailEFDocContingencyModeT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailEFDocContingencyModeT
+      Label               #@SYP4861382
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{CE441504-DBBB-4E66-A45F-06C139A2E60B}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailEFDocContingencyModeT
+          Origin              #{6C05FFD6-E462-428E-885E-4329A4FCF18C}
+        ENDPROPERTIES
+        
+      FIELD #ContingencyMode
+        ENUM
+        PROPERTIES
+          Name                #ContingencyMode
+          Table               #RetailEFDocContingencyModeT
+          Origin              #{FE293F69-822F-44F1-9EF9-6EFA33F9BC8F}
+          EnumType            #EFDocContingMode_BR
+        ENDPROPERTIES
+        
+      FIELD #ContingencyReason
+        STRING
+        PROPERTIES
+          Name                #ContingencyReason
+          Table               #RetailEFDocContingencyModeT
+          Origin              #{A807C1C9-131A-45D7-8ED6-A6068B7CFD98}
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #DateTime
+        DATETIME
+        PROPERTIES
+          Name                #DateTime
+          Label               #@SYP4861385
+          Table               #RetailEFDocContingencyModeT
+          Origin              #{1443B819-F59D-4543-BA36-83437FD7D828}
+        ENDPROPERTIES
+        
+      FIELD #DateTimeOffset
+        INT64
+        PROPERTIES
+          Name                #DateTimeOffset
+          Table               #RetailEFDocContingencyModeT
+          Origin              #{34A37382-E59D-40B0-8158-FC5522E9D70A}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailEFDocContingencyModeT
+          Origin              #{3146E1FF-553F-434D-85AA-846FED46470F}
+        ENDPROPERTIES
+        
+      FIELD #Staff
+        STRING
+        PROPERTIES
+          Name                #Staff
+          Table               #RetailEFDocContingencyModeT
+          Origin              #{2B9A4281-3238-4330-9836-537EAEF598FC}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Label               #@SYP4861389
+          Table               #RetailEFDocContingencyModeT
+          Origin              #{76ED7A07-7AE7-4339-8CD4-E1AF178EBA7A}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Label               #@SYP4861390
+          Table               #RetailEFDocContingencyModeT
+          Origin              #{FD91EFAA-C6A6-43AD-85C4-B7CACC28B5D7}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{564D201E-7F2B-4FDA-AEC6-E2750D67A46C}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #DateTime
+        #TerminalId
+        #StoreId
+        #Channel
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailEFDocContingencyModeT cursor)
+        #{
+        #    RetailEFDocContingencyMode target;
+        #    RetailEFDocContingencyModeT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint RetailEFDocContingencyModeIdx
+        #                where (target.@Channel==cursor2.@Channel && target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@DateTime==cursor2.@DateTime);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @Channel,
+        #                    @ContingencyMode,
+        #                    @ContingencyReason,
+        #                    @DateTime,
+        #                    @DateTimeOffset,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @Staff,
+        #                    @StoreId,
+        #                    @TerminalId
+        #                )
+        #                select
+        #                    @Channel,
+        #                    @ContingencyMode,
+        #                    @ContingencyReason,
+        #                    @DateTime,
+        #                    @DateTimeOffset,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @Staff,
+        #                    @StoreId,
+        #                    @TerminalId
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

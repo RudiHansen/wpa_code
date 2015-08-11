@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPAJournals
       Label               #@SYS9020
       ParentKey           #WPA
+      Origin              #{7C4CE2BE-BB48-4630-8A30-B574AB1A3633}
+      LegacyId            #50004
     ENDPROPERTIES
     
   ENDSECURITYKEY

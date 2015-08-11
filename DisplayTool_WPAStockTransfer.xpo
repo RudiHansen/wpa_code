@@ -16,6 +16,7 @@ Formatversion: 1
       Object              #WPAStockTransfer
       ConfigurationKey    #WPAWarehouseManagement
       SecurityKey         #WPAInquiries
+      Origin              #{CFA0DD31-D253-4BDC-8F28-E5B596C6811C}
     ENDPROPERTIES
     
   ENDMENUITEM

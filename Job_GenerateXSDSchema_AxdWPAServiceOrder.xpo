@@ -17,9 +17,14 @@ Formatversion: 1
     #    AxdWPAServiceOrder = AxdBase::newClassId(classnum(AxdWPAServiceOrder));
     #    xml = AxdWPAServiceOrder.getSchema();
     #    xmlDocument = XMLDocument::newXML(xml);
+    #    //TODO Select file to write XML output to
     #    xmlDocument.save("c:\\XSDSchema_AxdWPAServiceOrder.xml");
     #}
     #
   ENDSOURCE
+  PROPERTIES
+    Origin              #{F6D451D0-0EF4-450B-821A-14AA71A6022D}
+  ENDPROPERTIES
+  
 
 ***Element: END

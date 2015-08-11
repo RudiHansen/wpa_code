@@ -12,13 +12,19 @@ Formatversion: 1
       Name                #AxdWPAProjCategory
       Extends             #AxdBase
       RunOn               #Server
+      Origin              #{A92D4928-C2A0-435F-8E1C-55A6F995CB09}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class AxdWPAProjCategory extends AxdBase
         #{
+        #    #define.ProjCategory_DataSourceName('ProjCategory')
+        #    #define.ProjHourCostPrice_DataSourceName('ProjHourCostPrice')
+        #    #define.ProjCostPriceExpense_DataSourceName('ProjCostPriceExpense')
+        #    #define.ProjHourSalesPrice_DataSourceName('ProjHourSalesPrice')
+        #    #define.ProjRevenueSalesPrice_DataSourceName('ProjRevenueSalesPrice')
+        #    #define.ProjCostSalesPrice_DataSourceName('ProjCostSalesPrice')
         #}
         #
       ENDSOURCE
@@ -37,6 +43,27 @@ Formatversion: 1
         #                            AifConstraintListCollection _constraintListCollection)
         #{
         #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findCorrespondingAxBC
+        #public int findCorrespondingAxBC(tableId _tableId = 0)
+        #{
+        #    return classnum(AxCommon);
         #}
         #
       ENDSOURCE
@@ -75,7 +102,7 @@ Formatversion: 1
         #    AifConstraint  aifConstraint = new AifConstraint();
         #    ProjCategory    ProjCategory;
         #    ;
-        #    if (_curRec.TableId != tablenum(ProjCategory))
+        #    if (!(_curRec is ProjCategory))
         #    {
         #         throw error(strfmt("@SYS23396",funcname()));
         #    }
@@ -85,8 +112,8 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #GetLabel
-        #public LabelDescription getLabel()
+      SOURCE #getLabel
+        #public LabelString getLabel()
         #{
         #    return "@SYS6114";
         #}
@@ -111,7 +138,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #updateList
-        #public AifEntityKey updateList(AifEntityKeyList            _entityKeyList,
+        #public AifResult updateList(AifEntityKeyList            _entityKeyList,
         #                               AifDocumentXML              _xml,
         #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
         #                               AifConstraintListCollection _constraintListcollection)

@@ -50,12 +50,18 @@ Formatversion: 1
     ##define.Location('Location')
     ##define.Postal('Postal')
     ##define.State('State')
+    ##define.Batchnumber('Batchnumber')
+    ##define.Comment('Comment')
     #
-    ##define.WorkcardEndpointId('WorkCardSO')
-    ##define.WorkcardAction('http://tempuri.org/WPAWorkcardService/create')
-    ##define.WPA_TO_ERP('WPA_TO_ERP')
+    ##define.WorkcardPortName('WorkCardSO')
+    ##define.WorkcardAction('http://tempuri.org/WPAWorkcardSrvService/create')
+    ##define.WPA_TO_ERP("WPA_TO_ERP")
     ##define.DataReceiverName('DataReceiverName')
     #
   ENDSOURCE
+  PROPERTIES
+    Origin              #{4B280CAB-C8CB-4198-B849-D9C9E05ADB8B}
+  ENDPROPERTIES
+  
 
 ***Element: END

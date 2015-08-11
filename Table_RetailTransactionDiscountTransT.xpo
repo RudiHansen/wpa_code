@@ -1,0 +1,316 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionDiscountTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionDiscountTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionDiscountTransT
+      Label               #@RET6033
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{5389D33B-3928-45D8-91BD-3CAD15AC2DF7}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Amount
+        REAL
+        PROPERTIES
+          Name                #Amount
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{7E4C1526-7CC9-4A05-B6E0-AFFBF59E4AF2}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{3B542961-DAA0-4CB9-8477-21B3CCA06EA3}
+        ENDPROPERTIES
+        
+      FIELD #CustomerDiscountType
+        ENUM
+        PROPERTIES
+          Name                #CustomerDiscountType
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{CA3EDC3C-B614-4A62-8A76-C4F06BF03566}
+          EnumType            #RetailCustomerDiscountType
+        ENDPROPERTIES
+        
+      FIELD #DealPrice
+        REAL
+        PROPERTIES
+          Name                #DealPrice
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{542DC949-3855-43C2-8FC3-63FFDF2511CB}
+        ENDPROPERTIES
+        
+      FIELD #DiscountAmount
+        REAL
+        PROPERTIES
+          Name                #DiscountAmount
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{38CBF8C1-C906-4F7C-90E2-F315C459FDAF}
+        ENDPROPERTIES
+        
+      FIELD #DiscountCode
+        STRING
+        PROPERTIES
+          Name                #DiscountCode
+          HelpText            #@SYS117314
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{CB600803-4B25-42E6-A4E2-8BD1E5FA2EC7}
+          StringSize          #15
+        ENDPROPERTIES
+        
+      FIELD #DiscountOriginType
+        ENUM
+        PROPERTIES
+          Name                #DiscountOriginType
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{4E3E9C1D-7C31-48A2-A464-4BC6666B34D5}
+          EnumType            #RetailDiscountOriginType
+        ENDPROPERTIES
+        
+      FIELD #LineNum
+        REAL
+        PROPERTIES
+          Name                #LineNum
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{D7DB2095-C80C-4AE9-9D84-E50799A02B7F}
+        ENDPROPERTIES
+        
+      FIELD #ManualDiscountType
+        ENUM
+        PROPERTIES
+          Name                #ManualDiscountType
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{3D05773D-3C47-45C2-BDDD-D4ECD2C38E2E}
+          EnumType            #RetailManualDiscountType
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{F8D7FBD5-608A-4358-9EF6-6D3F5DC15532}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #Percentage
+        REAL
+        PROPERTIES
+          Name                #Percentage
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{5CD87FA4-8178-4BC1-B522-573C20CAA03A}
+        ENDPROPERTIES
+        
+      FIELD #PeriodicDiscountOfferId
+        STRING
+        PROPERTIES
+          Name                #PeriodicDiscountOfferId
+          HelpText            #@RET6035
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{F14F666E-62A5-4A92-94AD-AA9420AB86DD}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Label               #@RET3920
+          HelpText            #@RET3921
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{531A8D3F-BC12-4B2A-A596-B6911AC70697}
+        ENDPROPERTIES
+        
+      FIELD #SaleLineNum
+        REAL
+        PROPERTIES
+          Name                #SaleLineNum
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{E37D9269-4EEC-499F-B149-803879B97E18}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{2108A4D6-2AE0-4D62-8AA1-0DE5C5C66893}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{13E5D1C9-4D44-49EF-81DA-A4FAFEDA1556}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailTransactionDiscountTransT
+          Origin              #{B5872B92-C9DD-4361-B2C9-3E9634956BDF}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{FB730B57-603C-49F4-A721-15B674BDF966}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #LineNum
+        #Channel
+        #SaleLineNum
+        #TransactionId
+        #TerminalId
+        #StoreId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionDiscountTransT cursor)
+        #{
+        #    RetailTransactionDiscountTrans target;
+        #    RetailTransactionDiscountTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint TransactionDiscountTransUIdx
+        #                where (target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@TransactionId==cursor2.@TransactionId && target.@SaleLineNum==cursor2.@SaleLineNum && target.@Channel==cursor2.@Channel && target.@LineNum==cursor2.@LineNum);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @Amount,
+        #                    @Channel,
+        #                    @CustomerDiscountType,
+        #                    @DealPrice,
+        #                    @DiscountAmount,
+        #                    @DiscountCode,
+        #                    @DiscountOriginType,
+        #                    @LineNum,
+        #                    @ManualDiscountType,
+        #                    @Percentage,
+        #                    @PeriodicDiscountOfferId,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @SaleLineNum,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @Amount,
+        #                    @Channel,
+        #                    @CustomerDiscountType,
+        #                    @DealPrice,
+        #                    @DiscountAmount,
+        #                    @DiscountCode,
+        #                    @DiscountOriginType,
+        #                    @LineNum,
+        #                    @ManualDiscountType,
+        #                    @Percentage,
+        #                    @PeriodicDiscountOfferId,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @SaleLineNum,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionDiscountTransT cursor)
+        #{
+        #    RetailTransactionDiscountTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionDiscountTrans), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

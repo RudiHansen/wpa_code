@@ -12,10 +12,11 @@ Formatversion: 1
       Name                #AxdWPAStockTransfer
       Extends             #AxdBase
       RunOn               #Server
+      Origin              #{F2EE0F3E-679A-4236-8531-B017A7FCD324}
+      LegacyId            #50114
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class AxdWPAStockTransfer extends AxdBase
         #{
@@ -87,8 +88,8 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #GetLabel
-        #public LabelDescription getLabel()
+      SOURCE #getLabel
+        #public LabelString getLabel()
         #{
         #    return "@WPA214";
         #}
@@ -132,7 +133,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #updateList
-        #public AifEntityKey updateList(AifEntityKeyList            _entityKeyList,
+        #public AifResult updateList(AifEntityKeyList            _entityKeyList,
         #                               AifDocumentXML              _xml,
         #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
         #                               AifConstraintListCollection _constraintListcollection)

@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPABarCodeSetupId
       Label               #@WPA12
       HelpText            #@WPA13
+      Origin              #{83049A87-6E90-47DA-8645-09E34BB18480}
+      LegacyId            #50008
       Extends             #BarcodeSetupId
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

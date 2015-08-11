@@ -11,6 +11,11 @@ Formatversion: 1
     ##define.WPAInventSum('WPAInventSum')
     ##define.WPAInventSum_InventSum_1('WPAInventSum.InventSum_1')
     ##define.WPAInventSum_InventDim_1('WPAInventSum.InventDim_1')
+    #
   ENDSOURCE
+  PROPERTIES
+    Origin              #{ED8A7609-6208-4AA4-AC24-D33B0F5EC2FC}
+  ENDPROPERTIES
+  
 
 ***Element: END

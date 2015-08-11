@@ -11,26 +11,23 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASendProjCategory
       Extends             #AxdSend
-      RunOn               #Called from
+      Origin              #{B8B28E50-06F9-468A-8DD2-745E843E47D5}
+      LegacyId            #50084
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPASendProjCategory extends AxdSend
         #{
         #    ProjCategoryId  projCategoryId;
         #}
       ENDSOURCE
-      SOURCE #getEndpoint
-        #AifEndpointId getEndpoint()
+      SOURCE #parmDocumentClassId
+        #public AifDocumentClassId parmDocumentClassId(AifDocumentClassId _documentClassId = aifDocumentClassId)
         #{
-        #    ;
-        #    this.retrieveEndPoints();
+        #    aifDocumentClassId = _documentClassId;
         #
-        #    select firstonly tmpAifEndPoint;
-        #
-        #    return tmpAifEndPoint.EndpointId;
+        #    return aifDocumentClassId;
         #}
       ENDSOURCE
       SOURCE #parmProjCategoryId
@@ -85,47 +82,38 @@ Formatversion: 1
       SOURCE #showDialog
         #public boolean showDialog()
         #{
-        #    boolean ret;
-        #    ;
-        #    if (projCategoryId)
-        #    {
-        #        ret = false;
-        #    }
-        #    else
-        #    {
-        #        ret = true;
-        #    }
-        #    return ret;
+        #    return (projCategoryId == "");
         #}
       ENDSOURCE
       SOURCE #main
         #static public void main(Args args)
         #{
-        #    WPASendProjCategory WPASendProjCategory;
+        #    WPASendProjCategory sendProjCategory;
         #    AifConstraintList   aifConstraintList;
         #    AifConstraint       aifConstraint;
-        #    CategoryTable       categoryTable;
+        #    ProjCategory        projCategory;
         #    ;
         #
-        #    WPASendProjCategory = new WPASendProjCategory();
+        #    sendProjCategory    = new WPASendProjCategory();
         #    aifConstraintList   = new AifConstraintList();
         #    aifConstraint       = new AifConstraint();
         #
-        #    if (args.record())
+        #    if (args && args.record() && args.record().TableId == tableNum(ProjCategory))
         #    {
-        #        categoryTable    = args.record();
-        #        WPASendProjCategory.parmProjCategoryId(categoryTable.CategoryId);
+        #        projCategory = args.record();
+        #        sendProjCategory.parmProjCategoryId(projCategory.CategoryId);
         #    }
         #
         #    aifConstraint.parmType(AifConstraintType::NoConstraint);
         #    aifConstraintList.addConstraint(aifConstraint);
         #
-        #    WPASendProjCategory.parmShowDocPurpose(true) ;
-        #    WPASendProjCategory.parmServiceClassId(classnum(WPAProjCategoryService));
-        #    WPASendProjCategory.parmSendActionType(AifSendActionType::SendByQuery);
-        #    WPASendProjCategory.parmEndPoint(WPASendProjCategory.getEndpoint());
+        #    sendProjCategory.parmOutboundPortName("WPAItems");
+        #    sendProjCategory.parmShowDocPurpose(true) ;
+        #    sendProjCategory.parmServiceClassId(classnum(WPAProjCategoryService));
+        #    sendProjCategory.parmSendActionType(AifSendActionType::SendByQuery);
+        #    sendProjCategory.parmDocumentClassId(classnum(WPAProjCategory));
         #
-        #    WPASendProjCategory.sendMultipleDocuments(classnum(WPAProjCategory), classnum(WPAProjCategoryService), AifSendMode::Async, aifConstraintList);
+        #    sendProjCategory.sendMultipleDocuments(classnum(WPAProjCategory), classnum(WPAProjCategoryService), AifSendMode::Async, aifConstraintList);
         #}
       ENDSOURCE
     ENDMETHODS

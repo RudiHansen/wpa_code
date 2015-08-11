@@ -11,10 +11,9 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAInventLocationService
       ExternalName        #WPAInventLocationService
-      Namespace           #
       Class               #WPAInventLocationService
       SecurityKey         #WPAServices
-      Description         #
+      Origin              #{6055CB51-5250-4632-9638-02571D046570}
     ENDPROPERTIES
     
     OPERATIONS
@@ -25,11 +24,26 @@ Formatversion: 1
           EnableIdempotence   #No
         ENDPROPERTIES
         
-      ENDOPERATION
+        PERMISSIONSET #Permissions
+          PROPERTIES
+          ENDPROPERTIES
+          
+          TABLES #Tables
+          ENDTABLES
+          
+        SERVERMETHODS #Server Methods
+        ENDSERVERMETHODS
+        
+      ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+      ENDASSOCIATEDCODEPERMISSIONS
       
-    ENDOPERATIONS
-    
-  ENDSERVICE
+  ENDPERMISSIONSET
   
+ENDOPERATION
+
+ENDOPERATIONS
+
+ENDSERVICE
+
 
 ***Element: END

@@ -11,13 +11,12 @@ Formatversion: 1
     PROPERTIES
       Name                #AxWPAWorkcardLine
       Extends             #AxInternalBase
-      RunOn               #Called from
+      Origin              #{38F460A2-3EAE-4AC0-B3A8-6866706BA75E}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #axOrig
-        #public AxWPAWorkcardLine axOrig()
+        #public AxInternalBase axOrig()
         #{
         #    return super();
         #}
@@ -27,11 +26,14 @@ Formatversion: 1
         #class AxWPAWorkcardLine extends AxInternalBase
         #{
         #    WPAWorkcardLine WPAWorkcardLine;
+        #
+        #    //int             cacheRecordIdx;//TODO delete if no cache record
+        #    //int             cacheObjectIdx;//TODO delete if no cache object
         #}
         #
       ENDSOURCE
       SOURCE #currentRecord
-        #public WPAWorkcardLine currentRecord(WPAWorkcardLine _WPAWorkcardLine = WPAWorkcardLine)
+        #public Common currentRecord(Common _WPAWorkcardLine = WPAWorkcardLine)
         #{
         #    if (!prmisdefault(_WPAWorkcardLine))
         #    {
@@ -48,7 +50,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #emptyRecord
-        #protected WPAWorkcardLine emptyRecord()
+        #protected Common emptyRecord()
         #{
         #    WPAWorkcardLine localWPAWorkcardLine;
         #    ;
@@ -69,11 +71,11 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #parmGUID
-        #public WPAGUID parmGUID(WPAGUID _GUID = '')
+        #public WPAGUID parmGUID(WPAGUID _gUID = '')
         #{
-        #    if (!prmisdefault(_GUID))
+        #    if (!prmisdefault(_gUID))
         #    {
-        #        this.setField(fieldNum(WPAWorkcardLine, GUID), _GUID);
+        #        this.setField(fieldNum(WPAWorkcardLine, GUID), _gUID);
         #    }
         #
         #    return wPAWorkcardLine.GUID;
@@ -148,26 +150,11 @@ Formatversion: 1
         #    if (!prmisdefault(_itemUnit))
         #    {
         #        dictField = new DictField(tablenum(WPAWorkcardLine),fieldnum(WPAWorkcardLine,ItemUnit));
-        #        if(this.valueMappingInbound())
-        #        {
-        #            this.validateInboundString(_itemUnit,dictField,this.mapPolicy().xMLMapUnitId());
-        #            _itemUnit = this.axUnitId(_itemUnit);
-        #        }
-        #        else
-        #        {
-        #            this.validateInboundString(_itemUnit,dictField);
-        #        }
+        #        this.validateInboundString(_itemUnit,dictField);
         #        this.setField(fieldNum(WPAWorkcardLine, ItemUnit), _itemUnit);
         #    }
         #
-        #    if (this.valueMappingOutbound())
-        #    {
-        #        return this.axUnitId(wPAWorkcardLine.ItemUnit);
-        #    }
-        #    else
-        #    {
-        #        return wPAWorkcardLine.ItemUnit;
-        #    }
+        #    return wPAWorkcardLine.ItemUnit;
         #}
         #
       ENDSOURCE
@@ -208,8 +195,10 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #parmProductEmploymentCode
-        #public WPAProductEmploymentCode parmProductEmploymentCode(WPAProductEmploymentCode _productEmploymentCode = '')
+        #public WPAProductEmploymentCode parmProductEmploymentCode(WPAProductEmploymentCode _productEmploymentCode = 0)
         #{
+        #    //TODO This field can be set from external and may lead to unintended information disclosure
+        #    //     To avoid this problem the fields property Visible can be set to NO
         #    if (!prmisdefault(_productEmploymentCode))
         #    {
         #        this.setField(fieldNum(WPAWorkcardLine, ProductEmploymentCode), _productEmploymentCode);
@@ -231,6 +220,30 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
+      SOURCE #parmRefRecId
+        #public RefRecId parmRefRecId(RefRecId _refRecId = 0)
+        #{
+        #    if (!prmisdefault(_refRecId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, RefRecId), _refRecId);
+        #    }
+        #
+        #    return wPAWorkcardLine.RefRecId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmRefTableId
+        #public RefTableId parmRefTableId(RefTableId _refTableId = 0)
+        #{
+        #    if (!prmisdefault(_refTableId))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, RefTableId), _refTableId);
+        #    }
+        #
+        #    return wPAWorkcardLine.RefTableId;
+        #}
+        #
+      ENDSOURCE
       SOURCE #parmStockLocationId
         #public WPAStockLocationId parmStockLocationId(WPAStockLocationId _stockLocationId = '')
         #{
@@ -240,6 +253,18 @@ Formatversion: 1
         #    }
         #
         #    return wPAWorkcardLine.StockLocationId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmTransDate
+        #public TransDate parmTransDate(TransDate _transDate = dateNull())
+        #{
+        #    if (!prmisdefault(_transDate))
+        #    {
+        #        this.setField(fieldNum(WPAWorkcardLine, TransDate), _transDate);
+        #    }
+        #
+        #    return wPAWorkcardLine.TransDate;
         #}
         #
       ENDSOURCE
@@ -267,192 +292,14 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #setDirection
-        #protected void setDirection()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, Direction)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setGUID
-        #protected void setGUID()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, GUID)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setItemDescription1
-        #protected void setItemDescription1()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemDescription1)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setItemDescription2
-        #protected void setItemDescription2()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemDescription2)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setItemEanNumber
-        #protected void setItemEanNumber()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemEanNumber)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setItemId
-        #protected void setItemId()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemId)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setItemLineType
-        #protected void setItemLineType()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemLineType)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setItemUnit
-        #protected void setItemUnit()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemUnit)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setItemUnitPrice
-        #protected void setItemUnitPrice()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ItemUnitPrice)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setOrderId
-        #protected void setOrderId()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, OrderId)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setPrice
-        #protected void setPrice()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, Price)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setProductEmploymentCode
-        #protected void setProductEmploymentCode()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, ProductEmploymentCode)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setQty
-        #protected void setQty()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, Qty)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setStockLocationId
-        #protected void setStockLocationId()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, StockLocationId)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
       SOURCE #setTableFields
         #protected void setTableFields()
         #{
-        #    super();
-        #
-        #    useMapPolicy = false;
-        #
-        #    this.setItemId();
-        #    this.setItemEanNumber();
-        #    this.setItemUnitPrice();
-        #    this.setItemDescription1();
-        #    this.setItemDescription2();
-        #    this.setQty();
-        #    this.setPrice();
-        #    this.setItemUnit();
-        #    this.setStockLocationId();
-        #    this.setItemLineType();
-        #    this.setProductEmploymentCode();
-        #    this.setTransferred();
-        #    this.setOrderId();
-        #
-        #    useMapPolicy = true;
+        #    this.currentRecord().defaultRow();
         #}
         #
       ENDSOURCE
-      SOURCE #setTransferred
-        #protected void setTransferred()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, Transferred)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #setWorkcardId
-        #protected void setWorkcardId()
-        #{
-        #    if (this.isMethodExecuted(funcName(), fieldNum(WPAWorkcardLine, WorkcardId)))
-        #    {
-        #        return;
-        #    }
-        #}
-        #
-      ENDSOURCE
-      SOURCE #WPAWorkcardLine
+      SOURCE #wPAWorkcardLine
         #public WPAWorkcardLine wPAWorkcardLine(WPAWorkcardLine _wPAWorkcardLine = wPAWorkcardLine)
         #{
         #    if (!prmisdefault(_wPAWorkcardLine))

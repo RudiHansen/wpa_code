@@ -17,6 +17,7 @@ Formatversion: 1
       Object              #WPAStockTransfer_Update
       ConfigurationKey    #WPAWarehouseManagement
       SecurityKey         #WPAPeriodic
+      Origin              #{0C0404C9-9ED3-4E3E-BD1E-0D838D161FE8}
     ENDPROPERTIES
     
   ENDMENUITEM

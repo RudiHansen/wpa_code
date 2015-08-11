@@ -1,0 +1,159 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendInventSerial unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendInventSerial
+    PROPERTIES
+      Name                #WPASendInventSerial
+      Extends             #AxdSend
+      Origin              #{380C19EF-F4D0-4005-9874-B5B80378B041}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #class WPASendInventSerial extends AxdSend
+        #{
+        #    NoYes   skipDialog;
+        #    ItemId  itemId;
+        #}
+      ENDSOURCE
+      SOURCE #parmDocumentClassId
+        #public AifDocumentClassId parmDocumentClassId(AifDocumentClassId _documentClassId = aifDocumentClassId)
+        #{
+        #    aifDocumentClassId = _documentClassId;
+        #
+        #    return aifDocumentClassId;
+        #}
+      ENDSOURCE
+      SOURCE #parmItemId
+        #public ItemId parmItemId(ItemId _itemId = itemId)
+        #{
+        #    ;
+        #    itemId = _itemId;
+        #
+        #    return itemId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmSkipDialog
+        #public NoYes parmSkipDialog(NoYes _skipDialog = skipDialog)
+        #{
+        #    ;
+        #    skipDialog = _skipDialog;
+        #
+        #    return skipDialog;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun                ret;
+        #    QueryBuildRange         qbr_ItemId;
+        #    ;
+        #    if (!ret)
+        #    {
+        #        ret = super();
+        #        qbr_ItemId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(InventSerial)), fieldnum(InventSerial, ItemId));
+        #        if (itemId)
+        #        {
+        #            qbr_ItemId.value(itemId);
+        #            qbr_ItemId.status(RangeStatus::Locked);
+        #        }
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    boolean ret;
+        #    ;
+        #    if (itemId)
+        #    {
+        #        ret = false;
+        #    }
+        #    else
+        #    {
+        #        ret = true;
+        #    }
+        #    if (skipDialog)
+        #    {
+        #        ret = false;
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #getPortName
+        #public static AifPortName getPortName()
+        #{
+        #    AifPortActionPolicy aifPortActionPolicy;
+        #    ;
+        #    select firstOnly aifPortActionPolicy
+        #        where aifPortActionPolicy.ActionId == "WPAInventSerialService.find";
+        #
+        #    return AifPort::findById(aifPortActionPolicy.Port).Name;
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args args)
+        #{
+        #    WPASendInventSerial wPASendInventSerial;
+        #    AifConstraintList   aifConstraintList;
+        #    AifConstraint       aifConstraint;
+        #    InventTable         inventTable;
+        #    ;
+        #
+        #    wPASendInventSerial = new WPASendInventSerial();
+        #    aifConstraintList   = new AifConstraintList();
+        #    aifConstraint       = new AifConstraint();
+        #    if (args.record())
+        #    {
+        #        inventTable = args.record();
+        #        wPASendInventSerial.parmItemId(inventTable.ItemId);
+        #    }
+        #    wPASendInventSerial.parmSkipDialog(args.parmEnum());
+        #
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    wPASendInventSerial.parmOutboundPortName(WPASendInventSerial::getPortName());
+        #    wPASendInventSerial.parmShowDocPurpose(true) ;
+        #    wPASendInventSerial.parmServiceClassId(classnum(WPAInventSerialService));
+        #    wPASendInventSerial.parmSendActionType(AifSendActionType::SendByQuery);
+        #    wPASendInventSerial.parmDocumentClassId(classnum(WPAInventSerial));
+        #
+        #    wPASendInventSerial.sendMultipleDocuments(classnum(WPAInventSerial), classnum(WPAInventSerialService), AifSendMode::Async, aifConstraintList);
+        #
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

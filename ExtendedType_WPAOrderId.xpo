@@ -13,6 +13,9 @@ Formatversion: 1
       Name                #WPAOrderId
       Label               #@SYS93383
       HelpText            #@SYS27753
+      Origin              #{84A3C2B5-ED8B-40EE-8FEC-6B3656D7DA88}
+      LegacyId            #50037
+      StringSize          #20
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

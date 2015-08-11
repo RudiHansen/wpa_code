@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAAttentionName
       Label               #@WPA39
       HelpText            #@WPA40
+      Origin              #{9D3607D7-5A2B-4FC0-A518-ECDECC727205}
+      LegacyId            #50007
       Extends             #Description
       StringSize          #60
     ENDPROPERTIES
@@ -22,6 +24,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

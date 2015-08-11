@@ -15,9 +15,9 @@ Formatversion: 1
       HelpText            #@WPA146
       ObjectType          #Class
       Object              #WPASendServiceOrder
-      RunOn               #Called from
       ConfigurationKey    #WPAIntegration
       SecurityKey         #WPAPeriodic
+      Origin              #{50FEC892-ED29-46B8-9058-EE230A874C50}
     ENDPROPERTIES
     
   ENDMENUITEM

@@ -1,0 +1,177 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAEmpl_HcmWorker unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAEmpl_HcmWorker
+    PROPERTIES
+      Name                #WPAEmpl_HcmWorker
+      Extends             #AfStronglyTypedDataContainer
+      Origin              #{19C9B9D8-9505-4583-B402-9870F26FD6CB}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAEmpl_HcmWorker</c> class is the data object class that is exposed through the <c>WPAEmplService</c> class.
+        #/// </summary>
+        ##AxdWPAEmplDCT
+        #[AifDataContainerTypeAttribute(#WPAEmpl_HcmWorker)]
+        #class WPAEmpl_HcmWorker extends AfStronglyTypedDataContainer
+        #{
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.PersonnelNumber('PersonnelNumber')
+        #    #define.Person('Person')
+        #    #define.HcmEmployment('HcmEmployment')
+        #    #define.DirPerson('DirPerson')
+        #    #define._DocumentHash('_DocumentHash')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createDirPerson
+        #public AfStronglyTypedDataContainerList createDirPerson()
+        #{
+        #    return this.get_NewList(#DirPerson);
+        #}
+      ENDSOURCE
+      SOURCE #createHcmEmployment
+        #public AfStronglyTypedDataContainerList createHcmEmployment()
+        #{
+        #    return this.get_NewList(#HcmEmployment);
+        #}
+      ENDSOURCE
+      SOURCE #exists_DocumentHash
+        #public boolean exists_DocumentHash()
+        #{
+        #    return this.exists(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #existsDirPerson
+        #public boolean existsDirPerson()
+        #{
+        #    return this.exists(#DirPerson);
+        #}
+      ENDSOURCE
+      SOURCE #existsHcmEmployment
+        #public boolean existsHcmEmployment()
+        #{
+        #    return this.exists(#HcmEmployment);
+        #}
+      ENDSOURCE
+      SOURCE #existsPerson
+        #public boolean existsPerson()
+        #{
+        #    return this.exists(#Person);
+        #}
+      ENDSOURCE
+      SOURCE #existsPersonnelNumber
+        #public boolean existsPersonnelNumber()
+        #{
+        #    return this.exists(#PersonnelNumber);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #parm_DocumentHash
+        #public str parm_DocumentHash(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#_DocumentHash, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #parmDirPerson
+        #public AfStronglyTypedDataContainerList parmDirPerson(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#DirPerson, _value);
+        #    }
+        #
+        #    return this.get_List(#DirPerson);
+        #}
+      ENDSOURCE
+      SOURCE #parmHcmEmployment
+        #public AfStronglyTypedDataContainerList parmHcmEmployment(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#HcmEmployment, _value);
+        #    }
+        #
+        #    return this.get_List(#HcmEmployment);
+        #}
+      ENDSOURCE
+      SOURCE #parmPerson
+        #public DirPartyNumber parmPerson(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Person, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Person);
+        #}
+      ENDSOURCE
+      SOURCE #parmPersonnelNumber
+        #public HcmPersonnelNumberId parmPersonnelNumber(HcmPersonnelNumberId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PersonnelNumber, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PersonnelNumber);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public RecId parmRecId(RecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

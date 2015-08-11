@@ -12,13 +12,17 @@ Formatversion: 1
       Name                #AxdWPAInventSum
       Extends             #AxdBase
       RunOn               #Server
+      Origin              #{A6F669D5-0D9B-4174-AFEA-B747097EEA0D}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class AxdWPAInventSum extends AxdBase
         #{
+        #    #define.InventSum_1_DataSourceName('InventSum_1')
+        #    #define.InventDim_1_DataSourceName('InventDim_1')
+        #    #define.InventLocation_1_DataSourceName('InventLocation_1')
+        #    #define.WPAIntegrationLog_1_DataSourceName('WPAIntegrationLog_1')
         #}
         #
       ENDSOURCE
@@ -37,6 +41,20 @@ Formatversion: 1
         #                            AifConstraintListCollection _constraintListCollection)
         #{
         #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
         #}
         #
       ENDSOURCE
@@ -59,7 +77,9 @@ Formatversion: 1
         #    aifActionInfo.parmActionType(AifActionType::QueryDocuments);
         #    aifActionInfo.parmExternalName(aifActionInfo.parmActionId());
         #    aifActionInfo.parmMethodName(methodstr(AxdBase, findList));
+        #
         #    aifActionInfo.parmLabel("@WPA218");
+        #
         #    aifActionInfo.parmDescription("@WPA219");
         #    aifActionInfo.parmDisplayMenuItemName(menuitemdisplaystr(AifDocConfiguration));
         #
@@ -72,24 +92,24 @@ Formatversion: 1
       SOURCE #getConstraintList
         #public void getConstraintList(Common _curRec, AifConstraintList _constraintList)
         #{
-        #    AifConstraint   aifConstraint = new AifConstraint();
-        #    InventSum       InventSum;
+        #    AifConstraint  aifConstraint = new AifConstraint();
+        #
+        #    InventSum    InventSum;
         #    ;
-        #    if (_curRec.TableId != tablenum(InventSum))
+        #    if (!(_curRec is InventSum))
         #    {
         #         throw error(strfmt("@SYS23396",funcname()));
         #    }
         #    InventSum = _curRec ;
         #
-        #    aifConstraint.parmType(AIFConstraintType::Vendor);
+        #    aifConstraint.parmType(AIFConstraintType::NoConstraint);
         #
-        #    //aifConstraint.parmId(InventSum.IdType);
         #    _constraintList.addConstraint(aifConstraint) ;
         #}
         #
       ENDSOURCE
-      SOURCE #GetLabel
-        #public LabelDescription getLabel()
+      SOURCE #getLabel
+        #public LabelString getLabel()
         #{
         #    return "@WPA217";
         #}
@@ -114,7 +134,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #updateList
-        #public AifEntityKey updateList(AifEntityKeyList            _entityKeyList,
+        #public AifResult updateList(AifEntityKeyList            _entityKeyList,
         #                               AifDocumentXML              _xml,
         #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
         #                               AifConstraintListCollection _constraintListcollection)

@@ -11,11 +11,11 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAStockTransfer_Update
       Extends             #RunBaseBatch
-      RunOn               #Called from
+      Origin              #{4AD4DD1E-B9DB-4AA7-8402-8F8BAC57D964}
+      LegacyId            #50112
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPAStockTransfer_Update extends RunBaseBatch
         #{
@@ -35,6 +35,7 @@ Formatversion: 1
         #{
         #    InventJournalTrans  inventJournalTrans;
         #    InventDim           inventDim;
+        #    InventDimParm       inventDimParm;
         #    ItemId              itemId;
         #    InventTable         inventTable;
         #    ;
@@ -60,6 +61,7 @@ Formatversion: 1
         #        [itemId, inventDim.configId, inventDim.InventSizeId, inventDim.InventColorId] = this.splitItemId(itemId);
         #        inventDim.InventLocationId      = _wPAStockTransfer.InventLocationIdTo;
         #        inventDim.InventSiteId          = InventLocation::find(inventDim.InventLocationId).InventSiteId;
+        #        inventDim.inventSerialId        = _wPAStockTransfer.InventSerialId;
         #        inventTable                     = InventTable::find(itemId);
         #
         #        inventJournalTrans.clear();
@@ -69,7 +71,17 @@ Formatversion: 1
         #        inventJournalTrans.InventDimId  = InventDim::findOrCreate(inventDim).inventDimId;
         #        inventJournalTrans.initFromInventTable(inventTable, false, false);
         #        inventJournalTrans.TransDate    = systemdateget();
-        #        inventJournalTrans.Qty          = _wPAStockTransfer.DifferenceQty;
+        #        if (WPAParameters::find().InventoryPostAs == WPAInventoryPostAs::PostDifference)
+        #        {
+        #            inventJournalTrans.Qty          = _wPAStockTransfer.DifferenceQty;
+        #        }
+        #        else
+        #        {
+        #            inventDimParm.initFromInventDim(inventDim);
+        #            inventJournalTrans.InventOnHand = InventSumDatePhysicalDim::onHandQty(systemdateget(),itemId,inventDim, inventDimParm);
+        #            inventJournalTrans.Counted      = _wPAStockTransfer.Qty;
+        #            inventJournalTrans.Qty          = inventJournalTrans.Counted - inventJournalTrans.InventOnHand;
+        #        }
         #        inventJournalTrans.insert();
         #        if (inventJournalTrans)
         #        {
@@ -136,6 +148,7 @@ Formatversion: 1
         #        [itemId, inventDimFrom.configId, inventDimFrom.InventSizeId, inventDimFrom.InventColorId] = this.splitItemId(itemId);
         #        inventDimFrom.InventLocationId      = _wPAStockTransfer.InventLocationIdFrom;
         #        inventDimFrom.InventSiteId          = InventLocation::find(inventDimFrom.InventLocationId).InventSiteId;
+        #        inventDimFrom.inventSerialId        = _wPAStockTransfer.InventSerialId;
         #        inventDimTo.data(inventDimFrom);
         #        inventDimTo.InventLocationId        = _wPAStockTransfer.InventLocationIdTo;
         #        inventDimTo.InventSiteId            = InventLocation::find(inventDimTo.InventLocationId).InventSiteId;
@@ -150,7 +163,7 @@ Formatversion: 1
         #        inventJournalTrans.ToInventDimId    = InventDim::findOrCreate(inventDimTo).inventDimId;
         #        inventJournalTrans.initFromInventTable(inventTable, false, false);
         #        inventJournalTrans.TransDate        = systemdateget();
-        #        inventJournalTrans.Qty              = _wPAStockTransfer.DifferenceQty;
+        #        inventJournalTrans.Qty              = _wPAStockTransfer.Qty;
         #        inventJournalTrans.insert();
         #        if (inventJournalTrans)
         #        {
@@ -170,6 +183,14 @@ Formatversion: 1
         #    ;
         #
         #    return [#CurrentVersion, #CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #postTransferJournal
+        #private void postTransferJournal()
+        #{
+        #    ;
+        #    inventJournalCheckPost::newPostJournal(inventJournalTableTransfer).run();
+        #
         #}
       ENDSOURCE
       SOURCE #refCompany
@@ -234,11 +255,15 @@ Formatversion: 1
         #            wPAStockTransfer.Updated    = NoYes::Yes;
         #            wPAStockTransfer.update();
         #        }
+        #        if (inventJournalTableTransfer)
+        #        {
+        #            this.postTransferJournal();
+        #        }
         #        ttscommit;
         #    }
         #    catch(Exception::Error)
         #    {
-        #        if (appl.ttsLevel() == 0)
+        #       if (appl.ttsLevel() == 0)
         #        {
         #            if (xSession::currentRetryCount() >= #RetryNum)
         #            {
@@ -254,6 +279,7 @@ Formatversion: 1
         #                    wPAStockTransfer.ErrorTxt   = conpeek(conpeek(infolog.cut(infolog.line(),infolog.line()),2),2);
         #                    wPAStockTransfer.update();
         #                }
+        #                inventJournalTableTransfer = null;
         #                ttscommit;
         #                error("@WPA208");
         #                retry;
@@ -327,14 +353,14 @@ Formatversion: 1
       SOURCE #splitItemId
         #container splitItemId(ItemId    _itemId)
         #{
-        #    WPAParameters       wPAParameters   = WPAParameters::find();
-        #    ItemId              itemId          = _itemId;
-        #    InventTable         inventTable;
-        #    str                 dimensions;
-        #    ConfigId            configId;
-        #    InventSizeId        inventSizeId;
-        #    InventColorId       inventColorId;
-        #    ProjLinePropertyId  projLinePropertyId;
+        #    WPAParameters               wPAParameters   = WPAParameters::find();
+        #    ItemId                      itemId          = _itemId;
+        #    InventTable                 inventTable;
+        #    str                         dimensions;
+        #    EcoResItemConfigurationName configId;
+        #    EcoResItemSizeName          inventSizeId;
+        #    EcoResItemColorName         inventColorId;
+        #    ProjLinePropertyId          projLinePropertyId;
         #    ;
         #
         #    if (wPAParameters.UsePrefix)
@@ -410,7 +436,7 @@ Formatversion: 1
       SOURCE #description
         #client server public static ClassDescription description()
         #{
-        #    return ("@WPA224");
+        #    return ("Update imported stock transfers");
         #
         #}
       ENDSOURCE

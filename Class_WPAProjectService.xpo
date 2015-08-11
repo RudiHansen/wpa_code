@@ -12,11 +12,14 @@ Formatversion: 1
       Name                #WPAProjectService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{15785965-8D37-48D9-ABA0-76EAAF278526}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAProjectService</c> class serves as the document service for the <c>WPAProject</c> document type.
+        #/// </summary>
         #class WPAProjectService extends AifDocumentService
         #{
         #
@@ -24,6 +27,16 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAProject</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
         #public WPAProject find(AifQueryCriteria _queryCriteria)
         #{
         #    WPAProject wPAProject = new WPAProject();

@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAUrgent
       Label               #@WPA64
       HelpText            #@WPA65
+      Origin              #{9CC64BCA-124C-46BD-A0CB-B7E0B5601034}
+      LegacyId            #50056
       StringSize          #2
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPAWarehouseManagement
       Label               #WPA warehouse management
       ParentKey           #WPAIntegration
+      Origin              #{DD99B966-FC18-42EA-855B-9978F8AD8B50}
+      LegacyId            #50002
     ENDPROPERTIES
     
   ENDCONFIGURATIONKEY

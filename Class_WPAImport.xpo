@@ -11,11 +11,12 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAImport
       Extends             #RunBaseBatch
-      RunOn               #Server
+      RunOn               #Client
+      Origin              #{E9FAA132-3B0A-46DC-8434-29EA4439DB77}
+      LegacyId            #50044
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPAImport extends RunBaseBatch
         #{
@@ -43,8 +44,8 @@ Formatversion: 1
         #    DialogRunbase   dialogRunbase = super();
         #    ;
         #
-        #    filePath_df         = dialogRunbase.addFieldValue(TypeId(FilePath), filePath, "Import file path");
-        #    archiveFilePath_df  = dialogRunbase.addFieldValue(TypeId(FilePath), archiveFilePath, "Archive file path");
+        #    filePath_df         = dialogRunbase.addFieldValue(extendedTypeStr(FilePath), filePath, "Import file path");
+        #    archiveFilePath_df  = dialogRunbase.addFieldValue(extendedTypeStr(FilePath), archiveFilePath, "Archive file path");
         #
         #    return dialogRunbase;
         #}
@@ -64,7 +65,7 @@ Formatversion: 1
         #
         #    files = System.IO.Directory::GetFiles(dir, filePattern);
         #
-        #    if(files)
+        #    if (files)
         #    {
         #        length =files.get_Length();
         #        for(i=0;i<length;i++)
@@ -212,8 +213,8 @@ Formatversion: 1
         #                                case #WorkcardTypeId:
         #                                    //if (xmlReader.read())//WPA 5.5 upgrade
         #                                    //{
-        #                                     //   name = xmlReader.localName();
-        #                                     //   if(name == #WorkcardTypeId)
+        #                                    //    name = xmlReader.localName();
+        #                                    //    if(name == #WorkcardTypeId)
         #                                        {
         #                                            value = xmlReader.readElementString2(name);
         #                                            xmlReader.read();
@@ -238,7 +239,7 @@ Formatversion: 1
         #                                        if(name == #ServiceObjectId)
         #                                        {
         #                                            value = xmlReader.readElementString2(name);
-        #                                            // WPA_5_5_2 xmlReader.read();
+        #                                            //ABHxmlReader.read();
         #                                        }
         #                                    }
         #                                    break;

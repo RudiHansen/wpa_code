@@ -11,11 +11,11 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAStockTransferTable
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{2F590E9E-FA4E-47BD-A624-2E8F28BF6BF4}
+      LegacyId            #50115
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPAStockTransferTable extends AifDocument
         #{
@@ -108,6 +108,7 @@ Formatversion: 1
         #    #define.FromStockLocationId ("FromStockLocationId")
         #    #define.ToStockLocationId   ("ToStockLocationId")
         #    #define.StockTransferTypeId ("StockTransferTypeId")
+        #    #define.Batchnumber         ("Batchnumber")
         #
         #    XmlTextReader           xmlReader;
         #    Map                     fieldValues;
@@ -176,7 +177,8 @@ Formatversion: 1
         #                    wPAStockTransfer.InventLocationIdTo     = fieldValues.lookup(#ToStockLocationId);
         #                if (fieldValues.exists(#StockTransferTypeId))
         #                    wPAStockTransfer.StockTransferType      = fieldValues.lookup(#StockTransferTypeId);
-        #
+        #                if (fieldValues.exists(#Batchnumber))
+        #                    wPAStockTransfer.InventSerialId         = fieldValues.lookup(#Batchnumber);
         #                wPAStockTransfer.insert();
         #            }
         #        }

@@ -1,0 +1,396 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalReceipt_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalReceipt_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalReceipt_BRT
+      Label               #@RET4040072
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{B91E14F7-9D8C-46B6-B744-CD2DDA05F67B}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #AccountingDate
+        DATE
+        PROPERTIES
+          Name                #AccountingDate
+          Label               #@SYS56521
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{55B57446-03D8-4D44-83C9-B21B3BE75C73}
+        ENDPROPERTIES
+        
+      FIELD #AdditionalFiscalMemoryIndex
+        INT
+        PROPERTIES
+          Name                #AdditionalFiscalMemoryIndex
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{AB849876-B2B6-4584-935C-C43D29FF3508}
+        ENDPROPERTIES
+        
+      FIELD #ConsumerCNPJCPFNumber
+        STRING
+        PROPERTIES
+          Name                #ConsumerCNPJCPFNumber
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{918FC6F4-306B-4256-B0CC-083A98F9D1C1}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ConsumerName
+        STRING
+        PROPERTIES
+          Name                #ConsumerName
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{59666EE1-C184-4252-A592-D7A3B3C2F97C}
+          StringSize          #100
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishment
+        STRING
+        PROPERTIES
+          Name                #FiscalEstablishment
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{8C41D1E5-49C2-4BAE-BC1D-31CB8BDF4DB1}
+        ENDPROPERTIES
+        
+      FIELD #FiscalPrinterSerialNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalPrinterSerialNumber
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{AB1C6F86-741B-4AD6-B3FE-095C5FCE9881}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalReceiptDateTime
+        DATETIME
+        PROPERTIES
+          Name                #FiscalReceiptDateTime
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{6D75F5EA-F9DB-4E9A-9569-E9E5EDF0D688}
+        ENDPROPERTIES
+        
+      FIELD #FiscalReceiptModel
+        STRING
+        PROPERTIES
+          Name                #FiscalReceiptModel
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{DD717789-0C89-4960-9A6A-BABDF9AC1159}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #FiscalReceiptNumber
+        INT
+        PROPERTIES
+          Name                #FiscalReceiptNumber
+          Label               #@SYS4007044
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{F7CC2D81-140E-4227-9758-62D909A12684}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{AF836047-8E18-41B0-9E17-F249073063F7}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #PrintedTotalDiscountAmount
+        REAL
+        PROPERTIES
+          Name                #PrintedTotalDiscountAmount
+          Label               #@SYS6465
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{0789A618-08DF-42E3-A671-6BF7E36A1CA5}
+        ENDPROPERTIES
+        
+      FIELD #PrintedTotalSurchargeAmount
+        REAL
+        PROPERTIES
+          Name                #PrintedTotalSurchargeAmount
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{3B835787-9372-4B1A-9F03-EDC06DA12054}
+        ENDPROPERTIES
+        
+      FIELD #QuantityDecimals
+        INT
+        PROPERTIES
+          Name                #QuantityDecimals
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{55C5433D-4210-42E3-A0CB-172D558034DE}
+        ENDPROPERTIES
+        
+      FIELD #ReceiptNumber
+        INT
+        PROPERTIES
+          Name                #ReceiptNumber
+          Label               #@SYP4930000
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{0CAB764F-6222-4252-AFE1-A8422411546D}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{12A33F30-C36F-4B3F-9831-8670FCBB57FF}
+        ENDPROPERTIES
+        
+      FIELD #Status
+        ENUM
+        PROPERTIES
+          Name                #Status
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{9A863BFF-2362-466F-A8A0-C99651375ADF}
+          EnumType            #FiscalDocumentStatus_BR
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{86A3C3F2-7863-4064-B2F8-CFC1769B0A19}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{43F0B2A8-1265-4354-A430-E0EB3E1FA491}
+        ENDPROPERTIES
+        
+      FIELD #TotalAmount
+        REAL
+        PROPERTIES
+          Name                #TotalAmount
+          Label               #@RET3488
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{E1FE727A-32C3-454D-9FC0-1D9ED0B34DCC}
+        ENDPROPERTIES
+        
+      FIELD #TotalDiscountAmount
+        REAL
+        PROPERTIES
+          Name                #TotalDiscountAmount
+          Label               #@SYS6465
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{EB58F644-A240-4B0B-B041-B1BD928E86E3}
+        ENDPROPERTIES
+        
+      FIELD #TotalSurchargeAmount
+        REAL
+        PROPERTIES
+          Name                #TotalSurchargeAmount
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{D9518369-1735-4C1A-8155-528395FD0EAA}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{A2B86B7D-AD99-44F9-88C6-34947F4A69B6}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #UnitDecimals
+        INT
+        PROPERTIES
+          Name                #UnitDecimals
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{B76B682D-4C15-4764-810B-7CDAD6966652}
+        ENDPROPERTIES
+        
+      FIELD #VoidedAfterEndReceipt
+        INT
+        PROPERTIES
+          Name                #VoidedAfterEndReceipt
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{53361806-CEA1-4DAE-942A-86321F0B89B2}
+        ENDPROPERTIES
+        
+      FIELD #ZReportNumber
+        INT
+        PROPERTIES
+          Name                #ZReportNumber
+          Label               #@SYS4006970
+          Table               #RetailFiscalReceipt_BRT
+          Origin              #{9D623060-C971-47CF-BADC-E4F6ECC48E22}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{C0FE9072-33A2-42DC-9B3E-A212FAD50F4E}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TransactionId
+        #TerminalId
+        #StoreId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalReceipt_BRT cursor)
+        #{
+        #    RetailFiscalReceipt_BR target;
+        #    RetailFiscalReceipt_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint TransactionIdIdx
+        #                where (target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@TransactionId==cursor2.@TransactionId);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @AccountingDate,
+        #                    @AdditionalFiscalMemoryIndex,
+        #                    @ConsumerCNPJCPFNumber,
+        #                    @ConsumerName,
+        #                    @FiscalEstablishment,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @FiscalReceiptDateTime,
+        #                    @FiscalReceiptModel,
+        #                    @FiscalReceiptNumber,
+        #                    @PrintedTotalDiscountAmount,
+        #                    @PrintedTotalSurchargeAmount,
+        #                    @QuantityDecimals,
+        #                    @ReceiptNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @Status,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TotalAmount,
+        #                    @TotalDiscountAmount,
+        #                    @TotalSurchargeAmount,
+        #                    @TransactionId,
+        #                    @UnitDecimals,
+        #                    @VoidedAfterEndReceipt,
+        #                    @ZReportNumber,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @AccountingDate,
+        #                    @AdditionalFiscalMemoryIndex,
+        #                    @ConsumerCNPJCPFNumber,
+        #                    @ConsumerName,
+        #                    @FiscalEstablishment,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @FiscalReceiptDateTime,
+        #                    @FiscalReceiptModel,
+        #                    @FiscalReceiptNumber,
+        #                    @PrintedTotalDiscountAmount,
+        #                    @PrintedTotalSurchargeAmount,
+        #                    @QuantityDecimals,
+        #                    @ReceiptNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @Status,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TotalAmount,
+        #                    @TotalDiscountAmount,
+        #                    @TotalSurchargeAmount,
+        #                    @TransactionId,
+        #                    @UnitDecimals,
+        #                    @VoidedAfterEndReceipt,
+        #                    @ZReportNumber,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailFiscalReceipt_BRT cursor)
+        #{
+        #    RetailFiscalReceipt_BRT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailFiscalReceipt_BR), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

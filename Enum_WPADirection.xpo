@@ -13,6 +13,8 @@ Formatversion: 1
       Label               #@WPA159
       Help                #@WPA160
       UseEnumValue        #Yes
+      Origin              #{CEF24D37-6A36-4181-939B-D58A90947C16}
+      LegacyId            #50002
     ENDPROPERTIES
     
     TYPEELEMENTS

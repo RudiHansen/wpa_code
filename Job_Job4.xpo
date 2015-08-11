@@ -1,0 +1,29 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: Job4 unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #Job4
+    #static void Job4(Args _args)
+    #{
+    #    inventDim       inventDim;
+    #    inventDimParm   inventDimPArm;
+    #    ;
+    #    inventDim.inventSerialId            = "test2";
+    #    inventDimParm.ItemIdFlag            = NoYes::Yes;
+    #    inventDimParm.InventSerialIdFlag    = NoYes::Yes;
+    #
+    #    info(strFmt("%1", InventSumDatePhysicalDim::onHandQty(systemDateGet(), "1001", inventDim, inventDimParm)));
+    #
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{0319761D-FB96-40AA-89AD-4301DB66E1A7}
+  ENDPROPERTIES
+  
+
+***Element: END

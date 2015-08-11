@@ -5,17 +5,17 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: WPASMADispatchTeamTable unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #WPASMADispatchTeamTable
   PROPERTIES
     Name                #WPASMADispatchTeamTable
-    Version             #9
+    Version             #16
     NextUniqueId        #1001
+    Origin              #{6DAF4072-A49B-43AE-996E-D5B697C91D52}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
@@ -28,6 +28,7 @@ QUERY #WPASMADispatchTeamTable
         Name                #SMADispatchTeamTable
         Table               #SMADispatchTeamTable
         UniqueId            #1000
+        FetchMode           #1:1
       ENDPROPERTIES
       
       FIELDLIST
@@ -47,6 +48,8 @@ QUERY #WPASMADispatchTeamTable
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
       ENDORDERBY
     ENDBLOCK

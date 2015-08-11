@@ -1,0 +1,38 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBE
+
+; Microsoft Dynamics AX Enumtype : WPAInventoryPostAs unloaded
+; --------------------------------------------------------------------------------
+  ENUMTYPEVERSION 1
+  
+  ENUMTYPE #WPAInventoryPostAs
+    PROPERTIES
+      Name                #WPAInventoryPostAs
+      Label               #@WPA238
+      ConfigurationKey    #WPAWarehouseManagement
+      UseEnumValue        #Yes
+      Origin              #{BD18CF68-3955-4906-BA1B-388649FF440E}
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+      #PostQty
+      PROPERTIES
+        Name                #PostQty
+        Label               #@WPA240
+        EnumValue           #0
+      ENDPROPERTIES
+      
+      #PostDifference
+      PROPERTIES
+        Name                #PostDifference
+        Label               #@WPA239
+        EnumValue           #1
+      ENDPROPERTIES
+      
+    ENDTYPEELEMENTS
+  ENDENUMTYPE
+  
+
+***Element: END

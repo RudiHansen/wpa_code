@@ -1,0 +1,183 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAEmpl_DirPerson_DirPartyTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAEmpl_DirPerson_DirPartyTable
+    PROPERTIES
+      Name                #WPAEmpl_DirPerson_DirPartyTable
+      Extends             #AfStronglyTypedDataContainer
+      Origin              #{CA796736-CADD-4CE6-86C5-480BDB8516B4}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAEmpl_DirPerson_DirPartyTable</c> class is the data object class that is exposed through the <c>WPAEmplService</c> class.
+        #/// </summary>
+        ##AxdWPAEmplDCT
+        #[AifDataContainerTypeAttribute(#WPAEmpl_DirPerson_DirPartyTable)]
+        #class WPAEmpl_DirPerson_DirPartyTable extends AfStronglyTypedDataContainer
+        #{
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.PartyNumber('PartyNumber')
+        #    #define.NameAlias('NameAlias')
+        #    #define.Name('Name')
+        #    #define.Memo('Memo')
+        #    #define.LanguageId('LanguageId')
+        #    #define.KnownAs('KnownAs')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsKnownAs
+        #public boolean existsKnownAs()
+        #{
+        #    return this.exists(#KnownAs);
+        #}
+      ENDSOURCE
+      SOURCE #existsLanguageId
+        #public boolean existsLanguageId()
+        #{
+        #    return this.exists(#LanguageId);
+        #}
+      ENDSOURCE
+      SOURCE #existsMemo
+        #public boolean existsMemo()
+        #{
+        #    return this.exists(#Memo);
+        #}
+      ENDSOURCE
+      SOURCE #existsName
+        #public boolean existsName()
+        #{
+        #    return this.exists(#Name);
+        #}
+      ENDSOURCE
+      SOURCE #existsNameAlias
+        #public boolean existsNameAlias()
+        #{
+        #    return this.exists(#NameAlias);
+        #}
+      ENDSOURCE
+      SOURCE #existsPartyNumber
+        #public boolean existsPartyNumber()
+        #{
+        #    return this.exists(#PartyNumber);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #parmKnownAs
+        #public DirPartyName parmKnownAs(DirPartyName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#KnownAs, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#KnownAs);
+        #}
+      ENDSOURCE
+      SOURCE #parmLanguageId
+        #public LanguageId parmLanguageId(LanguageId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#LanguageId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#LanguageId);
+        #}
+      ENDSOURCE
+      SOURCE #parmMemo
+        #public DirMemo parmMemo(DirMemo _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Memo, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Memo);
+        #}
+      ENDSOURCE
+      SOURCE #parmName
+        #public DirPartyName parmName(DirPartyName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Name, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Name);
+        #}
+      ENDSOURCE
+      SOURCE #parmNameAlias
+        #public NameAlias parmNameAlias(NameAlias _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#NameAlias, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#NameAlias);
+        #}
+      ENDSOURCE
+      SOURCE #parmPartyNumber
+        #public DirPartyNumber parmPartyNumber(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PartyNumber, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PartyNumber);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public RecId parmRecId(RecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPADaily
       Label               #@SYS7394
       ParentKey           #WPA
+      Origin              #{DBDBA526-E73F-48F0-A61A-71A6F9BB0269}
+      LegacyId            #50002
     ENDPROPERTIES
     
   ENDSECURITYKEY

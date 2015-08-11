@@ -11,34 +11,108 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASendInventLocation
       Extends             #AxdSend
-      RunOn               #Called from
+      Origin              #{646D1AB3-CAA2-4536-80C9-D0A2056F13CD}
+      LegacyId            #50082
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPASendInventLocation extends AxdSend
         #{
+        #    InventLocationId    inventLocationId;
+        #}
+      ENDSOURCE
+      SOURCE #parmDocumentClassId
+        #public AifDocumentClassId parmDocumentClassId(AifDocumentClassId _documentClassId = aifDocumentClassId)
+        #{
+        #    aifDocumentClassId = _documentClassId;
+        #
+        #    return aifDocumentClassId;
+        #}
+      ENDSOURCE
+      SOURCE #parmInventLocationId
+        #public InventLocationId parmInventLocationId(InventLocationId _inventLocationId = inventLocationId)
+        #{
+        #    inventLocationId = _inventLocationId;
+        #
+        #    return inventLocationId;
+        #}
+      ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun            ret;
+        #    QueryBuildRange     qbr_ItemId;
+        #    ;
+        #
+        #    if (!ret)
+        #    {
+        #        ret = super();
+        #        qbr_ItemId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(InventLocation)), fieldnum(InventLocation, InventLocationId));
+        #        if (inventLocationId)
+        #        {
+        #            qbr_ItemId.value(inventLocationId);
+        #            qbr_ItemId.status(RangeStatus::Locked);
+        #        }
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    return (inventLocationId == "");
         #}
       ENDSOURCE
       SOURCE #main
         #static public void main(Args args)
         #{
-        #    WPASendInventLocation   WPASendInventLocation;
+        #    WPASendInventLocation   sendInventLocation;
         #    AifConstraintList       aifConstraintList;
         #    AifConstraint           aifConstraint;
+        #    InventLocation          inventLocation;
         #    ;
         #
-        #    WPASendInventLocation   = new WPASendInventLocation();
+        #    sendInventLocation      = new WPASendInventLocation();
         #    aifConstraintList       = new AifConstraintList();
         #    aifConstraint           = new AifConstraint();
+        #
+        #    if (args && args.record() && args.record().TableId == tableNum(InventLocation))
+        #    {
+        #        inventLocation = args.record();
+        #        sendInventLocation.parmInventLocationId(inventLocation.InventLocationId);
+        #    }
         #
         #    aifConstraint.parmType(AifConstraintType::NoConstraint);
         #    aifConstraintList.addConstraint(aifConstraint);
         #
-        #    WPASendInventLocation.parmShowDocPurpose(true) ;
+        #    sendInventLocation.parmOutboundPortName("WPAParam");
+        #    sendInventLocation.parmShowDocPurpose(true) ;
+        #    sendInventLocation.parmServiceClassId(classnum(WPAInventLocationService));
+        #    sendInventLocation.parmSendActionType(AifSendActionType::SendByQuery);
+        #    sendInventLocation.parmDocumentClassId(classnum(WPAInventLocation));
         #
-        #    WPASendInventLocation.sendMultipleDocuments(classnum(WPAInventLocation), classnum(WPAInventLocationService), AifSendMode::Async, aifConstraintList);
+        #    sendInventLocation.sendMultipleDocuments(classnum(WPAInventLocation), classnum(WPAInventLocationService), AifSendMode::Async, aifConstraintList);
         #}
       ENDSOURCE
     ENDMETHODS

@@ -15,5 +15,9 @@ Formatversion: 1
     #    new AifInboundProcessingService().run();
     #}
   ENDSOURCE
+  PROPERTIES
+    Origin              #{13C78DDE-829A-4449-977F-BB0C9E7D9861}
+  ENDPROPERTIES
+  
 
 ***Element: END

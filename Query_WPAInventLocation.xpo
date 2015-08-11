@@ -5,17 +5,17 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: WPAInventLocation unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #WPAInventLocation
   PROPERTIES
     Name                #WPAInventLocation
-    Version             #44
+    Version             #48
     NextUniqueId        #1001
+    Origin              #{741D8FCD-F2F4-44D5-9503-1BA1E5724EF8}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
@@ -47,6 +47,8 @@ QUERY #WPAInventLocation
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
       ENDORDERBY
     ENDBLOCK

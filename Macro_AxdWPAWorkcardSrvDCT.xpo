@@ -1,0 +1,20 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAWorkcardSrvDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAWorkcardSrvDCT
+    ##define.WPAWorkcardSrv('WPAWorkcardSrv')
+    ##define.WPAWorkcardSrv_WPAWorkcardTable('WPAWorkcardSrv.WPAWorkcardTable')
+    ##define.WPAWorkcardSrv_WPAWorkcardLine('WPAWorkcardSrv.WPAWorkcardLine')
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{10BE693E-CC01-477B-88EA-F02036356EF6}
+  ENDPROPERTIES
+  
+
+***Element: END

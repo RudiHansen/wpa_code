@@ -11,10 +11,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASMADispatchTeamService
       ExternalName        #WPASMADispatchTeamService
-      Namespace           #
       Class               #WPASMADispatchTeamService
-      SecurityKey         #WPAServices
-      Description         #
+      Origin              #{E917B040-2163-4EF7-9343-592524E4D5CA}
     ENDPROPERTIES
     
     OPERATIONS
@@ -25,11 +23,26 @@ Formatversion: 1
           EnableIdempotence   #No
         ENDPROPERTIES
         
-      ENDOPERATION
+        PERMISSIONSET #Permissions
+          PROPERTIES
+          ENDPROPERTIES
+          
+          TABLES #Tables
+          ENDTABLES
+          
+        SERVERMETHODS #Server Methods
+        ENDSERVERMETHODS
+        
+      ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+      ENDASSOCIATEDCODEPERMISSIONS
       
-    ENDOPERATIONS
-    
-  ENDSERVICE
+  ENDPERMISSIONSET
   
+ENDOPERATION
+
+ENDOPERATIONS
+
+ENDSERVICE
+
 
 ***Element: END

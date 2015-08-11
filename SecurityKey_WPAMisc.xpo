@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPAMisc
       Label               #@SYS73543
       ParentKey           #WPA
+      Origin              #{6287F751-4238-4D31-BD9E-6696ED91CA05}
+      LegacyId            #50005
     ENDPROPERTIES
     
   ENDSECURITYKEY

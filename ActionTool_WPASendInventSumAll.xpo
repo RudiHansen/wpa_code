@@ -17,6 +17,7 @@ Formatversion: 1
       Object              #WPASendInventSumAll
       ConfigurationKey    #WPAWarehouseManagement
       SecurityKey         #WPAPeriodic
+      Origin              #{CE092249-E7A5-4AEF-AFFE-411C79688871}
     ENDPROPERTIES
     
   ENDMENUITEM

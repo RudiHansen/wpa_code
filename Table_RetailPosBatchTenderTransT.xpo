@@ -1,0 +1,426 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailPosBatchTenderTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailPosBatchTenderTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailPosBatchTenderTransT
+      Label               #@RET5078
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{E178E4B1-B67D-4991-861B-0C56F177D8C6}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #AddToTenderAmount
+        REAL
+        PROPERTIES
+          Name                #AddToTenderAmount
+          Label               #@RET5222
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{0CBA39A4-21D1-4584-93F6-75B6DAA13AEF}
+        ENDPROPERTIES
+        
+      FIELD #AddToTenderAmountCur
+        REAL
+        PROPERTIES
+          Name                #AddToTenderAmountCur
+          Label               #@RET5222
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{31C66897-19B5-4EEE-B7A9-EC4E2FF1460F}
+        ENDPROPERTIES
+        
+      FIELD #BankDropAmount
+        REAL
+        PROPERTIES
+          Name                #BankDropAmount
+          Label               #@RET4543
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{A278C03A-DD42-4A0B-BE50-2432A6FEDCF1}
+        ENDPROPERTIES
+        
+      FIELD #BankDropAmountCur
+        REAL
+        PROPERTIES
+          Name                #BankDropAmountCur
+          Label               #@RET4543
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{64514994-2656-4D6B-95B8-04CB6B8CA7F9}
+        ENDPROPERTIES
+        
+      FIELD #BatchID
+        INT64
+        PROPERTIES
+          Name                #BatchID
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{ECCE8C0D-FFE2-44BB-BBDD-409FF333E0BB}
+        ENDPROPERTIES
+        
+      FIELD #CardTypeId
+        STRING
+        PROPERTIES
+          Name                #CardTypeId
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{D6ED2080-2D44-4F0E-BD6D-FB289E4A939B}
+        ENDPROPERTIES
+        
+      FIELD #ChangeAmount
+        REAL
+        PROPERTIES
+          Name                #ChangeAmount
+          Label               #@RET5077
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{4B474AE1-433C-45D4-BA82-E355097C1FF0}
+        ENDPROPERTIES
+        
+      FIELD #ChangeAmountCur
+        REAL
+        PROPERTIES
+          Name                #ChangeAmountCur
+          Label               #@RET5077
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{6839D134-25F9-4150-A025-4CFE5C44781A}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{EB312490-D8AB-4832-87A1-58D5398880A0}
+        ENDPROPERTIES
+        
+      FIELD #Count
+        INT
+        PROPERTIES
+          Name                #Count
+          Label               #@RET5239
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{8C86B04E-A292-4260-8502-2BAC228D1976}
+        ENDPROPERTIES
+        
+      FIELD #CountingRequired
+        ENUM
+        PROPERTIES
+          Name                #CountingRequired
+          Label               #@RET5221
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{16B057FC-F778-40CC-B6B1-0E145271BD18}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #Currency
+        STRING
+        PROPERTIES
+          Name                #Currency
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{A6C8B36F-586C-4F55-A826-D90A59B67AAA}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #DeclareTenderAmount
+        REAL
+        PROPERTIES
+          Name                #DeclareTenderAmount
+          Label               #@RET3370
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{D6B4AB60-1D49-40B1-99C5-19CB5E690587}
+        ENDPROPERTIES
+        
+      FIELD #DeclareTenderAmountCur
+        REAL
+        PROPERTIES
+          Name                #DeclareTenderAmountCur
+          Label               #@RET3370
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{A371A466-0CF6-4FC5-A044-3565E6BB26CA}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{32C9242E-9BD0-4429-BC10-31430DE9430A}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #RemoveTenderAmount
+        REAL
+        PROPERTIES
+          Name                #RemoveTenderAmount
+          Label               #@RET5240
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{1B0CD355-A62B-4B17-9B37-EAC84DA5A9DB}
+        ENDPROPERTIES
+        
+      FIELD #RemoveTenderAmountCur
+        REAL
+        PROPERTIES
+          Name                #RemoveTenderAmountCur
+          Label               #@RET5240
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{00E427FB-9AD0-4D1C-869F-B8445FF9A39F}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounter
+        INT
+        PROPERTIES
+          Name                #ReplicationCounter
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{F0FDE26B-013C-4117-BF59-72A6EED9D038}
+        ENDPROPERTIES
+        
+      FIELD #SafeDropAmount
+        REAL
+        PROPERTIES
+          Name                #SafeDropAmount
+          Label               #@RET4599
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{77038CA0-1AAA-49EB-8B6A-B67BB4AFFB22}
+        ENDPROPERTIES
+        
+      FIELD #SafeDropAmountCur
+        REAL
+        PROPERTIES
+          Name                #SafeDropAmountCur
+          Label               #@RET4599
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{63F9FBA3-5E16-44D0-9265-0AD1C83DD49A}
+        ENDPROPERTIES
+        
+      FIELD #StartingAmount
+        REAL
+        PROPERTIES
+          Name                #StartingAmount
+          Label               #@RET260157
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{3E200F23-1C19-4D04-A9D3-6AA017F34E65}
+        ENDPROPERTIES
+        
+      FIELD #StartingAmountCur
+        REAL
+        PROPERTIES
+          Name                #StartingAmountCur
+          Label               #@RET260157
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{55BE9391-C953-4099-B8ED-D3CECCA95599}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{78182059-7DB7-429E-90A5-D33C510E4872}
+        ENDPROPERTIES
+        
+      FIELD #TenderedAmount
+        REAL
+        PROPERTIES
+          Name                #TenderedAmount
+          Label               #@RET3346
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{720C29BD-4DBB-4369-9961-1062041BF7F6}
+        ENDPROPERTIES
+        
+      FIELD #TenderedAmountCur
+        REAL
+        PROPERTIES
+          Name                #TenderedAmountCur
+          Label               #@RET3346
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{A7D2D06C-84B6-4EEA-B301-F4094E11397C}
+        ENDPROPERTIES
+        
+      FIELD #TenderTypeId
+        STRING
+        PROPERTIES
+          Name                #TenderTypeId
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{5B211566-84FA-4D25-B3F3-6FC0E6EDF0A3}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailPosBatchTenderTransT
+          Origin              #{C932D3E3-3A0E-4444-9816-D55036217024}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{6EA3C68E-E53A-401D-94C6-184C0D432F0F}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TenderTypeId
+        #BatchID
+        #TerminalId
+        #StoreId
+        #CardTypeId
+        #Currency
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailPosBatchTenderTransT cursor)
+        #{
+        #    RetailPosBatchTenderTrans target;
+        #    RetailPosBatchTenderTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint StoreTerminalBatchTenderTypeIdx
+        #                where (target.@Currency==cursor2.@Currency && target.@CardTypeId==cursor2.@CardTypeId && target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@BatchID==cursor2.@BatchID && target.@TenderTypeId==cursor2.@TenderTypeId);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @AddToTenderAmount,
+        #                    @AddToTenderAmountCur,
+        #                    @BankDropAmount,
+        #                    @BankDropAmountCur,
+        #                    @BatchID,
+        #                    @CardTypeId,
+        #                    @ChangeAmount,
+        #                    @ChangeAmountCur,
+        #                    @Channel,
+        #                    @Count,
+        #                    @CountingRequired,
+        #                    @Currency,
+        #                    @DeclareTenderAmount,
+        #                    @DeclareTenderAmountCur,
+        #                    @RemoveTenderAmount,
+        #                    @RemoveTenderAmountCur,
+        #                    @ReplicationCounter,
+        #                    @SafeDropAmount,
+        #                    @SafeDropAmountCur,
+        #                    @StartingAmount,
+        #                    @StartingAmountCur,
+        #                    @StoreId,
+        #                    @TenderedAmount,
+        #                    @TenderedAmountCur,
+        #                    @TenderTypeId,
+        #                    @TerminalId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @AddToTenderAmount,
+        #                    @AddToTenderAmountCur,
+        #                    @BankDropAmount,
+        #                    @BankDropAmountCur,
+        #                    @BatchID,
+        #                    @CardTypeId,
+        #                    @ChangeAmount,
+        #                    @ChangeAmountCur,
+        #                    @Channel,
+        #                    @Count,
+        #                    @CountingRequired,
+        #                    @Currency,
+        #                    @DeclareTenderAmount,
+        #                    @DeclareTenderAmountCur,
+        #                    @RemoveTenderAmount,
+        #                    @RemoveTenderAmountCur,
+        #                    @ReplicationCounter,
+        #                    @SafeDropAmount,
+        #                    @SafeDropAmountCur,
+        #                    @StartingAmount,
+        #                    @StartingAmountCur,
+        #                    @StoreId,
+        #                    @TenderedAmount,
+        #                    @TenderedAmountCur,
+        #                    @TenderTypeId,
+        #                    @TerminalId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailPosBatchTenderTransT cursor)
+        #{
+        #    RetailPosBatchTenderTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounter) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailPosBatchTenderTrans), cursor2.ReplicationCounter);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

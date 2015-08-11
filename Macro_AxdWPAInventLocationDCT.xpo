@@ -11,5 +11,9 @@ Formatversion: 1
     ##define.WPAInventLocation('WPAInventLocation')
     ##define.WPAInventLocation_InventLocation('WPAInventLocation.InventLocation')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{A75DE4A2-564D-49A3-BEC2-E4674B5266A4}
+  ENDPROPERTIES
+  
 
 ***Element: END

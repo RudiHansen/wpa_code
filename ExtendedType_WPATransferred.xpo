@@ -12,6 +12,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPATransferred
       Label               #@SYS12615
+      Origin              #{9F81229A-6309-4B3D-BC74-044BB1E23FD7}
+      LegacyId            #50053
       EnumType            #WPATransferredEnum
     ENDPROPERTIES
     
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

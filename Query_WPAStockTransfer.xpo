@@ -5,17 +5,17 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: WPAStockTransfer unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #WPAStockTransfer
   PROPERTIES
     Name                #WPAStockTransfer
-    Version             #4
+    Version             #6
     NextUniqueId        #1001
+    Origin              #{9CB9F2CA-C34A-44BC-B350-B8D69EDAD26D}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
@@ -43,6 +43,8 @@ QUERY #WPAStockTransfer
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
       ENDORDERBY
     ENDBLOCK

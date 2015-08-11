@@ -11,10 +11,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAInventTableService
       ExternalName        #WPAInventTableService
-      Namespace           #
       Class               #WPAInventTableService
-      SecurityKey         #WPAServices
-      Description         #
+      Origin              #{7FBF5B09-4445-4539-BE06-3C6C41BCF697}
     ENDPROPERTIES
     
     OPERATIONS
@@ -25,11 +23,26 @@ Formatversion: 1
           EnableIdempotence   #No
         ENDPROPERTIES
         
-      ENDOPERATION
+        PERMISSIONSET #Permissions
+          PROPERTIES
+          ENDPROPERTIES
+          
+          TABLES #Tables
+          ENDTABLES
+          
+        SERVERMETHODS #Server Methods
+        ENDSERVERMETHODS
+        
+      ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+      ENDASSOCIATEDCODEPERMISSIONS
       
-    ENDOPERATIONS
-    
-  ENDSERVICE
+  ENDPERMISSIONSET
   
+ENDOPERATION
+
+ENDOPERATIONS
+
+ENDSERVICE
+
 
 ***Element: END

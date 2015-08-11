@@ -10,7 +10,10 @@ Formatversion: 1
   SOURCE #WPAStockTransferMacro
     ##define.StockTransferAction('http://tempuri.org/WPAStockTransferService/create')
     ##define.StockTransfer("StockTransfer")
-    ##define.StockTransferEndpointId ("StockTransfer")
   ENDSOURCE
+  PROPERTIES
+    Origin              #{D3479AD7-125C-418F-94A3-DE8E5D4289E8}
+  ENDPROPERTIES
+  
 
 ***Element: END

@@ -1,0 +1,183 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAEmpl_HcmEmployment unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAEmpl_HcmEmployment
+    PROPERTIES
+      Name                #WPAEmpl_HcmEmployment
+      Extends             #AfStronglyTypedDataContainer
+      Origin              #{59EF59E3-734A-4552-A4CD-A843D450C3A0}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAEmpl_HcmEmployment</c> class is the data object class that is exposed through the <c>WPAEmplService</c> class.
+        #/// </summary>
+        ##AxdWPAEmplDCT
+        #[AifDataContainerTypeAttribute(#WPAEmpl_HcmEmployment)]
+        #class WPAEmpl_HcmEmployment extends AfStronglyTypedDataContainer
+        #{
+        #    #define.Worker('Worker')
+        #    #define.ValidTo('ValidTo')
+        #    #define.ValidFrom('ValidFrom')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.LegalEntity('LegalEntity')
+        #    #define.EmploymentType('EmploymentType')
+        #    #define.DefaultDimension('DefaultDimension')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #existsDefaultDimension
+        #public boolean existsDefaultDimension()
+        #{
+        #    return this.exists(#DefaultDimension);
+        #}
+      ENDSOURCE
+      SOURCE #existsEmploymentType
+        #public boolean existsEmploymentType()
+        #{
+        #    return this.exists(#EmploymentType);
+        #}
+      ENDSOURCE
+      SOURCE #existsLegalEntity
+        #public boolean existsLegalEntity()
+        #{
+        #    return this.exists(#LegalEntity);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsValidFrom
+        #public boolean existsValidFrom()
+        #{
+        #    return this.exists(#ValidFrom);
+        #}
+      ENDSOURCE
+      SOURCE #existsValidTo
+        #public boolean existsValidTo()
+        #{
+        #    return this.exists(#ValidTo);
+        #}
+      ENDSOURCE
+      SOURCE #existsWorker
+        #public boolean existsWorker()
+        #{
+        #    return this.exists(#Worker);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #parmDefaultDimension
+        #public RefRecId parmDefaultDimension(RefRecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DefaultDimension, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DefaultDimension);
+        #}
+      ENDSOURCE
+      SOURCE #parmEmploymentType
+        #public HcmEmploymentType parmEmploymentType(HcmEmploymentType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#EmploymentType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#EmploymentType);
+        #}
+      ENDSOURCE
+      SOURCE #parmLegalEntity
+        #public SelectableDataArea parmLegalEntity(SelectableDataArea _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#LegalEntity, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#LegalEntity);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public RecId parmRecId(RecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmValidFrom
+        #public HcmEmploymentValidFrom parmValidFrom(HcmEmploymentValidFrom _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ValidFrom, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ValidFrom);
+        #}
+      ENDSOURCE
+      SOURCE #parmValidTo
+        #public HcmEmploymentValidTo parmValidTo(HcmEmploymentValidTo _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ValidTo, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ValidTo);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorker
+        #public DirPartyNumber parmWorker(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Worker, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Worker);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAAccountId
       Label               #@SYS111844
       HelpText            #@SYS24500
+      Origin              #{BF98C13A-41F7-413B-8437-F2306F0F996C}
+      LegacyId            #50004
       Extends             #CustAccount
       StringSize          #20
     ENDPROPERTIES
@@ -22,6 +24,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

@@ -15,5 +15,9 @@ Formatversion: 1
     #    new AifGatewaySendService().run();
     #}
   ENDSOURCE
+  PROPERTIES
+    Origin              #{7F3CF324-47EF-4344-9675-6739BF63B074}
+  ENDPROPERTIES
+  
 
 ***Element: END

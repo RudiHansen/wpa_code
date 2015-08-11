@@ -1,0 +1,39 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBE
+
+; Microsoft Dynamics AX Enumtype : WPAWorkcardCreation unloaded
+; --------------------------------------------------------------------------------
+  ENUMTYPEVERSION 1
+  
+  ENUMTYPE #WPAWorkcardCreation
+    PROPERTIES
+      Name                #WPAWorkcardCreation
+      Label               #@WPA241
+      Help                #@WPA242
+      UseEnumValue        #Yes
+      Origin              #{BC5FFBF9-605F-4E09-A692-71847DCD69C9}
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+      #Project
+      PROPERTIES
+        Name                #Project
+        Label               #@SYS3432
+        EnumValue           #0
+      ENDPROPERTIES
+      
+      #Service
+      PROPERTIES
+        Name                #Service
+        Label               #@SYS79077
+        ConfigurationKey    #SMAManagement
+        EnumValue           #1
+      ENDPROPERTIES
+      
+    ENDTYPEELEMENTS
+  ENDENUMTYPE
+  
+
+***Element: END

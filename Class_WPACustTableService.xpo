@@ -12,11 +12,14 @@ Formatversion: 1
       Name                #WPACustTableService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{DBEBF175-4E98-47D1-9A21-50EC2E8C02D5}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPACustTableService</c> class serves as the document service for the <c>WPACustTable</c> document type.
+        #/// </summary>
         #class WPACustTableService extends AifDocumentService
         #{
         #
@@ -24,6 +27,16 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPACustTable</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
         #public WPACustTable find(AifQueryCriteria _queryCriteria)
         #{
         #    WPACustTable wPACustTable = new WPACustTable();

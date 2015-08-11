@@ -8,21 +8,22 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #OBTFileHistory
+    EnforceFKRelation 0
     PROPERTIES
       Name                #OBTFileHistory
+      Origin              #{6F729854-7931-49AB-A02F-19ED2F9FF407}
+      LegacyId            #50008
     ENDPROPERTIES
     
     FIELDS
-      FIELD #StartDateTime
-        DATETIME
+      FIELD #Direction
+        ENUM
         PROPERTIES
-          Name                #StartDateTime
+          Name                #Direction
           Table               #OBTFileHistory
-          ExtendedDataType    
-            ARRAY 
-              #OBTFileStartDateTime
-              #
-            ENDARRAY
+          Origin              #{A6488ECD-9F1E-413E-9503-575F1F580B35}
+          LegacyId            #50009
+          EnumType            #OBTFileDirection
         ENDPROPERTIES
         
       FIELD #EndDateTime
@@ -30,23 +31,9 @@ Formatversion: 1
         PROPERTIES
           Name                #EndDateTime
           Table               #OBTFileHistory
-          ExtendedDataType    
-            ARRAY 
-              #OBTFileEndDateTime
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #RecordsProcessed
-        INT64
-        PROPERTIES
-          Name                #RecordsProcessed
-          Table               #OBTFileHistory
-          ExtendedDataType    
-            ARRAY 
-              #OBTRecordsProcessed
-              #
-            ENDARRAY
+          Origin              #{27C256A4-8D77-422E-97BC-859AE16D8184}
+          LegacyId            #50004
+          ExtendedDataType    #OBTFileEndDateTime
         ENDPROPERTIES
         
       FIELD #Filename
@@ -54,11 +41,9 @@ Formatversion: 1
         PROPERTIES
           Name                #Filename
           Table               #OBTFileHistory
-          ExtendedDataType    
-            ARRAY 
-              #Filename
-              #
-            ENDARRAY
+          Origin              #{25152EF7-0DE3-406B-939E-3FE596BEF84A}
+          LegacyId            #50006
+          ExtendedDataType    #Filename
           StringSize          #259
         ENDPROPERTIES
         
@@ -67,20 +52,30 @@ Formatversion: 1
         PROPERTIES
           Name                #GUID
           Table               #OBTFileHistory
-          ExtendedDataType    
-            ARRAY 
-              #OBTFileGUID
-              #
-            ENDARRAY
+          Origin              #{26A867EF-F864-41D2-981C-330A72B88FFA}
+          LegacyId            #50008
+          ExtendedDataType    #OBTFileGUID
           StringSize          #36
         ENDPROPERTIES
         
-      FIELD #Direction
-        ENUM
+      FIELD #RecordsProcessed
+        INT64
         PROPERTIES
-          Name                #Direction
+          Name                #RecordsProcessed
           Table               #OBTFileHistory
-          EnumType            #OBTFileDirection
+          Origin              #{85EB8B97-ADD3-4987-A041-B7417BB9D84F}
+          LegacyId            #50005
+          ExtendedDataType    #OBTRecordsProcessed
+        ENDPROPERTIES
+        
+      FIELD #StartDateTime
+        DATETIME
+        PROPERTIES
+          Name                #StartDateTime
+          Table               #OBTFileHistory
+          Origin              #{19A57B42-9221-4CF5-880E-2EF2F2F9E9FE}
+          LegacyId            #50003
+          ExtendedDataType    #OBTFileStartDateTime
         ENDPROPERTIES
         
     ENDFIELDS
@@ -89,6 +84,8 @@ Formatversion: 1
     
     INDICES
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
     ENDREFERENCES
     
@@ -96,7 +93,6 @@ Formatversion: 1
     ENDDELETEACTIONS
     
     METHODS
-      Version: 3
       SOURCE #initValue
         #public void initValue()
         #{

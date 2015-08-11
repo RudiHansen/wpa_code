@@ -13,6 +13,8 @@ Formatversion: 1
       Label               #@SYS8335
       Help                #@WPA172
       UseEnumValue        #Yes
+      Origin              #{3607E862-EDE5-4B73-982A-6574B7FC0F0F}
+      LegacyId            #50001
     ENDPROPERTIES
     
     TYPEELEMENTS

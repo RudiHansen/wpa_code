@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPATables
       Label               #@SYS55761
       ParentKey           #WPA
+      Origin              #{E81D9465-3E8A-47A8-BD04-9651BA0DAFB9}
+      LegacyId            #50010
     ENDPROPERTIES
     
   ENDSECURITYKEY

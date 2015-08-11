@@ -1,0 +1,261 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailZReportTotalizer_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailZReportTotalizer_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailZReportTotalizer_BRT
+      Label               #@RET4040082
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{467D592C-FDDA-4082-BEB7-3A291EB9FC9C}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #AdditionalFiscalMemoryIndex
+        INT
+        PROPERTIES
+          Name                #AdditionalFiscalMemoryIndex
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{2D1F5F54-194D-46B2-AE88-FF9009DD5FA9}
+        ENDPROPERTIES
+        
+      FIELD #FiscalPrinterSerialNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalPrinterSerialNumber
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{259069E8-C5F5-4460-85A8-58AC743938A6}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{A6BBD70B-52C0-4A40-BB28-805099035571}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{28B94AC8-9C8C-426C-8CF3-3EB83DBF29CA}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{12D88097-07E4-4B89-BAB9-2B7A261CA19E}
+        ENDPROPERTIES
+        
+      FIELD #TaxAmount
+        REAL
+        PROPERTIES
+          Name                #TaxAmount
+          Label               #@GLS100079
+          HelpText            #@GLS220755
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{C0A5CFAA-2057-4435-9122-DFE89B86B4C7}
+        ENDPROPERTIES
+        
+      FIELD #TaxValue
+        REAL
+        PROPERTIES
+          Name                #TaxValue
+          Label               #@SYP4930015
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{F2214ACA-BBBA-4939-A3CF-8010FE7BF3DA}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{F6B33CF4-C9A6-4120-875A-58258B1DB59B}
+        ENDPROPERTIES
+        
+      FIELD #TotalizerAmount
+        REAL
+        PROPERTIES
+          Name                #TotalizerAmount
+          Label               #@SYS79666
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{72D523A0-2E03-44B0-9DEE-C61A3C0BDB46}
+        ENDPROPERTIES
+        
+      FIELD #TotalizerName
+        STRING
+        PROPERTIES
+          Name                #TotalizerName
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{5CC2A2F9-ADE9-48B4-916B-1FB92CC9512A}
+        ENDPROPERTIES
+        
+      FIELD #TotalizerSintegraName
+        STRING
+        PROPERTIES
+          Name                #TotalizerSintegraName
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{E6D5A2CC-6B01-4D9A-8AA5-9F5E7971B5C5}
+        ENDPROPERTIES
+        
+      FIELD #ZReportNumber
+        INT
+        PROPERTIES
+          Name                #ZReportNumber
+          Table               #RetailZReportTotalizer_BRT
+          Origin              #{A19A50ED-A69D-47F1-B101-2EFD5117E955}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{E3A32529-ED13-4EAF-90BB-EE260DBF0D36}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TerminalId
+        #StoreId
+        #TotalizerName
+        #ZReportNumber
+        #AdditionalFiscalMemoryIndex
+        #FiscalPrinterSerialNumber
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailZReportTotalizer_BRT cursor)
+        #{
+        #    RetailZReportTotalizer_BR target;
+        #    RetailZReportTotalizer_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint ZReportPrinterTotalizerIdx
+        #                where (target.@FiscalPrinterSerialNumber==cursor2.@FiscalPrinterSerialNumber && target.@AdditionalFiscalMemoryIndex==cursor2.@AdditionalFiscalMemoryIndex && target.@ZReportNumber==cursor2.@ZReportNumber && target.@TotalizerName==cursor2.@TotalizerName && target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @AdditionalFiscalMemoryIndex,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @StoreId,
+        #                    @TAXAMOUNT,
+        #                    @TAXVALUE,
+        #                    @TerminalId,
+        #                    @TotalizerAmount,
+        #                    @TotalizerName,
+        #                    @TotalizerSintegraName,
+        #                    @ZReportNumber,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @AdditionalFiscalMemoryIndex,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @StoreId,
+        #                    @TAXAMOUNT,
+        #                    @TAXVALUE,
+        #                    @TerminalId,
+        #                    @TotalizerAmount,
+        #                    @TotalizerName,
+        #                    @TotalizerSintegraName,
+        #                    @ZReportNumber,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailZReportTotalizer_BRT cursor)
+        #{
+        #    RetailZReportTotalizer_BRT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailZReportTotalizer_BR), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

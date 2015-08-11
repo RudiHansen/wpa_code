@@ -5,95 +5,56 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: WPAEmplTable unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #WPAEmplTable
   PROPERTIES
     Name                #WPAEmplTable
-    Version             #247
-    NextUniqueId        #1012
+    Version             #37
+    NextUniqueId        #1004
+    Origin              #{7692E998-C4D7-4B02-99D4-67B821DA6A37}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
       #}
     ENDSOURCE
-    SOURCE #init
-      #public void init()
-      #{
-      #//    QueryBuildDataSource qbds;
-      #//    UtcDateTime transDateTime = DateTimeUtil::getSystemDateTime();
-      #//    UtcDateTime transDateMin = DateTimeUtil::minValue();
-      #//    UtcDateTime transDateMax = DateTimeUtil::maxValue();
-      #    ;
-      #
-      #    super();
-      #//    qbds = this.query().dataSourceTable(tablenum(DirPartyECommunicationRelationship));
-      #//    qbds.findRange(fieldnum(DirPartyECommunicationRelationship, ValidFromDateTime)).
-      #//            value(SysQuery::value(transDateMin) + '..' + SysQuery::value(transDateTime));
-      #//    qbds.findRange(fieldnum(DirPartyECommunicationRelationship, ValidToDateTime)).
-      #//            value(SysQuery::value(transDateTime) + '..' + SysQuery::value(transDateMax));
-      #
-      #//   info(this.query().dataSourceNo(1).toString());
-      #}
-    ENDSOURCE
   ENDMETHODS
   BLOCKS
-    BLOCK #EmplTable
+    BLOCK #HcmWorker
       PROPERTIES
-        Name                #EmplTable
-        Table               #EmplTable
+        Name                #HcmWorker
+        Table               #HcmWorker
         UniqueId            #1000
+        FetchMode           #1:1
       ENDPROPERTIES
       
       FIELDLIST
         PROPERTIES
-          Dynamic             #No
         ENDPROPERTIES
         
-        FIELD #EmplId
-        FIELD #RecId
-        FIELD #DispatchTeamId
       ENDFIELDLIST
       SORTING
       ENDSORTING
       LINES
-        LINE #EmplId
-        PROPERTIES
-          Name                #EmplId
-          Table               #EmplTable
-          Field               #EmplId
-        ENDPROPERTIES
-        
-        LINE #DispatchTeamId
-        PROPERTIES
-          Name                #DispatchTeamId
-          Table               #EmplTable
-          Field               #DispatchTeamId
-        ENDPROPERTIES
-        
       ENDLINES
       BLOCKS
-        BLOCK #DirPartyTable
+        BLOCK #DirPerson
           PROPERTIES
-            Name                #DirPartyTable
-            Table               #DirPartyTable
-            UniqueId            #1002
+            Name                #DirPerson
+            Table               #DirPerson
+            UniqueId            #1001
+            FirstOnly           #Yes
             FetchMode           #1:1
             Relations           #Yes
           ENDPROPERTIES
           
           FIELDLIST
             PROPERTIES
-              Dynamic             #No
             ENDPROPERTIES
             
-            FIELD #Name
-            FIELD #PartyId
-            FIELD #RecId
           ENDFIELDLIST
           SORTING
           ENDSORTING
@@ -103,13 +64,48 @@ QUERY #WPAEmplTable
           ENDBLOCKS
           ASSOCIATIONS
             ASSOCIATION
-              MASTERFIELD  #PartyId
-              DETAILSFIELD #PartyId
+              FOREIGNKEYRELATION #DirPerson
+          ENDASSOCIATIONS
+        ENDBLOCK
+        BLOCK #HcmEmployment
+          PROPERTIES
+            Name                #HcmEmployment
+            Table               #HcmEmployment
+            UniqueId            #1003
+            FirstOnly           #Yes
+            FetchMode           #1:1
+            Relations           #Yes
+          ENDPROPERTIES
+          
+          FIELDLIST
+            PROPERTIES
+            ENDPROPERTIES
+            
+          ENDFIELDLIST
+          SORTING
+          ENDSORTING
+          LINES
+            LINE #EmploymentType
+            PROPERTIES
+              Name                #EmploymentType
+              Table               #HcmEmployment
+              Field               #EmploymentType
+              Value               #Employee
+            ENDPROPERTIES
+            
+          ENDLINES
+          BLOCKS
+          ENDBLOCKS
+          ASSOCIATIONS
+            ASSOCIATION
+              FOREIGNKEYRELATION #HcmWorker
           ENDASSOCIATIONS
         ENDBLOCK
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
       ENDORDERBY
     ENDBLOCK

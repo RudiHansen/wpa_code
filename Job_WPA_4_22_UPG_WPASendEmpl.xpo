@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: WPA_4_22_UPG_WPASendEmpl unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #WPA_4_22_UPG_WPASendEmpl
+    #static void WPA_4_22_UPG_WPASendEmpl(Args _args)
+    #{
+    #    HcmWorker   worker = HcmWorker::find(5637144617);
+    #    Args        args = new Args();
+    #    ;
+    #
+    #    args.record(worker);
+    #    WPASendEmpl::main(args);
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{5CAAD834-4E36-49FA-B924-8F26EE473492}
+  ENDPROPERTIES
+  
+
+***Element: END

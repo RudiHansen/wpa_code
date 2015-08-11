@@ -11,6 +11,8 @@ Formatversion: 1
   DATETIME
     PROPERTIES
       Name                #OBTFileEndDateTime
+      Origin              #{809F0DA6-F1DE-4886-9877-85F39F5FC622}
+      LegacyId            #50062
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -18,6 +20,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

@@ -5,17 +5,17 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: OBTCustTable unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #OBTCustTable
   PROPERTIES
     Name                #OBTCustTable
-    Version             #17
+    Version             #27
     NextUniqueId        #1004
+    Origin              #{C74EDC63-CD40-4B8C-A22E-8AB3911E72AE}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
@@ -25,7 +25,7 @@ QUERY #OBTCustTable
   BLOCKS
     BLOCK #CustTable
       PROPERTIES
-        Name                #CustTable_1
+        Name                #CustTable
         Table               #CustTable
         UniqueId            #1000
       ENDPROPERTIES
@@ -40,95 +40,11 @@ QUERY #OBTCustTable
       LINES
       ENDLINES
       BLOCKS
-        BLOCK #DirPartyAddressRelationship
-          PROPERTIES
-            Name                #DirPartyAddressRelationship_1
-            Table               #DirPartyAddressRelationship
-            UniqueId            #1001
-          ENDPROPERTIES
-          
-          FIELDLIST
-            PROPERTIES
-            ENDPROPERTIES
-            
-          ENDFIELDLIST
-          SORTING
-          ENDSORTING
-          LINES
-            LINE #IsPrimary
-            PROPERTIES
-              Name                #IsPrimary
-              Table               #DirPartyAddressRelationship
-              Field               #IsPrimary
-              Value               #Yes
-            ENDPROPERTIES
-            
-          ENDLINES
-          BLOCKS
-            BLOCK #DirPartyAddressRelationshipMapping
-              PROPERTIES
-                Name                #DirPartyAddressRelationshipMapping_1
-                Table               #DirPartyAddressRelationshipMapping
-                UniqueId            #1002
-                Relations           #Yes
-              ENDPROPERTIES
-              
-              FIELDLIST
-                PROPERTIES
-                ENDPROPERTIES
-                
-              ENDFIELDLIST
-              SORTING
-              ENDSORTING
-              LINES
-              ENDLINES
-              BLOCKS
-                BLOCK #Address
-                  PROPERTIES
-                    Name                #Address_1
-                    Table               #Address
-                    UniqueId            #1003
-                    Relations           #Yes
-                  ENDPROPERTIES
-                  
-                  FIELDLIST
-                    PROPERTIES
-                    ENDPROPERTIES
-                    
-                  ENDFIELDLIST
-                  SORTING
-                  ENDSORTING
-                  LINES
-                  ENDLINES
-                  BLOCKS
-                  ENDBLOCKS
-                  ASSOCIATIONS
-                    ASSOCIATION
-                      MASTERFIELD  #RefCompanyId
-                      DETAILSFIELD #dataAreaId
-                    ASSOCIATION
-                      MASTERFIELD  #AddressRecId
-                      DETAILSFIELD #RecId
-                  ENDASSOCIATIONS
-                ENDBLOCK
-              ENDBLOCKS
-              ASSOCIATIONS
-                ASSOCIATION
-                  MASTERFIELD  #RecId
-                  DETAILSFIELD #PartyAddressRelationshipRecId
-              ENDASSOCIATIONS
-            ENDBLOCK
-          ENDBLOCKS
-          ASSOCIATIONS
-            ASSOCIATION
-              JOINDATASOURCE #CustTable_1
-              MASTERFIELD  #PartyId
-              DETAILSFIELD #PartyId
-          ENDASSOCIATIONS
-        ENDBLOCK
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
       ENDORDERBY
     ENDBLOCK

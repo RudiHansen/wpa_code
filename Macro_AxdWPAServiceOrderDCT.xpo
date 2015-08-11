@@ -11,6 +11,11 @@ Formatversion: 1
     ##define.WPAServiceOrder('WPAServiceOrder')
     ##define.WPAServiceOrder_SMAServiceOrderLine('WPAServiceOrder.SMAServiceOrderLine')
     ##define.WPAServiceOrder_SMAServiceOrderTable('WPAServiceOrder.SMAServiceOrderTable')
+    ##define.WPAServiceOrder_CustTable('WPAServiceOrder.CustTable')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{E3B1B190-ADD1-4634-9535-82AC58C3DAC2}
+  ENDPROPERTIES
+  
 
 ***Element: END

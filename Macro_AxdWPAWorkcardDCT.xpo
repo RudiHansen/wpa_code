@@ -10,7 +10,11 @@ Formatversion: 1
   SOURCE #AxdWPAWorkcardDCT
     ##define.WPAWorkcard('WPAWorkcard')
     ##define.WPAWorkcard_WPAWorkcardTable('WPAWorkcard.WPAWorkcardTable')
-    ##define.WPAWorkcard_WPAWorkcardLine_1('WPAWorkcard.WPAWorkcardLine_1')
+    ##define.WPAWorkcard_WPAWorkcardLine('WPAWorkcard.WPAWorkcardLine')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{88AA890C-92ED-4AC4-ACD5-57CFF6FD9735}
+  ENDPROPERTIES
+  
 
 ***Element: END

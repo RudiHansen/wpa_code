@@ -1,0 +1,501 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionSafeTenderTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionSafeTenderTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionSafeTenderTransT
+      Label               #@RET4596
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{E2B07119-58EB-457D-897E-2EDC0E82611C}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #AmountCur
+        REAL
+        PROPERTIES
+          Name                #AmountCur
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{2B21B7D4-4408-41BE-9E05-742552CECC8B}
+        ENDPROPERTIES
+        
+      FIELD #amountCurPOS
+        REAL
+        PROPERTIES
+          Name                #amountCurPOS
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{EEAE8BDA-39ED-4383-93D2-46D8DCBDD232}
+        ENDPROPERTIES
+        
+      FIELD #amountMST
+        REAL
+        PROPERTIES
+          Name                #amountMST
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{8224A052-FBBA-4D1E-B757-43C1EFD6A6FC}
+        ENDPROPERTIES
+        
+      FIELD #amountMSTPOS
+        REAL
+        PROPERTIES
+          Name                #amountMSTPOS
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{F6905EA8-A652-4FD6-85EF-EB3FD2CFEBBB}
+        ENDPROPERTIES
+        
+      FIELD #AmountTendered
+        REAL
+        PROPERTIES
+          Name                #AmountTendered
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{203680C9-1946-44C5-B3E2-E1531E032023}
+        ENDPROPERTIES
+        
+      FIELD #amountTenderedPOS
+        REAL
+        PROPERTIES
+          Name                #amountTenderedPOS
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{1AAE05F2-3676-4FCD-B5FB-28EB540202A6}
+        ENDPROPERTIES
+        
+      FIELD #businessDate
+        DATE
+        PROPERTIES
+          Name                #businessDate
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{340271B2-FA61-4254-B37B-2F8C7E710BC8}
+        ENDPROPERTIES
+        
+      FIELD #CardorAccount
+        STRING
+        PROPERTIES
+          Name                #CardorAccount
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{669BD5D3-6EFF-45EA-B1EB-6B9DD32D5587}
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #CardTypeId
+        STRING
+        PROPERTIES
+          Name                #CardTypeId
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{9665271A-6732-47C0-89B2-6CD930232AC5}
+        ENDPROPERTIES
+        
+      FIELD #ChangeLine
+        ENUM
+        PROPERTIES
+          Name                #ChangeLine
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{1A0A2DB3-7F85-4011-908B-426A5B78C374}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{B9CF2569-D84C-4C96-90D3-F869AE6C7BAD}
+        ENDPROPERTIES
+        
+      FIELD #Counter
+        REAL
+        PROPERTIES
+          Name                #Counter
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{42C8BE98-E889-4BBA-89D1-6FDD2FD35E4A}
+        ENDPROPERTIES
+        
+      FIELD #Currency
+        STRING
+        PROPERTIES
+          Name                #Currency
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{2B9CD3CC-C144-4034-A7DD-35753FB1BE67}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #ExchRate
+        REAL
+        PROPERTIES
+          Name                #ExchRate
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{54386F97-846D-49D1-8124-FF3994938C2B}
+        ENDPROPERTIES
+        
+      FIELD #exchRateMST
+        REAL
+        PROPERTIES
+          Name                #exchRateMST
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{6F8D851A-C7F1-4C05-93AE-2330396F1698}
+        ENDPROPERTIES
+        
+      FIELD #LineNum
+        REAL
+        PROPERTIES
+          Name                #LineNum
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{C369F15B-3276-4FB9-892F-64463166EB7B}
+        ENDPROPERTIES
+        
+      FIELD #ManagersKeyLive
+        ENUM
+        PROPERTIES
+          Name                #ManagersKeyLive
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{929A3DE5-813B-4AA0-9E99-618711DF1D99}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #MessageNum
+        INT
+        PROPERTIES
+          Name                #MessageNum
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{11D72DA0-F736-42EB-B08C-54E6400C0DED}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{3B1D5430-1B79-477D-AA63-6F20716EF386}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #Qty
+        REAL
+        PROPERTIES
+          Name                #Qty
+          Label               #@RET4510
+          HelpText            #@RET4511
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{7ADA0B0A-1049-4B4A-8B37-3998C27EDB93}
+        ENDPROPERTIES
+        
+      FIELD #Replicated
+        ENUM
+        PROPERTIES
+          Name                #Replicated
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{DEF78CFC-70F9-41DD-B658-8D8FFDD0997C}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #replicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #replicationCounterFromOrigin
+          Label               #@RET3920
+          HelpText            #@RET3921
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{D3ED692D-A822-454D-B90A-D97ACE327A78}
+        ENDPROPERTIES
+        
+      FIELD #Shift
+        STRING
+        PROPERTIES
+          Name                #Shift
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{33A4AD09-BC8F-4FE2-AB12-3C9308AA787C}
+        ENDPROPERTIES
+        
+      FIELD #ShiftDate
+        DATE
+        PROPERTIES
+          Name                #ShiftDate
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{4ADD8999-C566-4FC3-81DF-2CE6DCB96965}
+        ENDPROPERTIES
+        
+      FIELD #Staff
+        STRING
+        PROPERTIES
+          Name                #Staff
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{CE6AC185-2F91-48DB-BFC6-F9EFA19BE0F1}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #StatementCode
+        STRING
+        PROPERTIES
+          Name                #StatementCode
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{568C58E0-E32C-4DB0-A03B-B3BE27468B49}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #StatementId
+        STRING
+        PROPERTIES
+          Name                #StatementId
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{77A7AD40-6E0C-4DE9-9CF4-F08120D67717}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #statusType
+        ENUM
+        PROPERTIES
+          Name                #statusType
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{EEA6707A-02C7-4BFE-BD85-104875F68FFD}
+          EnumType            #RetailSafeStatusTypeBase
+        ENDPROPERTIES
+        
+      FIELD #Store
+        STRING
+        PROPERTIES
+          Name                #Store
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{3131A200-5E23-4FBF-8349-CD88554531A9}
+        ENDPROPERTIES
+        
+      FIELD #TenderType
+        STRING
+        PROPERTIES
+          Name                #TenderType
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{F7EE6B17-7F9F-4BB3-A89B-9467CB1571DE}
+        ENDPROPERTIES
+        
+      FIELD #Terminal
+        STRING
+        PROPERTIES
+          Name                #Terminal
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{25D928AF-CC2D-40DC-A07E-BEBF108C02E4}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{8022D96D-AF9C-4284-ACA0-1B28FB6B53C7}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #TransactionStatus
+        ENUM
+        PROPERTIES
+          Name                #TransactionStatus
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{B1ED540C-D47D-4BCC-84EE-2583692F85FA}
+          EnumType            #RetailEntryStatus
+        ENDPROPERTIES
+        
+      FIELD #TransDate
+        DATE
+        PROPERTIES
+          Name                #TransDate
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{D9870F78-D7DB-44BA-9CD8-9C8BF862FF96}
+        ENDPROPERTIES
+        
+      FIELD #TransTime
+        INT
+        PROPERTIES
+          Name                #TransTime
+          Table               #RetailTransactionSafeTenderTransT
+          Origin              #{9926DFF8-FCE4-4CD0-A21B-82EC41B347FD}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{67DD2A4E-5658-4F01-9B8E-514C672BDB9B}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #StatementId
+        #LineNum
+        #TransactionId
+        #Terminal
+        #Store
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionSafeTenderTransT cursor)
+        #{
+        #    RetailTransactionSafeTenderTrans target;
+        #    RetailTransactionSafeTenderTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint transactionLineIdx
+        #                where (target.@Store==cursor2.@Store && target.@Terminal==cursor2.@Terminal && target.@TransactionId==cursor2.@TransactionId && target.@LineNum==cursor2.@LineNum && target.@StatementId==cursor2.@StatementId && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @AmountCur,
+        #                    @amountCurPOS,
+        #                    @amountMST,
+        #                    @amountMSTPOS,
+        #                    @AmountTendered,
+        #                    @amountTenderedPOS,
+        #                    @businessDate,
+        #                    @CardorAccount,
+        #                    @CardTypeId,
+        #                    @ChangeLine,
+        #                    @Channel,
+        #                    @Counter,
+        #                    @Currency,
+        #                    @ExchRate,
+        #                    @exchRateMST,
+        #                    @LineNum,
+        #                    @ManagersKeyLive,
+        #                    @MessageNum,
+        #                    @Qty,
+        #                    @Replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @Shift,
+        #                    @ShiftDate,
+        #                    @Staff,
+        #                    @StatementCode,
+        #                    @StatementId,
+        #                    @statusType,
+        #                    @Store,
+        #                    @TenderType,
+        #                    @Terminal,
+        #                    @TransactionId,
+        #                    @TransactionStatus,
+        #                    @TransDate,
+        #                    @TransTime,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @AmountCur,
+        #                    @amountCurPOS,
+        #                    @amountMST,
+        #                    @amountMSTPOS,
+        #                    @AmountTendered,
+        #                    @amountTenderedPOS,
+        #                    @businessDate,
+        #                    @CardorAccount,
+        #                    @CardTypeId,
+        #                    @ChangeLine,
+        #                    @Channel,
+        #                    @Counter,
+        #                    @Currency,
+        #                    @ExchRate,
+        #                    @exchRateMST,
+        #                    @LineNum,
+        #                    @ManagersKeyLive,
+        #                    @MessageNum,
+        #                    @Qty,
+        #                    @Replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @Shift,
+        #                    @ShiftDate,
+        #                    @Staff,
+        #                    @StatementCode,
+        #                    @StatementId,
+        #                    @statusType,
+        #                    @Store,
+        #                    @TenderType,
+        #                    @Terminal,
+        #                    @TransactionId,
+        #                    @TransactionStatus,
+        #                    @TransDate,
+        #                    @TransTime,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionSafeTenderTransT cursor)
+        #{
+        #    RetailTransactionSafeTenderTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(replicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionSafeTenderTrans), cursor2.replicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

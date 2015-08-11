@@ -11,6 +11,8 @@ Formatversion: 1
   STRING
     PROPERTIES
       Name                #OBTRefCompanyId
+      Origin              #{A3C5CCCB-06B9-4E2F-B306-D5677AF277A9}
+      LegacyId            #50002
       Extends             #CompanyId
       StringSize          #4
     ENDPROPERTIES
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

@@ -1,0 +1,1003 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalDocument_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalDocument_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalDocument_BRT
+      Label               #@SYP4860103
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{8CD5EF42-00DB-47E8-86F5-B3CB273C6DC2}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #AccessKey
+        STRING
+        PROPERTIES
+          Name                #AccessKey
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{88E84928-6610-4A68-BA45-B9DC4FA301DE}
+          StringSize          #45
+        ENDPROPERTIES
+        
+      FIELD #AuthorityCode
+        STRING
+        PROPERTIES
+          Name                #AuthorityCode
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{480C0641-6F5E-4C50-AA76-38E570B7287C}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{A8C949FD-DE9F-4368-9A01-BE8F02CC6ABD}
+        ENDPROPERTIES
+        
+      FIELD #ConsumerEFDocInquiryUrl
+        STRING
+        PROPERTIES
+          Name                #ConsumerEFDocInquiryUrl
+          Label               #@SYP4860554
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{C8583240-7BBD-44B3-B8BF-15798D410B97}
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #ContingencyDateTime
+        DATETIME
+        PROPERTIES
+          Name                #ContingencyDateTime
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{06B797E3-17F7-4B55-89D9-68ECB9B62B44}
+        ENDPROPERTIES
+        
+      FIELD #ContingencyDateTimeOffset
+        INT64
+        PROPERTIES
+          Name                #ContingencyDateTimeOffset
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{B619E8AE-24E7-4D12-AA9F-4AFDF0F88EA4}
+        ENDPROPERTIES
+        
+      FIELD #ContingencyMode
+        ENUM
+        PROPERTIES
+          Name                #ContingencyMode
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{4B3CADDF-95A9-4CB3-AA10-1FA1C6B80B77}
+          EnumType            #EFDocContingMode_BR
+        ENDPROPERTIES
+        
+      FIELD #ContingencyReason
+        STRING
+        PROPERTIES
+          Name                #ContingencyReason
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{7343AD7F-9E1B-4C92-8144-14CBDC4D4487}
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #DanfePrintFormat
+        ENUM
+        PROPERTIES
+          Name                #DanfePrintFormat
+          Label               #@SYP4860953
+          HelpText            #@SYP4860954
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{403F48AD-D854-4E68-89BD-CAEC42F1DEF6}
+          EnumType            #DanfePrintFormat_BR
+        ENDPROPERTIES
+        
+      FIELD #Direction
+        ENUM
+        PROPERTIES
+          Name                #Direction
+          HelpText            #@GLS50894
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{2C04E2C6-50DF-48ED-B44E-1F1D2A2B10E0}
+          EnumType            #FiscalDocDirection_BR
+        ENDPROPERTIES
+        
+      FIELD #EnvironmentType
+        ENUM
+        PROPERTIES
+          Name                #EnvironmentType
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{7AC43ED2-7A81-48A4-91DF-96A2231A427B}
+          EnumType            #EFDocEnvironment_BR
+        ENDPROPERTIES
+        
+      FIELD #FEAddressBacenCode
+        STRING
+        PROPERTIES
+          Name                #FEAddressBacenCode
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{BFA75472-AB46-4BA5-9A13-EDC4F509AC76}
+          StringSize          #4
+        ENDPROPERTIES
+        
+      FIELD #FEAddressCity
+        STRING
+        PROPERTIES
+          Name                #FEAddressCity
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{EECB9F7B-A586-4AF5-8666-3EC8AE1B20E2}
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #FEAddressComplement
+        STRING
+        PROPERTIES
+          Name                #FEAddressComplement
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{88E87512-32E0-4B39-A6F8-0EDF5F2CA055}
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #FEAddressCountry
+        STRING
+        PROPERTIES
+          Name                #FEAddressCountry
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{15090C70-F6B4-428F-AF17-AEA2785870D1}
+        ENDPROPERTIES
+        
+      FIELD #FEAddressDistrict
+        STRING
+        PROPERTIES
+          Name                #FEAddressDistrict
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{FE60FDA0-CB05-4FD7-A04F-10D06F61442A}
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #FEAddressIBGECode
+        STRING
+        PROPERTIES
+          Name                #FEAddressIBGECode
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{54DC80C9-AC60-48F2-B08F-E7F4238DD6FD}
+          StringSize          #7
+        ENDPROPERTIES
+        
+      FIELD #FEAddressState
+        STRING
+        PROPERTIES
+          Name                #FEAddressState
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{E51E525A-66B6-4A6B-A331-0678FC756E80}
+        ENDPROPERTIES
+        
+      FIELD #FEAddressStreet
+        STRING
+        PROPERTIES
+          Name                #FEAddressStreet
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{CC163494-B624-4A95-BDF7-5A2B10B976E7}
+          StringSize          #250
+        ENDPROPERTIES
+        
+      FIELD #FEAddressStreetNumber
+        STRING
+        PROPERTIES
+          Name                #FEAddressStreetNumber
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{24D1FC67-5291-4E23-A094-040FF5D5CEB6}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FEAddressZipCode
+        STRING
+        PROPERTIES
+          Name                #FEAddressZipCode
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{BC716F7E-587F-4B87-AB9A-BC25BE915B77}
+        ENDPROPERTIES
+        
+      FIELD #FinalUser
+        ENUM
+        PROPERTIES
+          Name                #FinalUser
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{C0D4AC3F-D7DE-45C9-BCE4-2DE99493382F}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentAccountNum
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentAccountNum
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{465A14F4-DF4B-45FE-B23E-E778F6A19A09}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentDateTime
+        DATETIME
+        PROPERTIES
+          Name                #FiscalDocumentDateTime
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{C67B9A88-579C-4883-8551-71372988F870}
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentDateTimeOffset
+        INT64
+        PROPERTIES
+          Name                #FiscalDocumentDateTimeOffset
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{A8E10A4D-9A5F-48E4-BBBD-8CC6339F6046}
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentNumber
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{0903EC70-55E7-4D71-A49F-B40D0042C660}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentSeries
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentSeries
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{9DCA315E-F97B-4244-9B36-65308F2FD851}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishment
+        STRING
+        PROPERTIES
+          Name                #FiscalEstablishment
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{48E5CC2B-9F92-4F83-9763-19749AED5427}
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishmentCCMNum
+        STRING
+        PROPERTIES
+          Name                #FiscalEstablishmentCCMNum
+          HelpText            #@SYS4000543
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{6437D49F-3A9D-4E81-B7A7-298C87DC12B2}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishmentCNAE
+        STRING
+        PROPERTIES
+          Name                #FiscalEstablishmentCNAE
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{2ACEFD41-922E-403C-9617-0AD4ED777777}
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishmentCNPJCPF
+        STRING
+        PROPERTIES
+          Name                #FiscalEstablishmentCNPJCPF
+          HelpText            #@SYS4000544
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{179F27B0-662C-4C81-9F80-C726C06C2970}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishmentIE
+        STRING
+        PROPERTIES
+          Name                #FiscalEstablishmentIE
+          HelpText            #@SYS4000545
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{00CE4F8A-92D0-49FB-A61C-BA6E7D82632B}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishmentName
+        STRING
+        PROPERTIES
+          Name                #FiscalEstablishmentName
+          Label               #@SYS34979
+          HelpText            #@SYS4000549
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{58407FB5-E3DE-4010-B727-16F2A1F449DD}
+          StringSize          #140
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishmentPhone
+        STRING
+        PROPERTIES
+          Name                #FiscalEstablishmentPhone
+          HelpText            #@SYS4000546
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{75A79294-9F05-483F-A804-C6ED927BCB61}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishmentPostalAddress
+        INT64
+        PROPERTIES
+          Name                #FiscalEstablishmentPostalAddress
+          HelpText            #@GLS221512
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{43C66FDD-87E5-46F2-8B58-22440F8794BA}
+        ENDPROPERTIES
+        
+      FIELD #MessageStatus
+        ENUM
+        PROPERTIES
+          Name                #MessageStatus
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{89CCE773-6335-4250-9C3B-3E218FA14106}
+          EnumType            #EFDocMessageStatus_BR
+        ENDPROPERTIES
+        
+      FIELD #MessageType
+        ENUM
+        PROPERTIES
+          Name                #MessageType
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{B5465CCF-FFF5-4A59-B9E5-004BC942F5A5}
+          EnumType            #EFDocMessageType_BR
+        ENDPROPERTIES
+        
+      FIELD #Model
+        STRING
+        PROPERTIES
+          Name                #Model
+          Label               #@SYS9923
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{00EDE508-4157-420F-B88A-281326FA4ADF}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #NumericCode
+        INT
+        PROPERTIES
+          Name                #NumericCode
+          Label               #@GLS62544
+          HelpText            #@GLS62545
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{77AF12C5-9CC0-4FD2-8D77-CD7D3AC04BAE}
+        ENDPROPERTIES
+        
+      FIELD #OperationDescription
+        STRING
+        PROPERTIES
+          Name                #OperationDescription
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{C428A0E1-28BE-4F3E-B9C5-AD8BB8B76BE1}
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #PresenceType
+        ENUM
+        PROPERTIES
+          Name                #PresenceType
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{A28CD872-207F-4F21-AF9E-800CF050C6FF}
+          EnumType            #EFDocPresenceType_BR
+        ENDPROPERTIES
+        
+      FIELD #ProtocolDate
+        DATETIME
+        PROPERTIES
+          Name                #ProtocolDate
+          HelpText            #@SYP4860443
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{E705DE50-979E-4D37-B105-C7975E3733DE}
+        ENDPROPERTIES
+        
+      FIELD #ProtocolNumber
+        STRING
+        PROPERTIES
+          Name                #ProtocolNumber
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{089C86CA-335D-4F9C-B5D0-C1CF9E1AC0DC}
+          StringSize          #15
+        ENDPROPERTIES
+        
+      FIELD #QrcodeText
+        STRING
+        PROPERTIES
+          Name                #QrcodeText
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{BF49840F-2206-4CB2-91BA-B7FCE1F0DB27}
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #ReceiptNumber
+        STRING
+        PROPERTIES
+          Name                #ReceiptNumber
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{5E0023AE-8BE9-42A5-9C24-6E15D9C59CDB}
+          StringSize          #15
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{471E392F-04EB-45C1-A8CA-FBE8C5AE9E41}
+        ENDPROPERTIES
+        
+      FIELD #ReturnCodeDescription
+        STRING
+        PROPERTIES
+          Name                #ReturnCodeDescription
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{DE131FCC-B983-4570-8323-18409DDDA643}
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #ReturnCodeRefRecId
+        INT64
+        PROPERTIES
+          Name                #ReturnCodeRefRecId
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{2554CBEF-F08A-46CD-8A23-D9B3EC244CAB}
+        ENDPROPERTIES
+        
+      FIELD #ReturnMessage
+        STRING
+        PROPERTIES
+          Name                #ReturnMessage
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{9D3CAD35-E031-4A7F-9A62-C973AD6D733A}
+          StringSize          #200
+        ENDPROPERTIES
+        
+      FIELD #Status
+        ENUM
+        PROPERTIES
+          Name                #Status
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{705DC428-5C79-4A28-82D3-1D87550B8C3F}
+          EnumType            #FiscalDocumentStatus_BR
+        ENDPROPERTIES
+        
+      FIELD #store
+        STRING
+        PROPERTIES
+          Name                #store
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{4FA1361A-3C02-4951-B90D-5FE49C8886E0}
+        ENDPROPERTIES
+        
+      FIELD #terminal
+        STRING
+        PROPERTIES
+          Name                #terminal
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{5E27E5D7-3922-4BB4-84B9-DDE9B7B2E4BE}
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressBacenCode
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressBacenCode
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{A3470B5F-6EDA-4963-B81C-C3E249A39366}
+          StringSize          #4
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressCity
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressCity
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{9D479A91-3A19-4502-B0AA-741C40894793}
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressComplement
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressComplement
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{47589F6C-FECD-4E10-8F55-64F3FCDAEF82}
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressCountry
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressCountry
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{86495F5C-C061-47EB-A9A1-74B48DDAB396}
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressCountryRegionId
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressCountryRegionId
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{34FE2CFB-0598-4A02-BF52-2385A4D5A8B2}
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressDistrict
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressDistrict
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{93013ADF-A766-4319-8FDF-3A5A099C7E63}
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressIBGECode
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressIBGECode
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{0E09DCDC-3BB0-4106-8F14-9B14D9EDCEAB}
+          StringSize          #7
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressState
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressState
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{46BD58FE-EAF6-4459-ADB0-7CA9BB3136F6}
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressStreet
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressStreet
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{4C668693-ADDE-4B5A-93DC-414DC0CB6A86}
+          StringSize          #250
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressStreetNumber
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressStreetNumber
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{C01356BF-DE88-478A-B0E0-6D61ABB6BDF8}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyAddressZipCode
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyAddressZipCode
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{AFCBC548-A9E3-40E1-B2AB-B04AFC8633D8}
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyCNPJCPF
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyCNPJCPF
+          HelpText            #@SYS4000548
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{DA034401-2618-4610-B6E6-CD6EA9B95209}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyEmail
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyEmail
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{5891C212-D6EB-48A8-8436-73C6C75635E7}
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyForeignerId
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyForeignerId
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{F1B42E6C-2987-4484-9C01-2898336D948E}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyName
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyName
+          Label               #@SYS34979
+          HelpText            #@SYS4000538
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{AA54F5F8-2FC4-4F57-AE42-AA7735202057}
+          StringSize          #140
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyPhone
+        STRING
+        PROPERTIES
+          Name                #ThirdPartyPhone
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{79A8952A-94DA-4CBD-A9F0-7EDA74C1EB78}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ThirdPartyPostalAddress
+        INT64
+        PROPERTIES
+          Name                #ThirdPartyPostalAddress
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{D92C343D-37B6-4B22-B0FB-2AE2F8080C37}
+        ENDPROPERTIES
+        
+      FIELD #TotalAmount
+        REAL
+        PROPERTIES
+          Name                #TotalAmount
+          Label               #@SYS340849
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{4F990F4A-9CA8-4F7D-A7A7-7BA2D556E207}
+        ENDPROPERTIES
+        
+      FIELD #TotalDiscountAmount
+        REAL
+        PROPERTIES
+          Name                #TotalDiscountAmount
+          Label               #@SYS6465
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{86E47E65-DD43-4522-8F10-2538D80C9D41}
+        ENDPROPERTIES
+        
+      FIELD #TotalGoodsAmount
+        REAL
+        PROPERTIES
+          Name                #TotalGoodsAmount
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{7A4827EE-3CEA-439F-9020-4D3D6BC6CCE6}
+        ENDPROPERTIES
+        
+      FIELD #TotalMarkupFreightAmount
+        REAL
+        PROPERTIES
+          Name                #TotalMarkupFreightAmount
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{584AFA8A-E035-4E6B-B53A-0AB0B483A1A7}
+        ENDPROPERTIES
+        
+      FIELD #TotalMarkupInsuranceAmount
+        REAL
+        PROPERTIES
+          Name                #TotalMarkupInsuranceAmount
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{6D585EE4-5646-4F96-839C-CC0A8EFC2AE2}
+        ENDPROPERTIES
+        
+      FIELD #TotalMarkupOtherAmount
+        REAL
+        PROPERTIES
+          Name                #TotalMarkupOtherAmount
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{D9B70C92-1008-4EA9-BAF7-19EA9A129AEC}
+        ENDPROPERTIES
+        
+      FIELD #TotalServicesAmount
+        REAL
+        PROPERTIES
+          Name                #TotalServicesAmount
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{543D3A1B-7726-4E65-A3BA-97F157C812A6}
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{B68150B0-3BC1-4317-AA21-279B31649C9F}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #XmlRequest
+        STRING
+        PROPERTIES
+          Name                #XmlRequest
+          Label               #@SYS4081421
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{2FAE484D-7EC7-46C4-BDF2-C1094F740579}
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #XmlResponse
+        STRING
+        PROPERTIES
+          Name                #XmlResponse
+          Label               #@SYS4081422
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{03402C74-6768-4110-9B48-C6D6623AC6BE}
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #XmlReturnRequest
+        STRING
+        PROPERTIES
+          Name                #XmlReturnRequest
+          Label               #@SYS4081421
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{C7494EAF-817F-452E-9D2B-8B7D75B9DD9E}
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #XmlReturnResponse
+        STRING
+        PROPERTIES
+          Name                #XmlReturnResponse
+          Label               #@SYS4081422
+          Table               #RetailFiscalDocument_BRT
+          Origin              #{2555DB6B-48ED-4EE0-A4FB-71FF7FC4C7E6}
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{20FB77FA-422D-4B63-94A5-0174FDD9A5F4}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #store
+        #terminal
+        #transactionId
+        #FiscalDocumentSeries
+        #FiscalDocumentNumber
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalDocument_BRT cursor)
+        #{
+        #    RetailFiscalDocument_BR target;
+        #    RetailFiscalDocument_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint Idx
+        #                where (target.@FiscalDocumentNumber==cursor2.@FiscalDocumentNumber && target.@FiscalDocumentSeries==cursor2.@FiscalDocumentSeries && target.@transactionId==cursor2.@transactionId && target.@terminal==cursor2.@terminal && target.@store==cursor2.@store && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @AccessKey,
+        #                    @AuthorityCode,
+        #                    @Channel,
+        #                    @ConsumerEFDocInquiryUrl,
+        #                    @ContingencyDateTime,
+        #                    @ContingencyDateTimeOffset,
+        #                    @ContingencyMode,
+        #                    @ContingencyReason,
+        #                    @DanfePrintFormat,
+        #                    @Direction,
+        #                    @EnvironmentType,
+        #                    @FEAddressBacenCode,
+        #                    @FEAddressCity,
+        #                    @FEAddressComplement,
+        #                    @FEAddressCountry,
+        #                    @FEAddressDistrict,
+        #                    @FEAddressIBGECode,
+        #                    @FEAddressState,
+        #                    @FEAddressStreet,
+        #                    @FEAddressStreetNumber,
+        #                    @FEAddressZipCode,
+        #                    @FinalUser,
+        #                    @FiscalDocumentAccountNum,
+        #                    @FiscalDocumentDateTime,
+        #                    @FiscalDocumentDateTimeOffset,
+        #                    @FiscalDocumentNumber,
+        #                    @FiscalDocumentSeries,
+        #                    @FiscalEstablishment,
+        #                    @FiscalEstablishmentCCMNum,
+        #                    @FiscalEstablishmentCNAE,
+        #                    @FiscalEstablishmentCNPJCPF,
+        #                    @FiscalEstablishmentIE,
+        #                    @FiscalEstablishmentName,
+        #                    @FiscalEstablishmentPhone,
+        #                    @FiscalEstablishmentPostalAddress,
+        #                    @MessageStatus,
+        #                    @MessageType,
+        #                    @Model,
+        #                    @NumericCode,
+        #                    @OperationDescription,
+        #                    @PresenceType,
+        #                    @ProtocolDate,
+        #                    @ProtocolNumber,
+        #                    @QrcodeText,
+        #                    @ReceiptNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @ReturnCodeDescription,
+        #                    @ReturnCodeRefRecId,
+        #                    @ReturnMessage,
+        #                    @Status,
+        #                    @store,
+        #                    @terminal,
+        #                    @ThirdPartyAddressBacenCode,
+        #                    @ThirdPartyAddressCity,
+        #                    @ThirdPartyAddressComplement,
+        #                    @ThirdPartyAddressCountry,
+        #                    @ThirdPartyAddressCountryRegionId,
+        #                    @ThirdPartyAddressDistrict,
+        #                    @ThirdPartyAddressIBGECode,
+        #                    @ThirdPartyAddressState,
+        #                    @ThirdPartyAddressStreet,
+        #                    @ThirdPartyAddressStreetNumber,
+        #                    @ThirdPartyAddressZipCode,
+        #                    @ThirdPartyCNPJCPF,
+        #                    @ThirdPartyEmail,
+        #                    @ThirdPartyForeignerId,
+        #                    @ThirdPartyName,
+        #                    @ThirdPartyPhone,
+        #                    @ThirdPartyPostalAddress,
+        #                    @TotalAmount,
+        #                    @TotalDiscountAmount,
+        #                    @TotalGoodsAmount,
+        #                    @TotalMarkupFreightAmount,
+        #                    @TotalMarkupInsuranceAmount,
+        #                    @TotalMarkupOtherAmount,
+        #                    @TotalServicesAmount,
+        #                    @transactionId,
+        #                    @XmlRequest,
+        #                    @XmlResponse,
+        #                    @XmlReturnRequest,
+        #                    @XmlReturnResponse
+        #                )
+        #                select
+        #                    @AccessKey,
+        #                    @AuthorityCode,
+        #                    @Channel,
+        #                    @ConsumerEFDocInquiryUrl,
+        #                    @ContingencyDateTime,
+        #                    @ContingencyDateTimeOffset,
+        #                    @ContingencyMode,
+        #                    @ContingencyReason,
+        #                    @DanfePrintFormat,
+        #                    @Direction,
+        #                    @EnvironmentType,
+        #                    @FEAddressBacenCode,
+        #                    @FEAddressCity,
+        #                    @FEAddressComplement,
+        #                    @FEAddressCountry,
+        #                    @FEAddressDistrict,
+        #                    @FEAddressIBGECode,
+        #                    @FEAddressState,
+        #                    @FEAddressStreet,
+        #                    @FEAddressStreetNumber,
+        #                    @FEAddressZipCode,
+        #                    @FinalUser,
+        #                    @FiscalDocumentAccountNum,
+        #                    @FiscalDocumentDateTime,
+        #                    @FiscalDocumentDateTimeOffset,
+        #                    @FiscalDocumentNumber,
+        #                    @FiscalDocumentSeries,
+        #                    @FiscalEstablishment,
+        #                    @FiscalEstablishmentCCMNum,
+        #                    @FiscalEstablishmentCNAE,
+        #                    @FiscalEstablishmentCNPJCPF,
+        #                    @FiscalEstablishmentIE,
+        #                    @FiscalEstablishmentName,
+        #                    @FiscalEstablishmentPhone,
+        #                    @FiscalEstablishmentPostalAddress,
+        #                    @MessageStatus,
+        #                    @MessageType,
+        #                    @Model,
+        #                    @NumericCode,
+        #                    @OperationDescription,
+        #                    @PresenceType,
+        #                    @ProtocolDate,
+        #                    @ProtocolNumber,
+        #                    @QrcodeText,
+        #                    @ReceiptNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @ReturnCodeDescription,
+        #                    @ReturnCodeRefRecId,
+        #                    @ReturnMessage,
+        #                    @Status,
+        #                    @store,
+        #                    @terminal,
+        #                    @ThirdPartyAddressBacenCode,
+        #                    @ThirdPartyAddressCity,
+        #                    @ThirdPartyAddressComplement,
+        #                    @ThirdPartyAddressCountry,
+        #                    @ThirdPartyAddressCountryRegionId,
+        #                    @ThirdPartyAddressDistrict,
+        #                    @ThirdPartyAddressIBGECode,
+        #                    @ThirdPartyAddressState,
+        #                    @ThirdPartyAddressStreet,
+        #                    @ThirdPartyAddressStreetNumber,
+        #                    @ThirdPartyAddressZipCode,
+        #                    @ThirdPartyCNPJCPF,
+        #                    @ThirdPartyEmail,
+        #                    @ThirdPartyForeignerId,
+        #                    @ThirdPartyName,
+        #                    @ThirdPartyPhone,
+        #                    @ThirdPartyPostalAddress,
+        #                    @TotalAmount,
+        #                    @TotalDiscountAmount,
+        #                    @TotalGoodsAmount,
+        #                    @TotalMarkupFreightAmount,
+        #                    @TotalMarkupInsuranceAmount,
+        #                    @TotalMarkupOtherAmount,
+        #                    @TotalServicesAmount,
+        #                    @transactionId,
+        #                    @XmlRequest,
+        #                    @XmlResponse,
+        #                    @XmlReturnRequest,
+        #                    @XmlReturnResponse
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

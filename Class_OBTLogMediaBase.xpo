@@ -10,12 +10,11 @@ Formatversion: 1
   CLASS #OBTLogMediaBase
     PROPERTIES
       Name                #OBTLogMediaBase
-      Extends             #
-      RunOn               #Called from
+      Origin              #{E39AF459-0D9D-47A5-9A4E-40B2E31001D4}
+      LegacyId            #50028
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class OBTLogMediaBase
         #{

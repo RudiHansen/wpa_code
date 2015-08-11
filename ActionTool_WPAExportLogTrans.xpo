@@ -15,7 +15,7 @@ Formatversion: 1
       HelpText            #@WPA200
       ObjectType          #Class
       Object              #WPAExportLogTrans
-      RunOn               #Called from
+      Origin              #{5658B12E-0737-4D3B-B7D8-4B6A64F69969}
     ENDPROPERTIES
     
   ENDMENUITEM

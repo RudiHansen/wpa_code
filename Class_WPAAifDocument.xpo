@@ -10,14 +10,13 @@ Formatversion: 1
   CLASS #WPAAifDocument
     PROPERTIES
       Name                #WPAAifDocument
-      Extends             #
-      RunOn               #Called from
+      Origin              #{4D78F022-04B7-4794-A8ED-A9EBD55A3725}
+      LegacyId            #50029
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
-        #class WPAAifDocument //extends AifDocument
+        #class WPAAifDocument
         #{
         #}
       ENDSOURCE
@@ -145,16 +144,8 @@ Formatversion: 1
         #    return xmlWriter.getXML();
         #}
       ENDSOURCE
-      SOURCE #getAllowedDSForCriteria
-        #// AxdBase::getAllowedDSForCriteria()
-        #static Set getAllowedDSForCriteria(Query _query)
-        #{
-        #    Set                     set = new Set(Types::String);
-        #    QueryBuildDataSource    queryBuildDataSource ;
-        #    int                     noOfDS ;
-        #    int                     i ;
-        #
-        #    void addInnerJoinedDS(QueryBuildDataSource _queryBuildDataSource, Set _resultSet)
+      SOURCE #addInnerJoinedDS
+        #    public static void addInnerJoinedDS(QueryBuildDataSource _queryBuildDataSource, Set _resultSet)
         #    {
         #        int j ;
         #        int length ;
@@ -167,10 +158,20 @@ Formatversion: 1
         #            if  (curQueryBuildDataSource.joinMode() == JoinMode::InnerJoin)
         #            {
         #                _resultSet.add(curQueryBuildDataSource.name()) ;
-        #                addInnerJoinedDS( curQueryBuildDataSource,_resultSet) ;
+        #                WPAAifDocument::addInnerJoinedDS( curQueryBuildDataSource,_resultSet) ;
         #            }
         #        }
         #    }
+        #
+      ENDSOURCE
+      SOURCE #getAllowedDSForCriteria
+        #// AxdBase::getAllowedDSForCriteria()
+        #static Set getAllowedDSForCriteria(Query _query)
+        #{
+        #    Set                     set = new Set(Types::String);
+        #    QueryBuildDataSource    queryBuildDataSource ;
+        #    int                     noOfDS ;
+        #    int                     i ;
         #
         #    // Start
         #    noOfDS = _query.childDataSourceCount() ;
@@ -178,7 +179,7 @@ Formatversion: 1
         #    {
         #       queryBuildDataSource = _query.childDataSourceNo(i) ;
         #       set.add( queryBuildDataSource.name()) ;
-        #       addInnerJoinedDS(queryBuildDataSource, set) ;
+        #       WPAAifDocument::addInnerJoinedDS(queryBuildDataSource, set) ;
         #    }
         #    return set ;
         #
@@ -239,6 +240,7 @@ Formatversion: 1
         #    AifQueryCriteria        aifQueryCriteria;
         #    AifOutboundProcessingQueue  aifOutboundProcessingQueue;
         #    ;
+        #
         #    select aifOutboundProcessingQueue
         #        index AifOutboundProcessingQueueIdx
         #        where aifOutboundProcessingQueue.MessageId == _messageId/*this.parmMessageId()*/;
@@ -276,16 +278,16 @@ Formatversion: 1
         #        if (queryCriteria.isQuery())
         #        {
         #            //Copy ranges from queryCriteria-query to query
-        #            srcQuery=  queryCriteria.parmQuery() ;
+        #            srcQuery =  queryCriteria.parmQuery() ;
         #            length = srcQuery.dataSourceCount() ;
-        #            for(i=1 ; i<= length; i++)
+        #            for (i=1 ; i<= length; i++)
         #            {
         #                tmpQueryBuildDataSource = srcQuery.dataSourceNo(i) ;
         #                if (tmpQueryBuildDataSource.enabled())
         #                {
         #                    if (allowedCriteriaDSSet.in(tmpQueryBuildDataSource.name()))
         #                    {
-        #                        AxdBase::mergeRanges(query,srcQuery,i);
+        #                        WPAAifDocument::mergeRanges(query,srcQuery, tmpQueryBuildDataSource.name());
         #                    }
         #                    else
         #                    {
@@ -297,6 +299,189 @@ Formatversion: 1
         #    }
         #
         #    return query;
+        #}
+      ENDSOURCE
+      SOURCE #mergeRanges
+        #public static void mergeRanges(Query       q,
+        #                               Query       initQ,
+        #                               str         initQdsName = '',
+        #                               boolean     addSameFieldRange = true)
+        #{
+        #    QueryBuildRange     fromQbr;
+        #    QueryBuildRange     toQbr;
+        #    QueryBuildDynalink  dyna;
+        #    Counter             fromI = 1;
+        #    str                 qdsName = initQdsName;
+        #    Counter             toI;
+        #    TableId             tableId;
+        #    SysDictField        dictField;
+        #    int                 dictIndex;
+        #    int                 originalId;
+        #
+        #    boolean isFieldVisible(SysDictField _dictField)
+        #    {
+        #        return _dictField.aotVisible();
+        #    }
+        #
+        #    boolean skipSecurityChecks()
+        #    {
+        #        return true;
+        #    }
+        #
+        #    boolean isFieldVisibleToUser(SysDictField _dictField)
+        #    {
+        #        boolean isFieldVisibleToUser = false;
+        #
+        #
+        #        isFieldVisibleToUser =
+        #            isFieldVisible(_dictField) &&
+        #            (
+        #                skipSecurityChecks() ||
+        #                _dictField.rights() >= AccessType::View
+        #            );
+        #
+        #        return isFieldVisibleToUser;
+        #    }
+        #
+        #    void findToQbr(FieldId id)
+        #    {
+        #        originalId  = id;
+        #        id          = fieldExt2Id(id);
+        #        toQbr       = null;
+        #
+        #        tableId   = q.dataSourceName(qdsName).table();
+        #        dictField = new SysDictField(tableId,id);
+        #        if (q.dataSourceName(qdsName).findRange(id))
+        #        {
+        #            // If same range is found, then next range
+        #            if (! addSameFieldRange)
+        #            {
+        #                return;
+        #            }
+        #
+        #            toI = 1;
+        #            while (toI)
+        #            {
+        #                toQbr  = q.dataSourceName(qdsName).findRange(id,toI);
+        #
+        #                if (toQbr && !isFieldVisibleToUser(dictField) && (fromQbr.value() != toQbr.value()))
+        #                {
+        #                    throw error(strFmt("@SYS97425",fieldId2name(fromQbr.table(),fromQbr.field())));
+        #                }
+        #                if (!toQbr || !toQbr.value())
+        #                {
+        #                    break;
+        #                }
+        #                if (toQbr.value() == fromQbr.value())
+        #                {
+        #                    break;
+        #                }
+        #                toI++;
+        #            }
+        #        }
+        #        if (! toQbr             ||
+        #            (addSameFieldRange  &&
+        #             toQbr              &&
+        #             toQbr.value()      &&
+        #             fromQbr.value()    &&
+        #             toQbr.value()      != fromQbr.value()
+        #            )
+        #           )
+        #        {
+        #            if(!isFieldVisibleToUser(dictField))
+        #            {
+        #                throw error(strFmt("@SYS97424",fieldId2name(tableId,id)));
+        #            }
+        #            if (dictField.arraySize() > 1)
+        #            {
+        #                dictIndex = originalId >> 16;
+        #                toQbr  = q.dataSourceName(qdsName).addRange(fieldId2Ext(id, dictIndex));
+        #            }
+        #            else
+        #            {
+        #                toQbr  = q.dataSourceName(qdsName).addRange(id);
+        #            }
+        #        }
+        #    }
+        #    ;
+        #
+        #    if (! initQ)
+        #    {
+        #        throw error(strFmt("@SYS23669",funcName()));
+        #    }
+        #    if (prmisDefault(initQdsName))
+        #    {
+        #        initQdsName = initQ.dataSourceNo(1).name();
+        #    }
+        #    else if (! initQ.dataSourceName(initQdsName))
+        #    {
+        #        throw error(strFmt("@SYS23667",funcName()));
+        #    }
+        #    if (! q)
+        #    {
+        #        throw error(strFmt("@SYS23669",funcName()));
+        #    }
+        #    if (! q.dataSourceName(qdsName))
+        #    {
+        #        throw error(strFmt("@SYS23667",funcName()));
+        #    }
+        #    if (q.dataSourceName(initQdsName).file() != initQ.dataSourceName(initQdsName).file())
+        #    {
+        #            throw error(strFmt("@SYS23668",funcName()));
+        #    }
+        #
+        #    for (fromI=1;fromI<=initQ.dataSourceName(initQdsName).rangeCount();fromI++)
+        #    {
+        #        fromQbr = initQ.dataSourceName(initQdsName).range(fromI);
+        #
+        #        findToQbr(fromQbr.field());
+        #
+        #        if (toQbr)
+        #        {
+        #            if (toQbr.status() == RangeStatus::Open)
+        #            {
+        #                if (fromQbr.value())
+        #                {
+        #                    toQbr.value(fromQbr.value());
+        #                }
+        #                switch (fromQbr.status())
+        #                {
+        #                    case RangeStatus::Locked:
+        #                        if (toQbr.status() == RangeStatus::Open)
+        #                            toQbr.status(RangeStatus::Locked);
+        #                        break;
+        #                    case RangeStatus::Hidden:
+        #                        switch (toQbr.status())
+        #                        {
+        #                            case RangeStatus::Open,RangeStatus::Locked:
+        #                                toQbr.status(RangeStatus::Hidden);
+        #                                break;
+        #                        }
+        #                        break;
+        #                }
+        #            }
+        #            else
+        #            {
+        #                if (fromQbr.value() != toQbr.value())
+        #                {
+        #                    throw error(strFmt("@SYS97425",fieldId2name(fromQbr.table(),fromQbr.field())));
+        #                }
+        #            }
+        #        }
+        #    }
+        #
+        #    fromI = 1;
+        #    while (fromI <= initQ.dataSourceName(initQdsName).dynalinkCount())
+        #    {
+        #        dyna =  initQ.dataSourceName(initQdsName).dynalink(fromI);
+        #        findToQbr(dyna.field());
+        #
+        #        if (toQbr)
+        #        {
+        #            toQbr.value(queryValue(dyna.cursor().(dyna.dynamicField())));
+        #        }
+        #        fromI++;
+        #    }
         #}
       ENDSOURCE
     ENDMETHODS

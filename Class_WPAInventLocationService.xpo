@@ -12,11 +12,14 @@ Formatversion: 1
       Name                #WPAInventLocationService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{D7A314D5-A02D-412D-B7F9-C988F95856A5}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventLocationService</c> class serves as the document service for the <c>WPAInventLocation</c> document type.
+        #/// </summary>
         #class WPAInventLocationService extends AifDocumentService
         #{
         #
@@ -24,10 +27,19 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAInventLocation</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
         #public WPAInventLocation find(AifQueryCriteria _queryCriteria)
         #{
         #    WPAInventLocation wPAInventLocation = new WPAInventLocation();
-        #    ;
         #    this.findList(_queryCriteria, wPAInventLocation);
         #    return wPAInventLocation;
         #}

@@ -1,0 +1,521 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : EPGlobalParameters unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #EPGlobalParameters
+    EnforceFKRelation 0
+    PROPERTIES
+      Name                #EPGlobalParameters
+      Label               #@SYS112041
+      Systemtable         #Yes
+      SecurityKey         #AdminTables
+      MaxAccessMode       #Edit
+      AOSAuthorization    #CreateUpdateDelete
+      CacheLookup         #Found
+      CreateRecIdIndex    #Yes
+      SaveDataPerCompany  #No
+      TableGroup          #Parameter
+      PrimaryIndex        #Key
+      ClusterIndex        #Key
+      ModifiedDateTime    #Yes
+      ModifiedBy          #Yes
+      OccEnabled          #No
+      DeveloperDocumentation  #@SYS125256
+      Origin              #{2C1208BA-0000-1000-BB4E-CD31D1BE1BDB}
+      LegacyId            #2234
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #DefaultRoleCenter
+        STRING
+        PROPERTIES
+          Name                #DefaultRoleCenter
+          Label               #@SYS117606
+          HelpText            #@SYS117607
+          Table               #EPGlobalParameters
+          Origin              #{4FA7809A-3DB3-4189-A5D8-55D32DB4141E}
+          LegacyId            #6
+          ExtendedDataType    #WebUrlItemName
+          StringSize          #40
+        ENDPROPERTIES
+        
+      FIELD #DevelopmentSiteId
+        GUID
+        PROPERTIES
+          Name                #DevelopmentSiteId
+          Table               #EPGlobalParameters
+          Origin              #{13239256-5085-460A-8A54-56BA73577668}
+          LegacyId            #5
+          ExtendedDataType    #WebSiteId
+        ENDPROPERTIES
+        
+      FIELD #EPInitialSearchResultDisplayCount
+        INT
+        PROPERTIES
+          Name                #EPInitialSearchResultDisplayCount
+          Table               #EPGlobalParameters
+          Origin              #{B2F599ED-A67F-4329-A96C-7362F9ECE7B7}
+          LegacyId            #2
+          ExtendedDataType    #EPInitialSearchResultDisplayCount
+        ENDPROPERTIES
+        
+      FIELD #EPOverflowSearchResultDisplayCount
+        INT
+        PROPERTIES
+          Name                #EPOverflowSearchResultDisplayCount
+          Table               #EPGlobalParameters
+          Origin              #{7C8527B0-730A-4DC1-8DB5-5DF860AE5460}
+          LegacyId            #3
+          ExtendedDataType    #EPOverflowSearchResultDisplayCount
+        ENDPROPERTIES
+        
+      FIELD #HomepageSiteId
+        GUID
+        PROPERTIES
+          Name                #HomepageSiteId
+          Table               #EPGlobalParameters
+          Origin              #{1C752D7B-666E-4B6E-9AA4-822E608C34EE}
+          LegacyId            #1
+          ExtendedDataType    #HomepageSiteId
+        ENDPROPERTIES
+        
+      FIELD #Key
+        INT
+        PROPERTIES
+          Name                #Key
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Visible             #No
+          Table               #EPGlobalParameters
+          Origin              #{1E6D8DAF-88CE-4B00-A944-B6E09731A8B3}
+          LegacyId            #7
+          ExtendedDataType    #ParametersKey
+        ENDPROPERTIES
+        
+      FIELD #ListPageRowsDisplayed
+        INT
+        PROPERTIES
+          Name                #ListPageRowsDisplayed
+          Label               #@SYS331886
+          HelpText            #@SYS331887
+          Table               #EPGlobalParameters
+          Origin              #{491BBEDD-35BA-438C-B264-23522ABD6A92}
+          LegacyId            #15
+          ExtendedDataType    #ListPageRowsDisplayed
+        ENDPROPERTIES
+        
+      FIELD #SearchServerUrl
+        STRING
+        PROPERTIES
+          Name                #SearchServerUrl
+          Label               #@SYS331884
+          HelpText            #@SYS331885
+          Table               #EPGlobalParameters
+          Origin              #{610563E8-50F5-400F-8296-D48AB0DBE67D}
+          LegacyId            #16
+          ExtendedDataType    #WebSiteURL
+          StringSize          #255
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+      GROUP #AutoReport
+        PROPERTIES
+          Name                #AutoReport
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #HomepageSiteId
+          #DevelopmentSiteId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Configuration
+        PROPERTIES
+          Name                #Configuration
+          Label               #@SYS6126
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #EPInitialSearchResultDisplayCount
+          #EPOverflowSearchResultDisplayCount
+          #ListPageRowsDisplayed
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #DevelopmentSite
+        PROPERTIES
+          Name                #DevelopmentSite
+          Label               #@SYS94808
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #DevelopmentSiteId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Homepage
+        PROPERTIES
+          Name                #Homepage
+          Label               #@SYS105411
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #HomepageSiteId
+          #DefaultRoleCenter
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #SearchServerSite
+        PROPERTIES
+          Name                #SearchServerSite
+          Label               #@SYS331888
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SearchServerUrl
+        ENDGROUPFIELDS
+      ENDGROUP
+    ENDGROUPS
+    
+    INDICES
+      #Key
+      PROPERTIES
+        Name                #Key
+        AllowDuplicates     #No
+        Origin              #{2B030002-08BA-1000-4B65-790000000000}
+        LegacyId            #2
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Key
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+      REFERENCE #EPWebSiteParametersDevelopmentSite
+        PROPERTIES
+          Name                #EPWebSiteParametersDevelopmentSite
+          Table               #EPWebSiteParameters
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+          RelatedTableRole    #EPWebSiteParameters
+          Role                #EPWebSiteParameters_EPGlobalParameters
+          EDTRelation         #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #DevelopmentSiteId
+            RelatedField        #SiteId
+            SourceEDT           #WebSiteId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #EPWebSiteParametersHomepageSite
+        PROPERTIES
+          Name                #EPWebSiteParametersHomepageSite
+          Table               #EPWebSiteParameters
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+          RelatedTableRole    #EPWebSiteParameters_1
+          Role                #EPWebSiteParameters_1_EPGlobalParameters
+          EDTRelation         #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #HomepageSiteId
+            RelatedField        #SiteId
+            SourceEDT           #HomepageSiteId
+          ENDPROPERTIES
+          
+          REFERENCETYPE EXTERNFIXED
+          PROPERTIES
+            Value               #2
+            Table               #EPWebSiteParameters
+            RelatedField        #Type
+            SourceEDT           #HomepageSiteId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #editHomepageSiteUrl
+        #client server
+        #edit URL editHomepageSiteUrl(boolean _set, URL  _siteIdOrInternalUrl)
+        #{
+        #    URL url;
+        #    EPWebSiteParameters epWebSiteParams;
+        #
+        #    if (_set)
+        #    {
+        #        epWebSiteParams = this.editSiteURLHelper(_siteIdOrInternalUrl);
+        #        this.HomepageSiteId = epWebSiteParams.SiteId;
+        #        url = epWebSiteParams.InternalUrl;
+        #    }
+        #    else
+        #    {
+        #        epWebSiteParams = EPWebSiteParameters::find(this.HomepageSiteId);
+        #        url = epWebSiteParams.InternalUrl;
+        #    }
+        #
+        #    return url;
+        #}
+        #
+        #
+        #
+      ENDSOURCE
+      SOURCE #editSearchServerUrl
+        #client server
+        #edit URL editSearchServerUrl(boolean _set, URL  _searchServerId)
+        #{
+        #    if (_set)
+        #    {
+        #        this.SearchServerUrl = _searchServerId;
+        #    }
+        #
+        #    return this.SearchServerUrl;
+        #}
+        #
+        #
+        #
+      ENDSOURCE
+      SOURCE #editSiteURLHelper
+        #private EPWebSiteParameters editSiteURLHelper(URL _siteIdOrInternalUrl)
+        #{
+        #    guid siteId;
+        #    EPWebSiteParameters epWebSiteParams;
+        #
+        #    //While setting the lookup value the passed value can either be a siteid choosen from lookup form
+        #    //or it can be the InternalURL typed directly in the Url edit control.
+        #    if (_siteIdOrInternalUrl)
+        #    {
+        #        //searh on siteId first
+        #        siteId = str2guid(_siteIdOrInternalUrl);
+        #        epWebSiteParams = EPWebSiteParameters::find(siteId);
+        #        //if not found search on Url also
+        #        if(!epWebSiteParams)
+        #        {
+        #            select epWebSiteParams
+        #                where epWebSiteParams.InternalUrl like _siteIdOrInternalUrl;
+        #        }
+        #    }
+        #    return epWebSiteParams;
+        #}
+      ENDSOURCE
+      SOURCE #editWebSiteUrl
+        #client server
+        #edit URL editWebSiteUrl(boolean _set, URL  _siteIdOrInternalUrl)
+        #{
+        #    URL url;
+        #    EPWebSiteParameters epWebSiteParams;
+        #
+        #    if (_set)
+        #    {
+        #        epWebSiteParams = this.editSiteURLHelper(_siteIdOrInternalUrl);
+        #        this.DevelopmentSiteId = epWebSiteParams.SiteId;
+        #        url = epWebSiteParams.InternalUrl;
+        #    }
+        #    else
+        #    {
+        #        epWebSiteParams = EPWebSiteParameters::find(this.DevelopmentSiteId);
+        #        url = epWebSiteParams.InternalUrl;
+        #    }
+        #
+        #    return url;
+        #}
+        #
+        #
+        #
+      ENDSOURCE
+      SOURCE #initValue
+        #/// <summary>
+        #/// Sets the initial values when a record is created.
+        #/// </summary>
+        #public void initValue()
+        #{
+        #    super();
+        #
+        #    //Set the default role center
+        #    this.DefaultRoleCenter = weburlitemstr(EPDefaultRoleCenter);
+        #
+        #    //Set the default number of rows to display in a list page
+        #    this.ListPageRowsDisplayed = 10;
+        #}
+      ENDSOURCE
+      SOURCE #validateWrite
+        #public boolean validateWrite()
+        #{
+        #    boolean ret;
+        #
+        #    ret = super();
+        #
+        #    if (this.ListPageRowsDisplayed < 0 || this.ListPageRowsDisplayed > 100)
+        #    {
+        #        info("@SYS331961");
+        #        ret = false;
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #createParameter
+        #/// <summary>
+        #///    Creates an <c>EPGlobalParameters</c> record with the default values.
+        #/// </summary>
+        #/// <returns>
+        #///    The newly created <c>EPGlobalParameters</c> record.
+        #/// </returns>
+        #/// <remarks>
+        #///    The actual creation of the record runs unchecked. This allows users who have only view access to
+        #///    create the initial record, when no record currently exists.
+        #/// </remarks>
+        #private static server EPGlobalParameters createParameter()
+        #{
+        #    EPGlobalParameters    parameter;
+        #
+        #    // Must select the record to enforce security. If user does not have access to view this table,
+        #    // and is not running behind a server entrypoint, the kernel will throw a security exception.
+        #    select firstonly parameter
+        #        index Key
+        #        where parameter.Key == 0;
+        #
+        #    if (!parameter)
+        #    {
+        #        unchecked (Uncheck::TableSecurityPermission)
+        #        {
+        #            Company::createParameter(parameter);
+        #        }
+        #    }
+        #
+        #    return parameter;
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #server static client EPGlobalParameters find(boolean _forupdate = false)
+        #{
+        #    EPGlobalParameters parameter;
+        #
+        #    parameter.selectForUpdate(_forupdate);
+        #
+        #    select firstonly parameter
+        #        index Key
+        #        where parameter.Key == 0;
+        #
+        #    if (!parameter && !parameter.isTmp())
+        #    {
+        #        ///::createParameter calls Company::createParameter with unchecked mode if the user has read access
+        #        /// The actual creation of the record runs unchecked, allowing users with only view access to create the
+        #        /// initial record, when no record currently exists.
+        #        parameter = EPGlobalParameters::createParameter();
+        #
+        #        //After createParameter, selectForUpdate can be different than what it is
+        #        //set to above.  Reselect with the correct selectForUpdate option
+        #        if (parameter && parameter.selectForUpdate() != _forupdate)
+        #        {
+        #            parameter.selectForUpdate(_forupdate);
+        #
+        #            select firstonly parameter
+        #                index Key
+        #                where parameter.Key == 0;
+        #        }
+        #
+        #
+        #    }
+        #
+        #    return parameter;
+        #}
+      ENDSOURCE
+      SOURCE #homepageSiteURL
+        ##AIF
+        ##SYSCHECKLIST
+        #static URL homepageSiteURL()
+        #{
+        #    EPGlobalParameters  epGlobalParams;
+        #    HomepageSiteId      siteId;
+        #    EPWebSiteParameters epWebSiteParams;
+        #    URL                 url = '';
+        #    ;
+        #    //Make sure we don't run while in the middle of an upgrade
+        #    if (SysCheckList_Upgrade::isUpgradeMode())
+        #        return '';
+        #
+        #    select firstonly HomepageSiteId from epGlobalParams;
+        #    if (epGlobalParams)
+        #    {
+        #        siteId = epGlobalParams.HomepageSiteId;
+        #
+        #        if (siteId && siteId != str2guid(#EmptyGuidString))
+        #        {
+        #            epWebSiteParams = EPWebSiteParameters::find(siteId);
+        #            url = epWebSiteParams.InternalUrl;
+        #        }
+        #    }
+        #    return url;
+        #}
+      ENDSOURCE
+      SOURCE #rowsDisplayedinListPage
+        ##AIF
+        ##SYSCHECKLIST
+        #static int rowsDisplayedinListPage()
+        #{
+        #    EPGlobalParameters  epGlobalParams;
+        #    int                 rowsDisplayed = 10;
+        #    ;
+        #
+        #    select firstonly ListPageRowsDisplayed from epGlobalParams;
+        #    if (epGlobalParams)
+        #    {
+        #        rowsDisplayed = epGlobalParams.ListPageRowsDisplayed;
+        #    }
+        #
+        #    // set the return value to the default if it is an invalid value
+        #    if (rowsDisplayed < 0 || rowsDisplayed > 100)
+        #    {
+        #        rowsDisplayed = 10;
+        #    }
+        #
+        #    return rowsDisplayed;
+        #}
+      ENDSOURCE
+      SOURCE #searchServerUrl
+        ##AIF
+        ##SYSCHECKLIST
+        #static URL searchServerUrl()
+        #{
+        #    EPGlobalParameters  epGlobalParams;
+        #    URL                 url = '';
+        #    ;
+        #    //Make sure we don't run while in the middle of an upgrade
+        #    if (SysCheckList_Upgrade::isUpgradeMode())
+        #        return '';
+        #
+        #    select firstonly SearchServerUrl from epGlobalParams;
+        #    if (epGlobalParams)
+        #    {
+        #        url = epGlobalParams.SearchServerUrl;
+        #    }
+        #    return url;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

@@ -12,6 +12,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAItemUnitPrice
       Label               #@SYS23884
+      Origin              #{93E772DD-021E-4596-B979-D95CE572ADA4}
+      LegacyId            #50033
       Extends             #ProjSalesPriceCost
     ENDPROPERTIES
     
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

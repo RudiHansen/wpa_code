@@ -11,7 +11,9 @@ Formatversion: 1
   ENUM
     PROPERTIES
       Name                #WPAIsDepartment
-      Label               #@WPA231
+      Label               #Is department in WPA
+      Origin              #{326B9FBE-A72D-4305-AE37-CD6E2800E669}
+      LegacyId            #50070
       EnumType            #NoYes
     ENDPROPERTIES
     
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

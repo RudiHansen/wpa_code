@@ -11,7 +11,10 @@ Formatversion: 1
   STRING
     PROPERTIES
       Name                #WPADocuTypeId
+      Origin              #{4B2DA042-C561-4373-900A-225B466E8928}
+      LegacyId            #50060
       Extends             #DocuTypeIdNote
+      StringSize          #20
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -19,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

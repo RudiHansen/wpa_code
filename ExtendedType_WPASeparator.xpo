@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPASeparator
       Label               #@SYS22503
       HelpText            #@WPA5
+      Origin              #{B4FDB781-8A3F-4CBF-A080-1E65D78ECB40}
+      LegacyId            #50044
       StringSize          #1
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

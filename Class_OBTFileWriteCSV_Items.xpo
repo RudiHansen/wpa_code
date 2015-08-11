@@ -12,10 +12,11 @@ Formatversion: 1
       Name                #OBTFileWriteCSV_Items
       Extends             #OBTFileWriteCSV
       RunOn               #Server
+      Origin              #{1B374A9B-F45F-4B6F-BFCF-9AD8BD988044}
+      LegacyId            #50104
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class OBTFileWriteCSV_Items extends OBTFileWriteCSV
         #{
@@ -58,11 +59,7 @@ Formatversion: 1
       SOURCE #showQueryValues
         #public boolean showQueryValues()
         #{
-        #    boolean ret;
-        #    ;
-        #    ret = true;
-        #
-        #    return ret;
+        #    return true;
         #}
       ENDSOURCE
       SOURCE #unpack
@@ -97,7 +94,7 @@ Formatversion: 1
         #    while (queryRun.next())
         #    {
         #        inventTable = queryRun.get(tablenum(InventTable));
-        #        this.writeLine([inventTable.ItemId, inventTable.ItemName]);
+        #        this.writeLine([inventTable.ItemId, inventTable.itemName()]);
         #    }
         #
         #}

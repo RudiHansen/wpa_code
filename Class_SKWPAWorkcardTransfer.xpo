@@ -1,0 +1,182 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: SKWPAWorkcardTransfer unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #SKWPAWorkcardTransfer
+    PROPERTIES
+      Name                #SKWPAWorkcardTransfer
+      Extends             #WPAWorkCardTransfer
+      Origin              #{9BFDEC48-BD02-4F55-A898-47862E061936}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #class SKWPAWorkcardTransfer extends WPAWorkcardTransfer
+        #{
+        #    InventJournalTable  inventJournalTableReorder;
+        #}
+      ENDSOURCE
+      SOURCE #createInventJournalTable
+        #InventJournalTable createInventJournalTable(InventJournalNameId _inventJournalNameId)
+        #{
+        #    InventJournalTable  inventJournalTableLocal;
+        #    InventDimParm       inventDimParm;
+        #    ;
+        #    inventJournalTableLocal.clear();
+        #    inventJournalTableLocal.initValue();
+        #    inventJournalTableLocal.initFromInventJournalName(InventJournalName::find(_inventJournalNameId));
+        #
+        #    inventJournalTableLocal.insert();
+        #
+        #    return inventJournalTableLocal;
+        #}
+      ENDSOURCE
+      SOURCE #createServiceOrderLine
+        #public SMAServiceOrderLine createServiceOrderLine(WPAWorkcardTable      _workcardTable,
+        #                                                  WPAWorkcardLine       _workcardLine,
+        #                                                  SMAServiceOrderLine   _serviceOrderLineWorkcard = null)
+        #{
+        #    SMAServiceOrderLine ret;
+        #
+        #    ret = super(_workcardTable, _workcardLine, _serviceOrderLineWorkcard);
+        #
+        #    if (_workcardLine.Comment)
+        #    {
+        #        this.createTransfer(_workcardLine);
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #createTransfer
+        #void createTransfer(WPAWorkcardLine _wPAWorkcardLine)
+        #{
+        #    WPAParameters       wPAParameters = WPAParameters::find();
+        #    InventJournalTrans  inventJournalTrans;
+        #    InventDim           inventDimTo;
+        #    ItemId              itemId;
+        #    InventTable         inventTable;
+        #    ;
+        #    if (!wPAParameters.InventJournalNameReorder)
+        #    {
+        #        throw error("@WPA212");
+        #    }
+        #
+        #    if (!inventJournalTableReorder)
+        #    {
+        #        select firstonly inventJournalTableReorder
+        #            where inventJournalTableReorder.JournalNameId  == wPAParameters.InventJournalNameReorder    &&
+        #                  inventJournalTableReorder.Posted         == NoYes::No;
+        #    }
+        #
+        #    if (!inventJournalTableReorder)
+        #    {
+        #        inventJournalTableReorder = this.createInventJournalTable(wPAParameters.InventJournalNameReorder);
+        #    }
+        #    if (inventJournalTableReorder)
+        #    {
+        #        itemId = _wPAWorkcardLine.ItemId;
+        #        [itemId, inventDimTo.configId, inventDimTo.InventSizeId, inventDimTo.InventColorId] = this.splitItemId(itemId);
+        #        inventDimTo.InventLocationId        = _wPAWorkcardLine.StockLocationId ? _wPAWorkcardLine.StockLocationId : WPAParameters::find().InventLocationIdDefault;
+        #        inventDimTo.InventSiteId            = InventLocation::find(inventDimTo.InventLocationId).InventSiteId;
+        #
+        #        inventTable                         = InventTable::find(itemId);
+        #
+        #        inventJournalTrans.clear();
+        #        inventJournalTrans.initValue();
+        #        inventJournalTrans.initFromInventJournalTable(inventJournalTableReorder);
+        #        inventJournalTrans.ItemId           = itemId;
+        #        inventJournalTrans.ToInventDimId    = InventDim::findOrCreate(inventDimTo).inventDimId;
+        #        inventJournalTrans.initFromInventTable(inventTable, false);
+        #        inventJournalTrans.TransDate        = systemdateget();
+        #        inventJournalTrans.Qty              = str2num(_wPAWorkcardLine.Comment);
+        #        inventJournalTrans.insert();
+        #
+        #    }
+        #    else
+        #    {
+        #        throw error("@WPA213");
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #endUpdateServiceOrder
+        #public void endUpdateServiceOrder(WPAWorkcardTable _workcardTable, SMAServiceOrderId _serviceOrderId)
+        #{
+        #    WPAWorkcardLine             wPAWorkcardLine;
+        #    ProjJournalTrans            projJournalTrans;
+        #    InventJournalTrans          inventJournalTrans;
+        #    LedgerJournalTrans_Project  ledgerJournalTrans_Project;
+        #
+        #    super(_workcardTable, _serviceOrderId);
+        #
+        #    ttsBegin;
+        #    while select wPAWorkcardLine
+        #        where wPAWorkcardLine.OrderId       == _workcardTable.OrderId       &&
+        #              wPAWorkcardLine.WorkcardId    == _workcardTable.WorkcardId    &&
+        #              wPAWorkcardLine.Direction     == WPADirection::Incoming
+        #    {
+        #        switch (wPAWorkcardLine.RefTableId)
+        #        {
+        #            case tableNum(ProjJournalTrans)     :   select firstOnly forUpdate projJournalTrans
+        #                                                        where projJournalTrans.RecId    == wPAWorkcardLine.RefRecId;
+        #
+        #                                                    if (projJournalTrans && projJournalTrans.SMAServiceOrderId != _serviceOrderId)
+        #                                                    {
+        #                                                        projJournalTrans.SMAServiceOrderId = _serviceOrderId;
+        #                                                        projJournalTrans.update();
+        #                                                    }
+        #                                                    break;
+        #            case tableNum(InventJournalTrans)   :   select firstOnly forUpdate inventJournalTrans
+        #                                                        where inventJournalTrans.RecId    == wPAWorkcardLine.RefRecId;
+        #                                                    if (inventJournalTrans && inventJournalTrans.SMAServiceOrderId != _serviceOrderId)
+        #                                                    {
+        #                                                        inventJournalTrans.SMAServiceOrderId = _serviceOrderId;
+        #                                                        inventJournalTrans.update();
+        #                                                    }
+        #                                                    break;
+        #            case tableNum(LedgerJournalTrans)   :   select firstOnly forUpdate ledgerJournalTrans_Project
+        #                                                        where ledgerJournalTrans_Project.RefRecId == wPAWorkcardLine.RefRecId;
+        #                                                    if (ledgerJournalTrans_Project && ledgerJournalTrans_Project.SMAServiceOrderId != _serviceOrderId)
+        #                                                    {
+        #                                                        ledgerJournalTrans_Project.SMAServiceOrderId = _serviceOrderId;
+        #                                                        ledgerJournalTrans_Project.update();
+        #                                                    }
+        #                                                    break;
+        #            default                             :   break;
+        #        }
+        #    }
+        #    ttsCommit;
+        #}
+      ENDSOURCE
+      SOURCE #updateServiceOrderLine
+        #public void updateServiceOrderLine(WPAWorkcardTable     _workcardTable,
+        #                                   WPAWorkcardLine      _workcardLine,
+        #                                   SMAServiceOrderLine  _serviceOrderLine)
+        #{
+        #    super(_workcardTable, _workcardLine, _serviceOrderLine);
+        #
+        #    if (_workcardLine.Comment)
+        #    {
+        #        this.createTransfer(_workcardLine);
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #workcardLine2Project
+        #public void workcardLine2Project(WPAWorkcardTable _workcardTable, WPAWorkcardLine _wPAWorkcardLine, ProjForecastEmpl _projForecastEmpl)
+        #{
+        #    super(_workcardTable, _wPAWorkcardLine, _projForecastEmpl);
+        #
+        #    if (_wPAWorkcardLine.Comment)
+        #    {
+        #        this.createTransfer(_wPAWorkcardLine);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

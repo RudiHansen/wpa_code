@@ -1,0 +1,194 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: MetadataXMLGenrator unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #MetadataXMLGenrator
+    #static void MetadataXMLGenrator(Args _args)
+    #{
+    #    Dictionary      dictionary;
+    #    Counter         tableCounter;
+    #    SysDictTable    table;
+    #    Counter         fieldCounter;
+    #    SysDictField    field;
+    #    str             result;
+    #
+    #    boolean         isRecID;
+    #    boolean         isTableID;
+    #    boolean         isDatatypeID;
+    #    boolean         isClassID;
+    #    boolean         isFieldID;
+    #    boolean         IsIndexID;
+    #    boolean         isConfigurationKeyId;
+    #    boolean         isEnumId;
+    #    boolean         isLicenseCodeId;
+    #    boolean         isperspectiveId;
+    #    boolean         issecurityKeyId;
+    #
+    #
+    #    SysModelElement modelElement;
+    #    str             elementType;
+    #    str             tmpfolderpath;
+    #    str             relatedtTableName;
+    #
+    #    void write(str _directory, str _name, str _text)
+    #    {
+    #        str path;
+    #        ;
+    #
+    #        _text = System.Text.RegularExpressions.Regex::Replace(_text, '\n', '\r\n');
+    #        if (!System.IO.Directory::Exists(_directory))
+    #        {
+    #            System.IO.Directory::CreateDirectory(_directory);
+    #        }
+    #        path = System.IO.Path::Combine(_directory, _name);
+    #        System.IO.File::WriteAllText(path, _text, System.Text.Encoding::get_UTF8());
+    #    }
+    #
+    #    boolean isExcluded(SysDictTable _table)
+    #    {
+    #        ;
+    #
+    #        return
+    #           _table.isView()
+    #        || _table.isMap()
+    #        || _table.isTmp()
+    #        || _table.isTempDb();
+    #    }
+    #
+    #    guid tableOrigin(SysDictTable _table)
+    #    {
+    #        ;
+    #        modelElement = null;
+    #        select firstOnly * from modelElement where modelElement.AxId == _table.id() && modelElement.ElementType == 44;
+    #        if (modelElement)
+    #        {
+    #            return modelElement.Origin;
+    #        }
+    #
+    #        return emptyGuid();
+    #    }
+    #
+    #    str fmt(guid value, int64 id)
+    #    {
+    #        str digits;
+    #        str o = strReplace(strReplace(guid2str(value), '{', ''), '}', '');
+    #
+    #        if (o != '00000000-0000-0000-0000-000000000000')
+    #        {
+    #            return o;
+    #        }
+    #
+    #        digits = int642str(id);
+    #        return subStr(o, 0, strLen(o) - strLen(digits)) + digits;
+    #    }
+    #
+    #    dictionary = new Dictionary();
+    #
+    #    result += '<tables>\n';
+    #
+    #    for (tableCounter = 1; tableCounter <= dictionary.tableCnt(); ++tableCounter)
+    #    {
+    #        table = new SysDictTable(Dictionary.tableCnt2Id(tableCounter));
+    #
+    #        if (!isExcluded(table))
+    #        {
+    #            result += strFmt('\t<table axid="%1" origin="%2" name="%3" sqlname="%4" %5>\n', table.id(), fmt(tableOrigin(table), table.id()), table.name(), table.name(DbBackend::Sql), table.supportInheritance() ? 'supportsinheritance="true" ' :  '' );
+    #
+    #            for (fieldCounter = 1; fieldCounter <= table.fieldCnt(); ++fieldCounter)
+    #            {
+    #                relatedtTableName = '';
+    #                field = new SysDictField(table.id(), table.fieldCnt2Id(fieldCounter));
+    #
+    #                if (field.isSql())
+    #                {
+    #                    isRecID = field.isDerivedFrom(extendedTypeNum(RecId));
+    #                    isTableID = field.isDerivedFrom(extendedTypeNum(RefTableId)) || field.isDerivedFrom(extendedTypeNum(RelationType));
+    #                    isDatatypeID = field.isDerivedFrom(extendedTypeNum(ExtendedTypeId));
+    #                    isClassID = field.isDerivedFrom(extendedTypeNum(ClassId));
+    #                    isFieldID = field.isDerivedFrom(extendedTypeNum(FieldId));
+    #                    IsIndexID = field.isDerivedFrom(extendedTypeNum(IndexId));
+    #                    isConfigurationKeyId = field.isDerivedFrom(extendedTypeNum(ConfigurationKeyId));
+    #                    isEnumId = field.isDerivedFrom(extendedTypeNum(EnumId));
+    #                    isLicenseCodeId = field.isDerivedFrom(extendedTypeNum(LicenseCodeId));
+    #                    isperspectiveId = field.isDerivedFrom(extendedTypeNum(PerspectiveId));
+    #                    issecurityKeyId = field.isDerivedFrom(extendedTypeNum(SecurityKeyId));
+    #
+    #                    if (isTableID)
+    #                    {
+    #                        elementType = "Table";
+    #                    }
+    #                    else if (isClassID)
+    #                    {
+    #                        elementType = "Class";
+    #                    }
+    #                    else if (isDataTypeID)
+    #                    {
+    #                        elementType = "DataType";
+    #                    }
+    #                    else if (isFieldID)
+    #                    {
+    #                        elementType = "Field";
+    #                        relatedtTableName = field.relatedTableName();
+    #                    }
+    #                    else if (IsIndexID)
+    #                    {
+    #                        elementType = "Index";
+    #                        relatedtTableName = field.relatedTableName();
+    #                    }
+    #                    else if(isConfigurationKeyId)
+    #                    {
+    #                        elementType = "ConfigurationKey";
+    #                    }
+    #                    else if(isEnumId)
+    #                    {
+    #                        elementType = "Enum";
+    #                    }
+    #                    else if(isLicenseCodeId)
+    #                    {
+    #                        elementType = "LicenseCode";
+    #                    }
+    #                    else if(issecurityKeyId)
+    #                    {
+    #                        elementType = "SecurityKey";
+    #                    }
+    #                    else if(isperspectiveId)
+    #                    {
+    #                        elementType = "Perspective";
+    #                    }
+    #                    else
+    #                    {
+    #                        elementType = '';
+    #                    }
+    #
+    #                    result += strFmt('\t\t<field axid="%1" origin="%2" name="%3" sqlname="%4" type="%5" %6%7/>\n',
+    #                        field.id(), fmt(field.origin(), field.id()), field.name(), field.name(DbBackend::Sql), field.typeName(),
+    #                        elementType != '' ? ((elementType == ('Field') || elementType == ('Index'))?'elementType="' + elementType + '" '+'relatedTable="'+relatedtTableName + '" ' :'elementType="' + elementType + '" ') : '',
+    #                        isRecID ? 'recid="true" ' : ''
+    #                        );
+    #                }
+    #            }
+    #
+    #            result += '\t</table>\n';
+    #        }
+    #    }
+    #
+    #    result += '</tables>\n';
+    #    tmpfolderpath = System.Environment::GetEnvironmentVariable('TEMP');
+    #    write(tmpfolderpath, 'Metadata.xml', result);
+    #
+    #    info(strFmt("Metadata xml file is created and here is the full path to the file %1\\Metadata.xml",tmpfolderpath));
+    #}
+    #
+    #
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{F6AF9216-7726-4494-AF6C-9347622577AB}
+  ENDPROPERTIES
+  
+
+***Element: END

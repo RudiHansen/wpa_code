@@ -1,0 +1,33 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: UTS
+
+; Microsoft Dynamics AX String: WPAComment unloaded
+; --------------------------------------------------------------------------------
+  USERTYPEVERSION 6
+  
+  USERTYPE #WPAComment
+  STRING
+    PROPERTIES
+      Name                #WPAComment
+      Label               #@SYS53151
+      HelpText            #@WPA245
+      DisplayLength       #30
+      Origin              #{ED5319B4-B31C-4B3F-9BDF-DD8B4B8E7FB0}
+      StringSize          #60
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+    ENDTYPEELEMENTS
+    
+    TYPEREFERENCES
+    ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
+    
+  ENDUSERTYPE
+  
+
+***Element: END

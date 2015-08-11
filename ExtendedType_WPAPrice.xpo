@@ -12,6 +12,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAPrice
       Label               #@SYS11865
+      Origin              #{C227002F-9A05-435E-955F-DDBC4BDC0036}
+      LegacyId            #50039
       Extends             #SalesPrice
     ENDPROPERTIES
     
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

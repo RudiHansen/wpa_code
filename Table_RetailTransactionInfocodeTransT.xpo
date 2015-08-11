@@ -1,0 +1,409 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionInfocodeTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionInfocodeTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionInfocodeTransT
+      Label               #@RET3294
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{28CD171B-2717-43E8-A7FE-3BE3EBC6C580}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #amount
+        REAL
+        PROPERTIES
+          Name                #amount
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{437ED340-6E4E-4E1D-9157-7FCB450FAB97}
+        ENDPROPERTIES
+        
+      FIELD #businessDate
+        DATE
+        PROPERTIES
+          Name                #businessDate
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{DC3E4275-712F-4D83-9D45-4052999997AF}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{788C1202-5943-4F4E-839E-90CDCBD40847}
+        ENDPROPERTIES
+        
+      FIELD #counter
+        INT
+        PROPERTIES
+          Name                #counter
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{4B5B9E0C-39C7-4CE1-A901-67A2D1B05342}
+        ENDPROPERTIES
+        
+      FIELD #infoAmount
+        REAL
+        PROPERTIES
+          Name                #infoAmount
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{2B222BDC-856E-4512-AB40-F2B323074F1C}
+        ENDPROPERTIES
+        
+      FIELD #infocodeId
+        STRING
+        PROPERTIES
+          Name                #infocodeId
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{A883794F-3E36-4892-8AC5-9F558A67ACD6}
+        ENDPROPERTIES
+        
+      FIELD #information
+        STRING
+        PROPERTIES
+          Name                #information
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{62E8724D-33E9-46E1-956F-3103B6960AE9}
+          StringSize          #100
+        ENDPROPERTIES
+        
+      FIELD #inputType
+        ENUM
+        PROPERTIES
+          Name                #inputType
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{04B90DE2-E84C-4B86-B4D0-8EDF4307D13B}
+          EnumType            #RetailInfocodeInputType
+        ENDPROPERTIES
+        
+      FIELD #itemTender
+        STRING
+        PROPERTIES
+          Name                #itemTender
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{636C3BDE-1160-4550-B73C-BDAA2712DFD2}
+        ENDPROPERTIES
+        
+      FIELD #lineNum
+        REAL
+        PROPERTIES
+          Name                #lineNum
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{8D0F6519-A09D-4125-B008-7CA928B13024}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{03D5EA80-3C8E-4FE3-9105-ABD8E65EF82E}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #parentLineNum
+        REAL
+        PROPERTIES
+          Name                #parentLineNum
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{3E827168-D611-4921-BB1C-A91D15464EB5}
+        ENDPROPERTIES
+        
+      FIELD #replicated
+        ENUM
+        PROPERTIES
+          Name                #replicated
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{76CBB6D8-BC77-4187-92FA-5441056F651D}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #replicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #replicationCounterFromOrigin
+          Label               #@RET3920
+          HelpText            #@RET3921
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{2C6D67F9-9EB1-406A-89D4-3B16E3810739}
+        ENDPROPERTIES
+        
+      FIELD #sourceCode
+        STRING
+        PROPERTIES
+          Name                #sourceCode
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{F6F033A4-0B92-4307-90CF-29B2674D8E3D}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #sourceCode2
+        STRING
+        PROPERTIES
+          Name                #sourceCode2
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{F3ED373C-F82A-4A74-84B0-CC7EE284ECD1}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #sourceCode3
+        STRING
+        PROPERTIES
+          Name                #sourceCode3
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{72AC438E-DD86-49C9-93BA-392CB478BEFF}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #staff
+        STRING
+        PROPERTIES
+          Name                #staff
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{CE15EB78-87BF-4C6D-AA1F-037F3B59D49B}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #statementCode
+        STRING
+        PROPERTIES
+          Name                #statementCode
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{D43B3D17-B9EA-4EE8-83AE-CEECCCC6B29C}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #store
+        STRING
+        PROPERTIES
+          Name                #store
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{21ECA93E-8642-4673-9845-A2DE57FCCC05}
+        ENDPROPERTIES
+        
+      FIELD #subInfocodeId
+        STRING
+        PROPERTIES
+          Name                #subInfocodeId
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{5649FF4C-E2FB-48E4-97AE-FA5430DE2BD2}
+        ENDPROPERTIES
+        
+      FIELD #terminal
+        STRING
+        PROPERTIES
+          Name                #terminal
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{739F11AC-D02F-41D7-868D-BABCA108A4A5}
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{AF030A47-E994-47A8-8D00-B9FFDAEC5C86}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #transDate
+        DATE
+        PROPERTIES
+          Name                #transDate
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{98772209-EEA4-4B16-904C-49D1A8136E14}
+        ENDPROPERTIES
+        
+      FIELD #transTime
+        INT
+        PROPERTIES
+          Name                #transTime
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{B4B211C6-BF83-4E82-8F2C-1455630E6500}
+        ENDPROPERTIES
+        
+      FIELD #type
+        ENUM
+        PROPERTIES
+          Name                #type
+          Table               #RetailTransactionInfocodeTransT
+          Origin              #{5700AD16-B346-4D6A-800B-EE58637D4ED2}
+          EnumType            #RetailInfocodeTransType
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{EDFC3FB7-91DB-4EE5-A7B6-88ECD7F2BC58}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #infocodeId
+        #lineNum
+        #transactionId
+        #type
+        #terminal
+        #store
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionInfocodeTransT cursor)
+        #{
+        #    RetailTransactionInfocodeTrans target;
+        #    RetailTransactionInfocodeTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint transTypeLineInfocodeIdx
+        #                where (target.@store==cursor2.@store && target.@terminal==cursor2.@terminal && target.@type==cursor2.@type && target.@transactionId==cursor2.@transactionId && target.@lineNum==cursor2.@lineNum && target.@infocodeId==cursor2.@infocodeId && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @amount,
+        #                    @businessDate,
+        #                    @Channel,
+        #                    @counter,
+        #                    @infoAmount,
+        #                    @infocodeId,
+        #                    @information,
+        #                    @inputType,
+        #                    @itemTender,
+        #                    @lineNum,
+        #                    @parentLineNum,
+        #                    @replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @sourceCode,
+        #                    @sourceCode2,
+        #                    @sourceCode3,
+        #                    @staff,
+        #                    @statementCode,
+        #                    @store,
+        #                    @subInfocodeId,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @transDate,
+        #                    @transTime,
+        #                    @type,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @amount,
+        #                    @businessDate,
+        #                    @Channel,
+        #                    @counter,
+        #                    @infoAmount,
+        #                    @infocodeId,
+        #                    @information,
+        #                    @inputType,
+        #                    @itemTender,
+        #                    @lineNum,
+        #                    @parentLineNum,
+        #                    @replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @sourceCode,
+        #                    @sourceCode2,
+        #                    @sourceCode3,
+        #                    @staff,
+        #                    @statementCode,
+        #                    @store,
+        #                    @subInfocodeId,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @transDate,
+        #                    @transTime,
+        #                    @type,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionInfocodeTransT cursor)
+        #{
+        #    RetailTransactionInfocodeTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(replicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionInfocodeTrans), cursor2.replicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

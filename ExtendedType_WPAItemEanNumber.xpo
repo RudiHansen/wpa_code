@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAItemEanNumber
       Label               #@WPA36
       HelpText            #@WPA37
+      Origin              #{D54ADCEC-C3A1-48DE-BA97-8065B567EC8B}
+      LegacyId            #50027
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

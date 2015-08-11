@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAUsePrefix
       Label               #@WPA3
       HelpText            #@WPA4
+      Origin              #{D418BA99-59D5-47D5-A27F-684E8188E270}
+      LegacyId            #50057
       Extends             #NoYesId
       EnumType            #NoYes
     ENDPROPERTIES
@@ -22,6 +24,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

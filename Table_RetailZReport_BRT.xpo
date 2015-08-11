@@ -1,0 +1,405 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailZReport_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailZReport_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailZReport_BRT
+      Label               #@RET4040083
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{834D37AB-65C4-467E-88D0-AFC8BD0B8511}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #AccountingDate
+        DATE
+        PROPERTIES
+          Name                #AccountingDate
+          Label               #@SYS56521
+          Table               #RetailZReport_BRT
+          Origin              #{487114CB-C8A2-48E0-BAA6-33CFF064F281}
+        ENDPROPERTIES
+        
+      FIELD #AdditionalFiscalMemoryIndex
+        INT
+        PROPERTIES
+          Name                #AdditionalFiscalMemoryIndex
+          Table               #RetailZReport_BRT
+          Origin              #{2106C1B0-B2A8-4C64-8D42-13847D00E2CF}
+        ENDPROPERTIES
+        
+      FIELD #COFINSAmount
+        REAL
+        PROPERTIES
+          Name                #COFINSAmount
+          Label               #@SYS4006967
+          Table               #RetailZReport_BRT
+          Origin              #{4328C5B7-C05D-447F-A764-FDA6E37FBBB3}
+        ENDPROPERTIES
+        
+      FIELD #FinalGrandTotalAmount
+        REAL
+        PROPERTIES
+          Name                #FinalGrandTotalAmount
+          Label               #@SYS50753
+          Table               #RetailZReport_BRT
+          Origin              #{96C61551-050F-42F3-83FA-E83C7EE6284B}
+        ENDPROPERTIES
+        
+      FIELD #FirstReceiptNumber
+        INT
+        PROPERTIES
+          Name                #FirstReceiptNumber
+          Label               #@SYS4006875
+          Table               #RetailZReport_BRT
+          Origin              #{D405E1B2-2A32-4B6A-B724-A14F93405F91}
+        ENDPROPERTIES
+        
+      FIELD #FiscalEstablishment
+        STRING
+        PROPERTIES
+          Name                #FiscalEstablishment
+          Table               #RetailZReport_BRT
+          Origin              #{9CB9F292-D711-4673-B4B1-61B339B0A1C5}
+        ENDPROPERTIES
+        
+      FIELD #FiscalPrinterSerialNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalPrinterSerialNumber
+          Table               #RetailZReport_BRT
+          Origin              #{D4371F99-25E5-44CE-AE6E-6FBFC743FEF8}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalReceiptModel
+        STRING
+        PROPERTIES
+          Name                #FiscalReceiptModel
+          Table               #RetailZReport_BRT
+          Origin              #{F2ED3CED-FF7A-49F7-8CC9-DB9D1115E37C}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #GrossDailySale
+        REAL
+        PROPERTIES
+          Name                #GrossDailySale
+          Label               #@SYS4006991
+          Table               #RetailZReport_BRT
+          Origin              #{984831AC-0CA9-4D05-8DC5-96654F9DAFA3}
+        ENDPROPERTIES
+        
+      FIELD #InitialGrandTotalAmount
+        REAL
+        PROPERTIES
+          Name                #InitialGrandTotalAmount
+          Table               #RetailZReport_BRT
+          Origin              #{91F1FFC6-D952-42A9-A7E7-6FC8C00DDA9E}
+        ENDPROPERTIES
+        
+      FIELD #ISSDiscount
+        ENUM
+        PROPERTIES
+          Name                #ISSDiscount
+          HelpText            #@SYS11829
+          Table               #RetailZReport_BRT
+          Origin              #{08EDFFC1-04EF-4442-B69E-1430B18A0632}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #LastReceiptNumber
+        INT
+        PROPERTIES
+          Name                #LastReceiptNumber
+          Label               #@SYS4006877
+          Table               #RetailZReport_BRT
+          Origin              #{8E02407D-8AD3-40F7-B4B6-ECFCEBF44984}
+        ENDPROPERTIES
+        
+      FIELD #NetAmount
+        REAL
+        PROPERTIES
+          Name                #NetAmount
+          Label               #@RET3488
+          Table               #RetailZReport_BRT
+          Origin              #{C6A16CF9-110D-4327-B788-3A60AF70FB1A}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailZReport_BRT
+          Origin              #{859A38FE-C789-45AE-B1D7-AF21ACD0AC62}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #PISAmount
+        REAL
+        PROPERTIES
+          Name                #PISAmount
+          Label               #@SYS4006968
+          Table               #RetailZReport_BRT
+          Origin              #{D78EB7EC-1AA9-4D8C-A3FC-CD3A4F27427E}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailZReport_BRT
+          Origin              #{9BF13F8B-D40B-47E1-B93C-DB53668A2416}
+        ENDPROPERTIES
+        
+      FIELD #RestartOperationNumber
+        INT
+        PROPERTIES
+          Name                #RestartOperationNumber
+          Label               #@SYS4006969
+          Table               #RetailZReport_BRT
+          Origin              #{E3137F8A-B203-4F3D-B22F-E8EB2E26F599}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailZReport_BRT
+          Origin              #{5C093F7F-01A8-4A81-AEA8-9E7168B910C2}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailZReport_BRT
+          Origin              #{9F688B06-6DC6-42FA-AA99-F6F8993E5151}
+        ENDPROPERTIES
+        
+      FIELD #TerminalNumber
+        INT
+        PROPERTIES
+          Name                #TerminalNumber
+          Table               #RetailZReport_BRT
+          Origin              #{DC898865-A8E4-4AA0-A896-463DFFEE7285}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailZReport_BRT
+          Origin              #{55826D55-E11B-4C11-962C-B24F14A7E27C}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #Version
+        ENUM
+        PROPERTIES
+          Name                #Version
+          Table               #RetailZReport_BRT
+          Origin              #{045CB151-5CA9-4EE9-8E39-9D3547F9D7BF}
+          EnumType            #RetailZReportVersion_BR
+        ENDPROPERTIES
+        
+      FIELD #Voucher
+        STRING
+        PROPERTIES
+          Name                #Voucher
+          HelpText            #@SYS15596
+          Table               #RetailZReport_BRT
+          Origin              #{79334865-DC50-4E13-85CD-CD4003E468AA}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ZReportDateTime
+        DATETIME
+        PROPERTIES
+          Name                #ZReportDateTime
+          Label               #@RET4525
+          Table               #RetailZReport_BRT
+          Origin              #{25079895-3C5D-4EDA-9FC0-6A66030F4306}
+        ENDPROPERTIES
+        
+      FIELD #ZReportNumber
+        INT
+        PROPERTIES
+          Name                #ZReportNumber
+          Label               #@SYS4006970
+          Table               #RetailZReport_BRT
+          Origin              #{AB289399-26F9-47CE-882B-769A9BBF2FF7}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{74DBA299-748D-4BC2-B096-3CAE6BFE9751}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #RestartOperationNumber
+        #TerminalId
+        #StoreId
+        #ZReportNumber
+        #AdditionalFiscalMemoryIndex
+        #FiscalPrinterSerialNumber
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailZReport_BRT cursor)
+        #{
+        #    RetailZReport_BR target;
+        #    RetailZReport_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint ZReportNumberIdx
+        #                where (target.@FiscalPrinterSerialNumber==cursor2.@FiscalPrinterSerialNumber && target.@AdditionalFiscalMemoryIndex==cursor2.@AdditionalFiscalMemoryIndex && target.@ZReportNumber==cursor2.@ZReportNumber && target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@RestartOperationNumber==cursor2.@RestartOperationNumber);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @AccountingDate,
+        #                    @AdditionalFiscalMemoryIndex,
+        #                    @COFINSAmount,
+        #                    @FinalGrandTotalAmount,
+        #                    @FirstReceiptNumber,
+        #                    @FiscalEstablishment,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @FiscalReceiptModel,
+        #                    @GrossDailySale,
+        #                    @InitialGrandTotalAmount,
+        #                    @ISSDiscount,
+        #                    @LastReceiptNumber,
+        #                    @NetAmount,
+        #                    @PISAmount,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @RestartOperationNumber,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TerminalNumber,
+        #                    @TRANSACTIONID,
+        #                    @Version,
+        #                    @VOUCHER,
+        #                    @ZReportDateTime,
+        #                    @ZReportNumber,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @AccountingDate,
+        #                    @AdditionalFiscalMemoryIndex,
+        #                    @COFINSAmount,
+        #                    @FinalGrandTotalAmount,
+        #                    @FirstReceiptNumber,
+        #                    @FiscalEstablishment,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @FiscalReceiptModel,
+        #                    @GrossDailySale,
+        #                    @InitialGrandTotalAmount,
+        #                    @ISSDiscount,
+        #                    @LastReceiptNumber,
+        #                    @NetAmount,
+        #                    @PISAmount,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @RestartOperationNumber,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TerminalNumber,
+        #                    @TRANSACTIONID,
+        #                    @Version,
+        #                    @VOUCHER,
+        #                    @ZReportDateTime,
+        #                    @ZReportNumber,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailZReport_BRT cursor)
+        #{
+        #    RetailZReport_BRT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailZReport_BR), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

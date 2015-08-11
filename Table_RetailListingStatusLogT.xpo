@@ -1,0 +1,250 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailListingStatusLogT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailListingStatusLogT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailListingStatusLogT
+      Label               #@RET15031
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      SaveDataPerCompany  #No
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{575EBB86-8FE1-4339-9A1D-3AEBDF2F048B}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #ActionStatus
+        ENUM
+        PROPERTIES
+          Name                #ActionStatus
+          Table               #RetailListingStatusLogT
+          Origin              #{388CD6E6-86ED-4888-B687-0A65037B8CE5}
+          EnumType            #RetailListingActionStatus
+        ENDPROPERTIES
+        
+      FIELD #AppliedAction
+        ENUM
+        PROPERTIES
+          Name                #AppliedAction
+          Table               #RetailListingStatusLogT
+          Origin              #{B47FEBC8-4D59-4B1E-85E0-F8A28483B03D}
+          EnumType            #RetailListingAction
+        ENDPROPERTIES
+        
+      FIELD #Catalog
+        INT64
+        PROPERTIES
+          Name                #Catalog
+          Table               #RetailListingStatusLogT
+          Origin              #{00175571-6438-40AD-BD02-B481EE3445B0}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailListingStatusLogT
+          Origin              #{F1853150-EFF1-4F21-9A19-DEB77D529BFA}
+        ENDPROPERTIES
+        
+      FIELD #ChannelListingId
+        STRING
+        PROPERTIES
+          Name                #ChannelListingId
+          Table               #RetailListingStatusLogT
+          Origin              #{2AD975BF-D33E-4A0E-BEE4-CE767719E5BA}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #LanguageId
+        STRING
+        PROPERTIES
+          Name                #LanguageId
+          Table               #RetailListingStatusLogT
+          Origin              #{656449FB-85F7-4C96-AF0E-A2E3DA45B8F3}
+          StringSize          #7
+        ENDPROPERTIES
+        
+      FIELD #ListingModifiedDateTime
+        DATETIME
+        PROPERTIES
+          Name                #ListingModifiedDateTime
+          HelpText            #@SYS105558
+          Table               #RetailListingStatusLogT
+          Origin              #{C198F9B2-C225-4862-AE08-DA521C554DF9}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailListingStatusLogT
+          Origin              #{9F7715E6-CB1D-499B-88FD-0F963F49ED0B}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #Processed
+        ENUM
+        PROPERTIES
+          Name                #Processed
+          Table               #RetailListingStatusLogT
+          Origin              #{9027FAC7-6711-44CB-9613-E4E527C395F0}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #Product
+        INT64
+        PROPERTIES
+          Name                #Product
+          Table               #RetailListingStatusLogT
+          Origin              #{E8B5EBCC-1702-415A-B58D-F77D871F8639}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailListingStatusLogT
+          Origin              #{CF9B16C0-2293-4095-8AB4-1D773C2CD8A0}
+        ENDPROPERTIES
+        
+      FIELD #StatusDateTime
+        DATETIME
+        PROPERTIES
+          Name                #StatusDateTime
+          Table               #RetailListingStatusLogT
+          Origin              #{E49D7555-439A-4866-BFFE-094CE9BA0D49}
+        ENDPROPERTIES
+        
+      FIELD #StatusMessage
+        STRING
+        PROPERTIES
+          Name                #StatusMessage
+          Table               #RetailListingStatusLogT
+          Origin              #{60E9097C-5076-4854-A4B8-A3F6A74205E9}
+          StringSize          #2048
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{F81EA1AE-0AB1-47D3-ABD2-02E52A45376D}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ListingModifiedDateTime
+        #Channel
+        #Catalog
+        #Product
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailListingStatusLogT cursor)
+        #{
+        #    RetailListingStatusLog target;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        delete_from cursor
+        #        index hint pkidx
+        #        exists join target
+        #        index hint RetailListingStatusIdx
+        #        where (target.@Product==cursor.@Product && target.@Catalog==cursor.@Catalog && target.@Channel==cursor.@Channel && target.@ListingModifiedDateTime==cursor.@ListingModifiedDateTime);
+        #
+        #        insert_recordset target(
+        #            @ActionStatus,
+        #            @AppliedAction,
+        #            @Catalog,
+        #            @Channel,
+        #            @ChannelListingId,
+        #            @LanguageId,
+        #            @ListingModifiedDateTime,
+        #            @Processed,
+        #            @Product,
+        #            @ReplicationCounterFromOrigin,
+        #            @StatusDateTime,
+        #            @StatusMessage,
+        #            @Origin
+        #        )
+        #        select
+        #            @ActionStatus,
+        #            @AppliedAction,
+        #            @Catalog,
+        #            @Channel,
+        #            @ChannelListingId,
+        #            @LanguageId,
+        #            @ListingModifiedDateTime,
+        #            @Processed,
+        #            @Product,
+        #            @ReplicationCounterFromOrigin,
+        #            @StatusDateTime,
+        #            @StatusMessage,
+        #            @Origin
+        #            from cursor;
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailListingStatusLogT cursor)
+        #{
+        #    RetailListingStatusLogT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailListingStatusLog), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

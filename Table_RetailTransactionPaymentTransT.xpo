@@ -1,0 +1,561 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionPaymentTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionPaymentTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionPaymentTransT
+      Label               #@RET3302
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{68FA96D0-D83D-488F-8591-602F530AE430}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #amountCur
+        REAL
+        PROPERTIES
+          Name                #amountCur
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{E7CB69B3-425D-4C21-9BED-8C5FC7D2AED0}
+        ENDPROPERTIES
+        
+      FIELD #amountMST
+        REAL
+        PROPERTIES
+          Name                #amountMST
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{FC3C00CC-F7BB-40C6-89F5-A671B5E099F2}
+        ENDPROPERTIES
+        
+      FIELD #amountTendered
+        REAL
+        PROPERTIES
+          Name                #amountTendered
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{8FEAD1A1-F46D-45D3-A007-3C0FE1F6B200}
+        ENDPROPERTIES
+        
+      FIELD #authenticationCode
+        STRING
+        PROPERTIES
+          Name                #authenticationCode
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{EDD8315F-FDF0-4E35-939C-3E120B2A8085}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #businessDate
+        DATE
+        PROPERTIES
+          Name                #businessDate
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{F090B934-1B5B-4DD1-933D-CDF17C0173D3}
+        ENDPROPERTIES
+        
+      FIELD #cardOrAccount
+        STRING
+        PROPERTIES
+          Name                #cardOrAccount
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{15F3E826-9ABB-420F-A0FD-1C7241AF603F}
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #cardTypeId
+        STRING
+        PROPERTIES
+          Name                #cardTypeId
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{B3860A20-2B69-46C7-9E64-B37E44F9787D}
+        ENDPROPERTIES
+        
+      FIELD #CashDocId_RU
+        STRING
+        PROPERTIES
+          Name                #CashDocId_RU
+          HelpText            #@SYS4007529
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{E4FACB48-B5CE-4B2C-8DE8-86DF5C44AEA9}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #changeLine
+        ENUM
+        PROPERTIES
+          Name                #changeLine
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{DA29771F-09E4-4F44-BA97-F31930A331D6}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{4E46467E-3163-473F-BE38-26EA92634DEF}
+        ENDPROPERTIES
+        
+      FIELD #counter
+        INT
+        PROPERTIES
+          Name                #counter
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{FBB7E981-3FE1-4FF7-9229-EB2F4061D7B7}
+        ENDPROPERTIES
+        
+      FIELD #creditVoucherId
+        STRING
+        PROPERTIES
+          Name                #creditVoucherId
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{DB9ECE5D-3008-4562-871D-B45B08EE5648}
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #currency
+        STRING
+        PROPERTIES
+          Name                #currency
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{4100C825-8092-4522-A8DD-3D1BBD7EA64B}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #exchRate
+        REAL
+        PROPERTIES
+          Name                #exchRate
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{7B303580-1A68-4145-BF81-9BA8C3923F89}
+        ENDPROPERTIES
+        
+      FIELD #exchRateMST
+        REAL
+        PROPERTIES
+          Name                #exchRateMST
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{65BAFE7E-9A77-4673-9606-B6DA3F2BF976}
+        ENDPROPERTIES
+        
+      FIELD #giftCardId
+        STRING
+        PROPERTIES
+          Name                #giftCardId
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{0C07C583-4783-4382-8086-BE33140497BA}
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #IsCaptureFailed
+        ENUM
+        PROPERTIES
+          Name                #IsCaptureFailed
+          Label               #@SYP4881168
+          HelpText            #@SYP4881169
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{FF9F9C97-7650-478D-8C5A-80874D39800A}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #isPrepayment
+        ENUM
+        PROPERTIES
+          Name                #isPrepayment
+          Label               #@RET261125
+          HelpText            #@RET261126
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{9DE1B379-51FB-4B40-8CC2-0A4D5DD20E12}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #lineNum
+        REAL
+        PROPERTIES
+          Name                #lineNum
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{64D154A0-D98D-4CFC-A04D-7DE0E538C5BA}
+        ENDPROPERTIES
+        
+      FIELD #loyaltyCardId
+        STRING
+        PROPERTIES
+          Name                #loyaltyCardId
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{74A12F0E-78D5-4550-89FA-AB9A6F464CF8}
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #managerKeyLive
+        ENUM
+        PROPERTIES
+          Name                #managerKeyLive
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{A2BFDEDE-C6A8-4D54-BCFF-4C3635492D2F}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #messageNum
+        INT
+        PROPERTIES
+          Name                #messageNum
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{416D4B4A-A61D-409F-96FF-921F6246B0C9}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{7652B830-978D-4BD4-A56E-FDA9AD02BAA9}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #paymentAuthorization
+        STRING
+        PROPERTIES
+          Name                #paymentAuthorization
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{AD04DA67-D52E-488D-8721-70848AC8AA59}
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #qty
+        REAL
+        PROPERTIES
+          Name                #qty
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{6AACB4A0-CF37-4395-A0BC-1993E0007B38}
+        ENDPROPERTIES
+        
+      FIELD #receiptId
+        STRING
+        PROPERTIES
+          Name                #receiptId
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{E7EE510E-88B7-461E-BBFC-6D4BF00D6801}
+          StringSize          #18
+        ENDPROPERTIES
+        
+      FIELD #replicated
+        ENUM
+        PROPERTIES
+          Name                #replicated
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{9E11DD0F-6C08-4576-A5C1-9EAB71B1F286}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #replicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #replicationCounterFromOrigin
+          Label               #@RET3920
+          HelpText            #@RET3921
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{4083C928-BCF8-48CC-AD80-7C0E3F3EE10A}
+        ENDPROPERTIES
+        
+      FIELD #shift
+        STRING
+        PROPERTIES
+          Name                #shift
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{5C4B86F0-0B28-4A15-B547-568E567BBE31}
+        ENDPROPERTIES
+        
+      FIELD #shiftDate
+        DATE
+        PROPERTIES
+          Name                #shiftDate
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{242B453F-FF23-4843-946C-30688180DA8F}
+        ENDPROPERTIES
+        
+      FIELD #sigCapData
+        STRING
+        PROPERTIES
+          Name                #sigCapData
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{77529088-9BBB-4BA0-8E1E-3699DE5F73BE}
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #staff
+        STRING
+        PROPERTIES
+          Name                #staff
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{E7D3FD0D-F2A6-4D3B-8BB5-A179153EF47E}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #statementCode
+        STRING
+        PROPERTIES
+          Name                #statementCode
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{F3D6FA54-A9AD-4171-A4D0-2DA77DC8E6B8}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #store
+        STRING
+        PROPERTIES
+          Name                #store
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{6337CEBC-1447-4D8C-9BAF-3FFCAEC9938B}
+        ENDPROPERTIES
+        
+      FIELD #tenderType
+        STRING
+        PROPERTIES
+          Name                #tenderType
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{432E2C2E-67FA-4BB2-9737-78B45A83E941}
+        ENDPROPERTIES
+        
+      FIELD #terminal
+        STRING
+        PROPERTIES
+          Name                #terminal
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{7D01AC0A-0653-45B9-8073-6680BBE48C26}
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{FB38D497-1348-4E0E-B5E5-3A66406FE06D}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #transactionStatus
+        ENUM
+        PROPERTIES
+          Name                #transactionStatus
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{A749526B-888A-4A5F-8A14-C9272F0739C6}
+          EnumType            #RetailEntryStatus
+        ENDPROPERTIES
+        
+      FIELD #transDate
+        DATE
+        PROPERTIES
+          Name                #transDate
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{1803F0C3-9345-42AC-BDE8-B30F23399154}
+        ENDPROPERTIES
+        
+      FIELD #transTime
+        INT
+        PROPERTIES
+          Name                #transTime
+          Table               #RetailTransactionPaymentTransT
+          Origin              #{CFEF9A3B-6049-4A86-B92E-0313A33D7873}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{4CB2A9D7-5421-4680-BD73-D773ADA5CF4D}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #lineNum
+        #transactionId
+        #terminal
+        #store
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionPaymentTransT cursor)
+        #{
+        #    RetailTransactionPaymentTrans target;
+        #    RetailTransactionPaymentTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint transactionLineIdx
+        #                where (target.@store==cursor2.@store && target.@terminal==cursor2.@terminal && target.@transactionId==cursor2.@transactionId && target.@lineNum==cursor2.@lineNum && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @amountCur,
+        #                    @amountMST,
+        #                    @amountTendered,
+        #                    @authenticationCode,
+        #                    @businessDate,
+        #                    @cardOrAccount,
+        #                    @cardTypeId,
+        #                    @CashDocId_RU,
+        #                    @changeLine,
+        #                    @Channel,
+        #                    @counter,
+        #                    @creditVoucherId,
+        #                    @currency,
+        #                    @exchRate,
+        #                    @exchRateMST,
+        #                    @giftCardId,
+        #                    @IsCaptureFailed,
+        #                    @isPrepayment,
+        #                    @lineNum,
+        #                    @loyaltyCardId,
+        #                    @managerKeyLive,
+        #                    @messageNum,
+        #                    @paymentAuthorization,
+        #                    @qty,
+        #                    @receiptId,
+        #                    @replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @shift,
+        #                    @shiftDate,
+        #                    @sigCapData,
+        #                    @staff,
+        #                    @statementCode,
+        #                    @store,
+        #                    @tenderType,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @transactionStatus,
+        #                    @transDate,
+        #                    @transTime,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @amountCur,
+        #                    @amountMST,
+        #                    @amountTendered,
+        #                    @authenticationCode,
+        #                    @businessDate,
+        #                    @cardOrAccount,
+        #                    @cardTypeId,
+        #                    @CashDocId_RU,
+        #                    @changeLine,
+        #                    @Channel,
+        #                    @counter,
+        #                    @creditVoucherId,
+        #                    @currency,
+        #                    @exchRate,
+        #                    @exchRateMST,
+        #                    @giftCardId,
+        #                    @IsCaptureFailed,
+        #                    @isPrepayment,
+        #                    @lineNum,
+        #                    @loyaltyCardId,
+        #                    @managerKeyLive,
+        #                    @messageNum,
+        #                    @paymentAuthorization,
+        #                    @qty,
+        #                    @receiptId,
+        #                    @replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @shift,
+        #                    @shiftDate,
+        #                    @sigCapData,
+        #                    @staff,
+        #                    @statementCode,
+        #                    @store,
+        #                    @tenderType,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @transactionStatus,
+        #                    @transDate,
+        #                    @transTime,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionPaymentTransT cursor)
+        #{
+        #    RetailTransactionPaymentTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(replicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionPaymentTrans), cursor2.replicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

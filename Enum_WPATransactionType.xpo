@@ -13,6 +13,8 @@ Formatversion: 1
       Label               #@SYS54087
       Help                #@SYS79023
       UseEnumValue        #Yes
+      Origin              #{8329B1A7-0D77-4D8C-AD5E-E893A46AC0E5}
+      LegacyId            #50005
     ENDPROPERTIES
     
     TYPEELEMENTS

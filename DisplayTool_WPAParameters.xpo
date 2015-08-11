@@ -16,6 +16,7 @@ Formatversion: 1
       Object              #WPAParameters
       ConfigurationKey    #WPAIntegration
       SecurityKey         #WPASetup
+      Origin              #{AD6B020D-4DA6-4FE9-87F3-43609CE637AE}
     ENDPROPERTIES
     
   ENDMENUITEM

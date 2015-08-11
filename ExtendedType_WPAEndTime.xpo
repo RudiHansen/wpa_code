@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAEndTime
       Label               #@SYS39128
       HelpText            #@SYS14855
+      Origin              #{58F6F168-A01E-46FA-A353-A317CB20147E}
+      LegacyId            #50019
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

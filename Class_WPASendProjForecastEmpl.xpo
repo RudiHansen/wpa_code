@@ -11,26 +11,23 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASendProjForecastEmpl
       Extends             #AxdSend
-      RunOn               #Called from
+      Origin              #{10475F85-B8FC-42AF-921C-6BE53516C7D9}
+      LegacyId            #50086
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPASendProjForecastEmpl extends AxdSend
         #{
         #    ProjEmplForecastTransId transId;
         #}
       ENDSOURCE
-      SOURCE #getEndpoint
-        #AifEndpointId getEndpoint()
+      SOURCE #parmDocumentClassId
+        #public AifDocumentClassId parmDocumentClassId(AifDocumentClassId _documentClassId = aifDocumentClassId)
         #{
-        #    ;
-        #    this.retrieveEndPoints();
+        #    aifDocumentClassId = _documentClassId;
         #
-        #    select firstonly tmpAifEndPoint;
-        #
-        #    return tmpAifEndPoint.EndpointId;
+        #    return aifDocumentClassId;
         #}
       ENDSOURCE
       SOURCE #parmSendActionType
@@ -104,18 +101,21 @@ Formatversion: 1
         #    WPASendProjForecastEmpl = new WPASendProjForecastEmpl();
         #    aifConstraintList       = new AifConstraintList();
         #    aifConstraint           = new AifConstraint();
+        #
         #    if (args.record())
         #    {
         #        projForecastEmpl    = args.record();
         #        WPASendProjForecastEmpl.parmTransId(projForecastEmpl.TransId);
         #    }
+        #
         #    aifConstraint.parmType(AifConstraintType::NoConstraint);
         #    aifConstraintList.addConstraint(aifConstraint);
         #
+        #    WPASendProjForecastEmpl.parmOutboundPortName("WPAServiceOrder");
         #    WPASendProjForecastEmpl.parmShowDocPurpose(true) ;
         #    WPASendProjForecastEmpl.parmServiceClassId(classnum(WPAProjForecastEmplService));
         #    WPASendProjForecastEmpl.parmSendActionType(AifSendActionType::SendByQuery);
-        #    WPASendProjForecastEmpl.parmEndPoint(WPASendProjForecastEmpl.getEndpoint());
+        #    WPASendProjForecastEmpl.parmDocumentClassId(classnum(WPAProjForecastEmpl));
         #
         #    WPASendProjForecastEmpl.sendMultipleDocuments(classnum(WPAProjForecastEmpl), classnum(WPAProjForecastEmplService), AifSendMode::Async, aifConstraintList);
         #}

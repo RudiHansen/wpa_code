@@ -15,9 +15,9 @@ Formatversion: 1
       HelpText            #@WPA148
       ObjectType          #Class
       Object              #WPASendProjForecastEmpl
-      RunOn               #Called from
       ConfigurationKey    #WPAIntegration
       SecurityKey         #WPAPeriodic
+      Origin              #{F9072474-39D6-48B4-9FF1-1E56122AAAB6}
     ENDPROPERTIES
     
   ENDMENUITEM

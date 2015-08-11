@@ -1,0 +1,66 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: QUE
+
+; Microsoft Dynamics AX Query: WPAInventSerial unloaded
+; --------------------------------------------------------------------------------
+VERSION 31
+
+QUERY #WPAInventSerial
+  PROPERTIES
+    Name                #WPAInventSerial
+    Version             #19
+    NextUniqueId        #1002
+    Origin              #{7AD60DEE-CED1-4075-9EC6-88D37079E399}
+  ENDPROPERTIES
+  
+  METHODS
+    SOURCE #classDeclaration
+      #public class QueryRun extends ObjectRun
+      #{
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  BLOCKS
+    BLOCK #InventSerial
+      PROPERTIES
+        Name                #InventSerial_1
+        Table               #InventSerial
+        UniqueId            #1000
+        FetchMode           #1:1
+      ENDPROPERTIES
+      
+      FIELDLIST
+        PROPERTIES
+        ENDPROPERTIES
+        
+      ENDFIELDLIST
+      SORTING
+      ENDSORTING
+      LINES
+      ENDLINES
+      BLOCKS
+      ENDBLOCKS
+      GROUPBY
+      ENDGROUPBY
+      HAVING
+      ENDHAVING
+      ORDERBY
+        FIELD
+          PROPERTIES
+            DataSource          #InventSerial_1
+            Field               #ItemId
+          ENDPROPERTIES
+          
+      ENDORDERBY
+    ENDBLOCK
+  ENDBLOCKS
+  DEPENDENTS
+  ENDDEPENDENTS
+  COMPOSITEQUERIES
+  ENDCOMPOSITEQUERIES
+ENDQUERY
+
+
+***Element: END

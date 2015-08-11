@@ -1,0 +1,34 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: UTS
+
+; Microsoft Dynamics AX String: WPAInventSerialId unloaded
+; --------------------------------------------------------------------------------
+  USERTYPEVERSION 6
+  
+  USERTYPE #WPAInventSerialId
+  STRING
+    PROPERTIES
+      Name                #WPAInventSerialId
+      Label               #@SYS477
+      HelpText            #@SYS53638
+      DisplayLength       #10
+      Origin              #{EFF920BC-054D-44F7-9670-0474D2CF362D}
+      Extends             #InventSerialId
+      StringSize          #20
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+    ENDTYPEELEMENTS
+    
+    TYPEREFERENCES
+    ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
+    
+  ENDUSERTYPE
+  
+
+***Element: END

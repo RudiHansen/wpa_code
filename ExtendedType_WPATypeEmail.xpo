@@ -13,7 +13,8 @@ Formatversion: 1
       Name                #WPATypeEmail
       Label               #@WPA19
       HelpText            #@WPA20
-      Extends             #DirECommunicationTypeId
+      Origin              #{885037CD-26A3-4991-9E0E-B9C2E0A3DE52}
+      LegacyId            #50054
       StringSize          #20
     ENDPROPERTIES
     
@@ -22,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

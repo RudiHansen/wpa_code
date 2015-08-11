@@ -5,15 +5,15 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Forms unloaded
 ; --------------------------------------------------------------------------------
-FRMVERSION 5
+FRMVERSION 12
 
 FORM #WPAStockTransfer
   PROPERTIES
     Name                #WPAStockTransfer
+    Origin              #{25C22CB0-8E6D-49D4-85C6-E28BB4A63228}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class FormRun extends ObjectRun
       #{
@@ -37,11 +37,19 @@ FORM #WPAStockTransfer
         FIELDLIST
         ENDFIELDLIST
       ENDOBJECTPOOL
+      METHODS
+      ENDMETHODS
     ENDDATASOURCE
   ENDOBJECTBANK
   
+  REFERENCEDATASOURCES
+  ENDREFERENCEDATASOURCES
+  
   JOINS
   ENDJOINS
+  
+  PARTREFERENCES
+  ENDPARTREFERENCES
   
   DESIGN
     PROPERTIES
@@ -51,129 +59,210 @@ FORM #WPAStockTransfer
     ENDPROPERTIES
     
     CONTAINER
+      CONTROL GRID
+        PROPERTIES
+          Name                #Grid
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1431655764
+          HierarchyParent     #Overview
+          DataSource          #WPAStockTransfer
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #History
+          ElementPosition     #1717986916
+          HierarchyParent     #General
+          DataSource          #WPAStockTransfer
+          DataGroup           #History
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Identification
+          ElementPosition     #1073741822
+          HierarchyParent     #Grid
+          DataSource          #WPAStockTransfer
+          DataGroup           #Identification
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Identification1
+          ElementPosition     #858993458
+          HierarchyParent     #General
+          DataSource          #WPAStockTransfer
+          DataGroup           #Identification
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Inventory
+          ElementPosition     #1610612733
+          HierarchyParent     #Grid
+          BackgroundColor     #Window background
+          DataSource          #WPAStockTransfer
+          DataGroup           #Inventory
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Inventory1
+          ElementPosition     #1288490187
+          HierarchyParent     #General
+          DataSource          #WPAStockTransfer
+          DataGroup           #Inventory
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
       CONTROL TAB
         PROPERTIES
           Name                #Tab
           Width               #Column width
           Height              #Column height
+          ElementPosition     #1073741823
         ENDPROPERTIES
         
-        CONTAINER
-          CONTROL TABPAGE
-            PROPERTIES
-              Name                #Overview
-              Caption             #@SYS9039
-            ENDPROPERTIES
-            
-            CONTAINER
-              CONTROL GRID
-                PROPERTIES
-                  Name                #Grid
-                  Width               #Column width
-                  Height              #Column height
-                  DataSource          #WPAStockTransfer
-                ENDPROPERTIES
-                
-                  CONTAINER
-                    CONTROL GROUP
-                      PROPERTIES
-                        Name                #Identification
-                        DataSource          #WPAStockTransfer
-                        DataGroup           #Identification
-                        AutoDataGroup       #Yes
-                      ENDPROPERTIES
-                      
-                        CONTAINER
-                        ENDCONTAINER
-                        
-                    ENDCONTROL 
-                    
-                    CONTROL GROUP
-                      PROPERTIES
-                        Name                #Inventory
-                        BackgroundColor     #Window background
-                        DataSource          #WPAStockTransfer
-                        DataGroup           #Inventory
-                        AutoDataGroup       #Yes
-                      ENDPROPERTIES
-                      
-                        CONTAINER
-                        ENDCONTAINER
-                        
-                    ENDCONTROL 
-                    
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-            ENDCONTAINER
-            
-          ENDCONTROL 
-          
-          CONTROL TABPAGE
-            PROPERTIES
-              Name                #General
-              Caption             #@SYS2952
-              Columns             #2
-              ArrangeGuide        
-                ARRAY INDEX Columns 
-                  #0
-                  #0
-                ENDARRAY
-            ENDPROPERTIES
-            
-            CONTAINER
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #Identification1
-                  DataSource          #WPAStockTransfer
-                  DataGroup           #Identification
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #Inventory1
-                  DataSource          #WPAStockTransfer
-                  DataGroup           #Inventory
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #History
-                  DataSource          #WPAStockTransfer
-                  DataGroup           #History
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-            ENDCONTAINER
-            
-          ENDCONTROL 
-          
-        ENDCONTAINER
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #General
+          ElementPosition     #1610612733
+          HierarchyParent     #Tab
+          Caption             #@SYS2952
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
         
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #Overview
+          ElementPosition     #1073741822
+          HierarchyParent     #Tab
+          Caption             #@SYS9039
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
       ENDCONTROL 
       
     ENDCONTAINER
     
   ENDDESIGN
   
+  PERMISSIONS #Permissions
+    PROPERTIES
+    ENDPROPERTIES
+    
+    PERMISSIONSET #Read
+      PROPERTIES
+      ENDPROPERTIES
+      
+      FORM #Controls
+      ENDFORM
+      
+    TABLES #Tables
+    ENDTABLES
+    
+  SERVERMETHODS #Server Methods
+  ENDSERVERMETHODS
+  
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Update
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Create
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Delete
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+ENDPERMISSIONS
+
 ENDFORM
 
 

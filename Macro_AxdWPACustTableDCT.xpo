@@ -11,5 +11,9 @@ Formatversion: 1
     ##define.WPACustTable('WPACustTable')
     ##define.WPACustTable_CustTable('WPACustTable.CustTable')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{7FD06B2D-8F55-4FD8-A6FA-81AF3C5F49BE}
+  ENDPROPERTIES
+  
 
 ***Element: END

@@ -11,14 +11,19 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAInventLocation_InventLocation
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{CEBFCA73-99BE-42F6-9C42-C5894ED87DFE}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventLocation_InventLocation</c> class is the data object class that is exposed through the <c>WPAInventLocationService</c> class.
+        #/// </summary>
+        ##AxdWPAInventLocationDCT
+        #[AifDataContainerTypeAttribute(#WPAInventLocation_InventLocation)]
         #class WPAInventLocation_InventLocation extends AfStronglyTypedDataContainer
         #{
+        #    #define.RecVersion('RecVersion')
         #    #define.RecId('RecId')
         #    #define.Name('Name')
         #    #define.InventLocationId('InventLocationId')
@@ -51,10 +56,16 @@ Formatversion: 1
         #    return this.exists(#RecId);
         #}
       ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAInventLocation_InventLocation);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parm_DocumentHash
@@ -91,7 +102,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -99,6 +110,17 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
         #}
       ENDSOURCE
     ENDMETHODS

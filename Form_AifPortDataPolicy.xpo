@@ -1,0 +1,1006 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FRM
+
+; Microsoft Dynamics AX Forms unloaded
+; --------------------------------------------------------------------------------
+FRMVERSION 12
+
+FORM #AifPortDataPolicy
+  PROPERTIES
+    Name                #AifPortDataPolicy
+    Origin              #{CFF102B7-C145-416D-925A-DDC177EE614C}
+  ENDPROPERTIES
+  
+  METHODS
+    SOURCE #classDeclaration
+      #public class FormRun extends ObjectRun
+      #{
+      #    SysFormSplitter_X           verticalSplitter;
+      #}
+    ENDSOURCE
+    SOURCE #disableFields
+      #void disableFields()
+      #{
+      #    AifDataPolicy policy;
+      #    AifDocumentField field;
+      #    ;
+      #
+      #    if(aifPortDocument)
+      #    {
+      #        ttsbegin;
+      #
+      #        // Only disable fields that are optional.
+      #        update_recordset policy
+      #            setting IsEnabled = false, IsRequired = false
+      #            where policy.PortDocument == aifPortDocument.RecId
+      #            exists join field
+      #                where field.RecId == policy.DocumentFieldRecId
+      #                   && field.MinOccurs == 0;
+      #
+      #        // Set data policy out of sync flag.
+      #        this.markOutOfSync();
+      #
+      #        ttscommit;
+      #
+      #        // Re-populate the grid to reflect the new values.
+      #        aifDataPolicy_DS.executeQuery();
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #enableFields
+      #void enableFields()
+      #{
+      #    AifDataPolicy policy;
+      #    ;
+      #
+      #    if (aifPortDocument)
+      #    {
+      #        ttsbegin;
+      #
+      #        update_recordset policy
+      #            setting IsEnabled = true
+      #            where policy.PortDocument == aifPortDocument.RecId;
+      #
+      #        // Set data policy out of sync flag.
+      #        this.markOutOfSync();
+      #
+      #        ttscommit;
+      #
+      #        aifDataPolicy_DS.executeQuery();
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #enableUIControls
+      #public void enableUIControls(boolean _enabled)
+      #{
+      #    boolean enabled;
+      #
+      #    enabled = _enabled;
+      #
+      #    aifDataPolicy_IsEnabled.enabled(enabled);
+      #    aifDataPolicy_IsRequired.enabled(enabled);
+      #}
+    ENDSOURCE
+    SOURCE #init
+      #public void init()
+      #{
+      #    if (!element.args().caller())
+      #    {
+      #        // The form cannot be called directly.
+      #        throw error("@SYS96590");
+      #    }
+      #    if (element.args().dataset() != tablenum(AifInboundPort) &&
+      #        element.args().dataset()  != tablenum(AifOutboundPort))
+      #    {
+      #        // Caller must pass a port record.
+      #        throw error("@SYS96591");
+      #    }
+      #
+      #    if (element.args().record().RecId == 0)
+      #    {
+      #        // Port has not been saved.
+      #        throw error("@SYS96592");
+      #    }
+      #
+      #    super();
+      #
+      #    // Vertical splitter between grid and details
+      #    verticalSplitter = new SysFormSplitter_X(vSplitter, leftGroup, element);
+      #    this.enableUIControls(false);
+      #}
+    ENDSOURCE
+    SOURCE #markOutOfSync
+      #void markOutOfSync()
+      #{
+      #    ttsbegin;
+      #    aifPortDocument.IsDataPolicySynchronized = false;
+      #    aifPortDocument.update();
+      #    ttscommit;
+      #}
+    ENDSOURCE
+    SOURCE #requireFields
+      #void requireFields()
+      #{
+      #    AifDataPolicy policy;
+      #    ;
+      #
+      #    if (aifPortDocument)
+      #    {
+      #        ttsbegin;
+      #
+      #        update_recordset policy
+      #            setting IsRequired = true
+      #            where policy.PortDocument == aifPortDocument.RecId
+      #                && policy.IsEnabled == true;
+      #
+      #        // Set data policy out of sync flag.
+      #        this.markOutOfSync();
+      #
+      #        ttscommit;
+      #
+      #        aifDataPolicy_DS.executeQuery();
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #setLegalValueCaption
+      #public void setLegalValueCaption()
+      #{
+      #    legalValueTab.caption(strfmt("@SYS329391", aifdocumentField.Name));
+      #}
+    ENDSOURCE
+    SOURCE #unRequireFields
+      #void unRequireFields()
+      #{
+      #    AifDataPolicy policy;
+      #    AifDocumentField field;
+      #    ;
+      #
+      #    if (aifPortDocument)
+      #    {
+      #        ttsbegin;
+      #
+      #        // Only "un-require" fields that are optional.
+      #        update_recordset policy
+      #            setting IsRequired = false
+      #            where policy.PortDocument == aifPortDocument.RecId
+      #            exists join field
+      #            where field.RecId == policy.DocumentFieldRecId
+      #                && field.MinOccurs == 0;
+      #
+      #         // Set data policy out of sync flag.
+      #        this.markOutOfSync();
+      #
+      #        ttscommit;
+      #
+      #        // Re-populate the grid to reflect the new values.
+      #        aifDataPolicy_DS.executeQuery();
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #viewSchema
+      #public void viewSchema()
+      #{
+      #    AifPort             port;
+      #    AifSchemaInfo       schemaInfo;
+      #    str                 schemaFileName;
+      #    str                 schemaXml = '';
+      #    boolean             showImports = false;
+      #    #Aif
+      #
+      #    if (AifPortDocument.DocumentClassId == 0)
+      #        throw error("@SYS117370");
+      #
+      #    port = AifPort::findById(AifPortDocument.port);
+      #
+      #    showImports = AifUtil::isAifDocumentClass(AifPortDocument.DocumentClassId);
+      #
+      #    infolog.startLengthyOperation();
+      #    schemaInfo = AifSchemaRepository::getEndpointSchema(port.Name, AifPortDocument.DocumentClassId);
+      #    if (schemaInfo == null)
+      #    {
+      #        throw error("@SYS117487");
+      #    }
+      #    schemaFileName = strfmt(#PortSchemaFilename, schemaInfo.parmSchemaName(), port.Name);
+      #    schemaXml = AifDataPolicy::generatePartnerXsd(port.Name, AifPortDocument.DocumentClassId);
+      #    infolog.endLengthyOperation();
+      #
+      #    AifXmlViewer::construct(schemaXml, AifXmlType::XSD, schemaFileName, '', showImports).show();
+      #}
+    ENDSOURCE
+    SOURCE #WPAModifyWPAName
+      #public void WPAModifyWPAName()
+      #{
+      #    AifDataPolicy    localAifDataPolicy;
+      #    ;
+      #    localAifDataPolicy.data(AifDataPolicy);
+      #    AifDataPolicy_ds.executeQuery();
+      #    AifDataPolicy_ds.findRecord(localAifDataPolicy);
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  OBJECTBANK
+    PROPERTIES
+    ENDPROPERTIES
+    
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifPortDocument
+          Table               #AifPortDocument
+          AllowEdit           #No
+          AllowCreate         #No
+          AllowDelete         #No
+          InsertAtEnd         #No
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        SOURCE #active
+          #public int active()
+          #{
+          #    AifPort port;
+          #    int     ret;
+          #
+          #    ret = super();
+          #
+          #    if(aifPortDocument.RecId)
+          #    {
+          #        // Only synchronize when the data policy syncrhonized flag is false.  This flag will be false when:
+          #        //   1.) ActionPolicy record is first created.
+          #        //   2.) Changes are made from the data policy UI.
+          #        //   3.) Document schema is updated in the repository.
+          #        if (aifPortDocument.IsDataPolicySynchronized == NoYes::No)
+          #        {
+          #            port = AifPort::findById(aifPortDocument.Port);
+          #            // Synchronize the data policy records so they match whatever is in the AifDocumentField table.
+          #            AifDataPolicy::synchronize(port.Name, aifPortDocument.DocumentClassId);
+          #        }
+          #    }
+          #
+          #    return ret;
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifDataPolicy
+          Table               #AifDataPolicy
+          AllowCreate         #No
+          AllowDelete         #No
+          JoinSource          #AifPortDocument
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD IsEnabled
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              SOURCE #validate
+                #public boolean validate()
+                #{
+                #    boolean ret;
+                #
+                #    if (aifDataPolicy.IsEnabled == false)
+                #        aifDataPolicy.IsRequired = false;
+                #
+                #    ret = super();
+                #    return ret;
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+          DATAFIELD IsRequired
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              SOURCE #validate
+                #public boolean validate()
+                #{
+                #    boolean ret;
+                #
+                #    if (aifDataPolicy.IsRequired)
+                #        aifDataPolicy.IsEnabled = true;
+                #
+                #    ret = super();
+                #
+                #    return ret;
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        SOURCE #selectionChanged
+          #public void selectionChanged()
+          #{
+          #    super();
+          #    element.setLegalValueCaption();
+          #}
+        ENDSOURCE
+        SOURCE #write
+          #public void write()
+          #{
+          #    super();
+          #
+          #    // Set data policy out of sync flag.
+          #    element.markOutOfSync();
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifDocumentField
+          Table               #AifDocumentField
+          AllowEdit           #No
+          AllowCreate         #No
+          AllowDelete         #No
+          JoinSource          #AifDataPolicy
+          LinkType            #InnerJoin
+        ENDPROPERTIES
+        
+        FIELDLIST
+          DATAFIELD WPAName
+            PROPERTIES
+            ENDPROPERTIES
+            
+            METHODS
+              SOURCE #modified
+                #public void modified()
+                #{
+                #    super();
+                #    element.wPAModifyWPAName();
+                #}
+              ENDSOURCE
+            ENDMETHODS
+          ENDDATAFIELD
+          
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        SOURCE #active
+          #public int active()
+          #{
+          #    int ret;
+          #
+          #    ret = super();
+          #
+          #    // Adjust availablility of Enabled / Required
+          #    // check boxes for all actions.
+          #    if (aifDocumentField.MinOccurs > 0)
+          #    {
+          #        // Disable check boxes for required field.
+          #        element.enableUIControls(false);
+          #    }
+          #    else
+          #    {
+          #        // Enable check boxes for optional field.
+          #        element.enableUIControls(true);
+          #    }
+          #
+          #    return ret;
+          #}
+        ENDSOURCE
+      ENDMETHODS
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifDataPolicyLegalValue
+          Table               #AifDataPolicyLegalValue
+          Index               #AifDataPolicyIdx
+          JoinSource          #AifDataPolicy
+          LinkType            #Active
+          InsertAtEnd         #No
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+      ENDMETHODS
+    ENDDATASOURCE
+  ENDOBJECTBANK
+  
+  REFERENCEDATASOURCES
+  ENDREFERENCEDATASOURCES
+  
+  JOINS
+    AifDataPolicy AifPortDocument
+    AifDocumentField AifDataPolicy
+    AifDataPolicyLegalValue AifDataPolicy
+  ENDJOINS
+  
+  PARTREFERENCES
+  ENDPARTREFERENCES
+  
+  DESIGN
+    PROPERTIES
+      Caption             #@SYS325469
+      TitleDatasource     #AifPortDocument
+      SetCompany          #No
+    ENDPROPERTIES
+    
+    CONTAINER
+      CONTROL ACTIONPANE
+        PROPERTIES
+          Name                #DataPolicyActionPane
+          ElementPosition     #1073741822
+          HierarchyParent     #DataPolicy
+          Style               #Strip
+          DataSource          #AifDataPolicy
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL ACTIONPANE
+        PROPERTIES
+          Name                #LegalValueActionPane
+          ElementPosition     #1073741822
+          HierarchyParent     #LegalValueTab
+          Style               #Strip
+          DataSource          #AifDataPolicyLegalValue
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL ACTIONPANETAB
+        PROPERTIES
+          Name                #DataPolicyActionPaneTab
+          ElementPosition     #1073741823
+          HierarchyParent     #DataPolicyActionPane
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL ACTIONPANETAB
+        PROPERTIES
+          Name                #LegalValueActionPaneTab
+          ElementPosition     #1431655764
+          HierarchyParent     #LegalValueActionPane
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTONGROUP
+        PROPERTIES
+          Name                #GridControls
+          ElementPosition     #1073741823
+          HierarchyParent     #DataPolicyActionPaneTab
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTONGROUP
+        PROPERTIES
+          Name                #LegalValueGridControls
+          ElementPosition     #1431655764
+          HierarchyParent     #LegalValueActionPaneTab
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GRID
+        PROPERTIES
+          Name                #DataPolicyGrid
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1610612734
+          HierarchyParent     #DataPolicy
+          MultiSelect         #No
+          VisibleRows         #30
+          ShowRowLabels       #No
+          DataSource          #AifDataPolicy
+          AlternateRowShading #No
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GRID
+        PROPERTIES
+          Name                #DataPolicyLegalValueGrid
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1610612733
+          HierarchyParent     #LegalValueTab
+          MultiSelect         #No
+          VisibleRows         #5
+          ShowRowLabels       #No
+          DataSource          #AifDataPolicyLegalValue
+          AlternateRowShading #No
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GRID
+        PROPERTIES
+          Name                #DocumentGrid
+          AllowEdit           #No
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1073741823
+          HierarchyParent     #LeftGroup
+          MultiSelect         #No
+          VisibleRows         #15
+          ShowRowLabels       #No
+          DataSource          #AifPortDocument
+          AlternateRowShading #No
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Body
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1073741823
+          Style               #MarginlessContainer
+          Columns             #3
+          Columnspace         #0
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #DetailsContainer
+          ElementPosition     #1879048190
+          HierarchyParent     #Body
+          Style               #MarginlessContainer
+          TopMargin           #5
+          RightMargin         #5
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #LeftGroup
+          AutoDeclaration     #Yes
+          Width               #100
+          Height              #Column height
+          ElementPosition     #939524094
+          HierarchyParent     #Body
+          Style               #BorderlessGridContainer
+          RightMargin         #0
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #VSplitter
+          AutoDeclaration     #Yes
+          Width               #5
+          ElementPosition     #1409286141
+          HierarchyParent     #Body
+          FrameType           #Raised 3D
+          Style               #SplitterVerticalContainer
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TAB
+        PROPERTIES
+          Name                #Details
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1431655764
+          HierarchyParent     #DetailsContainer
+          Style               #FastTabs
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #DataPolicy
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1073741822
+          HierarchyParent     #Details
+          BackgroundColor     #Window background
+          Caption             #@SYS325468
+          FastTabExpanded     #Always
+          Scrollbars          #No
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #LegalValueTab
+          AutoDeclaration     #Yes
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1610612733
+          HierarchyParent     #Details
+          BackgroundColor     #Window background
+          Caption             #@SYS325467
+          Scrollbars          #No
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTON
+        PROPERTIES
+          Name                #buttonDisable
+          AutoDeclaration     #Yes
+          HelpText            #@SYS96604
+          ElementPosition     #1073741823
+          HierarchyParent     #GridControls
+          Text                #@SYS95006
+          ButtonDisplay       #Text & Image left
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #void clicked()
+            #{
+            #    super();
+            #    element.disableFields();
+            #}
+            #
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTON
+        PROPERTIES
+          Name                #buttonEnable
+          AutoDeclaration     #Yes
+          HelpText            #@SYS96603
+          ElementPosition     #715827882
+          HierarchyParent     #GridControls
+          Text                #@SYS95005
+          ButtonDisplay       #Text & Image left
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #void clicked()
+            #{
+            #    super();
+            #    element.enableFields();
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTON
+        PROPERTIES
+          Name                #ButtonRequire
+          AutoDeclaration     #Yes
+          HelpText            #@SYS96605
+          ElementPosition     #1431655764
+          HierarchyParent     #GridControls
+          Text                #@SYS95007
+          ButtonDisplay       #Text & Image left
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #void clicked()
+            #{
+            #    super();
+            #    element.requireFields();
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTON
+        PROPERTIES
+          Name                #buttonUnrequire
+          AutoDeclaration     #Yes
+          HelpText            #@SYS96606
+          ElementPosition     #1789569705
+          HierarchyParent     #GridControls
+          Text                #@SYS95008
+          ButtonDisplay       #Text & Image left
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #void clicked()
+            #{
+            #    super();
+            #    element.unRequireFields();
+            #}
+            #
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTON
+        PROPERTIES
+          Name                #ButtonViewSchema
+          HelpText            #@SYS330305
+          ElementPosition     #1968526675
+          HierarchyParent     #GridControls
+          Text                #@SYS117354
+          ButtonDisplay       #Text & Image left
+          NormalImage         #12471
+          ImageLocation       #EmbeddedResource
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #void clicked()
+            #{
+            #    super();
+            #
+            #    element.viewSchema();
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #AifDataPolicy_IsEnabled
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612734
+          HierarchyParent     #DataPolicyGrid
+          BackgroundColor     #Window background
+          DataSource          #AifDataPolicy
+          DataField           #IsEnabled
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #AifDataPolicy_IsRequired
+          AutoDeclaration     #Yes
+          ElementPosition     #1879048190
+          HierarchyParent     #DataPolicyGrid
+          BackgroundColor     #Window background
+          DataSource          #AifDataPolicy
+          DataField           #IsRequired
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL COMMANDBUTTON
+        PROPERTIES
+          Name                #LegalValueAddButton
+          ElementPosition     #1073741822
+          HierarchyParent     #LegalValueGridControls
+          Text                #@SYS60080
+          ButtonDisplay       #Text & Image left
+          NormalImage         #11421
+          ImageLocation       #EmbeddedResource
+          Command             #260
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL COMMANDBUTTON
+        PROPERTIES
+          Name                #LegalValueRemoveButton
+          ElementPosition     #1610612733
+          HierarchyParent     #LegalValueGridControls
+          Text                #@SYS26394
+          ButtonDisplay       #Text & Image left
+          NormalImage         #11438
+          ImageLocation       #EmbeddedResource
+          SaveRecord          #No
+          Command             #2832
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifDataPolicyLegalValue_LegalValue
+          Width               #Column width
+          ElementPosition     #1073741823
+          HierarchyParent     #DataPolicyLegalValueGrid
+          DataSource          #AifDataPolicyLegalValue
+          DataField           #LegalValue
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifDocumentField_Name
+          ElementPosition     #1073741823
+          HierarchyParent     #DataPolicyGrid
+          DataSource          #AifDocumentField
+          DataField           #Name
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifDocumentField_WPAName
+          ElementPosition     #2080374782
+          HierarchyParent     #DataPolicyGrid
+          DataSource          #AifDocumentField
+          DataField           #WPAName
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifDocumentField_Xpath
+          ElementPosition     #2013265918
+          HierarchyParent     #DataPolicyGrid
+          DataSource          #AifDocumentField
+          DataField           #Xpath
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifPortDocument_documentName
+          ElementPosition     #1073741823
+          HierarchyParent     #DocumentGrid
+          DataSource          #AifPortDocument
+          DataMethod          #documentName
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+    ENDCONTAINER
+    
+  ENDDESIGN
+  
+  PERMISSIONS #Permissions
+    PROPERTIES
+    ENDPROPERTIES
+    
+    PERMISSIONSET #Read
+      PROPERTIES
+      ENDPROPERTIES
+      
+      FORM #Controls
+      ENDFORM
+      
+    TABLES #Tables
+    ENDTABLES
+    
+  SERVERMETHODS #Server Methods
+  ENDSERVERMETHODS
+  
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Update
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Create
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Delete
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+ENDPERMISSIONS
+
+ENDFORM
+
+
+***Element: END

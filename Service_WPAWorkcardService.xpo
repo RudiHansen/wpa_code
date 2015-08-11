@@ -11,10 +11,9 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAWorkcardService
       ExternalName        #WPAWorkcardService
-      Namespace           #
+      Namespace           #http://tempuri.org
       Class               #WPAWorkcardService
-      SecurityKey         #WPAServices
-      Description         #
+      Origin              #{9BC31135-B065-4C24-8E34-5C817ADCE320}
     ENDPROPERTIES
     
     OPERATIONS
@@ -24,11 +23,42 @@ Formatversion: 1
           Method              #create
         ENDPROPERTIES
         
-      ENDOPERATION
+        PERMISSIONSET #Permissions
+          PROPERTIES
+          ENDPROPERTIES
+          
+          TABLES #Tables
+            TABLE #WPAWorkcardLine
+              PROPERTIES
+                Table               #WPAWorkcardLine
+                EffectiveAccess     #Delete
+              ENDPROPERTIES
+              
+            ENDTABLE
+            
+          TABLE #WPAWorkcardTable
+            PROPERTIES
+              Table               #WPAWorkcardTable
+              EffectiveAccess     #Delete
+            ENDPROPERTIES
+            
+          ENDTABLE
+          
+      ENDTABLES
       
-    ENDOPERATIONS
+    SERVERMETHODS #Server Methods
+    ENDSERVERMETHODS
     
-  ENDSERVICE
+  ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+  ENDASSOCIATEDCODEPERMISSIONS
   
+ENDPERMISSIONSET
+
+ENDOPERATION
+
+ENDOPERATIONS
+
+ENDSERVICE
+
 
 ***Element: END

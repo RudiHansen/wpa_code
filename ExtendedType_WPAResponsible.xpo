@@ -12,8 +12,10 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAResponsible
       Label               #@SYS67464
+      Origin              #{A5F26051-F713-41F0-9033-DB7EC9CF61EF}
+      LegacyId            #50043
       Extends             #DirPartyName
-      StringSize          #60
+      StringSize          #100
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

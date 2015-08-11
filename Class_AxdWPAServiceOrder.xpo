@@ -12,13 +12,45 @@ Formatversion: 1
       Name                #AxdWPAServiceOrder
       Extends             #AxdBase
       RunOn               #Server
+      Origin              #{3E900686-D18A-4DF6-BD8A-908728A08E3E}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class AxdWPAServiceOrder extends AxdBase
         #{
+        #    #define.SMAServiceOrderLine_DataSourceName('SMAServiceOrderLine')
+        #    #define.SMAServiceOrderTable_DataSourceName('SMAServiceOrderTable')
+        #    #define.CustTable_DataSourceName('CustTable')
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findCorrespondingAxBC
+        #public int findCorrespondingAxBC(tableId _tableId = 0)
+        #{
+        #    return classnum(AxCommon);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findEntityKeyList
+        #public AifEntityKeyList findEntityKeyList(AifQueryCriteria            _queryCriteria,
+        #                                          AifEndpointActionPolicyInfo _actionPolicyInfo)
+        #{
+        #    throw error(strfmt("@SYS94920"));
         #}
         #
       ENDSOURCE
@@ -28,17 +60,6 @@ Formatversion: 1
         #    AifActionInfoList   Actions = new AifActionInfoList();
         #    AifActionInfo       aifActionInfo;
         #    ;
-        #    aifActionInfo = new AifActionInfo();
-        #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, findEntityKeyList), this.getName()));
-        #    aifActionInfo.parmActionType(AifActionType::QueryEntityKeys);
-        #    aifActionInfo.parmExternalName(aifActionInfo.parmActionId());
-        #    aifActionInfo.parmMethodName(methodstr(AxdBase, findEntityKeyList));
-        #    aifActionInfo.parmLabel("@WPA101");
-        #    aifActionInfo.parmDescription("@WPA102");
-        #    aifActionInfo.parmDisplayMenuItemName(menuitemdisplaystr(AifDocConfiguration));
-        #
-        #    actions.add(aifActionInfo);
-        #
         #    aifActionInfo = new AifActionInfo();
         #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, findList), this.getName()));
         #    aifActionInfo.parmActionType(AifActionType::QueryDocuments);
@@ -51,23 +72,12 @@ Formatversion: 1
         #    actions.add(aifActionInfo);
         #
         #    aifActionInfo = new AifActionInfo();
-        #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, readList), this.getName()));
-        #    aifActionInfo.parmActionType(AifActionType::SendDocumentList);
-        #    aifActionInfo.parmExternalName(aifActionInfo.parmActionId());
-        #    aifActionInfo.parmMethodName(methodstr(AxdBase, readList));
-        #    aifActionInfo.parmLabel("@WPA105");
-        #    aifActionInfo.parmDescription("@WPA106");
-        #    aifActionInfo.parmDisplayMenuItemName(menuitemdisplaystr(AifDocConfiguration));
-        #
-        #    actions.add(aifActionInfo);
-        #
-        #    aifActionInfo = new AifActionInfo();
         #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, createList), this.getName()));
         #    aifActionInfo.parmActionType(AifActionType::ReceiveDocumentList);
         #    aifActionInfo.parmExternalName(aifActionInfo.parmActionId());
         #    aifActionInfo.parmMethodName(methodstr(AxdBase, createList));
         #    aifActionInfo.parmLabel("@WPA107");
-        #    aifActionInfo.parmDescription("@WPA108");
+        #    aifActionInfo.parmDescription("@WPA107");
         #    aifActionInfo.parmDisplayMenuItemName(menuitemdisplaystr(AifDocConfiguration));
         #
         #    actions.add(aifActionInfo);
@@ -104,7 +114,7 @@ Formatversion: 1
         #    AifConstraint  aifConstraint = new AifConstraint();
         #    SMAServiceOrderLine    SMAServiceOrderLine;
         #    ;
-        #    if (_curRec.TableId != tablenum(SMAServiceOrderLine))
+        #    if (!(_curRec is SMAServiceOrderLine))
         #    {
         #         throw error(strfmt("@SYS23396",funcname()));
         #    }
@@ -114,8 +124,8 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #GetLabel
-        #public LabelDescription getLabel()
+      SOURCE #getLabel
+        #public LabelString getLabel()
         #{
         #    return "@SYS79077";
         #}
@@ -128,29 +138,129 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #prepareForSave
-        #public boolean prepareForSave(AxdStack _axdStack,  str _dataSourceName)
+      SOURCE #prepareForSaveExtended
+        #public boolean prepareForSaveExtended(
+        #    AxdStack                    _axBcStack,
+        #    str                         _dataSourceName,
+        #    AxdRecordProcessingContext  _recordProcessingContext,
+        #    AxInternalBase              _childRecord)
         #{
-        #    AxSMAServiceOrderLine    AxSMAServiceOrderLine;
-        #    AxSMAServiceOrderTable    AxSMAServiceOrderTable;
-        #    ;
-        #    switch (classidget(_axdStack.top()))
+        #    AxCommon axbc_SMAServiceOrderLine;
+        #    AxCommon axbc_SMAServiceOrderTable;
+        #    AxCommon axbc_CustTable;
+        #
+        #    switch (_dataSourceName)
         #    {
-        #        case classnum(AxSMAServiceOrderLine) :
-        #            AxSMAServiceOrderLine = _axdStack.top();
-        #            return true;
+        #        // ----------------------------------------------------------------------
+        #        // Process SMAServiceOrderLine records
+        #        // ----------------------------------------------------------------------
+        #        case #SMAServiceOrderLine_DataSourceName:
         #
-        #        case classnum(AxSMAServiceOrderTable) :
-        #            AxSMAServiceOrderTable = _axdStack.top();
-        #            AxSMAServiceOrderLine = AxSMAServiceOrderTable.parentAxBC();
-        #            AxSMAServiceOrderTable.parmServiceOrderId(AxSMAServiceOrderLine.parmServiceOrderId());
-        #            return true;
+        #            axbc_SMAServiceOrderLine = _axBcStack.top();
         #
-        #        default :
-        #            error(strfmt("@SYS88979",classId2Name(classidget(_axdStack.top()))));
+        #            switch (_recordProcessingContext)
+        #            {
+        #                // Ensure SMAServiceOrderLine record is saved
+        #                case AxdRecordProcessingContext::AfterAllChildRecordsProcessed:
+        #                    if (!axbc_SMAServiceOrderLine.isProcessed())
+        #                    {
+        #                        return true;
+        #                    }
+        #
+        #                    return false;
+        #            }
+        #
+        #            return false;
+        #
+        #        // ----------------------------------------------------------------------
+        #        // Process SMAServiceOrderTable records
+        #        // ----------------------------------------------------------------------
+        #        case #SMAServiceOrderTable_DataSourceName:
+        #
+        #            axbc_SMAServiceOrderTable = _axBcStack.top();
+        #
+        #            switch (_recordProcessingContext)
+        #            {
+        #                // Propagate children's keys
+        #                case AxdRecordProcessingContext::AfterChildRecordProcessed:
+        #                    switch (_childRecord.dataSourceName())
+        #                    {
+        #                        case #CustTable_DataSourceName:
+        #                            axbc_CustTable = _childRecord;
+        #                            axbc_SMAServiceOrderTable.doParm(fieldstr(SMAServiceOrderTable, CustAccount), axbc_CustTable.doParm(fieldstr(CustTable, AccountNum)));
+        #                            break;
+        #                    }
+        #
+        #                    return false;
+        #
+        #                // Ensure SMAServiceOrderTable record is saved
+        #                case AxdRecordProcessingContext::AfterAllChildRecordsProcessed:
+        #                    if (!axbc_SMAServiceOrderTable.isProcessed())
+        #                    {
+        #                        return true;
+        #                    }
+        #
+        #                    return false;
+        #            }
+        #
+        #            return false;
+        #
+        #        // ----------------------------------------------------------------------
+        #        // Process CustTable records
+        #        // ----------------------------------------------------------------------
+        #        case #CustTable_DataSourceName:
+        #
+        #            axbc_CustTable = _axBcStack.top();
+        #
+        #            switch (_recordProcessingContext)
+        #            {
+        #                // Ensure CustTable record is saved
+        #                case AxdRecordProcessingContext::AfterAllChildRecordsProcessed:
+        #                    if (!axbc_CustTable.isProcessed())
+        #                    {
+        #                        return true;
+        #                    }
+        #
+        #                    return false;
+        #            }
+        #
+        #            return false;
+        #
+        #        // ----------------------------------------------------------------------
+        #        // Unsupported data sources
+        #        // ----------------------------------------------------------------------
+        #        default:
+        #            error(strfmt("@SYS88979",classId2Name(classidget(_axBcStack.top()))));
         #            return false;
         #    }
+        #
         #    return false;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #prepareForUpdateExtended
+        #public boolean prepareForUpdateExtended(
+        #    AxdStack                    _axBcStack,
+        #    str                         _dataSourceName,
+        #    AxdRecordProcessingContext  _recordProcessingContext,
+        #    AxInternalBase              _childRecord)
+        #{
+        #    return this.prepareForSaveExtended(
+        #        _axBcStack,
+        #        _dataSourceName,
+        #        _recordProcessingContext,
+        #        _childRecord);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #readList
+        #public AifDocumentXml readList(AifEntityKeyList            _aifEntityKeyList,
+        #                               AifSchemaInfo               _xsdInfo,
+        #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
+        #                               AifConstraintListCollection _constraintListCollection,
+        #                               AifPropertyBag              _aifPropertyBag)
+        #{
+        #    throw error(strfmt("@SYS94920"));
         #}
         #
       ENDSOURCE

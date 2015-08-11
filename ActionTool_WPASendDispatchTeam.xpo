@@ -15,9 +15,9 @@ Formatversion: 1
       HelpText            #@WPA139
       ObjectType          #Class
       Object              #WPASendDispatchTeam
-      RunOn               #Called from
       ConfigurationKey    #WPAIntegration
       SecurityKey         #WPAPeriodic
+      Origin              #{3DD28F02-3528-4DC1-B54C-0C817155CCC9}
     ENDPROPERTIES
     
   ENDMENUITEM

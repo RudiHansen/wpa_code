@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPATaskId
       Label               #@WPA62
       HelpText            #@WPA63
+      Origin              #{83B9222E-D505-46BF-8183-4DA2FE8B2F33}
+      LegacyId            #50052
       Extends             #SMAServiceTaskId
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

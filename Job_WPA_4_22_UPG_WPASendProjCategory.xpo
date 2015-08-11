@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: WPA_4_22_UPG_WPASendProjCategory unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #WPA_4_22_UPG_WPASendProjCategory
+    #static void WPA_4_22_UPG_WPASendProjCategory(Args _args)
+    #{
+    #    ProjCategory    projCategory = ProjCategory::find("Hotel");
+    #    Args            args = new Args();
+    #    ;
+    #
+    #    args.record(projCategory);
+    #    WPASendProjCategory::main(args);
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{889832EE-0A5C-449C-B276-9D4D22EFB1F5}
+  ENDPROPERTIES
+  
+
+***Element: END

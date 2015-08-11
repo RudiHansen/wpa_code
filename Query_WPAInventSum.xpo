@@ -5,20 +5,53 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: WPAInventSum unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #WPAInventSum
   PROPERTIES
     Name                #WPAInventSum
-    Version             #37
+    Version             #79
     NextUniqueId        #1004
+    Origin              #{4EE70FC0-340D-4087-8817-79C38D4AFAA1}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
+      #}
+    ENDSOURCE
+    SOURCE #getFieldGroupFields
+      #public List getFieldGroupFields(
+      #    TableId         _tableId,
+      #    str             _fieldGroupStr,
+      #    boolean         _cfgEnabled)
+      #{
+      #    DictTable               dt = new DictTable(_tableId);
+      #    DictFieldGroup          dfg;
+      #    DictField               df;
+      #    DictConfigurationKey    dck;
+      #    int                     i, h;
+      #    List                    result = new List(Types::Integer);
+      #
+      #    for (i = 1; i <= dt.fieldGroupCnt(); i++)
+      #    {
+      #        if (dt.fieldGroup(i) == _fieldGroupStr)
+      #        {
+      #            dfg = new DictFieldGroup(_tableId,dt.fieldGroup(i));
+      #            for (h = 1; h <= dfg.numberOfFields(); h++)
+      #            {
+      #                df  = new DictField(_tableId,dfg.field(h));
+      #                dck = new DictConfigurationKey(df.configurationKeyId());
+      #                if (!_cfgEnabled || !df.configurationKeyId() || dck.enabled())
+      #                {
+      #                    result.addEnd(df.id());
+      #                }
+      #            }
+      #        }
+      #    }
+      #
+      #    return result;
       #}
     ENDSOURCE
     SOURCE #init
@@ -30,7 +63,10 @@ QUERY #WPAInventSum
       #    InventDim               inventDimCriteria;
       #    InventDimParm           inventDimParmCriteria;
       #    InventDimParm           inventDimParmGroupBy;
-      #    container               dimFields = InventDim::dimFieldList();
+      #    List                    dimFields = this.getFieldGroupFields(tableNum(InventDim),
+      #                                                                tableFieldgroupStr(InventDim, InventoryDimensions),
+      #                                                                true);
+      #    //InventDim::dimEnabledFieldList();
       #    boolean                 doFindRange;
       #    ;
       #    super();
@@ -40,7 +76,10 @@ QUERY #WPAInventSum
       #    inventDimParmGroupBy.ConfigIdFlag           = NoYes::Yes;
       #    inventDimParmGroupBy.InventColorIdFlag      = NoYes::Yes;
       #    inventDimParmGroupBy.InventSizeIdFlag       = NoYes::Yes;
-      #
+      #    if (isConfigurationkeyEnabled(configurationKeyNum(WPASerialNumbers)))
+      #    {
+      #        inventDimParmGroupBy.InventSerialIdFlag = NoYes::Yes;
+      #    }
       #    query = this.query();
       #
       #    if (query.dataSourceTable(tablenum(InventSum)))
@@ -78,10 +117,6 @@ QUERY #WPAInventSum
       #        if (! queryRange)
       #            queryRange = qbsSum.addRange(fieldnum(InventSum,ItemId));
       #
-      #        /*if (itemId)
-      #            queryRange.value(queryValue(itemId));
-      #        else
-      #            queryRange.value(SysQuery::valueEmptyString());*/
       #    }
       #
       #    if (inventDimParmGroupBy.ItemIdFlag)
@@ -92,7 +127,11 @@ QUERY #WPAInventSum
       #
       #    InventSum::queryAddSumFields(qbsSum);
       #    InventDim::queryDatasourceAddRangeSortFromParms(qbsDim,doFindRange,inventDimCriteria,inventDimParmCriteria,inventDimParmGroupBy,dimFields);
-      #    InventSum::queryAddHint(query,inventDimCriteria,inventDimParmCriteria,qbsSum,qbsDim);
+      #    qbsSum.addSortIndex(indexNum(InventSum,ClosedItemDimIdx));
+      #    qbsDim.addSortIndex(indexNum(InventDim,DimIdIdx));
+      #    query.literals(2);
+      #    qbsSum.indexIsHint(true);
+      #    qbsDim.indexIsHint(true);
       #}
     ENDSOURCE
   ENDMETHODS
@@ -183,8 +222,7 @@ QUERY #WPAInventSum
               ENDBLOCKS
               ASSOCIATIONS
                 ASSOCIATION
-                  MASTERFIELD  #InventLocationId
-                  DETAILSFIELD #InventLocationId
+                  FOREIGNKEYRELATION #InventLocation
               ENDASSOCIATIONS
             ENDBLOCK
           ENDBLOCKS
@@ -194,6 +232,8 @@ QUERY #WPAInventSum
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
       ENDORDERBY
     ENDBLOCK

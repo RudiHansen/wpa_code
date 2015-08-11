@@ -1,0 +1,38 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: LBL
+
+; Microsoft Dynamics AX LABELFILE : OBT unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  LABELFILE #OBT
+    PROPERTIES
+      Name                #OBT
+      Origin              #{C14A5C01-5F81-4231-809C-3791E954B793}
+    ENDPROPERTIES
+    
+    LANGUAGES #Languages
+      LANGUAGE #DA
+        PROPERTIES
+          Name                #DA
+          Filename            #AxOBTDA.ald
+        ENDPROPERTIES
+        
+      ENDLANGUAGE
+      
+    LANGUAGE #en_us
+      PROPERTIES
+        Name                #en_us
+        Filename            #AxOBTen-us.ald
+      ENDPROPERTIES
+      
+    ENDLANGUAGE
+    
+ENDLANGUAGES
+
+ENDLABELFILE
+
+
+***Element: END

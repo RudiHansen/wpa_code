@@ -1,0 +1,98 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendInventSerialAll unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendInventSerialAll
+    PROPERTIES
+      Name                #WPASendInventSerialAll
+      Extends             #RunBaseBatch
+      Origin              #{61FC64C8-6CC3-41AB-A14C-2570018785DC}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #class WPASendInventSerialAll extends RunBaseBatch
+        #{
+        #    UserID              userId;
+        #
+        #    #define.CurrentVersion(1)
+        #    #localmacro.CurrentList
+        #        userId
+        #    #endmacro
+        #}
+      ENDSOURCE
+      SOURCE #pack
+        #public container pack()
+        #{
+        #    ;
+        #
+        #    return [#CurrentVersion, #CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #run
+        #public void run()
+        #{
+        #    Args                    args;
+        #    MenuFunction            menuFunction;
+        #    ;
+        #    args = new Args();
+        #    args.parmEnumType(enumnum(NoYes));
+        #    args.parmEnum(NoYes::Yes);//Skip dialog
+        #    menuFunction = new MenuFunction('WPASendInventSerial',MenuItemType::Action);
+        #    menuFunction.run(args);
+        #}
+      ENDSOURCE
+      SOURCE #unpack
+        #public boolean unpack(container packedClass)
+        #{
+        #    Version version = RunBase::getVersion(packedClass);
+        #
+        #    ;
+        #
+        #    switch (version)
+        #    {
+        #        case #CurrentVersion:
+        #            [version, #CurrentList] = packedClass;
+        #            break;
+        #        default :
+        #            return false;
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPASendInventSerialAll construct()
+        #{
+        #    return new WPASendInventSerialAll();
+        #}
+        #
+      ENDSOURCE
+      SOURCE #description
+        #client server public static ClassDescription description()
+        #{
+        #    return ("@WPA235");
+        #
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static void main(Args   _args)
+        #{
+        #    WPASendInventSerialAll  wPASendInventSerialAll;
+        #    ;
+        #    wPASendInventSerialAll = WPASendInventSerialAll::construct();
+        #
+        #    if(wPASendInventSerialAll.prompt())
+        #    {
+        #        wPASendInventSerialAll.run();
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

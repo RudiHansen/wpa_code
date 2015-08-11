@@ -11,13 +11,13 @@ Formatversion: 1
     PROPERTIES
       Name                #AxWPAStockTransfer
       Extends             #AxInternalBase
-      RunOn               #Called from
+      Origin              #{BB8FE2E2-6EA7-455B-A87F-7662C1168947}
+      LegacyId            #50113
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #axOrig
-        #public AxWPAStockTransfer axOrig()
+        #public AxInternalBase axOrig()
         #{
         #    return super();
         #}
@@ -32,7 +32,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #currentRecord
-        #public WPAStockTransfer currentRecord(WPAStockTransfer _WPAStockTransfer = WPAStockTransfer)
+        #public Common currentRecord(Common _WPAStockTransfer = WPAStockTransfer)
         #{
         #    if (!prmisdefault(_WPAStockTransfer))
         #    {
@@ -49,7 +49,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #emptyRecord
-        #protected WPAStockTransfer emptyRecord()
+        #protected Common emptyRecord()
         #{
         #    WPAStockTransfer localWPAStockTransfer;
         #    ;
@@ -345,7 +345,7 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #WPAStockTransfer
+      SOURCE #wPAStockTransfer
         #public WPAStockTransfer wPAStockTransfer(WPAStockTransfer _wPAStockTransfer = wPAStockTransfer)
         #{
         #    if (!prmisdefault(_wPAStockTransfer))

@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProjCategory_ProjCategory
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{8A43C44D-AD7E-4AC3-919D-1E758117FCF2}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAProjCategory_ProjCategory</c> class is the data object class that is exposed through the <c>WPAProjCategoryService</c> class.
+        #/// </summary>
+        ##AxdWPAProjCategoryDCT
+        #[AifDataContainerTypeAttribute(#WPAProjCategory_ProjCategory)]
         #class WPAProjCategory_ProjCategory extends AfStronglyTypedDataContainer
         #{
         #    #define.TaxItemGroupId('TaxItemGroupId')
@@ -25,7 +29,6 @@ Formatversion: 1
         #    #define.RecVersion('RecVersion')
         #    #define.RecId('RecId')
         #    #define.ProjRevenueSalesPrice('ProjRevenueSalesPrice')
-        #    #define.ProjLinePropertySetup('ProjLinePropertySetup')
         #    #define.ProjHourSalesPrice('ProjHourSalesPrice')
         #    #define.ProjHourCostPrice('ProjHourCostPrice')
         #    #define.ProjCostSalesPrice('ProjCostSalesPrice')
@@ -63,12 +66,6 @@ Formatversion: 1
         #public AfStronglyTypedDataContainerList createProjHourSalesPrice()
         #{
         #    return this.get_NewList(#ProjHourSalesPrice);
-        #}
-      ENDSOURCE
-      SOURCE #createProjLinePropertySetup
-        #public AfStronglyTypedDataContainerList createProjLinePropertySetup()
-        #{
-        #    return this.get_NewList(#ProjLinePropertySetup);
         #}
       ENDSOURCE
       SOURCE #createProjRevenueSalesPrice
@@ -143,12 +140,6 @@ Formatversion: 1
         #    return this.exists(#ProjHourSalesPrice);
         #}
       ENDSOURCE
-      SOURCE #existsProjLinePropertySetup
-        #public boolean existsProjLinePropertySetup()
-        #{
-        #    return this.exists(#ProjLinePropertySetup);
-        #}
-      ENDSOURCE
       SOURCE #existsProjRevenueSalesPrice
         #public boolean existsProjRevenueSalesPrice()
         #{
@@ -188,7 +179,7 @@ Formatversion: 1
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAProjCategory_ProjCategory);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parm_DocumentHash
@@ -312,17 +303,6 @@ Formatversion: 1
         #    return this.get_List(#ProjHourSalesPrice);
         #}
       ENDSOURCE
-      SOURCE #parmProjLinePropertySetup
-        #public AfStronglyTypedDataContainerList parmProjLinePropertySetup(AfStronglyTypedDataContainerList _value = null)
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_List(#ProjLinePropertySetup, _value);
-        #    }
-        #
-        #    return this.get_List(#ProjLinePropertySetup);
-        #}
-      ENDSOURCE
       SOURCE #parmProjRevenueSalesPrice
         #public AfStronglyTypedDataContainerList parmProjRevenueSalesPrice(AfStronglyTypedDataContainerList _value = null)
         #{
@@ -335,7 +315,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -346,7 +326,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecVersion
-        #public recVersion parmRecVersion(recVersion _value = 0)
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {

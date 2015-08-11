@@ -1,0 +1,38 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: Job5 unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #Job5
+    #static void Job5(Args _args)
+    #{
+    #    QueryRun    qr = new QueryRun(queryStr(WPAInventTable));
+    #    InventSum   inventsum;
+    #    InventDim   inventdim;
+    #    InventTable InventTable;
+    #    str                     wPAItemId;
+    #    ;
+    #    if (qr.prompt())
+    #    {
+    #        while(qr.next())
+    #        {
+    #            if (qr.changed(tablenum(InventTable)))
+    #            {
+    #                InventTable   = qr.get(tablenum(InventTable));
+    #            }
+    #            info(strFmt("%1", InventTable.itemName()));
+    #        }
+    #
+    #    }
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{652418D5-2401-4C85-8907-7EA6459ADB94}
+  ENDPROPERTIES
+  
+
+***Element: END

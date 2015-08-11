@@ -8,6 +8,7 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #OBTLogMediaLookup
+    EnforceFKRelation 0
     PROPERTIES
       Name                #OBTLogMediaLookup
       Label               #@OBT2
@@ -18,6 +19,8 @@ Formatversion: 1
       CreateRecIdIndex    #Yes
       SaveDataPerCompany  #No
       PrimaryIndex        #RecId
+      Origin              #{D953C298-BBB9-494D-BFB7-977255BEB631}
+      LegacyId            #50001
     ENDPROPERTIES
     
     FIELDS
@@ -26,11 +29,9 @@ Formatversion: 1
         PROPERTIES
           Name                #classId
           Table               #OBTLogMediaLookup
-          ExtendedDataType    
-            ARRAY 
-              #classId
-              #
-            ENDARRAY
+          Origin              #{F034CD2A-C405-47CC-8950-A88536A4690D}
+          LegacyId            #50001
+          ExtendedDataType    #ClassId
         ENDPROPERTIES
         
       FIELD #className
@@ -38,11 +39,9 @@ Formatversion: 1
         PROPERTIES
           Name                #className
           Table               #OBTLogMediaLookup
-          ExtendedDataType    
-            ARRAY 
-              #ClassName
-              #
-            ENDARRAY
+          Origin              #{B03F1FBB-5A15-4844-AFC1-194CC4D5D283}
+          LegacyId            #50002
+          ExtendedDataType    #ClassName
           StringSize          #40
         ENDPROPERTIES
         
@@ -53,6 +52,8 @@ Formatversion: 1
           Label               #@SYS97141
           HelpText            #@SYS97141
           Table               #OBTLogMediaLookup
+          Origin              #{B2E82802-BCEF-44C0-A62B-F9582EF32500}
+          LegacyId            #50003
         ENDPROPERTIES
         
     ENDFIELDS
@@ -76,6 +77,8 @@ Formatversion: 1
       PROPERTIES
         Name                #MediaLookupIdx
         AllowDuplicates     #No
+        Origin              #{04CF0311-F5A7-4786-B749-C34C8712ED5D}
+        LegacyId            #50001
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -84,12 +87,16 @@ Formatversion: 1
       ENDINDEXFIELDS
       
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
     ENDREFERENCES
     
     DELETEACTIONS
     ENDDELETEACTIONS
     
+    METHODS
+    ENDMETHODS
   ENDTABLE
   
 

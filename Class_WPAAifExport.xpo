@@ -11,19 +11,15 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAAifExport
       Extends             #RunBaseBatch
-      RunOn               #Called from
+      Origin              #{D0964248-C331-4212-B51E-56E5C7AAD4FE}
+      LegacyId            #50030
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #caption
         #public ClassDescription caption()
         #{
-        #    ClassDescription ret;
-        #    ;
-        #    ret = "@WPA165";
-        #
-        #    return ret;
+        #    return "@WPA165";
         #}
       ENDSOURCE
       SOURCE #classDeclaration
@@ -76,7 +72,7 @@ Formatversion: 1
         #{
         #    WPAAifExport    export = WPAAifExport::construct();
         #    ;
-        #    if(export.prompt())
+        #    if (export.prompt())
         #    {
         #        export.run();
         #    }

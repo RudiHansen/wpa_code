@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #OBTFileGUID
       Label               #@SYS76311
       HelpText            #Globally unique identifier.
+      Origin              #{DEFE05F3-F34A-49AD-B951-ED67DC67414D}
+      LegacyId            #50065
       StringSize          #36
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

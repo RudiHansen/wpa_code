@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: WPA2ERP unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #WPA2ERP
+    #static void WPA2ERP(Args _args)
+    #{
+    #    TextBuffer  buffer;
+    #    ;
+    #    buffer = new TextBuffer();
+    #    buffer.fromFile(@"C:\WPA-NEW\wpa-700003.xml");
+    #
+    #    WPAWorkcard::deserialize(buffer.getText());
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{7A4295D5-26FF-4699-B041-1D1AFB0F0DB3}
+  ENDPROPERTIES
+  
+
+***Element: END

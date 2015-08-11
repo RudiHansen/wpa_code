@@ -11,10 +11,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAEmplService
       ExternalName        #WPAEmplService
-      Namespace           #
       Class               #WPAEmplService
-      SecurityKey         #WPAServices
-      Description         #
+      Origin              #{5FF8ED1E-81D6-47C0-92DF-1E79C5ACD27C}
     ENDPROPERTIES
     
     OPERATIONS
@@ -25,11 +23,74 @@ Formatversion: 1
           EnableIdempotence   #No
         ENDPROPERTIES
         
-      ENDOPERATION
+        PERMISSIONSET #Permissions
+          PROPERTIES
+          ENDPROPERTIES
+          
+          TABLES #Tables
+          ENDTABLES
+          
+        SERVERMETHODS #Server Methods
+        ENDSERVERMETHODS
+        
+      ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+      ENDASSOCIATEDCODEPERMISSIONS
       
-    ENDOPERATIONS
-    
-  ENDSERVICE
+  ENDPERMISSIONSET
   
+ENDOPERATION
+
+OPERATION #findAsOf
+  PROPERTIES
+    Name                #findAsOf
+    Method              #findAsOf
+    EnableIdempotence   #No
+  ENDPROPERTIES
+  
+  PERMISSIONSET #Permissions
+    PROPERTIES
+    ENDPROPERTIES
+    
+    TABLES #Tables
+    ENDTABLES
+    
+  SERVERMETHODS #Server Methods
+  ENDSERVERMETHODS
+  
+ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+ENDASSOCIATEDCODEPERMISSIONS
+
+ENDPERMISSIONSET
+
+ENDOPERATION
+
+OPERATION #findRange
+  PROPERTIES
+    Name                #findRange
+    Method              #findRange
+    EnableIdempotence   #No
+  ENDPROPERTIES
+  
+  PERMISSIONSET #Permissions
+    PROPERTIES
+    ENDPROPERTIES
+    
+    TABLES #Tables
+    ENDTABLES
+    
+  SERVERMETHODS #Server Methods
+  ENDSERVERMETHODS
+  
+ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+ENDASSOCIATEDCODEPERMISSIONS
+
+ENDPERMISSIONSET
+
+ENDOPERATION
+
+ENDOPERATIONS
+
+ENDSERVICE
+
 
 ***Element: END

@@ -1,0 +1,24 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: Job1 unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #Job1
+    #static void Job1(Args _args)
+    #{
+    #    AifQueueManager AifQueueManager;
+    #    ttsBegin;
+    #    delete_from AifQueueManager;
+    #    ttsCommit;
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{141668DC-9E33-46B8-95A5-9CDEB146E2A0}
+  ENDPROPERTIES
+  
+
+***Element: END

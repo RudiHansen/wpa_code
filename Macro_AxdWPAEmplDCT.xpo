@@ -1,0 +1,22 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAEmplDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAEmplDCT
+    ##define.WPAEmpl('WPAEmpl')
+    ##define.WPAEmpl_HcmWorker('WPAEmpl.HcmWorker')
+    ##define.WPAEmpl_DirPerson_DirPartyTable('WPAEmpl.DirPerson.DirPartyTable')
+    ##define.WPAEmpl_DirPerson_DirPerson('WPAEmpl.DirPerson.DirPerson')
+    ##define.WPAEmpl_HcmEmployment('WPAEmpl.HcmEmployment')
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{9EB2EDCD-DE31-4150-B0A5-AABC0C4E0A2D}
+  ENDPROPERTIES
+  
+
+***Element: END

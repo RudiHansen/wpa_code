@@ -11,18 +11,17 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASendItemsAll
       Extends             #RunBaseBatch
-      RunOn               #Called from
+      Origin              #{1FF7D60F-7DCF-4D33-84B7-AE19FD130769}
+      LegacyId            #50127
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #buildQuery
         #public Query buildQuery()
         #{
         #    Query   query = new Query();
         #    ;
         #    query.addDataSource(tablenum(InventTable));
-        #    query.dataSourceTable(tablenum(InventTable)).addSortField(fieldnum(InventTable, ItemId));
         #
         #    return query;
         #}
@@ -41,15 +40,14 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #dialog
-        #protected Object dialog(DialogRunbase dialog, boolean forceOnClient)
+        #protected Object dialog()
         #{
-        #    Object ret;
+        #    DialogRunbase       dialog = super();
         #    ;
-        #    ret             = super(dialog, forceOnClient);
         #
-        #    itemsPrFile_df  = ret.addFieldValue(typeId(integer), itemsPrFile, "@WPA239");
+        #    itemsPrFile_df  = dialog.addFieldValue(extendedTypeStr(integer), itemsPrFile, "Items pr file");
         #
-        #    return ret;
+        #    return dialog;
         #}
       ENDSOURCE
       SOURCE #getFromDialog
@@ -166,11 +164,10 @@ Formatversion: 1
         #    WPASendItems.parmShowDocPurpose(true) ;
         #    WPASendItems.parmServiceClassId(classnum(WPAInventTableService));
         #    WPASendItems.parmSendActionType(AifSendActionType::SendByQuery);
-        #    WPASendItems.parmEndPoint(WPASendItems.getEndpoint());
         #    WPASendItems.updateQuery(_itemIdFrom, _itemIdTo);
         #    WPASendItems.parmServiceClassId(classnum(WPAInventTableService));
+        #    WPASendItems.parmOutboundPortName("WPAItems");
         #
-        #//    WPASendItems.sendMultipleDocuments(classnum(WPAInventTable), classnum(WPAInventTableService), AifSendMode::Async, aifConstraintList);
         #    WPASendItems.run();
         #    info(strfmt("%1 - %2", _itemIdFrom, _itemIdTo));
         #}
@@ -217,7 +214,7 @@ Formatversion: 1
       SOURCE #description
         #client server public static ClassDescription description()
         #{
-        #    return ("@WPA240");
+        #    return ("Send all Items");
         #
         #}
       ENDSOURCE

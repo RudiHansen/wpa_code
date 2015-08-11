@@ -11,11 +11,11 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProjJournalsPost
       Extends             #RunBaseBatch
-      RunOn               #Called from
+      Origin              #{93CD764F-EE4B-4395-9335-ECCBC1AD76F6}
+      LegacyId            #50126
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPAProjJournalsPost extends RunBaseBatch
         #{
@@ -46,10 +46,10 @@ Formatversion: 1
         #    DialogRunbase       dialog = super();
         #    ;
         #
-        #    postHourJournals_df     = dialog.addFieldValue(typeid(NoYesId), postHourJournals, "@WPA234");
-        #    postItemJournals_df     = dialog.addFieldValue(typeid(NoYesId), postItemJournals, "@WPA235");
-        #    postFeeJournals_df      = dialog.addFieldValue(typeid(NoYesId), postFeeJournals, "@WPA236");
-        #    postExpenseJournals_df  = dialog.addFieldValue(typeid(NoYesId), postExpenseJournals, "@WPA237");
+        #    postHourJournals_df     = dialog.addFieldValue(extendedTypeStr(NoYesId), postHourJournals, "Post hour journals");
+        #    postItemJournals_df     = dialog.addFieldValue(extendedTypeStr(NoYesId), postItemJournals, "Post item journals");
+        #    postFeeJournals_df      = dialog.addFieldValue(extendedTypeStr(NoYesId), postFeeJournals, "Post fee journals");
+        #    postExpenseJournals_df  = dialog.addFieldValue(extendedTypeStr(NoYesId), postExpenseJournals, "Post expense journals");
         #
         #    return dialog;
         #}
@@ -186,8 +186,8 @@ Formatversion: 1
       SOURCE #postItemJournals
         #void postItemJournals()
         #{
-        #    InventJournalTable      inventJournalTable;
-        #    InventJournalCheckPost  inventJournalCheckPost;
+        #    InventJournalTable  inventJournalTable;
+        #    JournalCheckPost    inventJournalCheckPost;
         #    ;
         #    while select inventJournalTable
         #        where inventJournalTable.JournalNameId  == WPAParameters.inventJournalNameId    &&
@@ -287,7 +287,7 @@ Formatversion: 1
       SOURCE #description
         #public client server static ClassDescription description()
         #{
-        #    return "@WPA233";
+        #    return "Post project journals";
         #}
       ENDSOURCE
       SOURCE #main

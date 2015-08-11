@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAItemLineType
       Label               #@WPA49
       HelpText            #@WPA50
+      Origin              #{9ACD4ECA-5307-45D7-A52F-CC8649502847}
+      LegacyId            #50029
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

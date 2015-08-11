@@ -12,13 +12,17 @@ Formatversion: 1
       Name                #AxdWPAInventTable
       Extends             #AxdBase
       RunOn               #Server
+      Origin              #{CA347B3E-7A34-42E9-8DC2-747F90261A2D}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class AxdWPAInventTable extends AxdBase
         #{
+        #    #define.InventTable_DataSourceName('InventTable')
+        #    #define.InventTableModuleInvent_DataSourceName('InventTableModuleInvent')
+        #    #define.InventTableModuleSales_DataSourceName('InventTableModuleSales')
+        #    #define.InventItemBarcode_DataSourceName('InventItemBarcode')
         #}
         #
       ENDSOURCE
@@ -40,6 +44,27 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findCorrespondingAxBC
+        #public int findCorrespondingAxBC(tableId _tableId = 0)
+        #{
+        #    return classnum(AxCommon);
+        #}
+        #
+      ENDSOURCE
       SOURCE #findEntityKeyList
         #public AifEntityKeyList findEntityKeyList(AifQueryCriteria            _queryCriteria,
         #                                          AifEndpointActionPolicyInfo _actionPolicyInfo)
@@ -54,6 +79,7 @@ Formatversion: 1
         #    AifActionInfoList   Actions = new AifActionInfoList();
         #    AifActionInfo       aifActionInfo;
         #    ;
+        #
         #    aifActionInfo = new AifActionInfo();
         #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, findList), this.getName()));
         #    aifActionInfo.parmActionType(AifActionType::QueryDocuments);
@@ -75,7 +101,8 @@ Formatversion: 1
         #    AifConstraint  aifConstraint = new AifConstraint();
         #    InventTable    InventTable;
         #    ;
-        #    if (_curRec.TableId != tablenum(InventTable))
+        #
+        #    if (!(_curRec is InventTable))
         #    {
         #         throw error(strfmt("@SYS23396",funcname()));
         #    }
@@ -85,8 +112,8 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #GetLabel
-        #public LabelDescription getLabel()
+      SOURCE #getLabel
+        #public LabelString getLabel()
         #{
         #    return "@SYS15649";
         #}
@@ -111,7 +138,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #updateList
-        #public AifEntityKey updateList(AifEntityKeyList            _entityKeyList,
+        #public AifResult updateList(AifEntityKeyList            _entityKeyList,
         #                               AifDocumentXML              _xml,
         #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
         #                               AifConstraintListCollection _constraintListcollection)

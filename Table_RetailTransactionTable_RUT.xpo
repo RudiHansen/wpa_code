@@ -1,0 +1,248 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionTable_RUT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionTable_RUT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionTable_RUT
+      Label               #@RET3191
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{D67BAE67-4BED-4B5A-A1DE-71D6F144C87F}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionTable_RUT
+          Origin              #{63AE2DA3-78E3-43AC-BA9F-707F7E017F96}
+        ENDPROPERTIES
+        
+      FIELD #EKLZSerialNumber
+        STRING
+        PROPERTIES
+          Name                #EKLZSerialNumber
+          Table               #RetailTransactionTable_RUT
+          Origin              #{578FFC81-A52F-4C2D-A504-CC21CA9150FD}
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentSerialNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentSerialNumber
+          Table               #RetailTransactionTable_RUT
+          Origin              #{435D1C58-7BAB-409D-B686-2EAC7DEDD92A}
+        ENDPROPERTIES
+        
+      FIELD #FiscalPrinterSerialNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalPrinterSerialNumber
+          Table               #RetailTransactionTable_RUT
+          Origin              #{A0B2AB7E-DCA0-4CB3-8D8A-E7FB7FF9F99F}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalPrinterShiftID
+        STRING
+        PROPERTIES
+          Name                #FiscalPrinterShiftID
+          Table               #RetailTransactionTable_RUT
+          Origin              #{E16E14C8-4EAC-4268-8C07-1E7FEDA145CA}
+          StringSize          #5
+        ENDPROPERTIES
+        
+      FIELD #KPKNumber
+        STRING
+        PROPERTIES
+          Name                #KPKNumber
+          Table               #RetailTransactionTable_RUT
+          Origin              #{5EF43972-D8F2-4EF7-9B90-31AF672AE850}
+          StringSize          #8
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionTable_RUT
+          Origin              #{0BA51163-05CD-4E8A-8A33-5802ED35C7E3}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailTransactionTable_RUT
+          Origin              #{4DF3AC85-63E1-4AF7-B11D-C06EDB548AF5}
+        ENDPROPERTIES
+        
+      FIELD #Store
+        STRING
+        PROPERTIES
+          Name                #Store
+          Table               #RetailTransactionTable_RUT
+          Origin              #{624C5FFC-0419-4EBD-B97A-F8BC9B5A8D89}
+        ENDPROPERTIES
+        
+      FIELD #Terminal
+        STRING
+        PROPERTIES
+          Name                #Terminal
+          Table               #RetailTransactionTable_RUT
+          Origin              #{67F2A537-11DD-4544-955D-9C28B48082DA}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailTransactionTable_RUT
+          Origin              #{2FB1FD25-E394-4C10-AA4F-C3873BEA33B2}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{8193106A-217B-4A16-A734-C44B0604E385}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #TransactionId
+        #Terminal
+        #Store
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionTable_RUT cursor)
+        #{
+        #    RetailTransactionTable_RU target;
+        #    RetailTransactionTable_RUT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint transactionIdx
+        #                where (target.@Store==cursor2.@Store && target.@Terminal==cursor2.@Terminal && target.@TransactionId==cursor2.@TransactionId && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @Channel,
+        #                    @EKLZSerialNumber,
+        #                    @FiscalDocumentSerialNumber,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @FiscalPrinterShiftID,
+        #                    @KPKNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @Store,
+        #                    @Terminal,
+        #                    @TransactionId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @Channel,
+        #                    @EKLZSerialNumber,
+        #                    @FiscalDocumentSerialNumber,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @FiscalPrinterShiftID,
+        #                    @KPKNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @Store,
+        #                    @Terminal,
+        #                    @TransactionId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionTable_RUT cursor)
+        #{
+        #    RetailTransactionTable_RUT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionTable_RU), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

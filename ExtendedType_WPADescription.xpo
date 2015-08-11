@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPADescription
       Label               #@SYS7576
       HelpText            #@SYS5206
+      Origin              #{B9F5C22E-1DD6-481F-965D-FDFE1891C1E6}
+      LegacyId            #50017
       StringSize          #1000
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

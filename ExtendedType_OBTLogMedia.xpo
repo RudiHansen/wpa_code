@@ -13,7 +13,9 @@ Formatversion: 1
       Name                #OBTLogMedia
       Label               #@OBT9
       HelpText            #@OBT11
-      Extends             #identifiername
+      Origin              #{A5291840-D2A0-4B82-8205-83153789FAD3}
+      LegacyId            #50001
+      Extends             #IdentifierName
       StringSize          #40
     ENDPROPERTIES
     
@@ -22,6 +24,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

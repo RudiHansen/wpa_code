@@ -11,14 +11,19 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProjCategory_ProjRevenueSalesPrice
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{ED6BA502-46C5-4329-8D4F-C9013DE12DA3}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAProjCategory_ProjRevenueSalesPrice</c> class is the data object class that is exposed through the <c>WPAProjCategoryService</c> class.
+        #/// </summary>
+        ##AxdWPAProjCategoryDCT
+        #[AifDataContainerTypeAttribute(#WPAProjCategory_ProjRevenueSalesPrice)]
         #class WPAProjCategory_ProjRevenueSalesPrice extends AfStronglyTypedDataContainer
         #{
+        #    #define.Worker('Worker')
         #    #define.TransDate('TransDate')
         #    #define.SalesPrice('SalesPrice')
         #    #define.RecVersion('RecVersion')
@@ -26,7 +31,6 @@ Formatversion: 1
         #    #define.ProjValidFor('ProjValidFor')
         #    #define.ProjPriceGroup('ProjPriceGroup')
         #    #define.ProjId('ProjId')
-        #    #define.EmplId('EmplId')
         #    #define.CurrencyId('CurrencyId')
         #    #define.CategoryId('CategoryId')
         #
@@ -43,12 +47,6 @@ Formatversion: 1
         #public boolean existsCurrencyId()
         #{
         #    return this.exists(#CurrencyId);
-        #}
-      ENDSOURCE
-      SOURCE #existsEmplId
-        #public boolean existsEmplId()
-        #{
-        #    return this.exists(#EmplId);
         #}
       ENDSOURCE
       SOURCE #existsProjId
@@ -93,10 +91,16 @@ Formatversion: 1
         #    return this.exists(#TransDate);
         #}
       ENDSOURCE
+      SOURCE #existsWorker
+        #public boolean existsWorker()
+        #{
+        #    return this.exists(#Worker);
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAProjCategory_ProjRevenueSalesPrice);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmCategoryId
@@ -111,7 +115,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmCurrencyId
-        #public str parmCurrencyId(str _value = '')
+        #public CurrencyCode parmCurrencyId(CurrencyCode _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -119,17 +123,6 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#CurrencyId);
-        #}
-      ENDSOURCE
-      SOURCE #parmEmplId
-        #public EmplIdProj parmEmplId(EmplIdProj _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#EmplId, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#EmplId);
         #}
       ENDSOURCE
       SOURCE #parmProjId
@@ -166,7 +159,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -177,7 +170,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecVersion
-        #public recVersion parmRecVersion(recVersion _value = 0)
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -207,6 +200,17 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#TransDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorker
+        #public DirPartyNumber parmWorker(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Worker, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Worker);
         #}
       ENDSOURCE
     ENDMETHODS

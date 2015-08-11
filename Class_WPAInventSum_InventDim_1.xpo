@@ -11,34 +11,45 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAInventSum_InventDim_1
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{0D5B9D07-691C-4619-ACA9-8CE2D2D87F22}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventSum_InventDim_1</c> class is the data object class that is exposed through the <c>WPAInventSumService</c> class.
+        #/// </summary>
+        ##AxdWPAInventSumDCT
+        #[AifDataContainerTypeAttribute(#WPAInventSum_InventDim_1)]
         #class WPAInventSum_InventDim_1 extends AfStronglyTypedDataContainer
         #{
-        #    #define.wMSPalletId('wMSPalletId')
-        #    #define.wMSLocationId('wMSLocationId')
+        #    #define.WMSPalletId('WMSPalletId')
+        #    #define.WMSLocationId('WMSLocationId')
         #    #define.RecVersion('RecVersion')
         #    #define.RecId('RecId')
         #    #define.InventSizeId('InventSizeId')
         #    #define.InventSiteId('InventSiteId')
-        #    #define.inventSerialId('inventSerialId')
+        #    #define.InventSerialId('InventSerialId')
         #    #define.InventLocationId('InventLocationId')
-        #    #define.inventDimId('inventDimId')
+        #    #define.InventLocation_1('InventLocation_1')
+        #    #define.InventDimId('InventDimId')
         #    #define.InventColorId('InventColorId')
         #    #define.InventBatchId('InventBatchId')
-        #    #define.configId('configId')
+        #    #define.ConfigId('ConfigId')
         #
         #}
         #
       ENDSOURCE
-      SOURCE #existsconfigId
-        #public boolean existsconfigId()
+      SOURCE #createInventLocation_1
+        #public AfStronglyTypedDataContainerList createInventLocation_1()
         #{
-        #    return this.exists(#configId);
+        #    return this.get_NewList(#InventLocation_1);
+        #}
+      ENDSOURCE
+      SOURCE #existsConfigId
+        #public boolean existsConfigId()
+        #{
+        #    return this.exists(#ConfigId);
         #}
       ENDSOURCE
       SOURCE #existsInventBatchId
@@ -53,10 +64,16 @@ Formatversion: 1
         #    return this.exists(#InventColorId);
         #}
       ENDSOURCE
-      SOURCE #existsinventDimId
-        #public boolean existsinventDimId()
+      SOURCE #existsInventDimId
+        #public boolean existsInventDimId()
         #{
-        #    return this.exists(#inventDimId);
+        #    return this.exists(#InventDimId);
+        #}
+      ENDSOURCE
+      SOURCE #existsInventLocation_1
+        #public boolean existsInventLocation_1()
+        #{
+        #    return this.exists(#InventLocation_1);
         #}
       ENDSOURCE
       SOURCE #existsInventLocationId
@@ -65,10 +82,10 @@ Formatversion: 1
         #    return this.exists(#InventLocationId);
         #}
       ENDSOURCE
-      SOURCE #existsinventSerialId
-        #public boolean existsinventSerialId()
+      SOURCE #existsInventSerialId
+        #public boolean existsInventSerialId()
         #{
-        #    return this.exists(#inventSerialId);
+        #    return this.exists(#InventSerialId);
         #}
       ENDSOURCE
       SOURCE #existsInventSiteId
@@ -95,33 +112,33 @@ Formatversion: 1
         #    return this.exists(#RecVersion);
         #}
       ENDSOURCE
-      SOURCE #existswMSLocationId
-        #public boolean existswMSLocationId()
+      SOURCE #existsWMSLocationId
+        #public boolean existsWMSLocationId()
         #{
-        #    return this.exists(#wMSLocationId);
+        #    return this.exists(#WMSLocationId);
         #}
       ENDSOURCE
-      SOURCE #existswMSPalletId
-        #public boolean existswMSPalletId()
+      SOURCE #existsWMSPalletId
+        #public boolean existsWMSPalletId()
         #{
-        #    return this.exists(#wMSPalletId);
+        #    return this.exists(#WMSPalletId);
         #}
       ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAInventSum_InventDim_1);
+        #    super();
         #}
       ENDSOURCE
-      SOURCE #parmconfigId
-        #public ConfigId parmconfigId(ConfigId _value = '')
+      SOURCE #parmConfigId
+        #public EcoResItemConfigurationName parmConfigId(EcoResItemConfigurationName _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_Attribute(#configId, _value);
+        #        this.set_Attribute(#ConfigId, _value);
         #    }
         #
-        #    return this.get_Attribute(#configId);
+        #    return this.get_Attribute(#ConfigId);
         #}
       ENDSOURCE
       SOURCE #parmInventBatchId
@@ -136,7 +153,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmInventColorId
-        #public InventColorId parmInventColorId(InventColorId _value = '')
+        #public EcoResItemColorName parmInventColorId(EcoResItemColorName _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -146,15 +163,26 @@ Formatversion: 1
         #    return this.get_Attribute(#InventColorId);
         #}
       ENDSOURCE
-      SOURCE #parminventDimId
-        #public InventDimId parminventDimId(InventDimId _value = '')
+      SOURCE #parmInventDimId
+        #public InventDimId parmInventDimId(InventDimId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_Attribute(#inventDimId, _value);
+        #        this.set_Attribute(#InventDimId, _value);
         #    }
         #
-        #    return this.get_Attribute(#inventDimId);
+        #    return this.get_Attribute(#InventDimId);
+        #}
+      ENDSOURCE
+      SOURCE #parmInventLocation_1
+        #public AfStronglyTypedDataContainerList parmInventLocation_1(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#InventLocation_1, _value);
+        #    }
+        #
+        #    return this.get_List(#InventLocation_1);
         #}
       ENDSOURCE
       SOURCE #parmInventLocationId
@@ -168,15 +196,15 @@ Formatversion: 1
         #    return this.get_Attribute(#InventLocationId);
         #}
       ENDSOURCE
-      SOURCE #parminventSerialId
-        #public InventSerialId parminventSerialId(InventSerialId _value = '')
+      SOURCE #parmInventSerialId
+        #public InventSerialId parmInventSerialId(InventSerialId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_Attribute(#inventSerialId, _value);
+        #        this.set_Attribute(#InventSerialId, _value);
         #    }
         #
-        #    return this.get_Attribute(#inventSerialId);
+        #    return this.get_Attribute(#InventSerialId);
         #}
       ENDSOURCE
       SOURCE #parmInventSiteId
@@ -191,7 +219,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmInventSizeId
-        #public InventSizeId parmInventSizeId(InventSizeId _value = '')
+        #public EcoResItemSizeName parmInventSizeId(EcoResItemSizeName _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -202,7 +230,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -213,7 +241,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecVersion
-        #public recVersion parmRecVersion(recVersion _value = 0)
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -223,26 +251,26 @@ Formatversion: 1
         #    return this.get_Attribute(#RecVersion);
         #}
       ENDSOURCE
-      SOURCE #parmwMSLocationId
-        #public WMSLocationId parmwMSLocationId(WMSLocationId _value = '')
+      SOURCE #parmWMSLocationId
+        #public WMSLocationId parmWMSLocationId(WMSLocationId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_Attribute(#wMSLocationId, _value);
+        #        this.set_Attribute(#WMSLocationId, _value);
         #    }
         #
-        #    return this.get_Attribute(#wMSLocationId);
+        #    return this.get_Attribute(#WMSLocationId);
         #}
       ENDSOURCE
-      SOURCE #parmwMSPalletId
-        #public WMSPalletId parmwMSPalletId(WMSPalletId _value = '')
+      SOURCE #parmWMSPalletId
+        #public WMSPalletId parmWMSPalletId(WMSPalletId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_Attribute(#wMSPalletId, _value);
+        #        this.set_Attribute(#WMSPalletId, _value);
         #    }
         #
-        #    return this.get_Attribute(#wMSPalletId);
+        #    return this.get_Attribute(#WMSPalletId);
         #}
       ENDSOURCE
     ENDMETHODS

@@ -5,34 +5,71 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Menu : WPA unloaded
 ; --------------------------------------------------------------------------------
-  MNUVERSION 4
+  MNUVERSION 5
   
   MENU #WPA
     PROPERTIES
       Name                #WPA
       Label               #@WPA34
-      HelpText            #@WPA153
       SetCompany          #Yes
-      NormalImage         #C:\Documents and Settings\Administrator\Desktop\wpalogo.png
+      NormalImage         #wpalogo_ico
+      ImageLocation       #AOTResource
+      Origin              #{E00179A1-B70C-4448-B7F7-7A01E116ED62}
     ENDPROPERTIES
     
-    MENU #@SYS3850
+    MENU #@SYS333846
       PROPERTIES
-        Name                #Submenu1
-        Label               #@SYS3850
-        HelpText            #@WPA150
+        Name                #Common
+        Label               #@SYS333846
+        NormalImage         #3495
+        ImageLocation       #EmbeddedResource
       ENDPROPERTIES
       
       MENUITEM
         PROPERTIES
-          Name                #@WPA71
+          Name                #Service orders
+          MenuItemName        #SMAServiceOrderTableListPage
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #All projects
+          MenuItemName        #ProjProjectsListPage
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #Released products
+          MenuItemName        #EcoResProductPerCompanyListPage
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #Project categories
+          MenuItemName        #ProjCategory
+        ENDPROPERTIES
+        
+      ENDMENUITEM
+    ENDMENU
+    MENU #@SYS3850
+      PROPERTIES
+        Name                #Submenu1
+        Label               #@SYS3850
+      ENDPROPERTIES
+      
+      MENUITEM
+        PROPERTIES
+          Name                #Work cards
           MenuItemName        #WPAWorkcardTable
         ENDPROPERTIES
         
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #Document history
+          Name                #History
           MenuItemName        #AifDocumentHistory
         ENDPROPERTIES
         
@@ -46,7 +83,7 @@ Formatversion: 1
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #@WPA206
+          Name                #WPA stock transfers
           MenuItemName        #WPAStockTransfer
         ENDPROPERTIES
         
@@ -56,12 +93,11 @@ Formatversion: 1
       PROPERTIES
         Name                #Submenu1
         Label               #@SYS8782
-        HelpText            #@WPA151
       ENDPROPERTIES
       
       MENUITEM
         PROPERTIES
-          Name                #@WPA138
+          Name                #Send Dispatch team
           MenuItemType        #Action
           MenuItemName        #WPASendDispatchTeam
         ENDPROPERTIES
@@ -69,7 +105,7 @@ Formatversion: 1
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #@WPA140
+          Name                #Send Employee
           MenuItemType        #Action
           MenuItemName        #WPASendEmpl
         ENDPROPERTIES
@@ -77,7 +113,7 @@ Formatversion: 1
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #@WPA133
+          Name                #Send Warehouse
           MenuItemType        #Action
           MenuItemName        #WPASendInventLocation
         ENDPROPERTIES
@@ -93,7 +129,7 @@ Formatversion: 1
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #@WPA238
+          Name                #Send all items
           MenuItemType        #Action
           MenuItemName        #WPASendItemsAll
         ENDPROPERTIES
@@ -101,7 +137,7 @@ Formatversion: 1
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #@WPA136
+          Name                #Send Project category
           MenuItemType        #Action
           MenuItemName        #WPASendProjCategory
         ENDPROPERTIES
@@ -109,7 +145,7 @@ Formatversion: 1
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #@WPA129
+          Name                #Send Project
           MenuItemType        #Action
           MenuItemName        #WPASendProject
         ENDPROPERTIES
@@ -117,7 +153,7 @@ Formatversion: 1
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #@WPA144
+          Name                #Update imported workcards
           MenuItemType        #Action
           MenuItemName        #WPAWorkCardTransfer
         ENDPROPERTIES
@@ -125,7 +161,7 @@ Formatversion: 1
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #@WPA199
+          Name                #Send changes to WPA
           MenuItemType        #Action
           MenuItemName        #WPAExportLogTrans
         ENDPROPERTIES
@@ -133,7 +169,7 @@ Formatversion: 1
       ENDMENUITEM
       MENUITEM
         PROPERTIES
-          Name                #@WPA233
+          Name                #Post project journals
           MenuItemType        #Action
           MenuItemName        #WPAProjJournalsPost
         ENDPROPERTIES
@@ -147,7 +183,7 @@ Formatversion: 1
         
         MENUITEM
           PROPERTIES
-            Name                #@WPA224
+            Name                #Update imported stock transfers
             MenuItemType        #Action
             MenuItemName        #WPAStockTransfer_Update
           ENDPROPERTIES
@@ -155,7 +191,7 @@ Formatversion: 1
         ENDMENUITEM
         MENUITEM
           PROPERTIES
-            Name                #@WPA222
+            Name                #Send inventory
             MenuItemType        #Action
             MenuItemName        #WPASendInventSum
           ENDPROPERTIES
@@ -163,9 +199,25 @@ Formatversion: 1
         ENDMENUITEM
         MENUITEM
           PROPERTIES
-            Name                #@WPA228
+            Name                #Send all inventories (batch)
             MenuItemType        #Action
             MenuItemName        #WPASendInventSumAll
+          ENDPROPERTIES
+          
+        ENDMENUITEM
+        MENUITEM
+          PROPERTIES
+            Name                #Send serial numbers
+            MenuItemType        #Action
+            MenuItemName        #WPASendInventSerial
+          ENDPROPERTIES
+          
+        ENDMENUITEM
+        MENUITEM
+          PROPERTIES
+            Name                #Send all serial numbers (batch)
+            MenuItemType        #Action
+            MenuItemName        #WPASendInventSerialAll
           ENDPROPERTIES
           
         ENDMENUITEM
@@ -175,52 +227,23 @@ Formatversion: 1
       PROPERTIES
         Name                #Submenu1
         Label               #@SYS2186
-        HelpText            #@WPA152
       ENDPROPERTIES
       
       MENUITEM
         PROPERTIES
-          Name                #@WPA1
-          MenuItemName        #WPAParameters
-        ENDPROPERTIES
-        
-      ENDMENUITEM
-      MENUITEM
-        PROPERTIES
-          Name                #@OBT1
+          Name                #Log setup
           MenuItemName        #OBTLogTable
         ENDPROPERTIES
         
       ENDMENUITEM
+      MENUITEM
+        PROPERTIES
+          Name                #WPA Parameters
+          MenuItemName        #WPAParameters
+        ENDPROPERTIES
+        
+      ENDMENUITEM
     ENDMENU
-    MENUITEM
-      PROPERTIES
-        Name                #Service orders
-        MenuItemName        #SMAServiceOrderTable
-      ENDPROPERTIES
-      
-    ENDMENUITEM
-    MENUITEM
-      PROPERTIES
-        Name                #Projects
-        MenuItemName        #ProjTable
-      ENDPROPERTIES
-      
-    ENDMENUITEM
-    MENUITEM
-      PROPERTIES
-        Name                #Item details
-        MenuItemName        #InventTable
-      ENDPROPERTIES
-      
-    ENDMENUITEM
-    MENUITEM
-      PROPERTIES
-        Name                #Categories
-        MenuItemName        #ProjCategory
-      ENDPROPERTIES
-      
-    ENDMENUITEM
   ENDMENU
   
 

@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAWorkcardTypeId
       Label               #@WPA68
       HelpText            #@WPA69
+      Origin              #{34C614FD-FE44-4086-8180-A6AFD55F2FDE}
+      LegacyId            #50059
       StringSize          #1
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

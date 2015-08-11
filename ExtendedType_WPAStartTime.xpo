@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAStartTime
       Label               #@SYS39127
       HelpText            #@SYS2016
+      Origin              #{469D6B58-5874-4A8B-9CE8-34C4C86B4869}
+      LegacyId            #50049
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

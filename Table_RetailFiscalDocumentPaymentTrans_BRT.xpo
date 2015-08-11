@@ -1,0 +1,269 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalDocumentPaymentTrans_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalDocumentPaymentTrans_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalDocumentPaymentTrans_BRT
+      Label               #@SYP4860110
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{0625C1D4-3C9A-4689-A69A-4B17CF4DF282}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Amount
+        REAL
+        PROPERTIES
+          Name                #Amount
+          Label               #@SYS340849
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{B22290CE-E218-41F4-843E-7996D74170DA}
+        ENDPROPERTIES
+        
+      FIELD #CardAuthorizationNumber
+        STRING
+        PROPERTIES
+          Name                #CardAuthorizationNumber
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{318B1A1D-44F0-42CE-827F-C49019E5421A}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #CardLogo
+        ENUM
+        PROPERTIES
+          Name                #CardLogo
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{72DEEC05-3375-4033-8CB3-DB2D05F2318B}
+          EnumType            #CardLogo
+        ENDPROPERTIES
+        
+      FIELD #CardProcessorCNPJCPF
+        STRING
+        PROPERTIES
+          Name                #CardProcessorCNPJCPF
+          Label               #@SYP4860601
+          HelpText            #@SYP4860600
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{959E2D01-149A-4015-963E-CD57FB7EF8B0}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{9EAC438C-29AF-4F72-910C-C9893C34B533}
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentNumber
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{31F8C937-8B65-4B2A-BE0A-7FAEBB732783}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentSeries
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentSeries
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{04543D34-8571-48F4-8D95-643AC91825E9}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #lineNum
+        REAL
+        PROPERTIES
+          Name                #lineNum
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{30EAAD79-C4CB-4354-AE93-7ECC5E865A46}
+        ENDPROPERTIES
+        
+      FIELD #PaymentType
+        ENUM
+        PROPERTIES
+          Name                #PaymentType
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{022DB506-B903-49F7-A526-AC398CFD08BF}
+          EnumType            #PaymentType_BR
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{A9536182-4E58-471E-99B1-6539461B99D6}
+        ENDPROPERTIES
+        
+      FIELD #store
+        STRING
+        PROPERTIES
+          Name                #store
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{169EBA21-74EE-4DC3-BA8F-37FE8DD64AFD}
+        ENDPROPERTIES
+        
+      FIELD #TenderTypeId
+        STRING
+        PROPERTIES
+          Name                #TenderTypeId
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{410C248B-B5EF-40DA-BE00-49C52B6F3EA2}
+        ENDPROPERTIES
+        
+      FIELD #terminal
+        STRING
+        PROPERTIES
+          Name                #terminal
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{9058F92F-8E58-46C0-9F10-84FB25C4BEF3}
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailFiscalDocumentPaymentTrans_BRT
+          Origin              #{65C894C2-F3C0-4BAC-9382-27B12E9C4A93}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{22A0A746-12A3-49CA-AFBD-C5E2024CF63F}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #FiscalDocumentNumber
+        #FiscalDocumentSeries
+        #Channel
+        #store
+        #terminal
+        #transactionId
+        #lineNum
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalDocumentPaymentTrans_BRT cursor)
+        #{
+        #    RetailFiscalDocumentPaymentTrans_BR target;
+        #    RetailFiscalDocumentPaymentTrans_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint Idx
+        #                where (target.@lineNum==cursor2.@lineNum && target.@transactionId==cursor2.@transactionId && target.@terminal==cursor2.@terminal && target.@store==cursor2.@store && target.@Channel==cursor2.@Channel && target.@FiscalDocumentSeries==cursor2.@FiscalDocumentSeries && target.@FiscalDocumentNumber==cursor2.@FiscalDocumentNumber);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @Amount,
+        #                    @CardAuthorizationNumber,
+        #                    @CardLogo,
+        #                    @CardProcessorCNPJCPF,
+        #                    @Channel,
+        #                    @FiscalDocumentNumber,
+        #                    @FiscalDocumentSeries,
+        #                    @lineNum,
+        #                    @PaymentType,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @store,
+        #                    @TenderTypeId,
+        #                    @terminal,
+        #                    @transactionId
+        #                )
+        #                select
+        #                    @Amount,
+        #                    @CardAuthorizationNumber,
+        #                    @CardLogo,
+        #                    @CardProcessorCNPJCPF,
+        #                    @Channel,
+        #                    @FiscalDocumentNumber,
+        #                    @FiscalDocumentSeries,
+        #                    @lineNum,
+        #                    @PaymentType,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @store,
+        #                    @TenderTypeId,
+        #                    @terminal,
+        #                    @transactionId
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

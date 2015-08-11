@@ -11,10 +11,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPACustTableService
       ExternalName        #WPACustTableService
-      Namespace           #
       Class               #WPACustTableService
-      SecurityKey         #WPAServices
-      Description         #
+      Origin              #{3450E5B4-9D19-43D5-9E19-6D771CD2527C}
     ENDPROPERTIES
     
     OPERATIONS
@@ -25,11 +23,26 @@ Formatversion: 1
           EnableIdempotence   #No
         ENDPROPERTIES
         
-      ENDOPERATION
+        PERMISSIONSET #Permissions
+          PROPERTIES
+          ENDPROPERTIES
+          
+          TABLES #Tables
+          ENDTABLES
+          
+        SERVERMETHODS #Server Methods
+        ENDSERVERMETHODS
+        
+      ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+      ENDASSOCIATEDCODEPERMISSIONS
       
-    ENDOPERATIONS
-    
-  ENDSERVICE
+  ENDPERMISSIONSET
   
+ENDOPERATION
+
+ENDOPERATIONS
+
+ENDSERVICE
+
 
 ***Element: END

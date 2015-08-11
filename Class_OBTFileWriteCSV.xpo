@@ -12,10 +12,11 @@ Formatversion: 1
       Name                #OBTFileWriteCSV
       Extends             #OBTFileWrite
       RunOn               #Server
+      Origin              #{AE268B06-AE2F-4A9E-838A-DCE01C97E01F}
+      LegacyId            #50103
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class OBTFileWriteCSV extends OBTFileWrite
         #{

@@ -11,11 +11,11 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAWorkCardTransfer
       Extends             #RunBaseBatch
-      RunOn               #Called from
+      Origin              #{DE627779-36C4-46FC-81D4-AA714B4F815D}
+      LegacyId            #50099
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #addDocuRef
         #void addDocuRef(TableId _refTableId,
         #                RecId   _refRecid,
@@ -47,6 +47,7 @@ Formatversion: 1
         #    ProjLinePropertyId  projLinePropertyId;
         #    JournalTableData    journalTableData;
         #    JournalTransData    journalTransData;
+        #
         #    ;
         #    inventJournalTrans.clear();
         #    inventJournalTrans.initValue();
@@ -54,6 +55,7 @@ Formatversion: 1
         #
         #    inventDim                               = inventJournalTrans.inventDim();
         #    [itemId, inventDim.configId, inventDim.InventSizeId, inventDim.InventColorId, projLinePropertyId] = this.splitItemId(itemId);
+        #    inventDim.inventSerialId                = _workcardLine.InventSerialId;
         #    inventDim.InventLocationId              = _workcardLine.StockLocationId ? _workcardLine.StockLocationId : WPAParameters::find().InventLocationIdDefault;
         #    inventDim.InventSiteId                  = InventLocation::find(inventDim.InventLocationId).InventSiteId;
         #
@@ -66,7 +68,7 @@ Formatversion: 1
         #    }
         #    inventJournalTrans.initFromInventTable(inventTable, false, false);
         #    inventJournalTrans.ProjUnitID           = InventTableModule::find(inventTable.ItemId, ModuleInventPurchSales::Sales).UnitId;
-        #    inventJournalTrans.ProjId               = _workcardLine.OrderId;
+        #    inventJournalTrans.ProjId               = _workcardTable.SiteId;
         #    inventJournalTrans.initFromProjTable(ProjTable::find(inventJournalTrans.ProjId));
         #    inventJournalTrans.TransDate            = _workcardLine.TransDate;
         #    inventJournalTrans.ProjTaxItemGroupId   = ProjParameters::taxItemGroupItem(inventJournalTrans.ProjCategoryId, inventJournalTrans.ItemId);
@@ -85,7 +87,8 @@ Formatversion: 1
         #        inventJournalTrans.ProjLinePropertyId = ProjLinePropertySetup::findLinePropertyId(inventJournalTrans.ProjId, inventJournalTrans.ProjCategoryId);
         #    }
         #
-        #    inventJournalTrans.EmplId               = _workcardTable.EmploymentCode;
+        #    inventJournalTrans.Worker               = _workcardLine.ProductEmploymentCode;
+        #
         #    inventJournalTrans.Qty                  = _workcardLine.Qty;
         #
         #    if (inventJournalTrans.ItemId == WPAParameters::find().SmartlineItemId)
@@ -94,8 +97,9 @@ Formatversion: 1
         #    }
         #    else
         #    {
-        #        inventJournalTrans.setProjSalesPrice(ProjTable::find(inventJournalTrans.ProjId));
+        #        inventJournalTrans.setProjSalesPrice(ProjTable::find(inventJournalTrans.ProjId), inventDim::findOrCreateBlank());
         #    }
+        #
         #    inventJournalTrans.setCostPrice(inventJournalTrans.InventDimId);
         #    if (_inventJournalTable.VoucherDraw == JournalVoucherDraw::Entering)
         #    {
@@ -113,7 +117,6 @@ Formatversion: 1
         #        _workcardLine.RefTableId    = inventJournalTrans.TableId;
         #        _workcardLine.RefRecId      = inventJournalTrans.RecId;
         #    }
-        #
         #}
       ENDSOURCE
       SOURCE #addLedgerJournalTrans
@@ -127,7 +130,7 @@ Formatversion: 1
         #    LedgerJournalTrans_Project      ledgerJournalTrans_Project;
         #    LedgerJournalName               ledgerJournalName   = LedgerJournalName::find(_ledgerJournalTable.JournalName);
         #    LedgerJournalEngine_ProjectCost ledgerJournalEngine;
-        #    ProjTable                       projTable           = ProjTable::find(_workcardLine.OrderId);
+        #    ProjTable                       projTable           = ProjTable::find(_workcardTable.SiteId);
         #    ProjLinePropertyId              projLinePropertyId;
         #    ;
         #    ledgerJournalTrans.clear();
@@ -139,19 +142,21 @@ Formatversion: 1
         #    }
         #    ledgerJournalTrans.Voucher              = ledgerVoucherCost;
         #    ledgerJournalTrans.JournalNum           = _ledgerJournalTable.JournalNum;
-        #    ledgerJournalTrans.AccountNum           = _workcardLine.OrderId;
+        #
+        #    ledgerJournalTrans.parmAccount(_workcardTable.SiteId);
+        #
         #    ledgerJournalTrans.AccountType          = LedgerJournalACType::Project;
         #    ledgerJournalTrans.TransactionType      = LedgerTransType::Project;
         #    ledgerJournalTrans.TransDate            = _workcardLine.TransDate;
         #    ledgerJournalTrans.SettleVoucher        = SettlementType::None;
-        #//    ledgerJournalTrans.AcknowledgementDate = ledgerJournalTrans.TransDate;
         #    ledgerJournalTrans.Txt                  = _workcardLine.ItemDescription1;
         #    ledgerJournalTrans.CurrencyCode         = ProjTable::find(_workcardTable.SiteId).currencyId();
         #    ledgerJournalTrans.Qty                  = _workcardLine.Qty;
         #    ledgerJournalTrans.AmountCurDebit       = _workcardLine.Qty * _workcardLine.ItemUnitPrice;
         #    ledgerJournalTrans.AmountCurCredit      = 0.0;
         #    ledgerJournalTrans.OffsetAccountType    = LedgerJournalACType::Ledger;
-        #    ledgerJournalTrans.OffsetAccount        = ProjDefaultOffsetSetup::findDefaultOffsetAccount(_workcardLine.OrderId, _projCategory.CategoryId, _workcardTable.EmploymentCode).AccountNum;
+        #
+        #    ledgerJournalTrans.parmOffsetAccount(ProjDefaultOffsetSetup::findDefaultOffsetAccount(_workcardTable.SiteId, _projCategory.CategoryId, _workcardTable.EmploymentCode).parmAccount());
         #
         #    // Set up Expwnse Sales / Item tax group
         #    ledgerJournalTrans.TaxItemGroup         = _projCategory.TaxItemGroupId;
@@ -159,14 +164,14 @@ Formatversion: 1
         #    if (_projForecastEmpl)
         #    {
         #        ledgerJournalTrans.TaxGroup                 = _projForecastEmpl.TaxGroupId;
-        #        ledgerJournalTrans.Dimension                = _projForecastEmpl.Dimension;
+        #        ledgerJournalTrans.LedgerDimension          = _projForecastEmpl.DefaultDimension;
         #        ledgerJournalTrans_Project.ActivityNumber   = _projForecastEmpl.ActivityNumber;
         #        ledgerJournalTrans_Project.LinePropertyId   = _projForecastEmpl.LinePropertyId;
         #    }
         #    else
         #    {
         #        ledgerJournalTrans.TaxGroup                 = projTable.TaxGroupId;
-        #        ledgerJournalTrans.Dimension                = projTable.Dimension;
+        #        ledgerJournalTrans.LedgerDimension          = _projForecastEmpl.DefaultDimension;
         #    }
         #
         #    if (projLinePropertyId)
@@ -178,9 +183,8 @@ Formatversion: 1
         #    {
         #        ledgerJournalTrans_Project.LinePropertyId   = ProjLinePropertySetup::findLinePropertyId(ledgerJournalTrans_Project.ProjId, ledgerJournalTrans_Project.CategoryId);
         #    }
-        #    appl.dimensionSetValidation().checkDimension(ledgerJournalTrans, fieldnum(LedgerJournalTrans, Dimension), false);
         #
-        #    if (!ledgerJournalTrans.OffsetAccount)
+        #    if (!ledgerJournalTrans.parmOffsetAccount())
         #    {
         #        // Missing setup of an offset account for the expense.
         #        throw error("@SYS92416");
@@ -195,20 +199,23 @@ Formatversion: 1
         #
         #    // Now build the LedgerJournalTrans_Project record.
         #    ledgerJournalTrans_Project.RefRecId        = ledgerJournalTrans.RecId;
-        #    ledgerJournalTrans_Project.ProjId          = _workcardLine.OrderId;
+        #    ledgerJournalTrans_Project.ProjId          = _workcardTable.SiteId;
         #    ledgerJournalTrans_Project.CategoryId      = _projCategory.CategoryId;
         #    ledgerJournalTrans_Project.Qty             = _workcardLine.Qty;
         #    ledgerJournalTrans_Project.SalesCurrencyId = ledgerJournalTrans.CurrencyCode;
-        #    ledgerJournalTrans_Project.EmplId          = _workcardTable.EmploymentCode;
+        #
+        #    ledgerJournalTrans_Project.Worker          = _workcardLine.ProductEmploymentCode;
+        #
         #    ledgerJournalTrans_Project.CostPrice       = ProjCostPriceExpense::findCostPrice(ledgerJournalTrans_Project.ProjId,
-        #                                                                                     ledgerJournalTrans_Project.EmplId,
+        #                                                                                     ledgerJournalTrans_Project.Worker,
         #                                                                                     ledgerJournalTrans_Project.CategoryId,
         #                                                                                     DateTimeUtil::date(_workcardTable.StartTime));
         #
         #    ledgerJournalTrans_Project.SalesPrice      = conpeek(ProjCostSalesPrice::findCostSalesPrice(ledgerJournalTrans_Project.ProjId,
-        #                                                                                                ledgerJournalTrans_Project.EmplId,
+        #                                                                                                ledgerJournalTrans_Project.Worker,
         #                                                                                                ledgerJournalTrans_Project.CategoryId,
         #                                                                                                ledgerJournalTrans_Project.CostPrice,
+        #                                                                                                CompanyInfo::standardCurrency(),
         #                                                                                                ledgerJournalTrans_Project.SalesCurrencyId,
         #                                                                                                DateTimeUtil::date(_workcardTable.StartTime)),1);
         #
@@ -258,12 +265,14 @@ Formatversion: 1
         #    projJournalTrans.clear();
         #    projJournalTrans.initValue();
         #    projJournalTrans.initFromProjJournalTable(_projJournalTable);
-        #    projJournalTrans.ProjId             = _workcardLine.OrderId;
-        #    projJournalTrans.initFromProjTable(ProjTable::find(_workcardLine.OrderId));
+        #    projJournalTrans.ProjId             = _workcardTable.SiteId;
+        #    projJournalTrans.initFromProjTable(ProjTable::find(projJournalTrans.ProjId));
         #    projJournalTrans.ProjTransDate      = _workcardLine.TransDate;
         #    projJournalTrans.CategoryId         = _projCategory.CategoryId;
         #    projJournalTrans.TaxItemGroupId     = _projCategory.TaxItemGroupId;
-        #    projJournalTrans.EmplId             = _workcardTable.EmploymentCode;
+        #
+        #    projJournalTrans.Worker             =  _workcardLine.ProductEmploymentCode;
+        #    projJournalTrans.modifiedField(fieldNum(ProjJournalTrans, Worker));
         #    projJournalTrans.Txt                = _workcardLine.ItemDescription1;
         #    projJournalTrans.Qty                = _workcardLine.Qty;
         #    projLinePropertyId                  = conpeek(this.splitItemId(_workcardLine.itemid), 5);
@@ -283,6 +292,7 @@ Formatversion: 1
         #    {
         #        projJournalTrans.LinePropertyId = ProjLinePropertySetup::findLinePropertyId(projJournalTrans.ProjId, projJournalTrans.CategoryId);
         #    }
+        #
         #    if (this.determineTransactionType(_projCategory.CategoryType) == WPATransactionType::Hour)
         #    {
         #        projJournalTrans.setHourSalesPrice();
@@ -291,6 +301,7 @@ Formatversion: 1
         #    {
         #        projJournalTrans.setRevenueSalesPrice();
         #    }
+        #
         #    projJournalTrans.setHourCostPrice();
         #    projJournalTrans.insertFromCode();
         #
@@ -317,6 +328,7 @@ Formatversion: 1
         #    UserID              userId;
         #    Voucher             ledgerVoucherCost;
         #    JournalVoucherNum   journalVoucherNum;
+        #    InventJournalTable  inventJournalTable;
         #
         #    #define.CurrentVersion(1)
         #    #localmacro.CurrentList
@@ -393,7 +405,7 @@ Formatversion: 1
         #        serviceTaskRelation.DescriptionInternal += #LineBreak +
         #                                                   datetime2str(_workcardTable.StartTime) +
         #                                                   " / "                         +
-        #                                                   _workcardTable.EmploymentCode +
+        #                                                   HcmWorker::find(_workcardTable.EmploymentCode).PersonnelNumber +
         #                                                   #LineBreak                    +
         #                                                   _workcardTable.CrmInfo2;
         #    }
@@ -406,9 +418,9 @@ Formatversion: 1
         #              workcardLine.Transferred  == WPATransferredEnum::Imported
         #    {
         #        serviceOrderLine            = this.createServiceOrderLine(_workcardTable, workcardLine);
-        #
         #        workcardLine.RefTableId     = serviceOrderLine.TableId;
         #        workcardLine.RefRecId       = serviceOrderLine.RecId;
+        #
         #        workcardLine.Transferred    = WPATransferredEnum::Transferred;
         #        workcardLine.update();
         #    }
@@ -442,21 +454,23 @@ Formatversion: 1
         #        serviceOrderLineNew.ServiceTaskId           = WPAParameters::find().TaskId;
         #    }
         #
-        #    serviceOrderLineNew.EmplId              = _workcardLine.ProductEmploymentCode;
+        #    serviceOrderLineNew.Worker              = _workcardLine.ProductEmploymentCode;
+        #
         #    inventDim                               = serviceOrderLineNew.inventDim();
         #    [itemId, inventDim.configId, inventDim.InventSizeId, inventDim.InventColorId, serviceOrderLineNew.ProjLinePropertyId] = this.splitItemId(itemId);
         #
+        #    inventDim.inventSerialId                = _workcardLine.InventSerialId;
         #    inventDim.InventLocationId              = _workcardLine.StockLocationId ? _workcardLine.StockLocationId : WPAParameters::find().InventLocationIdDefault;
         #    inventDim.InventSiteId                  = InventLocation::find(inventDim.InventLocationId).InventSiteId;
         #
-        #    serviceOrderLineNew.SignOff             = NoYes::No;
+        #    serviceOrderLineNew.SignOff             = WPAParameters::find().AutoSignOff;
         #
         #    category    = ProjCategory::find(itemId);
         #    if (category)
         #    {
         #        serviceOrderLineNew.ProjCategoryId  = category.CategoryId;
         #        serviceOrderLineNew.TransactionType = this.determineTransactionType(category.CategoryType);
-        #        serviceOrderLineNew.SMAServiceLineMap::setItemTaxGroupId();
+        #        serviceOrderLineNew.SMAServiceLineMap::fieldModifiedCategoryId();
         #    }
         #    else
         #    {
@@ -485,7 +499,6 @@ Formatversion: 1
         #        }
         #
         #    }
-        #    serviceOrderLineNew.modifiedField(fieldnum(SMAServiceOrderLine, ProjCategoryId));
         #    if (!serviceOrderLineNew.ProjLinePropertyId)
         #    {
         #        serviceOrderLineNew.SMAServiceLineMap::setLineProperty();
@@ -500,7 +513,7 @@ Formatversion: 1
         #    serviceOrderLineNew.DateRangeTo         = systemdateget();
         #    serviceOrderLineNew.DateExecution       = _workcardLine.TransDate ? _workcardLine.TransDate : systemdateget();
         #
-        #    serviceOrderLineNew.updateItemPrice(serviceOrderLineNew.inventDim());
+        #    serviceOrderLineNew.modifyInventDim(serviceOrderLineNew.inventDim());
         #
         #    if (serviceOrderLineNew.ItemId == WPAParameters::find().SmartlineItemId)
         #    {
@@ -552,9 +565,7 @@ Formatversion: 1
         #    {
         #        serviceOrderTable.StageId   = WPAParameters::find().StageIdEndedWPA;
         #    }
-        #
         #    serviceOrderTable.update();
-        #
         #    ttscommit;
         #}
       ENDSOURCE
@@ -566,9 +577,11 @@ Formatversion: 1
         #    ItemId              itemId          = _workcardLine.ItemId;
         #    WPAWorkcardLine     workcardLineOrig;
         #    SMAServiceOrderLine serviceOrderLine;
-        #    ConfigId            configId;
-        #    InventSizeId        inventSizeId;
-        #    InventColorId       inventColorId;
+        #
+        #    EcoResItemConfigurationName configId;
+        #    EcoResItemSizeName          inventSizeId;
+        #    EcoResItemColorName         inventColorId;
+        #
         #    ProjLinePropertyId  projLinePropertyId;
         #    ;
         #
@@ -581,22 +594,22 @@ Formatversion: 1
         #        serviceOrderLine = SMAServiceOrderLine::findRecId(workcardLineOrig.RefRecId, true);
         #    }
         #
-        #    if(!serviceOrderLine.RecId)
+        #    if (!serviceOrderLine.RecId)
         #    {
         #        select firstonly forupdate serviceOrderLine
         #            where serviceOrderLine.ServiceOrderId   == _workcardLine.OrderId    &&
         #                  serviceOrderLine.TransactionType  == SMATransactionType::Hour &&
         #                  serviceOrderLine.ProjCategoryId   == itemId                   &&
-        #                  serviceOrderLine.EmplId           == _workcardTable.EmploymentCode;
+        #                  serviceOrderLine.Worker           == _workcardTable.EmploymentCode;
         #    }
         #
-        #    if(!serviceOrderLine.RecId)
+        #    if (!serviceOrderLine.RecId)
         #    {
         #        select firstonly forupdate serviceOrderLine
         #            where serviceOrderLine.ServiceOrderId   == _workcardLine.OrderId    &&
         #                  serviceOrderLine.TransactionType  == SMATransactionType::Item &&
         #                  serviceOrderLine.ItemId           == itemId                   &&
-        #                  serviceOrderLine.EmplId           == _workcardTable.EmploymentCode;
+        #                  serviceOrderLine.Worker           == _workcardTable.EmploymentCode;
         #    }
         #
         #    return serviceOrderLine;
@@ -608,6 +621,13 @@ Formatversion: 1
         #    ;
         #
         #    return [#CurrentVersion, #CurrentList];
+        #}
+      ENDSOURCE
+      SOURCE #postInventJournal
+        #private void postInventJournal()
+        #{
+        #    ;
+        #    inventJournalCheckPost::newPostJournal(inventJournalTable).run();
         #}
       ENDSOURCE
       SOURCE #refCompany
@@ -680,6 +700,8 @@ Formatversion: 1
         #            changeCompany(this.refCompany(workcardTable))
         #            {
         #                projTable           = null;
+        #                inventJournalTable  = null;
+        #                serviceOrderTable   = null;
         #                if (isConfigurationkeyEnabled(configurationkeynum(SMAManagement)))
         #                {
         #                    serviceOrderTable   = SMAServiceOrderTable::find(workcardTable.OrderId, true);
@@ -698,15 +720,29 @@ Formatversion: 1
         #                    this.updateServiceOrder(workcardTable, serviceOrderTable);
         #                    this.endUpdateServiceOrder(workcardTable, serviceOrderTable.ServiceOrderId);
         #                }
-        #                else if (isConfigurationkeyEnabled(configurationkeynum(SMAManagement)) && SMAServiceOrderTable::checkNumberSeq())
+        #                else if (isConfigurationkeyEnabled(configurationkeynum(SMAManagement)) &&
+        #                         SMAServiceOrderTable::checkNumberSeq() &&
+        #                         WPAParameters::find().WorkcardCreation == WPAWorkcardCreation::Service)
         #                {
         #                    this.createServiceOrder(workcardTable);
         #                    this.endUpdateServiceOrder(workcardTable, workcardTable.OrderId);
         #                }
         #                else
         #                {
-        #                    transferredEnum = WPATransferredEnum::Unknown;
+        #                    projTable = ProjTable::find(workcardTable.SiteId, true);
+        #                    if (projTable.RecId)
+        #                    {
+        #                        this.updateProject(workcardTable, projTable);
+        #                    }
+        #                    else
+        #                    {
+        #                        transferredEnum = WPATransferredEnum::Unknown;
+        #                    }
         #                }
+        #                /*if (inventJournalTable)
+        #                {
+        #                    this.postInventJournal();
+        #                }*/
         #            }
         #            workcardTable.Transferred = transferredEnum;
         #            workcardTable.update();
@@ -729,7 +765,8 @@ Formatversion: 1
         #                if (workcardTable)
         #                {
         #                    workcardTable.Transferred   = WPATransferredEnum::Error;
-        #                    workcardTable.ErrorTxt      = conpeek(conpeek(infolog.cut(infolog.line(),infolog.line()),2),2);
+        #
+        #                    workcardTable.ErrorTxt      = conpeek(conpeek(infolog.cut(infologLine(), infologLine()),2),2);
         #                    workcardTable.update();
         #                }
         #                ttscommit;
@@ -757,7 +794,8 @@ Formatversion: 1
         #                if (workcardTable)
         #                {
         #                    workcardTable.Transferred   = WPATransferredEnum::Error;
-        #                    workcardTable.ErrorTxt      = conpeek(conpeek(infolog.cut(infolog.line(),infolog.line()),2),2);
+        #
+        #                    workcardTable.ErrorTxt      = conpeek(conpeek(infolog.cut(infologLine(), infologLine()),2),2);
         #                    workcardTable.update();
         #                }
         #                ttscommit;
@@ -803,15 +841,17 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #splitItemId
-        #container splitItemId(ItemId    _itemId)
+        #container splitItemId(ProjCategoryId    _itemId)
         #{
         #    WPAParameters       wPAParameters   = WPAParameters::find();
-        #    ItemId              itemId          = _itemId;
+        #    ProjCategoryId      itemId          = _itemId;
         #    InventTable         inventTable;
         #    str                 dimensions;
-        #    ConfigId            configId;
-        #    InventSizeId        inventSizeId;
-        #    InventColorId       inventColorId;
+        #
+        #    EcoResItemConfigurationName configId;
+        #    EcoResItemSizeName          inventSizeId;
+        #    EcoResItemColorName         inventColorId;
+        #
         #    ProjLinePropertyId  projLinePropertyId;
         #    ;
         #
@@ -916,30 +956,21 @@ Formatversion: 1
         #{
         #    #define.LineBreak('\n')
         #
-        #    WPAParameters               wPAParameters   = WPAParameters::find();
         #    WPAWorkcardLine             workcardLine;
-        #    ProjJournalTable            projJournalTableHour;
-        #    ProjJournalTable            projJournalTableFee;
+        #
         #    ProjForecastEmpl            projForecastEmpl;
-        #    ProjCategory                projCategory;
-        #
-        #    InventJournalTable          inventJournalTable;
-        #
-        #    LedgerJournalTable          ledgerJournalTable;
-        #    ItemId                      itemId;
-        #    WPATransactionType          transactionType;
         #    ;
+        #    inventJournalTable = null;
         #    if (_workcardTable.CrmInfo2)
         #    {
         #        this.addDocuRef(_projTable.TableId, _projTable.RecId,
         #                        #LineBreak +
         #                        datetime2str(_workcardTable.StartTime) +
         #                        " / "                         +
-        #                        _workcardTable.EmploymentCode +
+        #                        HcmWorker::find(_workcardTable.EmploymentCode).PersonnelNumber +
         #                        #LineBreak                    +
         #                        _workcardTable.CrmInfo2);
         #    }
-        #
         #    projForecastEmpl    = ProjForecastEmpl::find(_workcardTable.WorkcardId);
         #
         #    while select forupdate workcardLine
@@ -947,114 +978,7 @@ Formatversion: 1
         #              workcardLine.WorkcardId   == _workcardTable.WorkcardId    &&
         #              workcardLine.Transferred  == WPATransferredEnum::Imported
         #    {
-        #        itemId                          = workcardLine.ItemId;
-        #
-        #        [itemId]                        = this.splitItemId(itemId);
-        #
-        #        projCategory                    = ProjCategory::find(itemId);
-        #
-        #        if (projCategory)
-        #        {
-        #            transactionType = this.determineTransactionType(projCategory.CategoryType);
-        #        }
-        #        else
-        #        {
-        #            transactionType = WPATransactionType::Item;
-        #        }
-        #
-        #        switch (transactionType)
-        #        {
-        #            case WPATransactionType::Expense    :   if (!ledgerJournalTable)
-        #                                                    {
-        #                                                        if (!wPAParameters.LedgerJournalNameId)
-        #                                                            throw error("@WPA155");
-        #
-        #                                                        select firstonly ledgerJournalTable
-        #                                                            where ledgerJournalTable.JournalName    == wPAParameters.LedgerJournalNameId &&
-        #                                                                  ledgerJournalTable.Posted         == NoYes::No;
-        #
-        #                                                        if (!ledgerJournalTable)
-        #                                                        {
-        #                                                            ledgerJournalTable.clear();
-        #                                                            ledgerJournalTable.initValue();
-        #                                                            ledgerJournalTable.initFromLedgerJournalName(wPAParameters.LedgerJournalNameId);
-        #                                                            ledgerJournalTable.insert();
-        #                                                        }
-        #                                                        if (!journalVoucherNum)
-        #                                                        {
-        #                                                            journalVoucherNum = new JournalVoucherNum(JournalTableData::newTable(ledgerJournalTable));
-        #                                                        }
-        #
-        #                                                    }
-        #                                                    //Add expense line - ledgerjournaltrans
-        #                                                    this.addLedgerJournalTrans(ledgerJournalTable, projForecastEmpl, workcardLine, _workcardTable, projCategory);
-        #                                                    break;
-        #            case WPATransactionType::Fee        :   if (!projJournalTableFee)
-        #                                                    {
-        #                                                        if (!wPAParameters.RevenueJournalNameId)
-        #                                                            throw error("@WPA156");
-        #
-        #                                                        select firstonly projJournalTableFee
-        #                                                            where projJournalTableFee.JournalNameId == wPAParameters.RevenueJournalNameId  &&
-        #                                                                  projJournalTableFee.Posted        == NoYes::No;
-        #
-        #                                                        if (!projJournalTableFee)
-        #                                                        {
-        #                                                            projJournalTableFee.clear();
-        #                                                            projJournalTableFee.initValue();
-        #                                                            projJournalTableFee.initFromProjJournalName(ProjJournalName::find(wPAParameters.RevenueJournalNameId));
-        #                                                            projJournalTableFee.VoucherDateChange = ProjJournalName::find(projJournalTableFee.JournalNameId).VoucherDateChange;
-        #                                                            projJournalTableFee.insert();
-        #                                                        }
-        #                                                    }
-        #                                                    //Add fee line - projjournaltrans
-        #                                                    this.addProjJournalTrans(projJournalTableFee, projForecastEmpl, workcardLine, _workcardTable, projCategory);
-        #                                                    break;
-        #            case WPATransactionType::Hour       :   if (!projJournalTableHour)
-        #                                                    {
-        #                                                        if (!wPAParameters.EmplJournalNameId)
-        #                                                            throw error("@WPA157");
-        #
-        #                                                        select firstonly projJournalTableHour
-        #                                                            where projJournalTableHour.JournalNameId    == wPAParameters.EmplJournalNameId &&
-        #                                                                  projJournalTableHour.Posted           == NoYes::No;
-        #
-        #                                                        if (!projJournalTableHour)
-        #                                                        {
-        #                                                            projJournalTableHour.clear();
-        #                                                            projJournalTableHour.initValue();
-        #                                                            projJournalTableHour.initFromProjJournalName(ProjJournalName::find(wPAParameters.EmplJournalNameId));
-        #                                                            projJournalTableHour.VoucherDateChange = ProjJournalName::find(projJournalTableHour.JournalNameId).VoucherDateChange;
-        #                                                            projJournalTableHour.insert();
-        #                                                        }
-        #                                                    }
-        #                                                    //Add hour line  - projjournaltrans
-        #                                                    this.addProjJournalTrans(projJournalTableHour, projForecastEmpl, workcardLine, _workcardTable, projCategory);
-        #                                                    break;
-        #            case WPATransactionType::Item       :   if (!inventJournalTable)
-        #                                                    {
-        #                                                        if (!wPAParameters.inventJournalNameId)
-        #                                                            throw error("@WPA158");
-        #
-        #                                                        select firstonly inventJournalTable
-        #                                                            where inventJournalTable.JournalNameId  == wPAParameters.inventJournalNameId   &&
-        #                                                                  inventJournalTable.Posted         == NoYes::No;
-        #
-        #                                                        if (!inventJournalTable)
-        #                                                        {
-        #                                                            inventJournalTable.clear();
-        #                                                            inventJournalTable.initValue();
-        #                                                            inventJournalTable.initFromInventJournalName(InventJournalName::find(wPAParameters.inventJournalNameId));
-        #                                                            inventJournalTable.insert();
-        #                                                        }
-        #                                                    }
-        #                                                    //Add item line - inventJournaltrans
-        #                                                    this.addInventJournalTrans(inventJournalTable, projForecastEmpl, workcardLine, _workcardTable);
-        #                                                    break;
-        #        }
-        #
-        #        workcardLine.Transferred = WPATransferredEnum::Transferred;
-        #        workcardLine.update();
+        #        this.workcardLine2Project(_workcardTable, workcardLine, projForecastEmpl);
         #    }
         #}
       ENDSOURCE
@@ -1063,7 +987,7 @@ Formatversion: 1
         #                        SMAServiceOrderTable    _serviceOrderTable)
         #{
         #    #define.LineBreak('\n')
-        #
+        #    ProjTable                   projTable = ProjTable::find(_serviceOrderTable.ProjId);
         #    SMAServiceTaskRelation      serviceTaskRelation;
         #    SMAServiceOrderLine         serviceOrderLineOrigWorkcard;
         #    SMAServiceOrderLine         serviceOrderLineUpdate;
@@ -1105,7 +1029,7 @@ Formatversion: 1
         #        serviceTaskRelation.DescriptionInternal +=  #LineBreak +
         #                                                   datetime2str(_workcardTable.StartTime) +
         #                                                   " / "                         +
-        #                                                   _workcardTable.EmploymentCode +
+        #                                                   HcmWorker::find(_workcardTable.EmploymentCode).PersonnelNumber +
         #                                                   #LineBreak                    +
         #                                                   _workcardTable.CrmInfo2;
         #    }
@@ -1117,20 +1041,27 @@ Formatversion: 1
         #              workcardLine.WorkcardId   == _workcardTable.WorkcardId    &&
         #              workcardLine.Transferred  == WPATransferredEnum::Imported
         #    {
-        #        serviceOrderLineUpdate = this.findServiceOrderLine(_workcardTable, workcardLine);
-        #
-        #        if (serviceOrderLineUpdate && serviceOrderLineUpdate.ServiceOrderStatus == SMAServiceOrderStatus::Created && !serviceOrderLineUpdate.wPAHasBeenUpdated())
+        #        if (workcardLine.Qty < 0)
         #        {
-        #            this.updateServiceOrderLine(_workcardTable, workcardLine, serviceOrderLineUpdate);
+        #            this.workcardLine2Project(_workcardTable, workcardLine, null);
         #        }
         #        else
         #        {
-        #            serviceOrderLineUpdate  = this.createServiceOrderLine(_workcardTable, workcardLine, serviceOrderLineOrigWorkcard);
+        #            serviceOrderLineUpdate = this.findServiceOrderLine(_workcardTable, workcardLine);
+        #
+        #            if (serviceOrderLineUpdate && serviceOrderLineUpdate.ServiceOrderStatus == SMAServiceOrderStatus::Created && !serviceOrderLineUpdate.wPAHasBeenUpdated())
+        #            {
+        #                this.updateServiceOrderLine(_workcardTable, workcardLine, serviceOrderLineUpdate);
+        #            }
+        #            else
+        #            {
+        #                serviceOrderLineUpdate  = this.createServiceOrderLine(_workcardTable, workcardLine, serviceOrderLineOrigWorkcard);
+        #            }
+        #            workcardLine.RefTableId     = serviceOrderLineUpdate.TableId;
+        #            workcardLine.RefRecId       = serviceOrderLineUpdate.RecId;
+        #            workcardLine.Transferred    = WPATransferredEnum::Transferred;
+        #            workcardLine.update();
         #        }
-        #        workcardLine.RefTableId     = serviceOrderLineUpdate.TableId;
-        #        workcardLine.RefRecId       = serviceOrderLineUpdate.RecId;
-        #        workcardLine.Transferred    = WPATransferredEnum::Transferred;
-        #        workcardLine.update();
         #    }
         #}
       ENDSOURCE
@@ -1139,8 +1070,8 @@ Formatversion: 1
         #                            WPAWorkcardLine     _workcardLine,
         #                            SMAServiceOrderLine _serviceOrderLine)
         #{
-        #    InventDim   inventDim;
-        #    ItemId      itemId = _workcardLine.ItemId;
+        #    InventDim       inventDim;
+        #    ProjCategoryId  itemId = _workcardLine.ItemId;
         #    ;
         #
         #    inventDim                           = _serviceOrderLine.inventDim();
@@ -1149,12 +1080,14 @@ Formatversion: 1
         #    {
         #        _serviceOrderLine.SMAServiceLineMap::setLineProperty();
         #    }
+        #    inventDim.inventSerialId            = _workcardLine.InventSerialId;
         #    inventDim.InventLocationId          = _workcardLine.StockLocationId;
         #    inventDim.InventSiteId              = InventLocation::find(inventDim.InventLocationId).InventSiteId;
         #
-        #    _serviceOrderLine.EmplId            = _workcardTable.EmploymentCode;
+        #    _serviceOrderLine.Worker            = _workcardLine.ProductEmploymentCode;
+        #
         #    _serviceOrderLine.InventDimId       = InventDim::findOrCreate(inventDim).inventDimId;
-        #    _serviceOrderLine.SignOff           = NoYes::No;
+        #    _serviceOrderLine.SignOff           = WPAParameters::find().AutoSignOff;
         #
         #    _serviceOrderLine.ProjSalesPrice    = _workcardLine.ItemUnitPrice;
         #    _serviceOrderLine.Description       = _workcardLine.ItemDescription1;
@@ -1167,6 +1100,135 @@ Formatversion: 1
         #    this.updatePreServiceOrderLine(_serviceOrderLine);
         #
         #    _serviceOrderLine.update();
+        #}
+      ENDSOURCE
+      SOURCE #workcardLine2Project
+        #void workcardLine2Project(WPAWorkcardTable  _workcardTable,
+        #                          WPAWorkcardLine   _wPAWorkcardLine,
+        #                          ProjForecastEmpl  _projForecastEmpl)
+        #{
+        #    WPAParameters               wPAParameters   = WPAParameters::find();
+        #    ProjCategoryId              itemId;
+        #    ProjCategory                projCategory;
+        #    WPATransactionType          transactionType;
+        #    LedgerJournalTable          ledgerJournalTable;
+        #    ProjJournalTable            projJournalTableHour;
+        #    ProjJournalTable            projJournalTableFee;
+        #
+        #    itemId                          = _wPAWorkcardLine.ItemId;
+        #
+        #    [itemId]                        = this.splitItemId(itemId);
+        #
+        #    projCategory                    = ProjCategory::find(itemId);
+        #
+        #    if (projCategory)
+        #    {
+        #        transactionType = this.determineTransactionType(projCategory.CategoryType);
+        #    }
+        #    else
+        #    {
+        #        transactionType = WPATransactionType::Item;
+        #    }
+        #
+        #    switch (transactionType)
+        #    {
+        #        case WPATransactionType::Expense    :   if (!ledgerJournalTable)
+        #                                                {
+        #                                                    if (!wPAParameters.LedgerJournalNameId)
+        #                                                        throw error("@WPA155");
+        #
+        #                                                    select firstonly ledgerJournalTable
+        #                                                        where ledgerJournalTable.JournalName    == wPAParameters.LedgerJournalNameId &&
+        #                                                                ledgerJournalTable.Posted       == NoYes::No;
+        #
+        #                                                    if (!ledgerJournalTable)
+        #                                                    {
+        #                                                        ledgerJournalTable.clear();
+        #                                                        ledgerJournalTable.initValue();
+        #                                                        ledgerJournalTable.initFromLedgerJournalName(wPAParameters.LedgerJournalNameId);
+        #                                                        ledgerJournalTable.insert();
+        #                                                    }
+        #                                                    if (!journalVoucherNum)
+        #                                                    {
+        #                                                        journalVoucherNum = new JournalVoucherNum(JournalTableData::newTable(ledgerJournalTable));
+        #                                                    }
+        #
+        #                                                }
+        #                                                //Add expense line - ledgerjournaltrans
+        #                                                this.addLedgerJournalTrans(ledgerJournalTable, _projForecastEmpl, _wPAWorkcardLine, _workcardTable, projCategory);
+        #                                                break;
+        #        case WPATransactionType::Fee        :   if (!projJournalTableFee)
+        #                                                {
+        #                                                    if (!wPAParameters.RevenueJournalNameId)
+        #                                                        throw error("@WPA156");
+        #
+        #                                                    select firstonly projJournalTableFee
+        #                                                        where projJournalTableFee.JournalNameId == wPAParameters.RevenueJournalNameId  &&
+        #                                                                projJournalTableFee.Posted        == NoYes::No;
+        #
+        #                                                    if (!projJournalTableFee)
+        #                                                    {
+        #                                                        projJournalTableFee.clear();
+        #                                                        projJournalTableFee.initValue();
+        #                                                        projJournalTableFee.initFromProjJournalName(ProjJournalName::find(wPAParameters.RevenueJournalNameId));
+        #                                                        projJournalTableFee.VoucherDateChange = ProjJournalName::find(projJournalTableFee.JournalNameId).VoucherDateChange;
+        #                                                        projJournalTableFee.insert();
+        #                                                    }
+        #                                                }
+        #                                                //Add fee line - projjournaltrans
+        #                                                this.addProjJournalTrans(projJournalTableFee, _projForecastEmpl, _wPAWorkcardLine, _workcardTable, projCategory);
+        #                                                break;
+        #        case WPATransactionType::Hour       :   if (!projJournalTableHour)
+        #                                                {
+        #                                                    if (!wPAParameters.EmplJournalNameId)
+        #                                                        throw error("@WPA157");
+        #
+        #                                                    select firstonly projJournalTableHour
+        #                                                        where projJournalTableHour.JournalNameId    == wPAParameters.EmplJournalNameId &&
+        #                                                                projJournalTableHour.Posted           == NoYes::No;
+        #
+        #                                                    if (!projJournalTableHour)
+        #                                                    {
+        #                                                        projJournalTableHour.clear();
+        #                                                        projJournalTableHour.initValue();
+        #                                                        projJournalTableHour.initFromProjJournalName(ProjJournalName::find(wPAParameters.EmplJournalNameId));
+        #                                                        projJournalTableHour.VoucherDateChange = ProjJournalName::find(projJournalTableHour.JournalNameId).VoucherDateChange;
+        #                                                        projJournalTableHour.insert();
+        #                                                    }
+        #                                                }
+        #                                                //Add hour line  - projjournaltrans
+        #                                                this.addProjJournalTrans(projJournalTableHour, _projForecastEmpl, _wPAWorkcardLine, _workcardTable, projCategory);
+        #                                                break;
+        #        case WPATransactionType::Item       :   if (!inventJournalTable)
+        #                                                {
+        #                                                    if (!wPAParameters.inventJournalNameId)
+        #                                                        throw error("@WPA158");
+        #
+        #                                                    select firstonly inventJournalTable
+        #                                                        where inventJournalTable.JournalNameId  == wPAParameters.inventJournalNameId   &&
+        #                                                                inventJournalTable.Posted         == NoYes::No;
+        #
+        #                                                    if (!inventJournalTable)
+        #                                                    {
+        #                                                        inventJournalTable.clear();
+        #                                                        inventJournalTable.initValue();
+        #                                                        inventJournalTable.initFromInventJournalName(InventJournalName::find(wPAParameters.inventJournalNameId));
+        #                                                        inventJournalTable.insert();
+        #                                                    }
+        #                                                }
+        #                                                //Add item line - inventJournaltrans
+        #                                                this.addInventJournalTrans(inventJournalTable, _projForecastEmpl, _wPAWorkcardLine, _workcardTable);
+        #                                                break;
+        #    }
+        #    if (_wPAWorkcardLine.RefTableId && _wPAWorkcardLine.RefRecId)
+        #    {
+        #        _wPAWorkcardLine.Transferred = WPATransferredEnum::Transferred;
+        #    }
+        #    else
+        #    {
+        #        throw error("Journal line could not be created");
+        #    }
+        #    _wPAWorkcardLine.update();
         #}
       ENDSOURCE
       SOURCE #construct
@@ -1182,7 +1244,7 @@ Formatversion: 1
         #    ;
         #    workCardTransfer = WPAWorkCardTransfer::construct();
         #
-        #    if(workCardTransfer.prompt())
+        #    if (workCardTransfer.prompt())
         #        workCardTransfer.run();
         #}
       ENDSOURCE

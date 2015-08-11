@@ -11,5 +11,9 @@ Formatversion: 1
     ##define.WPASMADispatchTeam('WPASMADispatchTeam')
     ##define.WPASMADispatchTeam_SMADispatchTeamTable('WPASMADispatchTeam.SMADispatchTeamTable')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{DC433F50-C8C7-4527-878E-AE63B6EF7D3A}
+  ENDPROPERTIES
+  
 
 ***Element: END

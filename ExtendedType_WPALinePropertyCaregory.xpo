@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPALinePropertyCaregory
       Label               #@WPA11
       HelpText            #@WPA18
+      Origin              #{671D5CAB-3964-4102-B6F8-508667C3E9D9}
+      LegacyId            #50035
       Extends             #NoYesId
       EnumType            #NoYes
     ENDPROPERTIES
@@ -22,6 +24,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

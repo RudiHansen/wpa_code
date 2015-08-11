@@ -11,10 +11,10 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAStockTransferService
       ExternalName        #WPAStockTransferService
-      Namespace           #
+      Namespace           #http://tempuri.org
       Class               #WPAStockTransferService
       SecurityKey         #WPAServices
-      Description         #
+      Origin              #{A95D9DE3-D8E5-4387-B67A-6126E1213F6A}
     ENDPROPERTIES
     
     OPERATIONS
@@ -24,11 +24,26 @@ Formatversion: 1
           Method              #create
         ENDPROPERTIES
         
-      ENDOPERATION
+        PERMISSIONSET #Permissions
+          PROPERTIES
+          ENDPROPERTIES
+          
+          TABLES #Tables
+          ENDTABLES
+          
+        SERVERMETHODS #Server Methods
+        ENDSERVERMETHODS
+        
+      ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+      ENDASSOCIATEDCODEPERMISSIONS
       
-    ENDOPERATIONS
-    
-  ENDSERVICE
+  ENDPERMISSIONSET
   
+ENDOPERATION
+
+ENDOPERATIONS
+
+ENDSERVICE
+
 
 ***Element: END

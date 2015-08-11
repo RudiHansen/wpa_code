@@ -1,0 +1,319 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalReceiptLine_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalReceiptLine_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalReceiptLine_BRT
+      Label               #@RET4040068
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{23AD5848-89BD-460E-87BE-69262253802A}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #CancelledQuantity
+        REAL
+        PROPERTIES
+          Name                #CancelledQuantity
+          Label               #@SYS4007045
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{E859DE08-4D9E-44D2-BBE9-B0B4245BBB57}
+        ENDPROPERTIES
+        
+      FIELD #CFOP
+        STRING
+        PROPERTIES
+          Name                #CFOP
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{328DF107-B232-4E4C-B4F9-DE6785A73388}
+          StringSize          #5
+        ENDPROPERTIES
+        
+      FIELD #ItemId
+        STRING
+        PROPERTIES
+          Name                #ItemId
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{5755D902-4829-4246-A56D-83B5AF20636C}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ItemType
+        STRING
+        PROPERTIES
+          Name                #ItemType
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{D6618576-85B9-4A91-A531-E3498E9939B2}
+        ENDPROPERTIES
+        
+      FIELD #LineAmount
+        REAL
+        PROPERTIES
+          Name                #LineAmount
+          Label               #@RET3423
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{D9257135-02BC-40AE-B935-24B9B0ADF959}
+        ENDPROPERTIES
+        
+      FIELD #LineDiscountAmount
+        REAL
+        PROPERTIES
+          Name                #LineDiscountAmount
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{5D969E71-24BF-4619-95ED-FB6E3BA1CC7E}
+        ENDPROPERTIES
+        
+      FIELD #LineNum
+        REAL
+        PROPERTIES
+          Name                #LineNum
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{D224CC79-9DDB-4C1E-8018-6AD8B4834E71}
+        ENDPROPERTIES
+        
+      FIELD #LineSurchargeAmount
+        REAL
+        PROPERTIES
+          Name                #LineSurchargeAmount
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{FDF79AF9-34D9-4028-9D71-79B3843E4D30}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{48FC1D51-2052-4E57-A598-3AE3A4BBB00E}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #PrintedLineDiscountAmount
+        REAL
+        PROPERTIES
+          Name                #PrintedLineDiscountAmount
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{102953C2-C8B9-4419-867D-1B5A71E5F03A}
+        ENDPROPERTIES
+        
+      FIELD #PrintedLineSurchargeAmount
+        REAL
+        PROPERTIES
+          Name                #PrintedLineSurchargeAmount
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{9E36DCC5-39E3-4035-A388-D3AEA2668C5B}
+        ENDPROPERTIES
+        
+      FIELD #Quantity
+        REAL
+        PROPERTIES
+          Name                #Quantity
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{67CCB538-5BF4-4752-84D4-8E1B87A60FA5}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{7FA928A1-784B-4B7F-BF96-70B094A04237}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{546FB621-520F-4DA7-9BDB-4914A006AE25}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{19E54496-E598-4558-8C30-D6919C6FBFA6}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{F1294362-C64C-4156-B613-BF8E0CB1BC85}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #Unit
+        STRING
+        PROPERTIES
+          Name                #Unit
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{4321A050-264D-48AC-898D-76C5F3D8C5AE}
+        ENDPROPERTIES
+        
+      FIELD #UnitPrice
+        REAL
+        PROPERTIES
+          Name                #UnitPrice
+          Table               #RetailFiscalReceiptLine_BRT
+          Origin              #{979D4FC8-4F97-4F3D-9702-FB0C9E095DEB}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{4E0034AF-6187-474C-8F40-1D72F45A293E}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #LineNum
+        #TransactionId
+        #TerminalId
+        #StoreId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalReceiptLine_BRT cursor)
+        #{
+        #    RetailFiscalReceiptLine_BR target;
+        #    RetailFiscalReceiptLine_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint LineNumIdx
+        #                where (target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@TransactionId==cursor2.@TransactionId && target.@LineNum==cursor2.@LineNum);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @CancelledQuantity,
+        #                    @CFOP,
+        #                    @ItemId,
+        #                    @ItemType,
+        #                    @LineAmount,
+        #                    @LineDiscountAmount,
+        #                    @LineNum,
+        #                    @LineSurchargeAmount,
+        #                    @PrintedLineDiscountAmount,
+        #                    @PrintedLineSurchargeAmount,
+        #                    @Quantity,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @Unit,
+        #                    @UnitPrice,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @CancelledQuantity,
+        #                    @CFOP,
+        #                    @ItemId,
+        #                    @ItemType,
+        #                    @LineAmount,
+        #                    @LineDiscountAmount,
+        #                    @LineNum,
+        #                    @LineSurchargeAmount,
+        #                    @PrintedLineDiscountAmount,
+        #                    @PrintedLineSurchargeAmount,
+        #                    @Quantity,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @Unit,
+        #                    @UnitPrice,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailFiscalReceiptLine_BRT cursor)
+        #{
+        #    RetailFiscalReceiptLine_BRT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailFiscalReceiptLine_BR), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

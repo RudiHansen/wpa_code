@@ -14,6 +14,8 @@ Formatversion: 1
       Label               #@WPA220
       HelpText            #@WPA221
       ConfigurationKey    #WPAWarehouseManagement
+      Origin              #{B6E04AD0-C8D1-43DF-A930-F814354D90AE}
+      LegacyId            #50068
       EnumType            #NoYes
     ENDPROPERTIES
     
@@ -22,6 +24,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

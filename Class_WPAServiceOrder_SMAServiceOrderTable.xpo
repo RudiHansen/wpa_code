@@ -11,39 +11,38 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAServiceOrder_SMAServiceOrderTable
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{5A05FE41-047F-41C8-BF44-140CF96777A2}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAServiceOrder_SMAServiceOrderTable</c> class is the data object class that is exposed through the <c>WPAServiceOrderService</c> class.
+        #/// </summary>
+        ##AxdWPAServiceOrderDCT
+        #[AifDataContainerTypeAttribute(#WPAServiceOrder_SMAServiceOrderTable)]
         #class WPAServiceOrder_SMAServiceOrderTable extends AfStronglyTypedDataContainer
         #{
+        #    #define.WorkerResponsible('WorkerResponsible')
+        #    #define.WorkerPreferredTechnician('WorkerPreferredTechnician')
         #    #define.StageId('StageId')
+        #    #define.SignOffDateTime('SignOffDateTime')
         #    #define.SignOff('SignOff')
+        #    #define.ServicePostalAddress('ServicePostalAddress')
         #    #define.ServiceOrderId('ServiceOrderId')
         #    #define.ServiceLevelAgreementStatus('ServiceLevelAgreementStatus')
         #    #define.ServiceLevelAgreement('ServiceLevelAgreement')
         #    #define.ServiceDateTime('ServiceDateTime')
-        #    #define.ServiceCountryRegionId('ServiceCountryRegionId')
-        #    #define.ServiceAddressZipCode('ServiceAddressZipCode')
-        #    #define.ServiceAddressStreet('ServiceAddressStreet')
-        #    #define.ServiceAddressState('ServiceAddressState')
         #    #define.ServiceAddressName('ServiceAddressName')
-        #    #define.ServiceAddressCounty('ServiceAddressCounty')
-        #    #define.ServiceAddressCountryRegion('ServiceAddressCountryRegion')
-        #    #define.ServiceAddressCity('ServiceAddressCity')
-        #    #define.ServiceAddress('ServiceAddress')
-        #    #define.Responsible('Responsible')
         #    #define.RecVersion('RecVersion')
         #    #define.RecId('RecId')
         #    #define.ProjId('ProjId')
         #    #define.Progress('Progress')
         #    #define.Priority('Priority')
-        #    #define.PreferredTechnician('PreferredTechnician')
         #    #define.Origin('Origin')
         #    #define.IncomingWebOrder('IncomingWebOrder')
         #    #define.Description('Description')
+        #    #define.CustTable('CustTable')
         #    #define.CustAccount('CustAccount')
         #    #define.Compliance('Compliance')
         #    #define.CalendarConflict('CalendarConflict')
@@ -55,6 +54,18 @@ Formatversion: 1
         #
         #}
         #
+      ENDSOURCE
+      SOURCE #createCustTable
+        #public AfStronglyTypedDataContainerList createCustTable()
+        #{
+        #    return this.get_NewList(#CustTable);
+        #}
+      ENDSOURCE
+      SOURCE #createServicePostalAddress
+        #public LogisticsPostalAddressKey createServicePostalAddress()
+        #{
+        #    return this.get_NewContainer(#ServicePostalAddress);
+        #}
       ENDSOURCE
       SOURCE #existsActivityNumber
         #public boolean existsActivityNumber()
@@ -104,6 +115,12 @@ Formatversion: 1
         #    return this.exists(#CustAccount);
         #}
       ENDSOURCE
+      SOURCE #existsCustTable
+        #public boolean existsCustTable()
+        #{
+        #    return this.exists(#CustTable);
+        #}
+      ENDSOURCE
       SOURCE #existsDescription
         #public boolean existsDescription()
         #{
@@ -120,12 +137,6 @@ Formatversion: 1
         #public boolean existsOrigin()
         #{
         #    return this.exists(#Origin);
-        #}
-      ENDSOURCE
-      SOURCE #existsPreferredTechnician
-        #public boolean existsPreferredTechnician()
-        #{
-        #    return this.exists(#PreferredTechnician);
         #}
       ENDSOURCE
       SOURCE #existsPriority
@@ -158,64 +169,10 @@ Formatversion: 1
         #    return this.exists(#RecVersion);
         #}
       ENDSOURCE
-      SOURCE #existsResponsible
-        #public boolean existsResponsible()
-        #{
-        #    return this.exists(#Responsible);
-        #}
-      ENDSOURCE
-      SOURCE #existsServiceAddress
-        #public boolean existsServiceAddress()
-        #{
-        #    return this.exists(#ServiceAddress);
-        #}
-      ENDSOURCE
-      SOURCE #existsServiceAddressCity
-        #public boolean existsServiceAddressCity()
-        #{
-        #    return this.exists(#ServiceAddressCity);
-        #}
-      ENDSOURCE
-      SOURCE #existsServiceAddressCountryRegion
-        #public boolean existsServiceAddressCountryRegion()
-        #{
-        #    return this.exists(#ServiceAddressCountryRegion);
-        #}
-      ENDSOURCE
-      SOURCE #existsServiceAddressCounty
-        #public boolean existsServiceAddressCounty()
-        #{
-        #    return this.exists(#ServiceAddressCounty);
-        #}
-      ENDSOURCE
       SOURCE #existsServiceAddressName
         #public boolean existsServiceAddressName()
         #{
         #    return this.exists(#ServiceAddressName);
-        #}
-      ENDSOURCE
-      SOURCE #existsServiceAddressState
-        #public boolean existsServiceAddressState()
-        #{
-        #    return this.exists(#ServiceAddressState);
-        #}
-      ENDSOURCE
-      SOURCE #existsServiceAddressStreet
-        #public boolean existsServiceAddressStreet()
-        #{
-        #    return this.exists(#ServiceAddressStreet);
-        #}
-      ENDSOURCE
-      SOURCE #existsServiceAddressZipCode
-        #public boolean existsServiceAddressZipCode()
-        #{
-        #    return this.exists(#ServiceAddressZipCode);
-        #}
-      ENDSOURCE
-      SOURCE #existsServiceCountryRegionId
-        #public boolean existsServiceCountryRegionId()
-        #{
-        #    return this.exists(#ServiceCountryRegionId);
         #}
       ENDSOURCE
       SOURCE #existsServiceDateTime
@@ -242,10 +199,22 @@ Formatversion: 1
         #    return this.exists(#ServiceOrderId);
         #}
       ENDSOURCE
+      SOURCE #existsServicePostalAddress
+        #public boolean existsServicePostalAddress()
+        #{
+        #    return this.exists(#ServicePostalAddress);
+        #}
+      ENDSOURCE
       SOURCE #existsSignOff
         #public boolean existsSignOff()
         #{
         #    return this.exists(#SignOff);
+        #}
+      ENDSOURCE
+      SOURCE #existsSignOffDateTime
+        #public boolean existsSignOffDateTime()
+        #{
+        #    return this.exists(#SignOffDateTime);
         #}
       ENDSOURCE
       SOURCE #existsStageId
@@ -254,10 +223,22 @@ Formatversion: 1
         #    return this.exists(#StageId);
         #}
       ENDSOURCE
+      SOURCE #existsWorkerPreferredTechnician
+        #public boolean existsWorkerPreferredTechnician()
+        #{
+        #    return this.exists(#WorkerPreferredTechnician);
+        #}
+      ENDSOURCE
+      SOURCE #existsWorkerResponsible
+        #public boolean existsWorkerResponsible()
+        #{
+        #    return this.exists(#WorkerResponsible);
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAServiceOrder_SMAServiceOrderTable);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmActivityNumber
@@ -338,7 +319,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmCustAccount
-        #public str parmCustAccount(str _value = '')
+        #public CustAccount parmCustAccount(CustAccount _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -346,6 +327,17 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#CustAccount);
+        #}
+      ENDSOURCE
+      SOURCE #parmCustTable
+        #public AfStronglyTypedDataContainerList parmCustTable(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#CustTable, _value);
+        #    }
+        #
+        #    return this.get_List(#CustTable);
         #}
       ENDSOURCE
       SOURCE #parmDescription
@@ -379,17 +371,6 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#Origin);
-        #}
-      ENDSOURCE
-      SOURCE #parmPreferredTechnician
-        #public SMAPreferredTechnician parmPreferredTechnician(SMAPreferredTechnician _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#PreferredTechnician, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#PreferredTechnician);
         #}
       ENDSOURCE
       SOURCE #parmPriority
@@ -426,7 +407,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -437,7 +418,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecVersion
-        #public recVersion parmRecVersion(recVersion _value = 0)
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -447,63 +428,8 @@ Formatversion: 1
         #    return this.get_Attribute(#RecVersion);
         #}
       ENDSOURCE
-      SOURCE #parmResponsible
-        #public SMAResponsible parmResponsible(SMAResponsible _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#Responsible, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#Responsible);
-        #}
-      ENDSOURCE
-      SOURCE #parmServiceAddress
-        #public Addressing parmServiceAddress(Addressing _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#ServiceAddress, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#ServiceAddress);
-        #}
-      ENDSOURCE
-      SOURCE #parmServiceAddressCity
-        #public AddressCity parmServiceAddressCity(AddressCity _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#ServiceAddressCity, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#ServiceAddressCity);
-        #}
-      ENDSOURCE
-      SOURCE #parmServiceAddressCountryRegion
-        #public str parmServiceAddressCountryRegion(str _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#ServiceAddressCountryRegion, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#ServiceAddressCountryRegion);
-        #}
-      ENDSOURCE
-      SOURCE #parmServiceAddressCounty
-        #public str parmServiceAddressCounty(str _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#ServiceAddressCounty, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#ServiceAddressCounty);
-        #}
-      ENDSOURCE
       SOURCE #parmServiceAddressName
-        #public CustName parmServiceAddressName(CustName _value = '')
+        #public LogisticsServiceName parmServiceAddressName(LogisticsServiceName _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -511,50 +437,6 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#ServiceAddressName);
-        #}
-      ENDSOURCE
-      SOURCE #parmServiceAddressState
-        #public str parmServiceAddressState(str _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#ServiceAddressState, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#ServiceAddressState);
-        #}
-      ENDSOURCE
-      SOURCE #parmServiceAddressStreet
-        #public AddressStreet parmServiceAddressStreet(AddressStreet _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#ServiceAddressStreet, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#ServiceAddressStreet);
-        #}
-      ENDSOURCE
-      SOURCE #parmServiceAddressZipCode
-        #public str parmServiceAddressZipCode(str _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#ServiceAddressZipCode, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#ServiceAddressZipCode);
-        #}
-      ENDSOURCE
-      SOURCE #parmServiceCountryRegionId
-        #public str parmServiceCountryRegionId(str _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#ServiceCountryRegionId, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#ServiceCountryRegionId);
         #}
       ENDSOURCE
       SOURCE #parmServiceDateTime
@@ -601,6 +483,17 @@ Formatversion: 1
         #    return this.get_Attribute(#ServiceOrderId);
         #}
       ENDSOURCE
+      SOURCE #parmServicePostalAddress
+        #public LogisticsPostalAddressKey parmServicePostalAddress(LogisticsPostalAddressKey _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Container(#ServicePostalAddress, _value);
+        #    }
+        #
+        #    return this.get_Container(#ServicePostalAddress);
+        #}
+      ENDSOURCE
       SOURCE #parmSignOff
         #public NoYes parmSignOff(NoYes _value = 0)
         #{
@@ -612,6 +505,17 @@ Formatversion: 1
         #    return this.get_Attribute(#SignOff);
         #}
       ENDSOURCE
+      SOURCE #parmSignOffDateTime
+        #public SMASignOffDateTime parmSignOffDateTime(SMASignOffDateTime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SignOffDateTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SignOffDateTime);
+        #}
+      ENDSOURCE
       SOURCE #parmStageId
         #public SMAStageId parmStageId(SMAStageId _value = '')
         #{
@@ -621,6 +525,28 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#StageId);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorkerPreferredTechnician
+        #public DirPartyNumber parmWorkerPreferredTechnician(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#WorkerPreferredTechnician, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#WorkerPreferredTechnician);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorkerResponsible
+        #public DirPartyNumber parmWorkerResponsible(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#WorkerResponsible, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#WorkerResponsible);
         #}
       ENDSOURCE
     ENDMETHODS

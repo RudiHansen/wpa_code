@@ -10,6 +10,7 @@ Formatversion: 1
   TABLECOLLECTION #WPA
     PROPERTIES
       Name                #WPA
+      Origin              #{587529D5-0F32-4B84-BD32-763BB99C92C9}
     ENDPROPERTIES
     
     TABLES

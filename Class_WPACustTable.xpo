@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPACustTable
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{FAE172D8-2D7A-40A4-BAF8-8AAB66CDA316}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPACustTable</c> class is the data object class that is exposed through the <c>WPACustTableService</c> class.
+        #/// </summary>
+        ##AxdWPACustTableDCT
+        #[AifDataContainerTypeAttribute(#WPACustTable)]
         #class WPACustTable extends AifDocument
         #{
         #    #define.SenderId('SenderId')
@@ -53,7 +57,7 @@ Formatversion: 1
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPACustTable);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmCustTable
@@ -79,7 +83,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {

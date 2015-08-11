@@ -11,14 +11,19 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAServiceOrder_SMAServiceOrderLine
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{3E8F25B9-B382-4216-B39F-4E0FEFD6589F}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAServiceOrder_SMAServiceOrderLine</c> class is the data object class that is exposed through the <c>WPAServiceOrderService</c> class.
+        #/// </summary>
+        ##AxdWPAServiceOrderDCT
+        #[AifDataContainerTypeAttribute(#WPAServiceOrder_SMAServiceOrderLine)]
         #class WPAServiceOrder_SMAServiceOrderLine extends AfStronglyTypedDataContainer
         #{
+        #    #define.Worker('Worker')
         #    #define.Unit('Unit')
         #    #define.TransactionType('TransactionType')
         #    #define.TimeSheetStartTime('TimeSheetStartTime')
@@ -50,13 +55,12 @@ Formatversion: 1
         #    #define.ProjCategoryId('ProjCategoryId')
         #    #define.Origin('Origin')
         #    #define.OffsetAccountTypeExpense('OffsetAccountTypeExpense')
-        #    #define.OffsetAccountExpense('OffsetAccountExpense')
+        #    #define.LedgerDimension('LedgerDimension')
         #    #define.ItemId('ItemId')
         #    #define.InvoiceId('InvoiceId')
-        #    #define.EmplId('EmplId')
-        #    #define.Dimension('Dimension')
         #    #define.DescriptionService('DescriptionService')
         #    #define.Description('Description')
+        #    #define.DefaultDimension('DefaultDimension')
         #    #define.DateRangeTo('DateRangeTo')
         #    #define.DateRangeFrom('DateRangeFrom')
         #    #define.DateExecution('DateExecution')
@@ -70,6 +74,18 @@ Formatversion: 1
         #
         #}
         #
+      ENDSOURCE
+      SOURCE #createDefaultDimension
+        #public AifDimensionAttributeValueSet createDefaultDimension()
+        #{
+        #    return this.get_NewContainer(#DefaultDimension);
+        #}
+      ENDSOURCE
+      SOURCE #createLedgerDimension
+        #public AifLedgerAccount createLedgerDimension()
+        #{
+        #    return this.get_NewContainer(#LedgerDimension);
+        #}
       ENDSOURCE
       SOURCE #createSMAServiceOrderTable
         #public AfStronglyTypedDataContainerList createSMAServiceOrderTable()
@@ -137,6 +153,12 @@ Formatversion: 1
         #    return this.exists(#DateRangeTo);
         #}
       ENDSOURCE
+      SOURCE #existsDefaultDimension
+        #public boolean existsDefaultDimension()
+        #{
+        #    return this.exists(#DefaultDimension);
+        #}
+      ENDSOURCE
       SOURCE #existsDescription
         #public boolean existsDescription()
         #{
@@ -147,18 +169,6 @@ Formatversion: 1
         #public boolean existsDescriptionService()
         #{
         #    return this.exists(#DescriptionService);
-        #}
-      ENDSOURCE
-      SOURCE #existsDimension
-        #public boolean existsDimension()
-        #{
-        #    return this.exists(#Dimension);
-        #}
-      ENDSOURCE
-      SOURCE #existsEmplId
-        #public boolean existsEmplId()
-        #{
-        #    return this.exists(#EmplId);
         #}
       ENDSOURCE
       SOURCE #existsInvoiceId
@@ -173,10 +183,10 @@ Formatversion: 1
         #    return this.exists(#ItemId);
         #}
       ENDSOURCE
-      SOURCE #existsOffsetAccountExpense
-        #public boolean existsOffsetAccountExpense()
+      SOURCE #existsLedgerDimension
+        #public boolean existsLedgerDimension()
         #{
-        #    return this.exists(#OffsetAccountExpense);
+        #    return this.exists(#LedgerDimension);
         #}
       ENDSOURCE
       SOURCE #existsOffsetAccountTypeExpense
@@ -365,10 +375,16 @@ Formatversion: 1
         #    return this.exists(#Unit);
         #}
       ENDSOURCE
+      SOURCE #existsWorker
+        #public boolean existsWorker()
+        #{
+        #    return this.exists(#Worker);
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAServiceOrder_SMAServiceOrderLine);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parm_DocumentHash
@@ -427,7 +443,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmCurrencyIdCost
-        #public str parmCurrencyIdCost(str _value = '')
+        #public CurrencyCode parmCurrencyIdCost(CurrencyCode _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -481,6 +497,17 @@ Formatversion: 1
         #    return this.get_Attribute(#DateRangeTo);
         #}
       ENDSOURCE
+      SOURCE #parmDefaultDimension
+        #public AifDimensionAttributeValueSet parmDefaultDimension(AifDimensionAttributeValueSet _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Container(#DefaultDimension, _value);
+        #    }
+        #
+        #    return this.get_Container(#DefaultDimension);
+        #}
+      ENDSOURCE
       SOURCE #parmDescription
         #public Description parmDescription(Description _value = '')
         #{
@@ -503,28 +530,6 @@ Formatversion: 1
         #    return this.get_Attribute(#DescriptionService);
         #}
       ENDSOURCE
-      SOURCE #parmDimension
-        #public Dimension parmDimension(Dimension _value = Dimensions::emptyDimension())
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_EdtArray(#Dimension, _value);
-        #    }
-        #
-        #    return this.get_EdtArray(#Dimension);
-        #}
-      ENDSOURCE
-      SOURCE #parmEmplId
-        #public EmplId parmEmplId(EmplId _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#EmplId, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#EmplId);
-        #}
-      ENDSOURCE
       SOURCE #parmInvoiceId
         #public InvoiceId parmInvoiceId(InvoiceId _value = '')
         #{
@@ -537,7 +542,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmItemId
-        #public str parmItemId(str _value = '')
+        #public ItemId parmItemId(ItemId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -547,15 +552,15 @@ Formatversion: 1
         #    return this.get_Attribute(#ItemId);
         #}
       ENDSOURCE
-      SOURCE #parmOffsetAccountExpense
-        #public LedgerJournalAC parmOffsetAccountExpense(LedgerJournalAC _value = '')
+      SOURCE #parmLedgerDimension
+        #public AifLedgerAccount parmLedgerDimension(AifLedgerAccount _value = null)
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_Attribute(#OffsetAccountExpense, _value);
+        #        this.set_Container(#LedgerDimension, _value);
         #    }
         #
-        #    return this.get_Attribute(#OffsetAccountExpense);
+        #    return this.get_Container(#LedgerDimension);
         #}
       ENDSOURCE
       SOURCE #parmOffsetAccountTypeExpense
@@ -603,7 +608,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmProjCurrencyCode
-        #public str parmProjCurrencyCode(str _value = '')
+        #public ProjSalesCurrencyCode parmProjCurrencyCode(ProjSalesCurrencyCode _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -702,7 +707,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -713,7 +718,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecVersion
-        #public recVersion parmRecVersion(recVersion _value = 0)
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -889,7 +894,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmUnit
-        #public str parmUnit(str _value = '')
+        #public UnitOfMeasureSymbol parmUnit(UnitOfMeasureSymbol _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -897,6 +902,17 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#Unit);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorker
+        #public DirPartyNumber parmWorker(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Worker, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Worker);
         #}
       ENDSOURCE
     ENDMETHODS

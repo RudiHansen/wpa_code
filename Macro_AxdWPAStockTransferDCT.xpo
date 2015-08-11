@@ -11,5 +11,9 @@ Formatversion: 1
     ##define.WPAStockTransfer('WPAStockTransfer')
     ##define.WPAStockTransfer_WPAStockTransfer_1('WPAStockTransfer.WPAStockTransfer_1')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{345F4A0C-5544-4303-9534-28B18F2C4814}
+  ENDPROPERTIES
+  
 
 ***Element: END

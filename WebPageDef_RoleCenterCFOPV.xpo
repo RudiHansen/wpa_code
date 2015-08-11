@@ -1,0 +1,1441 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: WPD
+
+; Microsoft Dynamics AX PAGEDEFINITION : RoleCenterCFOPV unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  PAGEDEFINITION #RoleCenterCFOPV
+    PROPERTIES
+      Name                #RoleCenterCFOPV
+      URL                 #Enterprise%20Portal/RoleCenterCFO.aspx
+      ImageResource       #WebIcon_wpicon
+      WebModule           #Home
+      Origin              #{1689ED18-256E-4A3C-83EC-57483CB46C64}
+    ENDPROPERTIES
+    
+    SOURCE #
+      #<File Url="1033\AXSITEDEF\doctemp\smartpgs\spstd2.aspx" Name="RoleCenterCFOPV" PowerViewPage="True" DefaultTitle="" Version="6">
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.QuickLaunchWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string" />
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="CustomProperties" type="string" null="true" />
+      #<property name="DefaultTitle" type="string">Dynamics QuickLaunch WebPart</property>
+      #<property name="Description" type="string" />
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_3185e967_ee11_405f_a133_c17aeacc21f1</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="UpdateMode" type="System.Web.UI.UpdatePanelUpdateMode, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Conditional</property>
+      #<property name="WebPartRole" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.WebPartRole, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">LeftColumn</property>
+      #<property name="ZoneIndex" type="int">0</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.AxInfolog, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string" />
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="DefaultTitle" type="string">Dynamics Infolog WebPart</property>
+      #<property name="Description" type="string" />
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_02aae9d8_843e_44ec_94af_8b3bd8dc6181</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="UpdateMode" type="System.Web.UI.UpdatePanelUpdateMode, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Conditional</property>
+      #<property name="WebPartRole" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.WebPartRole, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">Infolog</property>
+      #<property name="ZoneIndex" type="int">2</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.AxPageTitleWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string" />
+      #<property name="DefaultTitle" type="string">Dynamics Page Title Web Part</property>
+      #<property name="Description" type="string" />
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_124315be_8886_447e_93a9_53ba447f7c76</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="UpdateMode" type="System.Web.UI.UpdatePanelUpdateMode, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Conditional</property>
+      #<property name="WebPartRole" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.WebPartRole, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">TitleBar</property>
+      #<property name="ZoneIndex" type="int">0</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.FinancialsIndicatorWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string" />
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="CompanySelection" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.CompanySelection, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Current</property>
+      #<property name="Currency" type="string">__ccMstCurr</property>
+      #<property name="CurrentLabel" type="string" null="true" />
+      #<property name="DefaultTitle" type="string">Business Overview Web Part</property>
+      #<property name="Description" type="string" />
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_b0a7a081_ae11_4e18_a7e0_f60e42424b94</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="Mode" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.Mode, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">BusinessOverview</property>
+      #<property name="ODCFilePath" type="string" />
+      #<property name="PreviousLabel" type="string" null="true" />
+      #<property name="SerializedIndicators" type="string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+      #&lt;ArrayOfIndicator xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;fc129add-4fd7-4310-8be7-b3fdf7a59d54&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;General ledger sales total - accounting currency&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@GLS130090&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimension&gt;OLAPITEMGROUP&lt;/SliceDimension&gt;
+      #    &lt;SliceDimensionAttribute&gt;Item groups Item group&lt;/SliceDimensionAttribute&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Amount&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;DemoFiscal_Period_LastPeriod&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem&gt;Client_Display#Trial balance#@SYS15958#LedgerTrialBalanceListPage&lt;/ReportClientMenuItem&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName&gt;General ledger sales revised budget total - accounting currency&lt;/CompareMeasureName&gt;
+      #    &lt;CompareMeasureCaption&gt;General ledger sales revised budget total - accounting currency&lt;/CompareMeasureCaption&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;c1f4b0c2-f6f1-419c-ab31-6e0c64d03db3&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;General ledger cost of goods sold - accounting currency&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS108391&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimension&gt;OLAPITEMGROUP&lt;/SliceDimension&gt;
+      #    &lt;SliceDimensionAttribute&gt;Item groups Item group&lt;/SliceDimensionAttribute&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Amount&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;true&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;DemoFiscal_Period_LastPeriod&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem&gt;Client_Display#Trial balance#@SYS15958#LedgerTrialBalanceListPage&lt;/ReportClientMenuItem&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName&gt;General ledger cost of goods sold revised budget amount - accounting currency&lt;/CompareMeasureName&gt;
+      #    &lt;CompareMeasureCaption&gt;General ledger cost of goods sold revised budget amount - accounting currency&lt;/CompareMeasureCaption&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;1a354120-e52b-4290-ad4e-99f9991bf410&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;General ledger gross profit - accounting currency&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS178428&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimension&gt;OLAPITEMGROUP&lt;/SliceDimension&gt;
+      #    &lt;SliceDimensionAttribute&gt;Item groups Item group&lt;/SliceDimensionAttribute&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath&gt;URL###http://intranet.contoso.com/Management Reporter Reports/USMF Income Statement Act Vs Budget.aspx&lt;/ReportPath&gt;
+      #    &lt;ValueType&gt;Amount&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;DemoFiscal_Period_LastPeriod&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName&gt;General ledger gross profit revised budget amount - accounting currency&lt;/CompareMeasureName&gt;
+      #    &lt;CompareMeasureCaption&gt;General ledger gross profit revised budget amount - accounting currency&lt;/CompareMeasureCaption&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;d064dd70-a0c3-4eb2-a0c3-1e53db57077f&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;General ledger operating expense total - accounting currency&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@GLS130070&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath&gt;URL###http://intranet.contoso.com/Management Reporter Reports/USMF Income Statement Act Vs Budget.aspx&lt;/ReportPath&gt;
+      #    &lt;ValueType&gt;Amount&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;true&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;DemoFiscal_Period_LastPeriod&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName&gt;General ledger operating expense total revised budget amount - accounting currency&lt;/CompareMeasureName&gt;
+      #    &lt;CompareMeasureCaption&gt;General ledger operating expense total revised budget amount - accounting currency&lt;/CompareMeasureCaption&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;e39fe0bc-b4bd-427b-a466-c4de72296bbd&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;General ledger net income - accounting currency&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS178125&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimension&gt;OLAPITEMGROUP&lt;/SliceDimension&gt;
+      #    &lt;SliceDimensionAttribute&gt;Item groups Name&lt;/SliceDimensionAttribute&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath&gt;URL###http://intranet.contoso.com/Management Reporter Reports/Income Statement By Business Unit.aspx&lt;/ReportPath&gt;
+      #    &lt;ValueType&gt;Amount&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;DemoFiscal_Period_LastPeriod&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName&gt;General ledger net income revised budget amount - accounting currency&lt;/CompareMeasureName&gt;
+      #    &lt;CompareMeasureCaption&gt;General ledger net income revised budget amount - accounting currency&lt;/CompareMeasureCaption&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;9d67c1ed-0cfe-4e5d-b69c-0fda20e04fce&lt;/Id&gt;
+      #    &lt;CubeName&gt;Sales and marketing cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Lead Count&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS115025&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimension&gt;Lead&lt;/SliceDimension&gt;
+      #    &lt;SliceDimensionAttribute&gt;Lead&lt;/SliceDimensionAttribute&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Date - Date&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;DemoMonth_LastMonth&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters&gt;
+      #      &lt;NonDateFilterItem&gt;
+      #        &lt;NonDateTimeDimension&gt;Lead&lt;/NonDateTimeDimension&gt;
+      #        &lt;DimensionAttribute&gt;Lead status&lt;/DimensionAttribute&gt;
+      #        &lt;AttributeValue&gt;0&lt;/AttributeValue&gt;
+      #      &lt;/NonDateFilterItem&gt;
+      #    &lt;/NonDateFilters&gt;
+      #    &lt;ReportClientMenuItem&gt;Client_Display#All leads#@SYS336321#smmLeadsListPage&lt;/ReportClientMenuItem&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;96739b52-2174-405e-9883-1530c381f787&lt;/Id&gt;
+      #    &lt;CubeName&gt;Sales and marketing cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Opportunity Count&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS115034&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimension&gt;Opportunity&lt;/SliceDimension&gt;
+      #    &lt;SliceDimensionAttribute&gt;Opportunity&lt;/SliceDimensionAttribute&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Date - Date&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;DemoMonth_LastMonth&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters&gt;
+      #      &lt;NonDateFilterItem&gt;
+      #        &lt;NonDateTimeDimension&gt;Opportunity&lt;/NonDateTimeDimension&gt;
+      #        &lt;DimensionAttribute&gt;Status&lt;/DimensionAttribute&gt;
+      #        &lt;AttributeValue&gt;1&lt;/AttributeValue&gt;
+      #      &lt;/NonDateFilterItem&gt;
+      #    &lt;/NonDateFilters&gt;
+      #    &lt;ReportClientMenuItem&gt;Client_Display#Active opportunities#@SYS115034#smmOpportunitiesListPage_Active&lt;/ReportClientMenuItem&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;ce6d846e-a99a-4093-b59d-5da274936766&lt;/Id&gt;
+      #    &lt;CubeName&gt;Accounts payable cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Accounts payable open amount - accounting currency&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;Open accounts payable&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimension&gt;Vendor&lt;/SliceDimension&gt;
+      #    &lt;SliceDimensionAttribute&gt;Vendor group name&lt;/SliceDimensionAttribute&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Amount&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;DemoFiscal_Period_LastPeriod&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem&gt;Client_Display#Open vendor invoices#@SYS117968#VendOpenInvoicesListPage&lt;/ReportClientMenuItem&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;4728136a-bb73-4a9e-b946-8900cf9f69c4&lt;/Id&gt;
+      #    &lt;CubeName&gt;Accounts receivable cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Accounts receivable open amount - accounting currency&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;Open accounts receivables&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimension&gt;Customer&lt;/SliceDimension&gt;
+      #    &lt;SliceDimensionAttribute&gt;Customer group name&lt;/SliceDimensionAttribute&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Amount&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;DemoFiscal_Period_LastPeriod&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem&gt;Client_Display#Collections#@SYS21751#CustCollectionsPoolsListPage&lt;/ReportClientMenuItem&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #&lt;/ArrayOfIndicator&gt;</property>
+      #<property name="ShowSecondIndicator" type="bool">True</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleLabel" type="string">@GLS222213</property>
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="UpdateMode" type="System.Web.UI.UpdatePanelUpdateMode, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Conditional</property>
+      #<property name="UserTitle" type="string" null="true" />
+      #<property name="WebPartRole" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.WebPartRole, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">RightColumn</property>
+      #<property name="ZoneIndex" type="int">1</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.PowerViewWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string">/_layouts/ep/images/addpowerview.gif</property>
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="CubeName" type="string">Sales cube</property>
+      #<property name="Description" type="string">This Web part displays a SQL Server Power view report constructed using a Microsoft Dynamics AX model.</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit">500px</property>
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_7d27a4b7_c680_4f69_8cca_48229a207158</property>
+      #<property name="IgnoreAxFilters" type="bool">False</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="ReportParameters" type="string">ViewMode=Presentation&amp;Fit=True&amp;PreviewBar=False&amp;BackgroundColor=White&amp;AllowEditViewMode=False</property>
+      #<property name="ReportUrl" type="string">Power View Reports/PowerViewContributionMarginReport.rdlx</property>
+      #<property name="Title" type="string">Contribution margin</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">RightColumn</property>
+      #<property name="ZoneIndex" type="int">3</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.BusinessOverviewWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string">/_layouts/ep/images/addbusinessoverview.gif</property>
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="CompanySelection" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.CompanySelection, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Current</property>
+      #<property name="Currency" type="string">__ccMstCurr</property>
+      #<property name="CurrentLabel" type="string" null="true" />
+      #<property name="DefaultTitle" type="string">Business Overview Web Part</property>
+      #<property name="Description" type="string">This Web part displays Online Analytical Processing (OLAP) measures, which are data calculations across various time periods. This Web part also displays Key Performance Indicators (KPI). KPIs are business metri[cr]
+      #cs that can be summarized in terms of a comparison, goal, value, and status. For example, you might use this Web part to compare this month's sales with last month's sales.</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_9044e08d_a0bd_4a30_9f9a_9ca6527886e8</property>
+      #<property name="IsClosed" type="bool">True</property>
+      #<property name="Mode" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.Mode, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">KPIList</property>
+      #<property name="ODCFilePath" type="string" />
+      #<property name="PreviousLabel" type="string" null="true" />
+      #<property name="SerializedIndicators" type="string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+      #&lt;ArrayOfIndicator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;772b5230-6530-46f8-a9d8-fdaad4a3883f&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Gross profit margin&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS178989&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;be56d129-fc13-4dd0-b70b-76b692b52139&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Return on total assets&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS122223&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;72bcd147-2050-43d6-8106-d9f828eec5d5&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Current ratio&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS179053&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;a557b44f-45e3-4f5d-8586-2ec2bcb0089d&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Days working capital&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@GLS130118&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;78bf57ed-56b9-467d-a5c2-b231beeef886&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Days inventory on hand&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@GLS130120&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;72d33c93-78e2-47e2-bb28-640f03723bc8&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Inventory turnover&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS178641&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;c34ca1b4-aa3e-4d83-87e5-30fef9e2b889&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Accounts receivable turnover&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS344109&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;b658c6f7-9ec7-43a4-b2ff-d8df248c0af5&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Average collection period&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@GLS130140&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;eb943aea-e019-4427-8236-1442b809ebcd&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Average days to pay&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS178917&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;d2e08bf2-8785-4caa-8ead-191d9607dfe7&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Debt to equity&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS178586&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #  &lt;Indicator&gt;
+      #    &lt;Id&gt;f1a65fbf-10e6-4a6b-bea9-a22e47e8d390&lt;/Id&gt;
+      #    &lt;CubeName&gt;General ledger cube&lt;/CubeName&gt;
+      #    &lt;MeasureName&gt;Debt to total assets&lt;/MeasureName&gt;
+      #    &lt;DisplayTitle&gt;@SYS178072&lt;/DisplayTitle&gt;
+      #    &lt;SliceDimensionAttribute /&gt;
+      #    &lt;TimePeriodsName /&gt;
+      #    &lt;RolePlayingTimeDimension /&gt;
+      #    &lt;ReportPath /&gt;
+      #    &lt;ValueType&gt;Number&lt;/ValueType&gt;
+      #    &lt;IsDecreasingBetter&gt;false&lt;/IsDecreasingBetter&gt;
+      #    &lt;Visible&gt;true&lt;/Visible&gt;
+      #    &lt;IsValid&gt;true&lt;/IsValid&gt;
+      #    &lt;EnableFilters&gt;true&lt;/EnableFilters&gt;
+      #    &lt;DateFilters&gt;
+      #      &lt;DateFilterItem&gt;
+      #        &lt;DateTimeDimension&gt;Transaction date - fiscal calendar&lt;/DateTimeDimension&gt;
+      #        &lt;TimePeriod&gt;Fiscal_Period&lt;/TimePeriod&gt;
+      #      &lt;/DateFilterItem&gt;
+      #    &lt;/DateFilters&gt;
+      #    &lt;NonDateFilters /&gt;
+      #    &lt;ReportClientMenuItem /&gt;
+      #    &lt;ReportWebMenuItem /&gt;
+      #    &lt;CompareMeasureName /&gt;
+      #    &lt;CompareMeasureCaption /&gt;
+      #    &lt;SplitOrder&gt;Top&lt;/SplitOrder&gt;
+      #    &lt;NonEmpty&gt;true&lt;/NonEmpty&gt;
+      #    &lt;SplitCount&gt;10&lt;/SplitCount&gt;
+      #  &lt;/Indicator&gt;
+      #&lt;/ArrayOfIndicator&gt;</property>
+      #<property name="ShowSecondIndicator" type="bool">False</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleLabel" type="string">@GLS222219</property>
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="UpdateMode" type="System.Web.UI.UpdatePanelUpdateMode, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Conditional</property>
+      #<property name="UserTitle" type="string" null="true" />
+      #<property name="WebPartRole" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.WebPartRole, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">RightColumn</property>
+      #<property name="ZoneIndex" type="int">2</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.AxRSReportWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string">/_layouts/ep/images/addwebreport.gif</property>
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="DefaultTitle" type="string">Microsoft Dynamics AX report</property>
+      #<property name="Description" type="string">This Web part displays report data from SQL Server Reporting Services (SSRS).</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="DrillThroughTargetToolBarSize" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.ToolBarSize, Microsoft.Dynamics.AX.Framework.Reports.Shared, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</propert[cr]
+      #y>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_d12087cb_35b8_46b6_b957_f4a81414ff5a</property>
+      #<property name="IsClosed" type="bool">True</property>
+      #<property name="MenuItemAOTName" type="string">CustTopXCustomersbyYTDSalesSmall</property>
+      #<property name="ParameterSelector" type="string" />
+      #<property name="SerializedParameters" type="string" null="true" />
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="ToolBarSize" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.ToolBarSize, Microsoft.Dynamics.AX.Framework.Reports.Shared, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="UpdateMode" type="System.Web.UI.UpdatePanelUpdateMode, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Conditional</property>
+      #<property name="WebPartRole" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.WebPartRole, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">MiddleColumn</property>
+      #<property name="ZoneIndex" type="int">2</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.AxUserControlWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string">/_layouts/ep/images/addwebcontrols.gif</property>
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="CustomProperties" type="string" null="true" />
+      #<property name="DefaultTitle" type="string">Bank account balance</property>
+      #<property name="Description" type="string">This Web part hosts User Controls that have been developed in Visual Studio. User Controls are the primary way that developers create new functionality for Enterprise Portal.</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_d6d311a5_cd4a_4eb2_b876_fdd273976c46</property>
+      #<property name="IsClosed" type="bool">True</property>
+      #<property name="ManagedContentItem" type="string">EPBankAccountBalance</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="UpdateMode" type="System.Web.UI.UpdatePanelUpdateMode, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Conditional</property>
+      #<property name="WebPartRole" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.WebPartRole, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">MiddleColumn</property>
+      #<property name="ZoneIndex" type="int">3</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.QuickLinks, Microsoft.Dynamics.Framework.Portal.SharePoint, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string" />
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="DefaultTitle" type="string">@SYS125498</property>
+      #<property name="Description" type="string">Web Part that hosts quick links for Microsoft Dynamics AX on the Enterprise Portal site.</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="GroupID" type="string">CFOLinks</property>
+      #<property name="Height" type="string" />
+      #<property name="HelpMode" type="helpmode">Modeless</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_525f849c_8403_49e2_b63b_77e319bac9d1</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="Width" type="string" />
+      #<property name="ZoneID" type="string">RightColumn</property>
+      #<property name="ZoneIndex" type="int">4</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.AxUnifiedWorkListWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string" />
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="DefaultTitle" type="string">Dynamics Unified Work List WebPart</property>
+      #<property name="Description" type="string">Web Part that provides a centralized list of work for a Dynamics user</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="GridBodyHeight" type="int">200</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_a38c8051_13f2_40b8_b4e9_fd6a8f855629</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="MaxNumberOfActivities" type="int">20</property>
+      #<property name="MaxNumberOfAlerts" type="int">20</property>
+      #<property name="MaxNumberOfWorkItems" type="int">20</property>
+      #<property name="PageSize" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.UnifiedWorkListPageSize, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Five</property>
+      #<property name="RecordType" type="string" />
+      #<property name="ShowToolbar" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.UnifiedWorkListShowToolbar, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">No</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="UpdateMode" type="System.Web.UI.UpdatePanelUpdateMode, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Conditional</property>
+      #<property name="ViewSize" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.UnifiedWorkListViewSize, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">FiftyPercent</property>
+      #<property name="ViewType" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.UnifiedWorkListFilterType, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">All</property>
+      #<property name="WebPartRole" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.WebPartRole, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">MiddleColumn</property>
+      #<property name="ZoneIndex" type="int">3</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.QuickLinks, Microsoft.Dynamics.Framework.Portal.SharePoint, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string" />
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="DefaultTitle" type="string">@SYS125497</property>
+      #<property name="Description" type="string">Web Part that hosts quick links for Microsoft Dynamics AX on the Enterprise Portal site.</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="GroupID" type="string">CFOReportLinks</property>
+      #<property name="Height" type="string" />
+      #<property name="HelpMode" type="helpmode">Modeless</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_c4784bda_63e6_4011_bd7b_b388140dca5d</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="Width" type="string" />
+      #<property name="ZoneID" type="string">RightColumn</property>
+      #<property name="ZoneIndex" type="int">5</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.DynamicsOnline.Connect.WebParts.Connect, Microsoft.DynamicsOnline.Connect.WebParts, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this web part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string" />
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="Description" type="string">This web part connects you to Microsoft Dynamics CustomerSource and Microsoft Dynamics Community resources that help you use your Microsoft Dynamics products more effectively.</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_932f8bbb_71f5_4422_8d08_ee13c95067c7</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="Role" type="Microsoft.DynamicsOnline.Connect.WebParts.Role, Microsoft.DynamicsOnline.Connect.WebParts, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Finance_Accounting</property>
+      #<property name="Title" type="string">Connect</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">RightColumn</property>
+      #<property name="ZoneIndex" type="int">6</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.AxUserControlWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string">/_layouts/ep/images/addwebcontrols.gif</property>
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="CustomProperties" type="string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+      #&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+      #  &lt;string&gt;&amp;lt;?xml version="1.0" encoding="utf-16"?&amp;gt;
+      #&amp;lt;ArrayOfIndicator xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&amp;gt;
+      #  &amp;lt;Indicator&amp;gt;
+      #    &amp;lt;Id&amp;gt;91b00ae8-4960-41d0-8780-259dde9f01ca&amp;lt;/Id&amp;gt;
+      #    &amp;lt;CubeName&amp;gt;General ledger cube&amp;lt;/CubeName&amp;gt;
+      #    &amp;lt;MeasureName&amp;gt;Gross profit margin&amp;lt;/MeasureName&amp;gt;
+      #    &amp;lt;DisplayTitle&amp;gt;Gross profit margin&amp;lt;/DisplayTitle&amp;gt;
+      #    &amp;lt;SliceDimensionAttribute /&amp;gt;
+      #    &amp;lt;TimePeriodsName /&amp;gt;
+      #    &amp;lt;RolePlayingTimeDimension /&amp;gt;
+      #    &amp;lt;ReportPath&amp;gt;URL###http://intranet.contoso.com/Management Reporter Reports/USMF Income Statement Act Vs Budget.aspx&amp;lt;/ReportPath&amp;gt;
+      #    &amp;lt;ValueType&amp;gt;Number&amp;lt;/ValueType&amp;gt;
+      #    &amp;lt;IsDecreasingBetter&amp;gt;false&amp;lt;/IsDecreasingBetter&amp;gt;
+      #    &amp;lt;Visible&amp;gt;true&amp;lt;/Visible&amp;gt;
+      #    &amp;lt;IsValid&amp;gt;true&amp;lt;/IsValid&amp;gt;
+      #    &amp;lt;EnableFilters&amp;gt;true&amp;lt;/EnableFilters&amp;gt;
+      #    &amp;lt;DateFilters&amp;gt;
+      #      &amp;lt;DateFilterItem&amp;gt;
+      #        &amp;lt;DateTimeDimension&amp;gt;Transaction date - fiscal calendar&amp;lt;/DateTimeDimension&amp;gt;
+      #        &amp;lt;TimePeriod&amp;gt;DemoFiscal_period&amp;lt;/TimePeriod&amp;gt;
+      #      &amp;lt;/DateFilterItem&amp;gt;
+      #    &amp;lt;/DateFilters&amp;gt;
+      #    &amp;lt;NonDateFilters /&amp;gt;
+      #    &amp;lt;ReportClientMenuItem /&amp;gt;
+      #    &amp;lt;ReportWebMenuItem /&amp;gt;
+      #    &amp;lt;CompareMeasureName /&amp;gt;
+      #    &amp;lt;CompareMeasureCaption /&amp;gt;
+      #    &amp;lt;SplitOrder&amp;gt;Top&amp;lt;/SplitOrder&amp;gt;
+      #    &amp;lt;NonEmpty&amp;gt;true&amp;lt;/NonEmpty&amp;gt;
+      #    &amp;lt;SplitCount&amp;gt;10&amp;lt;/SplitCount&amp;gt;
+      #  &amp;lt;/Indicator&amp;gt;
+      #  &amp;lt;Indicator&amp;gt;
+      #    &amp;lt;Id&amp;gt;e566c270-b246-4de1-9e79-3f0f62dd464e&amp;lt;/Id&amp;gt;
+      #    &amp;lt;CubeName&amp;gt;General ledger cube&amp;lt;/CubeName&amp;gt;
+      #    &amp;lt;MeasureName&amp;gt;EBITDA margin&amp;lt;/MeasureName&amp;gt;
+      #    &amp;lt;DisplayTitle /&amp;gt;
+      #    &amp;lt;SliceDimensionAttribute /&amp;gt;
+      #    &amp;lt;TimePeriodsName /&amp;gt;
+      #    &amp;lt;RolePlayingTimeDimension /&amp;gt;
+      #    &amp;lt;ReportPath&amp;gt;URL###http://intranet.contoso.com/sites/DynamicsAx/Sales/Enterprise%20Portal/EPCustUnpaidInvoice.aspx?WMI=EPCustUnpaidInvoice&amp;amp;amp;WDPK=initial&amp;amp;amp;WCMP=usmf&amp;lt;/ReportPath&amp;gt;
+      #    &amp;lt;ValueType&amp;gt;Number&amp;lt;/ValueType&amp;gt;
+      #    &amp;lt;IsDecreasingBetter&amp;gt;false&amp;lt;/IsDecreasingBetter&amp;gt;
+      #    &amp;lt;Visible&amp;gt;true&amp;lt;/Visible&amp;gt;
+      #    &amp;lt;IsValid&amp;gt;true&amp;lt;/IsValid&amp;gt;
+      #    &amp;lt;EnableFilters&amp;gt;true&amp;lt;/EnableFilters&amp;gt;
+      #    &amp;lt;DateFilters&amp;gt;
+      #      &amp;lt;DateFilterItem&amp;gt;
+      #        &amp;lt;DateTimeDimension&amp;gt;Transaction date - fiscal calendar&amp;lt;/DateTimeDimension&amp;gt;
+      #        &amp;lt;TimePeriod&amp;gt;DemoFiscal_period&amp;lt;/TimePeriod&amp;gt;
+      #      &amp;lt;/DateFilterItem&amp;gt;
+      #    &amp;lt;/DateFilters&amp;gt;
+      #    &amp;lt;NonDateFilters /&amp;gt;
+      #    &amp;lt;ReportClientMenuItem /&amp;gt;
+      #    &amp;lt;ReportWebMenuItem /&amp;gt;
+      #    &amp;lt;CompareMeasureName /&amp;gt;
+      #    &amp;lt;CompareMeasureCaption /&amp;gt;
+      #    &amp;lt;SplitOrder&amp;gt;Top&amp;lt;/SplitOrder&amp;gt;
+      #    &amp;lt;NonEmpty&amp;gt;true&amp;lt;/NonEmpty&amp;gt;
+      #    &amp;lt;SplitCount&amp;gt;10&amp;lt;/SplitCount&amp;gt;
+      #  &amp;lt;/Indicator&amp;gt;
+      #  &amp;lt;Indicator&amp;gt;
+      #    &amp;lt;Id&amp;gt;82ead630-b43b-473b-ae25-f65ba341c8a7&amp;lt;/Id&amp;gt;
+      #    &amp;lt;CubeName&amp;gt;General ledger cube&amp;lt;/CubeName&amp;gt;
+      #    &amp;lt;MeasureName&amp;gt;Quick ratio&amp;lt;/MeasureName&amp;gt;
+      #    &amp;lt;DisplayTitle /&amp;gt;
+      #    &amp;lt;SliceDimensionAttribute /&amp;gt;
+      #    &amp;lt;TimePeriodsName /&amp;gt;
+      #    &amp;lt;RolePlayingTimeDimension /&amp;gt;
+      #    &amp;lt;ReportPath&amp;gt;URL###http://localhost:4712/Report.svc/report/viewershell?reportId=34ed4ea1-18f4-4314-981b-08dc68a92185&amp;amp;amp;financial=0&amp;lt;/ReportPath&amp;gt;
+      #    &amp;lt;ValueType&amp;gt;Number&amp;lt;/ValueType&amp;gt;
+      #    &amp;lt;IsDecreasingBetter&amp;gt;false&amp;lt;/IsDecreasingBetter&amp;gt;
+      #    &amp;lt;Visible&amp;gt;true&amp;lt;/Visible&amp;gt;
+      #    &amp;lt;IsValid&amp;gt;true&amp;lt;/IsValid&amp;gt;
+      #    &amp;lt;EnableFilters&amp;gt;true&amp;lt;/EnableFilters&amp;gt;
+      #    &amp;lt;DateFilters&amp;gt;
+      #      &amp;lt;DateFilterItem&amp;gt;
+      #        &amp;lt;DateTimeDimension&amp;gt;Transaction date - fiscal calendar&amp;lt;/DateTimeDimension&amp;gt;
+      #        &amp;lt;TimePeriod&amp;gt;DemoFiscal_Year&amp;lt;/TimePeriod&amp;gt;
+      #      &amp;lt;/DateFilterItem&amp;gt;
+      #    &amp;lt;/DateFilters&amp;gt;
+      #    &amp;lt;NonDateFilters /&amp;gt;
+      #    &amp;lt;ReportClientMenuItem /&amp;gt;
+      #    &amp;lt;ReportWebMenuItem /&amp;gt;
+      #    &amp;lt;CompareMeasureName /&amp;gt;
+      #    &amp;lt;CompareMeasureCaption /&amp;gt;
+      #    &amp;lt;SplitOrder&amp;gt;Top&amp;lt;/SplitOrder&amp;gt;
+      #    &amp;lt;NonEmpty&amp;gt;true&amp;lt;/NonEmpty&amp;gt;
+      #    &amp;lt;SplitCount&amp;gt;10&amp;lt;/SplitCount&amp;gt;
+      #  &amp;lt;/Indicator&amp;gt;
+      #  &amp;lt;Indicator&amp;gt;
+      #    &amp;lt;Id&amp;gt;0948541a-551e-4f7c-82f6-06b2d79b58ae&amp;lt;/Id&amp;gt;
+      #    &amp;lt;CubeName&amp;gt;General ledger cube&amp;lt;/CubeName&amp;gt;
+      #    &amp;lt;MeasureName&amp;gt;Inventory turnover&amp;lt;/MeasureName&amp;gt;
+      #    &amp;lt;DisplayTitle /&amp;gt;
+      #    &amp;lt;SliceDimensionAttribute /&amp;gt;
+      #    &amp;lt;TimePeriodsName /&amp;gt;
+      #    &amp;lt;RolePlayingTimeDimension /&amp;gt;
+      #    &amp;lt;ReportPath /&amp;gt;
+      #    &amp;lt;ValueType&amp;gt;Number&amp;lt;/ValueType&amp;gt;
+      #    &amp;lt;IsDecreasingBetter&amp;gt;false&amp;lt;/IsDecreasingBetter&amp;gt;
+      #    &amp;lt;Visible&amp;gt;true&amp;lt;/Visible&amp;gt;
+      #    &amp;lt;IsValid&amp;gt;true&amp;lt;/IsValid&amp;gt;
+      #    &amp;lt;EnableFilters&amp;gt;true&amp;lt;/EnableFilters&amp;gt;
+      #    &amp;lt;DateFilters&amp;gt;
+      #      &amp;lt;DateFilterItem&amp;gt;
+      #        &amp;lt;DateTimeDimension&amp;gt;Transaction date - fiscal calendar&amp;lt;/DateTimeDimension&amp;gt;
+      #        &amp;lt;TimePeriod&amp;gt;DemoFiscal_period&amp;lt;/TimePeriod&amp;gt;
+      #      &amp;lt;/DateFilterItem&amp;gt;
+      #    &amp;lt;/DateFilters&amp;gt;
+      #    &amp;lt;NonDateFilters /&amp;gt;
+      #    &amp;lt;ReportClientMenuItem&amp;gt;Client_Display#On-hand inventory#@SYS118662#InventOnHandListPage&amp;lt;/ReportClientMenuItem&amp;gt;
+      #    &amp;lt;ReportWebMenuItem /&amp;gt;
+      #    &amp;lt;CompareMeasureName /&amp;gt;
+      #    &amp;lt;CompareMeasureCaption /&amp;gt;
+      #    &amp;lt;SplitOrder&amp;gt;Top&amp;lt;/SplitOrder&amp;gt;
+      #    &amp;lt;NonEmpty&amp;gt;true&amp;lt;/NonEmpty&amp;gt;
+      #    &amp;lt;SplitCount&amp;gt;10&amp;lt;/SplitCount&amp;gt;
+      #  &amp;lt;/Indicator&amp;gt;
+      #  &amp;lt;Indicator&amp;gt;
+      #    &amp;lt;Id&amp;gt;dc1f18ee-2dba-4a17-a022-326107a227d8&amp;lt;/Id&amp;gt;
+      #    &amp;lt;CubeName&amp;gt;General ledger cube&amp;lt;/CubeName&amp;gt;
+      #    &amp;lt;MeasureName&amp;gt;Average collection period&amp;lt;/MeasureName&amp;gt;
+      #    &amp;lt;DisplayTitle&amp;gt;Average collection period (DSO)&amp;lt;/DisplayTitle&amp;gt;
+      #    &amp;lt;SliceDimensionAttribute /&amp;gt;
+      #    &amp;lt;TimePeriodsName /&amp;gt;
+      #    &amp;lt;RolePlayingTimeDimension /&amp;gt;
+      #    &amp;lt;ReportPath&amp;gt;URL###http://intranet.contoso.com/SitePages/FinanceTeam.aspx&amp;lt;/ReportPath&amp;gt;
+      #    &amp;lt;ValueType&amp;gt;Number&amp;lt;/ValueType&amp;gt;
+      #    &amp;lt;IsDecreasingBetter&amp;gt;false&amp;lt;/IsDecreasingBetter&amp;gt;
+      #    &amp;lt;Visible&amp;gt;true&amp;lt;/Visible&amp;gt;
+      #    &amp;lt;IsValid&amp;gt;true&amp;lt;/IsValid&amp;gt;
+      #    &amp;lt;EnableFilters&amp;gt;true&amp;lt;/EnableFilters&amp;gt;
+      #    &amp;lt;DateFilters&amp;gt;
+      #      &amp;lt;DateFilterItem&amp;gt;
+      #        &amp;lt;DateTimeDimension&amp;gt;Transaction date - fiscal calendar&amp;lt;/DateTimeDimension&amp;gt;
+      #        &amp;lt;TimePeriod&amp;gt;DemoFiscal_Year&amp;lt;/TimePeriod&amp;gt;
+      #      &amp;lt;/DateFilterItem&amp;gt;
+      #    &amp;lt;/DateFilters&amp;gt;
+      #    &amp;lt;NonDateFilters /&amp;gt;
+      #    &amp;lt;ReportClientMenuItem /&amp;gt;
+      #    &amp;lt;ReportWebMenuItem /&amp;gt;
+      #    &amp;lt;CompareMeasureName /&amp;gt;
+      #    &amp;lt;CompareMeasureCaption /&amp;gt;
+      #    &amp;lt;SplitOrder&amp;gt;Top&amp;lt;/SplitOrder&amp;gt;
+      #    &amp;lt;NonEmpty&amp;gt;true&amp;lt;/NonEmpty&amp;gt;
+      #    &amp;lt;SplitCount&amp;gt;10&amp;lt;/SplitCount&amp;gt;
+      #  &amp;lt;/Indicator&amp;gt;
+      #&amp;lt;/ArrayOfIndicator&amp;gt;&lt;/string&gt;
+      #  &lt;string xsi:nil="true" /&gt;
+      #  &lt;string&gt;Current&lt;/string&gt;
+      #&lt;/ArrayOfString&gt;</property>
+      #<property name="DefaultTitle" type="string">Financial performance</property>
+      #<property name="Description" type="string">This Web part hosts User Controls that have been developed in Visual Studio. User Controls are the primary way that developers create new functionality for Enterprise Portal.</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit" />
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_5d0b43ae_8338_488a_ae46_ed41a55c313f</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="ManagedContentItem" type="string">WebControlWithKPIWebPart</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="UpdateMode" type="System.Web.UI.UpdatePanelUpdateMode, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">Conditional</property>
+      #<property name="WebPartRole" type="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.WebPartRole, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">None</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">MiddleColumn</property>
+      #<property name="ZoneIndex" type="int">1</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.PowerViewWebPart, Microsoft.Dynamics.Framework.Portal, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">True</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string">/_layouts/ep/images/addpowerview.gif</property>
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="CubeName" type="string">Sales cube</property>
+      #<property name="Description" type="string">This Web part displays a SQL Server Power view report constructed using a Microsoft Dynamics AX model.</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="unit">500px</property>
+      #<property name="HelpMode" type="helpmode">Navigate</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_5be51026_28a4_4272_bb67_414ae7db7d96</property>
+      #<property name="IgnoreAxFilters" type="bool">False</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="ReportParameters" type="string" null="true" />
+      #<property name="ReportUrl" type="string">Power View Reports/PowerViewSalesPerformance.rdlx</property>
+      #<property name="Title" type="string">Sales Performance</property>
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="Width" type="unit" />
+      #<property name="ZoneID" type="string">MiddleColumn</property>
+      #<property name="ZoneIndex" type="int">2</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<AllUsersWebPart>
+      #<![CDATA[<webParts>
+      #<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      #<metaData>
+      #<type name="Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts.Cues, Microsoft.Dynamics.Framework.Portal.SharePoint, Version=6.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      #<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      #</metaData>
+      #<data>
+      #<properties>
+      #<property name="AllowClose" type="bool">False</property>
+      #<property name="AllowConnect" type="bool">True</property>
+      #<property name="AllowEdit" type="bool">True</property>
+      #<property name="AllowHide" type="bool">True</property>
+      #<property name="AllowMinimize" type="bool">True</property>
+      #<property name="AllowZoneChange" type="bool">True</property>
+      #<property name="CatalogIconImageUrl" type="string">/_layouts/ep/images/addcues.gif</property>
+      #<property name="ChromeState" type="chromestate">Normal</property>
+      #<property name="ChromeType" type="chrometype">Default</property>
+      #<property name="DefaultTitle" type="string">Activities</property>
+      #<property name="Description" type="string">This Web part displays a visual representation of your workload and gives an overview of your remaining work items, such as sales leads or overdue activities, and other tasks that you need to complete. Cues are [cr]
+      #saved filtered views of page information. When you click a Cue, the associated page opens with the filtered view displayed.</property>
+      #<property name="Direction" type="direction">NotSet</property>
+      #<property name="ExportMode" type="exportmode">All</property>
+      #<property name="Height" type="string" />
+      #<property name="HelpMode" type="helpmode">Modeless</property>
+      #<property name="HelpUrl" type="string" />
+      #<property name="Hidden" type="bool">False</property>
+      #<property name="ID" type="string">g_5f549915_ad44_4a53_8a17_dca705898765</property>
+      #<property name="IsClosed" type="bool">False</property>
+      #<property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+      #<property name="ModeledCueGroupName" type="string" />
+      #<property name="TitleIconImageUrl" type="string" />
+      #<property name="TitleUrl" type="string">
+      #</property>
+      #<property name="Width" type="string" />
+      #<property name="ZoneID" type="string">RightColumn</property>
+      #<property name="ZoneIndex" type="int">2</property>
+      #</properties>
+      #</data>
+      #</webPart>
+      #</webParts>]]>
+      #</AllUsersWebPart>
+      #<SPWebPartConnections />
+      #</File>
+    ENDSOURCE
+  ENDPAGEDEFINITION
+  
+
+***Element: END

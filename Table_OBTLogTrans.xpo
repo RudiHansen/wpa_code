@@ -8,6 +8,7 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #OBTLogTrans
+    EnforceFKRelation 0
     PROPERTIES
       Name                #OBTLogTrans
       Label               #@OBT3
@@ -18,44 +19,19 @@ Formatversion: 1
       SaveDataPerCompany  #No
       PrimaryIndex        #RefIdx
       ClusterIndex        #RefIdx
+      Origin              #{906290FA-FC73-404E-9763-7BF8C5F9D23C}
+      LegacyId            #50003
     ENDPROPERTIES
     
     FIELDS
-      FIELD #RefRecId
-        INT64
+      FIELD #DatabaseLogType
+        ENUM
         PROPERTIES
-          Name                #RefRecId
+          Name                #DatabaseLogType
           Table               #OBTLogTrans
-          ExtendedDataType    
-            ARRAY 
-              #RefRecId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #RefTableId
-        INT
-        PROPERTIES
-          Name                #RefTableId
-          Table               #OBTLogTrans
-          ExtendedDataType    
-            ARRAY 
-              #RefTableId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #RefCompanyId
-        STRING
-        PROPERTIES
-          Name                #RefCompanyId
-          Table               #OBTLogTrans
-          ExtendedDataType    
-            ARRAY 
-              #OBTRefCompanyId
-              #
-            ENDARRAY
-          StringSize          #4
+          Origin              #{4CBBFA78-8F49-413F-AFA3-6B4E24DC0831}
+          LegacyId            #50005
+          EnumType            #DatabaseLogType
         ENDPROPERTIES
         
       FIELD #KeyValue
@@ -63,20 +39,41 @@ Formatversion: 1
         PROPERTIES
           Name                #KeyValue
           Table               #OBTLogTrans
-          ExtendedDataType    
-            ARRAY 
-              #KeyValue
-              #
-            ENDARRAY
+          Origin              #{2CB7F273-EFE8-472B-8E11-7B1FA4748E3A}
+          LegacyId            #50004
+          ExtendedDataType    #KeyValue
           StringSize          #20
         ENDPROPERTIES
         
-      FIELD #DatabaseLogType
-        ENUM
+      FIELD #RefCompanyId
+        STRING
         PROPERTIES
-          Name                #DatabaseLogType
+          Name                #RefCompanyId
           Table               #OBTLogTrans
-          EnumType            #DatabaseLogType
+          Origin              #{70C94BE0-497F-45A7-BE51-A52E0C8434F4}
+          LegacyId            #50003
+          ExtendedDataType    #OBTRefCompanyId
+          StringSize          #4
+        ENDPROPERTIES
+        
+      FIELD #RefRecId
+        INT64
+        PROPERTIES
+          Name                #RefRecId
+          Table               #OBTLogTrans
+          Origin              #{044DC1EE-61CF-49A4-936A-6726D0AC687D}
+          LegacyId            #50001
+          ExtendedDataType    #RefRecId
+        ENDPROPERTIES
+        
+      FIELD #RefTableId
+        INT
+        PROPERTIES
+          Name                #RefTableId
+          Table               #OBTLogTrans
+          Origin              #{AF670A98-2AFF-430D-AE42-7A52A0104192}
+          LegacyId            #50002
+          ExtendedDataType    #RefTableId
         ENDPROPERTIES
         
       FIELD #SendDate
@@ -86,11 +83,9 @@ Formatversion: 1
           Label               #@OBT12
           HelpText            #@OBT13
           Table               #OBTLogTrans
-          ExtendedDataType    
-            ARRAY 
-              #TransDate
-              #
-            ENDARRAY
+          Origin              #{426969B3-514E-4EBE-AFB1-5398087562D1}
+          LegacyId            #50006
+          ExtendedDataType    #TransDate
         ENDPROPERTIES
         
     ENDFIELDS
@@ -138,6 +133,8 @@ Formatversion: 1
       PROPERTIES
         Name                #RefIdx
         AllowDuplicates     #No
+        Origin              #{D2890F08-AA96-4F97-8F8E-0AC455C956E3}
+        LegacyId            #50001
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -148,12 +145,16 @@ Formatversion: 1
       ENDINDEXFIELDS
       
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
     ENDREFERENCES
     
     DELETEACTIONS
     ENDDELETEACTIONS
     
+    METHODS
+    ENDMETHODS
   ENDTABLE
   
 

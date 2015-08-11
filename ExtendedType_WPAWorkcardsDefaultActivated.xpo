@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAWorkcardsDefaultActivated
       Label               #@WPA203
       HelpText            #@WPA204
+      Origin              #{FDED0E18-C4DB-4A03-B6BB-F81F94071611}
+      LegacyId            #50067
       EnumType            #NoYes
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

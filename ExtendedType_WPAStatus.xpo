@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAStatus
       Label               #@SYS80127
       HelpText            #@WPA59
+      Origin              #{E88A16C7-EE28-44D0-B703-BE96CB307FA4}
+      LegacyId            #50050
       StringSize          #2
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

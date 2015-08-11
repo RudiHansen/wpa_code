@@ -1,0 +1,48 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: SPV
+
+; Microsoft Dynamics AX PRIVILEGE : WebControlWithKPIWebPart unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  PRIVILEGE #WebControlWithKPIWebPart
+    PROPERTIES
+      Name                #WebControlWithKPIWebPart
+      Label               #WebControlWithKPIWebPart
+      Origin              #{5D9B1899-5D74-44BD-815B-2490D3713DA9}
+    ENDPROPERTIES
+    
+    ENTRYPOINTS #Entry Points
+      ENTRYPOINT #WebControlWithKPIWebPart
+        PROPERTIES
+          Name                #WebControlWithKPIWebPart
+          ObjectType          #WebManagedContent
+          ObjectName          #WebControlWithKPIWebPart
+          AccessLevel         #Delete
+        ENDPROPERTIES
+        
+      ENDENTRYPOINT
+      
+  ENDENTRYPOINTS
+  
+PERMISSIONSET #Permissions
+  PROPERTIES
+  ENDPROPERTIES
+  
+  TABLES #Tables
+  ENDTABLES
+  
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+FORMS #Forms
+ENDFORMS
+
+ENDPERMISSIONSET
+
+ENDPRIVILEGE
+
+
+***Element: END

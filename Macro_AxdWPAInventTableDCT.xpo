@@ -13,7 +13,10 @@ Formatversion: 1
     ##define.WPAInventTable_InventTableModuleInvent('WPAInventTable.InventTableModuleInvent')
     ##define.WPAInventTable_InventTableModuleSales('WPAInventTable.InventTableModuleSales')
     ##define.WPAInventTable_InventItemBarcode('WPAInventTable.InventItemBarcode')
-    ##define.WPAInventTable_InventTxt('WPAInventTable.InventTxt')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{FA9BD96B-6836-45CF-8245-7F83F3161023}
+  ENDPROPERTIES
+  
 
 ***Element: END

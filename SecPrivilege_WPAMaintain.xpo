@@ -1,0 +1,349 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: SPV
+
+; Microsoft Dynamics AX PRIVILEGE : WPAMaintain unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  PRIVILEGE #WPAMaintain
+    PROPERTIES
+      Name                #WPAMaintain
+      Label               #Maintain WPA
+      Origin              #{F77DF798-9CB2-4B61-B831-0B9361A65741}
+    ENDPROPERTIES
+    
+    ENTRYPOINTS #Entry Points
+      ENTRYPOINT #WPACustTableServiceXfind
+        PROPERTIES
+          Name                #WPACustTableServiceXfind
+          ObjectType          #ServiceOperation
+          ObjectName          #WPACustTableService
+          ObjectChildName     #find
+          AccessLevel         #Invoke
+        ENDPROPERTIES
+        
+      ENDENTRYPOINT
+      
+    ENTRYPOINT #WPAEmplServiceXfind
+      PROPERTIES
+        Name                #WPAEmplServiceXfind
+        ObjectType          #ServiceOperation
+        ObjectName          #WPAEmplService
+        ObjectChildName     #find
+        AccessLevel         #Invoke
+      ENDPROPERTIES
+      
+    ENDENTRYPOINT
+    
+  ENTRYPOINT #WPAExportLogTrans
+    PROPERTIES
+      Name                #WPAExportLogTrans
+      ObjectType          #MenuItemAction
+      ObjectName          #WPAExportLogTrans
+      AccessLevel         #Delete
+    ENDPROPERTIES
+    
+  ENDENTRYPOINT
+  
+ENTRYPOINT #WPAInventLocationServiceXfind
+  PROPERTIES
+    Name                #WPAInventLocationServiceXfind
+    ObjectType          #ServiceOperation
+    ObjectName          #WPAInventLocationService
+    ObjectChildName     #find
+    AccessLevel         #Invoke
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAInventSerialServiceXfind
+  PROPERTIES
+    Name                #WPAInventSerialServiceXfind
+    ObjectType          #ServiceOperation
+    ObjectName          #WPAInventSerialService
+    ObjectChildName     #find
+    AccessLevel         #Invoke
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAInventSumServiceXfind
+  PROPERTIES
+    Name                #WPAInventSumServiceXfind
+    ObjectType          #ServiceOperation
+    ObjectName          #WPAInventSumService
+    ObjectChildName     #find
+    AccessLevel         #Invoke
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAInventTableServiceXfind
+  PROPERTIES
+    Name                #WPAInventTableServiceXfind
+    ObjectType          #ServiceOperation
+    ObjectName          #WPAInventTableService
+    ObjectChildName     #find
+    AccessLevel         #Invoke
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAParameters
+  PROPERTIES
+    Name                #WPAParameters
+    ObjectType          #MenuItemDisplay
+    ObjectName          #WPAParameters
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAProjCategoryServiceXfind
+  PROPERTIES
+    Name                #WPAProjCategoryServiceXfind
+    ObjectType          #ServiceOperation
+    ObjectName          #WPAProjCategoryService
+    ObjectChildName     #find
+    AccessLevel         #Invoke
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAProjectServiceXfind
+  PROPERTIES
+    Name                #WPAProjectServiceXfind
+    ObjectType          #ServiceOperation
+    ObjectName          #WPAProjectService
+    ObjectChildName     #find
+    AccessLevel         #Invoke
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAProjForecastEmplServiceXfind
+  PROPERTIES
+    Name                #WPAProjForecastEmplServiceXfind
+    ObjectType          #ServiceOperation
+    ObjectName          #WPAProjForecastEmplService
+    ObjectChildName     #find
+    AccessLevel         #Invoke
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASend
+  PROPERTIES
+    Name                #WPASend
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASend
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendDispatchTeam
+  PROPERTIES
+    Name                #WPASendDispatchTeam
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendDispatchTeam
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendEmpl
+  PROPERTIES
+    Name                #WPASendEmpl
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendEmpl
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendInventLocation
+  PROPERTIES
+    Name                #WPASendInventLocation
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendInventLocation
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendInventSerial
+  PROPERTIES
+    Name                #WPASendInventSerial
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendInventSerial
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendInventSerialAll
+  PROPERTIES
+    Name                #WPASendInventSerialAll
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendInventSerialAll
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendInventSum
+  PROPERTIES
+    Name                #WPASendInventSum
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendInventSum
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendInventSumAll
+  PROPERTIES
+    Name                #WPASendInventSumAll
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendInventSumAll
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendItems
+  PROPERTIES
+    Name                #WPASendItems
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendItems
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendProjCategory
+  PROPERTIES
+    Name                #WPASendProjCategory
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendProjCategory
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendProject
+  PROPERTIES
+    Name                #WPASendProject
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendProject
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendProjForecastEmpl
+  PROPERTIES
+    Name                #WPASendProjForecastEmpl
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendProjForecastEmpl
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASendServiceOrder
+  PROPERTIES
+    Name                #WPASendServiceOrder
+    ObjectType          #MenuItemAction
+    ObjectName          #WPASendServiceOrder
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAServiceOrderServiceXfind
+  PROPERTIES
+    Name                #WPAServiceOrderServiceXfind
+    ObjectType          #ServiceOperation
+    ObjectName          #WPAServiceOrderService
+    ObjectChildName     #find
+    AccessLevel         #Invoke
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPASMADispatchTeamServiceXfind
+  PROPERTIES
+    Name                #WPASMADispatchTeamServiceXfind
+    ObjectType          #ServiceOperation
+    ObjectName          #WPASMADispatchTeamService
+    ObjectChildName     #find
+    AccessLevel         #Invoke
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAStockTransfer
+  PROPERTIES
+    Name                #WPAStockTransfer
+    ObjectType          #MenuItemDisplay
+    ObjectName          #WPAStockTransfer
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAStockTransfer_Update
+  PROPERTIES
+    Name                #WPAStockTransfer_Update
+    ObjectType          #MenuItemAction
+    ObjectName          #WPAStockTransfer_Update
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAWorkcardTable
+  PROPERTIES
+    Name                #WPAWorkcardTable
+    ObjectType          #MenuItemDisplay
+    ObjectName          #WPAWorkcardTable
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENTRYPOINT #WPAWorkCardTransfer
+  PROPERTIES
+    Name                #WPAWorkCardTransfer
+    ObjectType          #MenuItemAction
+    ObjectName          #WPAWorkCardTransfer
+    AccessLevel         #Delete
+  ENDPROPERTIES
+  
+ENDENTRYPOINT
+
+ENDENTRYPOINTS
+
+PERMISSIONSET #Permissions
+  PROPERTIES
+  ENDPROPERTIES
+  
+  TABLES #Tables
+  ENDTABLES
+  
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+FORMS #Forms
+ENDFORMS
+
+ENDPERMISSIONSET
+
+ENDPRIVILEGE
+
+
+***Element: END

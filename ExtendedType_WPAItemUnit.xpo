@@ -11,7 +11,9 @@ Formatversion: 1
   STRING
     PROPERTIES
       Name                #WPAItemUnit
-      Extends             #UnitID
+      Origin              #{41A164AE-73BD-4ED4-A017-3389B5554A86}
+      LegacyId            #50032
+      Extends             #UnitOfMeasureSymbol
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -19,6 +21,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

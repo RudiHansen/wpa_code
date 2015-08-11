@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: WPA_4_22_UPG_WPASendProjForecastEmpl unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #WPA_4_22_UPG_WPASendProjForecastEmpl
+    #static void WPA_4_22_UPG_WPASendProjForecastEmpl(Args _args)
+    #{
+    #    ProjForecastEmpl   ProjForecastEmpl = ProjForecastEmpl::findLast("10004","Annual");
+    #    Args        args = new Args();
+    #    ;
+    #
+    #    args.record(ProjForecastEmpl);
+    #    WPASendProjForecastEmpl::main(args);
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{20F40C49-D1A9-4E03-BAD5-52803A607B1C}
+  ENDPROPERTIES
+  
+
+***Element: END

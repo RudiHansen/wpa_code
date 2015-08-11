@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAWorkcard
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{7900E400-D493-44F7-9264-5CF6D79B9E68}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAWorkcard</c> class is the data object class that is exposed through the <c>WPAWorkcardService</c> class.
+        #/// </summary>
+        ##AxdWPAWorkcardDCT
+        #[AifDataContainerTypeAttribute(#WPAWorkcard)]
         #class WPAWorkcard extends AifDocument
         #{
         #    #define.WPAWorkcardTable('WPAWorkcardTable')
@@ -52,7 +56,7 @@ Formatversion: 1
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAWorkcard);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmDocPurpose
@@ -67,7 +71,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -103,7 +107,7 @@ Formatversion: 1
         #    WPAWorkcardTable        workcardTable;
         #    WPAWorkcardLine         workcardLine;
         #
-        #    SMAServiceOrderId       orderId;
+        #    WPAOrderId              orderId;
         #    WPAWorkcardId           workCardId;
         #    WPADescription          description;
         #    int                     successRecords = 0;
@@ -116,8 +120,9 @@ Formatversion: 1
         #    xmlReader.whitespaceHandling(XmlWhitespaceHandling::None);
         #    xmlReader.moveToContent();
         #    fieldValues = new Map(Types::String, Types::String);
+        #
         #    ttsbegin;
-        #    while(!xmlReader.eof())
+        #    while (!xmlReader.eof())
         #    {
         #        workcardFieldsCollected = false;
         #        itemFieldsCollected = false;
@@ -177,7 +182,7 @@ Formatversion: 1
         #                                        if(name == #ServiceObjectId)
         #                                        {
         #                                            value = xmlReader.readElementString2(name);
-        #                                            // WPA_5_5_2 xmlReader.read();
+        #                                            //xmlReader.read();
         #                                        }
         #                                    }
         #                                    break;
@@ -189,7 +194,7 @@ Formatversion: 1
         #                                        value = xmlReader.readElementString2(name);
         #                                    break;
         #                            }
-        #                            if(value != '')
+        #                            if (value != '')
         #                                fieldValues.insert(name, value);
         #                            if (xmlReader.nodeType() == XmlNodeType::EndElement)
         #                            {
@@ -345,7 +350,9 @@ Formatversion: 1
         #                if (fieldValues.exists(#ProductEmploymentCode))
         #                    workcardLine.ProductEmploymentCode  = fieldValues.lookup(#ProductEmploymentCode);
         #                if (fieldValues.exists(#TransDate))
-        #                    workcardLine.TransDate              = str2Date(substr(fieldValues.lookup(#TransDate),1,10),123);
+        #                    workcardLine.TransDate              = str2Date(fieldValues.lookup(#TransDate),123);
+        #                if (fieldValues.exists(#Batchnumber) && fieldValues.lookup(#Batchnumber) != "0")
+        #                    workcardLine.InventSerialId         = fieldValues.lookup(#Batchnumber);
         #
         #                workcardLine.Direction                  = WPADirection::Incoming;
         #                workcardLine.Transferred                = WPATransferredEnum::Imported;

@@ -11,15 +11,23 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASendProject
       Extends             #AxdSend
-      RunOn               #Called from
+      Origin              #{D1A794BD-C052-45D5-8936-ED45C7C20236}
+      LegacyId            #50085
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPASendProject extends AxdSend
         #{
         #    ProjId  projId;
+        #}
+      ENDSOURCE
+      SOURCE #parmDocumentClassId
+        #public AifDocumentClassId parmDocumentClassId(AifDocumentClassId _documentClassId = aifDocumentClassId)
+        #{
+        #    aifDocumentClassId = _documentClassId;
+        #
+        #    return aifDocumentClassId;
         #}
       ENDSOURCE
       SOURCE #parmProjId
@@ -32,12 +40,33 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
       SOURCE #queryRun
         #public QueryRun queryRun()
         #{
         #    QueryRun            ret;
         #    QueryBuildRange     qbr_ProjId;
         #    ;
+        #
         #    if (!ret)
         #    {
         #        ret = super();
@@ -51,93 +80,58 @@ Formatversion: 1
         #    return ret;
         #}
       ENDSOURCE
-      SOURCE #send
-        #void send(AifDocumentClassId _documentClassId,
-        #          AifServiceClassId _serviceClassId,
-        #          AifSendMode _sendMode,
-        #          AifConstraintList _constraintList,
-        #          AxdSendContext _sendContext = null)
+      SOURCE #showDialog
+        #public boolean showDialog()
         #{
-        #    ;
-        #    aifDocumentClassId  = _documentClassId ;
-        #    serviceClassId      = _serviceClassId;
-        #    aifSendMode         = _sendMode ;
-        #    aifConstraintList   = _constraintList ;
-        #    axdSendContext      = _sendContext ;
-        #    sendActionType      = AifSendActionType::SendByQuery;
-        #    aifActionId         = this.getActionId() ;
-        #    if (_sendContext)
-        #    {
-        #        this.parmXmlDocPurpose(_sendContext.parmXMLDocPurpose()) ;
-        #    }
-        #    if (!aifActionId)
-        #    {
-        #       error("@SYS94082") ;
-        #    }
-        #    this.retrieveEndPoints() ;
-        #
-        #    select firstonly tmpAifEndPoint;
-        #
-        #    if (tmpAifEndPoint)
-        #    {
-        #        this.parmEndPoint(tmpAifEndPoint.EndpointId);
-        #        this.run();
-        #    }
+        #    return (projId == "");
         #}
-        #
       ENDSOURCE
       SOURCE #main
         #static public void main(Args args)
         #{
-        #    WPASendProject      WPASendProject;
+        #    WPASendProject      sendProject;
         #    AifConstraintList   aifConstraintList;
         #    AifConstraint       aifConstraint;
         #    ProjTable           projTable;
         #    ;
         #
-        #    WPASendProject      = new WPASendProject();
+        #    sendProject         = new WPASendProject();
         #    aifConstraintList   = new AifConstraintList();
         #    aifConstraint       = new AifConstraint();
         #
-        #    if (args.record())
+        #    if (args && args.record() && args.record().TableId == tableNum(ProjTable))
         #    {
-        #        projTable    = args.record();
+        #        projTable = args.record();
         #        if (!WPAProject::validateProject(projTable))
         #        {
         #            throw error("@WPA162");
         #        }
-        #        WPASendProject.parmProjId(projTable.ProjId);
+        #        sendProject.parmProjId(projTable.ProjId);
         #    }
         #
         #    aifConstraint.parmType(AifConstraintType::NoConstraint);
         #    aifConstraintList.addConstraint(aifConstraint);
         #
-        #    WPASendProject.parmShowDocPurpose(true) ;
+        #    sendProject.parmOutboundPortName("WPAProject");
+        #    sendProject.parmShowDocPurpose(true) ;
+        #    sendProject.parmServiceClassId(classnum(WPAProjectService));
+        #    sendProject.parmSendActionType(AifSendActionType::SendByQuery);
+        #    sendProject.parmDocumentClassId(classnum(WPAProject));
         #
-        #    WPASendProject.sendMultipleDocuments(classnum(WPAProject), classnum(WPAProjectService), AifSendMode::Async, aifConstraintList);
+        #    sendProject.sendMultipleDocuments(classnum(WPAProject), classnum(WPAProjectService), AifSendMode::Async, aifConstraintList);
         #}
       ENDSOURCE
       SOURCE #sendProject
         #public static void sendProject(ProjTable _projTable)
         #{
-        #    WPASendProject      WPASendProject;
-        #    AifConstraintList   aifConstraintList;
-        #    AifConstraint       aifConstraint;
+        #    Args                args;
         #    ;
-        #    WPASendProject      = new WPASendProject();
-        #    aifConstraintList   = new AifConstraintList();
-        #    aifConstraint       = new AifConstraint();
+        #    args = new Args();
+        #    args.record(_projTable);
         #
-        #    WPASendProject.parmProjId(_projTable.ProjId);
-        #
-        #
-        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
-        #    aifConstraintList.addConstraint(aifConstraint);
-        #
-        #    WPASendProject.parmShowDocPurpose(true) ;
-        #
-        #    WPASendProject.send(classnum(WPAProject), classnum(WPAProjectService), AifSendMode::Async, aifConstraintList);
+        #    WPASendProject::main(args);
         #}
+        #
       ENDSOURCE
     ENDMETHODS
   ENDCLASS

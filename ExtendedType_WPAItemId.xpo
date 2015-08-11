@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAItemId
       Label               #@SYS111673
       HelpText            #@SYS12980
+      Origin              #{6861BB30-B158-4099-B48F-9CA4DB38781C}
+      LegacyId            #50028
       StringSize          #50
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

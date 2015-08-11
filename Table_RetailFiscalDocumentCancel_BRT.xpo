@@ -1,0 +1,257 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalDocumentCancel_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalDocumentCancel_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalDocumentCancel_BRT
+      Label               #@SYP4860522
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{BD550AF9-0F31-45A7-B65F-100243BC659A}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #AccessKey
+        STRING
+        PROPERTIES
+          Name                #AccessKey
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{9B99A70C-3E2E-484A-9AAE-1D0E7024EB3B}
+          StringSize          #45
+        ENDPROPERTIES
+        
+      FIELD #CancelAccountingDate
+        DATETIME
+        PROPERTIES
+          Name                #CancelAccountingDate
+          Label               #@SYS4001660
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{DEEBFBC7-7C86-48ED-9C3F-BA5983BD90E1}
+        ENDPROPERTIES
+        
+      FIELD #CancelReasonComment
+        STRING
+        PROPERTIES
+          Name                #CancelReasonComment
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{E98F38AA-81E9-4150-938A-D5EBB0E8979B}
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{6447D2A0-D273-4C8C-8B78-244BB5DEC521}
+        ENDPROPERTIES
+        
+      FIELD #MessageStatus
+        ENUM
+        PROPERTIES
+          Name                #MessageStatus
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{93B4EBEF-7AF5-4E4C-A703-A1A8D6EDFC72}
+          EnumType            #EFDocMessageStatus_BR
+        ENDPROPERTIES
+        
+      FIELD #ProtocolNumber
+        STRING
+        PROPERTIES
+          Name                #ProtocolNumber
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{560B5A55-F89A-48B0-9994-45A82044118E}
+          StringSize          #15
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{59F50035-9D91-4C69-AACF-6B84977E510B}
+        ENDPROPERTIES
+        
+      FIELD #ReturnCodeDescription
+        STRING
+        PROPERTIES
+          Name                #ReturnCodeDescription
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{1A250CC1-2294-4AC5-B7E1-21DAFFF56340}
+          StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #store
+        STRING
+        PROPERTIES
+          Name                #store
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{144B703C-ABE3-42BC-930F-1958686C8C73}
+        ENDPROPERTIES
+        
+      FIELD #terminal
+        STRING
+        PROPERTIES
+          Name                #terminal
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{FCF38C55-8E67-4A9B-8720-1F31FDD8C2AD}
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{797FD58E-D9B5-44A7-9303-294269287210}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #XmlRequest
+        STRING
+        PROPERTIES
+          Name                #XmlRequest
+          Label               #@SYS4081421
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{27687889-F516-492C-8F94-51C916D54602}
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+      FIELD #XmlResponse
+        STRING
+        PROPERTIES
+          Name                #XmlResponse
+          Label               #@SYS4081422
+          Table               #RetailFiscalDocumentCancel_BRT
+          Origin              #{73B58FDC-E292-4987-BEB9-9C1D764A8CE3}
+          StringSize          #(Memo)
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{A24A9911-97AF-479E-B2DB-07DB37D7B9AB}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #store
+        #terminal
+        #transactionId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalDocumentCancel_BRT cursor)
+        #{
+        #    RetailFiscalDocumentCancel_BR target;
+        #    RetailFiscalDocumentCancel_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint Idx
+        #                where (target.@transactionId==cursor2.@transactionId && target.@terminal==cursor2.@terminal && target.@store==cursor2.@store && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @AccessKey,
+        #                    @CancelAccountingDate,
+        #                    @CancelReasonComment,
+        #                    @Channel,
+        #                    @MessageStatus,
+        #                    @ProtocolNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @ReturnCodeDescription,
+        #                    @store,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @XmlRequest,
+        #                    @XmlResponse
+        #                )
+        #                select
+        #                    @AccessKey,
+        #                    @CancelAccountingDate,
+        #                    @CancelReasonComment,
+        #                    @Channel,
+        #                    @MessageStatus,
+        #                    @ProtocolNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @ReturnCodeDescription,
+        #                    @store,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @XmlRequest,
+        #                    @XmlResponse
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

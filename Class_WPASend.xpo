@@ -10,12 +10,11 @@ Formatversion: 1
   CLASS #WPASend
     PROPERTIES
       Name                #WPASend
-      Extends             #
-      RunOn               #Called from
+      Origin              #{AF4B81A8-3D8B-44C0-AE67-01139AB76208}
+      LegacyId            #50079
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPASend
         #{
@@ -34,9 +33,10 @@ Formatversion: 1
         #                                                    break;
         #            case tablenum(ProjForecastEmpl)     :   this.sendProjForecastEmpl(_args);
         #                                                    break;
-        #            case tablenum(EmplTable)            :   this.sendEmplTable(_args);
+        #            case tablenum(HcmWorker)            :   this.sendEmplTable(_args);
         #                                                    break;
-        #            case tablenum(InventTable)          :   this.sendInventTable(_args);
+        #            case tablenum(EcoResProduct),
+        #                 tableNum(InventTable)          :   this.sendInventTable(_args);
         #                                                    break;
         #            case tablenum(CategoryTable),
         #                 tablenum(ProjCategory)         :   this.sendProjCategory(_args);
@@ -45,7 +45,6 @@ Formatversion: 1
         #        }
         #
         #    }
-        #
         #    new AifOutboundProcessingService().run();
         #    new AifGatewaySendService().run();
         #}
@@ -59,8 +58,9 @@ Formatversion: 1
         #    Common                  table;
         #    Counter                 sentRecords;
         #    ;
+        #
         #    args = new Args();
-        #    menuFunction = new MenuFunction('WPASendEmpl',MenuItemType::Action);
+        #    menuFunction = new MenuFunction('WPASendEmpl', MenuItemType::Action);
         #
         #    if (_args.record().dataSource())
         #    {
@@ -210,36 +210,53 @@ Formatversion: 1
         #{
         #    SMAServiceOrderTable    serviceOrderTable;
         #    SMAServiceOrderLine     serviceOrderLine;
+        #    FormDataSource          formDataSource;
         #    ProjTable               projTable;
         #    MenuFunction            menuFunction;
         #    Args                    args;
         #    Counter                 sentRecords;
+        #    void sendServiceOrder()
+        #    {
+        #        args = new Args();
+        #        projTable           = ProjTable::find(serviceOrderTable.ProjId);
+        #        if (!WPAIntegrationLog::exist(projTable.TableId, projTable.RecId))
+        #        {
+        #            if (!WPAProject::validateProject(projTable))
+        #            {
+        #                throw error("@WPA162");
+        #            }
+        #            WPASendProject::sendProject(projTable);
+        #        }
+        #        menuFunction = new MenuFunction('WPASendServiceOrder',MenuItemType::Action);
+        #        while select serviceOrderLine
+        #            where serviceOrderLine.ServiceOrderId   == serviceOrderTable.ServiceOrderId &&
+        #                  serviceOrderLine.TransactionType  == SMATransactionType::Hour         &&
+        #                  serviceOrderLine.SignOff          == NoYes::No
+        #        {
+        #            if (WPAWorkcardTable::validateWorkcard(serviceOrderLine))
+        #            {
+        #                args.record(serviceOrderLine);
+        #                menuFunction.run(args);
+        #                sentRecords ++;
+        #            }
+        #        }
+        #    }
         #    ;
-        #    args = new Args();
+        #    if (_args.record().dataSource())
+        #    {
+        #        formDataSource = _args.record().dataSource();
+        #        for (serviceOrderTable = formDataSource.getFirst(true) ? formDataSource.getFirst(true) : _args.record(); serviceOrderTable; serviceOrderTable = formDataSource.getNext())
+        #        {
+        #            sendServiceOrder();
+        #        }
+        #    }
+        #    else
+        #    {
+        #        serviceOrderTable = _args.record();
+        #        sendServiceOrder();
+        #    }
         #
-        #    serviceOrderTable = _args.record();
-        #    projTable           = ProjTable::find(serviceOrderTable.ProjId);
-        #    if (!WPAIntegrationLog::exist(projTable.TableId, projTable.RecId))
-        #    {
-        #        if (!WPAProject::validateProject(projTable))
-        #        {
-        #            throw error("@WPA162");
-        #        }
-        #        WPASendProject::sendProject(projTable);
-        #    }
-        #    menuFunction = new MenuFunction('WPASendServiceOrder',MenuItemType::Action);
-        #    while select serviceOrderLine
-        #        where serviceOrderLine.ServiceOrderId   == serviceOrderTable.ServiceOrderId &&
-        #              serviceOrderLine.TransactionType  == SMATransactionType::Hour         &&
-        #              serviceOrderLine.SignOff          == NoYes::No
-        #    {
-        #        if (WPAWorkcardTable::validateWorkcard(serviceOrderLine))
-        #        {
-        #            args.record(serviceOrderLine);
-        #            menuFunction.run(args);
-        #            sentRecords ++;
-        #        }
-        #    }
+        #
         #    info(strfmt("%1 records sent", sentRecords));
         #}
       ENDSOURCE

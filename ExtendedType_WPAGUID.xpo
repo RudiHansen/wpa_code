@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAGUID
       Label               #@SYS76311
       HelpText            #@WPA161
+      Origin              #{F546EFD6-8629-4BD6-8ECC-1BD5EDC0258F}
+      LegacyId            #50023
       StringSize          #36
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

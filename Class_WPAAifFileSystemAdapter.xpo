@@ -12,10 +12,11 @@ Formatversion: 1
       Name                #WPAAifFileSystemAdapter
       Extends             #AifFileSystemAdapter
       RunOn               #Server
+      Origin              #{D2EB2691-585E-4EB6-88D9-E94913F253F4}
+      LegacyId            #50031
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPAAifFileSystemAdapter extends AifFileSystemAdapter
         #{
@@ -24,13 +25,11 @@ Formatversion: 1
       SOURCE #getLabel
         #LabelString getLabel()
         #{
-        #    LabelString label = "@WPA168";
-        #
-        #    return label;
+        #    return "@WPA168";
         #}
       ENDSOURCE
       SOURCE #getSendAdapter
-        #public AifSendAdapter getSendAdapter()
+        #public AifSendAdapterBase getSendAdapter()
         #{
         #    return new WPAAifFileSystemSendAdapter();
         #}

@@ -8,6 +8,7 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #WPAWorkcardLine
+    EnforceFKRelation 0
     PROPERTIES
       Name                #WPAWorkcardLine
       Label               #@WPA70
@@ -22,45 +23,50 @@ Formatversion: 1
       ModifiedBy          #Yes
       CreatedDateTime     #Yes
       CreatedBy           #Yes
-      OccEnabled          #No
+      Origin              #{1D9F31FD-E0AD-4022-AC45-CA438CFD7597}
+      LegacyId            #50006
     ENDPROPERTIES
     
     FIELDS
-      FIELD #ItemId
+      FIELD #Comment
         STRING
         PROPERTIES
-          Name                #ItemId
+          Name                #Comment
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemId
-              #
-            ENDARRAY
-          StringSize          #50
+          Origin              #{ED89CD81-44F4-4309-B0FB-152F196156CF}
+          ExtendedDataType    #WPAComment
+          StringSize          #60
         ENDPROPERTIES
         
-      FIELD #ItemEanNumber
+      FIELD #Direction
+        ENUM
+        PROPERTIES
+          Name                #Direction
+          Table               #WPAWorkcardLine
+          Origin              #{F617D03D-66B8-4844-93C7-AAE54BD9C741}
+          LegacyId            #50015
+          EnumType            #WPADirection
+        ENDPROPERTIES
+        
+      FIELD #GUID
         STRING
         PROPERTIES
-          Name                #ItemEanNumber
+          Name                #GUID
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemEanNumber
-              #
-            ENDARRAY
+          Origin              #{337B612B-2AF8-4886-9A3A-73705E9D59C8}
+          LegacyId            #50018
+          ExtendedDataType    #WPAGUID
+          StringSize          #36
         ENDPROPERTIES
         
-      FIELD #ItemUnitPrice
-        REAL
+      FIELD #InventSerialId
+        STRING
         PROPERTIES
-          Name                #ItemUnitPrice
+          Name                #InventSerialId
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemUnitPrice
-              #
-            ENDARRAY
+          Origin              #{5F3FF9E3-6A22-41E0-A3EB-2D4AD6017473}
+          ExtendedDataType    #WPAInventSerialId
+          StringSize          #20
         ENDPROPERTIES
         
       FIELD #ItemDescription1
@@ -68,11 +74,9 @@ Formatversion: 1
         PROPERTIES
           Name                #ItemDescription1
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemDescription1
-              #
-            ENDARRAY
+          Origin              #{B1351662-DF7C-47D7-93E6-53F7D0F5B03D}
+          LegacyId            #50004
+          ExtendedDataType    #WPAItemDescription1
           StringSize          #60
         ENDPROPERTIES
         
@@ -81,60 +85,31 @@ Formatversion: 1
         PROPERTIES
           Name                #ItemDescription2
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemDescription2
-              #
-            ENDARRAY
+          Origin              #{B9B9D303-AEA7-43C1-9A0A-53D3797FC15E}
+          LegacyId            #50005
+          ExtendedDataType    #WPAItemDescription2
           StringSize          #60
         ENDPROPERTIES
         
-      FIELD #Qty
-        REAL
-        PROPERTIES
-          Name                #Qty
-          Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAQty
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #Price
-        REAL
-        PROPERTIES
-          Name                #Price
-          Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAPrice
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #ItemUnit
+      FIELD #ItemEanNumber
         STRING
         PROPERTIES
-          Name                #ItemUnit
+          Name                #ItemEanNumber
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemUnit
-              #
-            ENDARRAY
+          Origin              #{C90C608E-D413-4105-A9A6-ADFF828169EE}
+          LegacyId            #50002
+          ExtendedDataType    #WPAItemEanNumber
         ENDPROPERTIES
         
-      FIELD #StockLocationId
+      FIELD #ItemId
         STRING
         PROPERTIES
-          Name                #StockLocationId
+          Name                #ItemId
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAStockLocationId
-              #
-            ENDARRAY
+          Origin              #{739D37AE-B041-47FA-9F78-D18643191AED}
+          LegacyId            #50001
+          ExtendedDataType    #WPAItemId
+          StringSize          #50
         ENDPROPERTIES
         
       FIELD #ItemLineType
@@ -142,36 +117,29 @@ Formatversion: 1
         PROPERTIES
           Name                #ItemLineType
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemLineType
-              #
-            ENDARRAY
+          Origin              #{E8164131-0D88-495A-9302-CC872E95CA51}
+          LegacyId            #50010
+          ExtendedDataType    #WPAItemLineType
         ENDPROPERTIES
         
-      FIELD #ProductEmploymentCode
+      FIELD #ItemUnit
         STRING
         PROPERTIES
-          Name                #ProductEmploymentCode
+          Name                #ItemUnit
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAProductEmploymentCode
-              #
-            ENDARRAY
+          Origin              #{30037C2D-3D09-4188-9AE8-204324E46A8B}
+          LegacyId            #50008
+          ExtendedDataType    #WPAItemUnit
         ENDPROPERTIES
         
-      FIELD #Transferred
-        ENUM
+      FIELD #ItemUnitPrice
+        REAL
         PROPERTIES
-          Name                #Transferred
+          Name                #ItemUnitPrice
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPATransferred
-              #
-            ENDARRAY
-          EnumType            #WPATransferredEnum
+          Origin              #{DD912645-6701-492D-9FAC-3874ACEAF42C}
+          LegacyId            #50003
+          ExtendedDataType    #WPAItemUnitPrice
         ENDPROPERTIES
         
       FIELD #OrderId
@@ -179,47 +147,39 @@ Formatversion: 1
         PROPERTIES
           Name                #OrderId
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAOrderId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #WorkcardId
-        STRING
-        PROPERTIES
-          Name                #WorkcardId
-          Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAWorkcardId
-              #
-            ENDARRAY
+          Origin              #{16A19CC2-C835-4710-81AA-7434FE0D2070}
+          LegacyId            #50013
+          ExtendedDataType    #WPAOrderId
           StringSize          #20
         ENDPROPERTIES
         
-      FIELD #Direction
-        ENUM
+      FIELD #Price
+        REAL
         PROPERTIES
-          Name                #Direction
+          Name                #Price
           Table               #WPAWorkcardLine
-          EnumType            #WPADirection
+          Origin              #{8091BB76-8BBF-49B9-8143-5F02B3F456E6}
+          LegacyId            #50007
+          ExtendedDataType    #WPAPrice
         ENDPROPERTIES
         
-      FIELD #RefTableId
-        INT
+      FIELD #ProductEmploymentCode
+        INT64
         PROPERTIES
-          Name                #RefTableId
-          HelpText            #@SYS22567
-          AllowEditOnCreate   #No
-          AllowEdit           #No
+          Name                #ProductEmploymentCode
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #RefTableId
-              #
-            ENDARRAY
+          Origin              #{063564F4-1936-4AD5-82D1-AAFE430361B4}
+          ExtendedDataType    #WPAProductEmploymentCode
+        ENDPROPERTIES
+        
+      FIELD #Qty
+        REAL
+        PROPERTIES
+          Name                #Qty
+          Table               #WPAWorkcardLine
+          Origin              #{5C1E5AEC-572C-424F-A6EA-EB3228DFBA6B}
+          LegacyId            #50006
+          ExtendedDataType    #WPAQty
         ENDPROPERTIES
         
       FIELD #RefRecId
@@ -231,24 +191,32 @@ Formatversion: 1
           AllowEditOnCreate   #No
           AllowEdit           #No
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #RefRecId
-              #
-            ENDARRAY
+          Origin              #{8E6454DA-C492-422E-B989-E4BE5BBFACC7}
+          LegacyId            #50017
+          ExtendedDataType    #RefRecId
         ENDPROPERTIES
         
-      FIELD #GUID
+      FIELD #RefTableId
+        INT
+        PROPERTIES
+          Name                #RefTableId
+          HelpText            #@SYS22567
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAWorkcardLine
+          Origin              #{901739E2-D8D0-4308-9806-1870730D53E7}
+          LegacyId            #50016
+          ExtendedDataType    #RefTableId
+        ENDPROPERTIES
+        
+      FIELD #StockLocationId
         STRING
         PROPERTIES
-          Name                #GUID
+          Name                #StockLocationId
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #WPAGUID
-              #
-            ENDARRAY
-          StringSize          #36
+          Origin              #{BE43C42E-F3FB-43B2-80EF-581728D65F0F}
+          LegacyId            #50009
+          ExtendedDataType    #WPAStockLocationId
         ENDPROPERTIES
         
       FIELD #TransDate
@@ -256,11 +224,31 @@ Formatversion: 1
         PROPERTIES
           Name                #TransDate
           Table               #WPAWorkcardLine
-          ExtendedDataType    
-            ARRAY 
-              #TransDate
-              #
-            ENDARRAY
+          Origin              #{E70B2EBC-DF6A-4F5C-B537-B77919A93CF1}
+          LegacyId            #50019
+          ExtendedDataType    #TransDate
+        ENDPROPERTIES
+        
+      FIELD #Transferred
+        ENUM
+        PROPERTIES
+          Name                #Transferred
+          Table               #WPAWorkcardLine
+          Origin              #{792C039D-8A9F-4017-88BE-3C0848E68350}
+          LegacyId            #50012
+          ExtendedDataType    #WPATransferred
+          EnumType            #WPATransferredEnum
+        ENDPROPERTIES
+        
+      FIELD #WorkcardId
+        STRING
+        PROPERTIES
+          Name                #WorkcardId
+          Table               #WPAWorkcardLine
+          Origin              #{CC6F0533-9DD5-4277-B316-14168D8598B2}
+          LegacyId            #50014
+          ExtendedDataType    #WPAWorkcardId
+          StringSize          #20
         ENDPROPERTIES
         
     ENDFIELDS
@@ -281,10 +269,10 @@ Formatversion: 1
           #ItemUnit
           #StockLocationId
           #ItemLineType
-          #ProductEmploymentCode
           #Transferred
           #OrderId
           #WorkcardId
+          #Comment
         ENDGROUPFIELDS
       ENDGROUP
       GROUP #AutoLookup
@@ -311,12 +299,12 @@ Formatversion: 1
           #ItemUnitPrice
           #ItemDescription1
           #ItemDescription2
+          #InventSerialId
           #Qty
           #Price
           #ItemUnit
           #StockLocationId
           #ItemLineType
-          #ProductEmploymentCode
           #Transferred
           #OrderId
           #WorkcardId
@@ -324,6 +312,7 @@ Formatversion: 1
           #RefTableId
           #RefRecId
           #GUID
+          #Comment
         ENDGROUPFIELDS
       ENDGROUP
     ENDGROUPS
@@ -332,6 +321,8 @@ Formatversion: 1
       #TransferredIdx
       PROPERTIES
         Name                #TransferredIdx
+        Origin              #{A65B2235-5352-4210-9701-1792C343732E}
+        LegacyId            #50001
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -341,6 +332,8 @@ Formatversion: 1
       #OrderIdx
       PROPERTIES
         Name                #OrderIdx
+        Origin              #{2F9063BC-3874-449E-A185-179FBCFDBF6D}
+        LegacyId            #50002
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -350,6 +343,8 @@ Formatversion: 1
       #OrderWorkcardIdx
       PROPERTIES
         Name                #OrderWorkcardIdx
+        Origin              #{58787689-38CD-4A46-80F4-514CC98CA136}
+        LegacyId            #50003
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -360,6 +355,8 @@ Formatversion: 1
       #RefIdx
       PROPERTIES
         Name                #RefIdx
+        Origin              #{537417B9-B408-490C-8BB6-257C263DA770}
+        LegacyId            #50004
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -367,7 +364,19 @@ Formatversion: 1
         #RefRecId
       ENDINDEXFIELDS
       
+      #HcmWorkerIdx
+      PROPERTIES
+        Name                #HcmWorkerIdx
+        Origin              #{FA6FB37C-E107-41D2-A808-E87835940E2B}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ProductEmploymentCode
+      ENDINDEXFIELDS
+      
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
       REFERENCE #WPAWorkcardTable
         PROPERTIES
@@ -402,13 +411,18 @@ Formatversion: 1
     ENDDELETEACTIONS
     
     METHODS
-      Version: 3
       SOURCE #initValue
         #public void initValue()
         #{
         #    super();
         #
         #    this.GUID   = WINAPIServer::createGUID();
+        #}
+      ENDSOURCE
+      SOURCE #workerName
+        #public display HcmWorkerName workerName()
+        #{
+        #    return HcmWorker::find(this.ProductEmploymentCode).name();
         #}
       ENDSOURCE
       SOURCE #existGUID
@@ -433,8 +447,7 @@ Formatversion: 1
         #    if (_gUID)
         #    {
         #        select firstonly workcardLine
-        #            where workcardLine.GUID         == _gUID    &&
-        #                  workcardLine.Direction    == _direction;
+        #            where workcardLine.GUID == _gUID;
         #    }
         #
         #    return workcardLine;
@@ -451,17 +464,18 @@ Formatversion: 1
         #    {
         #        workcardLine.clear();
         #        workcardLine.initValue();
-        #        workcardLine.OrderId            = _forecastSales.ProjId;
-        #        workcardLine.WorkcardId         = _projForecastEmpl.TransId;
-        #        workcardLine.ItemId             = _itemId;
-        #        workcardLine.ItemUnitPrice      = _forecastSales.SalesPrice;
-        #        workcardLine.ItemDescription1   = _forecastSales.itemName();
-        #        workcardLine.ItemDescription2   = _forecastSales.Comment;
-        #        workcardLine.Qty                = _forecastSales.SalesQty;
-        #        workcardLine.Price              = _forecastSales.Amount;
-        #        workcardLine.ItemLineType       = "0";
-        #        workcardLine.RefTableId         = _forecastSales.TableId;
-        #        workcardLine.RefRecId           = _forecastSales.RecId;
+        #        workcardLine.OrderId                = _forecastSales.ProjId;
+        #        workcardLine.WorkcardId             = _projForecastEmpl.TransId;
+        #        workcardLine.ItemId                 = _itemId;
+        #        workcardLine.ItemUnitPrice          = _forecastSales.SalesPrice;
+        #        workcardLine.ItemDescription1       = _forecastSales.itemName();
+        #        workcardLine.ItemDescription2       = _forecastSales.Comment;
+        #        workcardLine.Qty                    = _forecastSales.SalesQty;
+        #        workcardLine.Price                  = _forecastSales.Amount;
+        #        workcardLine.ItemLineType           = "0";
+        #        workcardLine.RefTableId             = _forecastSales.TableId;
+        #        workcardLine.RefRecId               = _forecastSales.RecId;
+        #        workcardLine.ProductEmploymentCode  = _projForecastEmpl.Worker;
         #        workcardLine.insert();
         #    }
         #
@@ -478,16 +492,17 @@ Formatversion: 1
         #    {
         #        workcardLine.clear();
         #        workcardLine.initValue();
-        #        workcardLine.OrderId            = _projForecastEmpl.ProjId;
-        #        workcardLine.WorkcardId         = _projForecastEmpl.TransId;
-        #        workcardLine.ItemId             = _itemId;
-        #        workcardLine.ItemUnitPrice      = _projForecastEmpl.SalesPrice;
-        #        workcardLine.ItemDescription1   = _projForecastEmpl.Txt;
-        #        workcardLine.Qty                = _projForecastEmpl.Qty;
-        #        workcardLine.Price              = _projForecastEmpl.Qty*_projForecastEmpl.SalesPrice;
-        #        workcardLine.ItemLineType       = "1";
-        #        workcardLine.RefTableId         = _projForecastEmpl.TableId;
-        #        workcardLine.RefRecId           = _projForecastEmpl.RecId;
+        #        workcardLine.OrderId                = _projForecastEmpl.ProjId;
+        #        workcardLine.WorkcardId             = _projForecastEmpl.TransId;
+        #        workcardLine.ItemId                 = _itemId;
+        #        workcardLine.ItemUnitPrice          = _projForecastEmpl.SalesPrice;
+        #        workcardLine.ItemDescription1       = _projForecastEmpl.Txt;
+        #        workcardLine.Qty                    = _projForecastEmpl.Qty;
+        #        workcardLine.Price                  = _projForecastEmpl.Qty*_projForecastEmpl.SalesPrice;
+        #        workcardLine.ItemLineType           = "1";
+        #        workcardLine.RefTableId             = _projForecastEmpl.TableId;
+        #        workcardLine.RefRecId               = _projForecastEmpl.RecId;
+        #        workcardLine.ProductEmploymentCode  = _projForecastEmpl.Worker;
         #        workcardLine.insert();
         #    }
         #
@@ -513,16 +528,16 @@ Formatversion: 1
         #        workcardLine.RefRecId           = _sMAServiceOrderLine.RecId;
         #    }
         #
-        #    workcardLine.ItemId             = _itemId;
-        #    workcardLine.ItemEanNumber      = _barcode;
-        #    workcardLine.ItemUnitPrice      = _sMAServiceOrderLine.ProjSalesPrice;
-        #    workcardLine.ItemDescription1   = _sMAServiceOrderLine.Description;
-        #    workcardLine.ItemDescription2   = _sMAServiceOrderLine.DescriptionService;
-        #    workcardLine.Qty                = _sMAServiceOrderLine.Qty;
-        #    workcardLine.Price              = _sMAServiceOrderLine.Qty*_sMAServiceOrderLine.ProjSalesPrice;
-        #    workcardLine.ItemUnit           = _sMAServiceOrderLine.Unit;
-        #    workcardLine.ItemLineType       = _itemLineType;
-        #
+        #    workcardLine.ItemId                 = _itemId;
+        #    workcardLine.ItemEanNumber          = _barcode;
+        #    workcardLine.ItemUnitPrice          = _sMAServiceOrderLine.ProjSalesPrice;
+        #    workcardLine.ItemDescription1       = _sMAServiceOrderLine.Description;
+        #    workcardLine.ItemDescription2       = _sMAServiceOrderLine.DescriptionService;
+        #    workcardLine.Qty                    = _sMAServiceOrderLine.Qty;
+        #    workcardLine.Price                  = _sMAServiceOrderLine.Qty*_sMAServiceOrderLine.ProjSalesPrice;
+        #    workcardLine.ItemUnit               = _sMAServiceOrderLine.Unit;
+        #    workcardLine.ItemLineType           = _itemLineType;
+        #    workcardLine.ProductEmploymentCode  = _sMAServiceOrderLine.Worker;
         #    if (workcardLine)
         #    {
         #        workcardLine.update();

@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAFileName
       Label               #Specific filename
       HelpText            #Specific filename without extension
+      Origin              #{177BA1AA-F7AF-478A-860D-8F2F46E41E7E}
+      LegacyId            #50021
       StringSize          #20
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

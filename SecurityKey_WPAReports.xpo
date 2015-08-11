@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPAReports
       Label               #@SYS80071
       ParentKey           #WPA
+      Origin              #{22F8EC36-38E6-4968-BA05-B2B19FC4623E}
+      LegacyId            #50007
     ENDPROPERTIES
     
   ENDSECURITYKEY

@@ -1,0 +1,22 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: initNumberSeqModule unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #initNumberSeqModule
+    #static void initNumberSeqModule(Args _args)
+    #{
+    #    NumberSeqModuleBudget n = new NumberSeqModuleBudget();
+    #    n.load();
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{4ADFDB2F-0655-4F32-B034-FC1C3F6884A3}
+  ENDPROPERTIES
+  
+
+***Element: END

@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPASetup
       Label               #@SYS12687
       ParentKey           #WPA
+      Origin              #{C1ED0C54-92BE-4D6A-A133-1F607ECD3769}
+      LegacyId            #50009
     ENDPROPERTIES
     
   ENDSECURITYKEY

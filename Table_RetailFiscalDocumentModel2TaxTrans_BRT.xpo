@@ -1,0 +1,290 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalDocumentModel2TaxTrans_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalDocumentModel2TaxTrans_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalDocumentModel2TaxTrans_BRT
+      Label               #@RET4040065
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{061D9F81-0401-475B-A8DB-47DD470D3E72}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #FiscalValue
+        ENUM
+        PROPERTIES
+          Name                #FiscalValue
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{E8EB1F14-9969-4D7E-80D9-F159ACCD06BC}
+          EnumType            #TaxFiscalValue_BR
+        ENDPROPERTIES
+        
+      FIELD #LineNum
+        REAL
+        PROPERTIES
+          Name                #LineNum
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{EAA9FA76-F1EE-417C-B32B-43755D2F3CBB}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{3A109113-B8B8-46C0-AEED-294EC0CB3581}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{A4E6BCC0-177C-4E14-8B48-0B2C1689C5FA}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{FA6CAC19-04F3-4E05-869A-BAAE872A8922}
+        ENDPROPERTIES
+        
+      FIELD #TaxAmount
+        REAL
+        PROPERTIES
+          Name                #TaxAmount
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{C7F34624-D2C5-4A6C-9ED5-3AC4BAE889B1}
+        ENDPROPERTIES
+        
+      FIELD #TaxationCode
+        STRING
+        PROPERTIES
+          Name                #TaxationCode
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{79B5D9F8-D43B-4819-BF19-1175E345082D}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #TaxationOrigin
+        ENUM
+        PROPERTIES
+          Name                #TaxationOrigin
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{A98CE269-29C6-4643-8123-585649527E04}
+          EnumType            #FITaxationOrigin_BR
+        ENDPROPERTIES
+        
+      FIELD #TaxBaseAmount
+        REAL
+        PROPERTIES
+          Name                #TaxBaseAmount
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{85B23C1C-7F18-4D86-BE20-69450751C4C5}
+        ENDPROPERTIES
+        
+      FIELD #TaxCode
+        STRING
+        PROPERTIES
+          Name                #TaxCode
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{024C5525-6535-4D12-859F-E311C70B9D95}
+        ENDPROPERTIES
+        
+      FIELD #TaxReductionPct
+        REAL
+        PROPERTIES
+          Name                #TaxReductionPct
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{B663074A-53AC-4E15-BBEC-F3D0CB7282EF}
+        ENDPROPERTIES
+        
+      FIELD #TaxType
+        ENUM
+        PROPERTIES
+          Name                #TaxType
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{41A76D2F-9E59-4C1B-89B4-302CF3DC7013}
+          EnumType            #TaxType_BR
+        ENDPROPERTIES
+        
+      FIELD #TaxValue
+        REAL
+        PROPERTIES
+          Name                #TaxValue
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{EC442A35-4467-4E61-90B3-DBA21CF5F294}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{A534B392-3314-497E-A7EA-45F8F5FCF148}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailFiscalDocumentModel2TaxTrans_BRT
+          Origin              #{915C052C-03AC-4542-AE21-3F87842B13D1}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{FA5AF440-DC86-48D8-A90E-95FCB28CF3FB}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #StoreId
+        #TerminalId
+        #TransactionId
+        #TaxType
+        #LineNum
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalDocumentModel2TaxTrans_BRT cursor)
+        #{
+        #    RetailFiscalDocumentModel2TaxTrans_BR target;
+        #    RetailFiscalDocumentModel2TaxTrans_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint TaxLineIdx
+        #                where (target.@LineNum==cursor2.@LineNum && target.@TaxType==cursor2.@TaxType && target.@TransactionId==cursor2.@TransactionId && target.@TerminalId==cursor2.@TerminalId && target.@StoreId==cursor2.@StoreId);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @FiscalValue,
+        #                    @LineNum,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @StoreId,
+        #                    @TaxAmount,
+        #                    @TaxationCode,
+        #                    @TaxationOrigin,
+        #                    @TaxBaseAmount,
+        #                    @TaxCode,
+        #                    @TaxReductionPct,
+        #                    @TaxType,
+        #                    @TaxValue,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @FiscalValue,
+        #                    @LineNum,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @StoreId,
+        #                    @TaxAmount,
+        #                    @TaxationCode,
+        #                    @TaxationOrigin,
+        #                    @TaxBaseAmount,
+        #                    @TaxCode,
+        #                    @TaxReductionPct,
+        #                    @TaxType,
+        #                    @TaxValue,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailFiscalDocumentModel2TaxTrans_BRT cursor)
+        #{
+        #    RetailFiscalDocumentModel2TaxTrans_BRT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailFiscalDocumentModel2TaxTrans_BR), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

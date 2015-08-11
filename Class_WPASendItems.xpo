@@ -11,26 +11,23 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASendItems
       Extends             #AxdSend
-      RunOn               #Called from
+      Origin              #{F85DEE3F-D0E1-40DF-ADF5-861ABDF6C150}
+      LegacyId            #50083
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPASendItems extends AxdSend
         #{
         #    ItemId  itemId;
         #}
       ENDSOURCE
-      SOURCE #getEndpoint
-        #AifEndpointId getEndpoint()
+      SOURCE #parmDocumentClassId
+        #public AifDocumentClassId parmDocumentClassId(AifDocumentClassId _documentClassId = aifDocumentClassId)
         #{
-        #    ;
-        #    this.retrieveEndPoints();
+        #    aifDocumentClassId = _documentClassId;
         #
-        #    select firstonly tmpAifEndPoint;
-        #
-        #    return tmpAifEndPoint.EndpointId;
+        #    return aifDocumentClassId;
         #}
       ENDSOURCE
       SOURCE #parmItemId
@@ -69,6 +66,7 @@ Formatversion: 1
         #    QueryRun            ret;
         #    QueryBuildRange     qbr_ItemId;
         #    ;
+        #
         #    if (!ret)
         #    {
         #        ret = super();
@@ -117,28 +115,37 @@ Formatversion: 1
       SOURCE #main
         #static public void main(Args args)
         #{
-        #    WPASendItems        WPASendItems;
+        #    WPASendItems        sendItems;
         #    AifConstraintList   aifConstraintList;
         #    AifConstraint       aifConstraint;
+        #    EcoResProduct       ecoResProduct;
         #    InventTable         inventTable;
         #    ;
         #
-        #    WPASendItems        = new WPASendItems();
+        #    sendItems           = new WPASendItems();
         #    aifConstraintList   = new AifConstraintList();
         #    aifConstraint       = new AifConstraint();
-        #    if (args.record())
+        #
+        #    if (args && args.record() && args.record().TableId == tableNum(EcoResProduct))
+        #    {
+        #        ecoResProduct = args.record();
+        #        sendItems.parmItemId(ecoResProduct.DisplayProductNumber);
+        #    }
+        #    if (args && args.record() && args.record().TableId == tableNum(InventTable))
         #    {
         #        inventTable = args.record();
-        #        WPASendItems.parmItemId(inventTable.ItemId);
+        #        sendItems.parmItemId(inventTable.ItemId);
         #    }
         #    aifConstraint.parmType(AifConstraintType::NoConstraint);
         #    aifConstraintList.addConstraint(aifConstraint);
         #
-        #    WPASendItems.parmShowDocPurpose(true) ;
-        #    WPASendItems.parmServiceClassId(classnum(WPAInventTableService));
-        #    WPASendItems.parmSendActionType(AifSendActionType::SendByQuery);
-        #    WPASendItems.parmEndPoint(WPASendItems.getEndpoint());
-        #    WPASendItems.sendMultipleDocuments(classnum(WPAInventTable), classnum(WPAInventTableService), AifSendMode::Async, aifConstraintList);
+        #    sendItems.parmOutboundPortName("WPAItems");
+        #    sendItems.parmShowDocPurpose(true) ;
+        #    sendItems.parmServiceClassId(classnum(WPAInventTableService));
+        #    sendItems.parmSendActionType(AifSendActionType::SendByQuery);
+        #    sendItems.parmDocumentClassId(classnum(WPAInventTable));
+        #
+        #    sendItems.sendMultipleDocuments(classnum(WPAInventTable), classnum(WPAInventTableService), AifSendMode::Async, aifConstraintList);
         #}
       ENDSOURCE
     ENDMETHODS

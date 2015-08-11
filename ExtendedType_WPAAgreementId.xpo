@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAAgreementId
       Label               #@WPA23
       HelpText            #@WPA24
+      Origin              #{7303597A-4D1D-418A-B82A-CABF8C4DAEBC}
+      LegacyId            #50005
       Extends             #SMAAgreementId
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

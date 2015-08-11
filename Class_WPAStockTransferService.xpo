@@ -12,10 +12,11 @@ Formatversion: 1
       Name                #WPAStockTransferService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{745DAFFF-A1E4-47D0-8976-EC98CE56FB88}
+      LegacyId            #50116
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPAStockTransferService extends AifDocumentService
         #{
@@ -24,7 +25,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #create
-        #
+        #[AifDocumentCreateAttribute, SysEntryPointAttribute(true)]
         #public AifEntityKeyList create(WPAStockTransferTable _wPAStockTransferTable)
         #{
         #    ;

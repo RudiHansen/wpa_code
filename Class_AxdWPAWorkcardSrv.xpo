@@ -1,0 +1,254 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxdWPAWorkcardSrv unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxdWPAWorkcardSrv
+    PROPERTIES
+      Name                #AxdWPAWorkcardSrv
+      Extends             #AxdBase
+      RunOn               #Server
+      Origin              #{25823504-F15C-476C-9F8F-1AF84EC6A7E6}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #class AxdWPAWorkcardSrv extends AxdBase
+        #{
+        #    #define.WPAWorkcardTable_DataSourceName('WPAWorkcardTable')
+        #    #define.WPAWorkcardLine_DataSourceName('WPAWorkcardLine')
+        #}
+        #
+      ENDSOURCE
+      SOURCE #create
+        #public AifEntityKey create(AifDocumentXml _xml, AifEndpointActionPolicyInfo _actionPolicyInfo, AifConstraintList _constraintList)
+        #{
+        #    AifEntityKey ret;
+        #
+        #    ret = super(_xml, _actionPolicyInfo, _constraintList);
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #deleteList
+        #public AifResult deleteList(AifEntityKeyList            _aifEntityKeyList,
+        #                            AifEndpointActionPolicyInfo _actionPolicyInfo,
+        #                            AifConstraintListCollection _constraintListCollection)
+        #{
+        #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findEntityKeyList
+        #public AifEntityKeyList findEntityKeyList(AifQueryCriteria            _queryCriteria,
+        #                                          AifEndpointActionPolicyInfo _actionPolicyInfo)
+        #{
+        #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getActionList
+        #public AifActionInfoList getActionList()
+        #{
+        #    AifActionInfoList   Actions = new AifActionInfoList();
+        #    AifActionInfo       aifActionInfo;
+        #    ;
+        #    aifActionInfo = new AifActionInfo();
+        #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, findList), this.getName()));
+        #    aifActionInfo.parmActionType(AifActionType::QueryDocuments);
+        #    aifActionInfo.parmExternalName(aifActionInfo.parmActionId());
+        #    aifActionInfo.parmMethodName(methodstr(AxdBase, findList));
+        #    //TODO make label
+        #    aifActionInfo.parmLabel("Send  from query");
+        #    //TODO make label for description
+        #    aifActionInfo.parmDescription("Selects  through a query and sends them in an XML string.");
+        #    aifActionInfo.parmDisplayMenuItemName(menuitemdisplaystr(AifDocConfiguration));
+        #
+        #    actions.add(aifActionInfo);
+        #
+        #    aifActionInfo = new AifActionInfo();
+        #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, readList), this.getName()));
+        #    aifActionInfo.parmActionType(AifActionType::SendDocumentList);
+        #    aifActionInfo.parmExternalName(aifActionInfo.parmActionId());
+        #    aifActionInfo.parmMethodName(methodstr(AxdBase, readList));
+        #    //TODO make label
+        #    aifActionInfo.parmLabel("Send list of ");
+        #    //TODO make label for description
+        #    aifActionInfo.parmDescription("Sends  from the system in an XML string.");
+        #    aifActionInfo.parmDisplayMenuItemName(menuitemdisplaystr(AifDocConfiguration));
+        #
+        #    actions.add(aifActionInfo);
+        #
+        #    aifActionInfo = new AifActionInfo();
+        #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, createList), this.getName()));
+        #    aifActionInfo.parmActionType(AifActionType::ReceiveDocumentList);
+        #    aifActionInfo.parmExternalName(aifActionInfo.parmActionId());
+        #    aifActionInfo.parmMethodName(methodstr(AxdBase, createList));
+        #    //TODO  make label
+        #    aifActionInfo.parmLabel("Receive ");
+        #    //TODO make label for description of create list
+        #    aifActionInfo.parmDescription("Receives  in an XML string and creates them in the system.");
+        #    aifActionInfo.parmDisplayMenuItemName(menuitemdisplaystr(AifDocConfiguration));
+        #
+        #    actions.add(aifActionInfo);
+        #
+        #    aifActionInfo = new AifActionInfo();
+        #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, updateList), this.getName()));
+        #    aifActionInfo.parmActionType(AifActionType::ProcessEntityList);
+        #    aifActionInfo.parmExternalName(aifActionInfo.parmActionId());
+        #    aifActionInfo.parmMethodName(methodstr(AxdBase, updateList));
+        #    //TODO  make label
+        #    aifActionInfo.parmLabel("Update ");
+        #    //TODO make label for description of create list
+        #    aifActionInfo.parmDescription("Receives  in an XML string and updates them in the system.");
+        #    aifActionInfo.parmDisplayMenuItemName(menuitemdisplaystr(AifDocConfiguration));
+        #
+        #    actions.add(aifActionInfo);
+        #
+        #    return actions;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getConstraintList
+        #public void getConstraintList(Common _curRec, AifConstraintList _constraintList)
+        #{
+        #    AifConstraint  aifConstraint = new AifConstraint();
+        #    // TODO verify right table
+        #    WPAWorkcardTable    WPAWorkcardTable;
+        #    ;
+        #    if (!(_curRec is WPAWorkcardTable))
+        #    {
+        #         throw error(strfmt("@SYS23396",funcname()));
+        #    }
+        #    WPAWorkcardTable = _curRec ;
+        #    // TODO set right constraint type
+        #    aifConstraint.parmType(AIFConstraintType::NoConstraint);
+        #    // TODO set right field for constraint id
+        #    //aifConstraint.parmId(WPAWorkcardTable.IdType);
+        #    _constraintList.addConstraint(aifConstraint) ;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getLabel
+        #public LabelString getLabel()
+        #{
+        #    //TODO Check if name is OK and create label
+        #    return "";
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getQueryName
+        #public QueryName getQueryName()
+        #{
+        #    return querystr(WPAWorkcard);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #prepareForSaveExtended
+        #public boolean prepareForSaveExtended(
+        #    AxdStack                    _axBcStack,
+        #    str                         _dataSourceName,
+        #    AxdRecordProcessingContext  _recordProcessingContext,
+        #    AxInternalBase              _childRecord)
+        #{
+        #    AxWPAWorkcardTable axbc_WPAWorkcardTable;
+        #    AxWPAWorkcardLine  axbc_WPAWorkcardLine;
+        #
+        #
+        #    //TODO: Add code here to ensure that required fields specified in the initMandatoryFieldsMap method are sent in by the service caller.
+        #
+        #    switch (_dataSourceName)
+        #    {
+        #        // ----------------------------------------------------------------------
+        #        // Process WPAWorkcardTable records
+        #        // ----------------------------------------------------------------------
+        #        case #WPAWorkcardTable_DataSourceName:
+        #
+        #            axbc_WPAWorkcardTable = _axBcStack.top();
+        #            //TODO Put validating code for WPAWorkcardTable here
+        #
+        #            switch (_recordProcessingContext)
+        #            {
+        #                // Ensure WPAWorkcardTable record is saved
+        #                case AxdRecordProcessingContext::AfterAllChildRecordsProcessed:
+        #                    if (!axbc_WPAWorkcardTable.isProcessed())
+        #                    {
+        #                        return true;
+        #                    }
+        #
+        #                    return false;
+        #            }
+        #
+        #            return false;
+        #
+        #        // ----------------------------------------------------------------------
+        #        // Process WPAWorkcardLine records
+        #        // ----------------------------------------------------------------------
+        #        case #WPAWorkcardLine_DataSourceName:
+        #
+        #            axbc_WPAWorkcardLine = _axBcStack.top();
+        #            //TODO Put validating code for WPAWorkcardLine here
+        #
+        #            switch (_recordProcessingContext)
+        #            {
+        #                // Ensure WPAWorkcardLine record is saved
+        #                case AxdRecordProcessingContext::AfterAllChildRecordsProcessed:
+        #                    if (!axbc_WPAWorkcardLine.isProcessed())
+        #                    {
+        #                        return true;
+        #                    }
+        #
+        #                    return false;
+        #            }
+        #
+        #            return false;
+        #
+        #        // ----------------------------------------------------------------------
+        #        // Unsupported data sources
+        #        // ----------------------------------------------------------------------
+        #        default:
+        #            error(strfmt("@SYS88979",classId2Name(classidget(_axBcStack.top()))));
+        #            return false;
+        #    }
+        #
+        #    return false;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #prepareForUpdateExtended
+        #public boolean prepareForUpdateExtended(
+        #    AxdStack                    _axBcStack,
+        #    str                         _dataSourceName,
+        #    AxdRecordProcessingContext  _recordProcessingContext,
+        #    AxInternalBase              _childRecord)
+        #{
+        #    return this.prepareForSaveExtended(
+        #        _axBcStack,
+        #        _dataSourceName,
+        #        _recordProcessingContext,
+        #        _childRecord);
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

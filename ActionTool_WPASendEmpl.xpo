@@ -15,9 +15,9 @@ Formatversion: 1
       HelpText            #@WPA141
       ObjectType          #Class
       Object              #WPASendEmpl
-      RunOn               #Called from
       ConfigurationKey    #WPAIntegration
       SecurityKey         #WPAPeriodic
+      Origin              #{3119F961-A885-483B-B60E-BF28A0EA7675}
     ENDPROPERTIES
     
   ENDMENUITEM

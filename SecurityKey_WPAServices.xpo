@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPAServices
       Label               #@WPA173
       ConfigurationKey    #WPAIntegration
+      Origin              #{E4C1A2B8-34D7-4DE7-AC60-C2B762DF68AE}
+      LegacyId            #50008
     ENDPROPERTIES
     
   ENDSECURITYKEY

@@ -11,9 +11,10 @@ Formatversion: 1
     Type: 3
     PROPERTIES
       Name                #WPAProjJournalsPost
-      Label               #@WPA233
+      Label               #Post project journals
       ObjectType          #Class
       Object              #WPAProjJournalsPost
+      Origin              #{9BA5E6C9-06FA-4E3C-A987-B4B533E1EB81}
     ENDPROPERTIES
     
   ENDMENUITEM

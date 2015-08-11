@@ -1,0 +1,207 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAInventSerial_InventSerial_1 unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAInventSerial_InventSerial_1
+    PROPERTIES
+      Name                #WPAInventSerial_InventSerial_1
+      Extends             #AfStronglyTypedDataContainer
+      Origin              #{F5F41678-E297-4E70-836A-13A1DD8C9DC5}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventSerial_InventSerial_1</c> class is the data object class that is exposed through the <c>WPAInventSerialService</c> class.
+        #/// </summary>
+        ##AxdWPAInventSerialDCT
+        #[AifDataContainerTypeAttribute(#WPAInventSerial_InventSerial_1)]
+        #class WPAInventSerial_InventSerial_1 extends AfStronglyTypedDataContainer
+        #{
+        #    #define.RFIDTagId('RFIDTagId')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.ProdDate('ProdDate')
+        #    #define.ItemId('ItemId')
+        #    #define.InventSum_1('InventSum_1')
+        #    #define.InventSerialId('InventSerialId')
+        #    #define.Description('Description')
+        #    #define._DocumentHash('_DocumentHash')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createInventSum_1
+        #public AfStronglyTypedDataContainerList createInventSum_1()
+        #{
+        #    return this.get_NewList(#InventSum_1);
+        #}
+      ENDSOURCE
+      SOURCE #exists_DocumentHash
+        #public boolean exists_DocumentHash()
+        #{
+        #    return this.exists(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #existsDescription
+        #public boolean existsDescription()
+        #{
+        #    return this.exists(#Description);
+        #}
+      ENDSOURCE
+      SOURCE #existsInventSerialId
+        #public boolean existsInventSerialId()
+        #{
+        #    return this.exists(#InventSerialId);
+        #}
+      ENDSOURCE
+      SOURCE #existsInventSum_1
+        #public boolean existsInventSum_1()
+        #{
+        #    return this.exists(#InventSum_1);
+        #}
+      ENDSOURCE
+      SOURCE #existsItemId
+        #public boolean existsItemId()
+        #{
+        #    return this.exists(#ItemId);
+        #}
+      ENDSOURCE
+      SOURCE #existsProdDate
+        #public boolean existsProdDate()
+        #{
+        #    return this.exists(#ProdDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsRFIDTagId
+        #public boolean existsRFIDTagId()
+        #{
+        #    return this.exists(#RFIDTagId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #parm_DocumentHash
+        #public str parm_DocumentHash(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#_DocumentHash, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #parmDescription
+        #public InventSerialText parmDescription(InventSerialText _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Description, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Description);
+        #}
+      ENDSOURCE
+      SOURCE #parmInventSerialId
+        #public InventSerialId parmInventSerialId(InventSerialId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#InventSerialId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#InventSerialId);
+        #}
+      ENDSOURCE
+      SOURCE #parmInventSum_1
+        #public AfStronglyTypedDataContainerList parmInventSum_1(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#InventSum_1, _value);
+        #    }
+        #
+        #    return this.get_List(#InventSum_1);
+        #}
+      ENDSOURCE
+      SOURCE #parmItemId
+        #public str parmItemId(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ItemId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ItemId);
+        #}
+      ENDSOURCE
+      SOURCE #parmProdDate
+        #public InventSerialProdDate parmProdDate(InventSerialProdDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProdDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProdDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public RecId parmRecId(RecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmRFIDTagId
+        #public RFIDTagId parmRFIDTagId(RFIDTagId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RFIDTagId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RFIDTagId);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

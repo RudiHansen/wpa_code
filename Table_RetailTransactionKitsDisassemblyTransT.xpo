@@ -1,0 +1,252 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionKitsDisassemblyTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionKitsDisassemblyTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionKitsDisassemblyTransT
+      Label               #@REX4040000
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{09138FA9-FD2F-4C84-8D8C-67F8432F8A01}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{962F18D1-F53A-4D36-8A7E-A95BA5EBDC3E}
+        ENDPROPERTIES
+        
+      FIELD #ItemId
+        STRING
+        PROPERTIES
+          Name                #ItemId
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{E1122367-C6AF-44BA-ADAC-2D59FF5DBA18}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #LineNum
+        REAL
+        PROPERTIES
+          Name                #LineNum
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{30B09A03-2633-40A4-A26C-D3E1AA18384F}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{B5F1F2CD-6AC1-4D89-85C7-568CE83D15FC}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #Qty
+        REAL
+        PROPERTIES
+          Name                #Qty
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{E20DBB77-D39C-48BC-8286-B0209407C310}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounter
+        INT
+        PROPERTIES
+          Name                #ReplicationCounter
+          Label               #@RET3920
+          HelpText            #@RET3921
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{A256EB83-F937-4F96-A4D9-62A319FC7A9F}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{CCB6A3A9-377E-4A8D-A5C9-FC45B659A7CD}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{BE2CCBDB-B7A6-4117-9563-81BE6567B3FA}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{4DC31113-68FC-413B-B708-B19B5E5F3F84}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #TransactionStatus
+        ENUM
+        PROPERTIES
+          Name                #TransactionStatus
+          Label               #@RET3321
+          HelpText            #@REX4040126
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{102119DA-6193-4A30-AA0E-56685486467B}
+          EnumType            #RetailEntryStatus
+        ENDPROPERTIES
+        
+      FIELD #VariantId
+        STRING
+        PROPERTIES
+          Name                #VariantId
+          Table               #RetailTransactionKitsDisassemblyTransT
+          Origin              #{B67230D2-50AC-425A-995D-C843D2289975}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{93E50422-8B28-4FFC-B09A-D1E7848CE4DC}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TransactionId
+        #StoreId
+        #TerminalId
+        #Channel
+        #LineNum
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionKitsDisassemblyTransT cursor)
+        #{
+        #    RetailTransactionKitsDisassemblyTrans target;
+        #    RetailTransactionKitsDisassemblyTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint TransactionTransIdx
+        #                where (target.@LineNum==cursor2.@LineNum && target.@Channel==cursor2.@Channel && target.@TerminalId==cursor2.@TerminalId && target.@StoreId==cursor2.@StoreId && target.@TransactionId==cursor2.@TransactionId);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @Channel,
+        #                    @ItemId,
+        #                    @LineNum,
+        #                    @Qty,
+        #                    @ReplicationCounter,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @TransactionStatus,
+        #                    @VariantId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @Channel,
+        #                    @ItemId,
+        #                    @LineNum,
+        #                    @Qty,
+        #                    @ReplicationCounter,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @TransactionStatus,
+        #                    @VariantId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionKitsDisassemblyTransT cursor)
+        #{
+        #    RetailTransactionKitsDisassemblyTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounter) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionKitsDisassemblyTrans), cursor2.ReplicationCounter);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

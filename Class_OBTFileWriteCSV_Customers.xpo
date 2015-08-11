@@ -12,10 +12,11 @@ Formatversion: 1
       Name                #OBTFileWriteCSV_Customers
       Extends             #OBTFileWriteCSV
       RunOn               #Server
+      Origin              #{A30F4630-224F-4B83-BBA5-3E1280159003}
+      LegacyId            #50107
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class OBTFileWriteCSV_Customers extends OBTFileWriteCSV
         #{
@@ -58,11 +59,7 @@ Formatversion: 1
       SOURCE #showQueryValues
         #public boolean showQueryValues()
         #{
-        #    boolean ret;
-        #    ;
-        #    ret = true;
-        #
-        #    return ret;
+        #    return true;
         #}
       ENDSOURCE
       SOURCE #unpack
@@ -92,26 +89,27 @@ Formatversion: 1
         #void writeFile()
         #{
         #    CustTable   custTable;
-        #    Address     address;
+        #    LogisticsPostalAddress  address;
         #    ;
         #
         #    while (queryRun.next())
         #    {
         #        custTable   = queryRun.get(tablenum(CustTable));
-        #        address     = queryRun.get(tablenum(Address));
+        #
+        #        address     = custTable.postalAddress();
+        #
         #        this.writeLine([custTable.AccountNum,
-        #                        custTable.Name,
+        #                        custTable.name(),
         #                        address.Street,
         #                        address.ZipCode,
         #                        address.City,
         #                        address.County,
         #                        address.CountryRegionId,
         #                        address.State,
-        #                        custTable.Email,
+        #                        custTable.email(),
         #                        custTable.CreditMax,
         #                        custTable.Currency]);
         #    }
-        #
         #}
       ENDSOURCE
       SOURCE #construct

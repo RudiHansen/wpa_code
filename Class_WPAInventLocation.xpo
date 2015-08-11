@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAInventLocation
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{671E583A-337D-455C-931D-9E76E1706219}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventLocation</c> class is the data object class that is exposed through the <c>WPAInventLocationService</c> class.
+        #/// </summary>
+        ##AxdWPAInventLocationDCT
+        #[AifDataContainerTypeAttribute(#WPAInventLocation)]
         #class WPAInventLocation extends AifDocument
         #{
         #    #define.SenderId('SenderId')
@@ -53,7 +57,7 @@ Formatversion: 1
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAInventLocation);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmDocPurpose
@@ -79,7 +83,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -115,7 +119,7 @@ Formatversion: 1
         #    xmlWriterSettings.indent(true);
         #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
         #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.getMessageId(), this.getQueryName()));
         #
         #    while(queryRun.next())
         #    {
@@ -125,7 +129,7 @@ Formatversion: 1
         #        node = root.appendChild(doc.createElement(#Location));
         #        this.wpa_addNotEmpty(node, doc, #LocationId  , inventLocation.InventLocationId);
         #        this.wpa_addNotEmpty(node, doc, #LocationName, inventLocation.Name);
-        #//  WPA_5_5_Upgrade      this.wpa_addNotEmpty(node, doc, #IsActive, 'True');
+        #        //  WPA_5_5_Upgrade this.wpa_addNotEmpty(node, doc, #IsActive, 'True');
         #    }
         #
         #    doc.writeTo(localXmlWriter);

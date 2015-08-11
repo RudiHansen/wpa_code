@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProject
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{A65FD612-6882-488E-A9FF-F6DD55C920D1}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAProject</c> class is the data object class that is exposed through the <c>WPAProjectService</c> class.
+        #/// </summary>
+        ##AxdWPAProjectDCT
+        #[AifDataContainerTypeAttribute(#WPAProject)]
         #class WPAProject extends AifDocument
         #{
         #    #define.SenderId('SenderId')
@@ -31,149 +35,6 @@ Formatversion: 1
         #{
         #    return this.get_NewList(#ProjTable);
         #}
-      ENDSOURCE
-      SOURCE #DEL_serialize
-        #public AifXml DEL_serialize()
-        #{
-        #    XmlDocument         doc = XmlDocument::newBlank();
-        #    XmlElement          root;
-        #    XmlElement          node;
-        #    XmlElement          subNode;
-        #    XmlElement          subSubNode;
-        #    XmlElement          subSubSubNode;
-        #
-        #    XMLWriterSettings   xmlWriterSettings = new XMLwriterSettings();
-        #    XMLWriter           localXmlWriter;
-        #
-        #    QueryRun            queryRun;
-        #
-        #    ProjTable                       projTable;
-        #    CustTable                       custTable;
-        #    Address                         address;
-        #//    SMAServiceObjectTable           sMAServiceObjectTable;
-        #
-        #    #define.ERPTOWPA                ('ERPTOWPA_SITE')
-        #    #define.Site                    ('Site')
-        #
-        #    #define.SiteId                  ('SiteId')
-        #    #define.SiteTypeId              ('SiteTypeId')
-        #    #define.ObjectState             ('ObjectState')
-        #
-        #    #define.Location                ('Location')
-        #    #define.LocationId              ('LocationId')
-        #    #define.LocationName            ('LocationName')
-        #    #define.Address1                ('Address1')
-        #    #define.Address2                ('Address2')
-        #    #define.HouseNumber             ('HouseNumber')
-        #    #define.StreetNumber            ('StreetNumber')
-        #    #define.PostalId                ('PostalId')
-        #    #define.PhoneNumber             ('PhoneNumber')
-        #    #define.MobileNumber            ('MobileNumber')
-        #    #define.EMail                   ('EMail')
-        #    #define.Fax                     ('Fax')
-        #
-        #    #define.Debitor                 ('Debitor')
-        #    #define.DebitorId               ('DebitorId')
-        #    #define.DebitorTypeId           ('DebitorTypeId')
-        #    #define.ObjectState             ('ObjectState')
-        #
-        #    #define.Placements              ('Placements')
-        #    #define.Placement               ('Placement')
-        #    #define.PlacementId             ('PlacementId')
-        #    #define.PlacementName           ('PlacementName')
-        #    #define.PlacementDescription    ('PlacementDescription')
-        #    #define.SiteId                  ('SiteId')
-        #    #define.PlacementTypeId         ('PlacementTypeId')
-        #
-        #    #define.ServiceObject            ('ServiceObject')
-        #    #define.ServiceObjectId          ('ServiceObjectId')
-        #    #define.ServiceObjectSerialNumber('ServiceObjectSerialNumber')
-        #    #define.ServiceObjectName        ('ServiceObjectName')
-        #    #define.ServiceObjectDescription ('ServiceObjectDescription')
-        #    #define.PlacementId              ('PlacementId')
-        #    #define.ServiceObjectTypeId      ('ServiceObjectTypeId')
-        #    #define.ObjectState              ('ObjectState')
-        #    ;
-        #
-        #    root = doc.appendChild(doc.createElement(#ERPTOWPA));
-        #
-        #    xmlWriterSettings.indent(true);
-        #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
-        #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
-        #
-        #    while(queryRun.next())
-        #    {
-        #        projTable = queryRun.get(tablenum(projTable));
-        #        custTable = queryRun.get(tablenum(CustTable));
-        #        address = queryRun.get(tablenum(Address));
-        #
-        #        node = root.appendChild(doc.createElement(#Site));
-        #
-        #        node.appendChild(doc.createElement(#SiteId))       .innerText(projTable.ProjId);
-        #        node.appendChild(doc.createElement(#SiteTypeId))   .innerText('0');
-        #        node.appendChild(doc.createElement(#ObjectState))  .innerText('1');
-        #
-        #        subNode = Node.appendChild(doc.createElement(#Location));
-        #
-        #        subNode.appendChild(doc.createElement(#LocationId))     .innerText(address.dataAreaId + '_' + int2str(address.TableId) + '_' + int642str(address.RecId));
-        #        subNode.appendChild(doc.createElement(#LocationName))   .innerText(address.Name);
-        #        subNode.appendChild(doc.createElement(#Address1))       .innerText(address.Address);
-        #        subNode.appendChild(doc.createElement(#Address2))       .innerText(projTable.DlvAddr);
-        #        subNode.appendChild(doc.createElement(#HouseNumber))    .innerText('');
-        #        subNode.appendChild(doc.createElement(#StreetNumber))   .innerText(address.Street);
-        #        subNode.appendChild(doc.createElement(#PostalId))       .innerText(address.ZipCode);
-        #        subNode.appendChild(doc.createElement(#PhoneNumber))    .innerText(address.Phone);
-        #        subNode.appendChild(doc.createElement(#MobileNumber))   .innerText(address.CellularPhone);
-        #        subNode.appendChild(doc.createElement(#Email))          .innerText(address.Email);
-        #        subNode.appendChild(doc.createElement(#Fax))            .innerText(address.TeleFax);
-        #
-        #
-        #        subNode = node.appendChild(doc.createElement(#Debitor));
-        #
-        #        subNode.appendChild(doc.createElement(#DebitorId))      .innerText(custTable.AccountNum);
-        #        subNode.appendChild(doc.createElement(#DebitorTypeId))  .innerText('0');
-        #        subNode.appendChild(doc.createElement(#ObjectState))    .innerText('1');
-        #
-        #        subSubNode = subNode.appendChild(doc.createElement(#Location));
-        #
-        #        subSubNode.appendChild(doc.createElement(#LocationId))     .innerText(custTable.dataAreaId + '_' + int2str(custTable.TableId)  +'_'+int642str(custTable.RecId));
-        #        subSubNode.appendChild(doc.createElement(#LocationName))   .innerText(custTable.Name);
-        #        subSubNode.appendChild(doc.createElement(#Address1))       .innerText(custTable.Address);
-        #        subSubNode.appendChild(doc.createElement(#Address2))       .innerText('');
-        #        subSubNode.appendChild(doc.createElement(#HouseNumber))    .innerText('');
-        #        subSubNode.appendChild(doc.createElement(#StreetNumber))   .innerText(custTable.Street);
-        #        subSubNode.appendChild(doc.createElement(#PostalId))       .innerText(custTable.ZipCode);
-        #        subSubNode.appendChild(doc.createElement(#PhoneNumber))    .innerText(custTable.Phone);
-        #        subSubNode.appendChild(doc.createElement(#MobileNumber))   .innerText(custTable.CellularPhone);
-        #        subSubNode.appendChild(doc.createElement(#Email))          .innerText(custTable.Email);
-        #        subSubNode.appendChild(doc.createElement(#Fax))            .innerText(custTable.TeleFax);
-        #
-        #        subNode = node.appendChild(doc.createElement(#Placements));
-        #        subSubNode = subNode.appendChild(doc.createElement(#Placement));
-        #
-        #        subSubNode.appendChild(doc.createElement(#PlacementId))         .innerText('');
-        #        subSubNode.appendChild(doc.createElement(#PlacementName))       .innerText('');
-        #        subSubNode.appendChild(doc.createElement(#PlacementDescription)).innerText('');
-        #        subSubNode.appendChild(doc.createElement(#SiteId))              .innerText('');
-        #        subSubNode.appendChild(doc.createElement(#PlacementTypeId))     .innerText('');
-        #
-        #        subSubSubNode = subSubNode.appendChild(doc.createElement(#ServiceObject));
-        #
-        #        subSubSubNode.appendChild(doc.createElement(#ServiceObjectId))          .innerText('');
-        #        subSubSubNode.appendChild(doc.createElement(#ServiceObjectSerialNumber)).innerText('');
-        #        subSubSubNode.appendChild(doc.createElement(#ServiceObjectName))        .innerText('');
-        #        subSubSubNode.appendChild(doc.createElement(#ServiceObjectDescription)) .innerText('');
-        #        subSubSubNode.appendChild(doc.createElement(#PlacementId))              .innerText('');
-        #        subSubSubNode.appendChild(doc.createElement(#ServiceObjectTypeId))      .innerText('');
-        #    }
-        #
-        #    doc.writeTo(localXmlWriter);
-        #    localXmlWriter.flush();
-        #
-        #    return localXmlWriter.writeToString();
-        #}
-        #
       ENDSOURCE
       SOURCE #existsDocPurpose
         #public boolean existsDocPurpose()
@@ -196,7 +57,7 @@ Formatversion: 1
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAProject);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmDocPurpose
@@ -222,7 +83,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -249,12 +110,12 @@ Formatversion: 1
         #
         #    ProjTable                       projTable;
         #    CustTable                       custTable;
-        #    Address                         address;
+        #    LogisticsPostalAddress          address;
         #    SMAAgreementTable               sMAAgreementTable;
         #    SMAServiceObjectRelation        sMAServiceObjectRelation;
         #    str 1                           objectState;
         #    ContactPersonName               contactPersonName;
-        #//    SMAServiceObjectTable           sMAServiceObjectTable;
+        #    LogisticsLocationEntity         location;
         #
         #    #define.ERPTOWPA                ('ERPTOWPA_SITE')
         #    #define.Site                    ('Site')
@@ -316,20 +177,21 @@ Formatversion: 1
         #    xmlWriterSettings.indent(true);
         #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
         #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.getMessageId(), this.getQueryName()));
         #
         #    while(queryRun.next())
         #    {
         #        projTable = queryRun.get(tablenum(projTable));
-        #        custTable = queryRun.get(tablenum(CustTable));
-        #        address   = queryRun.get(tablenum(Address));
+        #        custTable = CustTable::find(projTable.CustAccount);
+        #        address   = custTable.postalAddress();
         #
         #        if (!WPAProject::validateData(projTable, address, custTable))
         #        {
         #            throw error("@WPA162");
         #        }
         #
-        #        contactPersonName = ContactPerson::find(custTable.ContactPersonId).Name ? ContactPerson::find(custTable.ContactPersonId).Name : "N/A";
+        #        contactPersonName = ContactPerson::find(custTable.ContactPersonId).personName() ? ContactPerson::find(custTable.ContactPersonId).personName() : "N/A";
+        #
         #        WPAIntegrationLog::updateLog(projTable.TableId, projTable.RecId);
         #
         #        node = root.appendChild(doc.createElement(#Site));
@@ -340,26 +202,25 @@ Formatversion: 1
         #
         #        subNode = Node.appendChild(doc.createElement(#Location));
         #
-        #        this.wpa_addNotEmpty(subNode, doc, #LocationId      , projTable.dataAreaId + "_" + int2str(projTable.TableId) + "_" + int642str(projTable.RecId));
+        #        this.wpa_addNotEmpty(subNode, doc, #LocationId      , curext() + "_" + int2str(projTable.TableId) + "_" + int642str(projTable.RecId));
         #        this.wpa_addNotEmpty(subNode, doc, #LocationTypeId  , '0');//WPA 5.5 Upgrade
-        #
-        #        this.wpa_addNotEmpty(subNode, doc, #LocationName    , projTable.DlvName);
+        #        this.wpa_addNotEmpty(subNode, doc, #LocationName    , projTable.Name);
         #        this.wpa_addNotEmpty(subNode, doc, #AttentionName   , contactPersonName);
-        #        this.wpa_addNotEmpty(subNode, doc, #Address1        , projTable.DeliveryStreet);
+        #        this.wpa_addNotEmpty(subNode, doc, #Address1        , projTable.postalAddress().Street);
         #        this.wpa_addNotEmpty(subNode, doc, #Address2        , '');
         #        this.wpa_addNotEmpty(subNode, doc, #HouseNumber     , '');
         #        this.wpa_addNotEmpty(subNode, doc, #StreetNumber    , '');
-        #        this.wpa_addNotEmpty(subNode, doc, #PostalId        , projTable.DlvZipCode);
+        #        this.wpa_addNotEmpty(subNode, doc, #PostalId        , projTable.postalAddress().ZipCode);
         #
         #        subSubNode = subNode.appendChild(doc.createElement(#Postal));
-        #        this.wpa_addNotEmpty(subSubNode, doc, #PostalId      , projTable.DlvZipCode);
-        #        this.wpa_addNotEmpty(subSubNode, doc, #City          , projTable.DeliveryCity);
-        #        this.wpa_addNotEmpty(subSubNode, doc, #County        , projTable.DlvCounty);
-        #        this.wpa_addNotEmpty(subSubNode, doc, #Country       , AddressCountryRegion::find(projTable.DlvCountryRegionId).Name);
-        #        this.wpa_addNotEmpty(subSubNode, doc, #State         , projTable.DlvState);
+        #        this.wpa_addNotEmpty(subSubNode, doc, #PostalId      , projTable.postalAddress().ZipCode);
+        #        this.wpa_addNotEmpty(subSubNode, doc, #City          , projTable.postalAddress().City);
+        #        this.wpa_addNotEmpty(subSubNode, doc, #County        , projTable.postalAddress().County);
+        #        this.wpa_addNotEmpty(subSubNode, doc, #Country       , LogisticsAddressCountryRegion::find(projTable.postalAddress().CountryRegionId).displayName());
+        #        this.wpa_addNotEmpty(subSubNode, doc, #State         , projTable.postalAddress().State);
         #
         #
-        #        this.wpa_addNotEmpty(subNode, doc, #PhoneNumber     , address.Phone ? address.Phone : #Zero);
+        #        this.wpa_addNotEmpty(subNode, doc, #PhoneNumber     , custTable.phone() ? custTable.phone() : #Zero);
         #        this.wpa_addNotEmpty(subNode, doc, #Email           , projTable.Email);
         #
         #        subNode = node.appendChild(doc.createElement(#Debitor));
@@ -371,9 +232,9 @@ Formatversion: 1
         #
         #        subSubNode = subNode.appendChild(doc.createElement(#Location));
         #
-        #        this.wpa_addNotEmpty(subSubNode, doc, #LocationId      , custTable.dataAreaId + "_" + int2str(custTable.TableId) + "_" + int642str(custTable.RecId));
+        #        this.wpa_addNotEmpty(subSubNode, doc, #LocationId      , curext() + "_" + int2str(custTable.TableId) + "_" + int642str(custTable.RecId));
         #        this.wpa_addNotEmpty(subSubNode, doc, #LocationTypeId  , '0');//WPA 5.5 Upgrade
-        #        this.wpa_addNotEmpty(subSubNode, doc, #LocationName    , custTable.Name);
+        #        this.wpa_addNotEmpty(subSubNode, doc, #LocationName    , custTable.name());
         #        this.wpa_addNotEmpty(subSubNode, doc, #AttentionName   , contactPersonName);
         #        this.wpa_addNotEmpty(subSubNode, doc, #Address1        , address.Street);
         #        this.wpa_addNotEmpty(subSubNode, doc, #Address2        , '');
@@ -385,13 +246,17 @@ Formatversion: 1
         #        this.wpa_addNotEmpty(subSubSubNode, doc, #PostalId      , address.ZipCode);
         #        this.wpa_addNotEmpty(subSubSubNode, doc, #City          , address.City);
         #        this.wpa_addNotEmpty(subSubSubNode, doc, #County        , address.County);
-        #        this.wpa_addNotEmpty(subSubSubNode, doc, #Country       , AddressCountryRegion::find(address.CountryRegionId).Name);
+        #        this.wpa_addNotEmpty(subSubSubNode, doc, #Country       , LogisticsAddressCountryRegion::find(custTable.postalAddress().CountryRegionId).displayName());
         #        this.wpa_addNotEmpty(subSubSubNode, doc, #State         , address.State);
         #
-        #        this.wpa_addNotEmpty(subSubNode, doc, #PhoneNumber     , address.Phone ? address.Phone : #Zero);
-        #        this.wpa_addNotEmpty(subSubNode, doc, #MobileNumber    , address.CellularPhone);
-        #        this.wpa_addNotEmpty(subSubNode, doc, #Email           , address.Email);
-        #        this.wpa_addNotEmpty(subSubNode, doc, #Fax             , address.TeleFax);
+        #        this.wpa_addNotEmpty(subSubNode, doc, #PhoneNumber     , custTable.phone() ? custTable.phone() : #Zero);
+        #
+        #        location = DirParty::primaryElectronicAddressLocation(custTable.Party);
+        #
+        #        this.wpa_addNotEmpty(subSubNode, doc, #MobileNumber    , location ? location.wpaGetCellularPhone() : "0");
+        #
+        #        this.wpa_addNotEmpty(subSubNode, doc, #Email           , custTable.email());
+        #        this.wpa_addNotEmpty(subSubNode, doc, #Fax             , custTable.telefax());
         #
         #        subNode = node.appendChild(doc.createElement(#Placements));
         #        subSubNode = subNode.appendChild(doc.createElement(#Placement));
@@ -437,61 +302,59 @@ Formatversion: 1
       ENDSOURCE
       SOURCE #validateData
         #public static boolean validateData(ProjTable    _projTable,
-        #                                   Address      _address,
+        #                                   LogisticsPostalAddress      _address,
         #                                   CustTable    _custTable)
         #{
         #    SMAAgreementTable           sMAAgreementTable;
         #    SMAServiceObjectRelation    sMAServiceObjectRelation;
         #    boolean                     ret = true;
         #    ;
-        #    if(!_address.ZipCode)
+        #    if (!_address.ZipCode)
         #    {
         #        error(strfmt("@WPA118", _custTable.AccountNum));
         #        ret = false;
         #    }
         #
-        #    if(!_address.City)
+        #    if (!_address.City)
         #    {
         #        error(strfmt("Street name on Customer %1 must be filled in.", _custTable.AccountNum));
         #        ret = false;
         #    }
         #
-        #    if(!_address.Name && !_custTable.Name)
+        #    if (!_address.Address && !_custTable.name())
         #    {
         #        error(strfmt("@WPA119", _custTable.AccountNum));
         #        ret = false;
         #    }
-        #//        if(!address.Phone)
-        #//            throw error(strfmt("Phone number on Customer %1 must be filled in", custTable.AccountNum));
         #
-        #    if(!_address.Address)
+        #    if (!_address.Address)
         #    {
         #        error(strfmt("@WPA120", _custTable.AccountNum));
         #        ret = false;
         #    }
         #
-        #    if(!_address.Street)
+        #    if (!_address.Street)
         #    {
         #        error(strfmt("Street name on Customer %1 must be filled in.", _custTable.AccountNum));
         #        ret = false;
         #    }
         #
-        #    if(!_projTable.DlvZipCode)
+        #    if (!_projTable.postalAddress().ZipCode)
         #    {
         #        error(strfmt("@WPA121", _projTable.ProjId));
         #        ret = false;
         #    }
-        #    if(!_projTable.DlvName)
+        #    if (!_projTable.DlvName)
         #    {
         #        error(strfmt("@WPA122", _projTable.ProjId));
         #        ret = false;
         #    }
-        #    if (!_projTable.DeliveryStreet)
+        #    if (!_projTable.postalAddress().Street)
         #    {
         #        error(strfmt("Delivery street on Project %1 must be filled in.", _projTable.ProjId));
         #        ret = false;
         #    }
-        #    if(!_projTable.DlvAddr)
+        #    if (!_projTable.postalAddress().Address)
         #    {
         #        error(strfmt("@WPA123", _projTable.ProjId));
         #        ret = false;
@@ -517,25 +380,9 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #validateProject
-        #public static boolean validateProject(ProjTable    _projTable)
+        #public static boolean validateProject(ProjTable _projTable)
         #{
-        #    CustTable                           custTable;
-        #    DirPartyAddressRelationship         dirPartyAddressRelationship;
-        #    DirPartyAddressRelationshipMapping  dirPartyAddRelMapping;
-        #    Address                             address;
-        #    ;
-        #    select firstonly custTable
-        #        where custTable.AccountNum  == _projTable.CustAccount
-        #        join dirPartyAddressRelationship
-        #            where dirPartyAddressRelationship.PartyId   == custTable.PartyId    &&
-        #                  dirPartyAddressRelationship.IsPrimary == NoYes::Yes
-        #            join dirPartyAddRelMapping
-        #                where dirPartyAddRelMapping.PartyAddressRelationshipRecId   == dirPartyAddressRelationship.RecId
-        #                join address
-        #                    where address.RecId         == dirPartyAddRelMapping.AddressRecId   &&
-        #                          address.dataAreaId    == dirPartyAddRelMapping.RefCompanyId;
-        #
-        #    return WPAProject::validateData(_projTable, address, custTable);
+        #    return WPAProject::validateData(_projTable, _projTable.postalAddress(), CustTable::find(_projTable.CustAccount));
         #}
       ENDSOURCE
     ENDMETHODS

@@ -5,17 +5,17 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: WPAServiceOrderLine unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #WPAServiceOrderLine
   PROPERTIES
     Name                #WPAServiceOrderLine
-    Version             #414
+    Version             #431
     NextUniqueId        #1007
+    Origin              #{EB38F842-BAE5-4D5C-963E-8834EBFD27F6}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
@@ -28,24 +28,13 @@ QUERY #WPAServiceOrderLine
         Name                #SMAServiceOrderLine
         Table               #SMAServiceOrderLine
         UniqueId            #1000
+        Update              #Yes
       ENDPROPERTIES
       
       FIELDLIST
         PROPERTIES
-          Dynamic             #No
         ENDPROPERTIES
         
-        FIELD #ServiceOrderId
-        FIELD #ProjTransId
-        FIELD #EmplId
-        FIELD #ServiceObjectRelationId
-        FIELD #Description
-        FIELD #ItemId
-        FIELD #ProjCategoryId
-        FIELD #ProjCostPrice
-        FIELD #ProjSalesPrice
-        FIELD #Qty
-        FIELD #Unit
       ENDFIELDLIST
       SORTING
       ENDSORTING
@@ -67,26 +56,14 @@ QUERY #WPAServiceOrderLine
             Table               #SMAServiceOrderTable
             UniqueId            #1001
             FetchMode           #1:1
+            Update              #Yes
             Relations           #Yes
           ENDPROPERTIES
           
           FIELDLIST
             PROPERTIES
-              Dynamic             #No
             ENDPROPERTIES
             
-            FIELD #CustAccount
-            FIELD #ServiceAddressName
-            FIELD #ServiceAddress
-            FIELD #ServiceAddressCity
-            FIELD #ServiceAddressCountryRegion
-            FIELD #ServiceAddressCounty
-            FIELD #ServiceAddressState
-            FIELD #ServiceAddressStreet
-            FIELD #ServiceAddressZipCode
-            FIELD #StageId
-            FIELD #ServiceDateTime
-            FIELD #Priority
           ENDFIELDLIST
           SORTING
           ENDSORTING
@@ -99,18 +76,14 @@ QUERY #WPAServiceOrderLine
                 Table               #CustTable
                 UniqueId            #1003
                 FetchMode           #1:1
+                Update              #Yes
                 Relations           #Yes
               ENDPROPERTIES
               
               FIELDLIST
                 PROPERTIES
-                  Dynamic             #No
                 ENDPROPERTIES
                 
-                FIELD #TeleFax
-                FIELD #Phone
-                FIELD #CellularPhone
-                FIELD #Email
               ENDFIELDLIST
               SORTING
               ENDSORTING
@@ -120,20 +93,20 @@ QUERY #WPAServiceOrderLine
               ENDBLOCKS
               ASSOCIATIONS
                 ASSOCIATION
-                  MASTERFIELD  #CustAccount
-                  DETAILSFIELD #AccountNum
+                  FOREIGNKEYRELATION #CustTable
               ENDASSOCIATIONS
             ENDBLOCK
           ENDBLOCKS
           ASSOCIATIONS
             ASSOCIATION
-              MASTERFIELD  #ServiceOrderId
-              DETAILSFIELD #ServiceOrderId
+              FOREIGNKEYRELATION #ServiceOrder
           ENDASSOCIATIONS
         ENDBLOCK
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
       ENDORDERBY
     ENDBLOCK

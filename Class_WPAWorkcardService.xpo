@@ -12,11 +12,14 @@ Formatversion: 1
       Name                #WPAWorkcardService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{25E9DBF0-73AF-491B-9BA8-16AED5436892}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAWorkcardService</c> class serves as the document service for the <c>WPAWorkcard</c> document type.
+        #/// </summary>
         #class WPAWorkcardService extends AifDocumentService
         #{
         #
@@ -24,9 +27,18 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #create
+        #/// <summary>
+        #///    Creates one or more data objects that are contained in a <c>WPAWorkcard</c> document.
+        #/// </summary>
+        #/// <param name="_wPAWorkcard">
+        #///    The <c>WPAWorkcard</c> document that contains the data objects to create.
+        #/// </param>
+        #/// <returns>
+        #///    A list of entity keys that identify the newly created objects. The entity keys appear in the order that the created objects are specified in the <c>WPAWorkcard</c> document.
+        #/// </returns>
+        #[AifDocumentCreateAttribute, SysEntryPointAttribute(true)]
         #public AifEntityKeyList create(WPAWorkCardXmlContainer _wPAWorkcard)
         #{
-        #    ;
         #    WPAWorkcard::deserialize(_wPAWorkcard.parmMessage().getXml());
         #
         #    return null;

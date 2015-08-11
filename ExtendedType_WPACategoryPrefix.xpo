@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPACategoryPrefix
       Label               #@WPA14
       HelpText            #@WPA15
+      Origin              #{62897F83-62DE-4445-B78B-68FF3929AAE7}
+      LegacyId            #50010
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

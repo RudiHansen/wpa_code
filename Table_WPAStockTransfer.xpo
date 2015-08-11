@@ -8,6 +8,7 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #WPAStockTransfer
+    EnforceFKRelation 0
     PROPERTIES
       Name                #WPAStockTransfer
       Label               #@WPA206
@@ -22,116 +23,20 @@ Formatversion: 1
       ModifiedBy          #Yes
       CreatedDateTime     #Yes
       CreatedBy           #Yes
+      Origin              #{148F1D78-6A81-4F59-81E8-328F9E0E3E27}
+      LegacyId            #50009
     ENDPROPERTIES
     
     FIELDS
-      FIELD #StockTransferId
-        STRING
-        PROPERTIES
-          Name                #StockTransferId
-          Mandatory           #Yes
-          AllowEdit           #No
-          Table               #WPAStockTransfer
-          ExtendedDataType    
-            ARRAY 
-              #WPAGUID
-              #
-            ENDARRAY
-          StringSize          #36
-        ENDPROPERTIES
-        
-      FIELD #ItemId
-        STRING
-        PROPERTIES
-          Name                #ItemId
-          Mandatory           #Yes
-          Table               #WPAStockTransfer
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemId
-              #
-            ENDARRAY
-          StringSize          #50
-        ENDPROPERTIES
-        
-      FIELD #Qty
-        REAL
-        PROPERTIES
-          Name                #Qty
-          Table               #WPAStockTransfer
-          ExtendedDataType    
-            ARRAY 
-              #WPAQty
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
       FIELD #DifferenceQty
         REAL
         PROPERTIES
           Name                #DifferenceQty
           Label               #@SYS11152
           Table               #WPAStockTransfer
-          ExtendedDataType    
-            ARRAY 
-              #WPAQty
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #InventLocationIdFrom
-        STRING
-        PROPERTIES
-          Name                #InventLocationIdFrom
-          Table               #WPAStockTransfer
-          ExtendedDataType    
-            ARRAY 
-              #InventLocationIdFrom
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #InventLocationIdTo
-        STRING
-        PROPERTIES
-          Name                #InventLocationIdTo
-          Mandatory           #Yes
-          Table               #WPAStockTransfer
-          ExtendedDataType    
-            ARRAY 
-              #InventLocationIdTo
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #StockTransferType
-        ENUM
-        PROPERTIES
-          Name                #StockTransferType
-          Table               #WPAStockTransfer
-          EnumType            #WPAStockTransferType
-        ENDPROPERTIES
-        
-      FIELD #Updated
-        ENUM
-        PROPERTIES
-          Name                #Updated
-          Label               #@SYS439
-          Table               #WPAStockTransfer
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #ErrorTxt
-        STRING
-        PROPERTIES
-          Name                #ErrorTxt
-          Table               #WPAStockTransfer
-          ExtendedDataType    
-            ARRAY 
-              #WPAErrorTxt
-              #
-            ENDARRAY
-          StringSize          #130
+          Origin              #{92702B5E-4F54-4B44-AB4B-0E27DD049C97}
+          LegacyId            #50004
+          ExtendedDataType    #WPAQty
         ENDPROPERTIES
         
       FIELD #Error
@@ -140,22 +45,73 @@ Formatversion: 1
           Name                #Error
           Label               #@WPA207
           Table               #WPAStockTransfer
+          Origin              #{21355165-0D8E-4277-9C25-9952507505F7}
+          LegacyId            #50010
           EnumType            #NoYes
         ENDPROPERTIES
         
-      FIELD #RefTableId
-        INT
+      FIELD #ErrorTxt
+        STRING
         PROPERTIES
-          Name                #RefTableId
-          HelpText            #@SYS22567
-          AllowEditOnCreate   #No
-          AllowEdit           #No
+          Name                #ErrorTxt
           Table               #WPAStockTransfer
-          ExtendedDataType    
-            ARRAY 
-              #RefTableId
-              #
-            ENDARRAY
+          Origin              #{114C43E1-660D-4C4B-8D66-4A002F164E23}
+          LegacyId            #50009
+          ExtendedDataType    #WPAErrorTxt
+          StringSize          #130
+        ENDPROPERTIES
+        
+      FIELD #InventLocationIdFrom
+        STRING
+        PROPERTIES
+          Name                #InventLocationIdFrom
+          Table               #WPAStockTransfer
+          Origin              #{2640CFB1-0308-4ED0-95CD-C166E7AF31D0}
+          LegacyId            #50005
+          ExtendedDataType    #InventLocationIdFrom
+        ENDPROPERTIES
+        
+      FIELD #InventLocationIdTo
+        STRING
+        PROPERTIES
+          Name                #InventLocationIdTo
+          Mandatory           #Yes
+          Table               #WPAStockTransfer
+          Origin              #{04FDC370-C06D-4572-BF4A-3387D9153FC1}
+          LegacyId            #50006
+          ExtendedDataType    #InventLocationIdTo
+        ENDPROPERTIES
+        
+      FIELD #InventSerialId
+        STRING
+        PROPERTIES
+          Name                #InventSerialId
+          Table               #WPAStockTransfer
+          Origin              #{1A8E4561-6A92-4251-8E65-D9C0318DCE62}
+          ExtendedDataType    #WPAInventSerialId
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ItemId
+        STRING
+        PROPERTIES
+          Name                #ItemId
+          Mandatory           #Yes
+          Table               #WPAStockTransfer
+          Origin              #{EF4DF74E-4105-43D4-BF44-8B64F6164905}
+          LegacyId            #50002
+          ExtendedDataType    #WPAItemId
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #Qty
+        REAL
+        PROPERTIES
+          Name                #Qty
+          Table               #WPAStockTransfer
+          Origin              #{776F7AEA-2CDF-4312-8E5D-2DDCA9A6F42C}
+          LegacyId            #50003
+          ExtendedDataType    #WPAQty
         ENDPROPERTIES
         
       FIELD #RefRecId
@@ -167,11 +123,56 @@ Formatversion: 1
           AllowEditOnCreate   #No
           AllowEdit           #No
           Table               #WPAStockTransfer
-          ExtendedDataType    
-            ARRAY 
-              #RefRecId
-              #
-            ENDARRAY
+          Origin              #{066F8FD1-5E49-4E9C-99C9-0A61AF8F6229}
+          LegacyId            #50012
+          ExtendedDataType    #RefRecId
+        ENDPROPERTIES
+        
+      FIELD #RefTableId
+        INT
+        PROPERTIES
+          Name                #RefTableId
+          HelpText            #@SYS22567
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #WPAStockTransfer
+          Origin              #{857B9605-DB00-4186-8FC6-290663D89504}
+          LegacyId            #50011
+          ExtendedDataType    #RefTableId
+        ENDPROPERTIES
+        
+      FIELD #StockTransferId
+        STRING
+        PROPERTIES
+          Name                #StockTransferId
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #WPAStockTransfer
+          Origin              #{F8D60178-8E45-44A8-AB79-0AA94ECFEEF4}
+          LegacyId            #50001
+          ExtendedDataType    #WPAGUID
+          StringSize          #36
+        ENDPROPERTIES
+        
+      FIELD #StockTransferType
+        ENUM
+        PROPERTIES
+          Name                #StockTransferType
+          Table               #WPAStockTransfer
+          Origin              #{BE532C89-4BB9-494F-A8EB-F4E498ABA9BB}
+          LegacyId            #50007
+          EnumType            #WPAStockTransferType
+        ENDPROPERTIES
+        
+      FIELD #Updated
+        ENUM
+        PROPERTIES
+          Name                #Updated
+          Label               #@SYS439
+          Table               #WPAStockTransfer
+          Origin              #{DFD88CFC-B620-414D-BB40-B34704649D2F}
+          LegacyId            #50008
+          EnumType            #NoYes
         ENDPROPERTIES
         
     ENDFIELDS
@@ -230,6 +231,7 @@ Formatversion: 1
           #DifferenceQty
           #InventLocationIdFrom
           #InventLocationIdTo
+          #InventSerialId
         ENDGROUPFIELDS
       ENDGROUP
     ENDGROUPS
@@ -239,6 +241,8 @@ Formatversion: 1
       PROPERTIES
         Name                #StockTransferIdx
         AllowDuplicates     #No
+        Origin              #{397D2A26-CE46-4E83-B822-7030E1DDBC9B}
+        LegacyId            #50001
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -248,6 +252,8 @@ Formatversion: 1
       #CreatedIdx
       PROPERTIES
         Name                #CreatedIdx
+        Origin              #{CABE2367-DB21-40FF-ADD4-95BC7A990F4A}
+        LegacyId            #50002
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -255,6 +261,8 @@ Formatversion: 1
       ENDINDEXFIELDS
       
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
     ENDREFERENCES
     
@@ -262,7 +270,6 @@ Formatversion: 1
     ENDDELETEACTIONS
     
     METHODS
-      Version: 3
       SOURCE #exist
         #static boolean exist(WPAGUID    _stockTransferId)
         #{

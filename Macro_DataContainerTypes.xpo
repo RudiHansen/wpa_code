@@ -8,12 +8,17 @@ Formatversion: 1
   JOBVERSION 1
   
   SOURCE #DataContainerTypes
+    ##AxdPurchReqImportDCT
+    ##AxdCatImpDCT
+    ##AxdcatvcDCT
     ##MiscDataContainerTypes
     ##MetadataServiceDataContainerTypes
+    ##AifDimensionDataContainerTypes
+    ##AifTableNaturalKeyDataContainerTypes
     ##SyncServiceDataContainerTypes
     ##AxdCustomerDCT
-    ##AxdAddressDCT
     ##AxdASNDCT
+    ##AxdAddressDCT
     ##AxdAssetConditionDCT
     ##AxdAssetGroupDCT
     ##AxdAssetLocationDCT
@@ -24,13 +29,15 @@ Formatversion: 1
     ##AxdConfigTableDCT
     ##AxdContactPersonsDCT
     ##AxdCountingJournalDCT
-    ##AxdCustomerGroupsDCT
     ##AxdCustPaymJournalDCT
     ##AxdDeliveryModesDCT
     ##AxdDimensionsDCT
     ##AxdExchangeRatesDCT
     ##AxdFixedAssetDCT
     ##AxdFreeTextInvoiceDCT
+    ##AxdHRMAbsenceReqDCT
+    ##AxdHcmJobApplicationDCT
+    ##AxdHcmJobPostingDCT
     ##AxdInventColorDCT
     ##AxdInventDimCombinationDCT
     ##AxdInventItemGroupDCT
@@ -39,6 +46,7 @@ Formatversion: 1
     ##AxdInventoryTransactionsDCT
     ##AxdInventSizeDCT
     ##AxdItemDCT
+    ##AxdEMSSimulatedFlowDCT
     ##AxdPaymentTermsDCT
     ##AxdPriceDiscountJournalDCT
     ##AxdPriceListDCT
@@ -57,7 +65,7 @@ Formatversion: 1
     ##AxdTrvPBSDetailDCT
     ##AxdTrvPBSMaindataDCT
     ##AxdUnitDCT
-    ##AxdUnitConvertDCT
+    ##AxdUnitConversionDCT
     ##AxdLedgerGeneralJournalDCT
     ##AxdVendGroupDCT
     ##AxdVendTableDCT
@@ -71,18 +79,86 @@ Formatversion: 1
     ##AxdProjInvoiceDCT
     ##AxdExpenseDCT
     ##AxdServiceOrderDCT
-    ##AxdWPAInventTableDCT
-    ##AxdEmplDCT
-    ##AxdWPASMADispatchTeamDCT
-    ##AxdWPAInventLocationDCT
-    ##AxdWPAProjCategoryDCT
-    ##AxdWPAServiceOrderDCT
-    ##AxdWPAProjectDCT
-    ##AxdWPACustTableDCT
-    ##AxdWPAProjForecastEmplDCT
+    ##AxdSalesConfirmationDCT
+    ##AxdCustomerQuotationDCT
+    ##AxdAttendanceOutDCT
+    ##AxdAttendanceInDCT
+    ##AxdRFQSendDCT
+    ##AxdRFQReplyDCT
+    ##AxdVendInvoiceDCT
+    ##AxdTransferOrderCreateDCT
+    ##AxdTransferOrderPostingDCT
+    ##AxdEcoResCategoryDocDCT
+    ##AxdEcoResProductMasterDimValueDCT
+    ##AxdEcoResProductDCT
+    ##AxdSalesQuotationDCT
+    ##AxdCustPaymentsDCT
+    ##AxdVendPaymentsDCT
+    #//<PubSect>
+    ##AxdCustomerTransactionDCT
+    ##AxdAdvancedLedgerEntryDCT
+    #//</PubSect>
+    ##AxdBankStmtISODCT
+    ##AxdsmmBusRelDCT
+    ##AxdsmmLeadsDCT
+    ##AxdBudgetTransactionDCT
+    ##AxdContactPersonsDCT
+    ##AxdLedgerExchangeRateTypeDCT
+    ##AxdLedgerExchangeRateDCT
+    ##AxdLedgerCurrencyDCT
+    ##AxdInventItemLocationDCT
+    ##AxdTransferOrderDCT
+    ##AxdEMSMeterReadingFlowDCT
+    ##AxdEMSSubstanceFlowDCT
+    ##AxdLogisticsAddressZipCodeSetupDCT
+    ##AxdDOCommerceShpDCT
+    ##AxdDOCommerceSalesTableDCT
+    ##AxdLineDiscountDCT
+    ##AxdDOCommerceDimensionDCT
+    ##AxdDOCommerceDimensionGroupDCT
+    ##AxdDOCommerceDlvModeDCT
+    ##AxdSalesMultilineDiscountDCT
+    ##AxdDOCommerceMarketplaceDCT
+    ##AxdDOCommerceOnlineStoreDCT
+    ##AxdSalesTotalDiscountDCT
+    ##AxdEUSLReportingDCT
+    ##AxdDOCommerceItemGroupDCT
+    ##AxdTaxItemGroupsDCT
+    ##AxdTaxGroupsDCT
+    ##AxdTaxCodesDCT
+    ##AxdCustCreditCardDCT
+    ##AxdInventItemBarcodeDCT
+    ##AxdPurchRFQSitesDCT
+    ##AxdDlvDlvTermDCT
+    ##AxdDlvDlvModeDCT
+    ##AxdMarkupMarkupTableDCT
+    ##AxdPurchRFQPaymTermsDCT
+    ##AxdPurchRFQUnitDCT
+    ##AxdDOCommerceQtyOnHandDCT
+    ##AxdCaseWebDetailDCT
+    ##AxdCaseCategoryDetailDCT
+    ##AxdsmmLeadPrioritiesDCT
+    ##AxdVendVendRequestSignupDCT
+    ##AxdEcoResCategoryDocumentDCT
+    ##AxdDOCommercePriceDiscDCT
     ##AxdWPAWorkcardDCT
+    ##AxdWPASMADispatchTeamDCT
+    ##AxdWPAProjCategoryDCT
+    ##AxdWPAInventLocationDCT
+    ##AxdWPAInventTableDCT
+    ##AxdWPACustTableDCT
+    ##AxdWPAEmplDCT
+    ##AxdWPAProjectDCT
+    ##AxdWPAServiceOrderDCT
+    ##AxdWPAProjForecastEmplDCT
+    ##AxdWPAWorkcardSrvDCT
     ##AxdWPAStockTransferDCT
     ##AxdWPAInventSumDCT
+    ##AxdWPAInventSerialDCT
   ENDSOURCE
+  PROPERTIES
+    Origin              #{C650EDA7-A0D3-4635-A894-DC85243EA7FD}
+  ENDPROPERTIES
+  
 
 ***Element: END

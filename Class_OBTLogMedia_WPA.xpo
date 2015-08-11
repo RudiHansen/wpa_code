@@ -11,35 +11,14 @@ Formatversion: 1
     PROPERTIES
       Name                #OBTLogMedia_WPA
       Extends             #OBTLogMedia_Database
-      RunOn               #Called from
+      Origin              #{12BB33D5-AA72-45DA-84F6-29A6C48B4F0E}
+      LegacyId            #50027
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class OBTLogMedia_WPA extends OBTLogMedia_Database
         #{
-        #}
-      ENDSOURCE
-      SOURCE #logAddress
-        #void logAddress(Address _address)
-        #{
-        #    CustTable                           custTable;
-        #    DirPartyAddressRelationship         dirPartyAddressRelationship;
-        #    DirPartyAddressRelationshipMapping  dirPartyAddressRelationshipMapping;
-        #    ;
-        #    select firstonly custTable
-        #        exists join dirPartyAddressRelationship
-        #            where dirPartyAddressRelationship.PartyId   == custTable.PartyId
-        #            exists join dirPartyAddressRelationshipMapping
-        #                where dirPartyAddressRelationshipMapping.PartyAddressRelationshipRecId  == dirPartyAddressRelationship.RecId    &&
-        #                      dirPartyAddressRelationshipMapping.AddressRecId                   == _address.RecId                       &&
-        #                      dirPartyAddressRelationshipMapping.RefCompanyId                   == _address.dataAreaId;
-        #
-        #    if (custTable)
-        #    {
-        #        this.logCustTable(custTable);
-        #    }
         #}
       ENDSOURCE
       SOURCE #logCustTable
@@ -64,24 +43,24 @@ Formatversion: 1
         #                                                    break;
         #        case tablenum(ProjCostPriceExpense)     :   this.logProjCostPriceExpense(_recordDeleted);
         #                                                    break;
-        #        case tablenum(ProjHourSalesPrice)       :   if  (_recordDeleted.(fieldnum(ProjHourSalesPrice, CurrencyId))          == CompanyInfo::find().CurrencyCode     &&
+        #        case tablenum(ProjHourSalesPrice)       :   if  (_recordDeleted.(fieldnum(ProjHourSalesPrice, CurrencyId))          == CompanyInfo::standardCurrency()     &&
         #                                                         _recordDeleted.(fieldnum(ProjHourSalesPrice, ProjValidFor))        == TableGroupAll::All                   &&
         #                                                         _recordDeleted.(fieldnum(ProjHourSalesPrice, ProjSalesPriceModel)) == ProjSalesPriceModel::Qty)
         #                                                    {
         #                                                        this.logProjHourSalesPrice(_recordDeleted);
         #                                                    }
         #                                                    break;
-        #        case tablenum(ProjRevenueSalesPrice)    :   if  (_recordDeleted.(fieldnum(ProjRevenueSalesPrice, CurrencyId))       == CompanyInfo::find().CurrencyCode     &&
+        #        case tablenum(ProjRevenueSalesPrice)    :   if  (_recordDeleted.(fieldnum(ProjRevenueSalesPrice, CurrencyId))       == CompanyInfo::standardCurrency()     &&
         #                                                         _recordDeleted.(fieldnum(ProjRevenueSalesPrice, ProjValidFor))     == TableGroupAll::All)
         #                                                    {
         #                                                        this.logProjRevenueSalesPrice(_recordDeleted);
         #                                                    }
         #                                                    break;
-        #        case tablenum(ProjCostSalesPrice)       :   if  (_recordDeleted.(fieldnum(ProjCostSalesPrice, CurrencyId))          == CompanyInfo::find().CurrencyCode     &&
+        #        case tablenum(ProjCostSalesPrice)       :   if  (_recordDeleted.(fieldnum(ProjCostSalesPrice, CurrencyId))          == CompanyInfo::standardCurrency()     &&
         #                                                         _recordDeleted.(fieldnum(ProjCostSalesPrice, ProjValidFor))        == TableGroupAll::All                   &&
         #                                                         _recordDeleted.(fieldnum(ProjCostSalesPrice, ProjSalesPriceModel)) == ProjSalesPriceModel::Qty)
         #                                                    {
-        #                                                        this.logProjCostSalesPrice(_recordDeleted);
+        #                                                        this.logProjHourSalesPrice(_recordDeleted);
         #                                                    }
         #                                                    break;
         #        default                                 :   break;
@@ -100,24 +79,24 @@ Formatversion: 1
         #                                                    break;
         #        case tablenum(ProjCostPriceExpense)     :   this.logProjCostPriceExpense(_recordInserted);
         #                                                    break;
-        #        case tablenum(ProjHourSalesPrice)       :   if  (_recordInserted.(fieldnum(ProjHourSalesPrice, CurrencyId))          == CompanyInfo::find().CurrencyCode     &&
+        #        case tablenum(ProjHourSalesPrice)       :   if  (_recordInserted.(fieldnum(ProjHourSalesPrice, CurrencyId))          == CompanyInfo::standardCurrency()      &&
         #                                                         _recordInserted.(fieldnum(ProjHourSalesPrice, ProjValidFor))        == TableGroupAll::All                   &&
         #                                                         _recordInserted.(fieldnum(ProjHourSalesPrice, ProjSalesPriceModel)) == ProjSalesPriceModel::Qty)
         #                                                    {
         #                                                        this.logProjHourSalesPrice(_recordInserted);
         #                                                    }
         #                                                    break;
-        #        case tablenum(ProjRevenueSalesPrice)    :   if  (_recordInserted.(fieldnum(ProjRevenueSalesPrice, CurrencyId))       == CompanyInfo::find().CurrencyCode     &&
+        #        case tablenum(ProjRevenueSalesPrice)    :   if  (_recordInserted.(fieldnum(ProjRevenueSalesPrice, CurrencyId))       == CompanyInfo::standardCurrency()     &&
         #                                                         _recordInserted.(fieldnum(ProjRevenueSalesPrice, ProjValidFor))     == TableGroupAll::All)
         #                                                    {
         #                                                        this.logProjRevenueSalesPrice(_recordInserted);
         #                                                    }
         #                                                    break;
-        #        case tablenum(ProjCostSalesPrice)       :   if  (_recordInserted.(fieldnum(ProjCostSalesPrice, CurrencyId))          == CompanyInfo::find().CurrencyCode     &&
+        #        case tablenum(ProjCostSalesPrice)       :   if  (_recordInserted.(fieldnum(ProjCostSalesPrice, CurrencyId))          == CompanyInfo::standardCurrency()     &&
         #                                                         _recordInserted.(fieldnum(ProjCostSalesPrice, ProjValidFor))        == TableGroupAll::All                   &&
         #                                                         _recordInserted.(fieldnum(ProjCostSalesPrice, ProjSalesPriceModel)) == ProjSalesPriceModel::Qty)
         #                                                    {
-        #                                                        this.logProjCostSalesPrice(_recordInserted);
+        #                                                        this.logProjHourSalesPrice(_recordInserted);
         #                                                    }
         #                                                    break;
         #        default                                 :   break;
@@ -144,6 +123,18 @@ Formatversion: 1
         #    if (inventTable)
         #    {
         #        this.logInventTable(inventTable);
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #logPostalAddress
+        #void logPostalAddress(LogisticsPostalAddress _address)
+        #{
+        #    CustTable                           custTable;
+        #    ;
+        #
+        #    if (custTable.postalAddress().RecId == _address.RecId)
+        #    {
+        #        this.logCustTable(custTable);
         #    }
         #}
       ENDSOURCE
@@ -310,7 +301,11 @@ Formatversion: 1
         #{
         #    CustTable                   custTable;
         #    ProjTable                   projTable;
-        #    Address                     address;
+        #
+        #    LogisticsPostalAddress      address;
+        #    InventTable                 inventTableOrig;
+        #    InventTable                 inventTableUpd;
+        #
         #    SMAServiceObjectRelation    sMAServiceObjectRelation;
         #    ;
         #    switch (_recordOrig.TableId)
@@ -321,34 +316,23 @@ Formatversion: 1
         #                                        }
         #                                        break;
         #        case tablenum(ProjTable)    :   if (_recordOrig.(fieldnum(ProjTable, DlvName))              != _recordUpdated.(fieldnum(ProjTable, DlvName))        ||
-        #                                            _recordOrig.(fieldnum(ProjTable, DeliveryStreet))       != _recordUpdated.(fieldnum(ProjTable, DeliveryStreet)) ||
-        #                                            _recordOrig.(fieldnum(ProjTable, DlvZipCode))           != _recordUpdated.(fieldnum(ProjTable, DlvZipCode))     ||
-        #                                            _recordOrig.(fieldnum(ProjTable, DeliveryCity))         != _recordUpdated.(fieldnum(ProjTable, DeliveryCity))   ||
-        #                                            _recordOrig.(fieldnum(ProjTable, DlvCounty))            != _recordUpdated.(fieldnum(ProjTable, DlvCounty))      ||
-        #                                            _recordOrig.(fieldnum(ProjTable, DlvCountryRegionId))   != _recordUpdated.(fieldnum(ProjTable, DlvCounty))      ||
-        #                                            _recordOrig.(fieldnum(ProjTable, DlvState))             != _recordUpdated.(fieldnum(ProjTable, DlvState))       ||
-        #                                            _recordOrig.(fieldnum(ProjTable, Email))                != _recordUpdated.(fieldnum(ProjTable, DlvState))       ||
+        #                                            _recordOrig.(fieldnum(ProjTable, Email))                != _recordUpdated.(fieldnum(ProjTable, Email))          ||
         #                                            _recordOrig.(fieldnum(ProjTable, CustAccount))          != _recordUpdated.(fieldnum(ProjTable, CustAccount)))
         #                                        {
         #                                            this.logProjTable(_recordUpdated);
         #                                        }
         #                                        break;
-        #        case tablenum(Address)      :   if (_recordOrig.(fieldnum(Address, Name))                   != _recordUpdated.(fieldnum(Address, Name))             ||
-        #                                            _recordOrig.(fieldnum(Address, Street))                 != _recordUpdated.(fieldnum(Address, Street))           ||
-        #                                            _recordOrig.(fieldnum(Address, ZipCode))                != _recordUpdated.(fieldnum(Address, ZipCode))          ||
-        #                                            _recordOrig.(fieldnum(Address, City))                   != _recordUpdated.(fieldnum(Address, City))             ||
-        #                                            _recordOrig.(fieldnum(Address, County))                 != _recordUpdated.(fieldnum(Address, County))           ||
-        #                                            _recordOrig.(fieldnum(Address, CountryRegionId))        != _recordUpdated.(fieldnum(Address, CountryRegionId))  ||
-        #                                            _recordOrig.(fieldnum(Address, State))                  != _recordUpdated.(fieldnum(Address, State))            ||
-        #                                            _recordOrig.(fieldnum(Address, Phone))                  != _recordUpdated.(fieldnum(Address, Phone))            ||
-        #                                            _recordOrig.(fieldnum(Address, CellularPhone))          != _recordUpdated.(fieldnum(Address, CellularPhone))    ||
-        #                                            _recordOrig.(fieldnum(Address, Email))                  != _recordUpdated.(fieldnum(Address, Email))            ||
-        #                                            _recordOrig.(fieldnum(Address, TeleFax))                != _recordUpdated.(fieldnum(Address, TeleFax)))
-        #                                        {
-        #                                            this.logAddress(_recordUpdated);
-        #                                        }
-        #                                        break;
         #
+        #        case tablenum(LogisticsPostalAddress)      :   if (_recordOrig.(fieldnum(LogisticsPostalAddress, Street))                 != _recordUpdated.(fieldnum(LogisticsPostalAddress, Street))           ||
+        #                                                           _recordOrig.(fieldnum(LogisticsPostalAddress, ZipCode))                != _recordUpdated.(fieldnum(LogisticsPostalAddress, ZipCode))          ||
+        #                                                           _recordOrig.(fieldnum(LogisticsPostalAddress, City))                   != _recordUpdated.(fieldnum(LogisticsPostalAddress, City))             ||
+        #                                                           _recordOrig.(fieldnum(LogisticsPostalAddress, County))                 != _recordUpdated.(fieldnum(LogisticsPostalAddress, County))           ||
+        #                                                           _recordOrig.(fieldnum(LogisticsPostalAddress, CountryRegionId))        != _recordUpdated.(fieldnum(LogisticsPostalAddress, CountryRegionId))  ||
+        #                                                           _recordOrig.(fieldnum(LogisticsPostalAddress, State))                  != _recordUpdated.(fieldnum(LogisticsPostalAddress, State)))
+        #                                                       {
+        #                                                           this.logPostalAddress(_recordUpdated);
+        #                                                       }
+        #                                                       break;
         #        case tablenum(SMAServiceObjectRelation) :
         #                                        if (_recordOrig.(fieldnum(SMAServiceObjectRelation, ServiceObjectRef))  != _recordUpdated.(fieldnum(SMAServiceObjectRelation, ServiceObjectRef)))
         #                                        {
@@ -363,7 +347,7 @@ Formatversion: 1
         #                                        }
         #                                        break;
         #        case tablenum(ProjCategory)             :
-        #                                        if  (_recordOrig.(fieldnum(ProjCategory, Name))                      == _recordUpdated.(fieldnum(ProjCategory, Name)) &&
+        #                                        if  (_recordOrig.(fieldnum(ProjCategory, Name))                      != _recordUpdated.(fieldnum(ProjCategory, Name)) &&
         #                                             WPAIntegrationLog::exist(_recordUpdated.TableId, _recordUpdated.RecId))
         #                                        {
         #                                            this.logProjCategory(_recordUpdated);
@@ -384,7 +368,7 @@ Formatversion: 1
         #                                        }
         #                                        break;
         #        case tablenum(ProjHourSalesPrice)       :
-        #                                        if  (_recordUpdated.(fieldnum(ProjHourSalesPrice, CurrencyId))          == CompanyInfo::find().CurrencyCode     &&
+        #                                        if  (_recordUpdated.(fieldnum(ProjHourSalesPrice, CurrencyId))          == CompanyInfo::standardCurrency()      &&
         #                                             _recordUpdated.(fieldnum(ProjHourSalesPrice, ProjValidFor))        == TableGroupAll::All                   &&
         #                                             _recordUpdated.(fieldnum(ProjHourSalesPrice, ProjSalesPriceModel)) == ProjSalesPriceModel::Qty             &&
         #                                            (_recordOrig.(fieldnum(ProjHourSalesPrice, ProjSalesPricing))       != _recordUpdated.(fieldnum(ProjHourSalesPrice, ProjSalesPricing))  ||
@@ -394,7 +378,7 @@ Formatversion: 1
         #                                        }
         #                                        break;
         #        case tablenum(ProjRevenueSalesPrice)    :
-        #                                        if  (_recordUpdated.(fieldnum(ProjRevenueSalesPrice, CurrencyId))       == CompanyInfo::find().CurrencyCode     &&
+        #                                        if  (_recordUpdated.(fieldnum(ProjRevenueSalesPrice, CurrencyId))       == CompanyInfo::standardCurrency()      &&
         #                                             _recordUpdated.(fieldnum(ProjRevenueSalesPrice, ProjValidFor))     == TableGroupAll::All                   &&
         #                                            (_recordOrig.(fieldnum(ProjRevenueSalesPrice, SalesPrice))          != _recordUpdated.(fieldnum(ProjRevenueSalesPrice, SalesPrice))  ||
         #                                             _recordOrig.(fieldnum(ProjRevenueSalesPrice, TransDate))           != _recordUpdated.(fieldnum(ProjRevenueSalesPrice, TransDate))))
@@ -403,17 +387,19 @@ Formatversion: 1
         #                                        }
         #                                        break;
         #        case tablenum(ProjCostSalesPrice)       :
-        #                                        if  (_recordUpdated.(fieldnum(ProjCostSalesPrice, CurrencyId))          == CompanyInfo::find().CurrencyCode     &&
+        #                                        if  (_recordUpdated.(fieldnum(ProjCostSalesPrice, CurrencyId))          == CompanyInfo::standardCurrency()      &&
         #                                             _recordUpdated.(fieldnum(ProjCostSalesPrice, ProjValidFor))        == TableGroupAll::All                   &&
         #                                             _recordUpdated.(fieldnum(ProjCostSalesPrice, ProjSalesPriceModel)) == ProjSalesPriceModel::Qty             &&
         #                                            (_recordOrig.(fieldnum(ProjCostSalesPrice, ProjSalesPricing))       != _recordUpdated.(fieldnum(ProjCostSalesPrice, ProjSalesPricing))  ||
         #                                             _recordOrig.(fieldnum(ProjCostSalesPrice, TransDate))              != _recordUpdated.(fieldnum(ProjCostSalesPrice, TransDate))))
         #                                        {
-        #                                            this.logProjCostSalesPrice(_recordUpdated);
+        #                                            this.logProjHourSalesPrice(_recordUpdated);
         #                                        }
         #                                        break;
         #        case tablenum(InventTable)              :
-        #                                        if  (_recordOrig.(fieldnum(InventTable, ItemName))                      != _recordUpdated.(fieldnum(InventTable, ItemName)))
+        #                                        inventTableOrig = _recordOrig;
+        #                                        inventTableUpd = _recordUpdated;
+        #                                        if (inventTableOrig.itemName() != inventTableUpd.itemName())
         #                                        {
         #                                            this.logInventTable(_recordUpdated);
         #                                        }

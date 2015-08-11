@@ -1,0 +1,304 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionRewardPointTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionRewardPointTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionRewardPointTransT
+      Label               #@REX4160249
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{1D32CEB3-5273-41ED-9E16-83E22579A87D}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Affiliation
+        INT64
+        PROPERTIES
+          Name                #Affiliation
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{3679FBD1-01BB-4B92-ABE7-F7E17044B8B3}
+        ENDPROPERTIES
+        
+      FIELD #CardNumber
+        STRING
+        PROPERTIES
+          Name                #CardNumber
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{107CC37D-7D9C-47CC-9F80-BF51DD2E4966}
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{841D3924-DD64-4D40-8883-4D413DD65FB7}
+        ENDPROPERTIES
+        
+      FIELD #CustAccount
+        STRING
+        PROPERTIES
+          Name                #CustAccount
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{2B3E7BCF-ED57-4F4C-A3F7-B85B17A91B2F}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #EntryDate
+        DATE
+        PROPERTIES
+          Name                #EntryDate
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{80B86A60-F2CA-4FD8-B576-DBF37D5E55BE}
+        ENDPROPERTIES
+        
+      FIELD #EntryTime
+        INT
+        PROPERTIES
+          Name                #EntryTime
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{50029280-131C-48C5-8B8C-96A876711390}
+        ENDPROPERTIES
+        
+      FIELD #EntryType
+        ENUM
+        PROPERTIES
+          Name                #EntryType
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{0C2FF283-471B-4421-AE6E-CA0DF721F0EC}
+          EnumType            #RetailLoyaltyRewardPointEntryType
+        ENDPROPERTIES
+        
+      FIELD #ExpirationDate
+        DATE
+        PROPERTIES
+          Name                #ExpirationDate
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{1F94DD38-B8A8-4D3D-A7C0-1AA5F944763D}
+        ENDPROPERTIES
+        
+      FIELD #LineNum
+        REAL
+        PROPERTIES
+          Name                #LineNum
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{190AD07C-5357-472C-AE51-01214D362AB6}
+        ENDPROPERTIES
+        
+      FIELD #LoyaltyTier
+        INT64
+        PROPERTIES
+          Name                #LoyaltyTier
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{B12A2239-F3B1-4A48-80A0-2CA30E4A3536}
+        ENDPROPERTIES
+        
+      FIELD #ReceiptId
+        STRING
+        PROPERTIES
+          Name                #ReceiptId
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{55A7A9D7-5282-4909-83B7-DEAB862BA108}
+          StringSize          #18
+        ENDPROPERTIES
+        
+      FIELD #replicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #replicationCounterFromOrigin
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{DB97DFA3-F22A-4014-A887-8EA257AD21C5}
+        ENDPROPERTIES
+        
+      FIELD #RewardPoint
+        INT64
+        PROPERTIES
+          Name                #RewardPoint
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{FE59DFD2-444F-4AB0-ADE9-FAED4B277D82}
+        ENDPROPERTIES
+        
+      FIELD #RewardPointAmountQty
+        REAL
+        PROPERTIES
+          Name                #RewardPointAmountQty
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{F6B1335E-8F78-4E4C-BB91-76D028AAD294}
+        ENDPROPERTIES
+        
+      FIELD #StaffId
+        STRING
+        PROPERTIES
+          Name                #StaffId
+          HelpText            #@REX4160251
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{7E590CAD-2831-4A5B-AE16-CA1A5E4E6B78}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #storeId
+        STRING
+        PROPERTIES
+          Name                #storeId
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{A4C68326-A4EA-476C-ADE8-109507C61C8F}
+        ENDPROPERTIES
+        
+      FIELD #terminalId
+        STRING
+        PROPERTIES
+          Name                #terminalId
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{DAB19639-A8C8-4869-8335-B705EB62C519}
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailTransactionRewardPointTransT
+          Origin              #{D5077464-8713-420F-83A5-C436A2290FB1}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{FD899F09-CDFF-45BD-AD48-8096766B6DE6}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #transactionId
+        #terminalId
+        #storeId
+        #LineNum
+        #Channel
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionRewardPointTransT cursor)
+        #{
+        #    RetailTransactionLoyaltyRewardPointTrans target;
+        #    RetailTransactionRewardPointTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint TransactionLineIdx
+        #                where (target.@Channel==cursor2.@Channel && target.@LineNum==cursor2.@LineNum && target.@storeId==cursor2.@storeId && target.@terminalId==cursor2.@terminalId && target.@transactionId==cursor2.@transactionId);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @Affiliation,
+        #                    @CardNumber,
+        #                    @Channel,
+        #                    @CustAccount,
+        #                    @EntryDate,
+        #                    @EntryTime,
+        #                    @EntryType,
+        #                    @ExpirationDate,
+        #                    @LineNum,
+        #                    @LoyaltyTier,
+        #                    @ReceiptId,
+        #                    @replicationCounterFromOrigin,
+        #                    @RewardPoint,
+        #                    @RewardPointAmountQty,
+        #                    @StaffId,
+        #                    @storeId,
+        #                    @terminalId,
+        #                    @transactionId
+        #                )
+        #                select
+        #                    @Affiliation,
+        #                    @CardNumber,
+        #                    @Channel,
+        #                    @CustAccount,
+        #                    @EntryDate,
+        #                    @EntryTime,
+        #                    @EntryType,
+        #                    @ExpirationDate,
+        #                    @LineNum,
+        #                    @LoyaltyTier,
+        #                    @ReceiptId,
+        #                    @replicationCounterFromOrigin,
+        #                    @RewardPoint,
+        #                    @RewardPointAmountQty,
+        #                    @StaffId,
+        #                    @storeId,
+        #                    @terminalId,
+        #                    @transactionId
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

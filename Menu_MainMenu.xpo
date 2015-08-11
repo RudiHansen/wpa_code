@@ -5,80 +5,74 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Menu : MainMenu unloaded
 ; --------------------------------------------------------------------------------
-  MNUVERSION 4
+  MNUVERSION 5
   
   MENU #MainMenu
     PROPERTIES
       Name                #MainMenu
       Label               #@SYS71148
-      HelpText            #@SYS59494
       NeededAccessLevel   #NoAccess
       SetCompany          #Yes
+      Origin              #{10080000-0000-1000-4D61-696E4D656E75}
     ENDPROPERTIES
     
     MENUREFERENCE
       PROPERTIES
-        Name                #Ledger
+        Name                #Home
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #COSCosting
+        Name                #AccountsPayable
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #Bank
+        Name                #AccountsReceivable
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #smmCRMSeries
+        Name                #GeneralLedger
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #Cust
+        Name                #Budgeting
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #Vend
+        Name                #CostAccounting
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #Invent
+        Name                #FixedAssets
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #Req
+        Name                #CashAndBankManagement
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #Prod
+        Name                #TravelAndExpense
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #ProductBuilder
-      ENDPROPERTIES
-      
-    ENDMENUREFERENCE
-    MENUREFERENCE
-      PROPERTIES
-        Name                #JmgMenu
+        Name                #ComplianceAndInternalControls
       ENDPROPERTIES
       
     ENDMENUREFERENCE
@@ -90,43 +84,55 @@ Formatversion: 1
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #KMQuestionnaire
+        Name                #ProcurementAndSourcing
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #KMScorecard
+        Name                #ProductInformationManagement
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #TrvExpense
+        Name                #MasterPlanning
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #Project
+        Name                #ProductionControl
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #SMA
+        Name                #SalesAndMarketing
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #Basic
+        Name                #ProjectManagementAndAccounting
       ENDPROPERTIES
       
     ENDMENUREFERENCE
     MENUREFERENCE
       PROPERTIES
-        Name                #Administration
+        Name                #ServiceManagement
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #OrganizationAdministration
+      ENDPROPERTIES
+      
+    ENDMENUREFERENCE
+    MENUREFERENCE
+      PROPERTIES
+        Name                #SystemAdministration
       ENDPROPERTIES
       
     ENDMENUREFERENCE

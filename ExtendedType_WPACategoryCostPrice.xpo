@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPACategoryCostPrice
       Label               #@WPA7
       HelpText            #@WPA16
+      Origin              #{C015A562-C078-42D0-8419-6447D8CD0F3E}
+      LegacyId            #50009
       Extends             #NoYesId
       EnumType            #NoYes
     ENDPROPERTIES
@@ -22,6 +24,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

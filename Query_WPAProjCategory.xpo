@@ -5,17 +5,17 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: WPAProjCategory unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #WPAProjCategory
   PROPERTIES
     Name                #WPAProjCategory
-    Version             #232
+    Version             #250
     NextUniqueId        #1007
+    Origin              #{7DD39156-C45C-4493-93D5-D72D2220004C}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
@@ -24,14 +24,14 @@ QUERY #WPAProjCategory
     SOURCE #init
       #public void init()
       #{
-      #    CurrencyCode    currencyCode = CompanyInfo::find().CurrencyCode;
+      #    CurrencyCode    currencyCode = Ledger::findByLegalEntity(CompanyInfo::find().RecId).AccountingCurrency;
       #    ;
       #
       #    super();
       #
       #    this.query().dataSourceTable(tablenum(ProjHourCostPrice)).addSortField(fieldnum(ProjHourCostPrice, TransDate), SortOrder::Descending);
       #    this.query().dataSourceTable(tablenum(ProjCostPriceExpense)).addSortField(fieldnum(ProjCostPriceExpense, TransDate), SortOrder::Descending);
-      #    this.query().dataSourceTable(tablenum(ProjCategory)).findRange(fieldnum(ProjCategory, CategoryType)).value(SysQuery::valueNot(ProjCategoryType::Item));
+      #    //this.query().dataSourceTable(tablenum(ProjCategory)).findRange(fieldnum(ProjCategory, CategoryType)).value(SysQuery::valueNot(ProjCategoryType::Item));
       #    this.query().dataSourceTable(tablenum(ProjHourSalesPrice)).findRange(fieldnum(ProjHourSalesPrice, CurrencyId)).value(SysQuery::value(currencyCode));
       #    this.query().dataSourceTable(tablenum(ProjHourSalesPrice)).findRange(fieldnum(ProjHourSalesPrice, ProjValidFor)).value(SysQuery::value(TableGroupAll::All));
       #    this.query().dataSourceTable(tablenum(ProjHourSalesPrice)).findRange(fieldnum(ProjHourSalesPrice, ProjSalesPriceModel)).value(SysQuery::value(ProjSalesPriceModel::Qty));
@@ -43,7 +43,6 @@ QUERY #WPAProjCategory
       #    this.query().dataSourceTable(tablenum(ProjCostSalesPrice)).findRange(fieldnum(ProjCostSalesPrice, ProjValidFor)).value(SysQuery::value(TableGroupAll::All));
       #    this.query().dataSourceTable(tablenum(ProjCostSalesPrice)).findRange(fieldnum(ProjCostSalesPrice, ProjSalesPriceModel)).value(SysQuery::value(ProjSalesPriceModel::Qty));
       #    this.query().dataSourceTable(tablenum(ProjCostSalesPrice)).addSortField(fieldnum(ProjCostSalesPrice, TransDate), SortOrder::Descending);
-      #
       #}
     ENDSOURCE
   ENDMETHODS
@@ -86,7 +85,6 @@ QUERY #WPAProjCategory
             Name                #ProjHourCostPrice
             Table               #ProjHourCostPrice
             UniqueId            #1001
-            FetchMode           #1:1
             JoinMode            #OuterJoin
             Relations           #Yes
           ENDPROPERTIES
@@ -104,8 +102,7 @@ QUERY #WPAProjCategory
           ENDBLOCKS
           ASSOCIATIONS
             ASSOCIATION
-              MASTERFIELD  #CategoryId
-              DETAILSFIELD #CategoryId
+              FOREIGNKEYRELATION #ProjCategory
           ENDASSOCIATIONS
         ENDBLOCK
         BLOCK #ProjCostPriceExpense
@@ -113,7 +110,6 @@ QUERY #WPAProjCategory
             Name                #ProjCostPriceExpense
             Table               #ProjCostPriceExpense
             UniqueId            #1003
-            FetchMode           #1:1
             JoinMode            #OuterJoin
             Relations           #Yes
           ENDPROPERTIES
@@ -131,8 +127,7 @@ QUERY #WPAProjCategory
           ENDBLOCKS
           ASSOCIATIONS
             ASSOCIATION
-              MASTERFIELD  #CategoryId
-              DETAILSFIELD #CategoryId
+              FOREIGNKEYRELATION #ProjCategory
           ENDASSOCIATIONS
         ENDBLOCK
         BLOCK #ProjHourSalesPrice
@@ -140,7 +135,6 @@ QUERY #WPAProjCategory
             Name                #ProjHourSalesPrice
             Table               #ProjHourSalesPrice
             UniqueId            #1002
-            FetchMode           #1:1
             JoinMode            #OuterJoin
             Relations           #Yes
           ENDPROPERTIES
@@ -179,8 +173,7 @@ QUERY #WPAProjCategory
           ENDBLOCKS
           ASSOCIATIONS
             ASSOCIATION
-              MASTERFIELD  #CategoryId
-              DETAILSFIELD #CategoryId
+              FOREIGNKEYRELATION #ProjCategory
           ENDASSOCIATIONS
         ENDBLOCK
         BLOCK #ProjRevenueSalesPrice
@@ -188,7 +181,6 @@ QUERY #WPAProjCategory
             Name                #ProjRevenueSalesPrice
             Table               #ProjRevenueSalesPrice
             UniqueId            #1004
-            FetchMode           #1:1
             JoinMode            #OuterJoin
             Relations           #Yes
           ENDPROPERTIES
@@ -220,8 +212,7 @@ QUERY #WPAProjCategory
           ENDBLOCKS
           ASSOCIATIONS
             ASSOCIATION
-              MASTERFIELD  #CategoryId
-              DETAILSFIELD #CategoryId
+              FOREIGNKEYRELATION #ProjCategory
           ENDASSOCIATIONS
         ENDBLOCK
         BLOCK #ProjCostSalesPrice
@@ -229,7 +220,6 @@ QUERY #WPAProjCategory
             Name                #ProjCostSalesPrice
             Table               #ProjCostSalesPrice
             UniqueId            #1005
-            FetchMode           #1:1
             JoinMode            #OuterJoin
             Relations           #Yes
           ENDPROPERTIES
@@ -269,13 +259,14 @@ QUERY #WPAProjCategory
           ENDBLOCKS
           ASSOCIATIONS
             ASSOCIATION
-              MASTERFIELD  #CategoryId
-              DETAILSFIELD #CategoryId
+              FOREIGNKEYRELATION #ProjCategory
           ENDASSOCIATIONS
         ENDBLOCK
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
       ENDORDERBY
     ENDBLOCK

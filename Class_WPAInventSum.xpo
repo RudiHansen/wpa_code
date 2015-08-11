@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAInventSum
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{6F4BEE65-3089-401B-8589-330D1A251E66}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventSum</c> class is the data object class that is exposed through the <c>WPAInventSumService</c> class.
+        #/// </summary>
+        ##AxdWPAInventSumDCT
+        #[AifDataContainerTypeAttribute(#WPAInventSum)]
         #class WPAInventSum extends AifDocument
         #{
         #    #define.SenderId('SenderId')
@@ -51,10 +55,50 @@ Formatversion: 1
         #    return this.exists(#SenderId);
         #}
       ENDSOURCE
+      SOURCE #exportItem
+        #private void exportItem(str         _wPAItemId,
+        #                        InventSum   _inventSum,
+        #                        InventTable _inventTable,
+        #                        InventDim   _inventDim,
+        #                        XmlElement  _root,
+        #                        XmlDocument _doc)
+        #{
+        #    #define.ItemId              ('ItemId')
+        #    #define.StockLocationItem   ('StockLocationItem')
+        #    #define.StockLocationId     ('StockLocationId')
+        #    #define.BatchNumber         ('BatchNumber')
+        #    #define.Quantity            ('Quantity')
+        #    str             wPAItemIdLast;
+        #    XmlElement      node;
+        #    XmlElement      subNode;
+        #    ItemId          itemId;
+        #    Qty             onHand = _inventSum.physicalInventCalculated();
+        #    ;
+        #    if (this.validateItem(_inventTable, _wPAItemId, onHand, _inventDim.InventLocationId, _inventDim.inventSerialId))
+        #    {
+        #        WPAInventOnHand::updateLog(_wPAItemId, onHand, _inventDim.InventLocationId, _inventDim.inventSerialId);
+        #
+        #        if (_wPAItemId != wPAItemIdLast)
+        #        {
+        #            node    = _root.appendChild(_doc.createElement(#Item));
+        #
+        #            this.wpa_addNotEmpty(node, _doc, #ItemId             , _wPAItemId);
+        #
+        #            itemId          = _inventSum.ItemId;
+        #            wPAItemIdLast   = _wPAItemId;
+        #        }
+        #
+        #        subNode = node.appendChild(_doc.createElement(#StockLocationItem));
+        #        this.wpa_addNotEmpty(subNode, _doc, #StockLocationId    , _inventDim.InventLocationId);
+        #        this.wpa_addNotEmpty(subNode, _doc, #BatchNumber        , _inventDim.inventSerialId);
+        #        this.wpa_addNotEmpty(subNode, _doc, #Quantity           , num2str(onHand,1,2,2,0));
+        #    }
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAInventSum);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmDocPurpose
@@ -80,7 +124,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -117,15 +161,16 @@ Formatversion: 1
         #    #define.StockLocationItem   ('StockLocationItem')
         #    #define.StockLocationId     ('StockLocationId')
         #    #define.Quantity            ('Quantity')
+        #    #define.BatchNumber         ('BatchNumber')
         #
         #
-        #    void exportItem(str _wPAItemId)
+        #    void exportItem_OLD(str _wPAItemId)
         #    {
-        #        Qty onHand = inventSum.physicalInvent();
+        #        Qty onHand = inventSum.physicalInventCalculated();
         #        ;
-        #        if (this.validateItem(inventTable, _wPAItemId, onHand))
+        #        if (this.validateItem(inventTable, _wPAItemId, onHand, inventDim.InventLocationId, inventDim.inventSerialId))
         #        {
-        #            WPAInventOnHand::updateLog(_wPAItemId, onHand);
+        #            WPAInventOnHand::updateLog(_wPAItemId, onHand, inventDim.InventLocationId, inventDim.inventSerialId);
         #
         #            if (_wPAItemId != wPAItemIdLast)
         #            {
@@ -136,8 +181,10 @@ Formatversion: 1
         #                itemId          = inventSum.ItemId;
         #                wPAItemIdLast   = _wPAItemId;
         #            }
+        #
         #            subNode = node.appendChild(doc.createElement(#StockLocationItem));
         #            this.wpa_addNotEmpty(subNode, doc, #StockLocationId    , inventDim.InventLocationId);
+        #            this.wpa_addNotEmpty(subNode, doc, #BatchNumber        , inventDim.inventSerialId);
         #            this.wpa_addNotEmpty(subNode, doc, #Quantity           , num2str(onHand,1,2,2,0));
         #        }
         #    }
@@ -149,7 +196,7 @@ Formatversion: 1
         #    xmlWriterSettings.indent(true);
         #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
         #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.getMessageId(), this.getQueryName()));
         #
         #    while(queryRun.next())
         #    {
@@ -181,7 +228,7 @@ Formatversion: 1
         #            wPAItemId += WPAParameters::find().Separator
         #                    + inventDim.InventColorId;
         #
-        #        exportItem(wPAItemId);
+        #        this.exportItem(wPAItemId, inventSum, inventTable, inventDim, root, doc);
         #    }
         #
         #    doc.writeTo(localXmlWriter);
@@ -191,14 +238,16 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #validateItem
-        #boolean validateItem(InventTable    _inventTable,
-        #                     WPAItemId      _itemId,
-        #                     Qty            _onHand)
+        #boolean validateItem(InventTable        _inventTable,
+        #                     WPAItemId          _itemId,
+        #                     Qty                _onHand,
+        #                     InventLocationId   _inventLocationId,
+        #                     InventSerialId     _inventSerialId = "")
         #{
         #    boolean ret = false;
         #    ;
         #    if (WPAIntegrationLog::exist(_inventTable.TableId, _inventTable.RecId) &&
-        #       (!wPAParameters.SendOnlyInventoryChanges || WPAInventOnHand::find(_itemId).OnHand != _onHand))
+        #       (!wPAParameters.SendOnlyInventoryChanges || WPAInventOnHand::find(_itemId, _inventLocationId, _inventSerialId).OnHand != _onHand))
         #    {
         #        ret = true;
         #    }

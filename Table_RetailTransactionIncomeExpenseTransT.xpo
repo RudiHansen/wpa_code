@@ -1,0 +1,354 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionIncomeExpenseTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionIncomeExpenseTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionIncomeExpenseTransT
+      Label               #@RET3291
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{67548EE8-1B48-4229-A18B-8B2B61A2C274}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #accountType
+        ENUM
+        PROPERTIES
+          Name                #accountType
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{73308681-C1E5-49FF-95E3-940664B76A41}
+          EnumType            #RetailIncomeExpense
+        ENDPROPERTIES
+        
+      FIELD #amount
+        REAL
+        PROPERTIES
+          Name                #amount
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{4CC2DCE1-1594-47A3-BBFF-B2CC01B08395}
+        ENDPROPERTIES
+        
+      FIELD #businessDate
+        DATE
+        PROPERTIES
+          Name                #businessDate
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{61DE957F-01A1-420D-AED4-40C6501EABDF}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{544F109A-1659-4EA3-ABD8-1221E9A7204C}
+        ENDPROPERTIES
+        
+      FIELD #counter
+        INT
+        PROPERTIES
+          Name                #counter
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{0EAF2700-A7C3-44BD-9AA1-4A99590CA402}
+        ENDPROPERTIES
+        
+      FIELD #incomeExepenseAccount
+        STRING
+        PROPERTIES
+          Name                #incomeExepenseAccount
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{55C092D9-5EA9-4244-9506-69AB7384B41C}
+        ENDPROPERTIES
+        
+      FIELD #lineNum
+        REAL
+        PROPERTIES
+          Name                #lineNum
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{5FB9EBFE-C340-461C-B9AD-4D5C85CEC4CB}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{A9B8D14E-3A83-4F95-BA65-C5D0BB7750F6}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #receiptId
+        STRING
+        PROPERTIES
+          Name                #receiptId
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{BADB5D6E-4C7A-4359-8E3B-F8BEDBD126E9}
+          StringSize          #18
+        ENDPROPERTIES
+        
+      FIELD #replicated
+        ENUM
+        PROPERTIES
+          Name                #replicated
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{9DDAC93F-81A2-4F71-A088-198AE06A436F}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #replicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #replicationCounterFromOrigin
+          Label               #@RET3920
+          HelpText            #@RET3921
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{1704D4BE-B243-4A8D-8F02-AD157C7267FE}
+        ENDPROPERTIES
+        
+      FIELD #shift
+        STRING
+        PROPERTIES
+          Name                #shift
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{07635DA8-4799-4426-B945-E5F03DE96DC1}
+        ENDPROPERTIES
+        
+      FIELD #shiftDate
+        DATE
+        PROPERTIES
+          Name                #shiftDate
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{A2A9331F-C696-4E00-8BDF-BB160E6160D7}
+        ENDPROPERTIES
+        
+      FIELD #staff
+        STRING
+        PROPERTIES
+          Name                #staff
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{CCEA1B10-2C44-42BB-9D51-9041316175A2}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #statementCode
+        STRING
+        PROPERTIES
+          Name                #statementCode
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{D80F7D57-4652-4394-B36B-F6B432D520C7}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #store
+        STRING
+        PROPERTIES
+          Name                #store
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{904DBD28-D3D9-490C-B479-DD2EC01FFC01}
+        ENDPROPERTIES
+        
+      FIELD #terminal
+        STRING
+        PROPERTIES
+          Name                #terminal
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{2DDEB31D-BE20-4D35-80ED-359242CA317A}
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{07C03CA0-412E-4C12-ACE2-A493FC3C4B08}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #transactionStatus
+        ENUM
+        PROPERTIES
+          Name                #transactionStatus
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{40A71C4F-3CBA-4D33-BD86-A14A80A9B9F1}
+          EnumType            #RetailEntryStatus
+        ENDPROPERTIES
+        
+      FIELD #transDate
+        DATE
+        PROPERTIES
+          Name                #transDate
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{2F868528-1A05-447B-B640-C807AD64CE2B}
+        ENDPROPERTIES
+        
+      FIELD #transTime
+        INT
+        PROPERTIES
+          Name                #transTime
+          Table               #RetailTransactionIncomeExpenseTransT
+          Origin              #{065140B1-C950-4CDD-B655-A0113A6BD41F}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{EDB998B8-6B14-44C4-A243-678E51CBC0C4}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #lineNum
+        #transactionId
+        #terminal
+        #store
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionIncomeExpenseTransT cursor)
+        #{
+        #    RetailTransactionIncomeExpenseTrans target;
+        #    RetailTransactionIncomeExpenseTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint transactionLineIdx
+        #                where (target.@store==cursor2.@store && target.@terminal==cursor2.@terminal && target.@transactionId==cursor2.@transactionId && target.@lineNum==cursor2.@lineNum && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @accountType,
+        #                    @amount,
+        #                    @businessDate,
+        #                    @Channel,
+        #                    @counter,
+        #                    @incomeExepenseAccount,
+        #                    @lineNum,
+        #                    @receiptId,
+        #                    @replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @shift,
+        #                    @shiftDate,
+        #                    @staff,
+        #                    @statementCode,
+        #                    @store,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @transactionStatus,
+        #                    @transDate,
+        #                    @transTime,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @accountType,
+        #                    @amount,
+        #                    @businessDate,
+        #                    @Channel,
+        #                    @counter,
+        #                    @incomeExepenseAccount,
+        #                    @lineNum,
+        #                    @receiptId,
+        #                    @replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @shift,
+        #                    @shiftDate,
+        #                    @staff,
+        #                    @statementCode,
+        #                    @store,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @transactionStatus,
+        #                    @transDate,
+        #                    @transTime,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionIncomeExpenseTransT cursor)
+        #{
+        #    RetailTransactionIncomeExpenseTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(replicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionIncomeExpenseTrans), cursor2.replicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

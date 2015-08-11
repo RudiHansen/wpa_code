@@ -12,13 +12,14 @@ Formatversion: 1
       Name                #AxdWPACustTable
       Extends             #AxdBase
       RunOn               #Server
+      Origin              #{85A4CA7B-CB56-4C51-84B6-93FBC11A507B}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class AxdWPACustTable extends AxdBase
         #{
+        #    #define.CustTable_DataSourceName('CustTable')
         #}
         #
       ENDSOURCE
@@ -37,6 +38,27 @@ Formatversion: 1
         #                            AifConstraintListCollection _constraintListCollection)
         #{
         #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findCorrespondingAxBC
+        #public int findCorrespondingAxBC(tableId _tableId = 0)
+        #{
+        #    return classnum(AxCommon);
         #}
         #
       ENDSOURCE
@@ -75,7 +97,7 @@ Formatversion: 1
         #    AifConstraint  aifConstraint = new AifConstraint();
         #    CustTable    CustTable;
         #    ;
-        #    if (_curRec.TableId != tablenum(CustTable))
+        #    if (!(_curRec is CustTable))
         #    {
         #         throw error(strfmt("@SYS23396",funcname()));
         #    }
@@ -85,8 +107,8 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #GetLabel
-        #public LabelDescription getLabel()
+      SOURCE #getLabel
+        #public LabelString getLabel()
         #{
         #    return "@SYS11307";
         #}
@@ -111,7 +133,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #updateList
-        #public AifEntityKey updateList(AifEntityKeyList            _entityKeyList,
+        #public AifResult updateList(AifEntityKeyList            _entityKeyList,
         #                               AifDocumentXML              _xml,
         #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
         #                               AifConstraintListCollection _constraintListcollection)

@@ -12,11 +12,14 @@ Formatversion: 1
       Name                #WPAInventSumService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{7A640BC8-CB98-4D84-BAAA-4566F324CDDA}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventSumService</c> class serves as the document service for the <c>WPAInventSum</c> document type.
+        #/// </summary>
         #class WPAInventSumService extends AifDocumentService
         #{
         #
@@ -24,6 +27,16 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAInventSum</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
         #public WPAInventSum find(AifQueryCriteria _queryCriteria)
         #{
         #    WPAInventSum wPAInventSum = new WPAInventSum();

@@ -11,11 +11,11 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAWorkCardXmlContainer
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{18EAF0E3-5DA9-4879-AE3D-DBAB1ED990B7}
+      LegacyId            #50100
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPAWorkcardXmlContainer extends AifDocument
         #{
@@ -23,9 +23,9 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #new
-        #public void new(str _dataContainerType)
+        #public void new()
         #{
-        #    super(_dataContainerType);
+        #    super(#WPAWorkcard);
         #}
       ENDSOURCE
       SOURCE #parmMessage

@@ -11,6 +11,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAIntegration
       Label               #@WPA32
+      Origin              #{BBC323B4-38AF-48AE-84D9-40419BDA546F}
+      LegacyId            #50001
     ENDPROPERTIES
     
   ENDCONFIGURATIONKEY

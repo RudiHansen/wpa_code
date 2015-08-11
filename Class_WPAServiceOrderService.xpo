@@ -12,11 +12,14 @@ Formatversion: 1
       Name                #WPAServiceOrderService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{50DD6C5E-4C81-4790-816C-77538133B534}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAServiceOrderService</c> class serves as the document service for the <c>WPAServiceOrder</c> document type.
+        #/// </summary>
         #class WPAServiceOrderService extends AifDocumentService
         #{
         #
@@ -24,14 +27,29 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #create
-        #
+        #/// <summary>
+        #///    Creates one or more data objects that are contained in a <c>WPAServiceOrder</c> document.
+        #/// </summary>
+        #/// <param name="_wPAServiceOrder">
+        #///    The <c>WPAServiceOrder</c> document that contains the data objects to create.
+        #/// </param>
+        #/// <returns>
+        #///    A list of entity keys that identify the newly created objects. The entity keys appear in the order that the created objects are specified in the <c>WPAServiceOrder</c> document.
+        #/// </returns>
+        #[AifDocumentCreateAttribute, SysEntryPointAttribute(true)]
         #public AifEntityKeyList create(WPAServiceOrder _wPAServiceOrder)
         #{
         #    return this.createList(_wPAServiceOrder);
         #}
       ENDSOURCE
       SOURCE #delete
-        #
+        #/// <summary>
+        #///    Deletes one or more data objects.
+        #/// </summary>
+        #/// <param name="_entityKeyList">
+        #///    A list of entity keys that identify the data objects to delete.
+        #/// </param>
+        #[AifDocumentDeleteAttribute, SysEntryPointAttribute(true)]
         #public void delete(AifEntityKeyList _entityKeyList)
         #{
         #    WPAServiceOrder wPAServiceOrder = new WPAServiceOrder();
@@ -39,18 +57,21 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAServiceOrder</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
         #public WPAServiceOrder find(AifQueryCriteria _queryCriteria)
         #{
         #    WPAServiceOrder wPAServiceOrder = new WPAServiceOrder();
         #    this.findList(_queryCriteria, wPAServiceOrder);
         #    return wPAServiceOrder;
-        #}
-      ENDSOURCE
-      SOURCE #findKeys
-        #public AifEntityKeyList findKeys(AifQueryCriteria _queryCriteria)
-        #{
-        #    WPAServiceOrder wPAServiceOrder = new WPAServiceOrder();
-        #    return this.findKeyList(_queryCriteria, wPAServiceOrder);
         #}
       ENDSOURCE
       SOURCE #new
@@ -60,15 +81,17 @@ Formatversion: 1
         #    super();
         #}
       ENDSOURCE
-      SOURCE #read
-        #public WPAServiceOrder read(AifEntityKeyList _entityKeyList)
-        #{
-        #    WPAServiceOrder wPAServiceOrder = new WPAServiceOrder();
-        #    this.readList(_entityKeyList, wPAServiceOrder);
-        #    return wPAServiceOrder;
-        #}
-      ENDSOURCE
       SOURCE #update
+        #/// <summary>
+        #///    Updates a <c>WPAServiceOrder</c> document that contains one or more data objects.
+        #/// </summary>
+        #/// <param name="_entityKeyList">
+        #///    A list of entity keys that identify the data objects to update.
+        #/// </param>
+        #/// <param name="_wPAServiceOrder">
+        #///    A <c>WPAServiceOrder</c> document that contains the data objects to update.
+        #/// </param>
+        #[AifDocumentUpdateAttribute, SysEntryPointAttribute(true)]
         #public void update(AifEntityKeyList _entityKeyList, WPAServiceOrder _wPAServiceOrder)
         #{
         #    this.updateList(_entityKeyList, _wPAServiceOrder);

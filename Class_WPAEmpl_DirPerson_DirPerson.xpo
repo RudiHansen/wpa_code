@@ -1,0 +1,417 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAEmpl_DirPerson_DirPerson unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAEmpl_DirPerson_DirPerson
+    PROPERTIES
+      Name                #WPAEmpl_DirPerson_DirPerson
+      Extends             #WPAEmpl_DirPerson_DirPartyTable
+      Origin              #{E4EC4451-A1AF-4A32-BB95-58B918D08B72}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAEmpl_DirPerson_DirPerson</c> class is the data object class that is exposed through the <c>WPAEmplService</c> class.
+        #/// </summary>
+        ##AxdWPAEmplDCT
+        #[AifDataContainerTypeAttribute(#WPAEmpl_DirPerson_DirPerson)]
+        #class WPAEmpl_DirPerson_DirPerson extends WPAEmpl_DirPerson_DirPartyTable
+        #{
+        #    #define.ProfessionalTitle('ProfessionalTitle')
+        #    #define.ProfessionalSuffix('ProfessionalSuffix')
+        #    #define.PhoneticMiddleName('PhoneticMiddleName')
+        #    #define.PhoneticLastName('PhoneticLastName')
+        #    #define.PhoneticFirstName('PhoneticFirstName')
+        #    #define.PersonalTitle('PersonalTitle')
+        #    #define.PersonalSuffix('PersonalSuffix')
+        #    #define.NameSequence('NameSequence')
+        #    #define.MaritalStatus('MaritalStatus')
+        #    #define.Initials('Initials')
+        #    #define.Hobbies('Hobbies')
+        #    #define.Gender('Gender')
+        #    #define.CommunicatorSignIn('CommunicatorSignIn')
+        #    #define.ChildrenNames('ChildrenNames')
+        #    #define.BirthYear('BirthYear')
+        #    #define.BirthMonth('BirthMonth')
+        #    #define.BirthDay('BirthDay')
+        #    #define.AnniversaryYear('AnniversaryYear')
+        #    #define.AnniversaryMonth('AnniversaryMonth')
+        #    #define.AnniversaryDay('AnniversaryDay')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createCommunicatorSignIn
+        #public DirPartyLocationKey createCommunicatorSignIn()
+        #{
+        #    return this.get_NewContainer(#CommunicatorSignIn);
+        #}
+      ENDSOURCE
+      SOURCE #createPersonalSuffix
+        #public DirNameAffixKey createPersonalSuffix()
+        #{
+        #    return this.get_NewContainer(#PersonalSuffix);
+        #}
+      ENDSOURCE
+      SOURCE #createPersonalTitle
+        #public DirNameAffixKey createPersonalTitle()
+        #{
+        #    return this.get_NewContainer(#PersonalTitle);
+        #}
+      ENDSOURCE
+      SOURCE #existsAnniversaryDay
+        #public boolean existsAnniversaryDay()
+        #{
+        #    return this.exists(#AnniversaryDay);
+        #}
+      ENDSOURCE
+      SOURCE #existsAnniversaryMonth
+        #public boolean existsAnniversaryMonth()
+        #{
+        #    return this.exists(#AnniversaryMonth);
+        #}
+      ENDSOURCE
+      SOURCE #existsAnniversaryYear
+        #public boolean existsAnniversaryYear()
+        #{
+        #    return this.exists(#AnniversaryYear);
+        #}
+      ENDSOURCE
+      SOURCE #existsBirthDay
+        #public boolean existsBirthDay()
+        #{
+        #    return this.exists(#BirthDay);
+        #}
+      ENDSOURCE
+      SOURCE #existsBirthMonth
+        #public boolean existsBirthMonth()
+        #{
+        #    return this.exists(#BirthMonth);
+        #}
+      ENDSOURCE
+      SOURCE #existsBirthYear
+        #public boolean existsBirthYear()
+        #{
+        #    return this.exists(#BirthYear);
+        #}
+      ENDSOURCE
+      SOURCE #existsChildrenNames
+        #public boolean existsChildrenNames()
+        #{
+        #    return this.exists(#ChildrenNames);
+        #}
+      ENDSOURCE
+      SOURCE #existsCommunicatorSignIn
+        #public boolean existsCommunicatorSignIn()
+        #{
+        #    return this.exists(#CommunicatorSignIn);
+        #}
+      ENDSOURCE
+      SOURCE #existsGender
+        #public boolean existsGender()
+        #{
+        #    return this.exists(#Gender);
+        #}
+      ENDSOURCE
+      SOURCE #existsHobbies
+        #public boolean existsHobbies()
+        #{
+        #    return this.exists(#Hobbies);
+        #}
+      ENDSOURCE
+      SOURCE #existsInitials
+        #public boolean existsInitials()
+        #{
+        #    return this.exists(#Initials);
+        #}
+      ENDSOURCE
+      SOURCE #existsMaritalStatus
+        #public boolean existsMaritalStatus()
+        #{
+        #    return this.exists(#MaritalStatus);
+        #}
+      ENDSOURCE
+      SOURCE #existsNameSequence
+        #public boolean existsNameSequence()
+        #{
+        #    return this.exists(#NameSequence);
+        #}
+      ENDSOURCE
+      SOURCE #existsPersonalSuffix
+        #public boolean existsPersonalSuffix()
+        #{
+        #    return this.exists(#PersonalSuffix);
+        #}
+      ENDSOURCE
+      SOURCE #existsPersonalTitle
+        #public boolean existsPersonalTitle()
+        #{
+        #    return this.exists(#PersonalTitle);
+        #}
+      ENDSOURCE
+      SOURCE #existsPhoneticFirstName
+        #public boolean existsPhoneticFirstName()
+        #{
+        #    return this.exists(#PhoneticFirstName);
+        #}
+      ENDSOURCE
+      SOURCE #existsPhoneticLastName
+        #public boolean existsPhoneticLastName()
+        #{
+        #    return this.exists(#PhoneticLastName);
+        #}
+      ENDSOURCE
+      SOURCE #existsPhoneticMiddleName
+        #public boolean existsPhoneticMiddleName()
+        #{
+        #    return this.exists(#PhoneticMiddleName);
+        #}
+      ENDSOURCE
+      SOURCE #existsProfessionalSuffix
+        #public boolean existsProfessionalSuffix()
+        #{
+        #    return this.exists(#ProfessionalSuffix);
+        #}
+      ENDSOURCE
+      SOURCE #existsProfessionalTitle
+        #public boolean existsProfessionalTitle()
+        #{
+        #    return this.exists(#ProfessionalTitle);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #parmAnniversaryDay
+        #public Day parmAnniversaryDay(Day _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AnniversaryDay, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AnniversaryDay);
+        #}
+      ENDSOURCE
+      SOURCE #parmAnniversaryMonth
+        #public MonthsOfYear parmAnniversaryMonth(MonthsOfYear _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AnniversaryMonth, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AnniversaryMonth);
+        #}
+      ENDSOURCE
+      SOURCE #parmAnniversaryYear
+        #public YearBase parmAnniversaryYear(YearBase _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AnniversaryYear, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AnniversaryYear);
+        #}
+      ENDSOURCE
+      SOURCE #parmBirthDay
+        #public Day parmBirthDay(Day _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#BirthDay, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#BirthDay);
+        #}
+      ENDSOURCE
+      SOURCE #parmBirthMonth
+        #public MonthsOfYear parmBirthMonth(MonthsOfYear _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#BirthMonth, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#BirthMonth);
+        #}
+      ENDSOURCE
+      SOURCE #parmBirthYear
+        #public YearBase parmBirthYear(YearBase _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#BirthYear, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#BirthYear);
+        #}
+      ENDSOURCE
+      SOURCE #parmChildrenNames
+        #public DirPersonChildrenNames parmChildrenNames(DirPersonChildrenNames _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ChildrenNames, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ChildrenNames);
+        #}
+      ENDSOURCE
+      SOURCE #parmCommunicatorSignIn
+        #public DirPartyLocationKey parmCommunicatorSignIn(DirPartyLocationKey _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Container(#CommunicatorSignIn, _value);
+        #    }
+        #
+        #    return this.get_Container(#CommunicatorSignIn);
+        #}
+      ENDSOURCE
+      SOURCE #parmGender
+        #public Gender parmGender(Gender _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Gender, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Gender);
+        #}
+      ENDSOURCE
+      SOURCE #parmHobbies
+        #public DirPersonHobbies parmHobbies(DirPersonHobbies _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Hobbies, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Hobbies);
+        #}
+      ENDSOURCE
+      SOURCE #parmInitials
+        #public DirPersonInitials parmInitials(DirPersonInitials _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Initials, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Initials);
+        #}
+      ENDSOURCE
+      SOURCE #parmMaritalStatus
+        #public DirPersonMaritalStatus parmMaritalStatus(DirPersonMaritalStatus _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#MaritalStatus, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#MaritalStatus);
+        #}
+      ENDSOURCE
+      SOURCE #parmNameSequence
+        #public DirNameSequenceDisplayAs parmNameSequence(DirNameSequenceDisplayAs _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#NameSequence, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#NameSequence);
+        #}
+      ENDSOURCE
+      SOURCE #parmPersonalSuffix
+        #public DirNameAffixKey parmPersonalSuffix(DirNameAffixKey _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Container(#PersonalSuffix, _value);
+        #    }
+        #
+        #    return this.get_Container(#PersonalSuffix);
+        #}
+      ENDSOURCE
+      SOURCE #parmPersonalTitle
+        #public DirNameAffixKey parmPersonalTitle(DirNameAffixKey _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Container(#PersonalTitle, _value);
+        #    }
+        #
+        #    return this.get_Container(#PersonalTitle);
+        #}
+      ENDSOURCE
+      SOURCE #parmPhoneticFirstName
+        #public DirPhoneticFirstName parmPhoneticFirstName(DirPhoneticFirstName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PhoneticFirstName, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PhoneticFirstName);
+        #}
+      ENDSOURCE
+      SOURCE #parmPhoneticLastName
+        #public DirPhoneticLastName parmPhoneticLastName(DirPhoneticLastName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PhoneticLastName, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PhoneticLastName);
+        #}
+      ENDSOURCE
+      SOURCE #parmPhoneticMiddleName
+        #public DirPhoneticMiddleName parmPhoneticMiddleName(DirPhoneticMiddleName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PhoneticMiddleName, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PhoneticMiddleName);
+        #}
+      ENDSOURCE
+      SOURCE #parmProfessionalSuffix
+        #public DirNameProfessionalSuffix parmProfessionalSuffix(DirNameProfessionalSuffix _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProfessionalSuffix, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProfessionalSuffix);
+        #}
+      ENDSOURCE
+      SOURCE #parmProfessionalTitle
+        #public DirNameProfessionalTitle parmProfessionalTitle(DirNameProfessionalTitle _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProfessionalTitle, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProfessionalTitle);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

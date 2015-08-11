@@ -1,0 +1,33 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: UTE
+
+; Microsoft Dynamics AX Enum: WPAAutoSignOff unloaded
+; --------------------------------------------------------------------------------
+  USERTYPEVERSION 6
+  
+  USERTYPE #WPAAutoSignOff
+  ENUM
+    PROPERTIES
+      Name                #WPAAutoSignOff
+      Label               #@WPA243
+      HelpText            #@WPA244
+      Origin              #{15AEE870-3768-40E9-8906-9EC13EADF1BD}
+      Extends             #SMASignOff
+      EnumType            #NoYes
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+    ENDTYPEELEMENTS
+    
+    TYPEREFERENCES
+    ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
+    
+  ENDUSERTYPE
+  
+
+***Element: END

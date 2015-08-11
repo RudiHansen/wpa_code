@@ -16,6 +16,7 @@ Formatversion: 1
       Object              #WPAWorkcardTable
       CountryConfigurationkey   #WPAIntegration
       SecurityKey         #WPAInquiries
+      Origin              #{F348BDD0-82D5-43AF-BFFA-1A22D3D78501}
     ENDPROPERTIES
     
   ENDMENUITEM

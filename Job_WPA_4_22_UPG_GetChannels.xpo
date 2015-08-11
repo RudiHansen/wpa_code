@@ -1,0 +1,42 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: WPA_4_22_UPG_GetChannels unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #WPA_4_22_UPG_GetChannels
+    #static void WPA_4_22_UPG_GetChannels(Args _args)
+    #{
+    #    AifGatewayQueue gatewayQueue;
+    #    AifChannel channel;
+    #    AifAdapter adapter;
+    #    List channelIdList = new List(Types::String);
+    #    Set uniqueChannelIds = new Set(Types::String);
+    #    #Aif
+    #
+    #    new AifOutboundProcessingService().run();
+    #
+    #    // Get outbound messages ordered by created date/time
+    #    while
+    #        select ChannelId  from gatewayQueue join channel join adapter
+    #        order by CreatedDateTime, RecId
+    #        where
+    #            gatewayQueue.Direction == AifMessageDirection::Outbound
+    #            && gatewayQueue.Status == AifQueueStatus::Ready
+    #            && gatewayQueue.ChannelId == channel.ChannelId
+    #            && channel.AdapterClassId == adapter.AdapterClassId
+    #            && adapter.Hosted == NoYes::Yes
+    #    {
+    #        info(channel.ChannelId);
+    #    }
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{87EE0CF4-46B0-4A2C-8452-E230233B3189}
+  ENDPROPERTIES
+  
+
+***Element: END

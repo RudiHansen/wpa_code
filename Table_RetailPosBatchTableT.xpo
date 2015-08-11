@@ -1,0 +1,568 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailPosBatchTableT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailPosBatchTableT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailPosBatchTableT
+      Label               #@RET5070
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{AC8A77F9-5A16-418B-8AC6-C0E14156FF5E}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #BatchID
+        INT64
+        PROPERTIES
+          Name                #BatchID
+          Table               #RetailPosBatchTableT
+          Origin              #{981138DD-AA6D-4BC3-AD60-A9F594C26666}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailPosBatchTableT
+          Origin              #{F05C668F-A153-4589-BEDF-64AAC698913D}
+        ENDPROPERTIES
+        
+      FIELD #CloseDate
+        DATE
+        PROPERTIES
+          Name                #CloseDate
+          Label               #@SYS22065
+          Table               #RetailPosBatchTableT
+          Origin              #{919C5940-5308-4903-BE60-16CE13F63C60}
+        ENDPROPERTIES
+        
+      FIELD #CloseDateTimeUtc
+        DATETIME
+        PROPERTIES
+          Name                #CloseDateTimeUtc
+          Label               #@SYS30156
+          Table               #RetailPosBatchTableT
+          Origin              #{F87B5FF5-DB3F-4168-8779-A79249915242}
+        ENDPROPERTIES
+        
+      FIELD #ClosedAtTerminal
+        STRING
+        PROPERTIES
+          Name                #ClosedAtTerminal
+          Table               #RetailPosBatchTableT
+          Origin              #{0EB54633-511C-4F1B-8E91-DD0F164FBA1F}
+        ENDPROPERTIES
+        
+      FIELD #CloseTime
+        INT
+        PROPERTIES
+          Name                #CloseTime
+          Label               #@SYS30156
+          Table               #RetailPosBatchTableT
+          Origin              #{05F87473-BD4D-46A2-979E-9DAAEEE33183}
+        ENDPROPERTIES
+        
+      FIELD #CustomersCount
+        INT
+        PROPERTIES
+          Name                #CustomersCount
+          Label               #@RET5072
+          Table               #RetailPosBatchTableT
+          Origin              #{C9953AA4-9DCE-4FE2-803F-D0CE9338E964}
+        ENDPROPERTIES
+        
+      FIELD #DiscountTotal
+        REAL
+        PROPERTIES
+          Name                #DiscountTotal
+          Label               #@RET5073
+          Table               #RetailPosBatchTableT
+          Origin              #{8A45BE26-8807-4DBC-B1C0-B71F327B06FF}
+        ENDPROPERTIES
+        
+      FIELD #GoodsSoldQty
+        REAL
+        PROPERTIES
+          Name                #GoodsSoldQty
+          Label               #@SYP4860943
+          Table               #RetailPosBatchTableT
+          Origin              #{D6D8983E-36E1-4E42-A451-2292400207A0}
+        ENDPROPERTIES
+        
+      FIELD #LogonsCount
+        INT
+        PROPERTIES
+          Name                #LogonsCount
+          Label               #@RET5220
+          Table               #RetailPosBatchTableT
+          Origin              #{B696262F-2E1E-4E90-95A4-82AF0B14BA86}
+        ENDPROPERTIES
+        
+      FIELD #NoSaleCount
+        INT
+        PROPERTIES
+          Name                #NoSaleCount
+          Label               #@RET5074
+          Table               #RetailPosBatchTableT
+          Origin              #{8934CCA2-9B53-4B79-BD79-CBC396E971D9}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailPosBatchTableT
+          Origin              #{C5F0AFDD-F936-4C7A-898E-A59E2B1E92EB}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #PaidToAccountTotal
+        REAL
+        PROPERTIES
+          Name                #PaidToAccountTotal
+          Label               #@RET5075
+          Table               #RetailPosBatchTableT
+          Origin              #{FC8FAF62-7804-4B3B-A732-7ACF03492D16}
+        ENDPROPERTIES
+        
+      FIELD #Posted
+        ENUM
+        PROPERTIES
+          Name                #Posted
+          HelpText            #@RET5071
+          Table               #RetailPosBatchTableT
+          Origin              #{0A879777-4C5A-4E0D-A5C3-878A606E1C1A}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #PriceOverrideTotal
+        REAL
+        PROPERTIES
+          Name                #PriceOverrideTotal
+          Label               #@SYP4861020
+          HelpText            #@SYP4861021
+          Table               #RetailPosBatchTableT
+          Origin              #{D4FB29F6-4408-407F-A772-B72B9CE5C571}
+        ENDPROPERTIES
+        
+      FIELD #ReceiptCopiesCount
+        INT
+        PROPERTIES
+          Name                #ReceiptCopiesCount
+          Label               #@SYP4860945
+          Table               #RetailPosBatchTableT
+          Origin              #{BFAE734C-919D-4EB8-9CFB-8FA789C5327C}
+        ENDPROPERTIES
+        
+      FIELD #ReceiptCopiesTotal
+        REAL
+        PROPERTIES
+          Name                #ReceiptCopiesTotal
+          Label               #@SYP4860945
+          Table               #RetailPosBatchTableT
+          Origin              #{7EBB5733-1F61-490F-85C6-EBFE9251FEED}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounter
+        INT
+        PROPERTIES
+          Name                #ReplicationCounter
+          Table               #RetailPosBatchTableT
+          Origin              #{E2B05D72-2D94-477C-A9B4-945ECA382008}
+        ENDPROPERTIES
+        
+      FIELD #ReturnsCount
+        INT
+        PROPERTIES
+          Name                #ReturnsCount
+          Label               #@RET3289
+          Table               #RetailPosBatchTableT
+          Origin              #{BD883EB0-8C51-4AA3-8B5E-E400895A8DDF}
+        ENDPROPERTIES
+        
+      FIELD #ReturnsGrandTotal
+        REAL
+        PROPERTIES
+          Name                #ReturnsGrandTotal
+          Label               #@SYP4860941
+          Table               #RetailPosBatchTableT
+          Origin              #{478973A0-6594-4004-ACC1-8CD4CD36A86B}
+        ENDPROPERTIES
+        
+      FIELD #ReturnsTotal
+        REAL
+        PROPERTIES
+          Name                #ReturnsTotal
+          Label               #@RET5076
+          Table               #RetailPosBatchTableT
+          Origin              #{07BA96FC-A958-46F6-8B10-5D8706279212}
+        ENDPROPERTIES
+        
+      FIELD #RoundedAmountTotal
+        REAL
+        PROPERTIES
+          Name                #RoundedAmountTotal
+          Label               #@RET4325
+          Table               #RetailPosBatchTableT
+          Origin              #{A6E2855C-071D-40E6-9B6B-2C684EF5DF8E}
+        ENDPROPERTIES
+        
+      FIELD #SalesCount
+        INT
+        PROPERTIES
+          Name                #SalesCount
+          Label               #@RET5218
+          Table               #RetailPosBatchTableT
+          Origin              #{D1AC6BC0-5FCC-4E79-91A7-FB26E52F4D9C}
+        ENDPROPERTIES
+        
+      FIELD #SalesGrandTotal
+        REAL
+        PROPERTIES
+          Name                #SalesGrandTotal
+          Label               #@SYP4860940
+          Table               #RetailPosBatchTableT
+          Origin              #{D94466FE-1D36-4C18-9BB9-50BEEAAC7F8A}
+        ENDPROPERTIES
+        
+      FIELD #SalesTotal
+        REAL
+        PROPERTIES
+          Name                #SalesTotal
+          Label               #@RET5238
+          Table               #RetailPosBatchTableT
+          Origin              #{46C38227-B038-4A5D-A366-B8AAFEB9E8C6}
+        ENDPROPERTIES
+        
+      FIELD #ServicesSoldQty
+        REAL
+        PROPERTIES
+          Name                #ServicesSoldQty
+          Label               #@SYP4860944
+          Table               #RetailPosBatchTableT
+          Origin              #{FFCC5901-CC8B-4492-AF7D-96E5CE5F00DE}
+        ENDPROPERTIES
+        
+      FIELD #StaffId
+        STRING
+        PROPERTIES
+          Name                #StaffId
+          Table               #RetailPosBatchTableT
+          Origin              #{03E59E9E-0AE9-4CB2-89AE-9C7E283E762C}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #StartDate
+        DATE
+        PROPERTIES
+          Name                #StartDate
+          Label               #@SYS35856
+          Table               #RetailPosBatchTableT
+          Origin              #{7F663075-67E8-4B9B-9734-ADAAE8C07D2E}
+        ENDPROPERTIES
+        
+      FIELD #StartDateTimeUtc
+        DATETIME
+        PROPERTIES
+          Name                #StartDateTimeUtc
+          Label               #@SYS39127
+          Table               #RetailPosBatchTableT
+          Origin              #{424440C1-9434-4C66-B900-6C571D0A3BE1}
+        ENDPROPERTIES
+        
+      FIELD #StartTime
+        INT
+        PROPERTIES
+          Name                #StartTime
+          Label               #@SYS39127
+          Table               #RetailPosBatchTableT
+          Origin              #{9DE2C3B1-DA96-4F58-8D64-86376999A87B}
+        ENDPROPERTIES
+        
+      FIELD #Status
+        ENUM
+        PROPERTIES
+          Name                #Status
+          Table               #RetailPosBatchTableT
+          Origin              #{B9620A84-575C-46DD-9F72-82166F96BE97}
+          EnumType            #RetailPosBatchStatus
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailPosBatchTableT
+          Origin              #{8F663D3B-33CF-4F2E-A611-4969C0D51BC8}
+        ENDPROPERTIES
+        
+      FIELD #SuspendedCount
+        INT
+        PROPERTIES
+          Name                #SuspendedCount
+          Label               #@RET2575
+          Table               #RetailPosBatchTableT
+          Origin              #{55AF8452-873D-4EE4-B553-A635E3CAE5ED}
+        ENDPROPERTIES
+        
+      FIELD #SuspendedTotal
+        REAL
+        PROPERTIES
+          Name                #SuspendedTotal
+          Label               #@RET2575
+          Table               #RetailPosBatchTableT
+          Origin              #{E41B6B43-D7B7-44A3-9509-8F41A894F169}
+        ENDPROPERTIES
+        
+      FIELD #TaxTotal
+        REAL
+        PROPERTIES
+          Name                #TaxTotal
+          Label               #@RET5217
+          Table               #RetailPosBatchTableT
+          Origin              #{7EBD02F9-E149-4AF4-B605-1B75123DA6FE}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailPosBatchTableT
+          Origin              #{6665A5E2-7834-4A04-A697-79A42C83982A}
+        ENDPROPERTIES
+        
+      FIELD #TrainingCount
+        INT
+        PROPERTIES
+          Name                #TrainingCount
+          Label               #@RET2578
+          Table               #RetailPosBatchTableT
+          Origin              #{D60E3D93-1420-49EA-903C-EBA961D8FE15}
+        ENDPROPERTIES
+        
+      FIELD #TrainingTotal
+        REAL
+        PROPERTIES
+          Name                #TrainingTotal
+          Label               #@RET2578
+          Table               #RetailPosBatchTableT
+          Origin              #{BE4FFBF2-834C-44E8-B1D5-4411E1D27096}
+        ENDPROPERTIES
+        
+      FIELD #TransactionsCount
+        INT
+        PROPERTIES
+          Name                #TransactionsCount
+          Label               #@RET4416
+          Table               #RetailPosBatchTableT
+          Origin              #{0934D032-29D5-4AD0-AEC7-9DA2A1D8D1A3}
+        ENDPROPERTIES
+        
+      FIELD #VoidsCount
+        INT
+        PROPERTIES
+          Name                #VoidsCount
+          Label               #@RET5219
+          Table               #RetailPosBatchTableT
+          Origin              #{81E5BE3D-87E9-492B-8491-88E6BC84471F}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{8D8B753A-FA3B-47FF-958B-A3679FCFD293}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #BatchID
+        #TerminalId
+        #StoreId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailPosBatchTableT cursor)
+        #{
+        #    RetailPosBatchTable target;
+        #    RetailPosBatchTableT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint StoreTerminalBatchIdx
+        #                where (target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@BatchID==cursor2.@BatchID);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @BatchID,
+        #                    @Channel,
+        #                    @CloseDate,
+        #                    @CloseDateTimeUtc,
+        #                    @ClosedAtTerminal,
+        #                    @CloseTime,
+        #                    @CustomersCount,
+        #                    @DiscountTotal,
+        #                    @GoodsSoldQty,
+        #                    @LogonsCount,
+        #                    @NoSaleCount,
+        #                    @PaidToAccountTotal,
+        #                    @Posted,
+        #                    @PriceOverrideTotal,
+        #                    @ReceiptCopiesCount,
+        #                    @ReceiptCopiesTotal,
+        #                    @ReplicationCounter,
+        #                    @ReturnsCount,
+        #                    @ReturnsGrandTotal,
+        #                    @ReturnsTotal,
+        #                    @RoundedAmountTotal,
+        #                    @SalesCount,
+        #                    @SalesGrandTotal,
+        #                    @SalesTotal,
+        #                    @ServicesSoldQty,
+        #                    @StaffId,
+        #                    @StartDate,
+        #                    @StartDateTimeUtc,
+        #                    @StartTime,
+        #                    @Status,
+        #                    @StoreId,
+        #                    @SuspendedCount,
+        #                    @SuspendedTotal,
+        #                    @TaxTotal,
+        #                    @TerminalId,
+        #                    @TrainingCount,
+        #                    @TrainingTotal,
+        #                    @TransactionsCount,
+        #                    @VoidsCount,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @BatchID,
+        #                    @Channel,
+        #                    @CloseDate,
+        #                    @CloseDateTimeUtc,
+        #                    @ClosedAtTerminal,
+        #                    @CloseTime,
+        #                    @CustomersCount,
+        #                    @DiscountTotal,
+        #                    @GoodsSoldQty,
+        #                    @LogonsCount,
+        #                    @NoSaleCount,
+        #                    @PaidToAccountTotal,
+        #                    @Posted,
+        #                    @PriceOverrideTotal,
+        #                    @ReceiptCopiesCount,
+        #                    @ReceiptCopiesTotal,
+        #                    @ReplicationCounter,
+        #                    @ReturnsCount,
+        #                    @ReturnsGrandTotal,
+        #                    @ReturnsTotal,
+        #                    @RoundedAmountTotal,
+        #                    @SalesCount,
+        #                    @SalesGrandTotal,
+        #                    @SalesTotal,
+        #                    @ServicesSoldQty,
+        #                    @StaffId,
+        #                    @StartDate,
+        #                    @StartDateTimeUtc,
+        #                    @StartTime,
+        #                    @Status,
+        #                    @StoreId,
+        #                    @SuspendedCount,
+        #                    @SuspendedTotal,
+        #                    @TaxTotal,
+        #                    @TerminalId,
+        #                    @TrainingCount,
+        #                    @TrainingTotal,
+        #                    @TransactionsCount,
+        #                    @VoidsCount,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailPosBatchTableT cursor)
+        #{
+        #    RetailPosBatchTableT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounter) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailPosBatchTable), cursor2.ReplicationCounter);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

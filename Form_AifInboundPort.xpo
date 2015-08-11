@@ -1,0 +1,2616 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FRM
+
+; Microsoft Dynamics AX Forms unloaded
+; --------------------------------------------------------------------------------
+FRMVERSION 12
+
+FORM #AifInboundPort
+  PROPERTIES
+    Name                #AifInboundPort
+    Origin              #{5453A53B-15A3-4A23-AF85-DD4E136B9E8F}
+  ENDPROPERTIES
+  
+  METHODS
+    SOURCE #classDeclaration
+      #public class FormRun extends ObjectRun
+      #{
+      #    #Aif
+      #    SysFormSplitter_X verticalSplitter;
+      #    Map serviceStatusMap;
+      #    Map portWsdlUrlMap;
+      #    str openedCommunicationStateName;
+      #}
+    ENDSOURCE
+    SOURCE #browseChannelAddress
+      #void browseChannelAddress(FormStringControl _control)
+      #{
+      #    Args args;
+      #    MenuFunction menuFunction;
+      #    MenuItemNameDisplay browseMenuItem;
+      #    FormRun formRun;
+      #    AifIntegrationAdapter integrationAdapter;
+      #
+      #    integrationAdapter = AifAdapterManager::getIntegrationAdapter(aifChannel.AdapterClassId);
+      #
+      #    args = new Args();
+      #
+      #    browseMenuItem = integrationAdapter.getAddressDisplayMenuItem();
+      #    menuFunction = new MenuFunction(browseMenuItem, MenuItemType::Display);
+      #    args = new Args(menuFunction.object());
+      #    args.lookupValue(_control.text());
+      #    args.parm(aifInboundPort.Name);
+      #
+      #    formRun = ClassFactory::formRunClassOnClient(args);
+      #    formRun.init();
+      #    formRun.run();
+      #
+      #    if (!formRun.closed())
+      #        formRun.wait();
+      #
+      #    if (formRun.closedOk())
+      #    {
+      #        aifChannel.TransportAddress = args.lookupValue();
+      #        aifChannel_ds.active();
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #browseResponseChannelAddress
+      #void browseResponseChannelAddress(FormStringControl _control)
+      #{
+      #    Args args;
+      #    MenuFunction menuFunction;
+      #    MenuItemNameDisplay browseMenuItem;
+      #    FormRun formRun;
+      #    AifIntegrationAdapter integrationAdapter;
+      #
+      #    integrationAdapter = AifAdapterManager::getIntegrationAdapter(aifResponseChannel.AdapterClassId);
+      #
+      #    args = new Args();
+      #
+      #    browseMenuItem = integrationAdapter.getAddressDisplayMenuItem();
+      #    menuFunction = new MenuFunction(browseMenuItem, MenuItemType::Display);
+      #    args = new Args(menuFunction.object());
+      #    args.lookupValue(_control.text());
+      #    args.parm(aifInboundPort.Name);
+      #
+      #    formRun = ClassFactory::formRunClassOnClient(args);
+      #    formRun.init();
+      #    formRun.run();
+      #
+      #    if (!formRun.closed())
+      #        formRun.wait();
+      #
+      #    if (formRun.closedOk())
+      #    {
+      #        aifResponseChannel.TransportAddress = args.lookupValue();
+      #        aifResponseChannel_ds.active();
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #clearPortWsdlUrl
+      #// BP deviation documented
+      #void clearPortWsdlUrl(AifInboundPort port)
+      #{
+      #    if (portWsdlUrlMap.exists(port.Name))
+      #    {
+      #        portWsdlUrlMap.remove(port.Name);
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #configureServerWcf
+      #void configureServerWcf(FormFunctionButtonControl buttonControl)
+      #{
+      #    Args args;
+      #    AifChannel aosChannel;
+      #    FormRun formRun;
+      #
+      #    aosChannel = AifChannel::find(AifInboundPort.AosChannelId);
+      #
+      #    args = new args(buttonControl.menufunction().object());
+      #    args.record(aosChannel);
+      #    args.caller(this);
+      #
+      #    formRun = ClassFactory::formRunClassOnClient(args);
+      #    formRun.init();
+      #    formRun.run();
+      #}
+    ENDSOURCE
+    SOURCE #getMSMQListenerStatus
+      #// Check the MSMQ listener host status for an MSMQ port
+      #// If the MSMQ listener host does not exist, because the port is not an MSMQ port, then no status is returned
+      #str getMSMQListenerStatus(str portName)
+      #{
+      ##Aif
+      #    str serviceTypeName, status;
+      #
+      #    serviceTypeName = #MsmqListenerServicePrefix + portName;
+      #    status = '';
+      #
+      #    // If the map is null, then the IL appDomain does not exist and services are not available
+      #    if (serviceStatusMap && serviceStatusMap.exists(serviceTypeName))
+      #    {
+      #        status = serviceStatusMap.lookup(serviceTypeName);
+      #    }
+      #
+      #    return status;
+      #}
+    ENDSOURCE
+    SOURCE #getPortDocumentSet
+      #public Set getPortDocumentSet()
+      #{
+      #    Set                         documentSet;
+      #    Set                         filterCompatibleAttributes;
+      #    SysDictClass                documentClass;
+      #    boolean                     filterCompatibleOperationFound;
+      #
+      #    List                        serviceInfoList;
+      #    AifServiceContractInfo      serviceInfo;
+      #    ListEnumerator              serviceEnum;
+      #
+      #    Set                         operationContractsSet;
+      #    AifOperationContractInfo    operationInfo;
+      #    SetEnumerator               operationEnum;
+      #    Array                       operationAttributes;
+      #    int                         i;
+      #
+      #    documentSet = new Set(Types::String);
+      #    filterCompatibleAttributes = AifDocumentOperationAttribute::getFilterCompatibleOperationAttributes();
+      #
+      #    // Enumerate through all services in the port
+      #    serviceInfoList = AifServiceGenerationManager::getServicesInPort(aifInboundPort.Name);
+      #    serviceEnum = serviceInfoList.getEnumerator();
+      #
+      #    while (serviceEnum.moveNext())
+      #    {
+      #        serviceInfo = serviceEnum.current();
+      #        filterCompatibleOperationFound = false;
+      #
+      #        // Enumerate through all operations in each service
+      #        // Check if any one operation in the service is filter compatible, if yes, add it to the return set
+      #        operationContractsSet = serviceInfo.parmOperationContracts();
+      #        operationEnum = operationContractsSet.getEnumerator();
+      #
+      #        while (!filterCompatibleOperationFound && operationEnum.moveNext())
+      #        {
+      #            operationInfo = operationEnum.current();
+      #            operationAttributes = operationInfo.getDictMethod().getAllAttributes();
+      #
+      #            for (i = 1; i < operationAttributes.lastIndex(); i++)
+      #            {
+      #                if (filterCompatibleAttributes.in(classIdGet(operationAttributes.value(i))))
+      #                {
+      #                    filterCompatibleOperationFound = true;
+      #                    break;
+      #                }
+      #            }
+      #        }
+      #
+      #        if (filterCompatibleOperationFound)
+      #        {
+      #            documentClass = AifUtil::getDocumentClass(serviceInfo.parmServiceName());
+      #
+      #            if (documentClass != null)
+      #            {
+      #                documentSet.add(documentClass.name());
+      #            }
+      #        }
+      #    }
+      #
+      #    return documentSet;
+      #}
+    ENDSOURCE
+    SOURCE #getPortRuntimeError
+      #// BP deviation documented
+      #str getPortRuntimeError(AifInboundPort port)
+      #{
+      #    str serviceTypeName, status;
+      #    boolean isPortStarted = false;
+      ##Aif
+      #
+      #    if (port.Deployed)
+      #    {
+      #        serviceTypeName = strFmt('%1.%2', #DotNetServiceNamespace, port.Name);
+      #
+      #        if (!serviceStatusMap)
+      #        {
+      #            // If the map is null, then the IL appDomain does not exist and services are not available
+      #            status = strFmt("@SYS345108");
+      #        }
+      #        else if (serviceStatusMap.exists(serviceTypeName))
+      #        {
+      #            status = serviceStatusMap.lookup(serviceTypeName);
+      #            isPortStarted = strStartsWith(status, openedCommunicationStateName);
+      #
+      #            if (isPortStarted)
+      #            {
+      #                // A status for the listener is returned only for an MSMQ port
+      #                status = this.getMSMQListenerStatus(port.Name);
+      #                if (status != '')
+      #                {
+      #                    // For an MSMQ port, the queue listener status should be checked too
+      #                    isPortStarted = strStartsWith(status, openedCommunicationStateName);
+      #                }
+      #            }
+      #        }
+      #    }
+      #
+      #    return isPortStarted?"":status;
+      #}
+    ENDSOURCE
+    SOURCE #getPortWsdlUrl
+      #// BP deviation documented
+      #str getPortWsdlUrl(AifInboundPort port)
+      #{
+      #    str wsdlUrl = '';
+      #    AifPortName portName;
+      #    AifWcfAdapter wcfAdapter;
+      #
+      #    if (port.Deployed)
+      #    {
+      #        portName = port.Name;
+      #
+      #        if (portWsdlUrlMap.exists(portName))
+      #        {
+      #            wsdlUrl = portWsdlUrlMap.lookup(portName);
+      #        }
+      #        else
+      #        {
+      #            wcfAdapter = AifWcfAdapter::getWcfAdapterForPort(port);
+      #
+      #            if (wcfAdapter != null)
+      #            {
+      #                wsdlUrl = wcfAdapter.getWsdlUrl(port.ChannelId, port.Name);
+      #            }
+      #
+      #            portWsdlUrlMap.insert(portName, wsdlUrl);
+      #        }
+      #    }
+      #
+      #    return wsdlUrl;
+      #}
+    ENDSOURCE
+    SOURCE #init
+      #public void init()
+      #{
+      #    System.ServiceModel.CommunicationState openedCommunicationState = System.ServiceModel.CommunicationState::Opened;
+      #
+      #    super();
+      #
+      #    AifSetup::initialize();
+      #    // Register out of the box adapters
+      #    AifSetup::registerOutOfTheBoxAdapters();
+      #
+      #    portWsdlUrlMap = new Map(Types::String, Types::String);
+      #
+      #    // Vertical splitter between grid and details
+      #    verticalSplitter = new SysFormSplitter_X(vSplitter, gridContainer, element);
+      #    openedCommunicationStateName = System.Enum::GetName(openedCommunicationState.GetType(), openedCommunicationState);
+      #}
+    ENDSOURCE
+    SOURCE #isPortRunning
+      #// BP deviation documented
+      #boolean isPortRunning(AifInboundPort port)
+      #{
+      #    str serviceTypeName, status;
+      #    boolean isPortStarted = false;
+      ##Aif
+      #
+      #    if (port.Deployed)
+      #    {
+      #        serviceTypeName = strFmt('%1.%2', #DotNetServiceNamespace, port.Name);
+      #
+      #        // If the map is null, then the IL appDomain does not exist and services are not available
+      #        if (serviceStatusMap && serviceStatusMap.exists(serviceTypeName))
+      #        {
+      #            status = serviceStatusMap.lookup(serviceTypeName);
+      #            isPortStarted = strStartsWith(status, openedCommunicationStateName);
+      #
+      #            if (isPortStarted)
+      #            {
+      #                // A status for the listener is returned only for an MSMQ port
+      #                status = this.getMSMQListenerStatus(port.Name);
+      #                if (status != '')
+      #                {
+      #                    // For an MSMQ port, the queue listener status should be checked too
+      #                    isPortStarted = strStartsWith(status, openedCommunicationStateName);
+      #                }
+      #            }
+      #        }
+      #    }
+      #
+      #    return isPortStarted;
+      #}
+    ENDSOURCE
+    SOURCE #updateChannelControls
+      #public void updateChannelControls()
+      #{
+      #    AifIntegrationAdapter adapter = null;
+      #    MenuItemNameDisplay browseMenuItemName = '';
+      #    MenuItemNameDisplay configureMenuItemName = '';
+      #    boolean enableResponseChannel;
+      #    boolean isEnhanced = (aifInboundPort.PortCategory == AifPortCategory::Enhanced);
+      #    boolean isDeployed = aifInboundPort.Deployed;
+      #
+      #    if (aifChannel.AdapterClassId)
+      #    {
+      #        adapter = AifAdapterManager::getIntegrationAdapter(aifChannel.AdapterClassId);
+      #    }
+      #
+      #    if (adapter != null)
+      #    {
+      #        configureMenuItemName = strRTrim( strLTrim( adapter.getConfigurationDisplayMenuItem()));
+      #        browseMenuItemName = strRTrim( strLTrim( adapter.getAddressDisplayMenuItem()));
+      #        enableResponseChannel =  AifAdapterManager::getChannelDirection(aifChannel.AdapterClassId, AifPortChannelType::Inbound) == AifChannelDirection::Inbound;
+      #    }
+      #
+      #    // Set configure button state
+      #    aifChannel_Configure.enabled(!isDeployed && (configureMenuItemName != ''));
+      #    aifChannel_Configure.menuItemName(configureMenuItemName);
+      #
+      #    aifChannel_ConfigureServerWcf.visible(AifInboundPort.ChannelId != AifInboundPort.AosChannelId);
+      #    aifChannel_ConfigureServerWcf.enabled(aifChannel_Configure.enabled());
+      #
+      #    //  Set browse button state
+      #    if (browseMenuItemName == '')
+      #    {
+      #        aifChannel_TransportAddress.lookupButton(FormLookupButton::Hidden);
+      #    }
+      #    else
+      #    {
+      #        aifChannel_TransportAddress.lookupButton(FormLookupButton::Always);
+      #    }
+      #
+      #    // Enable Response Channel only for inbound channels.
+      #    groupAifResponseChannel.visible(enableResponseChannel);
+      #    if(enableResponseChannel)
+      #    {
+      #        aifResponseChannel_ds.refresh();
+      #    }
+      #
+      #    // Disable address in NetTcp scenario
+      #    aifChannel_TransportAddress.allowEdit(isEnhanced && !isDeployed && aifChannel.AdapterClassId != classNum(AifWcfNetTcpAdapter));
+      #
+      #    // Disable modification of adapter if channel record already created.
+      #    aifChannel_adapterName.allowEdit(isEnhanced && !isDeployed && !aifChannel.RecId);
+      #}
+    ENDSOURCE
+    SOURCE #updateControls
+      #public void updateControls()
+      #{
+      #    boolean isEnhanced = (aifInboundPort.PortCategory == AifPortCategory::Enhanced);
+      #    boolean isDeployed = aifInboundPort.Deployed;
+      #    boolean isRunning = this.isPortRunning(aifInboundPort);
+      #    str wsdlUrl;
+      #    str errorMessage;
+      #
+      #    //  Action Pane
+      #    deployPort.enabled(!isRunning);
+      #    undeployPort.enabled(isDeployed);
+      #
+      #    if (isDeployed && !isRunning)
+      #    {
+      #        deployPort.text("@SYS340061");
+      #        errorMessage = this.getPortRuntimeError(aifInboundPort);
+      #        aifInboundPort_StatusText.text(errorMessage);
+      #        aifInboundPort_StatusText.visible(true);
+      #        portStatusTab.visible(true);
+      #    }
+      #    else
+      #    {
+      #        portStatusTab.visible(false);
+      #        deployPort.text("@SYS319628");
+      #        aifInboundPort_StatusText.visible(false);
+      #    }
+      #
+      #    if (isDeployed)
+      #    {
+      #        wsdlUrl = this.getPortWsdlUrl(aifInboundPort);
+      #    }
+      #
+      #    basicPortInfoText.visible(!isEnhanced);
+      #    wsdlUri.text(wsdlUrl);
+      #    wsdlUri.visible(wsdlUrl != '');
+      #
+      #    // Details header
+      #    aifInboundPort_Name1.allowEdit(isEnhanced && !isDeployed);
+      #    aifInboundPort_Description1.allowEdit(isEnhanced && !isDeployed);
+      #
+      #    // Channel
+      #    aifChannel_AdapterName.allowEdit(isEnhanced && !isDeployed);
+      #    aifChannel_TransportAddress.allowEdit(isEnhanced && !isDeployed);
+      #    aifResponseChannel_AdapterName.allowEdit(isEnhanced && !isDeployed);
+      #    aifResponseChannel_TransportAddress.allowEdit(isEnhanced && !isDeployed);
+      #    groupAifResponseChannel.optionValue(aifInboundPort.ResponseChannelId ? 1 : 0);
+      #    groupAifResponseChannel.enabled(!isDeployed);
+      #
+      #    // Tab visibility settings
+      #    // Most advanced tabs are applicable only to enhanced ports
+      #    tabPageContractConstraints.visible(isEnhanced);
+      #    tabPageProcessingOptions.visible(isEnhanced);
+      #    tabPageSecurity.visible(isEnhanced);
+      #    // Troubleshooting tab with Logging option is always visible
+      #    // The following options of troubleshooting tab are only visible for enhanced ports
+      #    checkBoxPropagateErrors.visible(isEnhanced);
+      #    checkBoxAutoErrorResponse.visible(isEnhanced);
+      #    comboBoxLoggingMode.enabled(!isDeployed);       // option available in both basic and enhanced
+      #
+      #
+      #    // Controls specific to enhanced port
+      #    //    1) Do not allow changes in deployed port
+      #    //    2) Buttons are enabled based on corresponding flag and deployed state.
+      #    if (isEnhanced)
+      #    {
+      #        // Contract constraints
+      #        checkBoxDataPolicies.enabled(!isDeployed);
+      #        menuItemDataConstraints.enabled(!isDeployed && aifInboundPort.EnableDataPolicy);
+      #        menuItemActionConstraints.enabled(!isDeployed);
+      #
+      #        // Processing options
+      #        comboBoxMessageSetErrorAction.enabled(!isDeployed);
+      #        aifChannel_ParallelProcessing.enabled(!isDeployed);
+      #        aifInboundPort_ValidateDocumentXml.enabled(!isDeployed);
+      #        checkBoxInboundTransform.enabled(!isDeployed);
+      #        checkBoxInboundPipeline.enabled(!isDeployed);
+      #        checkBoxOutboundPipeline.enabled(!isDeployed);
+      #        checkBoxOutboundTransform.enabled(!isDeployed);
+      #        checkBoxValueMap.enabled(!isDeployed);
+      #        menuItemInboundTransform.enabled(aifInboundPort.EnableInboundTransform && !isDeployed);
+      #        menuItemInboundPipeline.enabled(aifInboundPort.EnableInboundPipeline && !isDeployed);
+      #        menuItemOutboundPipeline.enabled(aifInboundPort.EnableOutboundPipeline && !isDeployed);
+      #        menuItemOutboundTransform.enabled(aifInboundPort.EnableOutboundTransform && !isDeployed);
+      #        menuItemValueMap.enabled(aifInboundPort.EnableValueMap && !isDeployed);
+      #        buttonDocumentFilters.enabled(!isDeployed);
+      #
+      #        // Troubleshooting
+      #        checkBoxPropagateErrors.enabled(!isDeployed);
+      #        checkBoxAutoErrorResponse.enabled(!isDeployed);
+      #
+      #        // Security
+      #        aifInboundPort_RestrictAuthorizedUsers.enabled(!isDeployed);
+      #        aifInboundPort_EnableTrustedIntermediary.enabled(!isDeployed);
+      #        aifInboundPort_PartitionScope.enabled(!isDeployed);
+      #        aifInboundPort_CompanyScope.enabled(!isDeployed && aifInboundPort.PartitionKey); // Company lookup disabled when no partition selected
+      #        menuItemPortUsers.enabled(aifInboundPort.RestrictAuthorizedUsers && !isDeployed);
+      #        menuItemPortTrustedIntermediaries.enabled(aifInboundPort.EnableTrustedIntermediary && !isDeployed);
+      #    }
+      #}
+      #
+    ENDSOURCE
+    SOURCE #updateResponseChannelControls
+      #public void updateResponseChannelControls()
+      #{
+      #    AifIntegrationAdapter adapter;
+      #    MenuItemNameDisplay browseMenuItemName = '';
+      #    MenuItemNameDisplay configureMenuItemName = '';
+      #    boolean isEnhanced = (aifInboundPort.PortCategory == AifPortCategory::Enhanced);
+      #    boolean isDeployed = aifInboundPort.Deployed;
+      #
+      #    if (aifResponseChannel.AdapterClassId)
+      #    {
+      #        adapter = AifAdapterManager::getIntegrationAdapter(aifResponseChannel.AdapterClassId);
+      #    }
+      #
+      #    if (adapter != null)
+      #    {
+      #        configureMenuItemName = strRTrim( strLTrim( adapter.getConfigurationDisplayMenuItem()));
+      #        browseMenuItemName = strRTrim( strLTrim( adapter.getAddressDisplayMenuItem()));
+      #    }
+      #
+      #    // Set configure button state
+      #    aifResponseChannel_Configure.enabled(isEnhanced && !isDeployed && (configureMenuItemName != '') &&
+      #        aifResponseChannel.AdapterClassId != classNum(AifFileSystemAdapter)); // File system response is not configurble
+      #    aifResponseChannel_Configure.menuItemName(configureMenuItemName);
+      #
+      #    //  Set browse button state
+      #    if (browseMenuItemName == '')
+      #    {
+      #        aifResponseChannel_TransportAddress.lookupButton(FormLookupButton::Hidden);
+      #    }
+      #    else
+      #    {
+      #        aifResponseChannel_TransportAddress.lookupButton(FormLookupButton::Always);
+      #    }
+      #}
+    ENDSOURCE
+    SOURCE #updateServiceHostStatus
+      #public void updateServiceHostStatus()
+      #{
+      #    // If the map is null, then the IL appDomain does not exist and services are not available
+      #    serviceStatusMap = appl.getServiceHostStatus();
+      #}
+    ENDSOURCE
+  ENDMETHODS
+  OBJECTBANK
+    PROPERTIES
+      Query               #AifInboundPortFormQuery
+      Version             #62
+    ENDPROPERTIES
+    
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifInboundPort
+          Table               #AifInboundPort
+          InsertAtEnd         #No
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        SOURCE #executeQuery
+          #public void executeQuery()
+          #{
+          #    super();
+          #    // Get the updated port status
+          #    element.updateServiceHostStatus();
+          #}
+        ENDSOURCE
+        SOURCE #initValue
+          #public void initValue()
+          #{
+          #    super();
+          #
+          #    //By default, turn on xml validation.  Can be turned off by admin.
+          #    aifInboundPort.ValidateDocumentXml = NoYes::Yes;
+          #}
+        ENDSOURCE
+        SOURCE #portWsdlUri
+          #// BP deviation documented
+          #display AifTransportAddress portWsdlUri(AifInboundPort port)
+          #{
+          #    return element.getPortWsdlUrl(port);
+          #}
+        ENDSOURCE
+        SOURCE #portStatusIcon
+          #// BP deviation documented
+          #display AifPortStatusIcon portStatusIcon(AifInboundPort port)
+          #{
+          #    AifPortStatusIcon statusIcon;
+          #
+          #    #resAppl
+          #
+          #    if (!port.Deployed)
+          #        statusIcon = #ImageAifPortStatusDisable;
+          #    else if (element.isPortRunning(port))
+          #            statusIcon = #ImageAifPortStatusEnable;
+          #    else
+          #        statusIcon = #ImageAifPortStatusError;
+          #
+          #    return statusIcon;
+          #}
+        ENDSOURCE
+        SOURCE #write
+          #public void write()
+          #{
+          #    // Write the record in the DB
+          #    super();
+          #
+          #    // Reread the AifChannel record as the transport address may have changed after writing the name
+          #    aifChannel_DS.reread();
+          #}
+        ENDSOURCE
+        SOURCE #reread
+          #public void reread()
+          #{
+          #    super();
+          #
+          #    element.updateControls();
+          #    element.updateChannelControls();
+          #    element.updateResponseChannelControls();
+          #}
+        ENDSOURCE
+        SOURCE #active
+          #public int active()
+          #{
+          #    int ret;
+          #    ret = super();
+          #    element.updateControls();
+          #    element.updateChannelControls();
+          #    element.updateResponseChannelControls();
+          #    return ret;
+          #}
+        ENDSOURCE
+      ENDMETHODS
+      LINKTYPES
+        DATASOURCE
+          PROPERTIES
+            Name                #AifInboundPort
+            ParentDataSource    #AifChannel
+          ENDPROPERTIES
+          
+        DATASOURCE
+          PROPERTIES
+            Name                #AifInboundPort
+            ParentDataSource    #AifResponseChannel
+          ENDPROPERTIES
+          
+      ENDLINKTYPES
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifChannel
+          Table               #AifChannel
+          InsertAtEnd         #No
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        SOURCE #initValue
+          #public void initValue()
+          #{
+          #    super();
+          #
+          #    // Use net tcp adapter for new ports
+          #    aifChannel.AdapterClassId = classNum(AifWcfNetTcpAdapter);
+          #}
+        ENDSOURCE
+        SOURCE #write
+          #public void write()
+          #{
+          #    AifChannel  channel;
+          #
+          #    if (aifChannel.AdapterClassId == classNum(AifWcfNetTcpAdapter))
+          #    {
+          #        if(!aifInboundPort.AosChannelId)
+          #            aifInboundPort.AosChannelId = aifInboundPort.createAosChannel();
+          #
+          #        aifInboundPort.ChannelId = aifInboundPort.AosChannelId;
+          #
+          #        // update form datasource to new channel record
+          #        channel = AifChannel::find(aifInboundPort.AosChannelId);
+          #        aifchannel.data(channel);
+          #        aifChannel_ds.setCurrent();
+          #    }
+          #    else
+          #    {
+          #        super();
+          #    }
+          #}
+        ENDSOURCE
+        SOURCE #validateWrite
+          #public boolean validateWrite()
+          #{
+          #    boolean ret;
+          #
+          #    if(aifChannel.RecId == 0)  // Represents a new channel record
+          #    {
+          #        // Default channel fields
+          #        aifChannel.ChannelId = AifChannel::getPortChannelId(aifInboundPort.Name);
+          #        aifChannel.Name = aifChannel.ChannelId;
+          #        aifChannel.Enabled = NoYes::Yes;
+          #        aifChannel.Direction = AifAdapterManager::getChannelDirection(aifChannel.AdapterClassId, AifPortChannelType::Inbound);
+          #
+          #        // Address is defaulted only in net tcp adapter scenario
+          #        if(aifChannel.AdapterClassId == classNum(AifWcfNetTcpAdapter))
+          #        {
+          #            aifChannel.TransportAddress = strFmt(#DefaultEndpointAddress, aifInboundPort.Name);
+          #        }
+          #
+          #        // Populate the relation
+          #        aifInboundPort.ChannelId = aifChannel.ChannelId;
+          #    }
+          #
+          #    ret = super();
+          #    return ret;
+          #}
+        ENDSOURCE
+      ENDMETHODS
+      LINKTYPES
+        DATASOURCE
+          PROPERTIES
+            Name                #AifChannel
+            ParentDataSource    #AifInboundPort
+          ENDPROPERTIES
+          
+      ENDLINKTYPES
+    ENDDATASOURCE
+    DATASOURCE
+      OBJECTPOOL
+        PROPERTIES
+          Name                #AifResponseChannel
+          Table               #AifChannel
+          InsertAtEnd         #No
+          InsertIfEmpty       #No
+        ENDPROPERTIES
+        
+        FIELDLIST
+        ENDFIELDLIST
+      ENDOBJECTPOOL
+      METHODS
+        SOURCE #write
+          #public void write()
+          #{
+          #    if(aifChannel.Direction == AifChannelDirection::Both)
+          #    {
+          #        // No write required. Response channel is same as port channel.
+          #        this.setRecord(aifChannel);
+          #    }
+          #    else if(groupAifResponseChannel.optionValue() == 1)
+          #    {
+          #        super();
+          #    }
+          #}
+        ENDSOURCE
+        SOURCE #validateWrite
+          #public boolean validateWrite()
+          #{
+          #    boolean ret;
+          #    boolean responseChannelRequired = false;
+          #
+          #    // ResponseChannel is required when
+          #    //  a) port is for async secnarios, i.e.  port URI channel does not have direction both, and
+          #    //  b) user selects checkbox to create response channel.
+          #    responseChannelRequired = aifChannel.Direction != AifChannelDirection::Both && groupAifResponseChannel.optionValue() == 1;
+          #
+          #    if(responseChannelRequired)
+          #    {
+          #        if(aifResponseChannel.RecId == 0)  // Represents a new response channel record
+          #        {
+          #            // Default channel fields
+          #            aifResponseChannel.ChannelId = AifChannel::getResponseChannelId(aifInboundPort.Name);
+          #            aifResponseChannel.Name = aifResponseChannel.ChannelId;
+          #            aifResponseChannel.Enabled = NoYes::Yes;
+          #            aifResponseChannel.Direction = AifAdapterManager::getChannelDirection(aifResponseChannel.AdapterClassId, AifPortChannelType::Outbound);
+          #
+          #            // Populate the relation
+          #            aifInboundPort.ResponseChannelId = aifResponseChannel.ChannelId;
+          #        }
+          #
+          #        ret = super();
+          #    }
+          #    else
+          #    {
+          #        // Skip validate as response channel is not required. write() is also skipped.
+          #        ret = true;
+          #    }
+          #
+          #    return ret;
+          #}
+        ENDSOURCE
+      ENDMETHODS
+      LINKTYPES
+        DATASOURCE
+          PROPERTIES
+            Name                #AifResponseChannel
+            ParentDataSource    #AifInboundPort
+          ENDPROPERTIES
+          
+      ENDLINKTYPES
+    ENDDATASOURCE
+  ENDOBJECTBANK
+  
+  REFERENCEDATASOURCES
+  ENDREFERENCEDATASOURCES
+  
+  JOINS
+  ENDJOINS
+  
+  PARTREFERENCES
+  ENDPARTREFERENCES
+  
+  DESIGN
+    PROPERTIES
+      Caption             #@SYS319596
+      SetCompany          #No
+      DataSource          #AifInboundPort
+      Style               #SimpleListDetails
+    ENDPROPERTIES
+    
+    CONTAINER
+      CONTROL ACTIONPANE
+        PROPERTIES
+          Name                #ActionPane
+          ElementPosition     #715827882
+          Style               #Strip
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL ACTIONPANETAB
+        PROPERTIES
+          Name                #ActionPaneTab
+          ElementPosition     #1431655764
+          HierarchyParent     #ActionPane
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTONGROUP
+        PROPERTIES
+          Name                #ButtonGroupDeploy
+          ElementPosition     #1288490187
+          HierarchyParent     #ActionPaneTab
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTONGROUP
+        PROPERTIES
+          Name                #ButtonGroupGrid
+          ElementPosition     #858993458
+          HierarchyParent     #ActionPaneTab
+          DataSource          #AifInboundPort
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GRID
+        PROPERTIES
+          Name                #Grid
+          AllowEdit           #No
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1431655764
+          HierarchyParent     #GridContainer
+          MultiSelect         #No
+          VisibleRows         #15
+          ShowRowLabels       #No
+          DataSource          #AifInboundPort
+          GridLinesStyle      #Vertical
+          AlternateRowShading #No
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Body
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1431655764
+          Style               #MarginlessContainer
+          Columns             #3
+          Columnspace         #0
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #DetailsContainer
+          ElementPosition     #1717986916
+          HierarchyParent     #Body
+          Style               #MarginlessContainer
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #DetailsHeader
+          Width               #Column width
+          ElementPosition     #920350134
+          HierarchyParent     #DetailsContainer
+          FrameType           #None
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GridContainer
+          AutoDeclaration     #Yes
+          Width               #300
+          ElementPosition     #858993458
+          HierarchyParent     #Body
+          Style               #BorderlessGridContainer
+          RightMargin         #0
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Group
+          ElementPosition     #613566756
+          HierarchyParent     #DetailsContainer
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupActionPolicies
+          ElementPosition     #1073741822
+          HierarchyParent     #TabPageContractConstraints
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupAifChannel
+          Width               #Column width
+          ElementPosition     #1227133512
+          HierarchyParent     #DetailsContainer
+          Caption             #@SYS319631
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupAifChannel2
+          ElementPosition     #858993458
+          HierarchyParent     #GroupAifChannel
+          FrameType           #None
+          Columns             #3
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupAifResponseChannel
+          AutoDeclaration     #Yes
+          Width               #Column width
+          ElementPosition     #1533916890
+          HierarchyParent     #DetailsContainer
+          Caption             #@SYS322529
+          FrameOptionButton   #Check
+          OptionValue         #0
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #public void clicked()
+            #{
+            #    super();
+            #
+            #    // user is disabling response channel
+            #    if(this.optionValue() == 0)
+            #    {
+            #        // delete response channel if it existed
+            #        if(aifResponseChannel.RecId)
+            #        {
+            #            aifResponseChannel.selectForUpdate(true);
+            #            aifResponseChannel.delete();
+            #            aifInboundPort.ResponseChannelId = '';
+            #        }
+            #
+            #        aifresponseChannel_ds.reread();
+            #    }
+            #
+            #    element.updateResponseChannelControls();
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupAifResponseChannel2
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupAifResponseChannel
+          FrameType           #None
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupDataPolicies
+          ElementPosition     #1610612733
+          HierarchyParent     #TabPageContractConstraints
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupDocumentFilters
+          AllowEdit           #No
+          ElementPosition     #1994091957
+          HierarchyParent     #GroupProcessingOptions
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupInboundPipeline
+          ElementPosition     #920350134
+          HierarchyParent     #GroupProcessingOptions
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupInboundTransform
+          ElementPosition     #613566756
+          HierarchyParent     #GroupProcessingOptions
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupOutboundPipeline
+          ElementPosition     #1227133512
+          HierarchyParent     #GroupProcessingOptions
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupOutboundTransform
+          ElementPosition     #1533916890
+          HierarchyParent     #GroupProcessingOptions
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupPortCategory
+          Width               #Column width
+          ElementPosition     #1789569705
+          HierarchyParent     #DetailsHeader
+          TopMargin           #0
+          BottomMargin        #0
+          Columns             #2
+          Columnspace         #0
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupPortUsers
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupSecurity
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupProcessingOptions
+          ElementPosition     #1610612734
+          HierarchyParent     #TabPageProcessingOptions
+          TopMargin           #0
+          BottomMargin        #0
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupProcessingOptionsTop
+          Top                 #Top edge
+          ElementPosition     #1073741822
+          HierarchyParent     #TabPageProcessingOptions
+          TopMargin           #0
+          BottomMargin        #0
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupSecurity
+          ElementPosition     #1610612734
+          HierarchyParent     #TabPageSecurity
+          TopMargin           #0
+          BottomMargin        #0
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupSecurityTop
+          Top                 #Top edge
+          ElementPosition     #1073741822
+          HierarchyParent     #TabPageSecurity
+          TopMargin           #0
+          BottomMargin        #0
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupTrustedIntermediary
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupSecurity
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #GroupValueMap
+          ElementPosition     #1840700268
+          HierarchyParent     #GroupProcessingOptions
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #VSplitter
+          AutoDeclaration     #Yes
+          Width               #5
+          Height              #Column height
+          ElementPosition     #1288490187
+          HierarchyParent     #Body
+          FrameType           #Raised 3D
+          Style               #SplitterVerticalContainer
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TAB
+        PROPERTIES
+          Name                #PortStatusTab
+          AutoDeclaration     #Yes
+          Visible             #No
+          AllowEdit           #No
+          Width               #Column width
+          ElementPosition     #715827882
+          HierarchyParent     #DetailsHeader
+          Scrollbars          #No
+          ViewEditMode        #View
+          Style               #FastTabs
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TAB
+        PROPERTIES
+          Name                #Tab
+          AutoDeclaration     #Yes
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1840700268
+          HierarchyParent     #DetailsContainer
+          Style               #FastTabs
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #TabPage
+          AllowEdit           #No
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1431655764
+          HierarchyParent     #PortStatusTab
+          Caption             #@SYS340062
+          ViewEditMode        #View
+          FastTabExpanded     #Yes
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #TabPageContractConstraints
+          AutoDeclaration     #Yes
+          Width               #Column width
+          ElementPosition     #715827882
+          HierarchyParent     #Tab
+          BackgroundColor     #Window background
+          Caption             #@SYS319632
+          FastTabExpanded     #Yes
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #TabPageProcessingOptions
+          AutoDeclaration     #Yes
+          Width               #Column width
+          ElementPosition     #1073741823
+          HierarchyParent     #Tab
+          BackgroundColor     #Window background
+          Caption             #@SYS319639
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #TabPageSecurity
+          AutoDeclaration     #Yes
+          Width               #Column width
+          ElementPosition     #1789569705
+          HierarchyParent     #Tab
+          BackgroundColor     #Window background
+          Caption             #@SYS319641
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #TabPageToubleShooting
+          AutoDeclaration     #Yes
+          Width               #Column width
+          ElementPosition     #1431655764
+          HierarchyParent     #Tab
+          BackgroundColor     #Window background
+          Caption             #@SYS319640
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #WPATabPageXmlMode
+          ElementPosition     #1968526675
+          HierarchyParent     #Tab
+          BackgroundColor     #Window background
+          Caption             #@WPA31
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTON
+        PROPERTIES
+          Name                #ButtonDocumentFilters
+          AutoDeclaration     #Yes
+          HelpText            #@SYS344484
+          ElementPosition     #1610612734
+          HierarchyParent     #GroupDocumentFilters
+          Text                #@SYS344483
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #void clicked()
+            #{
+            #    Args                            args;
+            #    FormRun                         formRun;
+            #    AifDocumentFilterParameters     params;
+            #    Set                             portDocumentSet;
+            #
+            #    // Create document filter params
+            #    params = new AifDocumentFilterParameters();
+            #    params.formDisplayMode(AifDocumentFilterDisplayMode::ShowDocumentsForPort);
+            #    params.inboundPortName(aifInboundPort.Name);
+            #
+            #    // Throw error if there are no documents selected in the port
+            #    portDocumentSet = element.getPortDocumentSet();
+            #    if (portDocumentSet.empty())
+            #    {
+            #        throw error(strFmt("@SYS345453"));
+            #    }
+            #
+            #    params.documentClassNameSubset(portDocumentSet);
+            #
+            #    // Create args
+            #    args = new Args(formStr(AifDocumentFilter));
+            #    args.parmObject(params);
+            #
+            #    // Create formrun
+            #    formRun = classfactory.formRunClass(args);
+            #    formRun.init();
+            #    formRun.run();
+            #    formRun.detach();
+            #
+            #    super();
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTON
+        PROPERTIES
+          Name                #DeployPort
+          AutoDeclaration     #Yes
+          HelpText            #@SYS319627
+          ElementPosition     #1073741822
+          HierarchyParent     #ButtonGroupDeploy
+          Text                #@SYS319628
+          ButtonDisplay       #Text & Image left
+          NormalImage         #12139
+          ImageLocation       #EmbeddedResource
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #void clicked()
+            #{
+            #    super();
+            #
+            #    if (!aifInboundPort.RecId)
+            #    {
+            #        throw error("@SYS319663");
+            #    }
+            #    else
+            #    {
+            #        startLengthyOperation();
+            #        AifPortManager::deployPort(aifInboundPort.Name);
+            #        element.updateServiceHostStatus();
+            #        element.clearPortWsdlUrl(aifInboundPort);
+            #        endLengthyOperation();
+            #        aifInboundPort_ds.reread();
+            #        aifInboundPort_ds.active();
+            #    }
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL BUTTON
+        PROPERTIES
+          Name                #UndeployPort
+          AutoDeclaration     #Yes
+          HelpText            #@SYS319629
+          ElementPosition     #1610612733
+          HierarchyParent     #ButtonGroupDeploy
+          Text                #@SYS319630
+          ButtonDisplay       #Text & Image left
+          NormalImage         #12233
+          ImageLocation       #EmbeddedResource
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #void clicked()
+            #{
+            #    super();
+            #
+            #    if (!aifInboundPort.RecId)
+            #    {
+            #        error("@SYS319664");
+            #    }
+            #    else
+            #    {
+            #        startLengthyOperation();
+            #        AifPortManager::undeployPort(aifInboundPort.Name);
+            #        element.updateServiceHostStatus();
+            #        element.clearPortWsdlUrl(aifInboundPort);
+            #        endLengthyOperation();
+            #        aifInboundPort_ds.reread();
+            #        aifInboundPort_ds.active();
+            #    }
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #AifChannel_ParallelProcessing
+          AutoDeclaration     #Yes
+          ElementPosition     #1431655764
+          HierarchyParent     #GroupProcessingOptionsTop
+          DataSource          #AifChannel
+          DataField           #ParallelProcessing
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #AifInboundPort_EnableTrustedIntermediary
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupTrustedIntermediary
+          Label               #@SYS319643
+          DataSource          #AifInboundPort
+          DataField           #EnableTrustedIntermediary
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #    element.updateControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #AifInboundPort_RestrictAuthorizedUsers
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupPortUsers
+          Label               #@SYS319642
+          DataSource          #AifInboundPort
+          DataField           #RestrictAuthorizedUsers
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #    element.updateControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #AifInboundPort_ValidateDocumentXml
+          AutoDeclaration     #Yes
+          ElementPosition     #1789569705
+          HierarchyParent     #GroupProcessingOptionsTop
+          DataSource          #AifInboundPort
+          DataField           #ValidateDocumentXml
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #AifInboundPort_WPASimpleXml
+          ElementPosition     #1073741822
+          HierarchyParent     #WPATabPageXmlMode
+          DataSource          #AifInboundPort
+          DataField           #WPASimpleXml
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxActionPolicies
+          AutoDeclaration     #Yes
+          AllowEdit           #No
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupActionPolicies
+          Value               #1
+          Label               #@SYS319633
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxAutoErrorResponse
+          AutoDeclaration     #Yes
+          ElementPosition     #1717986916
+          HierarchyParent     #TabPageToubleShooting
+          DataSource          #AifInboundPort
+          DataField           #AutoErrorResponse
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxDataPolicies
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupDataPolicies
+          DataSource          #AifInboundPort
+          DataField           #EnableDataPolicy
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #
+            #    // If data policy is turned on, then default validate xml to true
+            #    if (checkBoxDataPolicies.checked())
+            #    {
+            #        aifInboundPort.ValidateDocumentXml = NoYes::Yes;
+            #    }
+            #
+            #    element.updateControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxDocumentFilters
+          AutoDeclaration     #Yes
+          AllowEdit           #No
+          HelpText            #@SYS344482
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupDocumentFilters
+          Value               #1
+          Label               #@SYS344481
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxInboundPipeline
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupInboundPipeline
+          DataSource          #AifInboundPort
+          DataField           #EnableInboundPipeline
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #    element.updateControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxInboundTransform
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupInboundTransform
+          DataSource          #AifInboundPort
+          DataField           #EnableInboundTransform
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #    element.updateControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxOutboundPipeline
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupOutboundPipeline
+          DataSource          #AifInboundPort
+          DataField           #EnableOutboundPipeline
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #    element.updateControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxOutboundTransform
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupOutboundTransform
+          DataSource          #AifInboundPort
+          DataField           #EnableOutboundTransform
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #    element.updateControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxPropagateErrors
+          AutoDeclaration     #Yes
+          ElementPosition     #1288490187
+          HierarchyParent     #TabPageToubleShooting
+          DataSource          #AifInboundPort
+          DataField           #PropagateErrors
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #CheckBoxValueMap
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupValueMap
+          DataSource          #AifInboundPort
+          DataField           #EnableValueMap
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #    element.updateControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #ReplaceExistingDocumentsOnCreate
+          ElementPosition     #1968526675
+          HierarchyParent     #GroupProcessingOptionsTop
+          DataSource          #AifInboundPort
+          DataField           #ReplaceExistingDocumentsOnCreate
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL COMBOBOX
+        PROPERTIES
+          Name                #AifInboundPort_PortCategory
+          Width               #60
+          ElementPosition     #1789569705
+          HierarchyParent     #Grid
+          DataSource          #AifInboundPort
+          DataField           #PortCategory
+          ComboType           #List
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL COMBOBOX
+        PROPERTIES
+          Name                #AifInboundPort_PortCategory1
+          AutoDeclaration     #Yes
+          AllowEdit           #No
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupPortCategory
+          DataSource          #AifInboundPort
+          DataField           #PortCategory
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL COMBOBOX
+        PROPERTIES
+          Name                #ComboBoxLoggingMode
+          AutoDeclaration     #Yes
+          ElementPosition     #858993458
+          HierarchyParent     #TabPageToubleShooting
+          DataSource          #AifInboundPort
+          DataField           #LoggingMode
+          ComboType           #List
+          FastTabSummary      #Yes
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL COMBOBOX
+        PROPERTIES
+          Name                #ComboBoxMessageSetErrorAction
+          AutoDeclaration     #Yes
+          ElementPosition     #715827882
+          HierarchyParent     #GroupProcessingOptionsTop
+          Label               #@SYS328440
+          DataSource          #AifInboundPort
+          DataField           #MessageSetErrorAction
+          ComboType           #List
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL COMMANDBUTTON
+        PROPERTIES
+          Name                #DeleteButton
+          HelpText            #@SYS319586
+          ElementPosition     #1610612733
+          HierarchyParent     #ButtonGroupGrid
+          Text                #@SYS14425
+          ButtonDisplay       #Text & Image left
+          NormalImage         #10121
+          ImageLocation       #EmbeddedResource
+          SaveRecord          #No
+          Command             #2832
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL COMMANDBUTTON
+        PROPERTIES
+          Name                #NewButton
+          HelpText            #@SYS319597
+          ElementPosition     #1073741822
+          HierarchyParent     #ButtonGroupGrid
+          ButtonDisplay       #Text & Image left
+          NormalImage         #11045
+          ImageLocation       #EmbeddedResource
+          Command             #260
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #AifChannel_Configure
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612734
+          HierarchyParent     #GroupAifChannel2
+          Text                #@SYS106487
+          DataSource          #AifChannel
+          MenuItemName        #AifDisplayWcfConfiguration
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #AifChannel_ConfigureServerWCF
+          AutoDeclaration     #Yes
+          ElementPosition     #1879048190
+          HierarchyParent     #GroupAifChannel2
+          Text                #@GLS200048
+          DataSource          #AifChannel
+          MenuItemName        #AifDisplayWcfConfiguration
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #clicked
+            #void clicked()
+            #{
+            #    element.configureServerWcf(this);
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #AifResponseChannel_Configure
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupAifResponseChannel2
+          Text                #@SYS106487
+          DataSource          #AifResponseChannel
+          MenuItemName        #AifDisplayWcfConfiguration
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #MenuItemActionConstraints
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupActionPolicies
+          MenuItemName        #AifPortActionPolicy
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #MenuItemDataConstraints
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupDataPolicies
+          MenuItemName        #AifPortDataPolicy
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #MenuItemInboundPipeline
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupInboundPipeline
+          MenuItemName        #AifInboundPipeline
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #MenuItemInboundTransform
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupInboundTransform
+          MenuItemName        #AifTransformInboundPipeline
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #MenuItemOutboundPipeline
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupOutboundPipeline
+          MenuItemName        #AifOutboundPipeline
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #MenuItemOutboundTransform
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612734
+          HierarchyParent     #GroupOutboundTransform
+          MenuItemName        #AifTransformOutboundPipeline
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #MenuItemPortTrustedIntermediaries
+          AutoDeclaration     #Yes
+          HelpText            #@SYS319646
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupTrustedIntermediary
+          Text                #@SYS319653
+          MenuItemName        #AifPortTrustedIntermediaries
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #MenuItemPortUsers
+          AutoDeclaration     #Yes
+          HelpText            #@SYS319645
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupPortUsers
+          Text                #@SYS319644
+          MenuItemName        #AifPortAuthorizedUsers
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL MENUITEMBUTTON
+        PROPERTIES
+          Name                #MenuItemValueMap
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupValueMap
+          MenuItemName        #AifPortValueMap
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STATICTEXT
+        PROPERTIES
+          Name                #BasicPortInfoText
+          AutoDeclaration     #Yes
+          Width               #Column width
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupPortCategory
+          Text                #@SYS341944
+          Italic              #Yes
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifChannel_AdapterName
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupAifChannel2
+          DataSource          #AifChannel
+          Mandatory           #Yes
+          DataMethod          #adapterName
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #lookup
+            #public void lookup()
+            #{
+            #    AifAdapterManager::lookupInboundAdapters(this);
+            #}
+          ENDSOURCE
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #    element.updateChannelControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifChannel_TransportAddress
+          AutoDeclaration     #Yes
+          ElementPosition     #1288490187
+          HierarchyParent     #GroupAifChannel
+          DisplayLength       #100
+          DataSource          #AifChannel
+          DataField           #TransportAddress
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #lookup
+            #public void lookup()
+            #{
+            #    element.browseChannelAddress(this);
+            #}
+          ENDSOURCE
+          SOURCE #validate
+            #public boolean validate()
+            #{
+            #    boolean                 ret;
+            #    AifTransportAddress     originalAddress;
+            #    AifTransportAddress     canonicalAddress;
+            #    AifIntegrationAdapter   integrationAdapter;
+            #
+            #    ret = super();
+            #
+            #    if (ret)
+            #    {
+            #        try
+            #        {
+            #            originalAddress = this.text();
+            #            integrationAdapter = AifAdapterManager::getIntegrationAdapter(aifChannel.AdapterClassId);
+            #            canonicalAddress = integrationAdapter.getCanonicalTransportAddress(originalAddress);
+            #        }
+            #        catch(Exception::Error)
+            #        {
+            #            ret = false;
+            #        }
+            #    }
+            #
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifInboundPort_CompanyScope
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupSecurityTop
+          DataSource          #AifInboundPort
+          DataField           #Company
+          FastTabSummary      #Yes
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #lookup
+            #public void lookup()
+            #{
+            #    PartitionKey partitionKey;
+            #    SysTableLookup sysTableLookup = SysTableLookup::newParameters(tablenum(DataArea), this);
+            #    DataArea tmpLookup;
+            #
+            #    partitionKey = AifInboundPort.PartitionKey;
+            #
+            #    // Get data areas for partition using direct SQL call on server
+            #    tmpLookup = AifInboundPort::getDataAreasForPartition(partitionKey);
+            #
+            #    // Add fields to lookup
+            #    sysTableLookup.addLookupfield(fieldnum(DataArea, id), true);
+            #    sysTableLookup.addLookupfield(fieldnum(DataArea, name));
+            #
+            #    // BP deviation documented. No security issues with this retrieval.
+            #    sysTableLookup.parmTmpBuffer(tmpLookup);
+            #    sysTableLookup.performFormLookup();
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifInboundPort_Description
+          Width               #125
+          ElementPosition     #1431655764
+          HierarchyParent     #Grid
+          DataSource          #AifInboundPort
+          DataField           #Description
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifInboundPort_Description1
+          AutoDeclaration     #Yes
+          ElementPosition     #1431655764
+          HierarchyParent     #DetailsHeader
+          DisplayLength       #105
+          DataSource          #AifInboundPort
+          DataField           #Description
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifInboundPort_Name
+          Width               #125
+          ElementPosition     #1073741823
+          HierarchyParent     #Grid
+          DataSource          #AifInboundPort
+          DataField           #Name
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifInboundPort_Name1
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741823
+          HierarchyParent     #DetailsHeader
+          DataSource          #AifInboundPort
+          DataField           #Name
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #validate
+            #public boolean validate()
+            #{
+            #    boolean ret = super();
+            #    if(ret)
+            #    {
+            #        // If port record was already created.
+            #        if(aifInboundPort.RecId)
+            #        {
+            #            // Obtain user consent for resetting AOS channel
+            #            ret = (Box::yesNo("@SYS329666", DialogButton::No) == DialogButton::Yes);
+            #        }
+            #    }
+            #    return ret;
+            #}
+            #
+            #
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifInboundPort_PartitionScope
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupSecurityTop
+          Label               #@GLS200027
+          DataSource          #AifInboundPort
+          DataField           #PartitionKey
+          FastTabSummary      #Yes
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #    ret = super();
+            #    element.updateControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifInboundPort_StatusText
+          AutoDeclaration     #Yes
+          AllowEdit           #No
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1431655764
+          HierarchyParent     #TabPage
+          Border              #None
+          MultiLine           #Yes
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifInboundPort_WPASpecificFileName
+          ElementPosition     #1610612733
+          HierarchyParent     #WPATabPageXmlMode
+          DataSource          #AifInboundPort
+          DataField           #WPASpecificFileName
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifResponseChannel_AdapterName
+          AutoDeclaration     #Yes
+          ElementPosition     #1073741822
+          HierarchyParent     #GroupAifResponseChannel2
+          DataSource          #AifResponseChannel
+          Mandatory           #Yes
+          DataMethod          #adapterName
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #lookup
+            #public void lookup()
+            #{
+            #    AifAdapterManager::lookupOutboundAdapters(this);
+            #}
+          ENDSOURCE
+          SOURCE #modified
+            #public boolean modified()
+            #{
+            #    boolean ret;
+            #
+            #    ret = super();
+            #    element.updateResponseChannelControls();
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #AifResponseChannel_TransportAddress
+          AutoDeclaration     #Yes
+          ElementPosition     #1610612733
+          HierarchyParent     #GroupAifResponseChannel
+          DisplayLength       #100
+          DataSource          #AifResponseChannel
+          DataField           #TransportAddress
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #lookup
+            #public void lookup()
+            #{
+            #    element.browseResponseChannelAddress(this);
+            #}
+          ENDSOURCE
+          SOURCE #validate
+            #public boolean validate()
+            #{
+            #    boolean                 ret;
+            #    AifTransportAddress     originalAddress;
+            #    AifTransportAddress     canonicalAddress;
+            #    AifIntegrationAdapter   integrationAdapter;
+            #
+            #    ret = super();
+            #
+            #    if (ret)
+            #    {
+            #        try
+            #        {
+            #            originalAddress = this.text();
+            #            if(!aifResponseChannel.AdapterClassId)
+            #            {
+            #                checkFailed("@SYS344943");
+            #            }
+            #            else
+            #            {
+            #                integrationAdapter = AifAdapterManager::getIntegrationAdapter(aifResponseChannel.AdapterClassId);
+            #                canonicalAddress = integrationAdapter.getCanonicalTransportAddress(originalAddress);
+            #            }
+            #        }
+            #        catch(Exception::Error)
+            #        {
+            #            ret = false;
+            #        }
+            #    }
+            #
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #WsdlUri
+          AutoDeclaration     #Yes
+          AllowEdit           #No
+          ElementPosition     #1717986916
+          HierarchyParent     #GroupAifChannel
+          DisplayLength       #100
+          Label               #@SYS340063
+          DataSource          #AifInboundPort
+          DataMethod          #portWsdlUri
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #lookup
+            #public void lookup()
+            #{
+            #    element.browseChannelAddress(this);
+            #}
+          ENDSOURCE
+          SOURCE #validate
+            #public boolean validate()
+            #{
+            #    boolean                 ret;
+            #    AifTransportAddress     originalAddress;
+            #    AifTransportAddress     canonicalAddress;
+            #    AifIntegrationAdapter   integrationAdapter;
+            #
+            #    ret = super();
+            #
+            #    if (ret)
+            #    {
+            #        try
+            #        {
+            #            originalAddress = this.text();
+            #            integrationAdapter = AifAdapterManager::getIntegrationAdapter(aifChannel.AdapterClassId);
+            #            canonicalAddress = integrationAdapter.getCanonicalTransportAddress(originalAddress);
+            #        }
+            #        catch(Exception::Error)
+            #        {
+            #            ret = false;
+            #        }
+            #    }
+            #
+            #    return ret;
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL WINDOW
+        PROPERTIES
+          Name                #Window
+          AllowEdit           #No
+          Width               #15
+          Height              #15
+          ElementPosition     #715827882
+          HierarchyParent     #Grid
+          ShowLabel           #No
+          DataSource          #AifInboundPort
+          DataMethod          #portStatusIcon
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+    ENDCONTAINER
+    
+  ENDDESIGN
+  
+  PERMISSIONS #Permissions
+    PROPERTIES
+    ENDPROPERTIES
+    
+    PERMISSIONSET #Read
+      PROPERTIES
+      ENDPROPERTIES
+      
+      FORM #Controls
+      ENDFORM
+      
+    TABLES #Tables
+    ENDTABLES
+    
+  SERVERMETHODS #Server Methods
+  ENDSERVERMETHODS
+  
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Update
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Create
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Delete
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+ENDPERMISSIONS
+
+ENDFORM
+
+
+***Element: END

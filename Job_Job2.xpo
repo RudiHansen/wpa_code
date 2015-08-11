@@ -1,0 +1,30 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: Job2 unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #Job2
+    #static void Job2(Args _args)
+    #{
+    #    InventDimCombination    inventDimCombination;
+    #    InventDim               inventDim;
+    #    ;
+    #    while select inventDimCombination
+    #        where inventDimCombination.ItemId   == "10001"
+    #            join ConfigId, InventSizeId, InventColorId from inventDim
+    #                where inventDim.inventDimId     == inventDimCombination.InventDimId
+    #    {
+    #        info(inventDimCombination.ItemId);
+    #    }
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{B957E0DC-C300-4CC9-A08B-1E37A7EAB6BC}
+  ENDPROPERTIES
+  
+
+***Element: END

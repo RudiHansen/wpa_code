@@ -12,10 +12,11 @@ Formatversion: 1
       Name                #OBTFileReadWrite
       Extends             #RunBaseBatch
       RunOn               #Server
+      Origin              #{EBDB613D-A8C7-49B8-AAC5-9203819D4AC5}
+      LegacyId            #50102
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class OBTFileReadWrite extends RunBaseBatch
         #{

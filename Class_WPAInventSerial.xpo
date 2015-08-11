@@ -1,0 +1,200 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAInventSerial unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAInventSerial
+    PROPERTIES
+      Name                #WPAInventSerial
+      Extends             #AifDocument
+      Origin              #{9EED096F-984A-421B-BB48-F90C6A1FC31C}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventSerial</c> class is the data object class that is exposed through the <c>WPAInventSerialService</c> class.
+        #/// </summary>
+        ##AxdWPAInventSerialDCT
+        #[AifDataContainerTypeAttribute(#WPAInventSerial)]
+        #class WPAInventSerial extends AifDocument
+        #{
+        #    #define.SenderId('SenderId')
+        #    #define.InventSerial_1('InventSerial_1')
+        #    #define.DocPurpose('DocPurpose')
+        #
+        #    WPAParameters   wPAParameters;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createInventSerial_1
+        #public AfStronglyTypedDataContainerList createInventSerial_1()
+        #{
+        #    return this.get_NewList(#InventSerial_1);
+        #}
+      ENDSOURCE
+      SOURCE #existsDocPurpose
+        #public boolean existsDocPurpose()
+        #{
+        #    return this.exists(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #existsInventSerial_1
+        #public boolean existsInventSerial_1()
+        #{
+        #    return this.exists(#InventSerial_1);
+        #}
+      ENDSOURCE
+      SOURCE #existsSenderId
+        #public boolean existsSenderId()
+        #{
+        #    return this.exists(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #parmDocPurpose
+        #public XMLDocPurpose parmDocPurpose(XMLDocPurpose _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DocPurpose, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DocPurpose);
+        #}
+      ENDSOURCE
+      SOURCE #parmInventSerial_1
+        #public AfStronglyTypedDataContainerList parmInventSerial_1(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#InventSerial_1, _value);
+        #    }
+        #
+        #    return this.get_List(#InventSerial_1);
+        #}
+      ENDSOURCE
+      SOURCE #parmSenderId
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SenderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #serialize
+        #public AifXml serialize()
+        #{
+        #    XmlDocument             doc = XmlDocument::newBlank();
+        #    XmlElement              root;
+        #    XmlElement              node;
+        #
+        #    XMLWriterSettings       xmlWriterSettings = new XMLwriterSettings();
+        #    XMLWriter               localXmlWriter;
+        #
+        #    QueryRun                queryRun;
+        #
+        #    InventSerial            inventSerial;
+        #    InventTable             inventTable;
+        #    /*InventDimCombination    inventDimCombination;
+        #    InventSum               inventSum;
+        #    InventDim               inventDim;*/
+        #    boolean                 writeItem;
+        #    str                     wPAItemId;
+        #    /*str                     wPAItemIdLast;*/
+        #    ItemId                  itemId;
+        #
+        #    #define.ERP_BATCH           ('ERP_BATCH')
+        #    #define.Batch               ('Batch')
+        #    #define.ItemId              ('ItemId')
+        #    #define.BatchNumber         ('BatchNumber')
+        #
+        #    ;
+        #    wPAParameters   = WPAParameters::find();
+        #
+        #    root = doc.appendChild(doc.createElement(#ERP_BATCH));
+        #
+        #    xmlWriterSettings.indent(true);
+        #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
+        #
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.getMessageId(), this.getQueryName()));
+        #
+        #    while(queryRun.next())
+        #    {
+        #        if (queryRun.changed(tablenum(InventSerial)))
+        #        {
+        #            inventSerial   = queryRun.get(tablenum(InventSerial));
+        #            if (itemId != inventSerial.ItemId)
+        #            {
+        #                inventTable = InventTable::find(inventSerial.ItemId);
+        #            }
+        #            writeItem   = this.validateItem(inventSerial, inventTable);
+        #            itemId = inventSerial.ItemId;
+        #            if (writeItem)
+        #            {
+        #                if (wPAParameters.UsePrefix && wPAParameters.ItemPrefix)
+        #                {
+        #                    wPAItemId = wPAParameters.ItemPrefix + itemId;
+        #                }
+        #                else
+        #                {
+        #                    wPAItemId = itemId;
+        #                }
+        #                node    = root.appendChild(doc.createElement(#Batch));
+        #                this.wpa_addNotEmpty(node, doc, #BatchNumber, inventSerial.InventSerialId);
+        #                this.wpa_addNotEmpty(node, doc, #ItemId     , wPAItemId);
+        #            }
+        #        }
+        #    }
+        #    doc.writeTo(localXmlWriter);
+        #    localXmlWriter.flush();
+        #
+        #    return localXmlWriter.writeToString();
+        #}
+      ENDSOURCE
+      SOURCE #validateItem
+        #boolean validateItem(InventSerial   _inventSerial,
+        #                     InventTable    _inventTable)
+        #{
+        #    InventDim       inventDim;
+        #    InventDimParm   inventDimParm;
+        #    boolean         ret = false;
+        #    ;
+        #    if (WPAIntegrationLog::exist(_inventTable.TableId, _inventTable.RecId))
+        #    {
+        #        if (_inventSerial.ProdDate >= systemDateGet() - wPAParameters.SerialActiveDays)
+        #        {
+        #            ret = true;
+        #        }
+        #        else
+        #        {
+        #            inventDim.inventSerialId            = _inventSerial.InventSerialId;
+        #            inventDimParm.ItemIdFlag            = NoYes::Yes;
+        #            inventDimParm.InventSerialIdFlag    = NoYes::Yes;
+        #
+        #            if (InventSumDatePhysicalDim::onHandQty(systemDateGet(), _inventTable.ItemId, inventDim, inventDimParm) > 0)
+        #            {
+        #                ret = true;
+        #            }
+        #        }
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

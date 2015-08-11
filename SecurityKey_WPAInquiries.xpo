@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPAInquiries
       Label               #@SYS3850
       ParentKey           #WPA
+      Origin              #{CA305825-0F7F-4017-9757-9ABA32598C57}
+      LegacyId            #50003
     ENDPROPERTIES
     
   ENDSECURITYKEY

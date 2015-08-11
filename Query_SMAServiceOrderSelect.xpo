@@ -5,18 +5,18 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: SMAServiceOrderSelect unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #SMAServiceOrderSelect
   PROPERTIES
     Name                #SMAServiceOrderSelect
     Title               #@SYS79051
-    Version             #62
+    Version             #71
     NextUniqueId        #1003
+    Origin              #{14150000-0000-1000-6BE5-4869D2380BA4}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
@@ -29,63 +29,13 @@ QUERY #SMAServiceOrderSelect
         Name                #SMAServiceOrderLine
         Table               #SMAServiceOrderLine
         UniqueId            #1001
+        Update              #Yes
       ENDPROPERTIES
       
       FIELDLIST
         PROPERTIES
-          Dynamic             #No
         ENDPROPERTIES
         
-        FIELD #ActivityId
-        FIELD #ActivityNumber
-        FIELD #AgreementId
-        FIELD #AgreementLineNum
-        FIELD #CurrencyIdCost
-        FIELD #dataAreaId
-        FIELD #DateCalculated
-        FIELD #DateExecution
-        FIELD #DateRangeFrom
-        FIELD #DateRangeTo
-        FIELD #DEL_ProjActivityId
-        FIELD #Description
-        FIELD #DescriptionService
-        FIELD #Dimension
-        FIELD #EmplId
-        FIELD #InventDimId
-        FIELD #InvoiceId
-        FIELD #ItemId
-        FIELD #OffsetAccountExpense
-        FIELD #OffsetAccountTypeExpense
-        FIELD #Origin
-        FIELD #ProjCategoryId
-        FIELD #ProjCostPrice
-        FIELD #ProjCurrencyCode
-        FIELD #ProjId
-        FIELD #ProjLinePropertyId
-        FIELD #ProjSalesPrice
-        FIELD #ProjTaxGroup
-        FIELD #ProjTaxItemGroup
-        FIELD #ProjTransId
-        FIELD #ProjTransTxt
-        FIELD #Qty
-        FIELD #RecId
-        FIELD #recVersion
-        FIELD #ServiceObjectId
-        FIELD #ServiceObjectRelationId
-        FIELD #ServiceOrderId
-        FIELD #ServiceOrderLineNum
-        FIELD #ServiceOrderStatus
-        FIELD #ServiceTaskId
-        FIELD #ServiceTimeEndBefore
-        FIELD #ServiceTimeStartAfter
-        FIELD #SignOff
-        FIELD #TaxGroupExpense
-        FIELD #TaxItemGroupExpense
-        FIELD #TimeSheetEndTime
-        FIELD #TimeSheetStartTime
-        FIELD #TransactionType
-        FIELD #Unit
-        FIELD #TableId
       ENDFIELDLIST
       SORTING
       ENDSORTING
@@ -103,17 +53,13 @@ QUERY #SMAServiceOrderSelect
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
         FIELD
           PROPERTIES
             DataSource          #SMAServiceOrderLine
             Field               #ServiceOrderId
-          ENDPROPERTIES
-          
-        FIELD
-          PROPERTIES
-            DataSource          #SMAServiceOrderLine
-            Field               #EmplId
           ENDPROPERTIES
           
         FIELD

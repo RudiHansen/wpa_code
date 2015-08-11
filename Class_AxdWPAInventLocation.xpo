@@ -12,13 +12,14 @@ Formatversion: 1
       Name                #AxdWPAInventLocation
       Extends             #AxdBase
       RunOn               #Server
+      Origin              #{BA4E6734-6669-415A-8DB5-2E613BA4CBC1}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class AxdWPAInventLocation extends AxdBase
         #{
+        #    #define.InventLocation_DataSourceName('InventLocation')
         #}
         #
       ENDSOURCE
@@ -37,6 +38,27 @@ Formatversion: 1
         #                            AifConstraintListCollection _constraintListCollection)
         #{
         #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findCorrespondingAxBC
+        #public int findCorrespondingAxBC(tableId _tableId = 0)
+        #{
+        #    return classnum(AxCommon);
         #}
         #
       ENDSOURCE
@@ -72,10 +94,11 @@ Formatversion: 1
       SOURCE #getConstraintList
         #public void getConstraintList(Common _curRec, AifConstraintList _constraintList)
         #{
-        #    AifConstraint  aifConstraint = new AifConstraint();
+        #    AifConstraint   aifConstraint = new AifConstraint();
         #    InventLocation    InventLocation;
         #    ;
-        #    if (_curRec.TableId != tablenum(InventLocation))
+        #
+        #    if (!(_curRec is InventLocation))
         #    {
         #         throw error(strfmt("@SYS23396",funcname()));
         #    }
@@ -85,8 +108,8 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #GetLabel
-        #public LabelDescription getLabel()
+      SOURCE #getLabel
+        #public LabelString getLabel()
         #{
         #    return "@WPA81";
         #}
@@ -111,7 +134,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #updateList
-        #public AifEntityKey updateList(AifEntityKeyList            _entityKeyList,
+        #public AifResult updateList(AifEntityKeyList            _entityKeyList,
         #                               AifDocumentXML              _xml,
         #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
         #                               AifConstraintListCollection _constraintListcollection)

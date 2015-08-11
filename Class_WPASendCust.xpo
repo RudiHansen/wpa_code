@@ -1,0 +1,87 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPASendCust unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPASendCust
+    PROPERTIES
+      Name                #WPASendCust
+      Extends             #AxdSend
+      Origin              #{84810FBC-D793-47C0-B39A-CC4CC66EDF47}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #class WPASendCust extends AxdSend
+        #{
+        #    CustAccount custAccount;
+        #}
+      ENDSOURCE
+      SOURCE #parmCustAccount
+        #public CustAccount parmCustAccount(CustAccount _custAccount = custAccount)
+        #{
+        #    custAccount = _custAccount;
+        #
+        #    return custAccount;
+        #}
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun            ret;
+        #    QueryBuildRange     qbr_CustAccount;
+        #    ;
+        #
+        #    if (!ret)
+        #    {
+        #        ret = super();
+        #        qbr_CustAccount = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(CustTable)), fieldnum(CustTable, AccountNum));
+        #        if (custAccount)
+        #        {
+        #            qbr_CustAccount.value(queryValue(custAccount));
+        #            qbr_CustAccount.status(RangeStatus::Locked);
+        #        }
+        #    }
+        #
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    return custAccount == "";
+        #}
+      ENDSOURCE
+      SOURCE #main
+        #static public void main(Args args)
+        #{
+        #    WPASendCust         sendCust;
+        #    AifConstraintList   aifConstraintList;
+        #    AifConstraint       aifConstraint;
+        #    CustTable           custTable;
+        #    ;
+        #
+        #    sendCust            = new WPASendCust();
+        #    aifConstraintList   = new AifConstraintList();
+        #    aifConstraint       = new AifConstraint();
+        #
+        #    if (args && args.record() && args.record().TableId == tableNum(CustTable))
+        #    {
+        #        custTable = args.record();
+        #        sendCust.parmCustAccount(custTable.AccountNum);
+        #    }
+        #    aifConstraint.parmType(AifConstraintType::NoConstraint);
+        #    aifConstraintList.addConstraint(aifConstraint);
+        #
+        #    sendCust.parmShowDocPurpose(true) ;
+        #    sendCust.sendMultipleDocuments(classnum(WPACustTable), classnum(WPACustTableService), AifSendMode::Async, aifConstraintList);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

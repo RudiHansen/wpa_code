@@ -11,14 +11,19 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASMADispatchTeam_SMADispatchTeamTable
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{2A8651E5-3004-4D12-98D3-650818B8D903}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPASMADispatchTeam_SMADispatchTeamTable</c> class is the data object class that is exposed through the <c>WPASMADispatchTeamService</c> class.
+        #/// </summary>
+        ##AxdWPASMADispatchTeamDCT
+        #[AifDataContainerTypeAttribute(#WPASMADispatchTeam_SMADispatchTeamTable)]
         #class WPASMADispatchTeam_SMADispatchTeamTable extends AfStronglyTypedDataContainer
         #{
+        #    #define.RecVersion('RecVersion')
         #    #define.RecId('RecId')
         #    #define.DispatchTeamId('DispatchTeamId')
         #    #define.Description('Description')
@@ -51,10 +56,16 @@ Formatversion: 1
         #    return this.exists(#RecId);
         #}
       ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPASMADispatchTeam_SMADispatchTeamTable);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parm_DocumentHash
@@ -91,7 +102,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -99,6 +110,17 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
         #}
       ENDSOURCE
     ENDMETHODS

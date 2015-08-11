@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAPurchaseOrderNumber
       Label               #@WPA53
       HelpText            #@WPA54
+      Origin              #{47046150-AA1D-40F3-AF62-D9039242A44B}
+      LegacyId            #50041
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

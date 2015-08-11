@@ -11,18 +11,21 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAInventTable_InventTable
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{479D44EF-67A8-4053-9549-4249541B99FC}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventTable_InventTable</c> class is the data object class that is exposed through the <c>WPAInventTableService</c> class.
+        #/// </summary>
+        ##AxdWPAInventTableDCT
+        #[AifDataContainerTypeAttribute(#WPAInventTable_InventTable)]
         #class WPAInventTable_InventTable extends AfStronglyTypedDataContainer
         #{
+        #    #define.RecVersion('RecVersion')
         #    #define.RecId('RecId')
-        #    #define.ItemName('ItemName')
         #    #define.ItemId('ItemId')
-        #    #define.InventTxt('InventTxt')
         #    #define.InventTableModuleSales('InventTableModuleSales')
         #    #define.InventTableModuleInvent('InventTableModuleInvent')
         #    #define.InventItemBarcode('InventItemBarcode')
@@ -49,12 +52,6 @@ Formatversion: 1
         #    return this.get_NewList(#InventTableModuleSales);
         #}
       ENDSOURCE
-      SOURCE #createInventTxt
-        #public AfStronglyTypedDataContainerList createInventTxt()
-        #{
-        #    return this.get_NewList(#InventTxt);
-        #}
-      ENDSOURCE
       SOURCE #exists_DocumentHash
         #public boolean exists_DocumentHash()
         #{
@@ -79,22 +76,10 @@ Formatversion: 1
         #    return this.exists(#InventTableModuleSales);
         #}
       ENDSOURCE
-      SOURCE #existsInventTxt
-        #public boolean existsInventTxt()
-        #{
-        #    return this.exists(#InventTxt);
-        #}
-      ENDSOURCE
       SOURCE #existsItemId
         #public boolean existsItemId()
         #{
         #    return this.exists(#ItemId);
-        #}
-      ENDSOURCE
-      SOURCE #existsItemName
-        #public boolean existsItemName()
-        #{
-        #    return this.exists(#ItemName);
         #}
       ENDSOURCE
       SOURCE #existsRecId
@@ -103,10 +88,16 @@ Formatversion: 1
         #    return this.exists(#RecId);
         #}
       ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAInventTable_InventTable);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parm_DocumentHash
@@ -153,17 +144,6 @@ Formatversion: 1
         #    return this.get_List(#InventTableModuleSales);
         #}
       ENDSOURCE
-      SOURCE #parmInventTxt
-        #public AfStronglyTypedDataContainerList parmInventTxt(AfStronglyTypedDataContainerList _value = null)
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_List(#InventTxt, _value);
-        #    }
-        #
-        #    return this.get_List(#InventTxt);
-        #}
-      ENDSOURCE
       SOURCE #parmItemId
         #public ItemId parmItemId(ItemId _value = '')
         #{
@@ -175,19 +155,8 @@ Formatversion: 1
         #    return this.get_Attribute(#ItemId);
         #}
       ENDSOURCE
-      SOURCE #parmItemName
-        #public ItemName parmItemName(ItemName _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#ItemName, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#ItemName);
-        #}
-      ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -195,6 +164,17 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
         #}
       ENDSOURCE
     ENDMETHODS

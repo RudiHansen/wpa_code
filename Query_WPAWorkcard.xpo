@@ -5,17 +5,17 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: WPAWorkcard unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #WPAWorkcard
   PROPERTIES
     Name                #WPAWorkcard
-    Version             #16
+    Version             #24
     NextUniqueId        #1002
+    Origin              #{219C7023-9731-4ECD-8A5A-4639F098B658}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class QueryRun extends ObjectRun
       #{
@@ -28,6 +28,7 @@ QUERY #WPAWorkcard
         Name                #WPAWorkcardTable
         Table               #WPAWorkcardTable
         UniqueId            #1000
+        FetchMode           #1:1
         Update              #Yes
       ENDPROPERTIES
       
@@ -43,9 +44,10 @@ QUERY #WPAWorkcard
       BLOCKS
         BLOCK #WPAWorkcardLine
           PROPERTIES
-            Name                #WPAWorkcardLine_1
+            Name                #WPAWorkcardLine
             Table               #WPAWorkcardLine
             UniqueId            #1001
+            JoinMode            #OuterJoin
             Update              #Yes
           ENDPROPERTIES
           
@@ -70,6 +72,8 @@ QUERY #WPAWorkcard
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
       ENDORDERBY
     ENDBLOCK

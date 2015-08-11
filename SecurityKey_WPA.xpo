@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPA
       Label               #@WPA34
       ConfigurationKey    #WPAIntegration
+      Origin              #{ED44CAAE-6732-4732-ABD8-46CEFD3AAC29}
+      LegacyId            #50001
     ENDPROPERTIES
     
   ENDSECURITYKEY

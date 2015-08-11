@@ -15,9 +15,9 @@ Formatversion: 1
       HelpText            #@WPA135
       ObjectType          #Class
       Object              #WPASendItems
-      RunOn               #Called from
       ConfigurationKey    #WPAIntegration
       SecurityKey         #WPAPeriodic
+      Origin              #{45A6EAE6-4C2B-4140-B958-E3DAC7CE70FA}
     ENDPROPERTIES
     
   ENDMENUITEM

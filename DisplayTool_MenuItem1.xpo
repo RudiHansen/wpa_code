@@ -1,0 +1,22 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: FTM
+
+; Microsoft Dynamics AX MENUITEM : MenuItem1 unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MENUITEM #MenuItem1
+    Type: 1
+    PROPERTIES
+      Name                #MenuItem1
+      Label               #Workflow Processor
+      Object              #Tutorial_WorkflowProcessor
+      Origin              #{479BB1F6-B52D-47A1-869D-6E985A0B9BD6}
+    ENDPROPERTIES
+    
+  ENDMENUITEM
+  
+
+***Element: END

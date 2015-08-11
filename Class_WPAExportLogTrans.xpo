@@ -11,11 +11,11 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAExportLogTrans
       Extends             #RunBaseBatch
-      RunOn               #Called from
+      Origin              #{50062BA5-2E27-4725-ACF6-E99EF560D6C1}
+      LegacyId            #50101
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPAExportLogTrans extends RunBaseBatch
         #{
@@ -37,6 +37,7 @@ Formatversion: 1
         #    SysDictTable    dictTable;
         #    Common          common;
         #    ;
+        #
         #    try
         #    {
         #        ttsbegin;

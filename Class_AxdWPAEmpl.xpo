@@ -12,13 +12,16 @@ Formatversion: 1
       Name                #AxdWPAEmpl
       Extends             #AxdBase
       RunOn               #Server
+      Origin              #{48422175-F748-4DCC-ADB9-F44F506B268F}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class AxdWPAEmpl extends AxdBase
         #{
+        #    #define.HcmWorker_DataSourceName('HcmWorker')
+        #    #define.DirPerson_DataSourceName('DirPerson')
+        #    #define.HcmEmployment_DataSourceName('HcmEmployment')
         #}
         #
       ENDSOURCE
@@ -37,6 +40,27 @@ Formatversion: 1
         #                            AifConstraintListCollection _constraintListCollection)
         #{
         #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findCorrespondingAxBC
+        #public int findCorrespondingAxBC(tableId _tableId = 0)
+        #{
+        #    return classnum(AxCommon);
         #}
         #
       ENDSOURCE
@@ -73,20 +97,20 @@ Formatversion: 1
         #public void getConstraintList(Common _curRec, AifConstraintList _constraintList)
         #{
         #    AifConstraint  aifConstraint = new AifConstraint();
-        #    EmplTable    EmplTable;
+        #    HcmWorker       HcmWorker;
         #    ;
-        #    if (_curRec.TableId != tablenum(EmplTable))
+        #    if (!(_curRec is HcmWorker))
         #    {
         #         throw error(strfmt("@SYS23396",funcname()));
         #    }
-        #    EmplTable = _curRec ;
+        #    HcmWorker = _curRec ;
         #    aifConstraint.parmType(AIFConstraintType::Vendor);
         #    _constraintList.addConstraint(aifConstraint) ;
         #}
         #
       ENDSOURCE
-      SOURCE #GetLabel
-        #public LabelDescription getLabel()
+      SOURCE #getLabel
+        #public LabelString getLabel()
         #{
         #    return "@WPA78";
         #}
@@ -111,7 +135,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #updateList
-        #public AifEntityKey updateList(AifEntityKeyList            _entityKeyList,
+        #public AifResult updateList(AifEntityKeyList            _entityKeyList,
         #                               AifDocumentXML              _xml,
         #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
         #                               AifConstraintListCollection _constraintListcollection)

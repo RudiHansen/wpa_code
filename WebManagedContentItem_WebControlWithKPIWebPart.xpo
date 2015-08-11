@@ -1,0 +1,25 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: WCM
+
+; Microsoft Dynamics AX MANAGEDCONTENTITEM : WebControlWithKPIWebPart unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  MANAGEDCONTENTITEM #WebControlWithKPIWebPart
+    PROPERTIES
+      Name                #WebControlWithKPIWebPart
+      Label               #Financial performance
+      Object              #webcontrolWithKPIWEbpart
+      ConfigurationKey    #EP
+      WebConfigurationkey #EP
+      ViewUserLicense     #Functional
+      MaintainUserLicense #Functional
+      Origin              #{C210C329-5164-42B5-9342-BE1C254A8286}
+    ENDPROPERTIES
+    
+  ENDMANAGEDCONTENTITEM
+  
+
+***Element: END

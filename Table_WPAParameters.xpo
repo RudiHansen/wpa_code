@@ -8,6 +8,7 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #WPAParameters
+    EnforceFKRelation 0
     PROPERTIES
       Name                #WPAParameters
       Label               #@WPA1
@@ -20,96 +21,28 @@ Formatversion: 1
       ClusterIndex        #Key
       ModifiedDateTime    #Yes
       ModifiedBy          #Yes
+      Origin              #{1836D5DE-4AD1-495E-8DB9-F1AD1C230CC0}
+      LegacyId            #50005
     ENDPROPERTIES
     
     FIELDS
-      FIELD #Separator
+      FIELD #AgreementId
         STRING
         PROPERTIES
-          Name                #Separator
+          Name                #AgreementId
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPASeparator
-              #
-            ENDARRAY
-          StringSize          #1
+          Origin              #{E14565CC-C049-4E4E-AC7B-A6BD0E66980C}
+          LegacyId            #50014
+          ExtendedDataType    #WPAAgreementId
         ENDPROPERTIES
         
-      FIELD #LinePropertyCaregory
+      FIELD #AutoSignOff
         ENUM
         PROPERTIES
-          Name                #LinePropertyCaregory
+          Name                #AutoSignOff
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPALinePropertyCaregory
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #UsePrefix
-        ENUM
-        PROPERTIES
-          Name                #UsePrefix
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAUsePrefix
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #ItemPrefix
-        STRING
-        PROPERTIES
-          Name                #ItemPrefix
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemPrefix
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #ItemCostPrice
-        ENUM
-        PROPERTIES
-          Name                #ItemCostPrice
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemCostPrice
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #ItemSalesPrice
-        ENUM
-        PROPERTIES
-          Name                #ItemSalesPrice
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemSalesPrice
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #LinePropertyItem
-        ENUM
-        PROPERTIES
-          Name                #LinePropertyItem
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPALinePropertyItem
-              #
-            ENDARRAY
+          Origin              #{762E4D02-4036-4C2E-98B1-C287ED4401E9}
+          ExtendedDataType    #WPAAutoSignOff
           EnumType            #NoYes
         ENDPROPERTIES
         
@@ -118,36 +51,9 @@ Formatversion: 1
         PROPERTIES
           Name                #BarCodeSetupId
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPABarCodeSetupId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #CategoryPrefix
-        STRING
-        PROPERTIES
-          Name                #CategoryPrefix
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPACategoryPrefix
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #CategorySalesPrice
-        ENUM
-        PROPERTIES
-          Name                #CategorySalesPrice
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPACategorySalesPrice
-              #
-            ENDARRAY
-          EnumType            #NoYes
+          Origin              #{4BAC819B-B9CE-495D-8130-58CB2CD57858}
+          LegacyId            #50008
+          ExtendedDataType    #WPABarCodeSetupId
         ENDPROPERTIES
         
       FIELD #CategoryCostPrice
@@ -155,98 +61,82 @@ Formatversion: 1
         PROPERTIES
           Name                #CategoryCostPrice
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPACategoryCostPrice
-              #
-            ENDARRAY
+          Origin              #{53ADAB7F-45E9-46E5-A302-F5EF0D4A3A80}
+          LegacyId            #50011
+          ExtendedDataType    #WPACategoryCostPrice
           EnumType            #NoYes
         ENDPROPERTIES
         
-      FIELD #TypeEmail
+      FIELD #CategoryPrefix
         STRING
         PROPERTIES
-          Name                #TypeEmail
+          Name                #CategoryPrefix
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPATypeEmail
-              #
-            ENDARRAY
+          Origin              #{DF8CB53A-D213-4599-ABD9-C089E7FD2C0E}
+          LegacyId            #50009
+          ExtendedDataType    #WPACategoryPrefix
+        ENDPROPERTIES
+        
+      FIELD #CategorySalesPrice
+        ENUM
+        PROPERTIES
+          Name                #CategorySalesPrice
+          Table               #WPAParameters
+          Origin              #{F432B365-8E4C-45B8-9762-738E2A458CF1}
+          LegacyId            #50010
+          ExtendedDataType    #WPACategorySalesPrice
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #CategoryWithoutProperty
+        ENUM
+        PROPERTIES
+          Name                #CategoryWithoutProperty
+          Table               #WPAParameters
+          Origin              #{0FDE25E2-A528-420A-B3EE-1727F6286476}
+          LegacyId            #50025
+          ExtendedDataType    #WPACategoryWithoutProperty
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #CustPriceGroup
+        STRING
+        PROPERTIES
+          Name                #CustPriceGroup
+          Table               #WPAParameters
+          Origin              #{211EB309-B6B1-4531-BC5E-3A58297DACEE}
+          ExtendedDataType    #CustPriceGroup
+        ENDPROPERTIES
+        
+      FIELD #DefaultMobileUser
+        ENUM
+        PROPERTIES
+          Name                #DefaultMobileUser
+          Table               #WPAParameters
+          Origin              #{E77F887B-989D-4314-9658-558D9AAB8B8A}
+          LegacyId            #50028
+          ExtendedDataType    #WPADefaultMobileUser
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #DefaultWorkcardStartTime
+        TIME
+        PROPERTIES
+          Name                #DefaultWorkcardStartTime
+          Table               #WPAParameters
+          Origin              #{45B4F781-6E36-4C94-9589-DDF285A3596D}
+          ExtendedDataType    #WPADefaultWorkcardStartTime
+        ENDPROPERTIES
+        
+      FIELD #DocuTypeId
+        STRING
+        PROPERTIES
+          Name                #DocuTypeId
+          Table               #WPAParameters
+          Origin              #{D7DC2800-108E-44C2-8C33-8C033ABDF145}
+          LegacyId            #50029
+          ExtendedDataType    #WPADocuTypeId
           StringSize          #20
-        ENDPROPERTIES
-        
-      FIELD #PhoneType
-        STRING
-        PROPERTIES
-          Name                #PhoneType
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAPhoneType
-              #
-            ENDARRAY
-          StringSize          #20
-        ENDPROPERTIES
-        
-      FIELD #AgreementId_OLD
-        STRING
-        PROPERTIES
-          Name                #AgreementId_OLD
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAAgreementId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #TaskId
-        STRING
-        PROPERTIES
-          Name                #TaskId
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPATaskId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #StageIdEndedWPA
-        STRING
-        PROPERTIES
-          Name                #StageIdEndedWPA
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAStageIdEndedWPA
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #StageIdToWPA
-        STRING
-        PROPERTIES
-          Name                #StageIdToWPA
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAStageIdToWPA
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #ForecastModel
-        STRING
-        PROPERTIES
-          Name                #ForecastModel
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAForecastModel
-              #
-            ENDARRAY
         ENDPROPERTIES
         
       FIELD #EmplJournalNameId
@@ -257,11 +147,19 @@ Formatversion: 1
           HelpText            #@SYS23982
           ConfigurationKey    #ProjBasicHour
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #ProjJournalNameId
-              #
-            ENDARRAY
+          Origin              #{6B9E435B-208A-4B23-AE44-C43E3BC44F3E}
+          LegacyId            #50019
+          ExtendedDataType    #ProjJournalNameId
+        ENDPROPERTIES
+        
+      FIELD #ForecastModel
+        STRING
+        PROPERTIES
+          Name                #ForecastModel
+          Table               #WPAParameters
+          Origin              #{A02917CC-1567-449B-BD41-994986F7B3C3}
+          LegacyId            #50018
+          ExtendedDataType    #WPAForecastModel
         ENDPROPERTIES
         
       FIELD #inventJournalNameId
@@ -269,40 +167,81 @@ Formatversion: 1
         PROPERTIES
           Name                #inventJournalNameId
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #InventJournalNameProject
-              #
-            ENDARRAY
+          Origin              #{AD16E8FC-9751-48CE-A89B-CD02617F8F32}
+          LegacyId            #50020
+          ExtendedDataType    #InventJournalNameProject
         ENDPROPERTIES
         
-      FIELD #RevenueJournalNameId
+      FIELD #InventJournalNameReorder
         STRING
         PROPERTIES
-          Name                #RevenueJournalNameId
-          Label               #@SYS9154
-          HelpText            #@SYS23982
-          ConfigurationKey    #ProjBasicRevenue
+          Name                #InventJournalNameReorder
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #ProjJournalNameId
-              #
-            ENDARRAY
+          Origin              #{FB33C13A-3229-4C75-A402-391AAC01E11F}
+          ExtendedDataType    #InventJournalNameTransfer
         ENDPROPERTIES
         
-      FIELD #LedgerJournalNameId
+      FIELD #InventLocationIdDefault
         STRING
         PROPERTIES
-          Name                #LedgerJournalNameId
-          Label               #@SYS90729
-          HelpText            #@SYS23982
+          Name                #InventLocationIdDefault
+          Label               #@SYS104490
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #LedgerJournalNameId
-              #
-            ENDARRAY
+          Origin              #{14350A7F-A260-494C-A3D7-B96F5F260A40}
+          LegacyId            #50026
+          ExtendedDataType    #InventLocationIdDefault
+        ENDPROPERTIES
+        
+      FIELD #InventoryPostAs
+        ENUM
+        PROPERTIES
+          Name                #InventoryPostAs
+          Table               #WPAParameters
+          Origin              #{BD343E53-D7E8-4626-9A42-5575E2E186BA}
+          EnumType            #WPAInventoryPostAs
+        ENDPROPERTIES
+        
+      FIELD #ItemCostPrice
+        ENUM
+        PROPERTIES
+          Name                #ItemCostPrice
+          Table               #WPAParameters
+          Origin              #{599B4525-0E89-4796-A501-882CF06577DE}
+          LegacyId            #50005
+          ExtendedDataType    #WPAItemCostPrice
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ItemPrefix
+        STRING
+        PROPERTIES
+          Name                #ItemPrefix
+          Table               #WPAParameters
+          Origin              #{D9E2AFDB-9637-46AA-8E5C-16EB80243E0D}
+          LegacyId            #50004
+          ExtendedDataType    #WPAItemPrefix
+        ENDPROPERTIES
+        
+      FIELD #ItemSalesPrice
+        ENUM
+        PROPERTIES
+          Name                #ItemSalesPrice
+          Table               #WPAParameters
+          Origin              #{FF8244D4-D36F-48A3-9D39-239009B98F22}
+          LegacyId            #50006
+          ExtendedDataType    #WPAItemSalesPrice
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ItemWithoutDim
+        ENUM
+        PROPERTIES
+          Name                #ItemWithoutDim
+          Table               #WPAParameters
+          Origin              #{F94FC2B2-594C-4F88-BDD0-1E3086394ED5}
+          LegacyId            #50024
+          ExtendedDataType    #WPAItemWithoutDim
+          EnumType            #NoYes
         ENDPROPERTIES
         
       FIELD #Key
@@ -313,50 +252,87 @@ Formatversion: 1
           AllowEdit           #No
           Visible             #No
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #ParametersKey
-              #
-            ENDARRAY
+          Origin              #{5BB6131F-C968-4319-BC7A-DF6DB5BA15EC}
+          LegacyId            #50023
+          ExtendedDataType    #ParametersKey
         ENDPROPERTIES
         
-      FIELD #ItemWithoutDim
-        ENUM
-        PROPERTIES
-          Name                #ItemWithoutDim
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemWithoutDim
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #CategoryWithoutProperty
-        ENUM
-        PROPERTIES
-          Name                #CategoryWithoutProperty
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPACategoryWithoutProperty
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #InventLocationIdDefault
+      FIELD #LedgerJournalNameId
         STRING
         PROPERTIES
-          Name                #InventLocationIdDefault
-          Label               #@SYS104490
+          Name                #LedgerJournalNameId
+          Label               #@SYS90729
+          HelpText            #@SYS23982
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #InventLocationIdDefault
-              #
-            ENDARRAY
+          Origin              #{709A28DD-E9FD-4C5D-9378-54F722C30220}
+          LegacyId            #50022
+          ExtendedDataType    #LedgerJournalNameId
+        ENDPROPERTIES
+        
+      FIELD #LinePropertyCaregory
+        ENUM
+        PROPERTIES
+          Name                #LinePropertyCaregory
+          Table               #WPAParameters
+          Origin              #{F644D110-4E7A-4DF4-9D86-3866B0452E62}
+          LegacyId            #50002
+          ExtendedDataType    #WPALinePropertyCaregory
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #LinePropertyItem
+        ENUM
+        PROPERTIES
+          Name                #LinePropertyItem
+          Table               #WPAParameters
+          Origin              #{E26047C8-F404-42D3-8485-9F2A9DC48AFE}
+          LegacyId            #50007
+          ExtendedDataType    #WPALinePropertyItem
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #RevenueJournalNameId
+        STRING
+        PROPERTIES
+          Name                #RevenueJournalNameId
+          Label               #@SYS9154
+          HelpText            #@SYS23982
+          ConfigurationKey    #ProjBasicRevenue
+          Table               #WPAParameters
+          Origin              #{A0CDD3EB-EEDC-4190-BA74-2D28CAFE21C8}
+          LegacyId            #50021
+          ExtendedDataType    #ProjJournalNameId
+        ENDPROPERTIES
+        
+      FIELD #SendOnlyInventoryChanges
+        ENUM
+        PROPERTIES
+          Name                #SendOnlyInventoryChanges
+          Table               #WPAParameters
+          Origin              #{43FF44B8-0F9D-435C-B7B3-434783C5A018}
+          LegacyId            #50032
+          ExtendedDataType    #WPASendOnlyInventoryChanges
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #Separator
+        STRING
+        PROPERTIES
+          Name                #Separator
+          Table               #WPAParameters
+          Origin              #{A4626077-2042-4F1D-A795-DB6FC0A4DD0C}
+          LegacyId            #50001
+          ExtendedDataType    #WPASeparator
+          StringSize          #1
+        ENDPROPERTIES
+        
+      FIELD #SerialActiveDays
+        INT
+        PROPERTIES
+          Name                #SerialActiveDays
+          Table               #WPAParameters
+          Origin              #{33AE1349-C293-4B67-910C-D51390AF2BEB}
+          ExtendedDataType    #WPASerialActiveDays
         ENDPROPERTIES
         
       FIELD #SmartlineItemId
@@ -365,37 +341,51 @@ Formatversion: 1
           Name                #SmartlineItemId
           Label               #Smartline varenummer
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #ItemId
-              #
-            ENDARRAY
+          Origin              #{4C8A596F-BAED-4C11-8C7E-A29F6240B243}
+          LegacyId            #50027
+          ExtendedDataType    #ItemId
           StringSize          #20
         ENDPROPERTIES
         
-      FIELD #DefaultMobileUser
-        ENUM
-        PROPERTIES
-          Name                #DefaultMobileUser
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPADefaultMobileUser
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #DocuTypeId
+      FIELD #StageIdEndedWPA
         STRING
         PROPERTIES
-          Name                #DocuTypeId
+          Name                #StageIdEndedWPA
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPADocuTypeId
-              #
-            ENDARRAY
+          Origin              #{A5B92A47-21EE-44C0-8F76-4AA434FFBDB0}
+          LegacyId            #50016
+          ExtendedDataType    #WPAStageIdEndedWPA
+        ENDPROPERTIES
+        
+      FIELD #StageIdToWPA
+        STRING
+        PROPERTIES
+          Name                #StageIdToWPA
+          Table               #WPAParameters
+          Origin              #{74D3D384-1902-431F-BF85-3B82C2F313AD}
+          LegacyId            #50017
+          ExtendedDataType    #WPAStageIdToWPA
+        ENDPROPERTIES
+        
+      FIELD #TaskId
+        STRING
+        PROPERTIES
+          Name                #TaskId
+          Table               #WPAParameters
+          Origin              #{1ED371DD-5165-4B49-8301-D92BDD0A80FA}
+          LegacyId            #50015
+          ExtendedDataType    #WPATaskId
+        ENDPROPERTIES
+        
+      FIELD #UsePrefix
+        ENUM
+        PROPERTIES
+          Name                #UsePrefix
+          Table               #WPAParameters
+          Origin              #{6A0970C2-A39E-4256-B1BB-537EDD93686B}
+          LegacyId            #50003
+          ExtendedDataType    #WPAUsePrefix
+          EnumType            #NoYes
         ENDPROPERTIES
         
       FIELD #ValidateEmail
@@ -403,12 +393,19 @@ Formatversion: 1
         PROPERTIES
           Name                #ValidateEmail
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAValidateEmail
-              #
-            ENDARRAY
+          Origin              #{EA0539B4-E8CF-485F-9D94-B35B3AB5C8FD}
+          LegacyId            #50030
+          ExtendedDataType    #WPAValidateEmail
           EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #WorkcardCreation
+        ENUM
+        PROPERTIES
+          Name                #WorkcardCreation
+          Table               #WPAParameters
+          Origin              #{733F975F-3106-44CF-BE99-65E6BAC4E52A}
+          EnumType            #WPAWorkcardCreation
         ENDPROPERTIES
         
       FIELD #WorkcardsDefaultActivated
@@ -416,46 +413,9 @@ Formatversion: 1
         PROPERTIES
           Name                #WorkcardsDefaultActivated
           Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPAWorkcardsDefaultActivated
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #SendOnlyInventoryChanges
-        ENUM
-        PROPERTIES
-          Name                #SendOnlyInventoryChanges
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPASendOnlyInventoryChanges
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #DefaultWorkcardStartTime
-        TIME
-        PROPERTIES
-          Name                #DefaultWorkcardStartTime
-          Table               #WPAParameters
-          ExtendedDataType    
-            ARRAY 
-              #WPADefaultWorkcardStartTime
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #AutoCopyServiceTasks
-        ENUM
-        PROPERTIES
-          Name                #AutoCopyServiceTasks
-          Label               #@WPA241
-          HelpText            #@WPA242
-          Table               #WPAParameters
+          Origin              #{CD6F6BE2-973F-4484-8CC0-EBE8EFF7ABB3}
+          LegacyId            #50031
+          ExtendedDataType    #WPAWorkcardsDefaultActivated
           EnumType            #NoYes
         ENDPROPERTIES
         
@@ -478,9 +438,7 @@ Formatversion: 1
           #CategoryPrefix
           #CategorySalesPrice
           #CategoryCostPrice
-          #TypeEmail
-          #PhoneType
-          #AgreementId_OLD
+          #AgreementId
           #TaskId
           #StageIdEndedWPA
           #StageIdToWPA
@@ -504,9 +462,7 @@ Formatversion: 1
           #CategoryPrefix
           #CategorySalesPrice
           #CategoryCostPrice
-          #TypeEmail
-          #PhoneType
-          #AgreementId_OLD
+          #AgreementId
           #TaskId
           #StageIdEndedWPA
           #StageIdToWPA
@@ -534,8 +490,6 @@ Formatversion: 1
         ENDPROPERTIES
         
         GROUPFIELDS
-          #TypeEmail
-          #PhoneType
           #DefaultMobileUser
           #ValidateEmail
         ENDGROUPFIELDS
@@ -550,6 +504,7 @@ Formatversion: 1
           #UsePrefix
           #Separator
           #WorkcardsDefaultActivated
+          #WorkcardCreation
         ENDGROUPFIELDS
       ENDGROUP
       GROUP #Item
@@ -567,6 +522,7 @@ Formatversion: 1
           #BarCodeSetupId
           #InventLocationIdDefault
           #SmartlineItemId
+          #CustPriceGroup
         ENDGROUPFIELDS
       ENDGROUP
       GROUP #Journals
@@ -606,6 +562,16 @@ Formatversion: 1
           #DefaultWorkcardStartTime
         ENDGROUPFIELDS
       ENDGROUP
+      GROUP #Reorder
+        PROPERTIES
+          Name                #Reorder
+          Label               #@WPA246
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #InventJournalNameReorder
+        ENDGROUPFIELDS
+      ENDGROUP
       GROUP #ServiceOrder
         PROPERTIES
           Name                #ServiceOrder
@@ -613,11 +579,11 @@ Formatversion: 1
         ENDPROPERTIES
         
         GROUPFIELDS
-          #AgreementId_OLD
+          #AgreementId
           #TaskId
           #StageIdToWPA
           #StageIdEndedWPA
-          #AutoCopyServiceTasks
+          #AutoSignOff
         ENDGROUPFIELDS
       ENDGROUP
       GROUP #WarehouseManagement
@@ -628,6 +594,8 @@ Formatversion: 1
         
         GROUPFIELDS
           #SendOnlyInventoryChanges
+          #SerialActiveDays
+          #InventoryPostAs
         ENDGROUPFIELDS
       ENDGROUP
     ENDGROUPS
@@ -637,13 +605,27 @@ Formatversion: 1
       PROPERTIES
         Name                #Key
         AllowDuplicates     #No
+        Origin              #{5C2D2E36-4135-4B51-A81F-02B5279B74FD}
+        LegacyId            #50001
       ENDPROPERTIES
       
       INDEXFIELDS
         #Key
       ENDINDEXFIELDS
       
+      #InventJournalNameIdx
+      PROPERTIES
+        Name                #InventJournalNameIdx
+        Origin              #{9595D374-EF05-42B0-B870-E1C9E15D211A}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #InventJournalNameReorder
+      ENDINDEXFIELDS
+      
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
       REFERENCE #InventJournalName
         PROPERTIES
@@ -662,6 +644,29 @@ Formatversion: 1
           REFERENCETYPE EXTERNFIXED
           PROPERTIES
             Value               #5
+            Table               #InventJournalName
+            RelatedField        #JournalType
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #InventJournalName1
+        PROPERTIES
+          Name                #InventJournalName1
+          Table               #InventJournalName
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #InventJournalNameReorder
+            RelatedField        #JournalNameId
+          ENDPROPERTIES
+          
+          REFERENCETYPE EXTERNFIXED
+          PROPERTIES
+            Value               #2
             Table               #InventJournalName
             RelatedField        #JournalType
           ENDPROPERTIES
@@ -741,7 +746,6 @@ Formatversion: 1
     ENDDELETEACTIONS
     
     METHODS
-      Version: 3
       SOURCE #modifiedField
         #public void modifiedField(fieldId _fieldId)
         #{

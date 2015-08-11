@@ -11,23 +11,53 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProjForecastEmpl_ProjForecastEmpl
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{E5B36071-3217-4257-8ADB-F475C6E36219}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAProjForecastEmpl_ProjForecastEmpl</c> class is the data object class that is exposed through the <c>WPAProjForecastEmplService</c> class.
+        #/// </summary>
+        ##AxdWPAProjForecastEmplDCT
+        #[AifDataContainerTypeAttribute(#WPAProjForecastEmpl_ProjForecastEmpl)]
         #class WPAProjForecastEmpl_ProjForecastEmpl extends AfStronglyTypedDataContainer
         #{
+        #    #define.Worker('Worker')
         #    #define.Txt('Txt')
         #    #define.TransId('TransId')
+        #    #define.TaxGroupId('TaxGroupId')
+        #    #define.SchedWrkCtrId('SchedWrkCtrId')
+        #    #define.SchedWorkTime('SchedWorkTime')
+        #    #define.SchedToTime('SchedToTime')
+        #    #define.SchedToDate('SchedToDate')
+        #    #define.SchedTimeHours('SchedTimeHours')
+        #    #define.SchedLinkType('SchedLinkType')
+        #    #define.SchedLink('SchedLink')
+        #    #define.SchedFromTime('SchedFromTime')
+        #    #define.SchedFromDate('SchedFromDate')
+        #    #define.SchedCapacity('SchedCapacity')
+        #    #define.SalesPrice('SalesPrice')
+        #    #define.SalesPaymDate('SalesPaymDate')
+        #    #define.Report('Report')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
         #    #define.Qty('Qty')
-        #    #define.ProjTable('ProjTable')
         #    #define.ProjId('ProjId')
+        #    #define.ProjFundingSource('ProjFundingSource')
+        #    #define.ProjForecastBudgetType('ProjForecastBudgetType')
         #    #define.ModelId('ModelId')
         #    #define.LinePropertyId('LinePropertyId')
-        #    #define.EmplId('EmplId')
+        #    #define.LineNum('LineNum')
+        #    #define.JobId('JobId')
+        #    #define.InvoiceDate('InvoiceDate')
+        #    #define.ExchRate('ExchRate')
+        #    #define.EliminationDate('EliminationDate')
+        #    #define.DefaultDimension('DefaultDimension')
+        #    #define.CurrencyId('CurrencyId')
+        #    #define.CovStatus('CovStatus')
         #    #define.CostPrice('CostPrice')
+        #    #define.CostPaymDate('CostPaymDate')
         #    #define.CategoryId('CategoryId')
         #    #define.ActivityNumber('ActivityNumber')
         #    #define.Active('Active')
@@ -36,10 +66,16 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #createProjTable
-        #public AfStronglyTypedDataContainerList createProjTable()
+      SOURCE #createDefaultDimension
+        #public AifDimensionAttributeValueSet createDefaultDimension()
         #{
-        #    return this.get_NewList(#ProjTable);
+        #    return this.get_NewContainer(#DefaultDimension);
+        #}
+      ENDSOURCE
+      SOURCE #createProjFundingSource
+        #public ProjFundingSourceKey createProjFundingSource()
+        #{
+        #    return this.get_NewContainer(#ProjFundingSource);
         #}
       ENDSOURCE
       SOURCE #exists_DocumentHash
@@ -66,16 +102,64 @@ Formatversion: 1
         #    return this.exists(#CategoryId);
         #}
       ENDSOURCE
+      SOURCE #existsCostPaymDate
+        #public boolean existsCostPaymDate()
+        #{
+        #    return this.exists(#CostPaymDate);
+        #}
+      ENDSOURCE
       SOURCE #existsCostPrice
         #public boolean existsCostPrice()
         #{
         #    return this.exists(#CostPrice);
         #}
       ENDSOURCE
-      SOURCE #existsEmplId
-        #public boolean existsEmplId()
+      SOURCE #existsCovStatus
+        #public boolean existsCovStatus()
         #{
-        #    return this.exists(#EmplId);
+        #    return this.exists(#CovStatus);
+        #}
+      ENDSOURCE
+      SOURCE #existsCurrencyId
+        #public boolean existsCurrencyId()
+        #{
+        #    return this.exists(#CurrencyId);
+        #}
+      ENDSOURCE
+      SOURCE #existsDefaultDimension
+        #public boolean existsDefaultDimension()
+        #{
+        #    return this.exists(#DefaultDimension);
+        #}
+      ENDSOURCE
+      SOURCE #existsEliminationDate
+        #public boolean existsEliminationDate()
+        #{
+        #    return this.exists(#EliminationDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsExchRate
+        #public boolean existsExchRate()
+        #{
+        #    return this.exists(#ExchRate);
+        #}
+      ENDSOURCE
+      SOURCE #existsInvoiceDate
+        #public boolean existsInvoiceDate()
+        #{
+        #    return this.exists(#InvoiceDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsJobId
+        #public boolean existsJobId()
+        #{
+        #    return this.exists(#JobId);
+        #}
+      ENDSOURCE
+      SOURCE #existsLineNum
+        #public boolean existsLineNum()
+        #{
+        #    return this.exists(#LineNum);
         #}
       ENDSOURCE
       SOURCE #existsLinePropertyId
@@ -90,22 +174,124 @@ Formatversion: 1
         #    return this.exists(#ModelId);
         #}
       ENDSOURCE
+      SOURCE #existsProjForecastBudgetType
+        #public boolean existsProjForecastBudgetType()
+        #{
+        #    return this.exists(#ProjForecastBudgetType);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjFundingSource
+        #public boolean existsProjFundingSource()
+        #{
+        #    return this.exists(#ProjFundingSource);
+        #}
+      ENDSOURCE
       SOURCE #existsProjId
         #public boolean existsProjId()
         #{
         #    return this.exists(#ProjId);
         #}
       ENDSOURCE
-      SOURCE #existsProjTable
-        #public boolean existsProjTable()
-        #{
-        #    return this.exists(#ProjTable);
-        #}
-      ENDSOURCE
       SOURCE #existsQty
         #public boolean existsQty()
         #{
         #    return this.exists(#Qty);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsReport
+        #public boolean existsReport()
+        #{
+        #    return this.exists(#Report);
+        #}
+      ENDSOURCE
+      SOURCE #existsSalesPaymDate
+        #public boolean existsSalesPaymDate()
+        #{
+        #    return this.exists(#SalesPaymDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsSalesPrice
+        #public boolean existsSalesPrice()
+        #{
+        #    return this.exists(#SalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedCapacity
+        #public boolean existsSchedCapacity()
+        #{
+        #    return this.exists(#SchedCapacity);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedFromDate
+        #public boolean existsSchedFromDate()
+        #{
+        #    return this.exists(#SchedFromDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedFromTime
+        #public boolean existsSchedFromTime()
+        #{
+        #    return this.exists(#SchedFromTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedLink
+        #public boolean existsSchedLink()
+        #{
+        #    return this.exists(#SchedLink);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedLinkType
+        #public boolean existsSchedLinkType()
+        #{
+        #    return this.exists(#SchedLinkType);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedTimeHours
+        #public boolean existsSchedTimeHours()
+        #{
+        #    return this.exists(#SchedTimeHours);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedToDate
+        #public boolean existsSchedToDate()
+        #{
+        #    return this.exists(#SchedToDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedToTime
+        #public boolean existsSchedToTime()
+        #{
+        #    return this.exists(#SchedToTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedWorkTime
+        #public boolean existsSchedWorkTime()
+        #{
+        #    return this.exists(#SchedWorkTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsSchedWrkCtrId
+        #public boolean existsSchedWrkCtrId()
+        #{
+        #    return this.exists(#SchedWrkCtrId);
+        #}
+      ENDSOURCE
+      SOURCE #existsTaxGroupId
+        #public boolean existsTaxGroupId()
+        #{
+        #    return this.exists(#TaxGroupId);
         #}
       ENDSOURCE
       SOURCE #existsTransId
@@ -120,10 +306,16 @@ Formatversion: 1
         #    return this.exists(#Txt);
         #}
       ENDSOURCE
+      SOURCE #existsWorker
+        #public boolean existsWorker()
+        #{
+        #    return this.exists(#Worker);
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAProjForecastEmpl_ProjForecastEmpl);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parm_DocumentHash
@@ -170,6 +362,17 @@ Formatversion: 1
         #    return this.get_Attribute(#CategoryId);
         #}
       ENDSOURCE
+      SOURCE #parmCostPaymDate
+        #public ProjForecastCostPaymDate parmCostPaymDate(ProjForecastCostPaymDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CostPaymDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CostPaymDate);
+        #}
+      ENDSOURCE
       SOURCE #parmCostPrice
         #public ProjCostPriceEmpl parmCostPrice(ProjCostPriceEmpl _value = 0)
         #{
@@ -181,15 +384,92 @@ Formatversion: 1
         #    return this.get_Attribute(#CostPrice);
         #}
       ENDSOURCE
-      SOURCE #parmEmplId
-        #public EmplIdProj parmEmplId(EmplIdProj _value = '')
+      SOURCE #parmCovStatus
+        #public CovStatus parmCovStatus(CovStatus _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_Attribute(#EmplId, _value);
+        #        this.set_Attribute(#CovStatus, _value);
         #    }
         #
-        #    return this.get_Attribute(#EmplId);
+        #    return this.get_Attribute(#CovStatus);
+        #}
+      ENDSOURCE
+      SOURCE #parmCurrencyId
+        #public ProjSalesCurrencyCode parmCurrencyId(ProjSalesCurrencyCode _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CurrencyId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CurrencyId);
+        #}
+      ENDSOURCE
+      SOURCE #parmDefaultDimension
+        #public AifDimensionAttributeValueSet parmDefaultDimension(AifDimensionAttributeValueSet _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Container(#DefaultDimension, _value);
+        #    }
+        #
+        #    return this.get_Container(#DefaultDimension);
+        #}
+      ENDSOURCE
+      SOURCE #parmEliminationDate
+        #public ProjForecastEliminationDate parmEliminationDate(ProjForecastEliminationDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#EliminationDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#EliminationDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmExchRate
+        #public ExchRate parmExchRate(ExchRate _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ExchRate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ExchRate);
+        #}
+      ENDSOURCE
+      SOURCE #parmInvoiceDate
+        #public ProjForecastInvoiceDate parmInvoiceDate(ProjForecastInvoiceDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#InvoiceDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#InvoiceDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmJobId
+        #public JmgJobId parmJobId(JmgJobId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#JobId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#JobId);
+        #}
+      ENDSOURCE
+      SOURCE #parmLineNum
+        #public LineNum parmLineNum(LineNum _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#LineNum, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#LineNum);
         #}
       ENDSOURCE
       SOURCE #parmLinePropertyId
@@ -214,6 +494,28 @@ Formatversion: 1
         #    return this.get_Attribute(#ModelId);
         #}
       ENDSOURCE
+      SOURCE #parmProjForecastBudgetType
+        #public ProjForecastBudgetType parmProjForecastBudgetType(ProjForecastBudgetType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjForecastBudgetType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjForecastBudgetType);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjFundingSource
+        #public ProjFundingSourceKey parmProjFundingSource(ProjFundingSourceKey _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Container(#ProjFundingSource, _value);
+        #    }
+        #
+        #    return this.get_Container(#ProjFundingSource);
+        #}
+      ENDSOURCE
       SOURCE #parmProjId
         #public ProjId parmProjId(ProjId _value = '')
         #{
@@ -225,17 +527,6 @@ Formatversion: 1
         #    return this.get_Attribute(#ProjId);
         #}
       ENDSOURCE
-      SOURCE #parmProjTable
-        #public AfStronglyTypedDataContainerList parmProjTable(AfStronglyTypedDataContainerList _value = null)
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_List(#ProjTable, _value);
-        #    }
-        #
-        #    return this.get_List(#ProjTable);
-        #}
-      ENDSOURCE
       SOURCE #parmQty
         #public ProjQtyEmpl parmQty(ProjQtyEmpl _value = 0)
         #{
@@ -245,6 +536,182 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#Qty);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public RecId parmRecId(RecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmReport
+        #public ReportType parmReport(ReportType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Report, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Report);
+        #}
+      ENDSOURCE
+      SOURCE #parmSalesPaymDate
+        #public ProjForecastSalesPaymDate parmSalesPaymDate(ProjForecastSalesPaymDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SalesPaymDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SalesPaymDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmSalesPrice
+        #public ProjSalesPriceEmpl parmSalesPrice(ProjSalesPriceEmpl _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SalesPrice, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SalesPrice);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedCapacity
+        #public NoYes parmSchedCapacity(NoYes _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedCapacity, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedCapacity);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedFromDate
+        #public SchedFromDate parmSchedFromDate(SchedFromDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedFromDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedFromDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedFromTime
+        #public SchedFromTime parmSchedFromTime(SchedFromTime _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedFromTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedFromTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedLink
+        #public SchedJobLink parmSchedLink(SchedJobLink _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedLink, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedLink);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedLinkType
+        #public SchedJobLinkType parmSchedLinkType(SchedJobLinkType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedLinkType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedLinkType);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedTimeHours
+        #public RouteJobSchedTimeHours parmSchedTimeHours(RouteJobSchedTimeHours _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedTimeHours, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedTimeHours);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedToDate
+        #public SchedToDate parmSchedToDate(SchedToDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedToDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedToDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedToTime
+        #public SchedToTime parmSchedToTime(SchedToTime _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedToTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedToTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedWorkTime
+        #public NoYes parmSchedWorkTime(NoYes _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedWorkTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedWorkTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmSchedWrkCtrId
+        #public WrkCtrId parmSchedWrkCtrId(WrkCtrId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SchedWrkCtrId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SchedWrkCtrId);
+        #}
+      ENDSOURCE
+      SOURCE #parmTaxGroupId
+        #public TaxGroup parmTaxGroupId(TaxGroup _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#TaxGroupId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#TaxGroupId);
         #}
       ENDSOURCE
       SOURCE #parmTransId
@@ -267,6 +734,17 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#Txt);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorker
+        #public DirPartyNumber parmWorker(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Worker, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Worker);
         #}
       ENDSOURCE
     ENDMETHODS

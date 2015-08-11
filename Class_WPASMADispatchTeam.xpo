@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASMADispatchTeam
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{C9F2BA9E-E3D4-466D-9FA5-E898A40128F7}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPASMADispatchTeam</c> class is the data object class that is exposed through the <c>WPASMADispatchTeamService</c> class.
+        #/// </summary>
+        ##AxdWPASMADispatchTeamDCT
+        #[AifDataContainerTypeAttribute(#WPASMADispatchTeam)]
         #class WPASMADispatchTeam extends AifDocument
         #{
         #    #define.SMADispatchTeamTable('SMADispatchTeamTable')
@@ -53,7 +57,7 @@ Formatversion: 1
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPASMADispatchTeam);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmDocPurpose
@@ -68,7 +72,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -115,7 +119,7 @@ Formatversion: 1
         #    xmlWriterSettings.indent(true);
         #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
         #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.getMessageId(), this.getQueryName()));
         #
         #    while(queryRun.next())
         #    {

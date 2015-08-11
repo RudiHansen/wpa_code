@@ -15,9 +15,9 @@ Formatversion: 1
       HelpText            #@WPA134
       ObjectType          #Class
       Object              #WPASendInventLocation
-      RunOn               #Called from
       ConfigurationKey    #WPAIntegration
       SecurityKey         #WPAPeriodic
+      Origin              #{1D009EE8-7A2A-4023-8167-11FCA5999D29}
     ENDPROPERTIES
     
   ENDMENUITEM

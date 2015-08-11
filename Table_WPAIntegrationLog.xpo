@@ -8,27 +8,24 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #WPAIntegrationLog
+    EnforceFKRelation 0
     PROPERTIES
       Name                #WPAIntegrationLog
       SecurityKey         #WPATables
       ModifiedDateTime    #Yes
       CreatedDateTime     #Yes
+      Origin              #{BD7D87AC-C652-4828-BE27-48065AB997E1}
+      LegacyId            #50004
     ENDPROPERTIES
     
     FIELDS
-      FIELD #RefTableId
-        INT
+      FIELD #ExportDateTime
+        DATETIME
         PROPERTIES
-          Name                #RefTableId
-          HelpText            #@SYS22567
-          AllowEditOnCreate   #No
-          AllowEdit           #No
+          Name                #ExportDateTime
           Table               #WPAIntegrationLog
-          ExtendedDataType    
-            ARRAY 
-              #RefTableId
-              #
-            ENDARRAY
+          Origin              #{7F210639-FF05-481D-B4F9-238BC6F00899}
+          LegacyId            #50003
         ENDPROPERTIES
         
       FIELD #RefRecId
@@ -40,18 +37,22 @@ Formatversion: 1
           AllowEditOnCreate   #No
           AllowEdit           #No
           Table               #WPAIntegrationLog
-          ExtendedDataType    
-            ARRAY 
-              #RefRecId
-              #
-            ENDARRAY
+          Origin              #{FD6FDDB0-9019-4650-8B4C-A7D398015797}
+          LegacyId            #50002
+          ExtendedDataType    #RefRecId
         ENDPROPERTIES
         
-      FIELD #ExportDateTime
-        DATETIME
+      FIELD #RefTableId
+        INT
         PROPERTIES
-          Name                #ExportDateTime
+          Name                #RefTableId
+          HelpText            #@SYS22567
+          AllowEditOnCreate   #No
+          AllowEdit           #No
           Table               #WPAIntegrationLog
+          Origin              #{9F1D643D-99E7-4D6F-A438-95838D5FD236}
+          LegacyId            #50001
+          ExtendedDataType    #RefTableId
         ENDPROPERTIES
         
     ENDFIELDS
@@ -63,6 +64,8 @@ Formatversion: 1
       PROPERTIES
         Name                #RefIdx
         AllowDuplicates     #No
+        Origin              #{5EA6E73D-B420-4758-AE31-C443320AFE53}
+        LegacyId            #50001
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -71,6 +74,8 @@ Formatversion: 1
       ENDINDEXFIELDS
       
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
     ENDREFERENCES
     
@@ -78,7 +83,6 @@ Formatversion: 1
     ENDDELETEACTIONS
     
     METHODS
-      Version: 3
       SOURCE #create
         #public static WPAIntegrationLog create(RefTableId   _refTableId,
         #                                       RefRecId     _refRecId,

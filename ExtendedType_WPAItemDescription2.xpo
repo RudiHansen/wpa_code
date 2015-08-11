@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAItemDescription2
       Label               #@WPA48
       HelpText            #@SYS80470
+      Origin              #{427AD4D4-58FD-4DE7-B9EE-85B923A0572D}
+      LegacyId            #50026
       Extends             #Description
       StringSize          #60
     ENDPROPERTIES
@@ -22,6 +24,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

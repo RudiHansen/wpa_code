@@ -5,22 +5,20 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Query: WPACustTable unloaded
 ; --------------------------------------------------------------------------------
-VERSION 18
+VERSION 31
 
 QUERY #WPACustTable
   PROPERTIES
     Name                #WPACustTable
-    Version             #185
-    AllowCheck          #Yes
-    NextUniqueId        #1003
+    Version             #16
+    NextUniqueId        #1001
+    Origin              #{655709FF-09AE-4B38-B226-88C686F38BFD}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
-    SOURCE #ClassDeclaration
-      #final class QueryRun
+    SOURCE #classDeclaration
+      #public class QueryRun extends ObjectRun
       #{
-      #
       #}
     ENDSOURCE
   ENDMETHODS
@@ -29,42 +27,16 @@ QUERY #WPACustTable
       PROPERTIES
         Name                #CustTable
         Table               #CustTable
-        UniqueId            #1002
+        UniqueId            #1000
+        FetchMode           #1:1
       ENDPROPERTIES
       
       FIELDLIST
         PROPERTIES
-          Dynamic             #No
         ENDPROPERTIES
         
-        FIELD #AccountNum
-        FIELD #CellularPhone
-        FIELD #Address
-        FIELD #County
-        FIELD #City
-        FIELD #ContactPersonId
-        FIELD #Email
-        FIELD #MainContactId
-        FIELD #Name
-        FIELD #PartyCountry
-        FIELD #PartyId
-        FIELD #PartyState
-        FIELD #PartyType
-        FIELD #PaymTermId
-        FIELD #Phone
-        FIELD #PhoneLocal
-        FIELD #State
-        FIELD #Street
-        FIELD #TeleFax
-        FIELD #ZipCode
       ENDFIELDLIST
       SORTING
-        FIELD #AccountNum
-          PROPERTIES
-            Table               #CustTable
-            Field               #AccountNum
-          ENDPROPERTIES
-          
       ENDSORTING
       LINES
         LINE #AccountNum
@@ -79,7 +51,15 @@ QUERY #WPACustTable
       ENDBLOCKS
       GROUPBY
       ENDGROUPBY
+      HAVING
+      ENDHAVING
       ORDERBY
+        FIELD
+          PROPERTIES
+            DataSource          #CustTable
+            Field               #AccountNum
+          ENDPROPERTIES
+          
       ENDORDERBY
     ENDBLOCK
   ENDBLOCKS

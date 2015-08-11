@@ -13,6 +13,8 @@ Formatversion: 1
       Label               #@WPA179
       Help                #@WPA180
       UseEnumValue        #Yes
+      Origin              #{FB593B43-3D52-48C2-93B8-B7044DA640F5}
+      LegacyId            #50004
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -82,7 +84,7 @@ Formatversion: 1
       #Pending
       PROPERTIES
         Name                #Pending
-        Label               #@SYS104366
+        Label               #Pending
         EnumValue           #41
       ENDPROPERTIES
       

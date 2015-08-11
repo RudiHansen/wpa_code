@@ -1,0 +1,240 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionTaxTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionTaxTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionTaxTransT
+      Label               #@SYS86231
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{8676E4DA-BE8F-4E13-AEF8-05E82CFF869C}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Amount
+        REAL
+        PROPERTIES
+          Name                #Amount
+          Table               #RetailTransactionTaxTransT
+          Origin              #{A641D80E-376D-4879-8F24-A4FCC5741CEC}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionTaxTransT
+          Origin              #{10455785-6786-43F5-8C9D-A7D361D64340}
+        ENDPROPERTIES
+        
+      FIELD #IsIncludedInPrice
+        ENUM
+        PROPERTIES
+          Name                #IsIncludedInPrice
+          Label               #@RET5366
+          HelpText            #@RET5367
+          Table               #RetailTransactionTaxTransT
+          Origin              #{D7BBDEFA-AEF2-4A11-857B-C93F60485C24}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionTaxTransT
+          Origin              #{76B95B03-2308-46AE-B739-1B8D49E6028E}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #replicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #replicationCounterFromOrigin
+          Table               #RetailTransactionTaxTransT
+          Origin              #{1D708BCA-CF2D-4979-B6A9-6B5A565ED15A}
+        ENDPROPERTIES
+        
+      FIELD #SaleLineNum
+        REAL
+        PROPERTIES
+          Name                #SaleLineNum
+          Table               #RetailTransactionTaxTransT
+          Origin              #{76094674-8481-42D7-BF16-8B2478DCCBBC}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailTransactionTaxTransT
+          Origin              #{3B8B74D1-DA1A-48DC-8E8A-1719D4133F60}
+        ENDPROPERTIES
+        
+      FIELD #TaxCode
+        STRING
+        PROPERTIES
+          Name                #TaxCode
+          Table               #RetailTransactionTaxTransT
+          Origin              #{267AA70A-FCEA-4686-8228-8B93D52BD8D7}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailTransactionTaxTransT
+          Origin              #{93938D83-07A0-4D8D-A202-F6B04D5AC156}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailTransactionTaxTransT
+          Origin              #{5161EFD3-7EB6-4636-BA1B-ECC881D73AB3}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{868361C7-1CA1-4B58-A7BE-588B50CBA6CB}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #TaxCode
+        #SaleLineNum
+        #TransactionId
+        #StoreId
+        #TerminalId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionTaxTransT cursor)
+        #{
+        #    RetailTransactionTaxTrans target;
+        #    RetailTransactionTaxTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint TaxTransIdx
+        #                where (target.@TerminalId==cursor2.@TerminalId && target.@StoreId==cursor2.@StoreId && target.@TransactionId==cursor2.@TransactionId && target.@SaleLineNum==cursor2.@SaleLineNum && target.@TaxCode==cursor2.@TaxCode && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @Amount,
+        #                    @Channel,
+        #                    @IsIncludedInPrice,
+        #                    @replicationCounterFromOrigin,
+        #                    @SaleLineNum,
+        #                    @StoreId,
+        #                    @TaxCode,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @Amount,
+        #                    @Channel,
+        #                    @IsIncludedInPrice,
+        #                    @replicationCounterFromOrigin,
+        #                    @SaleLineNum,
+        #                    @StoreId,
+        #                    @TaxCode,
+        #                    @TerminalId,
+        #                    @TransactionId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionTaxTransT cursor)
+        #{
+        #    RetailTransactionTaxTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(replicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionTaxTrans), cursor2.replicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

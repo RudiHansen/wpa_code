@@ -1,0 +1,148 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: AxdWPAInventSerial unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #AxdWPAInventSerial
+    PROPERTIES
+      Name                #AxdWPAInventSerial
+      Extends             #AxdBase
+      RunOn               #Server
+      Origin              #{58DD807B-A887-43A9-A4A9-0258975C1E07}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #class AxdWPAInventSerial extends AxdBase
+        #{
+        #    #define.InventSerial_1_DataSourceName('InventSerial_1')
+        #    #define.InventSum_1_DataSourceName('InventSum_1')
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createList
+        #public AifEntityKeyList createList(XML                         _xML,
+        #                                   AifEndpointActionPolicyInfo _actionPolicyInfo,
+        #                                   AifConstraintListCollection _constraintListCollection)
+        #{
+        #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #deleteList
+        #public AifResult deleteList(AifEntityKeyList            _aifEntityKeyList,
+        #                            AifEndpointActionPolicyInfo _actionPolicyInfo,
+        #                            AifConstraintListCollection _constraintListCollection)
+        #{
+        #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findEntityKeyList
+        #public AifEntityKeyList findEntityKeyList(AifQueryCriteria            _queryCriteria,
+        #                                          AifEndpointActionPolicyInfo _actionPolicyInfo)
+        #{
+        #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getActionList
+        #public AifActionInfoList getActionList()
+        #{
+        #    AifActionInfoList   Actions = new AifActionInfoList();
+        #    AifActionInfo       aifActionInfo;
+        #    ;
+        #    aifActionInfo = new AifActionInfo();
+        #    aifActionInfo.parmActionId(strfmt('%1%2', methodstr(AxdBase, findList), this.getName()));
+        #    aifActionInfo.parmActionType(AifActionType::QueryDocuments);
+        #    aifActionInfo.parmExternalName(aifActionInfo.parmActionId());
+        #    aifActionInfo.parmMethodName(methodstr(AxdBase, findList));
+        #
+        #    aifActionInfo.parmLabel("@WPA229");
+        #
+        #    aifActionInfo.parmDescription("@WPA230");
+        #    aifActionInfo.parmDisplayMenuItemName(menuitemdisplaystr(AifDocConfiguration));
+        #
+        #    actions.add(aifActionInfo);
+        #
+        #    return actions;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getConstraintList
+        #public void getConstraintList(Common _curRec, AifConstraintList _constraintList)
+        #{
+        #    AifConstraint  aifConstraint = new AifConstraint();
+        #
+        #    InventSerial    InventSerial;
+        #    ;
+        #    if (!(_curRec is InventSerial))
+        #    {
+        #         throw error(strfmt("@SYS23396",funcname()));
+        #    }
+        #    InventSerial = _curRec ;
+        #
+        #    aifConstraint.parmType(AIFConstraintType::NoConstraint);
+        #
+        #    _constraintList.addConstraint(aifConstraint) ;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getLabel
+        #public LabelString getLabel()
+        #{
+        #
+        #    return "@SYS9516";
+        #}
+        #
+      ENDSOURCE
+      SOURCE #getQueryName
+        #public QueryName getQueryName()
+        #{
+        #    return querystr(WPAInventSerial);
+        #}
+        #
+      ENDSOURCE
+      SOURCE #readList
+        #public AifDocumentXml readList(AifEntityKeyList            _aifEntityKeyList,
+        #                               AifSchemaInfo               _xsdInfo,
+        #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
+        #                               AifConstraintListCollection _constraintListCollection,
+        #                               AifPropertyBag              _aifPropertyBag)
+        #{
+        #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #updateList
+        #public AifResult updateList(AifEntityKeyList            _entityKeyList,
+        #                               AifDocumentXML              _xml,
+        #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
+        #                               AifConstraintListCollection _constraintListcollection)
+        #{
+        #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

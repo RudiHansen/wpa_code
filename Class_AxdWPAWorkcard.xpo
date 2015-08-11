@@ -12,13 +12,15 @@ Formatversion: 1
       Name                #AxdWPAWorkcard
       Extends             #AxdBase
       RunOn               #Server
+      Origin              #{EC2EDF04-224B-4477-B78A-ACE47CC93B5D}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class AxdWPAWorkcard extends AxdBase
         #{
+        #    #define.WPAWorkcardTable_DataSourceName('WPAWorkcardTable')
+        #    #define.WPAWorkcardLine_DataSourceName('WPAWorkcardLine')
         #}
         #
       ENDSOURCE
@@ -28,6 +30,27 @@ Formatversion: 1
         #                            AifConstraintListCollection _constraintListCollection)
         #{
         #    throw error(strfmt("@SYS94920"));
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandDimensions
+        #public boolean expandDimensions()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #expandSurrogateForeignKeys
+        #public boolean expandSurrogateForeignKeys()
+        #{
+        #    return true;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #findCorrespondingAxBC
+        #public int findCorrespondingAxBC(tableId _tableId = 0)
+        #{
+        #    return classnum(AxCommon);
         #}
         #
       ENDSOURCE
@@ -77,7 +100,7 @@ Formatversion: 1
         #    AifConstraint  aifConstraint = new AifConstraint();
         #    WPAWorkcardTable    WPAWorkcardTable;
         #    ;
-        #    if (_curRec.TableId != tablenum(WPAWorkcardTable))
+        #    if (!(_curRec is WPAWorkcardTable))
         #    {
         #         throw error(strfmt("@SYS23396",funcname()));
         #    }
@@ -87,8 +110,8 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #GetLabel
-        #public LabelDescription getLabel()
+      SOURCE #getLabel
+        #public LabelString getLabel()
         #{
         #    return "@WPA29";
         #}
@@ -101,29 +124,84 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #prepareForSave
-        #public boolean prepareForSave(AxdStack _axdStack,  str _dataSourceName)
+      SOURCE #prepareForSaveExtended
+        #public boolean prepareForSaveExtended(
+        #    AxdStack                    _axBcStack,
+        #    str                         _dataSourceName,
+        #    AxdRecordProcessingContext  _recordProcessingContext,
+        #    AxInternalBase              _childRecord)
         #{
-        #    AxWPAWorkcardTable    AxWPAWorkcardTable;
-        #    AxWPAWorkcardLine    AxWPAWorkcardLine;
-        #    ;
-        #    switch (classidget(_axdStack.top()))
+        #    AxCommon axbc_WPAWorkcardTable;
+        #    AxCommon axbc_WPAWorkcardLine;
+        #
+        #
+        #    switch (_dataSourceName)
         #    {
-        #        case classnum(AxWPAWorkcardTable) :
-        #            AxWPAWorkcardTable = _axdStack.top();
-        #            return true;
+        #        // ----------------------------------------------------------------------
+        #        // Process WPAWorkcardTable records
+        #        // ----------------------------------------------------------------------
+        #        case #WPAWorkcardTable_DataSourceName:
         #
-        #        case classnum(AxWPAWorkcardLine) :
-        #            AxWPAWorkcardLine = _axdStack.top();
-        #            AxWPAWorkcardTable = AxWPAWorkcardLine.parentAxBC();
-        #            AxWPAWorkcardLine.parmOrderId(AxWPAWorkcardTable.parmOrderId());
-        #            return true;
+        #            axbc_WPAWorkcardTable = _axBcStack.top();
         #
-        #        default :
-        #            error(strfmt("@SYS88979",classId2Name(classidget(_axdStack.top()))));
+        #            switch (_recordProcessingContext)
+        #            {
+        #                // Ensure WPAWorkcardTable record is saved
+        #                case AxdRecordProcessingContext::AfterAllChildRecordsProcessed:
+        #                    if (!axbc_WPAWorkcardTable.isProcessed())
+        #                    {
+        #                        return true;
+        #                    }
+        #
+        #                    return false;
+        #            }
+        #
+        #            return false;
+        #
+        #        // ----------------------------------------------------------------------
+        #        // Process WPAWorkcardLine records
+        #        // ----------------------------------------------------------------------
+        #        case #WPAWorkcardLine_DataSourceName:
+        #
+        #            axbc_WPAWorkcardLine = _axBcStack.top();
+        #            switch (_recordProcessingContext)
+        #            {
+        #                // Ensure WPAWorkcardLine record is saved
+        #                case AxdRecordProcessingContext::AfterAllChildRecordsProcessed:
+        #                    if (!axbc_WPAWorkcardLine.isProcessed())
+        #                    {
+        #                        return true;
+        #                    }
+        #
+        #                    return false;
+        #            }
+        #
+        #            return false;
+        #
+        #        // ----------------------------------------------------------------------
+        #        // Unsupported data sources
+        #        // ----------------------------------------------------------------------
+        #        default:
+        #            error(strfmt("@SYS88979",classId2Name(classidget(_axBcStack.top()))));
         #            return false;
         #    }
+        #
         #    return false;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #prepareForUpdateExtended
+        #public boolean prepareForUpdateExtended(
+        #    AxdStack                    _axBcStack,
+        #    str                         _dataSourceName,
+        #    AxdRecordProcessingContext  _recordProcessingContext,
+        #    AxInternalBase              _childRecord)
+        #{
+        #    return this.prepareForSaveExtended(
+        #        _axBcStack,
+        #        _dataSourceName,
+        #        _recordProcessingContext,
+        #        _childRecord);
         #}
         #
       ENDSOURCE
@@ -139,7 +217,7 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #updateList
-        #public AifEntityKey updateList(AifEntityKeyList            _entityKeyList,
+        #public AifResult updateList(AifEntityKeyList            _entityKeyList,
         #                               AifDocumentXML              _xml,
         #                               AifEndpointActionPolicyInfo _actionPolicyInfo,
         #                               AifConstraintListCollection _constraintListcollection)

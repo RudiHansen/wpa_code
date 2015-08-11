@@ -1,0 +1,32 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: UTI
+
+; Microsoft Dynamics AX Integer: WPASerialActiveDays unloaded
+; --------------------------------------------------------------------------------
+  USERTYPEVERSION 6
+  
+  USERTYPE #WPASerialActiveDays
+  INT
+    PROPERTIES
+      Name                #WPASerialActiveDays
+      Label               #@WPA231
+      HelpText            #@WPA232
+      ConfigurationKey    #WPASerialNumbers
+      Origin              #{09963118-6173-4666-A633-505E6CE904EB}
+    ENDPROPERTIES
+    
+    TYPEELEMENTS
+    ENDTYPEELEMENTS
+    
+    TYPEREFERENCES
+    ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
+    
+  ENDUSERTYPE
+  
+
+***Element: END

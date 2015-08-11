@@ -15,7 +15,10 @@ Formatversion: 1
     ##define.WPAProjCategory_ProjHourSalesPrice('WPAProjCategory.ProjHourSalesPrice')
     ##define.WPAProjCategory_ProjRevenueSalesPrice('WPAProjCategory.ProjRevenueSalesPrice')
     ##define.WPAProjCategory_ProjCostSalesPrice('WPAProjCategory.ProjCostSalesPrice')
-    ##define.WPAProjCategory_ProjLinePropertySetup('WPAProjCategory.ProjLinePropertySetup')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{756C5B37-56D7-4884-9ED1-F59038E5F106}
+  ENDPROPERTIES
+  
 
 ***Element: END

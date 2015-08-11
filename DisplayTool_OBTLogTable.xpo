@@ -16,6 +16,7 @@ Formatversion: 1
       Object              #OBTLogTable
       ConfigurationKey    #SysDatabaseLog
       SecurityKey         #AdminSetup
+      Origin              #{2D06EE46-B0C8-439C-B506-0B1859916276}
     ENDPROPERTIES
     
   ENDMENUITEM

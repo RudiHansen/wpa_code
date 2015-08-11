@@ -1,0 +1,113 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAWorkcardSrvService unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAWorkcardSrvService
+    PROPERTIES
+      Name                #WPAWorkcardSrvService
+      Extends             #AifDocumentService
+      RunOn               #Server
+      Origin              #{553AFA90-F595-47DA-A826-9B37E7D5487E}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAWorkcardSrvService</c> class serves as the document service for the <c>WPAWorkcardSrv</c> document type.
+        #/// </summary>
+        #class WPAWorkcardSrvService extends AifDocumentService
+        #{
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #create
+        #/// <summary>
+        #///    Creates one or more data objects that are contained in a <c>WPAWorkcardSrv</c> document.
+        #/// </summary>
+        #/// <param name="_wPAWorkcardSrv">
+        #///    The <c>WPAWorkcardSrv</c> document that contains the data objects to create.
+        #/// </param>
+        #/// <returns>
+        #///    A list of entity keys that identify the newly created objects. The entity keys appear in the order that the created objects are specified in the <c>WPAWorkcardSrv</c> document.
+        #/// </returns>
+        #[AifDocumentCreateAttribute, SysEntryPointAttribute(true)]
+        #public AifEntityKeyList create(WPAWorkcardSrv _wPAWorkcardSrv)
+        #{
+        #    return this.createList(_wPAWorkcardSrv);
+        #}
+      ENDSOURCE
+      SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAWorkcardSrv</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
+        #public WPAWorkcardSrv find(AifQueryCriteria _queryCriteria)
+        #{
+        #    WPAWorkcardSrv wPAWorkcardSrv = new WPAWorkcardSrv();
+        #    this.findList(_queryCriteria, wPAWorkcardSrv);
+        #    return wPAWorkcardSrv;
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #protected void new()
+        #{
+        #    ;
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #read
+        #/// <summary>
+        #///    Reads a <c>WPAWorkcardSrv</c> document that contains one or more data objects.
+        #/// </summary>
+        #/// <param name="_entityKeyList">
+        #///    A list of entity keys that identify the data objects to read.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAWorkcardSrv</c> document that contains list of read data objects.
+        #/// </returns>
+        #[AifDocumentReadAttribute, SysEntryPointAttribute(true)]
+        #public WPAWorkcardSrv read(AifEntityKeyList _entityKeyList)
+        #{
+        #    WPAWorkcardSrv wPAWorkcardSrv = new WPAWorkcardSrv();
+        #    this.readList(_entityKeyList, wPAWorkcardSrv);
+        #    return wPAWorkcardSrv;
+        #}
+      ENDSOURCE
+      SOURCE #update
+        #/// <summary>
+        #///    Updates a <c>WPAWorkcardSrv</c> document that contains one or more data objects.
+        #/// </summary>
+        #/// <param name="_entityKeyList">
+        #///    A list of entity keys that identify the data objects to update.
+        #/// </param>
+        #/// <param name="_wPAWorkcardSrv">
+        #///    A <c>WPAWorkcardSrv</c> document that contains the data objects to update.
+        #/// </param>
+        #[AifDocumentUpdateAttribute, SysEntryPointAttribute(true)]
+        #public void update(AifEntityKeyList _entityKeyList, WPAWorkcardSrv _wPAWorkcardSrv)
+        #{
+        #    this.updateList(_entityKeyList, _wPAWorkcardSrv);
+        #}
+      ENDSOURCE
+      SOURCE #construct
+        #public static WPAWorkcardSrvService construct()
+        #{
+        #    return new WPAWorkcardSrvService();
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

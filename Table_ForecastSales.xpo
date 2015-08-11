@@ -8,6 +8,7 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #ForecastSales
+    EnforceFKRelation 0
     PROPERTIES
       Name                #ForecastSales
       Label               #@SYS15056
@@ -16,66 +17,18 @@ Formatversion: 1
       TitleField2         #ItemId
       ConfigurationKey    #Forecast
       SecurityKey         #InventTables
+      CacheLookup         #NotInTTS
       CreateRecIdIndex    #Yes
       TableGroup          #WorksheetLine
       PrimaryIndex        #RecId
       ClusterIndex        #RecId
       ModifiedBy          #Yes
       DeveloperDocumentation  #@SYS124107
+      Origin              #{2C0D0090-0000-1000-0758-B49A02028574}
+      LegacyId            #144
     ENDPROPERTIES
     
     FIELDS
-      FIELD #ItemId
-        STRING
-        PROPERTIES
-          Name                #ItemId
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ItemId
-              #
-            ENDARRAY
-          StringSize          #20
-        ENDPROPERTIES
-        
-      FIELD #StartDate
-        DATE
-        PROPERTIES
-          Name                #StartDate
-          Label               #@SYS7402
-          HelpText            #@SYS13097
-          Mandatory           #Yes
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #StartDate
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #EndDate
-        DATE
-        PROPERTIES
-          Name                #EndDate
-          Label               #@SYS101261
-          HelpText            #@SYS9830
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #EndDate
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #FreqCode
-        ENUM
-        PROPERTIES
-          Name                #FreqCode
-          HelpText            #@SYS25972
-          Table               #ForecastSales
-          EnumType            #PeriodUnit
-        ENDPROPERTIES
-        
       FIELD #Active
         ENUM
         PROPERTIES
@@ -83,47 +36,43 @@ Formatversion: 1
           Label               #@Sys14584
           HelpText            #@SYS25049
           Table               #ForecastSales
+          Origin              #{719D873A-6276-4D1D-A1B3-42235EDAB990}
+          LegacyId            #5
           EnumType            #NoYes
         ENDPROPERTIES
         
-      FIELD #InventQty
-        REAL
+      FIELD #ActivityNumber
+        STRING
         PROPERTIES
-          Name                #InventQty
-          Label               #@SYS21676
-          HelpText            #@SYS10309
+          Name                #ActivityNumber
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #InventQty
-              #
-            ENDARRAY
+          IgnoreEDTRelation   #Yes
+          Origin              #{AC0979A6-EB53-4B9A-9CB9-B7F690825B7E}
+          LegacyId            #50
+          ExtendedDataType    #ProjActivityNumber
+          StringSize          #50
         ENDPROPERTIES
         
-      FIELD #SalesPrice
-        REAL
+      FIELD #AllocateMethod
+        ENUM
         PROPERTIES
-          Name                #SalesPrice
-          Label               #@SYS3987
-          HelpText            #@SYS1174
+          Name                #AllocateMethod
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #SalesPrice
-              #
-            ENDARRAY
+          Origin              #{26AB1B46-B4B5-47C3-9A3E-ED2F7D414DA9}
+          LegacyId            #35
+          EnumType            #BudgetAllocateMethod
         ENDPROPERTIES
         
-      FIELD #DiscPercent
+      FIELD #Amount
         REAL
         PROPERTIES
-          Name                #DiscPercent
+          Name                #Amount
+          Label               #@SYS12227
+          HelpText            #@SYS25962
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #DiscPct
-              #
-            ENDARRAY
+          Origin              #{E66B0888-6A3B-40C0-9ACA-B3383AF6F0F1}
+          LegacyId            #33
+          ExtendedDataType    #AmountCur
         ENDPROPERTIES
         
       FIELD #Comment
@@ -132,211 +81,21 @@ Formatversion: 1
           Name                #Comment
           HelpText            #@SYS25971
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #BudgetComment
-              #
-            ENDARRAY
+          Origin              #{38488FDF-0E28-446A-841F-1F46069575DA}
+          LegacyId            #9
+          ExtendedDataType    #BudgetComment
           StringSize          #60
-        ENDPROPERTIES
-        
-      FIELD #Dimension
-        STRING
-        PROPERTIES
-          Name                #Dimension
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #Dimension
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #CustGroupId
-        STRING
-        PROPERTIES
-          Name                #CustGroupId
-          HelpText            #@SYS16732
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #CustGroupId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #ItemGroupId
-        STRING
-        PROPERTIES
-          Name                #ItemGroupId
-          HelpText            #@SYS20801
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ItemGroupId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #CustAccountId
-        STRING
-        PROPERTIES
-          Name                #CustAccountId
-          HelpText            #@SYS3649
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #CustAccount
-              #
-            ENDARRAY
-          StringSize          #20
-        ENDPROPERTIES
-        
-      FIELD #KeyId
-        STRING
-        PROPERTIES
-          Name                #KeyId
-          HelpText            #@SYS16394
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #LedgerAllocateKeyId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #Currency
-        STRING
-        PROPERTIES
-          Name                #Currency
-          HelpText            #@SYS25969
-          Mandatory           #Yes
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #CurrencyCode
-              #
-            ENDARRAY
-          StringSize          #3
-        ENDPROPERTIES
-        
-      FIELD #ExpandId
-        INT64
-        PROPERTIES
-          Name                #ExpandId
-          Label               #@Sys21776
-          AllowEditOnCreate   #No
-          AllowEdit           #No
-          Visible             #No
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ForecastSalesRefRecId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #Report
-        ENUM
-        PROPERTIES
-          Name                #Report
-          Label               #@Sys16399
-          HelpText            #@SYS10846
-          AllowEditOnCreate   #No
-          AllowEdit           #No
-          Table               #ForecastSales
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
-      FIELD #SalesQty
-        REAL
-        PROPERTIES
-          Name                #SalesQty
-          HelpText            #@SYS8586
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #SalesQty
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #SalesUnitId
-        STRING
-        PROPERTIES
-          Name                #SalesUnitId
-          HelpText            #@SYS6379
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #UnitID
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #SalesMarkup
-        REAL
-        PROPERTIES
-          Name                #SalesMarkup
-          HelpText            #@SYS16916
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #SalesMarkup
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #DiscAmount
-        REAL
-        PROPERTIES
-          Name                #DiscAmount
-          HelpText            #@SYS9155
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #DiscAmount
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #PriceUnit
-        REAL
-        PROPERTIES
-          Name                #PriceUnit
-          HelpText            #@SYS12723
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #PriceUnit
-              #
-            ENDARRAY
         ENDPROPERTIES
         
       FIELD #CostPrice
         REAL
         PROPERTIES
           Name                #CostPrice
-          HelpText            #@SYS8787
+          HelpText            #@SYS340357
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #CostPrice
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #TaxItemGroupId
-        STRING
-        PROPERTIES
-          Name                #TaxItemGroupId
-          HelpText            #@SYS25966
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #TaxItemGroup
-              #
-            ENDARRAY
+          Origin              #{10129556-A3E4-4CB9-8A6B-9B4DC55DBAE1}
+          LegacyId            #24
+          ExtendedDataType    #CostPrice
         ENDPROPERTIES
         
       FIELD #Cov
@@ -345,11 +104,9 @@ Formatversion: 1
           Name                #Cov
           HelpText            #@SYS7656
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #LedgerAppropriation
-              #
-            ENDARRAY
+          Origin              #{FB5F692D-D2BF-42D9-AD3C-69750B5E59B5}
+          LegacyId            #26
+          ExtendedDataType    #LedgerAppropriation
           EnumType            #NoYes
         ENDPROPERTIES
         
@@ -362,37 +119,106 @@ Formatversion: 1
           AllowEdit           #No
           Visible             #No
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #CovStatus
-              #
-            ENDARRAY
+          Origin              #{A19C0F12-9149-41DA-AC5B-75F351819192}
+          LegacyId            #27
+          ExtendedDataType    #CovStatus
         ENDPROPERTIES
         
-      FIELD #ItemAllocateId
+      FIELD #Currency
         STRING
         PROPERTIES
-          Name                #ItemAllocateId
-          HelpText            #@SYS25964
+          Name                #Currency
+          HelpText            #@SYS25969
+          Mandatory           #Yes
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ForecastItemAllocationId
-              #
-            ENDARRAY
+          IgnoreEDTRelation   #Yes
+          Origin              #{EE80FDFF-F045-4515-BDC3-9D83FAB88B14}
+          LegacyId            #16
+          ExtendedDataType    #CurrencyCode
+          StringSize          #3
         ENDPROPERTIES
         
-      FIELD #TaxGroupId
+      FIELD #CustAccountId
         STRING
         PROPERTIES
-          Name                #TaxGroupId
-          HelpText            #@SYS25963
+          Name                #CustAccountId
+          HelpText            #@SYS3649
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #TaxGroup
-              #
-            ENDARRAY
+          IgnoreEDTRelation   #Yes
+          Origin              #{7DD8704F-8DCB-4A1F-A84F-68DAACD9B462}
+          LegacyId            #14
+          ExtendedDataType    #CustAccount
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #CustGroupId
+        STRING
+        PROPERTIES
+          Name                #CustGroupId
+          HelpText            #@SYS16732
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{4E6CC0BF-5C9D-48F0-9E81-AFD12D222400}
+          LegacyId            #11
+          ExtendedDataType    #CustGroupId
+        ENDPROPERTIES
+        
+      FIELD #DefaultDimension
+        INT64
+        PROPERTIES
+          Name                #DefaultDimension
+          Table               #ForecastSales
+          Origin              #{4B96DD15-0E96-4E3E-B2E6-C80BFDC8C486}
+          LegacyId            #38
+          ExtendedDataType    #DimensionDefault
+        ENDPROPERTIES
+        
+      FIELD #DiscAmount
+        REAL
+        PROPERTIES
+          Name                #DiscAmount
+          HelpText            #@SYS9155
+          Table               #ForecastSales
+          Origin              #{9682422E-12CC-475A-87E2-3B63B903E175}
+          LegacyId            #22
+          ExtendedDataType    #DiscAmount
+        ENDPROPERTIES
+        
+      FIELD #DiscPercent
+        REAL
+        PROPERTIES
+          Name                #DiscPercent
+          Table               #ForecastSales
+          Origin              #{C0AC6381-EBFD-4A2A-887F-BC4855ECFD70}
+          LegacyId            #8
+          ExtendedDataType    #DiscPct
+        ENDPROPERTIES
+        
+      FIELD #EndDate
+        DATE
+        PROPERTIES
+          Name                #EndDate
+          Label               #@SYS101261
+          HelpText            #@SYS9830
+          Table               #ForecastSales
+          Origin              #{BA71C0AF-9BB0-4369-A646-7D72B32E040B}
+          LegacyId            #3
+          ExtendedDataType    #EndDate
+        ENDPROPERTIES
+        
+      FIELD #ExpandId
+        INT64
+        PROPERTIES
+          Name                #ExpandId
+          Label               #@Sys21776
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Visible             #No
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{EE49B804-093D-47D7-9824-C724AE6FD0DA}
+          LegacyId            #17
+          ExtendedDataType    #ForecastSalesRefRecId
         ENDPROPERTIES
         
       FIELD #Freq
@@ -401,25 +227,117 @@ Formatversion: 1
           Name                #Freq
           HelpText            #@SYS4591
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #Periods
-              #
-            ENDARRAY
+          Origin              #{9F8CEC46-217E-430E-816E-ED211D1C92C9}
+          LegacyId            #31
+          ExtendedDataType    #Periods
         ENDPROPERTIES
         
-      FIELD #Amount
+      FIELD #FreqCode
+        ENUM
+        PROPERTIES
+          Name                #FreqCode
+          HelpText            #@SYS25972
+          Table               #ForecastSales
+          Origin              #{934683B9-90D4-4C42-BE91-9FA5473251ED}
+          LegacyId            #4
+          EnumType            #PeriodUnit
+        ENDPROPERTIES
+        
+      FIELD #InventDimId
+        STRING
+        PROPERTIES
+          Name                #InventDimId
+          Visible             #No
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{D24432A6-A3E0-4D8D-A9CE-3DD262BCE4A6}
+          LegacyId            #42
+          ExtendedDataType    #InventDimId
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #InventQty
         REAL
         PROPERTIES
-          Name                #Amount
-          Label               #@SYS12227
-          HelpText            #@SYS25962
+          Name                #InventQty
+          Label               #@SYS21676
+          HelpText            #@SYS10309
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #AmountCur
-              #
-            ENDARRAY
+          Origin              #{2869A021-E0D8-4261-A8AC-32040FA54AF1}
+          LegacyId            #6
+          ExtendedDataType    #InventQty
+        ENDPROPERTIES
+        
+      FIELD #ItemAllocateId
+        STRING
+        PROPERTIES
+          Name                #ItemAllocateId
+          HelpText            #@SYS25964
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{FB48DBED-5B53-4D65-84AD-76725A665EF9}
+          LegacyId            #28
+          ExtendedDataType    #ForecastItemAllocationId
+        ENDPROPERTIES
+        
+      FIELD #ItemBOMId
+        STRING
+        PROPERTIES
+          Name                #ItemBOMId
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{C657AC82-6A2F-4767-BA65-6436D35B07CC}
+          LegacyId            #36
+          ExtendedDataType    #ItemBOMId
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ItemGroupId
+        STRING
+        PROPERTIES
+          Name                #ItemGroupId
+          HelpText            #@SYS20801
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{F3C8F81D-8834-46E6-9DB1-E83292A0E57A}
+          LegacyId            #13
+          ExtendedDataType    #ItemGroupId
+        ENDPROPERTIES
+        
+      FIELD #ItemId
+        STRING
+        PROPERTIES
+          Name                #ItemId
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{04C8F6D6-5A0A-485A-B371-0ED82F422397}
+          LegacyId            #1
+          ExtendedDataType    #ItemId
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ItemRouteId
+        STRING
+        PROPERTIES
+          Name                #ItemRouteId
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{0409EE37-4AAB-4BEE-9A69-4509C55A1004}
+          LegacyId            #37
+          ExtendedDataType    #ItemRouteId
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #KeyId
+        STRING
+        PROPERTIES
+          Name                #KeyId
+          HelpText            #@SYS16394
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{0CF5CD45-258E-486D-9BEC-E208E29ACE5A}
+          LegacyId            #15
+          ExtendedDataType    #LedgerAllocateKeyId
         ENDPROPERTIES
         
       FIELD #ModelId
@@ -429,57 +347,41 @@ Formatversion: 1
           HelpText            #@SYS25961
           Mandatory           #Yes
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ForecastModelHeadId
-              #
-            ENDARRAY
+          IgnoreEDTRelation   #Yes
+          Origin              #{36CE2944-F01D-4C34-8B24-8D371D2A978F}
+          LegacyId            #34
+          ExtendedDataType    #ForecastModelHeadId
         ENDPROPERTIES
         
-      FIELD #AllocateMethod
-        ENUM
+      FIELD #PdsCWQty
+        REAL
         PROPERTIES
-          Name                #AllocateMethod
+          Name                #PdsCWQty
           Table               #ForecastSales
-          EnumType            #BudgetAllocateMethod
+          Origin              #{F6997D95-261D-45DD-B484-A0466FA32466}
+          LegacyId            #16001
         ENDPROPERTIES
         
-      FIELD #ItemBOMId
+      FIELD #PdsCWUnitId
         STRING
         PROPERTIES
-          Name                #ItemBOMId
+          Name                #PdsCWUnitId
+          AllowEditOnCreate   #No
+          AllowEdit           #No
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ItemBOMId
-              #
-            ENDARRAY
-          StringSize          #20
+          Origin              #{F55BB0AE-B514-4CA9-9CF6-691F90B59781}
+          LegacyId            #16002
         ENDPROPERTIES
         
-      FIELD #ItemRouteId
-        STRING
+      FIELD #PriceUnit
+        REAL
         PROPERTIES
-          Name                #ItemRouteId
+          Name                #PriceUnit
+          HelpText            #@SYS12723
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ItemRouteId
-              #
-            ENDARRAY
-          StringSize          #20
-        ENDPROPERTIES
-        
-      FIELD #ProjId
-        STRING
-        PROPERTIES
-          Name                #ProjId
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ProjId
-              #
-            ENDARRAY
+          Origin              #{83FA3758-3BEB-4AB0-A066-C898B2AB524C}
+          LegacyId            #23
+          ExtendedDataType    #PriceUnit
         ENDPROPERTIES
         
       FIELD #ProjCategoryId
@@ -487,11 +389,86 @@ Formatversion: 1
         PROPERTIES
           Name                #ProjCategoryId
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ProjCategoryId
-              #
-            ENDARRAY
+          IgnoreEDTRelation   #Yes
+          Origin              #{75671363-D870-4CC1-903B-BC0606B1A137}
+          LegacyId            #40
+          ExtendedDataType    #ProjCategoryId
+          StringSize          #30
+        ENDPROPERTIES
+        
+      FIELD #ProjForecastBudgetType
+        ENUM
+        PROPERTIES
+          Name                #ProjForecastBudgetType
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ForecastSales
+          Origin              #{38AFAAAB-2A17-4681-90B8-D332499D3185}
+          LegacyId            #51
+          EnumType            #ProjForecastBudgetType
+        ENDPROPERTIES
+        
+      FIELD #ProjForecastCostPaymDate
+        DATE
+        PROPERTIES
+          Name                #ProjForecastCostPaymDate
+          Table               #ForecastSales
+          Origin              #{96829803-74ED-4199-9B70-085101E842E4}
+          LegacyId            #45
+          ExtendedDataType    #ProjForecastCostPaymDate
+        ENDPROPERTIES
+        
+      FIELD #ProjForecastEliminationDate
+        DATE
+        PROPERTIES
+          Name                #ProjForecastEliminationDate
+          Table               #ForecastSales
+          Origin              #{9A4CC196-3286-4090-83B3-820F9545AC40}
+          LegacyId            #47
+          ExtendedDataType    #ProjForecastEliminationDate
+        ENDPROPERTIES
+        
+      FIELD #ProjForecastInvoiceDate
+        DATE
+        PROPERTIES
+          Name                #ProjForecastInvoiceDate
+          Table               #ForecastSales
+          Origin              #{68F354DA-AE03-4E75-83CE-C5B0C5049788}
+          LegacyId            #46
+          ExtendedDataType    #ProjForecastInvoiceDate
+        ENDPROPERTIES
+        
+      FIELD #ProjForecastSalesPaymDate
+        DATE
+        PROPERTIES
+          Name                #ProjForecastSalesPaymDate
+          Table               #ForecastSales
+          Origin              #{983F1787-FF20-46D9-9BEF-16D692829A3B}
+          LegacyId            #44
+          ExtendedDataType    #ProjForecastSalesPaymDate
+        ENDPROPERTIES
+        
+      FIELD #ProjFundingSource
+        INT64
+        PROPERTIES
+          Name                #ProjFundingSource
+          HelpText            #@SYS330836
+          Table               #ForecastSales
+          Origin              #{284E1501-A9B8-4FA0-8A4A-02C7B3EA9D7B}
+          LegacyId            #53
+          ExtendedDataType    #ProjFundingSourceRefId
+        ENDPROPERTIES
+        
+      FIELD #ProjId
+        STRING
+        PROPERTIES
+          Name                #ProjId
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{F6BE816D-D6A2-45E4-AA40-1968FD29D3B0}
+          LegacyId            #39
+          ExtendedDataType    #ProjId
+          StringSize          #20
         ENDPROPERTIES
         
       FIELD #ProjLinePropertyId
@@ -499,25 +476,10 @@ Formatversion: 1
         PROPERTIES
           Name                #ProjLinePropertyId
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ProjLinePropertyId
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #InventDimId
-        STRING
-        PROPERTIES
-          Name                #InventDimId
-          Visible             #No
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #InventDimId
-              #
-            ENDARRAY
-          StringSize          #20
+          IgnoreEDTRelation   #Yes
+          Origin              #{5D25F70B-1D92-43CA-97C0-CDEC3D7B859D}
+          LegacyId            #41
+          ExtendedDataType    #ProjLinePropertyId
         ENDPROPERTIES
         
       FIELD #ProjTransId
@@ -527,72 +489,20 @@ Formatversion: 1
           AllowEditOnCreate   #No
           AllowEdit           #No
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ProjTransIdBase
-              #
-            ENDARRAY
+          Origin              #{AB203C29-9DF1-4EEF-87DA-ECE7C8B11508}
+          LegacyId            #43
+          ExtendedDataType    #ProjTransIdBase
           StringSize          #20
         ENDPROPERTIES
         
-      FIELD #ProjForecastSalesPaymDate
-        DATE
+      FIELD #PSARefPurchLine
+        INT64
         PROPERTIES
-          Name                #ProjForecastSalesPaymDate
+          Name                #PSARefPurchLine
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ProjForecastSalesPaymDate
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #ProjForecastCostPaymDate
-        DATE
-        PROPERTIES
-          Name                #ProjForecastCostPaymDate
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ProjForecastCostPaymDate
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #ProjForecastInvoiceDate
-        DATE
-        PROPERTIES
-          Name                #ProjForecastInvoiceDate
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ProjForecastInvoiceDate
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #ProjForecastEliminationDate
-        DATE
-        PROPERTIES
-          Name                #ProjForecastEliminationDate
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ProjForecastEliminationDate
-              #
-            ENDARRAY
-        ENDPROPERTIES
-        
-      FIELD #ActivityNumber
-        STRING
-        PROPERTIES
-          Name                #ActivityNumber
-          Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #ProjActivityNumber
-              #
-            ENDARRAY
+          Origin              #{28311391-6F63-43E2-A9E6-8F6EE8CF2541}
+          LegacyId            #16000
+          ExtendedDataType    #PSAPurchRefRecId
         ENDPROPERTIES
         
       FIELD #RefRecId
@@ -600,11 +510,104 @@ Formatversion: 1
         PROPERTIES
           Name                #RefRecId
           Table               #ForecastSales
-          ExtendedDataType    
-            ARRAY 
-              #RefRecId
-              #
-            ENDARRAY
+          Origin              #{BE2437BE-32C9-4996-9C0B-12D51E2A8684}
+          ExtendedDataType    #RefRecId
+        ENDPROPERTIES
+        
+      FIELD #Report
+        ENUM
+        PROPERTIES
+          Name                #Report
+          Label               #@Sys16399
+          HelpText            #@SYS10846
+          AllowEditOnCreate   #No
+          AllowEdit           #No
+          Table               #ForecastSales
+          Origin              #{4D346DC8-2B86-4896-B073-E9416CBDC4B8}
+          LegacyId            #18
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #SalesMarkup
+        REAL
+        PROPERTIES
+          Name                #SalesMarkup
+          HelpText            #@SYS16916
+          Table               #ForecastSales
+          Origin              #{463199F8-F093-4519-B4DF-B695F1CA4564}
+          LegacyId            #21
+          ExtendedDataType    #SalesMarkup
+        ENDPROPERTIES
+        
+      FIELD #SalesPrice
+        REAL
+        PROPERTIES
+          Name                #SalesPrice
+          Label               #@SYS3987
+          HelpText            #@SYS340356
+          Table               #ForecastSales
+          Origin              #{66E2D130-5EE6-4B20-8B6E-06DDBDB569D7}
+          LegacyId            #7
+          ExtendedDataType    #SalesPrice
+        ENDPROPERTIES
+        
+      FIELD #SalesQty
+        REAL
+        PROPERTIES
+          Name                #SalesQty
+          HelpText            #@SYS8586
+          Table               #ForecastSales
+          Origin              #{4BC16D59-E395-4E8A-A9B3-EE489F0C828B}
+          LegacyId            #19
+          ExtendedDataType    #SalesQty
+        ENDPROPERTIES
+        
+      FIELD #SalesUnitId
+        STRING
+        PROPERTIES
+          Name                #SalesUnitId
+          HelpText            #@SYS6379
+          Table               #ForecastSales
+          Origin              #{0F81CDF8-804E-429E-8ECA-ED0BD2F7C43E}
+          LegacyId            #20
+          ExtendedDataType    #UnitOfMeasureSymbol
+        ENDPROPERTIES
+        
+      FIELD #StartDate
+        DATE
+        PROPERTIES
+          Name                #StartDate
+          Label               #@SYS7402
+          HelpText            #@SYS13097
+          Mandatory           #Yes
+          Table               #ForecastSales
+          Origin              #{343FB8F1-7363-4F27-96C5-9EEE87DC8132}
+          LegacyId            #2
+          ExtendedDataType    #StartDate
+        ENDPROPERTIES
+        
+      FIELD #TaxGroupId
+        STRING
+        PROPERTIES
+          Name                #TaxGroupId
+          HelpText            #@SYS25963
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{50C7680C-6F19-48FA-B6C1-582B62FB3380}
+          LegacyId            #30
+          ExtendedDataType    #TaxGroup
+        ENDPROPERTIES
+        
+      FIELD #TaxItemGroupId
+        STRING
+        PROPERTIES
+          Name                #TaxItemGroupId
+          HelpText            #@SYS25966
+          Table               #ForecastSales
+          IgnoreEDTRelation   #Yes
+          Origin              #{CE27A940-7C89-4962-9BBE-AB06A7070B5C}
+          LegacyId            #25
+          ExtendedDataType    #TaxItemGroup
         ENDPROPERTIES
         
     ENDFIELDS
@@ -671,6 +674,25 @@ Formatversion: 1
           #ItemRouteId
         ENDGROUPFIELDS
       ENDGROUP
+      GROUP #BudgetRevision
+        PROPERTIES
+          Name                #BudgetRevision
+          Label               #@PSA2281
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #BudgetType
+        PROPERTIES
+          Name                #BudgetType
+          Label               #@SYS153332
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ProjForecastBudgetType
+        ENDGROUPFIELDS
+      ENDGROUP
       GROUP #Dates
         PROPERTIES
           Name                #Dates
@@ -692,7 +714,7 @@ Formatversion: 1
         ENDPROPERTIES
         
         GROUPFIELDS
-          #Dimension
+          #DefaultDimension
         ENDGROUPFIELDS
       ENDGROUP
       GROUP #Discount
@@ -731,6 +753,34 @@ Formatversion: 1
           #InventQty
         ENDGROUPFIELDS
       ENDGROUP
+      GROUP #Overview
+        PROPERTIES
+          Name                #Overview
+          Label               #@SYS50012
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ProjId
+          #ItemId
+          #SalesQty
+          #CostPrice
+          #SalesUnitId
+          #SalesPrice
+          #Amount
+          #Comment
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #PdsCatchWeight
+        PROPERTIES
+          Name                #PdsCatchWeight
+          Label               #@PDS72
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #PdsCWQty
+          #PdsCWUnitId
+        ENDGROUPFIELDS
+      ENDGROUP
       GROUP #Price
         PROPERTIES
           Name                #Price
@@ -742,6 +792,19 @@ Formatversion: 1
           #CostPrice
           #PriceUnit
           #SalesMarkup
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #Project
+        PROPERTIES
+          Name                #Project
+          Label               #@SYS4534
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ProjId
+          #ProjCategoryId
+          #ProjLinePropertyId
+          #PSARefPurchLine
         ENDGROUPFIELDS
       ENDGROUP
       GROUP #ProjectAdministration
@@ -776,6 +839,7 @@ Formatversion: 1
         GROUPFIELDS
           #StartDate
           #ProjId
+          #ProjFundingSource
           #ActivityNumber
           #ProjCategoryId
           #ItemId
@@ -802,6 +866,50 @@ Formatversion: 1
         
         GROUPFIELDS
           #ProjTransId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #PSA
+        PROPERTIES
+          Name                #PSA
+          Label               #@PSA43
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #ItemId
+          #itemName
+          #SalesQty
+          #SalesUnitId
+          #CostPrice
+          #SalesPrice
+          #PSAdispcostValue
+          #Amount
+          #PSAcontribution
+          #ProjCategoryId
+          #ModelId
+          #ProjId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #PSAOriginalBudgetInventory
+        PROPERTIES
+          Name                #PSAOriginalBudgetInventory
+          Label               #@PSA2522
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #InventQty
+          #ItemBOMId
+          #ItemRouteId
+        ENDGROUPFIELDS
+      ENDGROUP
+      GROUP #PSAOriginalBudgetPrice
+        PROPERTIES
+          Name                #PSAOriginalBudgetPrice
+          Label               #@PSA2570
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #CostPrice
+          #SalesPrice
         ENDGROUPFIELDS
       ENDGROUP
       GROUP #SalesForecast
@@ -838,12 +946,26 @@ Formatversion: 1
           #TaxItemGroupId
         ENDGROUPFIELDS
       ENDGROUP
+      GROUP #Service
+        PROPERTIES
+          Name                #Service
+          Label               #@SYS25500
+        ENDPROPERTIES
+        
+        GROUPFIELDS
+          #SalesUnitId
+          #SalesQty
+          #InventQty
+        ENDGROUPFIELDS
+      ENDGROUP
     ENDGROUPS
     
     INDICES
       #ItemIdx
       PROPERTIES
         Name                #ItemIdx
+        Origin              #{2B070001-0090-1000-4974-656D49647800}
+        LegacyId            #1
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -855,6 +977,8 @@ Formatversion: 1
       #ModelIdx
       PROPERTIES
         Name                #ModelIdx
+        Origin              #{2B080002-0090-1000-4D6F-64656C496478}
+        LegacyId            #2
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -864,6 +988,8 @@ Formatversion: 1
       #AccountIdx
       PROPERTIES
         Name                #AccountIdx
+        Origin              #{2B0A0003-0090-1000-CD51-C781756E7449}
+        LegacyId            #3
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -875,6 +1001,8 @@ Formatversion: 1
       #ItemGroupIdx
       PROPERTIES
         Name                #ItemGroupIdx
+        Origin              #{2B0C0004-0090-1000-1943-2967AB846F75}
+        LegacyId            #4
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -887,6 +1015,8 @@ Formatversion: 1
       #AccounGrouptIdx
       PROPERTIES
         Name                #AccounGrouptIdx
+        Origin              #{2B0F0005-0090-1000-F6AE-23D9F13241D6}
+        LegacyId            #5
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -900,6 +1030,8 @@ Formatversion: 1
       PROPERTIES
         Name                #ExpandIdx
         AllowDuplicates     #No
+        Origin              #{2B090006-0090-1000-EDCC-82616E644964}
+        LegacyId            #6
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -910,6 +1042,8 @@ Formatversion: 1
       #CovIdx
       PROPERTIES
         Name                #CovIdx
+        Origin              #{2B060007-0090-1000-436F-764964780000}
+        LegacyId            #7
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -919,6 +1053,8 @@ Formatversion: 1
       #ProjIdx
       PROPERTIES
         Name                #ProjIdx
+        Origin              #{2B070008-0090-1000-5072-6F6A49647800}
+        LegacyId            #8
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -930,18 +1066,280 @@ Formatversion: 1
       #ProjTransIdx
       PROPERTIES
         Name                #ProjTransIdx
+        Origin              #{2B0C0009-0090-1000-71B6-3364B884616E}
+        LegacyId            #9
       ENDPROPERTIES
       
       INDEXFIELDS
         #ProjTransId
       ENDINDEXFIELDS
       
+      #ProjFundingSourceIdx
+      PROPERTIES
+        Name                #ProjFundingSourceIdx
+        Origin              #{0F1066F9-3AFF-4BBF-9FD7-05AAEB1F8E6D}
+        LegacyId            #12
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #ProjFundingSource
+      ENDINDEXFIELDS
+      
+      #PSARefPurchRecIdIdx
+      PROPERTIES
+        Name                #PSARefPurchRecIdIdx
+        Origin              #{DF94541B-7C80-4013-84EC-FF24D4C1512F}
+        LegacyId            #16003
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #PSARefPurchLine
+      ENDINDEXFIELDS
+      
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
+      REFERENCE #Currency
+        PROPERTIES
+          Name                #Currency
+          Table               #Currency
+          RelatedTableCardinality   #ExactlyOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #Currency
+            RelatedField        #CurrencyCode
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #CustGroup
+        PROPERTIES
+          Name                #CustGroup
+          Table               #CustGroup
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #CustGroupId
+            RelatedField        #CustGroup
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #CustTable
+        PROPERTIES
+          Name                #CustTable
+          Table               #CustTable
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #CustAccountId
+            RelatedField        #AccountNum
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #DefaultDimension
+        PROPERTIES
+          Name                #DefaultDimension
+          Table               #DimensionAttributeValueSet
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          RelatedTableRole    #DefaultDimension
+          Role                #SalesForecast
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #DefaultDimension
+            RelatedField        #RecId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ExpandForecastSales
+        PROPERTIES
+          Name                #ExpandForecastSales
+          Table               #ForecastSales
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ExpandId
+            RelatedField        #RecId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ForecastItemAllocation
+        PROPERTIES
+          Name                #ForecastItemAllocation
+          Table               #ForecastItemAllocation
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ItemAllocateId
+            RelatedField        #AllocateId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ForecastModel
+        PROPERTIES
+          Name                #ForecastModel
+          Table               #ForecastModel
+          RelatedTableCardinality   #ExactlyOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #ModelId
+            RelatedField        #ModelId
+          ENDPROPERTIES
+          
+          REFERENCETYPE EXTERNFIXED
+          PROPERTIES
+            Table               #ForecastModel
+            RelatedField        #Type
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #InventDim
+        PROPERTIES
+          Name                #InventDim
+          Table               #InventDim
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #InventDimId
+            RelatedField        #inventDimId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #InventItemGroup
+        PROPERTIES
+          Name                #InventItemGroup
+          Table               #InventItemGroup
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ItemGroupId
+            RelatedField        #ItemGroupId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #InventTable
+        PROPERTIES
+          Name                #InventTable
+          Table               #InventTable
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Aggregation
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ItemId
+            RelatedField        #ItemId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #LedgerAllocateKey
+        PROPERTIES
+          Name                #LedgerAllocateKey
+          Table               #LedgerAllocateKey
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #KeyId
+            RelatedField        #Key
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjCategory
+        PROPERTIES
+          Name                #ProjCategory
+          Table               #ProjCategory
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ProjCategoryId
+            RelatedField        #CategoryId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
       REFERENCE #ProjForecastEmpl
         PROPERTIES
           Name                #ProjForecastEmpl
           Table               #ProjForecastEmpl
+          UseDefaultRoleNames #Yes
         ENDPROPERTIES
         
         FIELDREFERENCES
@@ -949,6 +1347,200 @@ Formatversion: 1
           PROPERTIES
             Field               #RefRecId
             RelatedField        #RecId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjFundingSource
+        PROPERTIES
+          Name                #ProjFundingSource
+          Table               #ProjFundingSource
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          RelatedTableRole    #ProjFundingSource
+          Role                #ProjFundingSource_ForecastSales
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ProjFundingSource
+            RelatedField        #RecId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjLineProperty
+        PROPERTIES
+          Name                #ProjLineProperty
+          Table               #ProjLineProperty
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ProjLinePropertyId
+            RelatedField        #LinePropertyId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #ProjTable
+        PROPERTIES
+          Name                #ProjTable
+          Table               #ProjTable
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Aggregation
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ProjId
+            RelatedField        #ProjId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #PurchLine
+        PROPERTIES
+          Name                #PurchLine
+          Table               #PurchLine
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+          EDTRelation         #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #PSARefPurchLine
+            RelatedField        #RecId
+            SourceEDT           #PSAPurchRefRecId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #RouteTable
+        PROPERTIES
+          Name                #RouteTable
+          Table               #RouteTable
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ItemRouteId
+            RelatedField        #RouteId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #SalesUnitId
+        PROPERTIES
+          Name                #SalesUnitId
+          Table               #UnitOfMeasure
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          RelatedTableRole    #Unit
+          Role                #DemandForecast
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE NORMAL
+          PROPERTIES
+            Field               #SalesUnitId
+            RelatedField        #Symbol
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #smmActivities
+        PROPERTIES
+          Name                #smmActivities
+          Table               #smmActivities
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ActivityNumber
+            RelatedField        #ActivityNumber
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #SubBOMTable
+        PROPERTIES
+          Name                #SubBOMTable
+          Table               #BOMTable
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #ItemBOMId
+            RelatedField        #BOMId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #TaxGroupHeading
+        PROPERTIES
+          Name                #TaxGroupHeading
+          Table               #TaxGroupHeading
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #TaxGroupId
+            RelatedField        #TaxGroup
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
+      REFERENCE #TaxItemGroupHeading
+        PROPERTIES
+          Name                #TaxItemGroupHeading
+          Table               #TaxItemGroupHeading
+          RelatedTableCardinality   #ZeroOne
+          Cardinality         #ZeroMore
+          RelationshipType    #Association
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #TaxItemGroupId
+            RelatedField        #TaxItemGroup
           ENDPROPERTIES
           
         ENDFIELDREFERENCES
@@ -965,64 +1557,254 @@ Formatversion: 1
     ENDDELETEACTIONS
     
     METHODS
-      Version: 3
-      SOURCE #AccountClearing
-        #LedgerAccount accountClearing()
+      SOURCE #accountClearingLedgerDimension
+        #LedgerDimensionDefaultAccount accountClearingLedgerDimension()
         #{
-        #    return CustLedgerAccounts::clearingAccount(this.invoiceAccount(),
-        #        CustParameters::find().PostingProfile);
+        #    // <GEERU>
+        #    #isoCountryRegionCodes
+        #    // </GEERU>
+        #    // <GEERU>
+        #    if (SysCountryRegionCode::isLegalEntityInCountryRegion([#isoRU])
+        #        && this.postingProfile_RU())
+        #    {
+        #        return CustLedgerAccounts::clearingLedgerDimension(this.invoiceAccount(), this.postingProfile_RU());
+        #    }
+        #    // </GEERU>
+        #    return CustLedgerAccounts::clearingLedgerDimension(this.invoiceAccount(),
+        #                                                       CustParameters::find().PostingProfile);
         #}
       ENDSOURCE
-      SOURCE #AccountConsumption
-        #LedgerAccount accountConsumption()
+      SOURCE #accountConsumption
+        #LedgerDimensionDefaultAccount accountConsumption()
         #{
-        #    return InventPosting::accountItem(
+        #    // <GEERU>
+        #    #isoCountryRegionCodes
+        #
+        #    if (SysCountryRegionCode::isLegalEntityInCountryRegion([#isoRU]))
+        #    {
+        #        return InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesConsump,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId,
+        #            this.inventDim());
+        #    }
+        #    // </GEERU>
+        #    return  InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesConsump,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #accountConsumptionLedgerDimension
+        #/// <summary>
+        #/// Gets the default account for the sales order consumption from the inventory posting profile.
+        #/// </summary>
+        #/// <returns>
+        #/// The default account.
+        #/// </returns>
+        #public LedgerDimensionDefaultAccount accountConsumptionLedgerDimension()
+        #{
+        #    // <GEERU>
+        #    #isoCountryRegionCodes
+        #
+        #    if (SysCountryRegionCode::isLegalEntityInCountryRegion([#isoRU]))
+        #    {
+        #        return InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesConsump,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId,
+        #            this.inventDim());
+        #    }
+        #    // </GEERU>
+        #    return InventPosting::accountItemLedgerDimension(
         #        InventAccountType::SalesConsump,
         #        this.ItemId,
         #        this.ItemGroupId,
+        #        0, // If a category relation is added to the table it can be supplied here
         #        this.CustAccountId,
         #        this.CustGroupId,
         #        this.TaxGroupId);
         #}
       ENDSOURCE
-      SOURCE #AccountCust
-        #LedgerAccount accountCust(TransStatusCode postingProfile  ='')
+      SOURCE #accountCustLedgerDimension
+        #LedgerDimensionDefaultAccount accountCustLedgerDimension(TransStatusCode postingProfile  ='')
         #{
-        #    return CustLedgerAccounts::sumAccount(this.invoiceAccount(),postingProfile);
+        #    // <GEERU>
+        #    #isoCountryRegionCodes
+        #
+        #    if (SysCountryRegionCode::isLegalEntityInCountryRegion([#isoRU])
+        #        && this.postingProfile_RU())
+        #    {
+        #        return CustLedgerAccounts::summaryLedgerDimension(this.invoiceAccount(), this.postingProfile_RU());
+        #    }
+        #    // </GEERU>
+        #    return CustLedgerAccounts::summaryLedgerDimension(this.invoiceAccount(),postingProfile);
         #}
       ENDSOURCE
-      SOURCE #AccountDisc
-        #LedgerAccount accountDisc()
+      SOURCE #accountDisc
+        #LedgerDimensionDefaultAccount accountDisc()
         #{
-        #    return InventPosting::accountItem(
+        #    // <GEERU>
+        #    #isoCountryRegionCodes
+        #
+        #    if (SysCountryRegionCode::isLegalEntityInCountryRegion([#isoRU]))
+        #    {
+        #        return InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesDisc,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId,
+        #            this.inventDim());
+        #    }
+        #    // </GEERU>
+        #    return  InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesDisc,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #accountDiscLedgerDimension
+        #/// <summary>
+        #/// Gets the default account for the sales order discount from the inventory posting profile.
+        #/// </summary>
+        #/// <returns>
+        #/// The default account.
+        #/// </returns>
+        #public LedgerDimensionDefaultAccount accountDiscLedgerDimension()
+        #{
+        #    // <GEERU>
+        #    #isoCountryRegionCodes
+        #
+        #    if (SysCountryRegionCode::isLegalEntityInCountryRegion([#isoRU]))
+        #    {
+        #        return InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesDisc,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId,
+        #            this.inventDim());
+        #    }
+        #    // </GEERU>
+        #    return InventPosting::accountItemLedgerDimension(
         #        InventAccountType::SalesDisc,
         #        this.ItemId,
         #        this.ItemGroupId,
+        #        0, // If a category relation is added to the table it can be supplied here
         #        this.CustAccountId,
         #        this.CustGroupId,
         #        this.TaxGroupId);
         #
         #}
       ENDSOURCE
-      SOURCE #AccountIssue
-        #LedgerAccount accountIssue()
+      SOURCE #accountIssue
+        #LedgerDimensionDefaultAccount accountIssue()
         #{
-        #    return InventPosting::accountItem(
-        #        InventAccountType::SalesIssue,
-        #        this.ItemId,
-        #        this.ItemGroupId,
-        #        this.CustAccountId,
-        #        this.CustGroupId,
-        #        this.TaxGroupId);
+        #    // <GEERU>
+        #    #isoCountryRegionCodes
+        #
+        #    if (SysCountryRegionCode::isLegalEntityInCountryRegion([#isoRU]))
+        #    {
+        #        return InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesIssue,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId,
+        #            this.inventDim());
+        #    }
+        #    // </GEERU>
+        #    // <GCN>
+        #    if (InventPostingExtendParm_CN::checkExtendParmEnabled())
+        #    {
+        #        return InventPosting::accountItemExtendParm_CN(
+        #            InventAccountType::SalesIssue,
+        #            InventPostingExtendParm_CN::constructInventDim(this.inventDim()),
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId);
+        #    }
+        #    // </GCN>
+        #    return  InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesIssue,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId);
         #}
       ENDSOURCE
-      SOURCE #AccountSales
-        #LedgerAccount accountSales()
+      SOURCE #accountSales
+        #LedgerDimensionDefaultAccount accountSales()
         #{
-        #    return InventPosting::accountItem(
+        #    // <GEERU>
+        #    #isoCountryRegionCodes
+        #    // </GEERU>
+        #    // <GEERU>
+        #    if (SysCountryRegionCode::isLegalEntityInCountryRegion([#isoRU]))
+        #    {
+        #        return InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesRevenue,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId,
+        #            this.inventDim());
+        #    }
+        #    // </GEERU>
+        #    return  InventPosting::accountItemLedgerDimension(
+        #            InventAccountType::SalesRevenue,
+        #            this.ItemId,
+        #            this.ItemGroupId,
+        #            0, // If a category relation is added to the table it can be supplied here
+        #            this.CustAccountId,
+        #            this.CustGroupId,
+        #            this.TaxGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #accountSalesLedgerDimension
+        #/// <summary>
+        #/// Gets the default account for the sales order revenue from the inventory posting profile.
+        #/// </summary>
+        #/// <returns>
+        #/// The default account.
+        #/// </returns>
+        #public LedgerDimensionDefaultAccount accountSalesLedgerDimension()
+        #{
+        #    return InventPosting::accountItemLedgerDimension(
         #        InventAccountType::SalesRevenue,
         #        this.ItemId,
         #        this.ItemGroupId,
+        #        0, // If a category relation is added to the table it can be supplied here
         #        this.CustAccountId,
         #        this.CustGroupId,
         #        this.TaxGroupId);
@@ -1044,13 +1826,13 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #CalcLineAmount
+      SOURCE #calcLineAmount
         #Amount calcLineAmount(Qty    qty   = this.SalesQty)
         #{
         #    return this.SalesPurchLine::calcLineAmount(qty);
         #}
       ENDSOURCE
-      SOURCE #CalcLineDisc
+      SOURCE #calcLineDisc
         #DiscAmount calcLineDisc(Qty    qty   = realMin())
         #{
         #    return this.SalesPurchLine::calcLineDisc(qty);
@@ -1062,7 +1844,7 @@ Formatversion: 1
         #    return this.SalesPurchLine::calcPrice2LineAmount(_qty, _forceLineAmountCalculation);
         #}
       ENDSOURCE
-      SOURCE #CalcQtyOrdered
+      SOURCE #calcQtyOrdered
         #InventQty   calcQtyOrdered(Qty    salesQty  = this.SalesQty)
         #{
         #    return this.SalesPurchLine::calcQtyOrdered(salesQty);
@@ -1079,7 +1861,7 @@ Formatversion: 1
         #private boolean checkActivity()
         #{
         #    if (this.ActivityNumber && ! ProjActivity::find(this.ActivityNumber))
-        #        return checkFailed(strfmt("@SYS50966",this.ActivityNumber));
+        #        return checkFailed(strFmt("@SYS50966",this.ActivityNumber));
         #
         #    return true;
         #}
@@ -1099,7 +1881,7 @@ Formatversion: 1
         #            {
         #                if (! this.ItemAllocateId)
         #                {
-        #                    return checkFailed(strfmt("@SYS73929",InventColor::label()));
+        #                    return checkFailed(strFmt("@SYS73929", EcoResColor::label()));
         #                }
         #            }
         #        }
@@ -1107,7 +1889,7 @@ Formatversion: 1
         #    return true;
         #}
       ENDSOURCE
-      SOURCE #CheckConfig
+      SOURCE #checkConfig
         #server boolean checkConfig()
         #{
         #    if (this.ItemId)
@@ -1130,35 +1912,59 @@ Formatversion: 1
         #    return true;
         #}
       ENDSOURCE
-      SOURCE #checkItemDim
-        #server boolean checkItemDim()
+      SOURCE #checkInventDimCombination
+        #/// <summary>
+        #/// Validates that the inventory dimension combination is correct.
+        #/// </summary>
+        #/// <returns>
+        #/// true if the combination is correct; otherwise, false.
+        #/// </returns>
+        #public boolean checkInventDimCombination()
         #{
+        #    if (this.ItemId)
+        #    {
+        #        return this.inventDim().validateWriteInventDimCombination(this.ItemId);
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #checkInventStatus
+        #/// <summary>
+        #///    Determines if the specified inventory status dimension value is valid.
+        #/// </summary>
+        #/// <returns>
+        #///    true if the specified inventory status dimension value is valid; otherwise, false.
+        #/// </returns>
+        #public server boolean checkInventStatus()
+        #{
+        #    return WHSInventStatus::allowCreateForecast(this.inventDim().InventStatusId);
+        #}
+      ENDSOURCE
+      SOURCE #checkModel
+        #boolean checkModel()
+        #{
+        #    return ForecastModel::checkModel(this.ModelId);
+        #}
+      ENDSOURCE
+      SOURCE #checkProductDim
+        #/// <summary>
+        #/// Checks all the product dimensions.
+        #/// </summary>
+        #/// <returns>
+        #/// true if the product dimensions are correct; otherwise, false.
+        #/// </returns>
+        #server boolean checkProductDim()
+        #{
+        #    #InventDimDevelop
         #    boolean ok;
-        #    ;
         #
         #    ok =       this.checkConfig();
         #    ok = ok && this.checkSize();
         #    ok = ok && this.checkColor();
-        #    ok = ok && this.checkItemDimCombination();
+        #    ok = ok && this.checkStyle();
+        #    ok = ok && this.checkInventDimCombination();
         #
         #    return ok;
-        #}
-      ENDSOURCE
-      SOURCE #checkItemDimCombination
-        #boolean checkItemDimCombination()
-        #{
-        #    ;
-        #
-        #    if (this.ItemId)
-        #        return this.inventDim().validateWriteItemDimCombination(this.ItemId);
-        #
-        #    return true;
-        #}
-      ENDSOURCE
-      SOURCE #CheckModel
-        #boolean checkModel()
-        #{
-        #    return ForecastModel::checkModel(this.ModelId);
         #}
       ENDSOURCE
       SOURCE #checkProject
@@ -1240,7 +2046,7 @@ Formatversion: 1
         #    boolean                     ret = true;
         #    ;
         #
-        #    requireActivity = ProjTable::checkRequireActivity(forecastSales.ProjId,tablenum(ForecastSales));
+        #    requireActivity = ProjTable::checkRequireActivity(forecastSales.ProjId,tableNum(ForecastSales));
         #    if (requireActivity && (!forecastSales.ActivityNumber))
         #    {
         #        ret = false;
@@ -1264,7 +2070,7 @@ Formatversion: 1
         #            {
         #                if (! this.ItemAllocateId)
         #                {
-        #                    return checkFailed(strfmt("@SYS73929",InventSize::label()));
+        #                    return checkFailed(strFmt("@SYS73929", EcoResSize::label()));
         #                }
         #            }
         #        }
@@ -1272,7 +2078,36 @@ Formatversion: 1
         #    return true;
         #}
       ENDSOURCE
-      SOURCE #ClearingPeriod
+      SOURCE #checkStyle
+        #/// <summary>
+        #/// Indicates whether the style dimension value is specified.
+        #/// </summary>
+        #/// <returns>
+        #/// true if the style dimension value is specified; otherwise, false.
+        #/// </returns>
+        #public server boolean checkStyle()
+        #{
+        #    if (this.ItemId)
+        #    {
+        #        if (this.inventTable().styleActive())
+        #        {
+        #            if (InventDim::find(this.InventDimId).InventStyleId)
+        #            {
+        #                return InventTable::checkStyle(this.ItemId,InventDim::find(this.InventDimId).InventStyleId);
+        #            }
+        #            else
+        #            {
+        #                if (! this.ItemAllocateId)
+        #                {
+        #                    return checkFailed(strFmt("@SYS73929", EcoResStyle::label()));
+        #                }
+        #            }
+        #        }
+        #    }
+        #    return true;
+        #}
+      ENDSOURCE
+      SOURCE #clearingPeriod
         #ClearingPeriod clearingPeriod()
         #{
         #    CustTable       custTable;
@@ -1295,7 +2130,19 @@ Formatversion: 1
         #    return CustParameters::find().Due2Payment;
         #}
       ENDSOURCE
-      SOURCE #ContributionMarginMST
+      SOURCE #companyInfo
+        #/// <summary>
+        #/// Retrieves the <c>CompanyInfo</c> record associated with the current record.
+        #/// </summary>
+        #/// <returns>
+        #/// The <c>CompanyInfo</c> record.
+        #/// </returns>
+        #public CompanyInfo companyInfo()
+        #{
+        #    return CompanyInfo::findDataArea(this.company());
+        #}
+      ENDSOURCE
+      SOURCE #contributionMarginMST
         #ContributionMargin contributionMarginMST()
         #{
         #    return this.BudgetMap::amountMST() - this.costValue();
@@ -1303,60 +2150,66 @@ Formatversion: 1
       ENDSOURCE
       SOURCE #copyDimension
         #/// <summary>
-        #/// Returns a dimension set that can be applied to the ForecastSales.dimension field.
-        #/// The method ensures that potential linked dimensions are not overwritten.
+        #/// Retrieves a dimension set that can be applied to the <c>defaultDimension</c> field on this table.
         #/// </summary>
-        #/// <param name="_dimension">
-        #/// A dimension set that should be applied to the ForecastSales.dimension field.
+        #/// <param name="_defaultDimension">
+        #/// A dimension set to apply to the <c>defaultDimension</c> field on this table.
         #/// </param>
         #/// <param name="_dimensionCopy">
-        #/// A dimensionCopy object previously instantiated using the current ForecastSales buffer; optional.
+        #/// A <c>dimensionCopy</c> object that was previously instantiated by using the current buffer;
+        #/// optional.
         #/// </param>
         #/// <returns>
-        #/// Dimension set that can be applied to the ForecastSales.dimension field.
+        #/// A dimension set that can be applied to the <c>defaultDimension</c> field on this table.
         #/// </returns>
-        #public Dimension copyDimension(Dimension _dimension, DimensionCopy _dimensionCopy = DimensionCopy::newFromTable(this))
+        #/// <remarks>
+        #/// This method makes sure that potential linked dimensions are not overwritten.
+        #/// </remarks>
+        #
+        #public DimensionDefault copyDimension(
+        #    DimensionDefault _defaultDimension,
+        #    DimensionCopy    _dimensionCopy = DimensionCopy::newFromTable(this, CompanyInfo::findDataArea(curext()).RecId)
+        #    )
         #{
-        #    return _dimensionCopy.copy(_dimension);
+        #    return _dimensionCopy.copy(_defaultDimension);
         #}
       ENDSOURCE
       SOURCE #costAmount
-        #//BP Deviation documented
+        #/// <summary>
+        #/// It does the unit conversion from SalesQty unit to InventQty unit. Then calculate final cost amount by multiplying the InventQty unit with cost price.
+        #/// </summary>
+        #/// <returns>
+        #/// Returns the final cost amount.
+        #/// </returns>
         #display ProjCostAmount costAmount()
         #{
-        #    return this.SalesQty * this.CostPrice;
+        #    return UnitOfMeasureConverter::convert(
+        #           this.SalesQty,
+        #           UnitOfMeasure::unitOfMeasureIdBySymbol(this.SalesUnitId),
+        #           UnitOfMeasure::unitOfMeasureIdBySymbol(this.inventTable().inventUnitId()),
+        #           NoYes::Yes,
+        #           InventTable::itemProduct(this.ItemId)) * this.CostPrice;
         #}
       ENDSOURCE
-      SOURCE #CostValue
+      SOURCE #costValue
         #public CostAmount costValue()
         #{
         #    return this.CostPrice * this.InventQty;
         #}
       ENDSOURCE
-      SOURCE #createPaymentSched
-        #server void createPaymentSched(ForecastSalesCalcTotals _forecastSalesCalcTotals)
-        #{
-        #    CustVendPaymSched   custVendPaymSched;
-        #    ;
-        #
-        #    custVendPaymSched = CustVendPaymSched::construct(SysModule::Cust, this);
-        #    custVendPaymSched.setForecastSalesTotals(_forecastSalesCalcTotals);
-        #    custVendPaymSched.createPaymSched(PaymSched::find(this.custTable().PaymSched));
-        #}
-      ENDSOURCE
-      SOURCE #CustGroup
+      SOURCE #custGroup
         #CustGroup custGroup()
         #{
         #    return CustGroup::find(this.CustGroupId);
         #}
       ENDSOURCE
-      SOURCE #CustTable
+      SOURCE #custTable
         #CustTable custTable()
         #{
         #    return CustTable::find(this.CustAccountId);
         #}
       ENDSOURCE
-      SOURCE #DefBudget
+      SOURCE #defBudget
         #ForecastSales defBudget()
         #{
         #    ForecastSales forecastSales;
@@ -1374,26 +2227,32 @@ Formatversion: 1
         #    ttscommit;
         #}
       ENDSOURCE
-      SOURCE #Derived
+      SOURCE #derived
         #//BP Deviation documented
         #display ForecastDerived derived()
         #{
         #    return (this.ExpandId ? true : false);
         #}
       ENDSOURCE
-      SOURCE #DiscAmount
+      SOURCE #discAmount
         #DiscAmount discAmount()
         #{
         #    return this.DiscAmount;
         #}
       ENDSOURCE
-      SOURCE #DiscPercent
+      SOURCE #discPercent
         #DiscPct  discPercent()
         #{
         #    return this.DiscPercent;
         #}
       ENDSOURCE
-      SOURCE #GrossAmount
+      SOURCE #forecastModel
+        #ForecastModel forecastModel()
+        #{
+        #    return ForecastModel::find(HeadingSub::Heading,this.ModelId);
+        #}
+      ENDSOURCE
+      SOURCE #grossAmount
         #//BP Deviation documented
         #edit ForecastGrossAmount grossAmount(
         #    boolean     set         = false,
@@ -1408,7 +2267,7 @@ Formatversion: 1
         #    return this.SalesPurchLine::inclTax();
         #}
       ENDSOURCE
-      SOURCE #InitFromCustGroup
+      SOURCE #initFromCustGroup
         #void initFromCustGroup()
         #{
         #    CustGroup custGroup = CustGroup::find(this.CustGroupId);
@@ -1422,23 +2281,23 @@ Formatversion: 1
         #    this.Comment    = custGroup.Name;
         #}
       ENDSOURCE
-      SOURCE #InitFromCustTable
+      SOURCE #initFromCustTable
         #void initFromCustTable()
         #{
         #    CustTable custTable= this.custTable();
-        #;
+        #
         #    if (! custTable)
         #        return;
         #
         #    this.CustGroupId    = custTable.CustGroup;
         #    this.TaxGroupId     = custTable.TaxGroup;
-        #    this.Comment        = custTable.Name;
+        #    this.Comment        = custTable.name();
         #    this.Currency       = custTable.Currency;
-        #    this.Dimension      = this.copyDimension(Dimensions::findDimension(custTable, InventTable::find(this.ItemId), this.Dimension));
+        #    this.DefaultDimension = this.mergeDimension(custTable.DefaultDimension, InventTable::find(this.ItemId).DefaultDimension);
         #}
         #
       ENDSOURCE
-      SOURCE #InitFromForecastModel
+      SOURCE #initFromForecastModel
         #void initFromForecastModel()
         #{
         #    ForecastModel   forecastModel = ForecastModel::find(HeadingSub::Heading,this.ModelId);
@@ -1449,38 +2308,46 @@ Formatversion: 1
         #    this.Cov          = forecastModel.Cov;
         #}
       ENDSOURCE
-      SOURCE #InitFromInventTable
+      SOURCE #initFromInventTable
         #void initFromInventTable()
         #{
         #    InventTable         inventTable         = InventTable::find(this.ItemId);
         #    InventTableModule   inventTableModule   = this.inventTableModule();
         #    InventDim           inventDim;
-        #    ;
+        #    ProjTable           projTable           = ProjTable::find(this.ProjId);
         #
-        #    if (! inventTable)
+        #    if (!inventTable)
+        #    {
         #        return;
+        #    }
         #
-        #    this.ItemGroupId        = inventTable.ItemGroupId;
+        #    this.ItemGroupId        = inventTable.itemGroupId();
         #    this.SalesUnitId        = inventTableModule.UnitId;
         #    this.TaxItemGroupId     = inventTableModule.TaxItemGroupId;
-        #    this.Comment            = inventTable.ItemName;
+        #    this.Comment            = inventTable.defaultProductName();
         #    this.ProjCategoryId     = inventTable.ProjCategoryId;
-        #    this.Dimension          = this.copyDimension(Dimensions::findDimension(CustTable::find(this.CustAccountId), inventTable, this.Dimension));
+        #
+        #    this.DefaultDimension  = this.copyDimension(projTable.DefaultDimension);
+        #
+        #    this.DefaultDimension = this.mergeDimension(this.DefaultDimension, CustTable::find(this.CustAccountId).DefaultDimension);
+        #    this.DefaultDimension = this.mergeDimension(this.DefaultDimension, inventTable.DefaultDimension);
         #
         #    if (this.InventDimId)
+        #    {
         #        inventDim = InventDim::find(this.InventDimId);
+        #    }
         #
         #    #InventDimDevelop
         #
-        #    inventDim.initFromInventTable(inventTable, InventItemOrderSetupType::Invent, inventDim);
+        #    inventDim.initFromInventTable(inventTable, InventItemOrderSetupType::Invent, inventDim);//WPA//Upgrade
         #
-        #    inventDim   = InventDim::findOrCreate(inventDim);
+        #    inventDim = InventDim::findOrCreate(inventDim);
         #    this.setInventDimId(inventDim.InventDimId, inventDim);
         #
-        #    this.CostPrice              = inventTable.costPcsPrice(this.InventDimId,inventDim);
+        #    this.CostPrice = inventTable.costPcsPrice(this.InventDimId, inventDim, null, this.StartDate);
         #}
       ENDSOURCE
-      SOURCE #InitFromItemGroup
+      SOURCE #initFromItemGroup
         #void initFromItemGroup()
         #{
         #    InventItemGroup itemGroup   = InventItemGroup::find(this.ItemGroupId);
@@ -1488,46 +2355,90 @@ Formatversion: 1
         #    if (! itemGroup)
         #        return;
         #
-        #    if (this.ItemGroupId != InventTable::find(this.ItemId).ItemGroupId)
+        #    if (this.ItemGroupId != InventTable::find(this.ItemId).itemGroupId())
+        #    {
         #        this.ItemId = '';
+        #    }
         #
         #    this.ItemAllocateId = itemGroup.StandardItemAllocateId;
         #    this.Comment        = itemGroup.Name;
         #}
       ENDSOURCE
-      SOURCE #InitFromPriceDisc
-        #server void initFromPriceDisc(PriceDisc priceDisc)
+      SOURCE #initFromPriceDisc
+        #server void initFromPriceDisc(PriceDisc_Price priceDisc, PriceDiscPolicyCheckPolicy _checkPolicy = null, boolean _initDateFields = true)
         #{
         #    this.SalesPrice         = priceDisc.price();
         #    this.PriceUnit          = priceDisc.priceUnit();
-        #    this.SalesMarkup        = priceDisc.markup();
+        #    this.SalesMarkup        = priceDisc.priceMarkup();
+        #}
+      ENDSOURCE
+      SOURCE #initFromProjActivity
+        #/// /// <summary>
+        #///    Initializes the category of the journal line with the default category of the project activity passed in as a parameter.
+        #/// </summary>
+        #/// <param name="_projActivity">
+        #///    The project activity used to initialize the category of the journal line.
+        #/// </param>
+        #public void initFromProjActivity(ProjActivity _projActivity)
+        #{
+        #    if (!_projActivity || !_projActivity.CategoryDefault ||
+        #            ProjCategory::find(_projActivity.CategoryDefault).CategoryType != ProjCategoryType::Item)
+        #    {
+        #        return;
+        #    }
+        #
+        #    this.ProjCategoryId = _projActivity.CategoryDefault;
         #}
       ENDSOURCE
       SOURCE #initFromProjInvoiceDate
         #void initFromProjInvoiceDate()
         #{
-        #    ProjTable       projTable       = this.projTable();
-        #    ProjParameters  projParameters  = ProjParameters::find();
-        #    ;
+        #    PaymTermId          paymentTermsID;
+        #    ProjFundingSource    projFundingSource;
+        #    ProjTable           projTable       = this.projTable();
+        #    ProjParameters      projParameters  = ProjParameters::find();
         #
-        #// sales payment date
-        #    if (projTable.Type   == ProjType::TimeMaterial)
+        #    // sales payment date
+        #    if (projTable && projTable.Type   == ProjType::TimeMaterial)
         #    {
-        #        if (projTable.projInvoice().Payment)
+        #        if (this.ProjFundingSource)
         #        {
-        #            this.ProjForecastSalesPaymDate = PaymTerm::advanceDate(projTable.projInvoice().Payment, this.ProjForecastInvoiceDate) + projParameters.ForecastBufferDays;
+        #            paymentTermsID = ProjFundingSource::find(this.ProjFundingSource).PaymentTermsId;
         #        }
         #        else
+        #        {
+        #            if (ProjFundingSource::numberOfFundingSources(projTable.ProjInvoiceProjId) == 1)
+        #            {
+        #                select PaymentTermsId from projFundingSource
+        #                    where projFundingSource.ContractId == projTable.ProjInvoiceProjId &&
+        #                          projFundingSource.FundingType == ProjFundingType::Customer;
+        #
+        #                paymentTermsID = projFundingSource.PaymentTermsId;
+        #            }
+        #        }
+        #
+        #        if (paymentTermsID)
+        #        {
+        #            this.ProjForecastSalesPaymDate = PaymTerm::advanceDate(paymentTermsID, this.ProjForecastInvoiceDate) + projParameters.ForecastBufferDays;
+        #        }
+        #        else
+        #        {
         #            this.ProjForecastSalesPaymDate  = this.ProjForecastInvoiceDate+ projParameters.ForecastBufferDays;
+        #        }
         #    }
         #}
         #
       ENDSOURCE
-      SOURCE #initFromprojTable
+      SOURCE #initFromProjTable
         #void initFromProjTable(ProjTable   projTable)
         #{
-        #    if (! projTable)
+        #    InventDim inventDim;
+        #    InventTable         inventTable         = InventTable::find(this.ItemId);
+        #
+        #    if (!projTable)
+        #    {
         #        return;
+        #    }
         #
         #    this.ProjId                 = projTable.ProjId;
         #    this.CustAccountId          = projTable.CustAccount;
@@ -1539,21 +2450,26 @@ Formatversion: 1
         #
         #    this.SalesPrice = 0;
         #    this.SalesMarkup= 0;
-        #    this.SalesPurchLine::setPriceAgreement();
+        #    this.SalesPurchLine::setPriceAgreement(inventDim);
         #
-        #    if (! this.ModelId)
+        #    if (!this.ModelId)
         #    {
         #        this.ModelId                = ProjTable::modelId(this.ProjId);
         #        this.initFromForecastModel();
         #    }
         #
-        #    this.Dimension              = this.copyDimension(projTable.Dimension);
+        #    this.DefaultDimension  = this.copyDimension(projTable.DefaultDimension);
         #
-        #    if (! ProjValProjCategorySetUp::checkProjCategory(this.ProjId,this.ProjCategoryId))
+        #    this.DefaultDimension = this.mergeDimension(this.DefaultDimension, CustTable::find(this.CustAccountId).DefaultDimension);
+        #    this.DefaultDimension = this.mergeDimension(this.DefaultDimension, inventTable.DefaultDimension);
+        #
+        #    if (!ProjValProjCategorySetUp::checkProjCategory(this.ProjId,this.ProjCategoryId))
+        #    {
         #        this.ProjCategoryId = '';
+        #    }
         #
         #    this.ProjLinePropertyId     = ProjLinePropertySetup::findLinePropertyId(this.ProjId, this.ProjCategoryId);
-        #
+        #    this.StartDate              = projTable.returnForecastDate();
         #    this.initFromTransDate();
         #}
         #
@@ -1561,7 +2477,9 @@ Formatversion: 1
       SOURCE #initFromSalesQuotationLine
         #void initFromSalesQuotationLine(SalesQuotationLine      _salesQuotationLine)
         #{
-        #    ;
+        #    InventTableModule       inventTableModule;
+        #    InventPriceMarkup       inventPriceMarkup;
+        #    InventQty               transQty;
         #
         #    this.ProjId             = _salesQuotationLine.salesQuotationTable().ProjIdRef;
         #    this.initFromProjTable(ProjTable::find(this.ProjId));
@@ -1570,8 +2488,24 @@ Formatversion: 1
         #
         #    this.ModelId            = _salesQuotationLine.salesQuotationTable().ModelId;
         #
-        #    this.ItemId             = _salesQuotationLine.ProjTransCode;
-        #    this.initFromInventTable();
+        #    if (_salesQuotationLine.ItemId)
+        #    {
+        #        this.ItemId             = _salesQuotationLine.ItemId;
+        #        this.initFromInventTable();
+        #    }
+        #    else
+        #    {
+        #        this.ItemAllocateId     = ProjParameters::find().DefaultForecastItemAllocation;
+        #        if (!this.ItemAllocateId)
+        #        {
+        #            throw error ("@SYS334837");
+        #        }
+        #
+        #        this.TaxGroupId         = _salesQuotationLine.TaxGroup;
+        #        this.SalesUnitId        = _salesQuotationLine.SalesUnit;
+        #        this.TaxItemGroupId     = _salesQuotationLine.TaxItemGroup;
+        #        this.Comment            = '';
+        #    }
         #
         #    this.setInventDimId(_salesQuotationLine.InventDimId);
         #    this.ProjCategoryId     = _salesQuotationLine.ProjCategoryId;
@@ -1580,12 +2514,24 @@ Formatversion: 1
         #    this.InventQty          = _salesQuotationLine.SalesQty;
         #    this.SalesQty           = _salesQuotationLine.SalesQty;
         #
-        #    this.Dimension          = this.copyDimension(_salesQuotationLine.Dimension);
+        #    this.DefaultDimension  = this.copyDimension(_salesQuotationLine.DefaultDimension);
         #
-        #    this.StartDate          = _salesQuotationLine.StartDate ? _salesQuotationLine.StartDate : systemdateget();
+        #    this.StartDate          = _salesQuotationLine.TransDate ? _salesQuotationLine.TransDate : systemDateGet();
         #    this.EndDate            = _salesQuotationLine.EndDate;
         #
-        #    this.CostPrice          = InventTableModule::find(_salesQuotationLine.ProjTransCode, ModuleInventPurchSales::Invent).Price;
+        #    if (_salesQuotationLine.isStocked())
+        #    {
+        #        inventTableModule   = InventTableModule::find(_salesQuotationLine.ItemId, ModuleInventPurchSales::Invent);
+        #        inventPriceMarkup   = inventTableModule.AllocateMarkup ? 0 : inventTableModule.Markup * sign(this.InventQty);
+        #        transQty            = _salesQuotationLine.QtyOrdered;
+        #
+        #        if (!transQty)
+        #        {
+        #            transQty = this.InventQty;
+        #        }
+        #        this.CostPrice      = (_salesQuotationLine.CostPrice + inventPriceMarkup / transQty) * this.InventQty;
+        #    }
+        #
         #    this.Currency           = _salesQuotationLine.CurrencyCode;
         #    this.PriceUnit          = _salesQuotationLine.PriceUnit;
         #
@@ -1597,49 +2543,74 @@ Formatversion: 1
         #
         #    this.Amount         = _salesQuotationLine.LineAmount;
         #
+        #    //BOM/route
+        #    this.ItemBOMId      = _salesQuotationLine.ItemBOMId;
+        #    this.ItemRouteId    = _salesQuotationLine.ItemRouteId;
+        #
         #}
         #
       ENDSOURCE
       SOURCE #initFromTransDate
-        #void initFromTransDate()
+        #void initFromTransDate(boolean _calledFromAOS = false)
         #{
         #    ProjTable       projTable       = this.projTable();
         #    ProjParameters  projParameters  = ProjParameters::find();
-        #    ;
         #
-        #//  invoice date
-        #    if (projTable.Type   == ProjType::TimeMaterial)
+        #    //  invoice date
+        #    if (projTable.Type == ProjType::TimeMaterial)
         #    {
         #        if (projTable.projInvoice().ForecastInvoiceFrequency)
-        #            this.ProjForecastInvoiceDate    = ProjInvoiceTable::forecastInvoiceDate(this.StartDate,this.ProjId);
+        #        {
+        #            this.ProjForecastInvoiceDate    = ProjInvoiceTable::forecastInvoiceDate(this.StartDate,this.ProjId, _calledFromAOS);
+        #        }
         #        else
+        #        {
         #            this.ProjForecastInvoiceDate    = this.StartDate;
+        #        }
+        #    }
+        #    else if (projTable.Type == ProjType::FixedPrice || projTable.Type == ProjType::Investment)
+        #    {
+        #        // Project forecast invoice date is not used for Fixed price or Investment projects
+        #        this.ProjForecastInvoiceDate = dateNull();
         #    }
         #
         #    this.initFromProjInvoiceDate();
         #
-        #//  elimination date
-        #    if (projTable.Type   == ProjType::FixedPrice ||   projTable.Type   == ProjType::Investment)
+        #    //  elimination date
+        #    if (projTable.Type == ProjType::FixedPrice || projTable.Type == ProjType::Investment)
         #    {
         #        if (ProjTable::exist(projTable.wipProject))
+        #        {
         #            this.ProjForecastEliminationDate = ProjTable::find(projTable.wipProject).EndDate;
+        #        }
         #        else
+        #        {
         #            this.ProjForecastEliminationDate = projTable.EndDate;
+        #        }
+        #
+        #        if (!this.ProjForecastEliminationDate)
+        #        {
+        #            this.ProjForecastEliminationDate = this.StartDate;
+        #        }
         #    }
         #
-        #// cost payment date
+        #    // cost payment date
         #    if (projTable.Type   != ProjType::Time)
         #    {
         #        if (projParameters.ForecastPaymItem)
-        #            this.ProjForecastCostPaymDate   = PaymTerm::advanceDate(projParameters.ForecastPaymItem,this.StartDate);
+        #        {
+        #            this.ProjForecastCostPaymDate = PaymTerm::advanceDate(projParameters.ForecastPaymItem,this.StartDate, _calledFromAOS);
+        #        }
         #        else
+        #        {
         #            this.ProjForecastCostPaymDate   = this.StartDate;
+        #        }
         #    }
         #
         #}
         #
       ENDSOURCE
-      SOURCE #InitValue
+      SOURCE #initValue
         #void initValue()
         #{
         #    this.BudgetMap::initValue();
@@ -1677,13 +2648,26 @@ Formatversion: 1
         #    return InventDim::find(this.InventDimId,_forUpdate);
         #}
       ENDSOURCE
-      SOURCE #InventTable
+      SOURCE #inventProfileType_RU
+        #InventProfileType_RU inventProfileType_RU()
+        #{
+        #    InventProfileType_RU inventProfileType;
+        #    ;
+        #    inventProfileType = this.inventDim().inventProfile_RU().InventProfileType;
+        #    if (inventProfileType == InventProfileType_RU::NotSpecified)
+        #    {
+        #        inventProfileType = InventProfileType_RU::General;
+        #    }
+        #    return inventProfileType;
+        #}
+      ENDSOURCE
+      SOURCE #inventTable
         #InventTable inventTable()
         #{
         #    return InventTable::find(this.ItemId);
         #}
       ENDSOURCE
-      SOURCE #InventTableModule
+      SOURCE #inventTableModule
         #InventTableModule inventTableModule()
         #{
         #    return InventTableModule::find(this.ItemId,ModuleInventPurchSales::Sales);
@@ -1693,6 +2677,21 @@ Formatversion: 1
         #CustAccount invoiceAccount()
         #{
         #    return this.custTable().InvoiceAccount ? this.custTable().InvoiceAccount : this.CustAccountId;
+        #}
+      ENDSOURCE
+      SOURCE #isCategoryBased
+        #/// <summary>
+        #/// Checks whether the order line is category-based.
+        #/// </summary>
+        #/// <returns>
+        #/// Always returns false.
+        #/// </returns>
+        #/// <remarks>
+        #/// Category does not apply for forecast lines.
+        #/// </remarks>
+        #boolean isCategoryBased()
+        #{
+        #    return false;
         #}
       ENDSOURCE
       SOURCE #isProjForecastReduced
@@ -1728,7 +2727,7 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #ItemLineDisc
+      SOURCE #itemLineDisc
         #LineDiscCode itemLineDisc()
         #{
         #    return this.inventTable().salesLineDisc();
@@ -1741,7 +2740,7 @@ Formatversion: 1
         #    return InventTable::find(this.ItemId).itemName(this.inventDim());
         #}
       ENDSOURCE
-      SOURCE #LineDisc
+      SOURCE #lineDisc
         #LineDiscCode lineDisc()
         #{;
         #    return this.custTable().LineDisc;
@@ -1749,13 +2748,15 @@ Formatversion: 1
       ENDSOURCE
       SOURCE #linkInventDim2Dimension
         #/// <summary>
-        #/// Defaults ForecastSales.dimension values based on the InventDim record buffer values.
+        #///    Provides default <c>ForecastSales.dimension</c> values, depending on the <c>InventDim</c> record
+        #///    buffer values.
         #/// </summary>
         #/// <param name="_newInventDim">
-        #/// The InventDim record buffer linked to the current ForecastSales record buffer;
+        #///    The <c>InventDim</c> record buffer linked to the current <c>ForecastSales</c> record buffer.
         #/// </param>
         #/// <param name="_oldInventDim">
-        #/// The InventDim record buffer that was previously linked to the current ForecastSales record buffer;
+        #///    The <c>InventDim</c> record buffer that was previously linked to the current <c>ForecastSales</c>
+        #///    record buffer.
         #/// </param>
         #public void linkInventDim2Dimension(InventDim _newInventDim, InventDim _oldInventDim)
         #{
@@ -1763,18 +2764,53 @@ Formatversion: 1
         #    _newInventDim.setInventSiteFromParentIfModified(this, _oldInventDim);
         #}
       ENDSOURCE
-      SOURCE #modifiedField
-        #public void modifiedField(fieldId _fieldId)
+      SOURCE #mergeDimension
+        #/// <summary>
+        #/// Retrieves a dimension set that holds the merged combination of the current <c>defaultDimension</c>
+        #/// field on this table and the specified dimension set.
+        #/// </summary>
+        #/// <param name="_primaryDefaultDimension">
+        #/// A first dimension set to merge with the current <c>defaultDimension</c> field on this table.
+        #/// </param>
+        #/// <param name="_secondaryDefaultDimension">
+        #/// A second dimension set to merge with the current <c>defaultDimension</c> field on this table;
+        #/// optional.
+        #/// </param>
+        #/// <param name="_dimensionMerge">
+        #/// A <c>dimensionMerge</c> object that was initialized with the current buffer; optional.
+        #/// </param>
+        #/// <returns>
+        #/// A dimension set that holds the merged combination of the current <c>defaultDimension</c> field on
+        #/// this table and the specified dimension set.
+        #/// </returns>
+        #/// <remarks>
+        #/// This method makes sure that potential linked dimensions are not overwritten when they are merged.
+        #/// </remarks>
+        #
+        #public DimensionDefault mergeDimension(
+        #    DimensionDefault _primaryDefaultDimension,
+        #    DimensionDefault _secondaryDefaultDimension = 0,
+        #    DimensionMerge   _dimensionMerge = DimensionMerge::newFromTable(this,
+        #                                                                    this.companyInfo().RecId
+        #                                                                    )
+        #    )
         #{
+        #    return _dimensionMerge.merge(_primaryDefaultDimension, _secondaryDefaultDimension);
+        #}
+      ENDSOURCE
+      SOURCE #modifiedField
+        #public void modifiedField(FieldId _fieldId)
+        #{
+        #    InventDim inventDim;
         #    super(_fieldId);
         #
         #    switch (_fieldId)
         #    {
-        #        case fieldnum(ForecastSales, ProjCategoryId):
+        #        case fieldNum(ForecastSales, ProjCategoryId):
         #            this.ProjLinePropertyId = ProjLinePropertySetup::findLinePropertyId(this.ProjId,this.ProjCategoryId);
         #            break;
         #
-        #        case fieldnum(ForecastSales, ProjId):
+        #        case fieldNum(ForecastSales, ProjId):
         #            this.initFromProjTable(ProjTable::find(this.ProjId));
         #            // blank and reinitialize the Project Forecast date fields
         #            this.blankDateFields();
@@ -1784,70 +2820,82 @@ Formatversion: 1
         #            }
         #            break;
         #
-        #        case fieldnum(ForecastSales, AllocateMethod):
+        #        case fieldNum(ForecastSales, AllocateMethod):
         #            this.BudgetMap::setAfterAllocateMethod();
         #            break;
         #
-        #        case fieldnum(ForecastSales, ModelId):
+        #        case fieldNum(ForecastSales, ModelId):
         #            this.initFromForecastModel();
         #            break;
         #
-        #        case fieldnum(ForecastSales, Amount):
+        #        case fieldNum(ForecastSales, Amount):
         #            this.SalesPurchLine::lineAmountModified();
         #            break;
         #
-        #        case fieldnum(ForecastSales, SalesUnitId):
-        #        case fieldnum(ForecastSales, SalesQty):
+        #        case fieldNum(ForecastSales, SalesUnitId):
+        #        case fieldNum(ForecastSales, SalesQty):
         #            this.InventQty  = this.calcQtyOrdered();
-        #            this.SalesPurchLine::setPriceAgreement();
         #            break;
         #
-        #        case fieldnum(ForecastSales, Currency):
+        #        case fieldNum(ForecastSales, Currency):
         #            this.SalesPrice = 0;
         #            this.SalesMarkup= 0;
-        #            this.SalesPurchLine::setPriceAgreement();
         #            break;
         #
-        #        case fieldnum(ForecastSales, CustAccountId):
+        #        case fieldNum(ForecastSales, CustAccountId):
         #            this.initFromCustTable();
-        #            this.SalesPurchLine::setPriceAgreement();
         #            break;
         #
-        #        case fieldnum(ForecastSales, ItemGroupId):
+        #        case fieldNum(ForecastSales, ItemGroupId):
         #            this.initFromItemGroup();
         #            break;
         #
-        #        case fieldnum(ForecastSales, CustGroupId):
+        #        case fieldNum(ForecastSales, CustGroupId):
         #            this.initFromCustGroup();
         #            break;
         #
-        #        case fieldnum(ForecastSales, StartDate):
-        #            this.SalesPurchLine::setPriceAgreement();
+        #        case fieldNum(ForecastSales, StartDate):
+        #            this.SalesPurchLine::setPriceAgreement(inventDim);
         #            if (this.ProjId)
         #                this.initFromTransDate();
         #            break;
         #
-        #        case fieldnum(ForecastSales, ProjForecastInvoiceDate):
+        #        case fieldNum(ForecastSales, ProjForecastInvoiceDate):
         #            this.initFromProjInvoiceDate();
         #            break;
         #
-        #        case fieldnum(ForecastSales, ItemId):
-        #            if(! this.isProjLumpSum())
+        #        case fieldNum(ForecastSales, ItemId):
+        #            if(!this.isProjLumpSum())
         #            {
         #                this.initFromInventTable();
-        #                this.SalesPurchLine::setPriceAgreement();
         #            }
         #            break;
         #    }
         #}
       ENDSOURCE
-      SOURCE #modifyItemDim
-        #public boolean modifyItemDim(
+      SOURCE #modifiedProductDim
+        #/// <summary>
+        #/// Sets the price and discount by using the agreements, if it is required.
+        #/// </summary>
+        #/// <param name="_inventDim">
+        #/// An <c>InventDim</c> record to use to find price agreements.
+        #/// </param>
+        #/// <param name="_dimFieldId">
+        #/// A <c>fieldId</c> value of an <c>InventDim</c> field to use to determine whether price agreements
+        #/// must be used.
+        #/// </param>
+        #/// <param name="_inventDimGroupSetup">
+        #/// An instance of the <c>InventDimGroupSetup</c> class that provides information about dimension setup.
+        #/// </param>
+        #/// <returns>
+        #/// true if the line was updated; otherwise, false.
+        #/// </returns>
+        #public boolean modifiedProductDim(
         #    InventDim                           _inventDim,
         #    FieldId                             _dimFieldId,
-        #    InventDimGroupId                    _inventDimGroupId)
+        #    InventDimGroupSetup                 _inventDimGroupSetup)
         #{
-        #    if (InventDim::mustUseFieldSalesPriceDisc(_dimFieldId, _inventDimGroupId))
+        #    if (InventDim::mustUseFieldSalesPriceDisc(_dimFieldId, _inventDimGroupSetup))
         #    {
         #        this.SalesPurchLine::setPriceAgreement(_inventDim);
         #        return true;
@@ -1855,13 +2903,13 @@ Formatversion: 1
         #    return false;
         #}
       ENDSOURCE
-      SOURCE #ModuleType
+      SOURCE #moduleType
         #ModuleInventPurchSales moduleType()
         #{
         #    return ModuleInventPurchSales::Sales;
         #}
       ENDSOURCE
-      SOURCE #MustBeCovPlanned
+      SOURCE #mustBeCovPlanned
         #boolean mustBeCovPlanned()
         #{
         #    return this.Report      &&
@@ -1871,13 +2919,13 @@ Formatversion: 1
         #
         #}
       ENDSOURCE
-      SOURCE #OrderAccount
+      SOURCE #orderAccount
         #CustVendAC orderAccount()
         #{;
         #    return this.CustAccountId;
         #}
       ENDSOURCE
-      SOURCE #Payment
+      SOURCE #payment
         #PaymTermId payment()
         #{
         #    PaymTermId  payment;
@@ -1900,11 +2948,69 @@ Formatversion: 1
         #    return payment;
         #}
       ENDSOURCE
-      SOURCE #PriceGroupId
+      SOURCE #postingProfile_RU
+        #CustPostingProfile postingProfile_RU()
+        #{
+        #    CustPostingProfile          postingProfile;
+        #
+        #    if (EcoResDimensionGroupSetup::isInventoryDimensionActiveForItem(this.ItemId, fieldNum(InventDim, InventProfileId_RU)))
+        #    {
+        #         postingProfile = InventProfileCustVendLedger_RU::custPostingProfile(this.inventDim().InventProfileId_RU);
+        #    }
+        #
+        #    if (! postingProfile)
+        #    {
+        #        postingProfile = CustParameters::find().PostingProfile;
+        #    }
+        #
+        #    return postingProfile;
+        #}
+      ENDSOURCE
+      SOURCE #priceDate
+        #/// <summary>
+        #/// Retrieves the date for which a price must be calculated.
+        #/// </summary>
+        #/// <returns>
+        #/// The date for which to calculate a price.
+        #/// </returns>
+        #public PriceDate priceDate()
+        #{
+        #    return this.StartDate ? this.StartDate : systemDateGet();
+        #}
+      ENDSOURCE
+      SOURCE #priceGroupId
         #PriceGroupId priceGroupId()
         #{
-        #    return this.custTable().PriceGroup;
+        #    PriceGroupId projPriceGroup;
+        #
+        #    if (this.ProjId)
+        #    {
+        #        projPriceGroup = this.projTable().ProjPriceGroup;
+        #    }
+        #    return projPriceGroup ? projPriceGroup : this.custTable().PriceGroup;
         #}
+        #
+      ENDSOURCE
+      SOURCE #priceUnit
+        #PriceUnit priceUnit()
+        #{
+        #    return this.PriceUnit ? this.PriceUnit : 1;
+        #
+        #}
+      ENDSOURCE
+      SOURCE #projCostGroupId
+        #ProjCostGroupId projCostGroupId()
+        #{
+        #    ProjCostGroupId projCostGroupId;
+        #
+        #    if (this.ProjId)
+        #        if (ProjWIPTable::find(this.ProjId).ControlId)
+        #            projCostGroupId    = ProjControlCategory::findCategoryGroup(ProjWIPTable::find(this.ProjId).ControlId,this.ProjCategoryId);
+        #
+        #    return projCostGroupId;
+        #
+        #}
+        #
       ENDSOURCE
       SOURCE #projTable
         #ProjTable projTable()
@@ -1913,15 +3019,60 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
+      SOURCE #psAcontribution
+        #//BP deviation documented
+        #display Amount psAcontribution()
+        #{
+        #    return this.Amount - this.costValue();
+        #}
+      ENDSOURCE
+      SOURCE #psAdispcostValue
+        #// BP Deviation documented
+        #display CostAmount psAdispcostValue()
+        #{
+        #    return this.CostPrice * this.InventQty;
+        #}
+      ENDSOURCE
+      SOURCE #psAeditActivityPurpose
+        #public edit smmActivityPurpose psAeditActivityPurpose(boolean _set, ProjActivityNumber _activityNumber)
+        #{
+        #    smmActivities smmActivities;
+        #    str           name;
+        #
+        #    if (isConfigurationkeyEnabled(configurationKeyNum(Project3)))
+        #    {
+        #    if (_set)
+        #    {
+        #        this.ActivityNumber = _activityNumber;
+        #        this.initFromProjActivity(ProjActivity::find(_activityNumber));
+        #    }
+        #    else
+        #    {
+        #        smmActivities = smmActivities::find(this.ActivityNumber);
+        #        name = smmActivities.Purpose;
+        #    }
+        #    }
+        #
+        #    return name;
+        #}
+      ENDSOURCE
+      SOURCE #salesAmount
+        #//BP Deviation documented
+        #display ProjSalesAmount salesAmount()
+        #{
+        #    return this.SalesQty * this.SalesPrice;
+        #}
+      ENDSOURCE
       SOURCE #setInventDimId
         #/// <summary>
-        #/// Applies the InventDimId parameter to the ForecastSales.inventDimId field and defaults values based on the new inventory dimensions.
+        #///    Applies the <c>InventDimId</c> parameter to the <c>ForecastSales.inventDimId</c> field and provides
+        #///    default values, depending on the new inventory dimensions.
         #/// </summary>
         #/// <param name="_inventDimId">
-        #/// The InventDimId value that should be applied to the ForecastSales.InventDimId field.
+        #///    The <c>InventDimId</c> value that should be applied to the <c>ForecastSales.InventDimId</c> field.
         #/// </param>
         #/// <param name="_inventDim">
-        #/// The InventDim record buffer related to the InventDimId parameters; optional.
+        #///    The <c>InventDim</c> record buffer related to the <c>InventDimId</c> parameters; optional.
         #/// </param>
         #public void setInventDimId(InventDimId _inventDimId, InventDim _inventDim = InventDim::find(_inventDimId))
         #{
@@ -1933,10 +3084,12 @@ Formatversion: 1
       ENDSOURCE
       SOURCE #setInventDimIdFromInventDim
         #/// <summary>
-        #/// Finds or create an InventDimId for the InventDim parameter and applies the found InventDimId to the ForecastSales.inventDimId field.
+        #///    Finds or creates an <c>InventDimId</c> value for the <c>InventDim</c> parameter and applies the
+        #///    found <c>InventDimId</c> value to the <c>ForecastSales.inventDimId</c> field.
         #/// </summary>
         #/// <param name="_inventDim">
-        #/// An InventDim record buffer that should be referenced by the current ForecastSales record buffer.
+        #///    An <c>InventDim</c> record buffer that should be referenced by the current <c>ForecastSales</c>
+        #///    record buffer.
         #/// </param>
         #public void setInventDimIdFromInventDim(InventDim _inventDim)
         #{
@@ -1946,21 +3099,26 @@ Formatversion: 1
         #    this.setInventDimId(inventDim.InventDimId, inventDim);
         #}
       ENDSOURCE
-      SOURCE #Update
+      SOURCE #update
         #public void update()
         #{
         #    NumberSeq           numberSeq;
         #    FormRun             formRun;
         #    FormObjectSet       formObjSet;
         #    int                 i;
+        #    ForecastSales this_Orig = this.orig();
+        #    ;
         #
         #    ttsbegin;
+        #
         #
         #    if (this.ProjId && ! this.ProjTransId)
         #    {
         #        numberSeq = NumberSeq::newGetNum(ProjParameters::numRefProjTransIdBase());
         #        this.ProjTransId = numberSeq.num();
         #    }
+        #
+        #    ProjForecastPost::newPostForecastItem(this).deleteTransBudget();
         #
         #    this.BudgetMap::update();
         #
@@ -1977,7 +3135,7 @@ Formatversion: 1
         #                formRun = this.dataSource().formRun();
         #                for (i=1; i<= formRun.dataSourceCount(); i++)
         #                {
-        #                    if (formRun.dataSource(i).cursor().TableId == tablenum(ForecastSales))
+        #                    if (formRun.dataSource(i).cursor().TableId == tableNum(ForecastSales))
         #                    {
         #                        formObjSet = formRun.dataSource(i);
         #                        break;
@@ -1997,7 +3155,7 @@ Formatversion: 1
         #    ttscommit;
         #}
       ENDSOURCE
-      SOURCE #UpdateLedgerCov
+      SOURCE #updateLedgerCov
         #server void updateLedgerCov()
         #{
         #    LedgerCoverage      cov;
@@ -2008,13 +3166,21 @@ Formatversion: 1
         #    TaxBudget           taxBudget;
         #    TaxAmountCur        taxAmountCur;
         #    ForecastSales       forecastSalesExpansion;
-        #    ;
+        #    // <GEERU>
+        #    #isoCountryRegionCodes
+        #    // </GEERU>
         #
-        #    cov         = new LedgerCoverage(this.Dimension,this);
+        #    cov = new LedgerCoverage(this);
+        #    // <GEERU>
+        #    if (SysCountryRegionCode::isLegalEntityInCountryRegion([#isoRU]))
+        #    {
+        #        cov.parmPostingProfile_RU(this.postingProfile_RU());
+        #        cov.parmInventProfileType_RU(this.inventProfileType_RU());
+        #    }
+        #    // </GEERU>
         #
         #    if (this.mustBeCovPlanned())
         #    {
-        #
         #        cov.setRemainPercent(this.StartDate,CustParameters::find().BudgetSettle);
         #
         #        lineValue  = this.calcLineAmount();
@@ -2032,10 +3198,10 @@ Formatversion: 1
         #            taxBudget   = new TaxBudget(
         #                NoYes::Yes,
         #                this,
-        #                cov,
-        #                this.Dimension);
+        #                cov);
         #
-        #            taxAmountCur = taxBudget.calcAndPost();
+        #            // pass null because it doesn't actually post to GL
+        #            taxAmountCur = taxBudget.calcAndPost(null);
         #        }
         #        else
         #            taxAmountCur = 0;
@@ -2046,8 +3212,8 @@ Formatversion: 1
         #            cov.updateSum(
         #                this.StartDate,
         #                LedgerPostingType::SalesRevenue,
-        #                this.accountSales(),
-        #                this.Dimension,
+        #                DimensionStorage::getMainAccountFromLedgerDimension(this.accountSales()).RecId,
+        #                this.DefaultDimension,
         #                this.Currency,
         #                -lineValue
         #                );
@@ -2059,13 +3225,13 @@ Formatversion: 1
         #            cov.updateSum(
         #                this.StartDate,
         #                LedgerPostingType::SalesDisc,
-        #                this.accountDisc(),
-        #                this.Dimension,
+        #                DimensionStorage::getMainAccountFromLedgerDimension(this.accountDisc()).RecId,
+        #                this.DefaultDimension,
         #                this.Currency,
         #                discValue
         #                );
         #
-        #            invoiceAmount-=  cov.lastAmount();
+        #            invoiceAmount -= cov.lastAmount();
         #        }
         #
         #        if (costValue)
@@ -2073,8 +3239,8 @@ Formatversion: 1
         #            cov.updateSum(
         #                this.StartDate,
         #                 LedgerPostingType::InventIssue,
-        #                 this.accountIssue(),
-        #                 this.Dimension,
+        #                 DimensionStorage::getMainAccountFromLedgerDimension(this.accountIssue()).RecId,
+        #                 this.DefaultDimension,
         #                 CompanyInfo::standardCurrency(),
         #                 -costValue
         #                 );
@@ -2082,8 +3248,8 @@ Formatversion: 1
         #            cov.updateSum(
         #                this.StartDate,
         #                LedgerPostingType::SalesConsump,
-        #                this.accountConsumption(),
-        #                this.Dimension,
+        #                DimensionStorage::getMainAccountFromLedgerDimension(this.accountConsumption()).RecId,
+        #                this.DefaultDimension,
         #                CompanyInfo::standardCurrency(),
         #                costValue
         #                );
@@ -2094,12 +3260,12 @@ Formatversion: 1
         #            cov.updateSum(
         #                this.StartDate,
         #                LedgerPostingType::CustBalance,
-        #                this.accountCust(),
-        #                this.Dimension,
+        #                DimensionStorage::getMainAccountFromLedgerDimension(this.accountCustLedgerDimension()).RecId,
+        #                this.DefaultDimension,
         #                this.Currency,
         #                invoiceAmount - taxAmountCur,
         #                0,
-        #                this.accountClearing(),
+        #                DimensionStorage::getMainAccountFromLedgerDimension(this.accountClearingLedgerDimension()).RecId,
         #                this.payment(),
         #                this.clearingPeriod(),
         #                CustTable::find(this.CustAccountId).PaymDayId
@@ -2131,7 +3297,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #validateField
-        #boolean validateField(fieldId p1)
+        #boolean validateField(FieldId p1)
         #{
         #    ForecastModel   forecastModel;
         #
@@ -2141,37 +3307,36 @@ Formatversion: 1
         #
         #    switch(p1)
         #    {
-        #        case(fieldnum(ForecastSales,ProjCategoryId)):
+        #        case fieldNum(ForecastSales,ProjCategoryId):
         #            if (this.ProjCategoryId)
         #            {
         #                if (ProjCategory::find(this.ProjCategoryId).CategoryType    != ProjCategoryType::Item)
-        #                    ret = checkFailed(strfmt("@SYS54897",this.ProjCategoryId));
+        #                    ret = checkFailed(strFmt("@SYS54897",this.ProjCategoryId));
         #            }
         #            break;
-        #        case(fieldnum(ForecastSales,ModelId)):
+        #        case fieldNum(ForecastSales,ModelId):
         #            if (this.ModelId != this.orig().ModelId)
         #            {
         #                forecastModel  = ForecastModel::find(HeadingSub::Heading,this.orig().ModelId);
         #                if (forecastModel.Blocked)
-        #                    ret = checkFailed(strfmt("@SYS25943",forecastModel.ModelId));
+        #                    ret = checkFailed(strFmt("@SYS25943",forecastModel.ModelId));
         #                else
         #                {
         #                    forecastModel  = ForecastModel::find(HeadingSub::Heading,this.ModelId);
         #                    if (forecastModel.Blocked)
-        #                        ret = checkFailed(strfmt("@SYS25943",forecastModel.ModelId));
+        #                        ret = checkFailed(strFmt("@SYS25943",forecastModel.ModelId));
         #                }
         #
         #            }
         #            break;
-        #        case(fieldnum(ForecastSales,SalesQty)):
+        #        case fieldNum(ForecastSales,SalesQty):
         #            if (this.SalesQty < 0)
         #                ret = checkFailed("@SYS50502");
         #            break;
         #
-        #        case fieldnum(ForecastSales, ActivityNumber):
-        #        {
+        #        case fieldNum(ForecastSales, ActivityNumber):
         #            ret = this.checkActivity();
-        #        }
+        #
         #        break;
         #}
         #
@@ -2189,7 +3354,7 @@ Formatversion: 1
         #            return false; // error message given elsewhere
         #
         #        if (this.ItemAllocateId && !ForecastItemAllocationLine::existItem(this.ItemAllocateId, this.ItemId))
-        #            warning(strfmt("@SYS85028", this.ItemAllocateId, this.ItemId));
+        #            warning(strFmt("@SYS85028", this.ItemAllocateId, this.ItemId));
         #        return true;
         #    }
         #
@@ -2199,7 +3364,7 @@ Formatversion: 1
         #            return checkFailed("@SYS85029");
         #
         #        if (!ForecastItemAllocationLine::existItemGroup(this.ItemAllocateId, this.ItemGroupId))
-        #            warning(strfmt("@SYS85031", this.ItemAllocateId, this.ItemGroupId));
+        #            warning(strFmt("@SYS85031", this.ItemAllocateId, this.ItemGroupId));
         #        return true;
         #    }
         #
@@ -2209,7 +3374,7 @@ Formatversion: 1
         #    return true;
         #}
       ENDSOURCE
-      SOURCE #ValidateWrite
+      SOURCE #validateWrite
         #server boolean validateWrite()
         #{
         #    boolean ok = true;
@@ -2218,7 +3383,7 @@ Formatversion: 1
         #    isProjForecastReduced=this.ProjId!='' && this.isProjForecastReduced();
         #
         #
-        #    setprefix(strfmt("@SYS14077", this.ItemId));
+        #    setPrefix(strFmt("@SYS14077", this.ItemId));
         #
         #    if(this.isProjLumpSum())
         #    {
@@ -2232,22 +3397,22 @@ Formatversion: 1
         #    if(isProjForecastReduced)
         #    {
         #        if(this.orig().ProjId != this.ProjId)
-        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ProjId)));
+        #            ok= checkFailed(strFmt("@SYS113137",fieldStr(ForecastSales, ProjId)));
         #        if(this.orig().ProjCategoryId != this.ProjCategoryId)
-        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ProjCategoryId)));
+        #            ok= checkFailed(strFmt("@SYS113137",fieldStr(ForecastSales, ProjCategoryId)));
         #        if(this.orig().ActivityNumber != this.ActivityNumber)
-        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ActivityNumber)));
+        #            ok= checkFailed(strFmt("@SYS113137",fieldStr(ForecastSales, ActivityNumber)));
         #        if(this.orig().ItemId != this.ItemId)
-        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ItemId)));
+        #            ok= checkFailed(strFmt("@SYS113137",fieldStr(ForecastSales, ItemId)));
         #        if(this.orig().ModelId != this.ModelId)
-        #            ok= checkFailed(strfmt("@SYS113137",fieldstr(ForecastSales, ModelId)));
+        #            ok= checkFailed(strFmt("@SYS113137",fieldStr(ForecastSales, ModelId)));
         #    }
         #
         #    if(this.ProjId && !this.ProjCategoryId)
         #        ok = checkFailed("@SYS12362");
         #
         #    if (this.ItemId && !InventTable::exist(this.ItemId))
-        #        ok = checkFailed(strfmt("@SYS5307", this.ItemId));
+        #        ok = checkFailed(strFmt("@SYS5307", this.ItemId));
         #
         #    if (this.SalesQty < 0)
         #        ok = checkFailed("@SYS50502");
@@ -2256,11 +3421,11 @@ Formatversion: 1
         #    {
         #        ok = ok && this.validateItemInfo();
         #    }
-        #    ok = ok && this.checkItemDim();
+        #    ok = ok && this.checkProductDim();
         #    ok = ok && this.checkProject();
         #    ok = ok && this.checkActivity();
         #    ok = ok && this.BudgetMap::validateWrite();
-        #    ok = ok && appl.dimensionSetValidation().checkDimension(this, fieldnum(ForecastSales, Dimension), true);
+        #    ok = ok && this.checkInventStatus();
         #
         #    return ok;
         #}
@@ -2283,7 +3448,7 @@ Formatversion: 1
         #    select count(RecId) from forecastSales
         #        where forecastSales.ProjId     == _projId  &&
         #              forecastSales.ModelId    == _modelId
-        #        join projControlCategory
+        #        join CategoryId from projControlCategory
         #            where projControlCategory.ControlId     == _projControlId                       &&
         #                  projControlCategory.CostGroupId   == _costGroupId                         &&
         #                  projControlCategory.CategoryId    == forecastSales.ProjCategoryId;
@@ -2307,6 +3472,49 @@ Formatversion: 1
         #        return true;
         #    else
         #        return false;
+        #}
+      ENDSOURCE
+      SOURCE #findProjectBudgetForecast
+        #/// <summary>
+        #/// Finds the specified record in the <c>ForecastSales</c> table.
+        #/// </summary>
+        #/// <param name="_projId">
+        #/// A <c>ProjId</c> value that specifies the project ID of the record to find.
+        #/// </param>
+        #/// <param name="_categoryId">
+        #/// A <c>CategoryId</c> value that specifies the category ID of the record to find.
+        #/// </param>
+        #/// <param name="_activityNumber">
+        #/// A <c>Activity Number</c> value that specifies the activity number of the record to find.
+        #/// </param>
+        #/// <param name="_projForecastBudgetType">
+        #/// A <c>CategoryId</c> value that specifies the forecast budget type of the record to find.
+        #/// </param>
+        #/// <param name="_forUpdate">
+        #/// A Boolean value that indicates whether to read the record for update; optional.
+        #/// </param>
+        #/// <returns>
+        #/// A <c>ForecastSales</c> table buffer that contains the budget forecast row.
+        #/// </returns>
+        #public static ForecastSales findProjectBudgetForecast(  ProjId _projId, CategoryId _categoryId,
+        #                                                        ProjActivityNumber _activityNumber,
+        #                                                        ProjForecastBudgetType _projForecastBudgetType,
+        #                                                        boolean _forUpdate = false)
+        #{
+        #    ForecastSales forecastSales;
+        #
+        #    if (_projId && _categoryId && _projForecastBudgetType)
+        #    {
+        #        forecastSales.selectForUpdate(_forUpdate);
+        #
+        #        select firstonly forecastSales
+        #        where forecastSales.ProjId == _projId
+        #        &&  forecastSales.ProjCategoryId == _categoryId
+        #        &&  forecastSales.ActivityNumber == _activityNumber
+        #        &&  forecastSales.ProjForecastBudgetType == _projForecastBudgetType;
+        #    }
+        #
+        #    return forecastSales;
         #}
       ENDSOURCE
       SOURCE #findProjTransId

@@ -1,0 +1,353 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalDocumentTaxTrans_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalDocumentTaxTrans_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalDocumentTaxTrans_BRT
+      Label               #@SYP4860099
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{1CD01F5E-1CB9-422D-9E73-977A92B02472}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{A01345E6-D678-4CA9-87CA-3B58F8482552}
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentNumber
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{FC8B6D31-F664-476C-92DA-1D11FD333898}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #FiscalDocumentSeries
+        STRING
+        PROPERTIES
+          Name                #FiscalDocumentSeries
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{96DF3BBE-3929-462A-8CA5-7B35166EA1DE}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #FiscalValue
+        ENUM
+        PROPERTIES
+          Name                #FiscalValue
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{1E936C87-B72E-4B18-BB55-8CF99BAFB046}
+          EnumType            #TaxFiscalValue_BR
+        ENDPROPERTIES
+        
+      FIELD #IncludedTax
+        ENUM
+        PROPERTIES
+          Name                #IncludedTax
+          Label               #@GLS67
+          HelpText            #@GLS68
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{658A3ACE-3382-4A9A-9E26-5E7FD0B6C667}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #LineNum
+        REAL
+        PROPERTIES
+          Name                #LineNum
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{BBC10AD2-F698-4AF2-B938-6EBB87F20BD2}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{70A11647-3622-4FC3-92D1-5090B726160C}
+        ENDPROPERTIES
+        
+      FIELD #RetainedTax
+        ENUM
+        PROPERTIES
+          Name                #RetainedTax
+          Label               #@GLS69
+          HelpText            #@GLS283
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{567A7056-15CC-4C58-A499-96B8700BD7F0}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #store
+        STRING
+        PROPERTIES
+          Name                #store
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{7CF81E38-06A3-4716-B97F-436CAD71FC20}
+        ENDPROPERTIES
+        
+      FIELD #TaxAmount
+        REAL
+        PROPERTIES
+          Name                #TaxAmount
+          Label               #@GLS100079
+          HelpText            #@GLS220755
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{72649209-A1E5-480E-A3EA-116E6E95025D}
+        ENDPROPERTIES
+        
+      FIELD #TaxAmountOther
+        REAL
+        PROPERTIES
+          Name                #TaxAmountOther
+          Label               #@GLS490
+          HelpText            #@GLS491
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{7344F238-98D6-4A30-8291-94223F5F54C4}
+        ENDPROPERTIES
+        
+      FIELD #TaxationCode
+        STRING
+        PROPERTIES
+          Name                #TaxationCode
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{ED7E9273-9E10-41E2-A006-1B57096C4FA2}
+          StringSize          #3
+        ENDPROPERTIES
+        
+      FIELD #TaxationOrigin
+        ENUM
+        PROPERTIES
+          Name                #TaxationOrigin
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{DA2A6D98-6E0E-4996-8316-EB08E64A3976}
+          EnumType            #FITaxationOrigin_BR
+        ENDPROPERTIES
+        
+      FIELD #TaxBaseAmount
+        REAL
+        PROPERTIES
+          Name                #TaxBaseAmount
+          Label               #@SYS79666
+          HelpText            #@SYS4001049
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{E727DE8D-46E7-472B-BFC7-44C0D1508CC4}
+        ENDPROPERTIES
+        
+      FIELD #TaxBaseAmountExempt
+        REAL
+        PROPERTIES
+          Name                #TaxBaseAmountExempt
+          Label               #@GLS219
+          HelpText            #@GLS418
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{2F6A9D7D-8431-40CC-B231-606BDE8265D0}
+        ENDPROPERTIES
+        
+      FIELD #TaxBaseAmountOther
+        REAL
+        PROPERTIES
+          Name                #TaxBaseAmountOther
+          Label               #@GLS220
+          HelpText            #@GLS222389
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{BCB00184-D566-414F-9324-53E9998FE202}
+        ENDPROPERTIES
+        
+      FIELD #TaxCode
+        STRING
+        PROPERTIES
+          Name                #TaxCode
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{A8CA317A-12E4-432B-84DD-CFECF144F1D2}
+        ENDPROPERTIES
+        
+      FIELD #TaxValue
+        REAL
+        PROPERTIES
+          Name                #TaxValue
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{1A2A6F57-C6F1-456D-918A-647CF62345AE}
+        ENDPROPERTIES
+        
+      FIELD #terminal
+        STRING
+        PROPERTIES
+          Name                #terminal
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{869FDCF3-3EFE-4ED7-8378-91D9F73AF7E9}
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{2E0FFB8F-2A24-4D2A-B548-7CD7A2D2F790}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #Type
+        ENUM
+        PROPERTIES
+          Name                #Type
+          Table               #RetailFiscalDocumentTaxTrans_BRT
+          Origin              #{E4850DDD-4AB8-4804-BBC5-249F927B6798}
+          EnumType            #TaxType_BR
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{07446E69-1EAB-48F3-97F0-901E74496A18}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #FiscalDocumentNumber
+        #FiscalDocumentSeries
+        #transactionId
+        #terminal
+        #TaxCode
+        #store
+        #Channel
+        #LineNum
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalDocumentTaxTrans_BRT cursor)
+        #{
+        #    RetailFiscalDocumentTaxTrans_BR target;
+        #    RetailFiscalDocumentTaxTrans_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint Idx
+        #                where (target.@LineNum==cursor2.@LineNum && target.@Channel==cursor2.@Channel && target.@store==cursor2.@store && target.@TaxCode==cursor2.@TaxCode && target.@terminal==cursor2.@terminal && target.@transactionId==cursor2.@transactionId && target.@FiscalDocumentSeries==cursor2.@FiscalDocumentSeries && target.@FiscalDocumentNumber==cursor2.@FiscalDocumentNumber);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @Channel,
+        #                    @FiscalDocumentNumber,
+        #                    @FiscalDocumentSeries,
+        #                    @FiscalValue,
+        #                    @IncludedTax,
+        #                    @LineNum,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @RetainedTax,
+        #                    @store,
+        #                    @TaxAmount,
+        #                    @TaxAmountOther,
+        #                    @TaxationCode,
+        #                    @TaxationOrigin,
+        #                    @TaxBaseAmount,
+        #                    @TaxBaseAmountExempt,
+        #                    @TaxBaseAmountOther,
+        #                    @TaxCode,
+        #                    @TaxValue,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @Type
+        #                )
+        #                select
+        #                    @Channel,
+        #                    @FiscalDocumentNumber,
+        #                    @FiscalDocumentSeries,
+        #                    @FiscalValue,
+        #                    @IncludedTax,
+        #                    @LineNum,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @RetainedTax,
+        #                    @store,
+        #                    @TaxAmount,
+        #                    @TaxAmountOther,
+        #                    @TaxationCode,
+        #                    @TaxationOrigin,
+        #                    @TaxBaseAmount,
+        #                    @TaxBaseAmountExempt,
+        #                    @TaxBaseAmountOther,
+        #                    @TaxCode,
+        #                    @TaxValue,
+        #                    @terminal,
+        #                    @transactionId,
+        #                    @Type
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

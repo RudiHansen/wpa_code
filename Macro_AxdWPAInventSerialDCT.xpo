@@ -1,0 +1,19 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: MCR
+
+; Microsoft Dynamics AX Macro: AxdWPAInventSerialDCT unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #AxdWPAInventSerialDCT
+    ##define.WPAInventSerial('WPAInventSerial')
+    ##define.WPAInventSerial_InventSerial_1('WPAInventSerial.InventSerial_1')
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{999398B6-54BC-4BBF-9FC9-AB05AA3A3AAC}
+  ENDPROPERTIES
+  
+
+***Element: END

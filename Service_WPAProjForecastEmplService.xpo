@@ -11,67 +11,37 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProjForecastEmplService
       ExternalName        #WPAProjForecastEmplService
-      Namespace           #
       Class               #WPAProjForecastEmplService
-      SecurityKey         #WPAServices
-      Description         #
+      Origin              #{B34CD6BA-60F5-49DB-BC00-C697826EDBDF}
     ENDPROPERTIES
     
     OPERATIONS
-      OPERATION #create
-        PROPERTIES
-          Name                #create
-          Method              #create
-        ENDPROPERTIES
-        
-      ENDOPERATION
-      
-      OPERATION #delete
-        PROPERTIES
-          Name                #delete
-          Method              #delete
-        ENDPROPERTIES
-        
-      ENDOPERATION
-      
       OPERATION #find
         PROPERTIES
           Name                #find
           Method              #find
-          EnableIdempotence   #No
         ENDPROPERTIES
         
-      ENDOPERATION
-      
-      OPERATION #findKeys
-        PROPERTIES
-          Name                #findKeys
-          Method              #findKeys
-          EnableIdempotence   #No
-        ENDPROPERTIES
+        PERMISSIONSET #Permissions
+          PROPERTIES
+          ENDPROPERTIES
+          
+          TABLES #Tables
+          ENDTABLES
+          
+        SERVERMETHODS #Server Methods
+        ENDSERVERMETHODS
         
-      ENDOPERATION
+      ASSOCIATEDCODEPERMISSIONS #Associated Code Permissions
+      ENDASSOCIATEDCODEPERMISSIONS
       
-      OPERATION #read
-        PROPERTIES
-          Name                #read
-          Method              #read
-          EnableIdempotence   #No
-        ENDPROPERTIES
-        
-      ENDOPERATION
-      
-      OPERATION #update
-        PROPERTIES
-          Name                #update
-          Method              #update
-        ENDPROPERTIES
-        
-      ENDOPERATION
-      
-    ENDOPERATIONS
-    
-  ENDSERVICE
+  ENDPERMISSIONSET
   
+ENDOPERATION
+
+ENDOPERATIONS
+
+ENDSERVICE
+
 
 ***Element: END

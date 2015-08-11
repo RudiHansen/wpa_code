@@ -1,0 +1,567 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: CLS
+
+; Microsoft Dynamics AX Class: WPAWorkcardSrv_WPAWorkcardTable unloaded
+; --------------------------------------------------------------------------------
+  CLSVERSION 1
+  
+  CLASS #WPAWorkcardSrv_WPAWorkcardTable
+    PROPERTIES
+      Name                #WPAWorkcardSrv_WPAWorkcardTable
+      Extends             #AfStronglyTypedDataContainer
+      Origin              #{DF1E43AE-C6C5-4014-AC6A-0411CC653B98}
+    ENDPROPERTIES
+    
+    METHODS
+      SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAWorkcardSrv_WPAWorkcardTable</c> class is the data object class that is exposed through the <c>WPAWorkcardSrvService</c> class.
+        #/// </summary>
+        ##AxdWPAWorkcardSrvDCT
+        #[AifDataContainerTypeAttribute(#WPAWorkcardSrv_WPAWorkcardTable)]
+        #class WPAWorkcardSrv_WPAWorkcardTable extends AfStronglyTypedDataContainer
+        #{
+        #    #define.WPAWorkcardLine('WPAWorkcardLine')
+        #    #define.WorkcardTypeId('WorkcardTypeId')
+        #    #define.WorkcardId('WorkcardId')
+        #    #define.Urgent('Urgent')
+        #    #define.Transferred('Transferred')
+        #    #define.Status('Status')
+        #    #define.StartTime('StartTime')
+        #    #define.SiteId('SiteId')
+        #    #define.ServiceObjectId('ServiceObjectId')
+        #    #define.Responsible('Responsible')
+        #    #define.RefTableId('RefTableId')
+        #    #define.RefRecId('RefRecId')
+        #    #define.RefCompany('RefCompany')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.PurchaseOrderNumber('PurchaseOrderNumber')
+        #    #define.OrderId('OrderId')
+        #    #define.ErrorTxt('ErrorTxt')
+        #    #define.EndTime('EndTime')
+        #    #define.EmploymentCode('EmploymentCode')
+        #    #define.Direction('Direction')
+        #    #define.Description('Description')
+        #    #define.DebitorId('DebitorId')
+        #    #define.CrmInfo2('CrmInfo2')
+        #    #define.CrmInfo1('CrmInfo1')
+        #    #define.AttentionName('AttentionName')
+        #    #define.AreaId('AreaId')
+        #    #define.AccountId('AccountId')
+        #    #define._DocumentHash('_DocumentHash')
+        #
+        #}
+        #
+      ENDSOURCE
+      SOURCE #createWPAWorkcardLine
+        #public AfStronglyTypedDataContainerList createWPAWorkcardLine()
+        #{
+        #    return this.get_NewList(#WPAWorkcardLine);
+        #}
+      ENDSOURCE
+      SOURCE #exists_DocumentHash
+        #public boolean exists_DocumentHash()
+        #{
+        #    return this.exists(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #existsAccountId
+        #public boolean existsAccountId()
+        #{
+        #    return this.exists(#AccountId);
+        #}
+      ENDSOURCE
+      SOURCE #existsAreaId
+        #public boolean existsAreaId()
+        #{
+        #    return this.exists(#AreaId);
+        #}
+      ENDSOURCE
+      SOURCE #existsAttentionName
+        #public boolean existsAttentionName()
+        #{
+        #    return this.exists(#AttentionName);
+        #}
+      ENDSOURCE
+      SOURCE #existsCrmInfo1
+        #public boolean existsCrmInfo1()
+        #{
+        #    return this.exists(#CrmInfo1);
+        #}
+      ENDSOURCE
+      SOURCE #existsCrmInfo2
+        #public boolean existsCrmInfo2()
+        #{
+        #    return this.exists(#CrmInfo2);
+        #}
+      ENDSOURCE
+      SOURCE #existsDebitorId
+        #public boolean existsDebitorId()
+        #{
+        #    return this.exists(#DebitorId);
+        #}
+      ENDSOURCE
+      SOURCE #existsDescription
+        #public boolean existsDescription()
+        #{
+        #    return this.exists(#Description);
+        #}
+      ENDSOURCE
+      SOURCE #existsDirection
+        #public boolean existsDirection()
+        #{
+        #    return this.exists(#Direction);
+        #}
+      ENDSOURCE
+      SOURCE #existsEmploymentCode
+        #public boolean existsEmploymentCode()
+        #{
+        #    return this.exists(#EmploymentCode);
+        #}
+      ENDSOURCE
+      SOURCE #existsEndTime
+        #public boolean existsEndTime()
+        #{
+        #    return this.exists(#EndTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsErrorTxt
+        #public boolean existsErrorTxt()
+        #{
+        #    return this.exists(#ErrorTxt);
+        #}
+      ENDSOURCE
+      SOURCE #existsOrderId
+        #public boolean existsOrderId()
+        #{
+        #    return this.exists(#OrderId);
+        #}
+      ENDSOURCE
+      SOURCE #existsPurchaseOrderNumber
+        #public boolean existsPurchaseOrderNumber()
+        #{
+        #    return this.exists(#PurchaseOrderNumber);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsRefCompany
+        #public boolean existsRefCompany()
+        #{
+        #    return this.exists(#RefCompany);
+        #}
+      ENDSOURCE
+      SOURCE #existsRefRecId
+        #public boolean existsRefRecId()
+        #{
+        #    return this.exists(#RefRecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRefTableId
+        #public boolean existsRefTableId()
+        #{
+        #    return this.exists(#RefTableId);
+        #}
+      ENDSOURCE
+      SOURCE #existsResponsible
+        #public boolean existsResponsible()
+        #{
+        #    return this.exists(#Responsible);
+        #}
+      ENDSOURCE
+      SOURCE #existsServiceObjectId
+        #public boolean existsServiceObjectId()
+        #{
+        #    return this.exists(#ServiceObjectId);
+        #}
+      ENDSOURCE
+      SOURCE #existsSiteId
+        #public boolean existsSiteId()
+        #{
+        #    return this.exists(#SiteId);
+        #}
+      ENDSOURCE
+      SOURCE #existsStartTime
+        #public boolean existsStartTime()
+        #{
+        #    return this.exists(#StartTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsStatus
+        #public boolean existsStatus()
+        #{
+        #    return this.exists(#Status);
+        #}
+      ENDSOURCE
+      SOURCE #existsTransferred
+        #public boolean existsTransferred()
+        #{
+        #    return this.exists(#Transferred);
+        #}
+      ENDSOURCE
+      SOURCE #existsUrgent
+        #public boolean existsUrgent()
+        #{
+        #    return this.exists(#Urgent);
+        #}
+      ENDSOURCE
+      SOURCE #existsWorkcardId
+        #public boolean existsWorkcardId()
+        #{
+        #    return this.exists(#WorkcardId);
+        #}
+      ENDSOURCE
+      SOURCE #existsWorkcardTypeId
+        #public boolean existsWorkcardTypeId()
+        #{
+        #    return this.exists(#WorkcardTypeId);
+        #}
+      ENDSOURCE
+      SOURCE #existsWPAWorkcardLine
+        #public boolean existsWPAWorkcardLine()
+        #{
+        #    return this.exists(#WPAWorkcardLine);
+        #}
+      ENDSOURCE
+      SOURCE #new
+        #public void new()
+        #{
+        #    super();
+        #}
+      ENDSOURCE
+      SOURCE #parm_DocumentHash
+        #public str parm_DocumentHash(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#_DocumentHash, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#_DocumentHash);
+        #}
+      ENDSOURCE
+      SOURCE #parmAccountId
+        #public str parmAccountId(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AccountId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AccountId);
+        #}
+      ENDSOURCE
+      SOURCE #parmAreaId
+        #public WPAAreaId parmAreaId(WPAAreaId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AreaId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AreaId);
+        #}
+      ENDSOURCE
+      SOURCE #parmAttentionName
+        #public WPAAttentionName parmAttentionName(WPAAttentionName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AttentionName, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AttentionName);
+        #}
+      ENDSOURCE
+      SOURCE #parmCrmInfo1
+        #public WPACrmInfo1 parmCrmInfo1(WPACrmInfo1 _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CrmInfo1, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CrmInfo1);
+        #}
+      ENDSOURCE
+      SOURCE #parmCrmInfo2
+        #public WPACrmInfo2 parmCrmInfo2(WPACrmInfo2 _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CrmInfo2, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CrmInfo2);
+        #}
+      ENDSOURCE
+      SOURCE #parmDebitorId
+        #public str parmDebitorId(str _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#DebitorId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#DebitorId);
+        #}
+      ENDSOURCE
+      SOURCE #parmDescription
+        #public WPADescription parmDescription(WPADescription _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Description, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Description);
+        #}
+      ENDSOURCE
+      SOURCE #parmDirection
+        #public WPADirection parmDirection(WPADirection _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Direction, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Direction);
+        #}
+      ENDSOURCE
+      SOURCE #parmEmploymentCode
+        #public DirPartyNumber parmEmploymentCode(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#EmploymentCode, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#EmploymentCode);
+        #}
+      ENDSOURCE
+      SOURCE #parmEndTime
+        #public WPAEndTime parmEndTime(WPAEndTime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#EndTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#EndTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmErrorTxt
+        #public WPAErrorTxt parmErrorTxt(WPAErrorTxt _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ErrorTxt, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ErrorTxt);
+        #}
+      ENDSOURCE
+      SOURCE #parmOrderId
+        #public WPAOrderId parmOrderId(WPAOrderId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#OrderId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#OrderId);
+        #}
+      ENDSOURCE
+      SOURCE #parmPurchaseOrderNumber
+        #public WPAPurchaseOrderNumber parmPurchaseOrderNumber(WPAPurchaseOrderNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PurchaseOrderNumber, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PurchaseOrderNumber);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public RecId parmRecId(RecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmRefCompany
+        #public CompanyId parmRefCompany(CompanyId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RefCompany, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RefCompany);
+        #}
+      ENDSOURCE
+      SOURCE #parmRefRecId
+        #public RefRecId parmRefRecId(RefRecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RefRecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RefRecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRefTableId
+        #public RefTableId parmRefTableId(RefTableId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RefTableId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RefTableId);
+        #}
+      ENDSOURCE
+      SOURCE #parmResponsible
+        #public WPAResponsible parmResponsible(WPAResponsible _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Responsible, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Responsible);
+        #}
+      ENDSOURCE
+      SOURCE #parmServiceObjectId
+        #public WPAServiceObjectId parmServiceObjectId(WPAServiceObjectId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ServiceObjectId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ServiceObjectId);
+        #}
+      ENDSOURCE
+      SOURCE #parmSiteId
+        #public WPASiteId parmSiteId(WPASiteId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SiteId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SiteId);
+        #}
+      ENDSOURCE
+      SOURCE #parmStartTime
+        #public WPAStartTime parmStartTime(WPAStartTime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#StartTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#StartTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmStatus
+        #public WPAStatus parmStatus(WPAStatus _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Status, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Status);
+        #}
+      ENDSOURCE
+      SOURCE #parmTransferred
+        #public WPATransferred parmTransferred(WPATransferred _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Transferred, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Transferred);
+        #}
+      ENDSOURCE
+      SOURCE #parmUrgent
+        #public WPAUrgent parmUrgent(WPAUrgent _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Urgent, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Urgent);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorkcardId
+        #public WPAWorkcardId parmWorkcardId(WPAWorkcardId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#WorkcardId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#WorkcardId);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorkcardTypeId
+        #public WPAWorkcardTypeId parmWorkcardTypeId(WPAWorkcardTypeId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#WorkcardTypeId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#WorkcardTypeId);
+        #}
+      ENDSOURCE
+      SOURCE #parmWPAWorkcardLine
+        #public AfStronglyTypedDataContainerList parmWPAWorkcardLine(AfStronglyTypedDataContainerList _value = null)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_List(#WPAWorkcardLine, _value);
+        #    }
+        #
+        #    return this.get_List(#WPAWorkcardLine);
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDCLASS
+
+***Element: END

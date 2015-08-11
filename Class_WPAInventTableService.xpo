@@ -12,21 +12,34 @@ Formatversion: 1
       Name                #WPAInventTableService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{66B7719A-0CC9-48AF-B3EC-ECECA7F10A2B}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventTableService</c> class serves as the document service for the <c>WPAInventTable</c> document type.
+        #/// </summary>
         #class WPAInventTableService extends AifDocumentService
         #{
+        #
         #}
         #
       ENDSOURCE
       SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAInventTable</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
         #public WPAInventTable find(AifQueryCriteria _queryCriteria)
         #{
         #    WPAInventTable wPAInventTable = new WPAInventTable();
-        #    ;
         #    this.findList(_queryCriteria, wPAInventTable);
         #    return wPAInventTable;
         #}

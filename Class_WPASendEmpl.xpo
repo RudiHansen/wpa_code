@@ -11,37 +11,24 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASendEmpl
       Extends             #AxdSend
-      RunOn               #Called from
+      Origin              #{99FE2B5B-0048-4CE2-905F-7ED6263BAAA8}
+      LegacyId            #50081
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPASendEmpl extends AxdSend
         #{
-        #    EmplId  emplId;
+        #    HcmWorkerRecId  workerRecId;
         #}
       ENDSOURCE
-      SOURCE #getEndpoint
-        #AifEndpointId getEndpoint()
+      SOURCE #parmDocumentClassId
+        #public AifDocumentClassId parmDocumentClassId(AifDocumentClassId _documentClassId = aifDocumentClassId)
         #{
-        #    ;
-        #    this.retrieveEndPoints();
+        #    aifDocumentClassId = _documentClassId;
         #
-        #    select firstonly tmpAifEndPoint;
-        #
-        #    return tmpAifEndPoint.EndpointId;
+        #    return aifDocumentClassId;
         #}
-      ENDSOURCE
-      SOURCE #parmEmplId
-        #public EmplId parmEmplId(EmplId _emplId = emplId)
-        #{
-        #    ;
-        #    emplId = _emplId;
-        #
-        #    return emplId;
-        #}
-        #
       ENDSOURCE
       SOURCE #parmSendActionType
         #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
@@ -63,19 +50,28 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
+      SOURCE #parmWorkerRecId
+        #public HcmWorkerRecId parmWorkerRecId(HcmWorkerRecId _workerRecId = workerRecId)
+        #{
+        #    workerRecId = _workerRecId;
+        #
+        #    return workerRecId;
+        #}
+      ENDSOURCE
       SOURCE #queryRun
         #public QueryRun queryRun()
         #{
         #    QueryRun            ret;
         #    QueryBuildRange     qbr_TransId;
         #    ;
+        #
         #    if (!ret)
         #    {
         #        ret = super();
-        #        qbr_TransId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(EmplTable)), fieldnum(EmplTable, EmplId));
-        #        if (emplId)
+        #        qbr_TransId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(HcmWorker)), fieldnum(HcmWorker, RecId));
+        #        if (workerRecId)
         #        {
-        #            qbr_TransId.value(emplId);
+        #            qbr_TransId.value(queryValue(workerRecId));
         #            qbr_TransId.status(RangeStatus::Locked);
         #        }
         #    }
@@ -85,45 +81,38 @@ Formatversion: 1
       SOURCE #showDialog
         #public boolean showDialog()
         #{
-        #    boolean ret;
-        #    ;
-        #    if (emplId)
-        #    {
-        #        ret = false;
-        #    }
-        #    else
-        #    {
-        #        ret = true;
-        #    }
-        #    return ret;
+        #    return (workerRecId != 0) ? false : true;
         #}
       ENDSOURCE
       SOURCE #main
         #static public void main(Args args)
         #{
-        #    WPASendEmpl         WPASendEmpl;
+        #    WPASendEmpl         sendEmpl;
         #    AifConstraintList   aifConstraintList;
         #    AifConstraint       aifConstraint;
-        #    EmplTable           emplTable;
+        #    HcmWorker           workerTable;
         #    ;
         #
-        #    WPASendEmpl         = new WPASendEmpl();
+        #    sendEmpl            = new WPASendEmpl();
         #    aifConstraintList   = new AifConstraintList();
         #    aifConstraint       = new AifConstraint();
-        #    if (args.record())
+        #
+        #    if (args && args.record() && args.record().TableId == tableNum(HcmWorker))
         #    {
-        #        emplTable    = args.record();
-        #        WPASendEmpl.parmEmplId(emplTable.EmplId);
+        #        workerTable = args.record();
+        #        sendEmpl.parmWorkerRecId(workerTable.RecId);
         #    }
+        #
         #    aifConstraint.parmType(AifConstraintType::NoConstraint);
         #    aifConstraintList.addConstraint(aifConstraint);
         #
-        #    WPASendEmpl.parmShowDocPurpose(true) ;
-        #    WPASendEmpl.parmServiceClassId(classnum(WPAEmplService));
-        #    WPASendEmpl.parmSendActionType(AifSendActionType::SendByQuery);
-        #    WPASendEmpl.parmEndPoint(WPASendEmpl.getEndpoint());
+        #    sendEmpl.parmOutboundPortName("WPAParam");
+        #    sendEmpl.parmShowDocPurpose(true) ;
+        #    sendEmpl.parmServiceClassId(classnum(WPAEmplService));
+        #    sendEmpl.parmSendActionType(AifSendActionType::SendByQuery);
+        #    sendEmpl.parmDocumentClassId(classnum(WPAEmpl));
         #
-        #    WPASendEmpl.sendMultipleDocuments(classnum(WPAEmpl), classnum(WPAEmplService), AifSendMode::Async, aifConstraintList);
+        #    sendEmpl.sendMultipleDocuments(classnum(WPAEmpl), classnum(WPAEmplService), AifSendMode::Async, aifConstraintList);
         #}
       ENDSOURCE
     ENDMETHODS

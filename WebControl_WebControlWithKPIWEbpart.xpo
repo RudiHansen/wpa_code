@@ -1,0 +1,375 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: WCL
+
+; Microsoft Dynamics AX WEBCONTROL : WebControlWithKPIWEbpart unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  WEBCONTROL #WebControlWithKPIWEbpart
+    PROPERTIES
+      Name                #WebControlWithKPIWEbpart
+      Filename            #WebControlWithKPIWEbpart.ascx
+      RelativePath        #ep
+      Origin              #{F9002A7B-2661-49F7-9D8D-3890100CEDF7}
+    ENDPROPERTIES
+    
+    SOURCE #
+      #<%@ Control Language="C#" AutoEventWireup="true" CodeFile="WebControlWithKPIWEbpart.ascx.cs" Inherits="WebControlWithKPIWEbpart" Description="Industry Benchmark" %>
+      #<Dynamics:BusinessOverviewWebPart runat="server" id="kpiWebPart" Mode="KPIList" 
+      #    DefaultTitle="Industry Benchmark" Description="Industry Benchmark" 
+      #    TitleLabel="Industry Benchmark" UserTitle="Industry Benchmark"></Dynamics:BusinessOverviewWebPart>
+      #
+    ENDSOURCE
+    PERMISSIONS #Permissions
+      PROPERTIES
+      ENDPROPERTIES
+      
+      PERMISSIONSET #Read
+        PROPERTIES
+        ENDPROPERTIES
+        
+        TABLES #Tables
+        ENDTABLES
+        
+      SERVERMETHODS #Server Methods
+      ENDSERVERMETHODS
+      
+    ASSOCIATEDWEBCONTROLS #Associated Web Controls
+    ENDASSOCIATEDWEBCONTROLS
+    
+ENDPERMISSIONSET
+
+PERMISSIONSET #Update
+  PROPERTIES
+  ENDPROPERTIES
+  
+  TABLES #Tables
+  ENDTABLES
+  
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDWEBCONTROLS #Associated Web Controls
+ENDASSOCIATEDWEBCONTROLS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Create
+  PROPERTIES
+  ENDPROPERTIES
+  
+  TABLES #Tables
+  ENDTABLES
+  
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDWEBCONTROLS #Associated Web Controls
+ENDASSOCIATEDWEBCONTROLS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Delete
+  PROPERTIES
+  ENDPROPERTIES
+  
+  TABLES #Tables
+  ENDTABLES
+  
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDWEBCONTROLS #Associated Web Controls
+ENDASSOCIATEDWEBCONTROLS
+
+ENDPERMISSIONSET
+
+ENDPERMISSIONS
+
+SOURCEFILE
+PROPERTIES
+  Name                #WebControlWithKPIWEbpart_ascx_cs
+  Filename            #WebControlWithKPIWEbpart.ascx.cs
+  RelativePath        #ep
+ENDPROPERTIES
+
+SOURCE #
+  #using System;
+  #using System.Collections.Generic;
+  #using System.Linq;
+  #using System.Web;
+  #using System.Web.UI;
+  #using System.Web.UI.DataVisualization.Charting;
+  #using System.Web.UI.WebControls;
+  #using Microsoft.Dynamics.Framework.Portal.UI.WebControls;
+  #using Microsoft.Dynamics.Framework.Portal.UI.WebControls.WebParts;
+  #using System.Web.UI.HtmlControls;
+  #
+  #/* **********************************************************************************************************************************
+  # * Custom WebPart - FOR DEMO PURPOSES ONLY!
+  # * ----------------------------------------------------------------------------------------------------------------------------------
+  # * This web part was created to showcase the interoperability with Microsoft Lync and showcases how external data can be consumed
+  # * in a web part. For demo purposes the industry average values and user sip addresses for Microsoft Lync demo scenario are hardcoded.
+  # * This web part is for demonstration purposes only and cannot be used in a production environment.
+  # ************************************************************************************************************************************/ 
+  #
+  #public partial class WebControlWithKPIWEbpart : System.Web.UI.UserControl
+  #{
+  #    string sipAddress1 = "phyllis@contoso.com";
+  #    string acct1 = "CONTOSO%5Cphyllis";
+  #
+  #    string sipAddress2 = "vince@contoso.com";
+  #    string acct2 = "CONTOSO%5Cvince";
+  #
+  #    string sipAddress3 = "ken@contoso.com";
+  #    string acct3 = "CONTOSO%5Cken";
+  #
+  #    string sipAddress4 = "karl@contoso.com";
+  #    string acct4 = "CONTOSO%5Ckarl";
+  #
+  #    int i = 1;
+  #
+  #    protected override void OnInit(EventArgs e)
+  #    {
+  #        base.OnInit(e);
+  #        this.kpiWebPart.HeaderRowCreated += new EventHandler<BusinessOverviewRowCreatedEventArgs>(kpiWebPart_HeaderRowCreated);
+  #        this.kpiWebPart.ItemRowCreated += new EventHandler<BusinessOverviewRowCreatedEventArgs>(kpiWebPart_ItemRowCreated);
+  #        this.kpiWebPart.FooterRowCreated += new EventHandler<BusinessOverviewRowCreatedEventArgs>(kpiWebPart_FooterRowCreated);
+  #
+  #        //AxBaseWebPart webpart = AxBaseWebPart.GetWebpart(this);
+  #        //webpart.ChromeType = System.Web.UI.WebControls.WebParts.PartChromeType.Default;
+  #    }
+  #
+  #    void kpiWebPart_FooterRowCreated(object sender, BusinessOverviewRowCreatedEventArgs e)
+  #    {
+  #        e.TableRow.Cells[e.TableRow.Cells.Count - 1].ColSpan = e.TableRow.Cells[e.TableRow.Cells.Count - 1].ColSpan + 3;
+  #    }
+  #
+  #    void kpiWebPart_ItemRowCreated(object sender, BusinessOverviewRowCreatedEventArgs e)
+  #    {
+  #
+  #
+  #        //if (e.Indicator.MeasureName == "Cash ratio")
+  #        //{
+  #        //    cell.InnerText = "200";
+  #        //}
+  #        //else
+  #        //{
+  #        //    cell.InnerText = "5";
+  #        //}//e.Indicator.MeasureName; //get data from web service
+  #
+  #        HtmlTableCell cell = new HtmlTableCell();
+  #        HtmlTableCell cell2 = new HtmlTableCell();
+  #
+  #    
+  #        switch (e.Indicator.MeasureName)
+  #        {
+  #            case "Average collection period":
+  #                cell.InnerText = "42.0";
+  #                cell2.InnerHtml = "<img src=\"/_layouts/ep/images/kpitrend-0.gif\" />";
+  #                break;
+  #            case "Gross profit margin":
+  #                cell.InnerText = "38.1";
+  #                cell2.InnerHtml = "<img src=\"/_layouts/ep/images/kpitrend-2.gif\" />";
+  #                break;
+  #            case "Quick ratio":
+  #                cell.InnerText = "0.63";
+  #                cell2.InnerHtml = "<img src=\"/_layouts/ep/images/kpitrend-2.gif\" />";
+  #                break;
+  #            case "Current ratio":
+  #                cell.InnerText = "1.31";
+  #                cell2.InnerHtml = "<img src=\"/_layouts/ep/images/kpitrend-0.gif\" />";
+  #                break;
+  #            case "Inventory turnover":
+  #                cell.InnerText = "7.51";
+  #                cell2.InnerHtml = "<img src=\"/_layouts/ep/images/kpitrend-4.gif\" />";
+  #                break;
+  #            case "EBITDA margin":
+  #                cell.InnerText = "35.0";
+  #                cell2.InnerHtml = "<img src=\"/_layouts/ep/images/kpitrend-2.gif\" />";
+  #                break;
+  #        }
+  #
+  #        cell.Align = "Right";
+  #        cell.Width = "50";
+  #        e.TableRow.Cells.Add(cell);
+  #
+  #        cell2.Align = "Center";
+  #   //     cell2.Width = "75";
+  #        cell2.Width = "50";
+  #        e.TableRow.Cells.Add(cell2);
+  #
+  #        Control control = GetImage(e.Indicator.MeasureName);
+  #        HtmlTableCell cell3 = new HtmlTableCell();
+  #        cell3.Align = "Left";
+  #        cell3.Controls.Add(control);
+  #        e.TableRow.Cells.Add(cell3);
+  #        i++;
+  #
+  #    }
+  #
+  #    private Control GetImage(string _measureName)
+  #    {
+  #        switch (_measureName)
+  #        {
+  #            case "Average collection period":
+  #                return new LiteralControl(String.Concat("<div id=\"PresenceLink"
+  #                    , sipAddress1
+  #                            , "\">"
+  #                            , "<img border=\"0\" height=\"12\" src=\"/_layouts/images/imnhdr.gif\" onload=\"IMNRC('"
+  #                            , sipAddress1
+  #                            , "')\" ShowOfflinePawn=\"1\" style=\"padding-right: 3px;\" id=\"PresencePawn"
+  #                            , i
+  #                            , sipAddress1
+  #                            , "\" alt=\"presence pawn for "
+  #                            , sipAddress1
+  #                            , "\" /><a href=\""
+  #                         //   , "http://intranet.contoso.com"
+  #                         //  , "/my/Person.aspx?accountname=" 
+  #                          , "http://my.contoso.com"
+  #                          , "/Person.aspx?accountname="  
+  #                          , acct1
+  #                            , "\" id=\"ProfileLink"
+  #                            , sipAddress1
+  #                            , "\">"
+  #                            , "Phyllis"
+  #                            , "</a></div>"));        
+  #                   
+  #
+  #            case "Gross profit margin":
+  #                return new LiteralControl(String.Concat("<div id=\"PresenceLink"
+  #                        , sipAddress2
+  #                            , "\">"
+  #                            , "<img border=\"0\" height=\"12\" src=\"/_layouts/images/imnhdr.gif\" onload=\"IMNRC('"
+  #                            , sipAddress2
+  #                            , "')\" ShowOfflinePawn=\"1\" style=\"padding-right: 3px;\" id=\"PresencePawn"
+  #                            , i
+  #                            , sipAddress2
+  #                            , "\" alt=\"presence pawn for "
+  #                            , sipAddress2
+  #                            , "\" /><a href=\""
+  #                       //   , "http://intranet.contoso.com"
+  #                       //   , "/my/Person.aspx?accountname="
+  #                            , "http://my.contoso.com"
+  #                            , "/Person.aspx?accountname="      
+  #                            , acct2
+  #                            , "\" id=\"ProfileLink"
+  #                            , sipAddress2
+  #                            , "\">"
+  #                            , "Vince"
+  #                            , "</a></div>"));
+  #                          
+  #
+  #            case "Quick ratio":
+  #            case "Current ratio":
+  #                return new LiteralControl(String.Concat("<div id=\"PresenceLink"
+  #                    , sipAddress3
+  #                            , "\">"
+  #                            , "<img border=\"0\" height=\"12\" src=\"/_layouts/images/imnhdr.gif\" onload=\"IMNRC('"
+  #                            , sipAddress3
+  #                            , "')\" ShowOfflinePawn=\"1\" style=\"padding-right: 3px;\" id=\"PresencePawn"
+  #                            , i
+  #                            , sipAddress3
+  #                            , "\" alt=\"presence pawn for "
+  #                            , sipAddress3
+  #                            , "\" /><a href=\""
+  #                        //    , "http://intranet.contoso.com"
+  #                        //    , "/my/Person.aspx?accountname="
+  #                            , "http://my.contoso.com"
+  #                            , "/Person.aspx?accountname="    
+  #                            , acct3
+  #                            , "\" id=\"ProfileLink"
+  #                            , sipAddress3
+  #                            , "\">"
+  #                            , "Ken"
+  #                            , "</a></div>"));      
+  #                 
+  #
+  #            case "Inventory turnover":
+  #                return new LiteralControl(String.Concat("<div id=\"PresenceLink"
+  #                    , sipAddress4
+  #                            , "\">"
+  #                            , "<img border=\"0\" height=\"12\" src=\"/_layouts/images/imnhdr.gif\" onload=\"IMNRC('"
+  #                            , sipAddress4
+  #                            , "')\" ShowOfflinePawn=\"1\" style=\"padding-right: 3px;\" id=\"PresencePawn"
+  #                            , i
+  #                            , sipAddress4
+  #                            , "\" alt=\"presence pawn for "
+  #                            , sipAddress4
+  #                            , "\" /><a href=\""
+  #                       //     , "http://intranet.contoso.com"
+  #                       //     , "/my/Person.aspx?accountname="
+  #                            , "http://my.contoso.com"
+  #                            , "/Person.aspx?accountname="    
+  #                            , acct4
+  #                            , "\" id=\"ProfileLink"
+  #                            , sipAddress4
+  #                            , "\">"
+  #                            , "Karl"
+  #                            , "</a></div>"));
+  #
+  #            case "EBITDA margin":
+  #                return new LiteralControl(String.Concat("<div id=\"PresenceLink"
+  #                    , sipAddress3
+  #                            , "\">"
+  #                            , "<img border=\"0\" height=\"12\" src=\"/_layouts/images/imnhdr.gif\" onload=\"IMNRC('"
+  #                            , sipAddress3
+  #                            , "')\" ShowOfflinePawn=\"1\" style=\"padding-right: 3px;\" id=\"PresencePawn"
+  #                            , i
+  #                            , sipAddress3
+  #                            , "\" alt=\"presence pawn for "
+  #                            , sipAddress3
+  #                            , "\" /><a href=\""
+  #                       //     , "http://intranet.contoso.com"
+  #                       //     , "/my/Person.aspx?accountname="
+  #                            , "http://my.contoso.com"
+  #                            , "/Person.aspx?accountname="    
+  #                            , acct3
+  #                            , "\" id=\"ProfileLink"
+  #                            , sipAddress3
+  #                            , "\">"
+  #                            , "Ken"
+  #                            , "</a></div>"));
+  #
+  #            default:
+  #                return null;
+  #            
+  #        }
+  #                
+  #    }
+  #
+  #    void kpiWebPart_HeaderRowCreated(object sender, BusinessOverviewRowCreatedEventArgs e)
+  #    {
+  #        HtmlTableCell cell = new HtmlTableCell();
+  #        cell.InnerText = "Ind Avg";
+  #        cell.Align = "Right";
+  #        e.TableRow.Cells.Add(cell);
+  #        var row = new HtmlTableRow();
+  #
+  #        HtmlTableCell cell2 = new HtmlTableCell();
+  #        cell2.InnerText = "Trend";
+  #        cell2.Align = "Center";
+  #        e.TableRow.Cells.Add(cell2);
+  #
+  #        HtmlTableCell cell3 = new HtmlTableCell();
+  #        cell3.InnerText = "Owner";
+  #        cell3.Align = "Left";
+  #        e.TableRow.Cells.Add(cell3);
+  #
+  #    }
+  #
+  #    protected void Page_Load(object sender, EventArgs e)
+  #    {
+  #
+  #    }
+  #}
+  #
+ENDSOURCE
+ENDSOURCEFILE
+
+ENDWEBCONTROL
+
+
+***Element: END

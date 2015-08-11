@@ -15,9 +15,9 @@ Formatversion: 1
       HelpText            #@WPA145
       ObjectType          #Class
       Object              #WPAWorkCardTransfer
-      RunOn               #Called from
       ConfigurationKey    #WPAIntegration
       SecurityKey         #WPAPeriodic
+      Origin              #{ED5A756C-AF29-418C-BFD1-4497C3FE895A}
     ENDPROPERTIES
     
   ENDMENUITEM

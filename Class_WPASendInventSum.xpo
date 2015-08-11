@@ -11,11 +11,11 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASendInventSum
       Extends             #AxdSend
-      RunOn               #Called from
+      Origin              #{7A140C4A-863C-413C-8DC2-1D4A42029A6E}
+      LegacyId            #50123
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPASendInventSum extends AxdSend
         #{
@@ -23,15 +23,12 @@ Formatversion: 1
         #    ItemId  itemId;
         #}
       ENDSOURCE
-      SOURCE #getEndpoint
-        #AifEndpointId getEndpoint()
+      SOURCE #parmDocumentClassId
+        #public AifDocumentClassId parmDocumentClassId(AifDocumentClassId _documentClassId = aifDocumentClassId)
         #{
-        #    ;
-        #    this.retrieveEndPoints();
+        #    aifDocumentClassId = _documentClassId;
         #
-        #    select firstonly tmpAifEndPoint;
-        #
-        #    return tmpAifEndPoint.EndpointId;
+        #    return aifDocumentClassId;
         #}
       ENDSOURCE
       SOURCE #parmItemId
@@ -114,6 +111,35 @@ Formatversion: 1
         #    return ret;
         #}
       ENDSOURCE
+      SOURCE #updateQuery
+        #public void updateQuery(ItemId  _itemIdFrom,
+        #                        ItemId  _itemIdTo,
+        #                        Query   _query)
+        #{
+        #    Query               queryLocal;
+        #    QueryBuildRange     qbr_ItemId;
+        #    ;
+        #    aifDocumentClassId  = classnum(WPAInventTable);
+        #    aifSendMode         = AifSendMode::Async ;
+        #    sendActionType      = AifSendActionType::SendByQuery;
+        #    aifActionId = this.getActionId();
+        #    qbr_ItemId  = SysQuery::findOrCreateRange(_query.dataSourceTable(tablenum(InventSum)), fieldnum(InventSum, ItemId));
+        #    qbr_ItemId.value(SysQuery::range(_itemIdFrom, _itemIdTo));
+        #    this.queryRun().query(_query);
+        #}
+      ENDSOURCE
+      SOURCE #getPortName
+        #public static AifPortName getPortName()
+        #{
+        #    AifPortActionPolicy aifPortActionPolicy;
+        #    AifPortName         aifPortName;
+        #    ;
+        #    select firstOnly aifPortActionPolicy
+        #        where aifPortActionPolicy.ActionId == "WPAInventSumService.find";
+        #
+        #    return AifPort::findById(aifPortActionPolicy.Port).Name;
+        #}
+      ENDSOURCE
       SOURCE #main
         #static public void main(Args args)
         #{
@@ -131,15 +157,18 @@ Formatversion: 1
         #        inventTable = args.record();
         #        WPASendInventSum.parmItemId(inventTable.ItemId);
         #    }
+        #    WPASendInventSum.parmSkipDialog(args.parmEnum());
         #    aifConstraint.parmType(AifConstraintType::NoConstraint);
         #    aifConstraintList.addConstraint(aifConstraint);
         #
-        #    WPASendInventSum.parmShowDocPurpose(true);
-        #    WPASendInventSum.parmSkipDialog(args.parmEnum());
+        #    WPASendInventSum.parmOutboundPortName(WPASendInventSum::getPortName());
+        #    WPASendInventSum.parmShowDocPurpose(true) ;
         #    WPASendInventSum.parmServiceClassId(classnum(WPAInventSumService));
         #    WPASendInventSum.parmSendActionType(AifSendActionType::SendByQuery);
-        #    WPASendInventSum.parmEndPoint(WPASendInventSum.getEndpoint());
+        #    WPASendInventSum.parmDocumentClassId(classnum(WPAInventSum));
+        #
         #    WPASendInventSum.sendMultipleDocuments(classnum(WPAInventSum), classnum(WPAInventSumService), AifSendMode::Async, aifConstraintList);
+        #
         #}
       ENDSOURCE
     ENDMETHODS

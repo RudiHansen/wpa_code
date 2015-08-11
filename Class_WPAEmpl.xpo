@@ -11,25 +11,33 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAEmpl
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{8EC54132-5EDF-4D9D-8FD5-D7312674084F}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAEmpl</c> class is the data object class that is exposed through the <c>WPAEmplService</c> class.
+        #/// </summary>
+        ##AxdWPAEmplDCT
+        #[AifDataContainerTypeAttribute(#WPAEmpl)]
         #class WPAEmpl extends AifDocument
         #{
+        #    #define.ValidToDateTime('ValidToDateTime')
+        #    #define.ValidTimeStateType('ValidTimeStateType')
+        #    #define.ValidFromDateTime('ValidFromDateTime')
+        #    #define.ValidAsOfDateTime('ValidAsOfDateTime')
         #    #define.SenderId('SenderId')
-        #    #define.EmplTable('EmplTable')
+        #    #define.HcmWorker('HcmWorker')
         #    #define.DocPurpose('DocPurpose')
         #
         #}
         #
       ENDSOURCE
-      SOURCE #createEmplTable
-        #public AfStronglyTypedDataContainerList createEmplTable()
+      SOURCE #createHcmWorker
+        #public AfStronglyTypedDataContainerList createHcmWorker()
         #{
-        #    return this.get_NewList(#EmplTable);
+        #    return this.get_NewList(#HcmWorker);
         #}
       ENDSOURCE
       SOURCE #existsDocPurpose
@@ -38,10 +46,10 @@ Formatversion: 1
         #    return this.exists(#DocPurpose);
         #}
       ENDSOURCE
-      SOURCE #existsEmplTable
-        #public boolean existsEmplTable()
+      SOURCE #existsHcmWorker
+        #public boolean existsHcmWorker()
         #{
-        #    return this.exists(#EmplTable);
+        #    return this.exists(#HcmWorker);
         #}
       ENDSOURCE
       SOURCE #existsSenderId
@@ -50,10 +58,34 @@ Formatversion: 1
         #    return this.exists(#SenderId);
         #}
       ENDSOURCE
+      SOURCE #existsValidAsOfDateTime
+        #public boolean existsValidAsOfDateTime()
+        #{
+        #    return this.exists(#ValidAsOfDateTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsValidFromDateTime
+        #public boolean existsValidFromDateTime()
+        #{
+        #    return this.exists(#ValidFromDateTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsValidTimeStateType
+        #public boolean existsValidTimeStateType()
+        #{
+        #    return this.exists(#ValidTimeStateType);
+        #}
+      ENDSOURCE
+      SOURCE #existsValidToDateTime
+        #public boolean existsValidToDateTime()
+        #{
+        #    return this.exists(#ValidToDateTime);
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#Empl);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmDocPurpose
@@ -67,19 +99,19 @@ Formatversion: 1
         #    return this.get_Attribute(#DocPurpose);
         #}
       ENDSOURCE
-      SOURCE #parmEmplTable
-        #public AfStronglyTypedDataContainerList parmEmplTable(AfStronglyTypedDataContainerList _value = null)
+      SOURCE #parmHcmWorker
+        #public AfStronglyTypedDataContainerList parmHcmWorker(AfStronglyTypedDataContainerList _value = null)
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_List(#EmplTable, _value);
+        #        this.set_List(#HcmWorker, _value);
         #    }
         #
-        #    return this.get_List(#EmplTable);
+        #    return this.get_List(#HcmWorker);
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -87,6 +119,50 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#SenderId);
+        #}
+      ENDSOURCE
+      SOURCE #parmValidAsOfDateTime
+        #public utcdatetime parmValidAsOfDateTime(utcdatetime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ValidAsOfDateTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ValidAsOfDateTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmValidFromDateTime
+        #public utcdatetime parmValidFromDateTime(utcdatetime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ValidFromDateTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ValidFromDateTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmValidTimeStateType
+        #public AxdValidTimeStateType parmValidTimeStateType(AxdValidTimeStateType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ValidTimeStateType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ValidTimeStateType);
+        #}
+      ENDSOURCE
+      SOURCE #parmValidToDateTime
+        #public utcdatetime parmValidToDateTime(utcdatetime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ValidToDateTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ValidToDateTime);
         #}
       ENDSOURCE
       SOURCE #serialize
@@ -101,13 +177,10 @@ Formatversion: 1
         #
         #    QueryRun                    queryRun;
         #
-        #    EmplTable                   emplTable;
-        #    DirPartyTable               dirPartyTable;
-        #    DirPartyECommunicationRelationship  dirPartyECommunicationRelationshipEmail;
-        #    DirPartyECommunicationRelationship  dirPartyECommunicationRelationshipPhone;
-        #    DirECommunicationAddress    dirECommunicationAddressEmail;
-        #    DirECommunicationAddress    dirECommunicationAddressPhone;
+        #    HcmWorker                   worker;
+        #    SMADispatchWorkerSetup      SMADispatchWorkerSetup;
         #    UtcDateTime                 currentDateTime = datetimeutil::getSystemDateTime();
+        #    SMADispatchTeamTable        dispatchTeamTable;
         #
         #    #define.Parameters      ('Parameters')
         #    #define.User            ('User')
@@ -125,62 +198,60 @@ Formatversion: 1
         #    #define.CreateOrder     ('CreateOrder')
         #    #define.IsActive        ('IsActive')
         #    #define.IsMobileUser    ('IsMobileUser')
+        #    #define.Area            ('Area')
+        #    #define.AreaName        ('AreaName')
         #    ;
         #    root = doc.appendChild(doc.createElement(#Parameters));
         #
         #    xmlWriterSettings.indent(true);
         #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
         #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.getMessageId(), this.getQueryName()));
         #
-        #    while(queryRun.next())
+        #    while (queryRun.next())
         #    {
-        #        emplTable = queryRun.get(tablenum(EmplTable));
-        #        if (emplTable.EmplId != emplTable.DispatchTeamId)
+        #        if (!queryRun.changed(tableNum(HcmWorker)))
+        #            continue;
+        #
+        #        worker = queryRun.get(tableNum(HcmWorker));
+        #
+        #        select firstOnly SMADispatchWorkerSetup
+        #            where SMADispatchWorkerSetup.Worker == worker.RecId
+        #                join firstOnly dispatchTeamTable
+        #                    where dispatchTeamTable.DispatchTeamId == SMADispatchWorkerSetup.DispatchTeamId;
+        #
+        #        if (worker.PersonnelNumber != dispatchTeamTable.DispatchTeamId)
         #        {
-        #            dirPartyTable = queryRun.get(tablenum(DirPartyTable));
-        #
-        #            select firstonly dirECommunicationAddressEmail
-        #                where dirECommunicationAddressEmail.ECommunicationTypeId            == WPAParameters::find().TypeEmail
-        #                exists join dirPartyECommunicationRelationshipEmail
-        #                    where dirPartyECommunicationRelationshipEmail.PartyId           == dirPartyTable.PartyId                &&
-        #                          dirPartyECommunicationRelationshipEmail.ValuesRecId       == dirECommunicationAddressEmail.RecId  &&
-        #                          dirPartyECommunicationRelationshipEmail.ValidFromDateTime < currentDateTime                       &&
-        #                          dirPartyECommunicationRelationshipEmail.ValidToDateTime   > currentDateTime;
-        #
-        #            select firstonly dirECommunicationAddressPhone
-        #                where dirECommunicationAddressPhone.ECommunicationTypeId            == WPAParameters::find().PhoneType
-        #                exists join dirPartyECommunicationRelationshipPhone
-        #                    where dirPartyECommunicationRelationshipPhone.PartyId           == dirPartyTable.PartyId                &&
-        #                          dirPartyECommunicationRelationshipPhone.ValuesRecId       == dirECommunicationAddressPhone.RecId  &&
-        #                          dirPartyECommunicationRelationshipPhone.ValidFromDateTime < currentDateTime                       &&
-        #                          dirPartyECommunicationRelationshipPhone.ValidToDateTime   > currentDateTime;
-        #
-        #            if (WPAEmpl::validateData(emplTable, dirECommunicationAddressEmail, dirECommunicationAddressPhone))
+        #            if (WPAEmpl::validateData(worker))
         #            {
-        #                WPAIntegrationLog::updateLog(emplTable.TableId, emplTable.RecId);
+        #                WPAIntegrationLog::updateLog(worker.TableId, worker.RecId);
+        #
         #                node = root.appendChild(doc.createElement(#User));
-        #                this.wpa_addNotEmpty(node, doc, #Name,           dirPartyTable.Name);
-        #                this.wpa_addNotEmpty(node, doc, #EmploymentCode, emplTable.EmplId);
-        #                this.wpa_addNotEmpty(node, doc, #AreaId,       emplTable.DispatchTeamId ? emplTable.DispatchTeamId : "Alle");
+        #
+        #                this.wpa_addNotEmpty(node, doc, #Name,           worker.name());
+        #
+        #                this.wpa_addNotEmpty(node, doc, #EmploymentCode, int642str(worker.RecId));
+        #
+        #                this.wpa_addNotEmpty(node, doc, #AreaId,       dispatchTeamTable.DispatchTeamId ? dispatchTeamTable.DispatchTeamId : "Alle");
+        #
         #                this.wpa_addNotEmpty(node, doc, #EmploymentType, '');
         #                this.wpa_addNotEmpty(node, doc, #Password,       '1234');
-        #                this.wpa_addNotEmpty(node, doc, #EmailAddress, dirECommunicationAddressEmail.Email);
-        #                this.wpa_addNotEmpty(node, doc, #PhoneNumber, dirECommunicationAddressPhone.Phone);
+        #
+        #                this.wpa_addNotEmpty(node, doc, #EmailAddress, worker.email());
+        #                this.wpa_addNotEmpty(node, doc, #PhoneNumber, worker.phone());
+        #
         #                this.wpa_addNotEmpty(node, doc, #IsActive, 'True');
         #                if (WPAParameters::find().DefaultMobileUser == NoYes::Yes)
         #                {
         #                    this.wpa_addNotEmpty(node, doc, #IsMobileUser, 'True');
         #                }
-        #                if(emplTable.DispatchTeamId)
+        #
+        #                if (dispatchTeamTable)
         #                {
-        #                    node = root.appendChild(doc.createElement(#AreaId));
-        #                    this.wpa_addNotEmpty(node, doc, #Code, emplTable.DispatchTeamId);
-        #                    this.wpa_addNotEmpty(node, doc, #Name, SMADispatchTeamTable::find(emplTable.DispatchTeamId).Description);
+        #                    node = root.appendChild(doc.createElement(#Area));
+        #                    this.wpa_addNotEmpty(node, doc, #AreaId, dispatchTeamTable.DispatchTeamId);
+        #                    this.wpa_addNotEmpty(node, doc, #AreaName, dispatchTeamTable.Description);
         #                }
-        #    //        node = root.appendChild(doc.createElement(#Location));
-        #    //        this.wpa_addNotEmpty(node, doc, #LocationCode, '');
-        #    //        this.wpa_addNotEmpty(node, doc, #LocationName, '');
         #            }
         #        }
         #    }
@@ -192,34 +263,31 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #validateData
-        #public static boolean validateData(EmplTable                _emplTable,
-        #                                   DirECommunicationAddress _dirECommunicationAddressEmail = null,
-        #                                   DirECommunicationAddress _dirECommunicationAddressPhone = null)
+        #public static boolean validateData(HcmWorker                _worker,
+        #                                   Email                    _email = "",
+        #                                   Phone                    _phone = "")
         #{
-        #    Email   email;
         #    boolean ret = true;
         #    ;
         #    if (WPAParameters::find().ValidateEmail)
+        #    {
+        #        if (!_email)
         #        {
-        #        if (_dirECommunicationAddressEmail)
-        #        {
-        #            email = _dirECommunicationAddressEmail.Email;
-        #        }
-        #        else
-        #        {
-        #            email = _emplTable.email();
+        #            _email = _worker.email();
         #        }
         #
-        #        if (!WPAEmpl::validateEmail(email))
+        #        if (!WPAEmpl::validateEmail(_email))
         #        {
-        #            ret = checkfailed(strfmt("Bruger %1: Email %2 er ikke valid", _emplTable.EmplId, _dirECommunicationAddressEmail.Email));
+        #            ret = checkfailed(strfmt("Bruger %1: Email %2 er ikke valid", _worker.name(), _email));
         #        }
         #    }
-        #    if (_emplTable.WPAIsDepartment)
+        #
+        #    if (_worker.WPAIsDepartment)
         #    {
-        #        WPAIntegrationLog::updateLog(_emplTable.TableId, _emplTable.RecId);
+        #        WPAIntegrationLog::updateLog(_worker.TableId, _worker.RecId);
         #        ret = false;
         #    }
+        #
         #    return ret;
         #}
       ENDSOURCE
@@ -228,7 +296,7 @@ Formatversion: 1
         #{
         #    Str                                     matchEmailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
         #    System.Text.RegularExpressions.Match    myMatch;
-        #    boolean                                 ret;
+        #    boolean                                 ret = true;
         #    ;
         #
         #    new InterOppermission(InteropKind::ClrInterop).assert();
@@ -240,6 +308,7 @@ Formatversion: 1
         #    }
         #    catch (Exception::Error)
         #    {
+        #        ret = false;
         #    }
         #
         #    return ret;

@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAServiceObjectId
       Label               #@WPA55
       HelpText            #@WPA56
+      Origin              #{8496AD5B-8AB8-4251-9FB6-CAC279027E4F}
+      LegacyId            #50045
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

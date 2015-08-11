@@ -8,25 +8,46 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #WPAInventOnHand
+    EnforceFKRelation 0
     PROPERTIES
       Name                #WPAInventOnHand
       ConfigurationKey    #WPAWarehouseManagement
       SecurityKey         #WPATables
-      PrimaryIndex        #ItemIdx
-      ClusterIndex        #ItemIdx
+      PrimaryIndex        #ItemSerialIdx
+      ClusterIndex        #ItemSerialIdx
+      Origin              #{36329293-074E-41C1-B33B-B32F0488B921}
+      LegacyId            #50010
     ENDPROPERTIES
     
     FIELDS
+      FIELD #InventLocationId
+        STRING
+        PROPERTIES
+          Name                #InventLocationId
+          Table               #WPAInventOnHand
+          Origin              #{3AFFF2C2-AC7F-455A-AD70-906F750DD2E7}
+          ExtendedDataType    #InventLocationId
+        ENDPROPERTIES
+        
+      FIELD #InventSerialId
+        STRING
+        PROPERTIES
+          Name                #InventSerialId
+          AllowEdit           #No
+          Table               #WPAInventOnHand
+          Origin              #{B7B941E9-93AC-4084-9ADA-292C4688C70D}
+          ExtendedDataType    #InventSerialId
+          StringSize          #20
+        ENDPROPERTIES
+        
       FIELD #ItemId
         STRING
         PROPERTIES
           Name                #ItemId
           Table               #WPAInventOnHand
-          ExtendedDataType    
-            ARRAY 
-              #WPAItemId
-              #
-            ENDARRAY
+          Origin              #{DF0F076A-BC87-4ADB-8478-9616D6F2F757}
+          LegacyId            #50001
+          ExtendedDataType    #WPAItemId
           StringSize          #50
         ENDPROPERTIES
         
@@ -35,11 +56,9 @@ Formatversion: 1
         PROPERTIES
           Name                #OnHand
           Table               #WPAInventOnHand
-          ExtendedDataType    
-            ARRAY 
-              #InventQtyPhysicalOnhand
-              #
-            ENDARRAY
+          Origin              #{B4625F05-F565-4559-8773-BE722352AEAD}
+          LegacyId            #50002
+          ExtendedDataType    #InventQtyPhysicalOnhand
         ENDPROPERTIES
         
     ENDFIELDS
@@ -47,36 +66,73 @@ Formatversion: 1
     ENDGROUPS
     
     INDICES
-      #ItemIdx
+      #ItemSerialIdx
       PROPERTIES
-        Name                #ItemIdx
+        Name                #ItemSerialIdx
         AllowDuplicates     #No
+        Origin              #{9A3FD509-1767-4904-AE8B-0014ACD9A7BD}
+        LegacyId            #50001
       ENDPROPERTIES
       
       INDEXFIELDS
         #ItemId
+        #InventLocationId
+        #InventSerialId
+      ENDINDEXFIELDS
+      
+      #InventLocationIdx
+      PROPERTIES
+        Name                #InventLocationIdx
+        Origin              #{A6696F53-0EFC-479F-80CC-8D5B115178A0}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #InventLocationId
       ENDINDEXFIELDS
       
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
+      REFERENCE #InventLocation
+        PROPERTIES
+          Name                #InventLocation
+          Table               #InventLocation
+          UseDefaultRoleNames #Yes
+        ENDPROPERTIES
+        
+        FIELDREFERENCES
+          REFERENCETYPE PKFK
+          PROPERTIES
+            Field               #InventLocationId
+            RelatedField        #InventLocationId
+          ENDPROPERTIES
+          
+        ENDFIELDREFERENCES
+      ENDREFERENCE
     ENDREFERENCES
     
     DELETEACTIONS
     ENDDELETEACTIONS
     
     METHODS
-      Version: 3
       SOURCE #exist
-        #static boolean exist(WPAItemId  _itemId)
+        #static boolean exist(WPAItemId          _itemId,
+        #                     InventLocationId   _inventLocationId,
+        #                     InventSerialId     _inventSerialId = "")
         #{
         #    return _itemId && (select RecId from WPAInventOnHand
-        #                where WPAInventOnHand.ItemId == _itemId
+        #                where WPAInventOnHand.ItemId            == _itemId              &&
+        #                      WPAInventOnHand.InventLocationId  == _inventLocationId    &&
+        #                      WPAInventOnHand.InventSerialId    == _inventSerialId
         #           ).RecId != 0;
         #}
       ENDSOURCE
       SOURCE #find
-        #static WPAInventOnHand find(WPAItemId   _itemId,
-        #                            boolean     _update = false)
+        #static WPAInventOnHand find(WPAItemId           _itemId,
+        #                            InventLocationId    _inventLocationId,
+        #                            InventSerialId      _inventSerialId = "",
+        #                            boolean             _update = false)
         #{
         #    WPAInventOnHand  wPAInventOnHand;
         #    ;
@@ -86,7 +142,9 @@ Formatversion: 1
         #    if (_itemId)
         #    {
         #        select firstonly wPAInventOnHand
-        #            where wPAInventOnHand.ItemId == _itemId;
+        #            where wPAInventOnHand.ItemId            == _itemId              &&
+        #                  wPAInventOnHand.InventLocationId  == _inventLocationId    &&
+        #                  wPAInventOnHand.InventSerialId    == _inventSerialId;
         #    }
         #
         #    return wPAInventOnHand;
@@ -94,22 +152,26 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #updateLog
-        #public static void updateLog(WPAItemId  _itemId,
-        #                             Qty        _onHand)
+        #public static void updateLog(WPAItemId          _itemId,
+        #                             Qty                _onHand,
+        #                             InventLocationId   _inventLocationId,
+        #                             InventSerialId     _inventSerialId = "")
         #{
         #    WPAInventOnHand  wPAInventOnHand;
         #    ;
         #    ttsbegin;
-        #    wPAInventOnHand         = WPAInventOnHand::find(_itemId, true);
+        #    wPAInventOnHand         = WPAInventOnHand::find(_itemId, _inventLocationId, _inventSerialId, true);
         #    if (wPAInventOnHand)
         #    {
-        #        wPAInventOnHand.OnHand  = _onHand;
+        #        wPAInventOnHand.OnHand          = _onHand;
         #        wPAInventOnHand.update();
         #    }
         #    else
         #    {
-        #        wPAInventOnHand.ItemId  = _itemId;
-        #        wPAInventOnHand.OnHand  = _onHand;
+        #        wPAInventOnHand.ItemId              = _itemId;
+        #        wPAInventOnHand.InventLocationId    = _inventLocationId;
+        #        wPAInventOnHand.InventSerialId      = _inventSerialId;
+        #        wPAInventOnHand.OnHand              = _onHand;
         #        wPAInventOnHand.insert();
         #    }
         #    ttscommit;

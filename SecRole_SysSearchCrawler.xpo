@@ -1,0 +1,45 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: SRO
+
+; Microsoft Dynamics AX ROLE : SysSearchCrawler unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  ROLE #SysSearchCrawler
+    PROPERTIES
+      Name                #SysSearchCrawler
+      Label               #@SYS334869
+      Description         #@SYS334870
+      Origin              #{2E14967F-6B8A-4BE6-A279-19EEA18539F9}
+    ENDPROPERTIES
+    
+    DUTIES #Duties
+    ENDDUTIES
+    
+  PRIVILEGES #Privileges
+  ENDPRIVILEGES
+  
+PERMISSIONSET #Permissions
+  PROPERTIES
+  ENDPROPERTIES
+  
+  TABLES #Tables
+  ENDTABLES
+  
+FORMS #Forms
+ENDFORMS
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ENDPERMISSIONSET
+
+SUBROLES #Sub Roles
+ENDSUBROLES
+
+ENDROLE
+
+
+***Element: END

@@ -5,26 +5,18 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Forms unloaded
 ; --------------------------------------------------------------------------------
-FRMVERSION 5
+FRMVERSION 12
 
 FORM #WPAParameters
   PROPERTIES
     Name                #WPAParameters
+    Origin              #{44C315DD-C839-4D1B-B161-0563663EF2F1}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class FormRun extends ObjectRun
       #{
-      #}
-    ENDSOURCE
-    SOURCE #setAccess
-      #void setAccess()
-      #{
-      #    ;
-      #
-      #    WPAParameters_ds.object(fieldnum(WPAParameters, CategoryWithoutProperty)).allowEdit(WPAParameters.LinePropertyCaregory);
       #}
     ENDSOURCE
     SOURCE #init
@@ -33,6 +25,14 @@ FORM #WPAParameters
       #    super();
       #
       #    WPAParameters::find();
+      #}
+    ENDSOURCE
+    SOURCE #setAccess
+      #void setAccess()
+      #{
+      #    ;
+      #
+      #    WPAParameters_ds.object(fieldnum(WPAParameters, CategoryWithoutProperty)).allowEdit(WPAParameters.LinePropertyCaregory);
       #}
     ENDSOURCE
   ENDMETHODS
@@ -59,7 +59,6 @@ FORM #WPAParameters
             ENDPROPERTIES
             
             METHODS
-              Version: 3
               SOURCE #modified
                 #public void modified()
                 #{
@@ -75,7 +74,6 @@ FORM #WPAParameters
         ENDFIELDLIST
       ENDOBJECTPOOL
       METHODS
-        Version: 3
         SOURCE #active
           #public int active()
           #{
@@ -92,8 +90,14 @@ FORM #WPAParameters
     ENDDATASOURCE
   ENDOBJECTBANK
   
+  REFERENCEDATASOURCES
+  ENDREFERENCEDATASOURCES
+  
   JOINS
   ENDJOINS
+  
+  PARTREFERENCES
+  ENDPARTREFERENCES
   
   DESIGN
     PROPERTIES
@@ -102,143 +106,235 @@ FORM #WPAParameters
     ENDPROPERTIES
     
     CONTAINER
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Category1
+          ElementPosition     #858993456
+          HierarchyParent     #General
+          DataSource          #WPAParameters
+          DataGroup           #Category
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Empl
+          ElementPosition     #1073741820
+          HierarchyParent     #General
+          DataSource          #WPAParameters
+          DataGroup           #Empl
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #General1
+          ElementPosition     #429496728
+          HierarchyParent     #General
+          DataSource          #WPAParameters
+          DataGroup           #General
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Item1
+          ElementPosition     #644245092
+          HierarchyParent     #General
+          DataSource          #WPAParameters
+          DataGroup           #Item
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Journals
+          ElementPosition     #1717986912
+          HierarchyParent     #General
+          DataSource          #WPAParameters
+          DataGroup           #Journals
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Project
+          ElementPosition     #1503238548
+          HierarchyParent     #General
+          DataSource          #WPAParameters
+          DataGroup           #Project
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #Reorder
+          ElementPosition     #2040109461
+          HierarchyParent     #General
+          DataSource          #WPAParameters
+          DataGroup           #Reorder
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #ServiceOrder
+          ElementPosition     #1288490184
+          HierarchyParent     #General
+          DataSource          #WPAParameters
+          DataGroup           #ServiceOrder
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL GROUP
+        PROPERTIES
+          Name                #WarehouseManagement
+          ElementPosition     #1932735276
+          HierarchyParent     #General
+          DataSource          #WPAParameters
+          DataGroup           #WarehouseManagement
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
       CONTROL TAB
         PROPERTIES
           Name                #Tab
           Width               #Column width
           Height              #Column height
+          ElementPosition     #1073741823
         ENDPROPERTIES
         
-        CONTAINER
-          CONTROL TABPAGE
-            PROPERTIES
-              Name                #General
-              Caption             #@SYS19924
-              Columns             #2
-              ArrangeGuide        
-                ARRAY INDEX Columns 
-                  #0
-                  #0
-                ENDARRAY
-            ENDPROPERTIES
-            
-            CONTAINER
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #General1
-                  DataSource          #WPAParameters
-                  DataGroup           #General
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #Item1
-                  DataSource          #WPAParameters
-                  DataGroup           #Item
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #Category1
-                  DataSource          #WPAParameters
-                  DataGroup           #Category
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #Empl
-                  DataSource          #WPAParameters
-                  DataGroup           #Empl
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #ServiceOrder
-                  DataSource          #WPAParameters
-                  DataGroup           #ServiceOrder
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #Project
-                  DataSource          #WPAParameters
-                  DataGroup           #Project
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #Journals
-                  DataSource          #WPAParameters
-                  DataGroup           #Journals
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-              CONTROL GROUP
-                PROPERTIES
-                  Name                #WarehouseManagement
-                  DataSource          #WPAParameters
-                  DataGroup           #WarehouseManagement
-                  AutoDataGroup       #Yes
-                ENDPROPERTIES
-                
-                  CONTAINER
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-            ENDCONTAINER
-            
-          ENDCONTROL 
-          
-        ENDCONTAINER
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #General
+          ElementPosition     #1431655764
+          HierarchyParent     #Tab
+          Caption             #@SYS19924
+          Columns             #2
+          ArrangeGuide        
+            ARRAY INDEX Columns 
+              #0
+              #0
+            ENDARRAY
+        ENDPROPERTIES
         
+        METHODS
+        ENDMETHODS
       ENDCONTROL 
       
     ENDCONTAINER
     
   ENDDESIGN
   
+  PERMISSIONS #Permissions
+    PROPERTIES
+    ENDPROPERTIES
+    
+    PERMISSIONSET #Read
+      PROPERTIES
+      ENDPROPERTIES
+      
+      FORM #Controls
+      ENDFORM
+      
+    TABLES #Tables
+    ENDTABLES
+    
+  SERVERMETHODS #Server Methods
+  ENDSERVERMETHODS
+  
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Update
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Create
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Delete
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+ENDPERMISSIONS
+
 ENDFORM
 
 

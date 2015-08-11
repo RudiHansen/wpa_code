@@ -12,6 +12,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAErrorTxt
       Label               #@SYS5283
+      Origin              #{B9B5D8E2-CC0D-4DD3-B943-70455EB78669}
+      LegacyId            #50020
       DisplayHeight       #5
       StringSize          #130
     ENDPROPERTIES
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

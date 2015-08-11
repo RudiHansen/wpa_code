@@ -1,0 +1,214 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionAffiliationTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionAffiliationTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionAffiliationTransT
+      Label               #@REX4160703
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{FAB44707-1C25-4459-A069-34CE130BFD5F}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #Affiliation
+        INT64
+        PROPERTIES
+          Name                #Affiliation
+          Table               #RetailTransactionAffiliationTransT
+          Origin              #{E5BA7B06-9C31-49E1-9D52-689932EB8622}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionAffiliationTransT
+          Origin              #{D023B9EC-99C6-4C8C-8056-9BB1B0032838}
+        ENDPROPERTIES
+        
+      FIELD #LoyaltyTier
+        INT64
+        PROPERTIES
+          Name                #LoyaltyTier
+          Table               #RetailTransactionAffiliationTransT
+          Origin              #{7FF473B4-04C9-4703-9B63-B9C7232CC8B1}
+        ENDPROPERTIES
+        
+      FIELD #ReceiptId
+        STRING
+        PROPERTIES
+          Name                #ReceiptId
+          Table               #RetailTransactionAffiliationTransT
+          Origin              #{8F91C18C-1063-4959-8456-D12E0836F076}
+          StringSize          #18
+        ENDPROPERTIES
+        
+      FIELD #replicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #replicationCounterFromOrigin
+          Label               #@RET3920
+          HelpText            #@RET3921
+          Table               #RetailTransactionAffiliationTransT
+          Origin              #{AD0FE5C1-B689-42AB-9679-8B00606B77F5}
+        ENDPROPERTIES
+        
+      FIELD #StaffId
+        STRING
+        PROPERTIES
+          Name                #StaffId
+          HelpText            #@REX4160251
+          Table               #RetailTransactionAffiliationTransT
+          Origin              #{61DF5F58-3DEE-4C33-869D-6AFC7AA59EBA}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailTransactionAffiliationTransT
+          Origin              #{A2882E53-6D2F-454E-A90D-FC8BB4B3AB65}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailTransactionAffiliationTransT
+          Origin              #{C01E1260-04D2-485F-8D4C-F22849751111}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailTransactionAffiliationTransT
+          Origin              #{F88A0426-DD83-4F53-B541-DF7AD3F6F374}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{D9B92B4E-E559-4F9C-A2D9-B7267C7248FA}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TransactionId
+        #TerminalId
+        #StoreId
+        #Channel
+        #LoyaltyTier
+        #Affiliation
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionAffiliationTransT cursor)
+        #{
+        #    RetailTransactionAffiliationTrans target;
+        #    RetailTransactionAffiliationTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint AffiliationTxnIdx
+        #                where (target.@Affiliation==cursor2.@Affiliation && target.@LoyaltyTier==cursor2.@LoyaltyTier && target.@Channel==cursor2.@Channel && target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@TransactionId==cursor2.@TransactionId);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @Affiliation,
+        #                    @Channel,
+        #                    @LoyaltyTier,
+        #                    @ReceiptId,
+        #                    @replicationCounterFromOrigin,
+        #                    @StaffId,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionId
+        #                )
+        #                select
+        #                    @Affiliation,
+        #                    @Channel,
+        #                    @LoyaltyTier,
+        #                    @ReceiptId,
+        #                    @replicationCounterFromOrigin,
+        #                    @StaffId,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionId
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

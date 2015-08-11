@@ -13,6 +13,9 @@ Formatversion: 1
       Name                #WPACategoryWithoutProperty
       Label               #@WPA181
       HelpText            #@WPA176
+      Origin              #{5DB706C7-99EA-424C-A21E-C36D1002A91B}
+      LegacyId            #50012
+      Extends             #NoYesId
       EnumType            #NoYes
     ENDPROPERTIES
     
@@ -21,6 +24,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

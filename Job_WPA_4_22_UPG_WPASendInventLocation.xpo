@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: WPA_4_22_UPG_WPASendInventLocation unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #WPA_4_22_UPG_WPASendInventLocation
+    #static void WPA_4_22_UPG_WPASendInventLocation(Args _args)
+    #{
+    #    InventLocation  inventLocation = InventLocation::find("100");
+    #    Args            args = new Args();
+    #    ;
+    #
+    #    args.record(inventLocation);
+    #    WPASendInventLocation::main(args);
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{4A5851E0-4FF2-4D40-81C8-0044367D5F56}
+  ENDPROPERTIES
+  
+
+***Element: END

@@ -12,6 +12,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAUpdated
       Label               #@SYS439
+      Origin              #{BF2B7EF7-7A2A-41AE-8100-6E2368CE5EDD}
+      LegacyId            #50055
       EnumType            #NoYes
     ENDPROPERTIES
     
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

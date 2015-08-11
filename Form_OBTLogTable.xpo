@@ -5,49 +5,20 @@ Formatversion: 1
 
 ; Microsoft Dynamics AX Forms unloaded
 ; --------------------------------------------------------------------------------
-FRMVERSION 5
+FRMVERSION 12
 
 FORM #OBTLogTable
   PROPERTIES
     Name                #OBTLogTable
+    Origin              #{33C514BA-5583-4E0A-BDF5-257077BF781B}
   ENDPROPERTIES
   
   METHODS
-    Version: 3
     SOURCE #classDeclaration
       #public class FormRun extends ObjectRun
       #{
       #    boolean hasMedia;
       #    Guid    currentFormInstanceId;
-      #}
-    ENDSOURCE
-    SOURCE #currentFormInstanceId
-      #public guid currentFormInstanceId()
-      #{
-      #    return currentFormInstanceId;
-      #}
-    ENDSOURCE
-    SOURCE #lookupMediaClasses
-      #void lookupMediaClasses(FormControl _control,
-      #                        Guid        _formInstanceId)
-      #{
-      #    Query                   query = new Query();
-      #    QueryBuildDataSource    queryBuildDataSource;
-      #    QueryBuildRange         queryBuildRange;
-      #    SysTableLookup          sysTableLookup;
-      #    ;
-      #
-      #    sysTableLookup = SysTableLookup::newParameters(tablenum(OBTLogMediaLookup), _control);
-      #
-      #    sysTableLookup.addLookupfield(fieldnum(OBTLogMediaLookup, ClassName), true);
-      #
-      #    queryBuildDataSource = query.addDataSource(tablenum(OBTLogMediaLookup));
-      #    queryBuildRange = queryBuildDataSource.addRange(fieldnum(OBTLogMediaLookup, FormInstanceId));
-      #    queryBuildRange.value(guid2str(_formInstanceId));
-      #
-      #    sysTableLookup.parmQuery(query);
-      #
-      #    sysTableLookup.performFormLookup();
       #}
     ENDSOURCE
     SOURCE #close
@@ -58,21 +29,18 @@ FORM #OBTLogTable
       #    this.deleteLookupData(currentFormInstanceId);
       #}
     ENDSOURCE
+    SOURCE #currentFormInstanceId
+      #public guid currentFormInstanceId()
+      #{
+      #    return currentFormInstanceId;
+      #}
+    ENDSOURCE
     SOURCE #deleteLookupData
       #void deleteLookupData(Guid  _formInstanceId)
       #{
       #    OBTLogMediaLookup       logMediaLookup;
       #
       #    delete_from logMediaLookup where logMediaLookup.FormInstanceId == _formInstanceId;
-      #}
-    ENDSOURCE
-    SOURCE #run
-      #public void run()
-      #{
-      #    super();
-      #
-      #    currentFormInstanceId   = newguid();
-      #    hasMedia                = false;
       #}
     ENDSOURCE
     SOURCE #getMediaClasses
@@ -111,6 +79,38 @@ FORM #OBTLogTable
       #    hasMedia = true;
       #}
     ENDSOURCE
+    SOURCE #lookupMediaClasses
+      #void lookupMediaClasses(FormControl _control,
+      #                        Guid        _formInstanceId)
+      #{
+      #    Query                   query = new Query();
+      #    QueryBuildDataSource    queryBuildDataSource;
+      #    QueryBuildRange         queryBuildRange;
+      #    SysTableLookup          sysTableLookup;
+      #    ;
+      #
+      #    sysTableLookup = SysTableLookup::newParameters(tablenum(OBTLogMediaLookup), _control);
+      #
+      #    sysTableLookup.addLookupfield(fieldnum(OBTLogMediaLookup, ClassName), true);
+      #
+      #    queryBuildDataSource = query.addDataSource(tablenum(OBTLogMediaLookup));
+      #    queryBuildRange = queryBuildDataSource.addRange(fieldnum(OBTLogMediaLookup, FormInstanceId));
+      #    queryBuildRange.value(guid2str(_formInstanceId));
+      #
+      #    sysTableLookup.parmQuery(query);
+      #
+      #    sysTableLookup.performFormLookup();
+      #}
+    ENDSOURCE
+    SOURCE #run
+      #public void run()
+      #{
+      #    super();
+      #
+      #    currentFormInstanceId   = newguid();
+      #    hasMedia                = false;
+      #}
+    ENDSOURCE
   ENDMETHODS
   OBJECTBANK
     PROPERTIES
@@ -129,7 +129,6 @@ FORM #OBTLogTable
             ENDPROPERTIES
             
             METHODS
-              Version: 3
               SOURCE #lookup
                 #public void lookup(FormControl _formControl, str _filterStr)
                 #{
@@ -144,11 +143,19 @@ FORM #OBTLogTable
           
         ENDFIELDLIST
       ENDOBJECTPOOL
+      METHODS
+      ENDMETHODS
     ENDDATASOURCE
   ENDOBJECTBANK
   
+  REFERENCEDATASOURCES
+  ENDREFERENCEDATASOURCES
+  
   JOINS
   ENDJOINS
+  
+  PARTREFERENCES
+  ENDPARTREFERENCES
   
   DESIGN
     PROPERTIES
@@ -158,86 +165,191 @@ FORM #OBTLogTable
     ENDPROPERTIES
     
     CONTAINER
+      CONTROL GRID
+        PROPERTIES
+          Name                #Grid
+          Width               #Column width
+          Height              #Column height
+          ElementPosition     #1431655764
+          HierarchyParent     #Overview
+          DataSource          #OBTLogTable
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
       CONTROL TAB
         PROPERTIES
           Name                #Tab
           Width               #Column width
           Height              #Column height
+          ElementPosition     #1073741823
         ENDPROPERTIES
         
-        CONTAINER
-          CONTROL TABPAGE
-            PROPERTIES
-              Name                #Overview
-              Caption             #@SYS9039
-              DataSource          #OBTLogTable
-            ENDPROPERTIES
-            
-            CONTAINER
-              CONTROL GRID
-                PROPERTIES
-                  Name                #Grid
-                  Width               #Column width
-                  Height              #Column height
-                  DataSource          #OBTLogTable
-                ENDPROPERTIES
-                
-                  CONTAINER
-                    CONTROL STRINGEDIT
-                      PROPERTIES
-                        Name                #OBTLogTable_TableName
-                        DataSource          #OBTLogTable
-                        DataField           #TableName
-                      ENDPROPERTIES
-                      
-                    ENDCONTROL 
-                    
-                    CONTROL CHECKBOX
-                      PROPERTIES
-                        Name                #OBTLogTable_UseStandardLog
-                        BackgroundColor     #Window background
-                        DataSource          #OBTLogTable
-                        DataField           #UseStandardLog
-                      ENDPROPERTIES
-                      
-                    ENDCONTROL 
-                    
-                    CONTROL STRINGEDIT
-                      PROPERTIES
-                        Name                #OBTLogTable_LogMedia
-                        DataSource          #OBTLogTable
-                        DataMethod          #LogMedia
-                      ENDPROPERTIES
-                      
-                      METHODS
-                        Version: 3
-                        SOURCE #lookup
-                          #public void lookup()
-                          #{
-                          #    ;
-                          #    element.getMediaClasses(element.currentFormInstanceId());
-                          #    element.lookupMediaClasses(this, element.currentFormInstanceId());
-                          #}
-                        ENDSOURCE
-                      ENDMETHODS
-                    ENDCONTROL 
-                    
-                  ENDCONTAINER
-                  
-              ENDCONTROL 
-              
-            ENDCONTAINER
-            
-          ENDCONTROL 
-          
-        ENDCONTAINER
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL TABPAGE
+        PROPERTIES
+          Name                #Overview
+          ElementPosition     #1431655764
+          HierarchyParent     #Tab
+          Caption             #@SYS9039
+          DataSource          #OBTLogTable
+        ENDPROPERTIES
         
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL CHECKBOX
+        PROPERTIES
+          Name                #OBTLogTable_UseStandardLog
+          ElementPosition     #1288490187
+          HierarchyParent     #Grid
+          BackgroundColor     #Window background
+          DataSource          #OBTLogTable
+          DataField           #UseStandardLog
+        ENDPROPERTIES
+        
+        METHODS
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #OBTLogTable_LogMedia
+          ElementPosition     #1717986916
+          HierarchyParent     #Grid
+          DataSource          #OBTLogTable
+          DataMethod          #LogMedia
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #lookup
+            #public void lookup()
+            #{
+            #    ;
+            #    element.getMediaClasses(element.currentFormInstanceId());
+            #    element.lookupMediaClasses(this, element.currentFormInstanceId());
+            #}
+          ENDSOURCE
+        ENDMETHODS
+      ENDCONTROL 
+      
+      CONTROL STRINGEDIT
+        PROPERTIES
+          Name                #OBTLogTable_TableName
+          ElementPosition     #858993458
+          HierarchyParent     #Grid
+          DataSource          #OBTLogTable
+          DataField           #TableName
+        ENDPROPERTIES
+        
+        METHODS
+          SOURCE #lookup
+            #void lookup()
+            #{
+            #    tableId tableId;
+            #    ;
+            #
+            #
+            #    tableId = pickTable(false, false, true, false, true);
+            #    if (tableId)
+            #    {
+            #        OBTLogTable.TableName   = tableId2name(tableId);
+            #        OBTLogTable_ds.refresh();
+            #    }
+            #}
+            #
+          ENDSOURCE
+        ENDMETHODS
       ENDCONTROL 
       
     ENDCONTAINER
     
   ENDDESIGN
   
+  PERMISSIONS #Permissions
+    PROPERTIES
+    ENDPROPERTIES
+    
+    PERMISSIONSET #Read
+      PROPERTIES
+      ENDPROPERTIES
+      
+      FORM #Controls
+      ENDFORM
+      
+    TABLES #Tables
+    ENDTABLES
+    
+  SERVERMETHODS #Server Methods
+  ENDSERVERMETHODS
+  
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Update
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Create
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+PERMISSIONSET #Delete
+  PROPERTIES
+  ENDPROPERTIES
+  
+  FORM #Controls
+  ENDFORM
+  
+TABLES #Tables
+ENDTABLES
+
+SERVERMETHODS #Server Methods
+ENDSERVERMETHODS
+
+ASSOCIATEDFORMS #Associated Forms
+ENDASSOCIATEDFORMS
+
+ENDPERMISSIONSET
+
+ENDPERMISSIONS
+
 ENDFORM
 
 

@@ -1,0 +1,26 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: WPA_4_22_UPG_WPASendDispatchTeam unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #WPA_4_22_UPG_WPASendDispatchTeam
+    #static void WPA_4_22_UPG_WPASendDispatchTeam(Args _args)
+    #{
+    #    SMADispatchTeamTable    dispatchTeam = SMADispatchTeamTable::find("TESt");
+    #    Args                    args = new Args();
+    #    ;
+    #
+    #    args.record(dispatchTeam);
+    #    WPASendDispatchTeam::main(args);
+    #}
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{1FCBE1D0-5FCC-49DF-96CB-91E9DA59D9A4}
+  ENDPROPERTIES
+  
+
+***Element: END

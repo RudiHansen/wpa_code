@@ -1,0 +1,201 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: SRO
+
+; Microsoft Dynamics AX ROLE : SystemUser unloaded
+; --------------------------------------------------------------------------------
+  VERSION 1
+  
+  ROLE #SystemUser
+    PROPERTIES
+      Name                #SystemUser
+      Label               #@SYS323369
+      Description         #@SYS323380
+      Origin              #{FF2C1848-43DF-45D3-B272-F131B42EE7E7}
+    ENDPROPERTIES
+    
+    DUTIES #Duties
+      DUTY #SysServerAXBasicMaintain
+        PROPERTIES
+          Name                #SysServerAXBasicMaintain
+        ENDPROPERTIES
+        
+      ENDDUTY
+      
+  ENDDUTIES
+  
+PRIVILEGES #Privileges
+  PRIVILEGE #WebControlWithKPIWebPart
+    PROPERTIES
+      Name                #WebControlWithKPIWebPart
+    ENDPROPERTIES
+    
+  ENDPRIVILEGE
+  
+ENDPRIVILEGES
+
+PERMISSIONSET #Permissions
+  PROPERTIES
+  ENDPROPERTIES
+  
+  TABLES #Tables
+    TABLE #CompanyInfo
+      PROPERTIES
+        Table               #CompanyInfo
+        EffectiveAccess     #Read
+        ManagedBy           #Manual
+      ENDPROPERTIES
+      
+      FIELD #Giro
+        PROPERTIES
+          Field               #Giro
+          ManagedBy           #Manual
+        ENDPROPERTIES
+        
+      ENDFIELD
+      
+    FIELD #Tax1099RegNum
+      PROPERTIES
+        Field               #Tax1099RegNum
+        ManagedBy           #Manual
+      ENDPROPERTIES
+      
+    ENDFIELD
+    
+ENDTABLE
+
+TABLE #CurrencyOnlineConversion
+  PROPERTIES
+    Table               #CurrencyOnlineConversion
+    EffectiveAccess     #Delete
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDTABLE
+
+TABLE #PdsMRCEventTracker
+  PROPERTIES
+    Table               #PdsMRCEventTracker
+    EffectiveAccess     #Delete
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDTABLE
+
+ENDTABLES
+
+FORMS #Forms
+ENDFORMS
+
+SERVERMETHODS #Server Methods
+  SERVERMETHOD #AifOperationContext.getSchema
+    PROPERTIES
+      Class               #AifOperationContext
+      Method              #getSchema
+      EffectiveAccess     #Invoke
+      ManagedBy           #Manual
+    ENDPROPERTIES
+    
+  ENDSERVERMETHOD
+  
+SERVERMETHOD #AifPortManager.GetServicesVersionId
+  PROPERTIES
+    Class               #AifPortManager
+    Method              #GetServicesVersionId
+    EffectiveAccess     #Invoke
+  ENDPROPERTIES
+  
+ENDSERVERMETHOD
+
+SERVERMETHOD #AifRuntimeCacheManager.cacheEntry
+  PROPERTIES
+    Class               #AifRuntimeCacheManager
+    Method              #cacheEntry
+    EffectiveAccess     #Invoke
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDSERVERMETHOD
+
+SERVERMETHOD #AifRuntimeCacheManager.flushCache
+  PROPERTIES
+    Class               #AifRuntimeCacheManager
+    Method              #flushCache
+    EffectiveAccess     #Invoke
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDSERVERMETHOD
+
+SERVERMETHOD #AifRuntimeCacheManager.retrieveEntry
+  PROPERTIES
+    Class               #AifRuntimeCacheManager
+    Method              #retrieveEntry
+    EffectiveAccess     #Invoke
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDSERVERMETHOD
+
+SERVERMETHOD #AifSchemaInfo.parmSchemaXml
+  PROPERTIES
+    Class               #AifSchemaInfo
+    Method              #parmSchemaXml
+    EffectiveAccess     #Invoke
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDSERVERMETHOD
+
+SERVERMETHOD #AifSchemaRepository.getSharedTypesSchema
+  PROPERTIES
+    Class               #AifSchemaRepository
+    Method              #getSharedTypesSchema
+    EffectiveAccess     #Invoke
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDSERVERMETHOD
+
+SERVERMETHOD #AxdBaseCreate.setProperty
+  PROPERTIES
+    Class               #AxdBaseCreate
+    Method              #setProperty
+    EffectiveAccess     #Invoke
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDSERVERMETHOD
+
+SERVERMETHOD #AxdBaseUpdate.postProcessDocument
+  PROPERTIES
+    Class               #AxdBaseUpdate
+    Method              #postProcessDocument
+    EffectiveAccess     #Invoke
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDSERVERMETHOD
+
+SERVERMETHOD #AxdBaseUpdate.processRecord
+  PROPERTIES
+    Class               #AxdBaseUpdate
+    Method              #processRecord
+    EffectiveAccess     #Invoke
+    ManagedBy           #Manual
+  ENDPROPERTIES
+  
+ENDSERVERMETHOD
+
+ENDSERVERMETHODS
+
+ENDPERMISSIONSET
+
+SUBROLES #Sub Roles
+ENDSUBROLES
+
+ENDROLE
+
+
+***Element: END

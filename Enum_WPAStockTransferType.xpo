@@ -13,6 +13,8 @@ Formatversion: 1
       Label               #@WPA205
       ConfigurationKey    #WPAWarehouseManagement
       UseEnumValue        #Yes
+      Origin              #{6FFCD1E5-5FAC-40E6-B58C-6D1A3CE84DE5}
+      LegacyId            #50007
     ENDPROPERTIES
     
     TYPEELEMENTS

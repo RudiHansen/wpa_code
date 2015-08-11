@@ -11,11 +11,11 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAStockTransferTable_WPAStockTransfer_1
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{4FE3A397-76C2-439B-A89C-1610D0E25F33}
+      LegacyId            #50117
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPAStockTransferTable_WPAStockTransfer_1 extends AfStronglyTypedDataContainer
         #{
@@ -30,6 +30,7 @@ Formatversion: 1
         #    #define.ItemId('ItemId')
         #    #define.InventLocationIdTo('InventLocationIdTo')
         #    #define.InventLocationIdFrom('InventLocationIdFrom')
+        #    #define.InventSerialId('InventSerialId')
         #    #define.ErrorTxt('ErrorTxt')
         #    #define.Error('Error')
         #    #define.DifferenceQty('DifferenceQty')
@@ -72,6 +73,12 @@ Formatversion: 1
         #public boolean existsInventLocationIdTo()
         #{
         #    return this.exists(#InventLocationIdTo);
+        #}
+      ENDSOURCE
+      SOURCE #existsInventSerialId
+        #public boolean existsInventSerialId()
+        #{
+        #    return this.exists(#InventSerialId);
         #}
       ENDSOURCE
       SOURCE #existsItemId
@@ -198,6 +205,17 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#InventLocationIdTo);
+        #}
+      ENDSOURCE
+      SOURCE #parmInventSerialId
+        #public WPAInventSerialId parmInventSerialId(WPAInventSerialId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#InventSerialId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#InventSerialId);
         #}
       ENDSOURCE
       SOURCE #parmItemId

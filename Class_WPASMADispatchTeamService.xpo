@@ -12,11 +12,14 @@ Formatversion: 1
       Name                #WPASMADispatchTeamService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{0BDEFAE0-C927-4739-B7FD-59F3E45FFF71}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPASMADispatchTeamService</c> class serves as the document service for the <c>WPASMADispatchTeam</c> document type.
+        #/// </summary>
         #class WPASMADispatchTeamService extends AifDocumentService
         #{
         #
@@ -24,6 +27,16 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPASMADispatchTeam</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
         #public WPASMADispatchTeam find(AifQueryCriteria _queryCriteria)
         #{
         #    WPASMADispatchTeam wPASMADispatchTeam = new WPASMADispatchTeam();

@@ -10,11 +10,10 @@ Formatversion: 1
   SOURCE #AxdWPAProjForecastEmplDCT
     ##define.WPAProjForecastEmpl('WPAProjForecastEmpl')
     ##define.WPAProjForecastEmpl_ProjForecastEmpl('WPAProjForecastEmpl.ProjForecastEmpl')
-    ##define.WPAProjForecastEmpl_ProjTable('WPAProjForecastEmpl.ProjTable')
-    ##define.WPAProjForecastEmpl_CustTable('WPAProjForecastEmpl.CustTable')
-    ##define.WPAProjForecastEmpl_DirPartyAddrRel('WPAProjForecastEmpl.DirPartyAddrRel')
-    ##define.WPAProjForecastEmpl_DirPartyAddrRelMap('WPAProjForecastEmpl.DirPartyAddrRelMap')
-    ##define.WPAProjForecastEmpl_Address('WPAProjForecastEmpl.Address')
   ENDSOURCE
+  PROPERTIES
+    Origin              #{7FA3BDA7-74F8-4644-80CD-84FBE83DF0B2}
+  ENDPROPERTIES
+  
 
 ***Element: END

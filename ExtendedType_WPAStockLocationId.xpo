@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAStockLocationId
       Label               #@WPA60
       HelpText            #@WPA61
+      Origin              #{63F82DB5-F064-4547-A485-EEFDC01F9F30}
+      LegacyId            #50051
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

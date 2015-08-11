@@ -15,9 +15,9 @@ Formatversion: 1
       HelpText            #@WPA137
       ObjectType          #Class
       Object              #WPASendProjCategory
-      RunOn               #Called from
       ConfigurationKey    #WPAIntegration
       SecurityKey         #WPAPeriodic
+      Origin              #{1FA22723-224F-4675-B73F-5C544FED56BB}
     ENDPROPERTIES
     
   ENDMENUITEM

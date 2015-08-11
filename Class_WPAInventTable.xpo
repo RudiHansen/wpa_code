@@ -11,17 +11,22 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAInventTable
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{3F1A7734-DB0B-450C-9D31-50D788BBF04E}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventTable</c> class is the data object class that is exposed through the <c>WPAInventTableService</c> class.
+        #/// </summary>
+        ##AxdWPAInventTableDCT
+        #[AifDataContainerTypeAttribute(#WPAInventTable)]
         #class WPAInventTable extends AifDocument
         #{
         #    #define.SenderId('SenderId')
         #    #define.InventTable('InventTable')
         #    #define.DocPurpose('DocPurpose')
+        #
         #}
         #
       ENDSOURCE
@@ -49,10 +54,25 @@ Formatversion: 1
         #    return this.exists(#SenderId);
         #}
       ENDSOURCE
+      SOURCE #getSalesPrice
+        #// WPAChanges3  10.02.2014 polygris -->
+        #public SalesPrice getSalesPrice(InventTable    _inventTable,
+        #                                 CustPriceGroup _priceGroup)
+        #{
+        #    SalesPrice  salesPrice;
+        #    PriceDisc   priceDisc = new PriceDisc(ModuleInventPurchSales::Sales, _inventTable.ItemId, InventDim::findOrCreateBlank(), _inventTable.salesUnitId(), systemDateGet(), 0, "");
+        #
+        #    priceDisc.findPriceAgreement(_priceGroup, InventDim::findOrCreateBlank().inventDimId);
+        #
+        #    salesPrice = priceDisc.price();
+        #
+        #    return salesPrice;
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAInventTable);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmDocPurpose
@@ -78,7 +98,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -104,10 +124,13 @@ Formatversion: 1
         #    InventTableModule       inventTableModuleInvent;
         #    InventTableModule       inventTableModuleSales;
         #    InventItemBarCode       inventItemBarCode;
-        #    InventTxt               inventTxt;
         #    InventDimCombination    inventDimCombination;
+        #    InventDim               inventDim;
         #    ProjLineProperty        projLineProperty;
-        #
+        #    // WPAChanges3  10.02.2014 polygris -->
+        #    WPAParameters           wPAParameters = WPAParameters::find();
+        #    SalesPrice              salesPrice;
+        #    // WPAChanges3  10.02.2014 polygris <--
         #    str                     itemId;
         #
         #    #define.ERP_STOCK           ('ERP_STOCK')
@@ -121,25 +144,26 @@ Formatversion: 1
         #    #define.ItemUnitPrice       ('ItemUnitPrice')
         #    #define.ItemTypeId          ('ItemTypeId')
         #
-        #
         #    void exportItem(str _itemId)
         #    {
         #        node = root.appendChild(doc.createElement(#Item));
         #
         #        this.wpa_addNotEmpty(node, doc, #ItemId             , _itemId);
         #        this.wpa_addNotEmpty(node, doc, #ItemEanNumber      , inventItemBarCode.itemBarCode);
-        #        this.wpa_addNotEmpty(node, doc, #ItemDescription1   , strrem(InventTable.ItemName, ""));
-        #        this.wpa_addNotEmpty(node, doc, #ItemDescription2   , inventTxt.Txt);
+        #
+        #        this.wpa_addNotEmpty(node, doc, #ItemDescription1   , strrem(InventTable.itemName(), ""));
+        #        this.wpa_addNotEmpty(node, doc, #ItemDescription2   , inventTable.productDescription(CompanyInfo::languageId()));
+        #
         #        this.wpa_addNotEmpty(node, doc, #ItemUnit           , inventTableModuleSales.UnitId);
-        #        if(WPAParameters::find().ItemCostPrice)
+        #        if (WPAParameters::find().ItemCostPrice)
         #            this.wpa_addNotEmpty(node, doc, #ItemPurchasePrice, num2str(inventTableModuleInvent.Price, 1, 2, 2, 0));
         #        else
         #            node.appendChild(doc.createElement(#ItemPurchasePrice)).innerText('0,00');
-        #        if(WPAParameters::find().ItemSalesPrice)
-        #            this.wpa_addNotEmpty(node, doc, #ItemUnitPrice, num2str(inventTableModuleSales.Price, 1, 2, 2, 0));
+        #        if (WPAParameters::find().ItemSalesPrice)
+        #            this.wpa_addNotEmpty(node, doc, #ItemUnitPrice, num2str(salesPrice, 1, 2, 2, 0));// WPAChanges3  10.02.2014 polygris <--
         #        else
         #            node.appendChild(doc.createElement(#ItemUnitPrice)) .innerText('0,00');
-        #        this.wpa_addNotEmpty(node, doc, #ItemTypeId , inventTable.ItemType == ItemType::Service ? "4" : "0");
+        #        this.wpa_addNotEmpty(node, doc, #ItemTypeId , inventTable.ItemType == ItemType::Service ? "4" : int2str(enum2int(inventTable.ItemType)));
         #    }
         #    ;
         #
@@ -148,19 +172,20 @@ Formatversion: 1
         #    xmlWriterSettings.indent(true);
         #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
         #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.getMessageId(), this.getQueryName()));
         #
-        #    while(queryRun.next())
+        #    while (queryRun.next())
         #    {
         #        inventTable = queryRun.get(tablenum(InventTable));
-        #        inventTableModuleInvent = queryRun.get(tablenum(InventTableModule), 1);
-        #        inventTableModuleSales = queryRun.get(tablenum(InventTableModule), 2);
-        #        inventItemBarCode = queryRun.get(tablenum(InventItemBarCode));
-        #        inventTxt = queryRun.get(tablenum(InventTxt));
+        #        inventTableModuleInvent = inventTable.inventTableModuleInvent();
+        #        inventTableModuleSales = inventTable.inventTableModuleSales();
+        #        salesPrice              = this.getSalesPrice(inventTable, wPAParameters.CustPriceGroup);// WPAChanges3  10.02.2014 polygris <--
+        #
+        #        inventItemBarCode = inventItemBarCode::findSalesBarcode(inventTable.ItemId, WPAParameters::find().BarCodeSetupId);
         #
         #        WPAIntegrationLog::updateLog(inventTable.TableId, inventTable.RecId);
         #
-        #        if(WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
+        #        if (WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
         #            itemId = WPAParameters::find().ItemPrefix + inventTable.ItemId;
         #        else
         #            itemId = inventTable.ItemId;
@@ -168,29 +193,31 @@ Formatversion: 1
         #        select count(RecId) from inventDimCombination
         #            where inventDimCombination.ItemId == inventTable.ItemId;
         #
-        #        if(inventDimCombination.RecId)
+        #        if (inventDimCombination.RecId)
         #        {
         #            if (WPAParameters::find().ItemWithoutDim)
         #            {
         #                exportItem(itemId);
         #            }
-        #            while select ConfigId, InventSizeId, InventColorId from inventDimCombination
-        #                where inventDimCombination.ItemId == inventTable.ItemId
+        #            while select inventDimCombination
+        #                join ConfigId, InventSizeId, InventColorId from inventDim
+        #                where inventDimCombination.InventDimId == inventDim.InventDimID
+        #                    && inventDimCombination.ItemId == inventTable.ItemId
         #            {
-        #                if(WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
+        #                if (WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
         #                    itemId = WPAParameters::find().ItemPrefix + inventTable.ItemId;
         #                else
         #                    itemId = inventTable.ItemId;
         #
-        #                if(inventDimCombination.ConfigId)
+        #                if (inventDim.ConfigId)
         #                    itemId += WPAParameters::find().Separator
-        #                            + inventDimCombination.ConfigId;
-        #                if(inventDimCombination.InventSizeId)
+        #                            + inventDim.ConfigId;
+        #                if (inventDim.InventSizeId)
         #                    itemId += WPAParameters::find().Separator
-        #                            + inventDimCombination.InventSizeId;
-        #                if(inventDimCombination.InventColorId)
+        #                            + inventDim.InventSizeId;
+        #                if (inventDim.InventColorId)
         #                    itemId += WPAParameters::find().Separator
-        #                            + inventDimCombination.InventColorId;
+        #                            + inventDim.InventColorId;
         #
         #                if (WPAParameters::find().LinePropertyItem)
         #                {
@@ -208,7 +235,7 @@ Formatversion: 1
         #        }
         #        else
         #        {
-        #            if(WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
+        #            if (WPAParameters::find().UsePrefix  && WPAParameters::find().ItemPrefix)
         #                itemId = WPAParameters::find().ItemPrefix + inventTable.ItemId;
         #            else
         #                itemId = inventTable.ItemId;

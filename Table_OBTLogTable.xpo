@@ -8,6 +8,7 @@ Formatversion: 1
   TABLEVERSION 1
   
   TABLE #OBTLogTable
+    EnforceFKRelation 0
     PROPERTIES
       Name                #OBTLogTable
       Label               #@OBT1
@@ -19,48 +20,20 @@ Formatversion: 1
       SaveDataPerCompany  #No
       PrimaryIndex        #TableNameIdx
       ClusterIndex        #TableNameIdx
+      Origin              #{32A9B88C-BBD6-4FBF-B9CD-D024DB65C3FC}
+      LegacyId            #50002
     ENDPROPERTIES
     
     FIELDS
-      FIELD #TableName
-        STRING
-        PROPERTIES
-          Name                #TableName
-          Mandatory           #Yes
-          AllowEdit           #No
-          Table               #OBTLogTable
-          ExtendedDataType    
-            ARRAY 
-              #TableName
-              #
-            ENDARRAY
-          StringSize          #40
-        ENDPROPERTIES
-        
-      FIELD #UseStandardLog
-        ENUM
-        PROPERTIES
-          Name                #UseStandardLog
-          Table               #OBTLogTable
-          ExtendedDataType    
-            ARRAY 
-              #OBTUseStandardLog
-              #
-            ENDARRAY
-          EnumType            #NoYes
-        ENDPROPERTIES
-        
       FIELD #LogMedia
         STRING
         PROPERTIES
           Name                #LogMedia
           Mandatory           #Yes
           Table               #OBTLogTable
-          ExtendedDataType    
-            ARRAY 
-              #OBTLogMedia
-              #
-            ENDARRAY
+          Origin              #{D6E9C2B1-CA20-4C51-99AA-265D0E47E835}
+          LegacyId            #50003
+          ExtendedDataType    #OBTLogMedia
           StringSize          #40
         ENDPROPERTIES
         
@@ -69,12 +42,34 @@ Formatversion: 1
         PROPERTIES
           Name                #LogMediaDescription
           Table               #OBTLogTable
-          ExtendedDataType    
-            ARRAY 
-              #ClassDescription
-              #
-            ENDARRAY
+          Origin              #{BC3CFDEC-6089-4F5C-B4E8-5C5D8DE05B82}
+          LegacyId            #50004
+          ExtendedDataType    #ClassDescription
           StringSize          #255
+        ENDPROPERTIES
+        
+      FIELD #TableName
+        STRING
+        PROPERTIES
+          Name                #TableName
+          Mandatory           #Yes
+          AllowEdit           #No
+          Table               #OBTLogTable
+          Origin              #{EEBC021A-BEE6-4BB5-AF72-0AE368ADECE9}
+          LegacyId            #50001
+          ExtendedDataType    #TableName
+          StringSize          #40
+        ENDPROPERTIES
+        
+      FIELD #UseStandardLog
+        ENUM
+        PROPERTIES
+          Name                #UseStandardLog
+          Table               #OBTLogTable
+          Origin              #{3141211D-B40C-4E8C-AB8D-4EBC6052FBBE}
+          LegacyId            #50002
+          ExtendedDataType    #OBTUseStandardLog
+          EnumType            #NoYes
         ENDPROPERTIES
         
     ENDFIELDS
@@ -118,6 +113,8 @@ Formatversion: 1
       PROPERTIES
         Name                #TableNameIdx
         AllowDuplicates     #No
+        Origin              #{D1DB432E-5552-47ED-9E35-4A8D4DD8CFC5}
+        LegacyId            #50001
       ENDPROPERTIES
       
       INDEXFIELDS
@@ -125,6 +122,8 @@ Formatversion: 1
       ENDINDEXFIELDS
       
     ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
     REFERENCES
     ENDREFERENCES
     
@@ -132,7 +131,6 @@ Formatversion: 1
     ENDDELETEACTIONS
     
     METHODS
-      Version: 3
       SOURCE #addToDatabaseLog
         #void addToDatabaseLog()
         #{

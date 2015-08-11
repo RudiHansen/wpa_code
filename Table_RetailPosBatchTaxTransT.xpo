@@ -1,0 +1,186 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailPosBatchTaxTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailPosBatchTaxTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailPosBatchTaxTransT
+      Label               #@SYP4860948
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{604BA3AB-F51B-4C58-AF97-83F3834991F8}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #BatchID
+        INT64
+        PROPERTIES
+          Name                #BatchID
+          Table               #RetailPosBatchTaxTransT
+          Origin              #{4CFB52AB-C27B-4FDF-903C-10EE0D3C5836}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailPosBatchTaxTransT
+          Origin              #{556C4EFF-E55E-4FCE-8302-86FDA6045844}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounter
+        INT
+        PROPERTIES
+          Name                #ReplicationCounter
+          Table               #RetailPosBatchTaxTransT
+          Origin              #{C8FA6FC2-F7D0-4CF7-9413-9998238400EE}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailPosBatchTaxTransT
+          Origin              #{B8150078-7642-41FD-BCE3-997FEAB2A80A}
+        ENDPROPERTIES
+        
+      FIELD #TaxAmount
+        REAL
+        PROPERTIES
+          Name                #TaxAmount
+          Table               #RetailPosBatchTaxTransT
+          Origin              #{A2894CA1-547E-4622-A42D-7195236BFA28}
+        ENDPROPERTIES
+        
+      FIELD #TaxCode
+        STRING
+        PROPERTIES
+          Name                #TaxCode
+          Table               #RetailPosBatchTaxTransT
+          Origin              #{8638EFD7-FEAE-40FF-BD9C-B08B1A43CAEE}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailPosBatchTaxTransT
+          Origin              #{91F1D9C8-1880-4C64-A2C5-3D8715C272D0}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{53F5B727-FD1D-475C-AD37-A0FEC0AF9E4C}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TaxCode
+        #BatchID
+        #TerminalId
+        #StoreId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailPosBatchTaxTransT cursor)
+        #{
+        #    RetailPosBatchTaxTrans target;
+        #    RetailPosBatchTaxTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint StoreTerminalBatchTaxCodeIdx
+        #                where (target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@BatchID==cursor2.@BatchID && target.@TaxCode==cursor2.@TaxCode);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @BatchID,
+        #                    @Channel,
+        #                    @ReplicationCounter,
+        #                    @StoreId,
+        #                    @TaxAmount,
+        #                    @TaxCode,
+        #                    @TerminalId
+        #                )
+        #                select
+        #                    @BatchID,
+        #                    @Channel,
+        #                    @ReplicationCounter,
+        #                    @StoreId,
+        #                    @TaxAmount,
+        #                    @TaxCode,
+        #                    @TerminalId
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

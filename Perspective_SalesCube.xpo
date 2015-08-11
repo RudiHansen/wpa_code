@@ -1,0 +1,2595 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: PRS
+
+; Microsoft Dynamics AX Perspective : SalesCube unloaded
+; --------------------------------------------------------------------------------
+  PERSPECTIVEVERSION 1
+  
+  PERSPECTIVE #SalesCube
+    PROPERTIES
+      Name                #SalesCube
+      ConfigurationKey    #ReportingServices
+      Label               #@SYS113010
+      HelpText            #@SYS113009
+      Usage               #OLAP
+      Origin              #{42090029-0000-1000-FACE-7B6573437562}
+      LegacyId            #41
+    ENDPROPERTIES
+    
+    TABLES
+      TABLE #CustInvoiceJour
+        PROPERTIES
+          Table               #CustInvoiceJour
+          AnalysisDimensionType #Transaction
+          AnalysisDimensionLabel  #@SYS314953
+          AnalysisKeyAttributeLabel     #@SYS314953
+          AnalysisMeasureGroupLabel     #@SYS314953
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+            Dynamic             #No
+          ENDPROPERTIES
+          
+          FIELD #CustGroup
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #CustGroup
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RefNum
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #RefNum
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SalesId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OrderAccount
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #OrderAccount
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceAccount
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InvoiceAccount
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceDate
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InvoiceDate
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DueDate
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #DueDate
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CashDisc
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #CashDisc
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CashDiscDate
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #CashDiscDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Qty
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Qty
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Volume
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Volume
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Weight
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Weight
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SumLineDisc
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SumLineDisc
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesBalance
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SalesBalance
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #EndDisc
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #EndDisc
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceAmount
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InvoiceAmount
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CurrencyCode
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #CurrencyCode
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ExchRate
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #ExchRate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InvoiceId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #LedgerVoucher
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #LedgerVoucher
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Updated
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Updated
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OnAccountAmount
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #OnAccountAmount
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TaxPrintOnInvoice
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #TaxPrintOnInvoice
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Listcode
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Listcode
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DocumentNum
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #DocumentNum
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DocumentDate
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #DocumentDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CashDiscPercent
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #CashDiscPercent
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #IntrastatDispatch
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #IntrastatDispatch
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DeliveryName
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #DeliveryName
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #EnterpriseNumber
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #EnterpriseNumber
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PurchaseOrder
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #PurchaseOrder
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DlvTerm
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #DlvTerm
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DlvMode
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #DlvMode
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Payment
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Payment
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CashDiscCode
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #CashDiscCode
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceRoundOff
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InvoiceRoundOff
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SumMarkup
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SumMarkup
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CovStatus
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #CovStatus
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReturnItemNum
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #ReturnItemNum
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PostingProfile
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #PostingProfile
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Backorder
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Backorder
+            AnalysisLabel       #@SYS314955
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Prepayment
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Prepayment
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TaxGroup
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #TaxGroup
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TaxItemGroup
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #TaxItemGroup
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TaxSpecifyByLine
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #TaxSpecifyByLine
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #EInvoiceLineSpecific
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #EInvoiceLineSpecific
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OneTimeCustomer
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #OneTimeCustomer
+            AnalysisLabel       #@SYS314956
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PaymentSched
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #PaymentSched
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SumTax
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SumTax
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesType
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SalesType
+            AnalysisLabel       #@SYS314957
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #EInvoiceAccountCode
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #EInvoiceAccountCode
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InterCompanyPosted
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InterCompanyPosted
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ParmId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #ParmId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReturnReasonCodeId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #ReturnReasonCodeId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #EUSalesList
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #EUSalesList
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ExchRateSecondary
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #ExchRateSecondary
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Triangulation
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Triangulation
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CustomerRef
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #CustomerRef
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #VATNum
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #VATNum
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #numberSequenceGroup
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #numberSequenceGroup
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #LanguageId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #LanguageId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InclTax
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InclTax
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Log
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Log
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PaymDayId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #PaymDayId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoicingName
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InvoicingName
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #GiroType
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #GiroType
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ContactPersonId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #ContactPersonId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesOriginId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SalesOriginId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #BillOfLadingId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #BillOfLadingId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #inventLocationId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #inventLocationId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #FixedDueDate
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #FixedDueDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceAmountMST
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InvoiceAmountMST
+            AnalysisLabel       #@SYS314958
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceRoundOffMST
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InvoiceRoundOffMST
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SumMarkupMST
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SumMarkupMST
+            AnalysisLabel       #@SYS314959
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SumLineDiscMST
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SumLineDiscMST
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #EndDiscMST
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #EndDiscMST
+            AnalysisLabel       #@SYS314960
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesBalanceMST
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SalesBalanceMST
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SumTaxMST
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SumTaxMST
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PrintMgmtSiteId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #PrintMgmtSiteId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReturnStatus
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #ReturnStatus
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InterCompanyCompanyId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InterCompanyCompanyId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InterCompanyPurchId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InterCompanyPurchId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PrintedOriginals
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #PrintedOriginals
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Proforma
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #Proforma
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RCSalesList_UK
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #RCSalesList_UK
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReverseCharge_UK
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #ReverseCharge_UK
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DeliveryPostalAddress
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #DeliveryPostalAddress
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoicePostalAddress
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #InvoicePostalAddress
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SourceDocumentHeader
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SourceDocumentHeader
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DefaultDimension
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #DefaultDimension
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PaymId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #PaymId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TaxInvoiceSalesId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #TaxInvoiceSalesId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #BankLCExportLine
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #BankLCExportLine
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #WorkerSalesTaker
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #WorkerSalesTaker
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReversedRecId
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #ReversedRecId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SourceDocumentLine
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #SourceDocumentLine
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #IsCorrection
+          PROPERTIES
+            Table               #CustInvoiceJour
+            DataField           #IsCorrection
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDTABLE
+      
+      TABLE #MCRSourceCodeSetup
+        PROPERTIES
+          Table               #MCRSourceCodeSetup
+          AnalysisDimensionLabel  #@MCR10148
+          AnalysisKeyAttributeLabel     #@MCR10148
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #SourceID
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #SourceID
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Description
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #Description
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TargetID
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #TargetID
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjOrderDate
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #ProjOrderDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjSales
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #ProjSales
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjOrders
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #ProjOrders
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjReturns
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #ProjReturns
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PrintingCosts
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #PrintingCosts
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #MailingCosts
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #MailingCosts
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DistributionQty
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #DistributionQty
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #MailDate
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #MailDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OtherCost
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #OtherCost
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ActualCost
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #ActualCost
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Catalog
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #Catalog
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #FutureOrderDate
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #FutureOrderDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OnlyCatalogPlans
+          PROPERTIES
+            Table               #MCRSourceCodeSetup
+            DataField           #OnlyCatalogPlans
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDTABLE
+      
+      TABLE #RetailHour
+        PROPERTIES
+          Table               #RetailHour
+          AnalysisDimensionLabel  #@RET260359
+          AnalysisKeyAttributeLabel     #@RET260359
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            Table               #RetailHour
+            DataField           #Name
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RetailHourOfDay
+          PROPERTIES
+            Table               #RetailHour
+            DataField           #RetailHourOfDay
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDTABLE
+      
+    ENDTABLES
+    
+    VIEWS
+      VIEW #CustInvoiceTransExpanded
+        PROPERTIES
+          View                #CustInvoiceTransExpanded
+          AnalysisDimensionType #Transaction
+          AnalysisDimensionLabel  #@SYS314963
+          AnalysisKeyAttributeLabel     #@SYS314963
+          AnalysisMeasureGroupLabel     #@SYS314943
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #CommissAmountMST
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #CommissAmountMST
+            AnalysisLabel       #@SYS326638
+            AnalysisUsage       #Measure
+            ExchangeRateDateField #InvoiceDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DeliveryPostalAddress
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #DeliveryPostalAddress
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceDate
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InvoiceDate
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InvoiceId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #ItemId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #LineAmountMST
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #LineAmountMST
+            AnalysisLabel       #@SYS326639
+            AnalysisUsage       #Measure
+            ExchangeRateDateField #InvoiceDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #LineAmountTaxMST
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #LineAmountTaxMST
+            AnalysisLabel       #@SYS326640
+            AnalysisUsage       #Measure
+            ExchangeRateDateField #InvoiceDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OrigCountryRegionId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #OrigCountryRegionId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Qty
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #Qty
+            AnalysisLabel       #@SYS314968
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #QtyPhysical
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #QtyPhysical
+            AnalysisLabel       #@SYS326641
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReturnArrivalDate
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #ReturnArrivalDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReturnClosedDate
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #ReturnClosedDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesCategory
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #SalesCategory
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesUnit
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #SalesUnit
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TaxAmountMST
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #TaxAmountMST
+            AnalysisLabel       #@SYS326642
+            AnalysisUsage       #Measure
+            ExchangeRateDateField #InvoiceDate
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #COGS
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #COGS
+            AnalysisLabel       #@SYS326643
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductCategory
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #ProductCategory
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesCategoryCurrent
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #SalesCategoryCurrent
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventQty
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InventQty
+            AnalysisLabel       #@SYS314972
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceAccount
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InvoiceAccount
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OrderAccount
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #OrderAccount
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #configId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #configId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventColorId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InventColorId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventSizeId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InventSizeId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventLocationId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InventLocationId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DeliveryType
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #DeliveryType
+            AnalysisLabel       #@SYS314973
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CurrencyCode
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #CurrencyCode
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StockedProduct
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #StockedProduct
+            AnalysisLabel       #@SYS314962
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoicePostalAddress
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InvoicePostalAddress
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #WorkerSalesTaker
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #WorkerSalesTaker
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventStyleId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InventStyleId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventoryUnitId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #InventoryUnitId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OMInternalOrganization
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #OMInternalOrganization
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RetailChannel
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #RetailChannel
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RetailStoreId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #RetailStoreId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RetailTerminalId
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #RetailTerminalId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DueDate
+          PROPERTIES
+            View                #CustInvoiceTransExpanded
+            DataField           #DueDate
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #CustPackingSlipTransExpanded
+        PROPERTIES
+          View                #CustPackingSlipTransExpanded
+          AnalysisDimensionType #Transaction
+          AnalysisDimensionLabel  #@SYS314932
+          AnalysisKeyAttributeLabel     #@SYS314932
+          AnalysisMeasureGroupLabel     #@SYS314932
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #DeliveryDate
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #DeliveryDate
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #inventQty
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #inventQty
+            AnalysisLabel       #@SYS314974
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Qty
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #Qty
+            AnalysisLabel       #@SYS314975
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesLineShippingDateConfirmed
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #SalesLineShippingDateConfirmed
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesLineShippingDateRequested
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #SalesLineShippingDateRequested
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DeliveryPostalAddress
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #DeliveryPostalAddress
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemId
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #ItemId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesCategory
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #SalesCategory
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TransactionCode
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #TransactionCode
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #configId
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #configId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventColorId
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #InventColorId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventSizeId
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #InventSizeId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoiceAccount
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #InvoiceAccount
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OrderAccount
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #OrderAccount
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductCategory
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #ProductCategory
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesUnit
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #SalesUnit
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventLocationId
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #InventLocationId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesCategoryCurrent
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #SalesCategoryCurrent
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DelayedRequestedDate
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #DelayedRequestedDate
+            AnalysisLabel       #@SYS314977
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DelayedConfirmedDate
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #DelayedConfirmedDate
+            AnalysisLabel       #@SYS314978
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DaysDelayedConfirmedDate
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #DaysDelayedConfirmedDate
+            AnalysisLabel       #@SYS314979
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DaysDelayedRequestedDate
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #DaysDelayedRequestedDate
+            AnalysisLabel       #@SYS314980
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DeliveryType
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #DeliveryType
+            AnalysisLabel       #@SYS314973
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StockedProduct
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #StockedProduct
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InvoicePostalAddress
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #InvoicePostalAddress
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventStyleId
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #InventStyleId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventoryUnitId
+          PROPERTIES
+            View                #CustPackingSlipTransExpanded
+            DataField           #InventoryUnitId
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #CustTableCube
+        PROPERTIES
+          View                #CustTableCube
+          AnalysisDimensionLabel  #@SYS80104
+          AnalysisKeyAttributeLabel     #@SYS80104
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+            Dynamic             #No
+          ENDPROPERTIES
+          
+          FIELD #AccountNum
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #AccountNum
+            AnalysisLabel       #@SYS24500
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Blocked
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #Blocked
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Currency
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #Currency
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CreditMax
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CreditMax
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PaymTermId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #PaymTermId
+            AnalysisLabel       #@SYS48
+            AnalysisUsage       #Both
+            AnalysisDefaultTotal #Count
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CommissionGroupId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CommissionGroupId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CommissionName
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CommissionName
+            AnalysisLabel       #@SYS318621
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CustGroup
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CustGroup
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #GroupName
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #GroupName
+            AnalysisLabel       #@SYS318631
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #City
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #City
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #County
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #County
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Name
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #Name
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #State
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #State
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ZipCode
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #ZipCode
+            AnalysisLabel       #@SYS318633
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CountryRegionId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #CountryRegionId
+            AnalysisLabel       #@SYS318634
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #LocationName
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #LocationName
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #MainContactWorker
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #MainContactWorker
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventLocation
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #InventLocation
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PriceGroup
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #PriceGroup
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesGroup
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SalesGroup
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesPoolId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SalesPoolId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SegmentId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SegmentId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SubsegmentId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SubsegmentId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StatisticsGroup
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #StatisticsGroup
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesDistrictId
+          PROPERTIES
+            View                #CustTableCube
+            DataField           #SalesDistrictId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #InventTableExpanded
+        PROPERTIES
+          View                #InventTableExpanded
+          AnalysisDimensionLabel  #@SYS340557
+          AnalysisKeyAttributeLabel     #@SYS340557
+          AnalysisMeasureGroupLabel     #@SYS340557
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #ABCTieUp
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ABCTieUp
+            AnalysisLabel       #@SYS313764
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ABCContributionMargin
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ABCContributionMargin
+            AnalysisLabel       #@SYS313765
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ABCRevenue
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ABCRevenue
+            AnalysisLabel       #@SYS313766
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ABCValue
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ABCValue
+            AnalysisLabel       #@SYS313767
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CountryRegionId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #CountryRegionId
+            AnalysisLabel       #@SYS314934
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ShortName
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ShortName
+            AnalysisLabel       #@SYS314935
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemGroupId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ItemGroupId
+            AnalysisLabel       #@SYS340558
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemGroupName
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ItemGroupName
+            AnalysisLabel       #@SYS340559
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ItemId
+            AnalysisLabel       #@SYS314936
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductName
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ProductName
+            AnalysisLabel       #@SYS314937
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DisplayProductNumber
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #DisplayProductNumber
+            AnalysisLabel       #@SYS314938
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductType
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ProductType
+            AnalysisLabel       #@SYS314939
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductSubtype
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ProductSubtype
+            AnalysisLabel       #@SYS314940
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemBuyerGroupId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ItemBuyerGroupId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StandardConfigId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #StandardConfigId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StandardInventColorId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #StandardInventColorId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StandardInventSizeId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #StandardInventSizeId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Count
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #Count
+            AnalysisUsage       #Measure
+            AnalysisDefaultTotal #Count
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PrimaryVendorId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #PrimaryVendorId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CurrencyCode
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #CurrencyCode
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProductSubtypeName
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #ProductSubtypeName
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StandardInventStyleId
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #StandardInventStyleId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RecIdCategory
+          PROPERTIES
+            View                #InventTableExpanded
+            DataField           #RecIdCategory
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #MCRSourceSalesSummary
+        PROPERTIES
+          View                #MCRSourceSalesSummary
+          AnalysisDimensionLabel  #@MCR26448
+          AnalysisKeyAttributeLabel     #@MCR10148
+          AnalysisMeasureGroupLabel     #@MCR26448
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #SourceID
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #SourceID
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ActualCost
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #ActualCost
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #MailingCosts
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #MailingCosts
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OtherCost
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #OtherCost
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PrintingCosts
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #PrintingCosts
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjOrders
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #ProjOrders
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjReturns
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #ProjReturns
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjSales
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #ProjSales
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TotalSalesAmount
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #TotalSalesAmount
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #NumberOfSales
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #NumberOfSales
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesActualRevenue
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #SalesActualRevenue
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #BudgetTotalRevenue
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #BudgetTotalRevenue
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #GrossMargin
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #GrossMargin
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ContributionRatio
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #ContributionRatio
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReturnAmount
+          PROPERTIES
+            View                #MCRSourceSalesSummary
+            DataField           #ReturnAmount
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #PdsRebateExpanded
+        PROPERTIES
+          View                #PdsRebateExpanded
+          AnalysisDimensionLabel  #@MCR38584
+          AnalysisKeyAttributeLabel     #@MCR38584
+          AnalysisMeasureGroupLabel     #@MCR38584
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #CurrencyCode
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #CurrencyCode
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CustAccount
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #CustAccount
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemId
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #ItemId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PdsCorrectedRebateAmt
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #PdsCorrectedRebateAmt
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PdsRebateAmtType
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #PdsRebateAmtType
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PdsRebateId
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #PdsRebateId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PdsRebateStatus
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #PdsRebateStatus
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PdsRebateType
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #PdsRebateType
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesId
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #SalesId
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #TAMCustRebateApprovalStatus
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #TAMCustRebateApprovalStatus
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Verifier
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #Verifier
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Validated
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #Validated
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PdsStartingRebateAmt
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #PdsStartingRebateAmt
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PdsProcessDate
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #PdsProcessDate
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #RebateCalcDate
+          PROPERTIES
+            View                #PdsRebateExpanded
+            DataField           #RebateCalcDate
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #RetailCategoryExpanded
+        PROPERTIES
+          View                #RetailCategoryExpanded
+          AnalysisDimensionLabel  #@RET5714
+          AnalysisKeyAttributeLabel     #@RET5714
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            View                #RetailCategoryExpanded
+            DataField           #Name
+            AnalysisLabel       #@SYS54561
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ParentCategory
+          PROPERTIES
+            View                #RetailCategoryExpanded
+            DataField           #ParentCategory
+            AnalysisLabel       #@SYS130485
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #RetailChannelView
+        PROPERTIES
+          View                #RetailChannelView
+          AnalysisDimensionLabel  #@RET260360
+          AnalysisKeyAttributeLabel     #@RET260360
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+            Dynamic             #No
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            View                #RetailChannelView
+            DataField           #Name
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #OMOperatingUnitNumber
+          PROPERTIES
+            View                #RetailChannelView
+            DataField           #OMOperatingUnitNumber
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #RetailOMHierarchyView
+        PROPERTIES
+          View                #RetailOMHierarchyView
+          AnalysisDimensionLabel  #@SYS30017
+          AnalysisKeyAttributeLabel     #@SYS30017
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #Name
+          PROPERTIES
+            View                #RetailOMHierarchyView
+            DataField           #Name
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ParentOrganization
+          PROPERTIES
+            View                #RetailOMHierarchyView
+            DataField           #ParentOrganization
+            AnalysisLabel       #@SYS113898
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #RetailTerminalView
+        PROPERTIES
+          View                #RetailTerminalView
+          AnalysisDimensionLabel  #@RET260409
+          AnalysisKeyAttributeLabel     #@RET260409
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #name
+          PROPERTIES
+            View                #RetailTerminalView
+            DataField           #name
+            AnalysisLabel       #@RET4438
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StoreRecId
+          PROPERTIES
+            View                #RetailTerminalView
+            DataField           #StoreRecId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #terminalId
+          PROPERTIES
+            View                #RetailTerminalView
+            DataField           #terminalId
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+      VIEW #SalesLineExpanded
+        PROPERTIES
+          View                #SalesLineExpanded
+          AnalysisDimensionType #Transaction
+          AnalysisDimensionLabel  #Sales order lines
+          AnalysisKeyAttributeLabel     #Sales order lines
+          AnalysisMeasureGroupLabel     #Sales order lines
+        ENDPROPERTIES
+        
+        FIELDS 
+          PROPERTIES
+          ENDPROPERTIES
+          
+          FIELD #AddressRefTableId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #AddressRefTableId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DeliveryDateControlType
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #DeliveryDateControlType
+            AnalysisUsage       #None
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventRefType
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #InventRefType
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Blocked
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #Blocked
+            AnalysisUsage       #None
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Complete
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #Complete
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ConfirmedDlv
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ConfirmedDlv
+            AnalysisUsage       #None
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #CustAccount
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #CustAccount
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DeliveryPostalAddress
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #DeliveryPostalAddress
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #DeliveryType
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #DeliveryType
+            AnalysisUsage       #None
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ItemId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ItemId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #PalletTagging
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #PalletTagging
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ProjId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ProjCategoryId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ProjCategoryId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #QtyOrdered
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #QtyOrdered
+            AnalysisUsage       #Measure
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReceiptDateConfirmed
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ReceiptDateConfirmed
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReceiptDateRequested
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ReceiptDateRequested
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Reservation
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #Reservation
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReturnStatus
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ReturnStatus
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ReturnAllowReservation
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ReturnAllowReservation
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesCategory
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #SalesCategory
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesStatus
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #SalesStatus
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesType
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #SalesType
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesQty
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #SalesQty
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesPrice
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #SalesPrice
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesUnit
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #SalesUnit
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ShippingDateConfirmed
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ShippingDateConfirmed
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ShippingDateRequested
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ShippingDateRequested
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #QtyOrdered1
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #QtyOrdered1
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #Scrap
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #Scrap
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ShipCarrierDlvType
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ShipCarrierDlvType
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StatusConfirmedDate
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #StatusConfirmedDate
+            AnalysisLabel       #@GLS180085
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #StatusRequestedDate
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #StatusRequestedDate
+            AnalysisLabel       #@GLS180086
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #configId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #configId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventColorId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #InventColorId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventSizeId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #InventSizeId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #SalesCategoryCurrent
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #SalesCategoryCurrent
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #ShippedInFull
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #ShippedInFull
+            AnalysisLabel       #@GLS180087
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #MinSalesLineShippingDateConfirmed
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #MinSalesLineShippingDateConfirmed
+            AnalysisLabel       #@GLS180088
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #MinSalesLineShippingDateRequested
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #MinSalesLineShippingDateRequested
+            AnalysisLabel       #@GLS180090
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventLocationId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #InventLocationId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventTransId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #InventTransId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #InventoryUnitId
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #InventoryUnitId
+          ENDPROPERTIES
+          
+          ENDFIELD
+          FIELD #HasRebate
+          PROPERTIES
+            View                #SalesLineExpanded
+            DataField           #HasRebate
+            AnalysisLabel       #@MCR24921
+            AnalysisUsage       #Attribute
+          ENDPROPERTIES
+          
+          ENDFIELD
+        ENDFIELDS
+        
+      ENDVIEW
+      
+    ENDVIEWS
+    
+  ENDPERSPECTIVE
+  
+
+***Element: END

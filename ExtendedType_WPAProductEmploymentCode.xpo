@@ -1,18 +1,18 @@
 ﻿Exportfile for AOT version 1.0 or later
 Formatversion: 1
 
-***Element: UTS
+***Element: UTW
 
-; Microsoft Dynamics AX String: WPAProductEmploymentCode unloaded
+; Microsoft Dynamics AX Int64: WPAProductEmploymentCode unloaded
 ; --------------------------------------------------------------------------------
   USERTYPEVERSION 6
   
   USERTYPE #WPAProductEmploymentCode
-  STRING
+  INT64
     PROPERTIES
       Name                #WPAProductEmploymentCode
-      Label               #@WPA51
-      HelpText            #@WPA52
+      Origin              #{47846F6B-4D77-44DD-AF18-0822371A3616}
+      Extends             #HcmWorkerRecId
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +20,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

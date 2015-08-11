@@ -12,10 +12,11 @@ Formatversion: 1
       Name                #OBTFileWrite
       Extends             #OBTFileReadWrite
       RunOn               #Server
+      Origin              #{8BA057FD-744B-4B34-AEDB-1EEF53B1F982}
+      LegacyId            #50109
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class OBTFileWrite extends OBTFileReadWrite
         #{
@@ -38,15 +39,14 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #dialog
-        #protected Object dialog(DialogRunbase   _dialog,
-        #                        boolean         _forceOnClient)
+        #public Object dialog()
         #{
-        #    DialogRunbase dialog;
+        #    DialogRunbase dialog = super();
         #    ;
-        #    dialog                  = super(_dialog, _forceOnClient);
-        #    tempFilePath_df         = dialog.addFieldValue(typeid(FilePath), tempFilePath, "Temp folder");
-        #    destinationFilePath_df  = dialog.addFieldValue(typeid(FilePath), destinationFilePath, "Destination folder");
-        #    fileName_df             = dialog.addFieldValue(typeid(FilenameSave), fileName, "@SYS16423", "Specify file name, where %1 = date and %2 = time.");
+        #
+        #    tempFilePath_df         = dialog.addFieldValue(extendedTypeStr(FilePath), tempFilePath, "Temp folder");
+        #    destinationFilePath_df  = dialog.addFieldValue(extendedTypeStr(FilePath), destinationFilePath, "Destination folder");
+        #    fileName_df             = dialog.addFieldValue(extendedTypeStr(FilenameSave), fileName, "@SYS16423", "Specify file name, where %1 = date and %2 = time.");
         #
         #    return dialog;
         #}

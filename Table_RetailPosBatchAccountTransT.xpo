@@ -1,0 +1,225 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailPosBatchAccountTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailPosBatchAccountTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailPosBatchAccountTransT
+      Label               #@RET5080
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{9074C84C-36B4-4212-9A7C-466BB06D65D9}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #AccountNum
+        STRING
+        PROPERTIES
+          Name                #AccountNum
+          Table               #RetailPosBatchAccountTransT
+          Origin              #{EA48732E-0F8D-4894-9E37-1417E3A531EE}
+        ENDPROPERTIES
+        
+      FIELD #AccountType
+        ENUM
+        PROPERTIES
+          Name                #AccountType
+          Table               #RetailPosBatchAccountTransT
+          Origin              #{CDD19CB7-32DD-443E-8F95-86F749D56526}
+          EnumType            #RetailIncomeExpense
+        ENDPROPERTIES
+        
+      FIELD #Amount
+        REAL
+        PROPERTIES
+          Name                #Amount
+          Table               #RetailPosBatchAccountTransT
+          Origin              #{94A7438F-C853-43FA-A652-93B88AFDD882}
+        ENDPROPERTIES
+        
+      FIELD #BatchID
+        INT64
+        PROPERTIES
+          Name                #BatchID
+          Table               #RetailPosBatchAccountTransT
+          Origin              #{D68FD066-BCA8-4CEC-BF5F-6E2B79011246}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailPosBatchAccountTransT
+          Origin              #{017A4385-D36E-4A43-8271-CF7259E9D995}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailPosBatchAccountTransT
+          Origin              #{0F648489-A832-49E1-86CD-4004119F3856}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounter
+        INT
+        PROPERTIES
+          Name                #ReplicationCounter
+          Table               #RetailPosBatchAccountTransT
+          Origin              #{F3CABAA0-B7D0-46B4-9943-33BCFECD3857}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailPosBatchAccountTransT
+          Origin              #{F08C9E0C-EEB0-410F-9902-155F2B97761C}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailPosBatchAccountTransT
+          Origin              #{8D801D38-22F7-401E-B435-BE0B10DA7202}
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{228A5D61-E0BD-427B-A5B6-518E1D740A1D}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #AccountNum
+        #BatchID
+        #TerminalId
+        #StoreId
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailPosBatchAccountTransT cursor)
+        #{
+        #    RetailPosBatchAccountTrans target;
+        #    RetailPosBatchAccountTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint StoreTerminalBatchAccountIdx
+        #                where (target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId && target.@BatchID==cursor2.@BatchID && target.@AccountNum==cursor2.@AccountNum);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @AccountNum,
+        #                    @AccountType,
+        #                    @Amount,
+        #                    @BatchID,
+        #                    @Channel,
+        #                    @ReplicationCounter,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @AccountNum,
+        #                    @AccountType,
+        #                    @Amount,
+        #                    @BatchID,
+        #                    @Channel,
+        #                    @ReplicationCounter,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailPosBatchAccountTransT cursor)
+        #{
+        #    RetailPosBatchAccountTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounter) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailPosBatchAccountTrans), cursor2.ReplicationCounter);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

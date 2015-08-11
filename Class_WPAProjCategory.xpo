@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProjCategory
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{928ACAD8-D143-4D34-8FC2-9C2C59B8C3C7}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAProjCategory</c> class is the data object class that is exposed through the <c>WPAProjCategoryService</c> class.
+        #/// </summary>
+        ##AxdWPAProjCategoryDCT
+        #[AifDataContainerTypeAttribute(#WPAProjCategory)]
         #class WPAProjCategory extends AifDocument
         #{
         #    #define.SenderId('SenderId')
@@ -30,138 +34,6 @@ Formatversion: 1
         #public AfStronglyTypedDataContainerList createProjCategory()
         #{
         #    return this.get_NewList(#ProjCategory);
-        #}
-      ENDSOURCE
-      SOURCE #DEL_serialize
-        #public AifXml DEL_serialize()
-        #{
-        #    XmlDocument         doc = XmlDocument::newBlank();
-        #    XmlElement          root;
-        #    XmlElement          node;
-        #
-        #    XMLWriterSettings   xmlWriterSettings = new XMLwriterSettings();
-        #    XMLWriter           localXmlWriter;
-        #
-        #    QueryRun            queryRun;
-        #
-        #    ProjCategory            projCategory;
-        #
-        #    ProjHourCostPrice       projHourCostPrice;
-        #    ProjCostPriceExpense    projCostPriceExpense;
-        #
-        #    ProjCostSalesPrice      projCostSalesPrice;
-        #    ProjHourSalesPrice      projHourSalesPrice;
-        #    ProjRevenueSalesPrice   projRevenueSalesPrice;
-        #
-        #    ProjLinePropertySetup   projLinePropertySetup;
-        #
-        #    str                     itemId;
-        #    ProjCategoryId          projCategoryId = '';
-        #
-        #    #define.ERPTOWPA_CATEGORY       ('ERP_STOCK')
-        #    #define.Category                ('Stock')
-        #    #define.ItemId                  ('ItemId')
-        #    #define.ItemUnit                ('ItemUnit')
-        #    #define.LineType                ('ItemTypeId')
-        #    #define.Unknown                 ('2')//Unknown
-        #    #define.Hours                   ('1')//Hours
-        #    #define.ItemEanNumber           ('ItemEanNumber')
-        #    #define.ItemPurchaseprice       ('ItemPurchaseprice')
-        #    #define.ItemUnitprice           ('ItemUnitprice')
-        #    #define.ProductPurchasePrice    ('ProductPurchasePrice')
-        #    #define.ProductSalesPrice       ('ProductSalesPrice')
-        #    #define.ItemDescription1        ('ProductDescription')
-        #    #define.ItemDescription2        ('ProductDescription2')
-        #    ;
-        #
-        #    root = doc.appendChild(doc.createElement(#ERPTOWPA_CATEGORY));
-        #
-        #    xmlWriterSettings.indent(true);
-        #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
-        #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
-        #    while(queryRun.next())
-        #    {
-        #        projCategory = queryRun.get(tablenum(ProjCategory));
-        #
-        #        if(projCategoryId != projCategory.CategoryGroupId)
-        #        {
-        #            projCategoryId = projCategory.CategoryGroupId;
-        #
-        #            projHourCostPrice = queryRun.get(tablenum(ProjHourCostPrice));
-        #            projCostPriceExpense = queryRun.get(tablenum(ProjCostPriceExpense));
-        #
-        #            projHourSalesPrice = queryRun.get(tablenum(ProjHourSalesPrice));
-        #            projRevenueSalesPrice = queryRun.get(tablenum(ProjRevenueSalesPrice));
-        #            projCostSalesPrice = queryRun.get(tablenum(ProjCostSalesPrice));
-        #
-        #            projLinePropertySetup = queryRun.get(tablenum(ProjLinePropertySetup));
-        #
-        #            node = root.appendChild(doc.createElement(#Category));
-        #
-        #            itemId = '';
-        #            if(WPAParameters::find().UsePrefix)
-        #                itemId = WPAParameters::find().ItemPrefix;
-        #
-        #            itemId += ' '+projCategory.CategoryId;
-        #
-        #            if(WPAParameters::find().LinePropertyCaregory == NoYes::Yes)
-        #            {
-        #                itemId = strltrim(itemId);
-        #                itemId += ' '+projLinePropertySetup.LinePropertyId;
-        #            }
-        #
-        #            node.appendChild(doc.createElement(#ItemId))             .innerText(itemId);
-        #
-        #            node.appendChild(doc.createElement(#ItemUnit))           .innerText('');
-        #            node.appendChild(doc.createElement(#ItemEanNumber))      .innerText('');
-        #            if(projCategory.CategoryType == ProjCategoryType::Hour)
-        #                node.appendChild(doc.createElement(#LineType))       .innerText(#Hours);
-        #            else
-        #                node.appendChild(doc.createElement(#LineType))       .innerText(#Unknown);
-        #
-        #            if(WPAParameters::find().CategoryCostPrice == NoYes::Yes)
-        #            {
-        #                switch (projCategory.CategoryType)
-        #                {
-        #                    case ProjCategoryType::Hour :
-        #                        node.appendChild(doc.createElement(#ItemPurchaseprice)) .innerText(num2str(projHourCostPrice.CostPrice, 1, 4, 1, 0));
-        #                            break;
-        #                    case ProjCategoryType::Cost :
-        #                        node.appendChild(doc.createElement(#ItemPurchaseprice)) .innerText(num2str(projCostPriceExpense.CostPrice, 1, 4, 1, 0));
-        #                            break;
-        #                    default :
-        #                        node.appendChild(doc.createElement(#ItemPurchaseprice)) .innerText('');
-        #                            break;
-        #                }
-        #            }
-        #            if(WPAParameters::find().CategorySalesPrice == NoYes::Yes)
-        #            {
-        #                switch (projCategory.CategoryType)
-        #                {
-        #                    case ProjCategoryType::Hour :
-        #                        node.appendChild(doc.createElement(#ItemUnitprice))     .innerText(num2str(projHourSalesPrice.ProjSalesPricing, 1, 4, 1, 0));
-        #                            break;
-        #                    case ProjCategoryType::Cost :
-        #                        node.appendChild(doc.createElement(#ItemUnitprice))     .innerText(num2str(projCostSalesPrice.ProjSalesPricing, 1, 4, 1, 0));
-        #                            break;
-        #                    case ProjCategoryType::Revenue :
-        #                        node.appendChild(doc.createElement(#ItemUnitprice))     .innerText(num2str(projRevenueSalesPrice.SalesPrice, 1, 4, 1, 0));
-        #                            break;
-        #                    default :
-        #                        node.appendChild(doc.createElement(#ItemUnitprice))     .innerText('');
-        #                            break;
-        #                }
-        #            }
-        #            node.appendChild(doc.createElement(#ItemDescription1))   .innerText(projCategory.Name);
-        #            node.appendChild(doc.createElement(#ItemDescription2))   .innerText('');
-        #        }
-        #    }
-        #
-        #    doc.writeTo(localXmlWriter);
-        #    localXmlWriter.flush();
-        #
-        #    return localXmlWriter.writeToString();
         #}
       ENDSOURCE
       SOURCE #existsDocPurpose
@@ -201,7 +73,7 @@ Formatversion: 1
         #                                            {
         #                                                while select projHourSalesPrice
         #                                                    where projHourSalesPrice.CategoryId             == _projCategory.CategoryId &&
-        #                                                          projHourSalesPrice.CurrencyId             == companyInfo.CurrencyCode &&
+        #                                                          projHourSalesPrice.CurrencyId             == CompanyInfo::standardCurrency() &&
         #                                                          projHourSalesPrice.ProjValidFor           == TableGroupAll::All   &&
         #                                                          projHourSalesPrice.ProjSalesPriceModel    == ProjSalesPriceModel::Qty &&
         #                                                          projHourSalesPrice.TransDate              >  systemdateget()
@@ -223,7 +95,7 @@ Formatversion: 1
         #                                            {
         #                                                while select projCostSalesPrice
         #                                                    where projCostSalesPrice.CategoryId             == _projCategory.CategoryId &&
-        #                                                          projCostSalesPrice.CurrencyId             == companyInfo.CurrencyCode &&
+        #                                                          projCostSalesPrice.CurrencyId             == CompanyInfo::standardCurrency() &&
         #                                                          projCostSalesPrice.ProjValidFor           == TableGroupAll::All   &&
         #                                                          projCostSalesPrice.ProjSalesPriceModel    == ProjSalesPriceModel::Qty &&
         #                                                          projCostSalesPrice.TransDate              >  systemdateget()
@@ -245,7 +117,7 @@ Formatversion: 1
         #                                            {
         #                                                while select projRevenueSalesPrice
         #                                                    where projRevenueSalesPrice.CategoryId             == _projCategory.CategoryId &&
-        #                                                          projRevenueSalesPrice.CurrencyId             == companyInfo.CurrencyCode &&
+        #                                                          projRevenueSalesPrice.CurrencyId             == CompanyInfo::standardCurrency() &&
         #                                                          projRevenueSalesPrice.ProjValidFor           == TableGroupAll::All   &&
         #                                                          projRevenueSalesPrice.TransDate              >  systemdateget()
         #                                                {
@@ -260,7 +132,7 @@ Formatversion: 1
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAProjCategory);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmDocPurpose
@@ -286,7 +158,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -361,7 +233,7 @@ Formatversion: 1
         #                                                break;
         #        }
         #
-        #        if(WPAParameters::find().CategoryCostPrice == NoYes::Yes)
+        #        if (WPAParameters::find().CategoryCostPrice == NoYes::Yes)
         #        {
         #            switch (projCategory.CategoryType)
         #            {
@@ -373,7 +245,7 @@ Formatversion: 1
         #                        break;
         #            }
         #        }
-        #        if(WPAParameters::find().CategorySalesPrice == NoYes::Yes)
+        #        if (WPAParameters::find().CategorySalesPrice == NoYes::Yes)
         #        {
         #            switch (projCategory.CategoryType)
         #            {
@@ -396,12 +268,13 @@ Formatversion: 1
         #    xmlWriterSettings.indent(true);
         #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
         #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
-        #    while(queryRun.next())
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.getMessageId(), this.getQueryName()));
+        #
+        #    while (queryRun.next())
         #    {
         #        projCategory = queryRun.get(tablenum(ProjCategory));
         #
-        #        if(projCategoryId != projCategory.CategoryId)
+        #        if (projCategoryId != projCategory.CategoryId)
         #        {
         #            WPAIntegrationLog::updateLog(projCategory.TableId, projCategory.RecId);
         #            this.logProjCategory(projCategory);
@@ -415,15 +288,13 @@ Formatversion: 1
         #            projRevenueSalesPrice   = queryRun.get(tablenum(ProjRevenueSalesPrice));
         #            projCostSalesPrice      = queryRun.get(tablenum(ProjCostSalesPrice));
         #
-        #
-        #
         #            itemId = '';
-        #            if(WPAParameters::find().UsePrefix)
+        #            if (WPAParameters::find().UsePrefix)
         #                itemId = WPAParameters::find().CategoryPrefix;
         #
         #            itemId += projCategory.CategoryId;
         #
-        #            if(WPAParameters::find().LinePropertyCaregory == NoYes::Yes)
+        #            if (WPAParameters::find().LinePropertyCaregory == NoYes::Yes)
         #            {
         #                itemId = strltrim(itemId);
         #                if (WPAParameters::find().CategoryWithoutProperty)

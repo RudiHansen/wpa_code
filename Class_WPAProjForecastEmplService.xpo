@@ -12,11 +12,14 @@ Formatversion: 1
       Name                #WPAProjForecastEmplService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{508C4A18-A6A6-468E-9E64-35EF1DF4B09A}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAProjForecastEmplService</c> class serves as the document service for the <c>WPAProjForecastEmpl</c> document type.
+        #/// </summary>
         #class WPAProjForecastEmplService extends AifDocumentService
         #{
         #
@@ -24,21 +27,32 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #create
-        #
+        #/// <summary>
+        #///    Creates one or more data objects that are contained in a <c>WPAProjForecastEmpl</c> document.
+        #/// </summary>
+        #/// <param name="_wPAProjForecastEmpl">
+        #///    The <c>WPAProjForecastEmpl</c> document that contains the data objects to create.
+        #/// </param>
+        #/// <returns>
+        #///    A list of entity keys that identify the newly created objects. The entity keys appear in the order that the created objects are specified in the <c>WPAProjForecastEmpl</c> document.
+        #/// </returns>
+        #[AifDocumentCreateAttribute, SysEntryPointAttribute(true)]
         #public AifEntityKeyList create(WPAProjForecastEmpl _wPAProjForecastEmpl)
         #{
         #    return this.createList(_wPAProjForecastEmpl);
         #}
       ENDSOURCE
-      SOURCE #delete
-        #
-        #public void delete(AifEntityKeyList _entityKeyList)
-        #{
-        #    WPAProjForecastEmpl wPAProjForecastEmpl = new WPAProjForecastEmpl();
-        #    this.deleteList(_entityKeyList, wPAProjForecastEmpl);
-        #}
-      ENDSOURCE
       SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAProject</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
         #public WPAProjForecastEmpl find(AifQueryCriteria _queryCriteria)
         #{
         #    WPAProjForecastEmpl wPAProjForecastEmpl = new WPAProjForecastEmpl();
@@ -46,32 +60,11 @@ Formatversion: 1
         #    return wPAProjForecastEmpl;
         #}
       ENDSOURCE
-      SOURCE #findKeys
-        #public AifEntityKeyList findKeys(AifQueryCriteria _queryCriteria)
-        #{
-        #    WPAProjForecastEmpl wPAProjForecastEmpl = new WPAProjForecastEmpl();
-        #    return this.findKeyList(_queryCriteria, wPAProjForecastEmpl);
-        #}
-      ENDSOURCE
       SOURCE #new
         #protected void new()
         #{
         #    ;
         #    super();
-        #}
-      ENDSOURCE
-      SOURCE #read
-        #public WPAProjForecastEmpl read(AifEntityKeyList _entityKeyList)
-        #{
-        #    WPAProjForecastEmpl wPAProjForecastEmpl = new WPAProjForecastEmpl();
-        #    this.readList(_entityKeyList, wPAProjForecastEmpl);
-        #    return wPAProjForecastEmpl;
-        #}
-      ENDSOURCE
-      SOURCE #update
-        #public void update(AifEntityKeyList _entityKeyList, WPAProjForecastEmpl _wPAProjForecastEmpl)
-        #{
-        #    this.updateList(_entityKeyList, _wPAProjForecastEmpl);
         #}
       ENDSOURCE
       SOURCE #construct

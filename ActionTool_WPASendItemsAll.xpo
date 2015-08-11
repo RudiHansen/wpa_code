@@ -11,9 +11,10 @@ Formatversion: 1
     Type: 3
     PROPERTIES
       Name                #WPASendItemsAll
-      Label               #@WPA238
+      Label               #Send all items
       ObjectType          #Class
       Object              #WPASendItemsAll
+      Origin              #{E93687AD-407A-4FA7-804F-C58E01BBC915}
     ENDPROPERTIES
     
   ENDMENUITEM

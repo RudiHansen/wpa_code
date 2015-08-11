@@ -11,8 +11,10 @@ Formatversion: 1
   STRING
     PROPERTIES
       Name                #WPAAreaId
-      Label               #@SYS31093
+      Label               #@WPA201
       HelpText            #@WPA38
+      Origin              #{469DA917-6E42-4CF5-95E6-014189338D29}
+      LegacyId            #50006
       Extends             #SMADispatchTeamId
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

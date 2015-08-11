@@ -11,37 +11,89 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProject_ProjTable
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{447C06DB-0947-4B29-8153-14CA787BF81D}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAProject_ProjTable</c> class is the data object class that is exposed through the <c>WPAProjectService</c> class.
+        #/// </summary>
+        ##AxdWPAProjectDCT
+        #[AifDataContainerTypeAttribute(#WPAProject_ProjTable)]
         #class WPAProject_ProjTable extends AfStronglyTypedDataContainer
         #{
+        #    #define.WorkerResponsibleSales('WorkerResponsibleSales')
+        #    #define.WorkerResponsibleFinancial('WorkerResponsibleFinancial')
+        #    #define.WorkerResponsible('WorkerResponsible')
+        #    #define.WIPProject('WIPProject')
+        #    #define.ValidateProjCategory('ValidateProjCategory')
+        #    #define.UseBudgeting('UseBudgeting')
+        #    #define.UseAlternateProject('UseAlternateProject')
         #    #define.Type('Type')
+        #    #define.TimePostDetailSummary('TimePostDetailSummary')
+        #    #define.Template('Template')
+        #    #define.TaxGroupId('TaxGroupId')
+        #    #define.SyncVersion('SyncVersion')
+        #    #define.SyncLastTransId('SyncLastTransId')
+        #    #define.SyncEntityId('SyncEntityId')
+        #    #define.SyncCreatedByExternal('SyncCreatedByExternal')
+        #    #define.Subject_SA('Subject_SA')
         #    #define.Status('Status')
+        #    #define.StartDate('StartDate')
+        #    #define.sortingId('sortingId')
+        #    #define.RequireActivityItemTrx('RequireActivityItemTrx')
+        #    #define.RequireActivityItemForecast('RequireActivityItemForecast')
+        #    #define.RequireActivityHourTrx('RequireActivityHourTrx')
+        #    #define.RequireActivityHourForecast('RequireActivityHourForecast')
+        #    #define.RequireActivityExpenseTrx('RequireActivityExpenseTrx')
+        #    #define.RequireActivityExpenseForecast('RequireActivityExpenseForecast')
+        #    #define.RecVersion('RecVersion')
+        #    #define.RecId('RecId')
+        #    #define.ProjPriceGroup('ProjPriceGroup')
+        #    #define.ProjLinePropertySearch('ProjLinePropertySearch')
+        #    #define.ProjLedgerPosting('ProjLedgerPosting')
+        #    #define.ProjInvoiceProjId('ProjInvoiceProjId')
         #    #define.ProjId('ProjId')
+        #    #define.ProjGroupId('ProjGroupId')
+        #    #define.ProjectedStartDate('ProjectedStartDate')
+        #    #define.ProjectedEndDate('ProjectedEndDate')
+        #    #define.ProjCarryForwardRemainingBudget('ProjCarryForwardRemainingBudget')
+        #    #define.ProjCarryForwardNegativeBudget('ProjCarryForwardNegativeBudget')
+        #    #define.ProjBudgetOverrunOption('ProjBudgetOverrunOption')
+        #    #define.ProjBudgetInterval('ProjBudgetInterval')
+        #    #define.ProjBudgetaryControlOn('ProjBudgetaryControlOn')
+        #    #define.ParentId('ParentId')
+        #    #define.Name('Name')
+        #    #define.MinTimeIncrement('MinTimeIncrement')
+        #    #define.JobPayType('JobPayType')
+        #    #define.JobId('JobId')
+        #    #define.Header('Header')
+        #    #define.Format('Format')
+        #    #define.ExtensionDate('ExtensionDate')
+        #    #define.EndDate('EndDate')
         #    #define.Email('Email')
-        #    #define.DlvZipCode('DlvZipCode')
-        #    #define.DlvState('DlvState')
         #    #define.DlvName('DlvName')
-        #    #define.DlvCounty('DlvCounty')
-        #    #define.DlvCountryRegionId('DlvCountryRegionId')
-        #    #define.DlvAddr('DlvAddr')
-        #    #define.DeliveryStreet('DeliveryStreet')
-        #    #define.DeliveryCity('DeliveryCity')
-        #    #define.CustTable('CustTable')
+        #    #define.DefaultDimension('DefaultDimension')
         #    #define.CustAccount('CustAccount')
+        #    #define.Created('Created')
+        #    #define.ContractValue_SA('ContractValue_SA')
+        #    #define.ContractPeriod_SA('ContractPeriod_SA')
+        #    #define.ContractDate_SA('ContractDate_SA')
+        #    #define.ContractAmendment_SA('ContractAmendment_SA')
+        #    #define.CheckBudget('CheckBudget')
+        #    #define.BankDocumentType('BankDocumentType')
+        #    #define.AssetId('AssetId')
+        #    #define.AlternateBudgetProject('AlternateBudgetProject')
         #    #define._DocumentHash('_DocumentHash')
         #
         #}
         #
       ENDSOURCE
-      SOURCE #createCustTable
-        #public AfStronglyTypedDataContainerList createCustTable()
+      SOURCE #createDefaultDimension
+        #public AifDimensionAttributeValueSet createDefaultDimension()
         #{
-        #    return this.get_NewList(#CustTable);
+        #    return this.get_NewContainer(#DefaultDimension);
         #}
       ENDSOURCE
       SOURCE #exists_DocumentHash
@@ -50,46 +102,70 @@ Formatversion: 1
         #    return this.exists(#_DocumentHash);
         #}
       ENDSOURCE
+      SOURCE #existsAlternateBudgetProject
+        #public boolean existsAlternateBudgetProject()
+        #{
+        #    return this.exists(#AlternateBudgetProject);
+        #}
+      ENDSOURCE
+      SOURCE #existsAssetId
+        #public boolean existsAssetId()
+        #{
+        #    return this.exists(#AssetId);
+        #}
+      ENDSOURCE
+      SOURCE #existsBankDocumentType
+        #public boolean existsBankDocumentType()
+        #{
+        #    return this.exists(#BankDocumentType);
+        #}
+      ENDSOURCE
+      SOURCE #existsCheckBudget
+        #public boolean existsCheckBudget()
+        #{
+        #    return this.exists(#CheckBudget);
+        #}
+      ENDSOURCE
+      SOURCE #existsContractAmendment_SA
+        #public boolean existsContractAmendment_SA()
+        #{
+        #    return this.exists(#ContractAmendment_SA);
+        #}
+      ENDSOURCE
+      SOURCE #existsContractDate_SA
+        #public boolean existsContractDate_SA()
+        #{
+        #    return this.exists(#ContractDate_SA);
+        #}
+      ENDSOURCE
+      SOURCE #existsContractPeriod_SA
+        #public boolean existsContractPeriod_SA()
+        #{
+        #    return this.exists(#ContractPeriod_SA);
+        #}
+      ENDSOURCE
+      SOURCE #existsContractValue_SA
+        #public boolean existsContractValue_SA()
+        #{
+        #    return this.exists(#ContractValue_SA);
+        #}
+      ENDSOURCE
+      SOURCE #existsCreated
+        #public boolean existsCreated()
+        #{
+        #    return this.exists(#Created);
+        #}
+      ENDSOURCE
       SOURCE #existsCustAccount
         #public boolean existsCustAccount()
         #{
         #    return this.exists(#CustAccount);
         #}
       ENDSOURCE
-      SOURCE #existsCustTable
-        #public boolean existsCustTable()
+      SOURCE #existsDefaultDimension
+        #public boolean existsDefaultDimension()
         #{
-        #    return this.exists(#CustTable);
-        #}
-      ENDSOURCE
-      SOURCE #existsDeliveryCity
-        #public boolean existsDeliveryCity()
-        #{
-        #    return this.exists(#DeliveryCity);
-        #}
-      ENDSOURCE
-      SOURCE #existsDeliveryStreet
-        #public boolean existsDeliveryStreet()
-        #{
-        #    return this.exists(#DeliveryStreet);
-        #}
-      ENDSOURCE
-      SOURCE #existsDlvAddr
-        #public boolean existsDlvAddr()
-        #{
-        #    return this.exists(#DlvAddr);
-        #}
-      ENDSOURCE
-      SOURCE #existsDlvCountryRegionId
-        #public boolean existsDlvCountryRegionId()
-        #{
-        #    return this.exists(#DlvCountryRegionId);
-        #}
-      ENDSOURCE
-      SOURCE #existsDlvCounty
-        #public boolean existsDlvCounty()
-        #{
-        #    return this.exists(#DlvCounty);
+        #    return this.exists(#DefaultDimension);
         #}
       ENDSOURCE
       SOURCE #existsDlvName
@@ -98,22 +174,112 @@ Formatversion: 1
         #    return this.exists(#DlvName);
         #}
       ENDSOURCE
-      SOURCE #existsDlvState
-        #public boolean existsDlvState()
-        #{
-        #    return this.exists(#DlvState);
-        #}
-      ENDSOURCE
-      SOURCE #existsDlvZipCode
-        #public boolean existsDlvZipCode()
-        #{
-        #    return this.exists(#DlvZipCode);
-        #}
-      ENDSOURCE
       SOURCE #existsEmail
         #public boolean existsEmail()
         #{
         #    return this.exists(#Email);
+        #}
+      ENDSOURCE
+      SOURCE #existsEndDate
+        #public boolean existsEndDate()
+        #{
+        #    return this.exists(#EndDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsExtensionDate
+        #public boolean existsExtensionDate()
+        #{
+        #    return this.exists(#ExtensionDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsFormat
+        #public boolean existsFormat()
+        #{
+        #    return this.exists(#Format);
+        #}
+      ENDSOURCE
+      SOURCE #existsHeader
+        #public boolean existsHeader()
+        #{
+        #    return this.exists(#Header);
+        #}
+      ENDSOURCE
+      SOURCE #existsJobId
+        #public boolean existsJobId()
+        #{
+        #    return this.exists(#JobId);
+        #}
+      ENDSOURCE
+      SOURCE #existsJobPayType
+        #public boolean existsJobPayType()
+        #{
+        #    return this.exists(#JobPayType);
+        #}
+      ENDSOURCE
+      SOURCE #existsMinTimeIncrement
+        #public boolean existsMinTimeIncrement()
+        #{
+        #    return this.exists(#MinTimeIncrement);
+        #}
+      ENDSOURCE
+      SOURCE #existsName
+        #public boolean existsName()
+        #{
+        #    return this.exists(#Name);
+        #}
+      ENDSOURCE
+      SOURCE #existsParentId
+        #public boolean existsParentId()
+        #{
+        #    return this.exists(#ParentId);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjBudgetaryControlOn
+        #public boolean existsProjBudgetaryControlOn()
+        #{
+        #    return this.exists(#ProjBudgetaryControlOn);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjBudgetInterval
+        #public boolean existsProjBudgetInterval()
+        #{
+        #    return this.exists(#ProjBudgetInterval);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjBudgetOverrunOption
+        #public boolean existsProjBudgetOverrunOption()
+        #{
+        #    return this.exists(#ProjBudgetOverrunOption);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjCarryForwardNegativeBudget
+        #public boolean existsProjCarryForwardNegativeBudget()
+        #{
+        #    return this.exists(#ProjCarryForwardNegativeBudget);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjCarryForwardRemainingBudget
+        #public boolean existsProjCarryForwardRemainingBudget()
+        #{
+        #    return this.exists(#ProjCarryForwardRemainingBudget);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjectedEndDate
+        #public boolean existsProjectedEndDate()
+        #{
+        #    return this.exists(#ProjectedEndDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjectedStartDate
+        #public boolean existsProjectedStartDate()
+        #{
+        #    return this.exists(#ProjectedStartDate);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjGroupId
+        #public boolean existsProjGroupId()
+        #{
+        #    return this.exists(#ProjGroupId);
         #}
       ENDSOURCE
       SOURCE #existsProjId
@@ -122,10 +288,142 @@ Formatversion: 1
         #    return this.exists(#ProjId);
         #}
       ENDSOURCE
+      SOURCE #existsProjInvoiceProjId
+        #public boolean existsProjInvoiceProjId()
+        #{
+        #    return this.exists(#ProjInvoiceProjId);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjLedgerPosting
+        #public boolean existsProjLedgerPosting()
+        #{
+        #    return this.exists(#ProjLedgerPosting);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjLinePropertySearch
+        #public boolean existsProjLinePropertySearch()
+        #{
+        #    return this.exists(#ProjLinePropertySearch);
+        #}
+      ENDSOURCE
+      SOURCE #existsProjPriceGroup
+        #public boolean existsProjPriceGroup()
+        #{
+        #    return this.exists(#ProjPriceGroup);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecId
+        #public boolean existsRecId()
+        #{
+        #    return this.exists(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRecVersion
+        #public boolean existsRecVersion()
+        #{
+        #    return this.exists(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsRequireActivityExpenseForecast
+        #public boolean existsRequireActivityExpenseForecast()
+        #{
+        #    return this.exists(#RequireActivityExpenseForecast);
+        #}
+      ENDSOURCE
+      SOURCE #existsRequireActivityExpenseTrx
+        #public boolean existsRequireActivityExpenseTrx()
+        #{
+        #    return this.exists(#RequireActivityExpenseTrx);
+        #}
+      ENDSOURCE
+      SOURCE #existsRequireActivityHourForecast
+        #public boolean existsRequireActivityHourForecast()
+        #{
+        #    return this.exists(#RequireActivityHourForecast);
+        #}
+      ENDSOURCE
+      SOURCE #existsRequireActivityHourTrx
+        #public boolean existsRequireActivityHourTrx()
+        #{
+        #    return this.exists(#RequireActivityHourTrx);
+        #}
+      ENDSOURCE
+      SOURCE #existsRequireActivityItemForecast
+        #public boolean existsRequireActivityItemForecast()
+        #{
+        #    return this.exists(#RequireActivityItemForecast);
+        #}
+      ENDSOURCE
+      SOURCE #existsRequireActivityItemTrx
+        #public boolean existsRequireActivityItemTrx()
+        #{
+        #    return this.exists(#RequireActivityItemTrx);
+        #}
+      ENDSOURCE
+      SOURCE #existssortingId
+        #public boolean existssortingId()
+        #{
+        #    return this.exists(#sortingId);
+        #}
+      ENDSOURCE
+      SOURCE #existsStartDate
+        #public boolean existsStartDate()
+        #{
+        #    return this.exists(#StartDate);
+        #}
+      ENDSOURCE
       SOURCE #existsStatus
         #public boolean existsStatus()
         #{
         #    return this.exists(#Status);
+        #}
+      ENDSOURCE
+      SOURCE #existsSubject_SA
+        #public boolean existsSubject_SA()
+        #{
+        #    return this.exists(#Subject_SA);
+        #}
+      ENDSOURCE
+      SOURCE #existsSyncCreatedByExternal
+        #public boolean existsSyncCreatedByExternal()
+        #{
+        #    return this.exists(#SyncCreatedByExternal);
+        #}
+      ENDSOURCE
+      SOURCE #existsSyncEntityId
+        #public boolean existsSyncEntityId()
+        #{
+        #    return this.exists(#SyncEntityId);
+        #}
+      ENDSOURCE
+      SOURCE #existsSyncLastTransId
+        #public boolean existsSyncLastTransId()
+        #{
+        #    return this.exists(#SyncLastTransId);
+        #}
+      ENDSOURCE
+      SOURCE #existsSyncVersion
+        #public boolean existsSyncVersion()
+        #{
+        #    return this.exists(#SyncVersion);
+        #}
+      ENDSOURCE
+      SOURCE #existsTaxGroupId
+        #public boolean existsTaxGroupId()
+        #{
+        #    return this.exists(#TaxGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #existsTemplate
+        #public boolean existsTemplate()
+        #{
+        #    return this.exists(#Template);
+        #}
+      ENDSOURCE
+      SOURCE #existsTimePostDetailSummary
+        #public boolean existsTimePostDetailSummary()
+        #{
+        #    return this.exists(#TimePostDetailSummary);
         #}
       ENDSOURCE
       SOURCE #existsType
@@ -134,10 +432,52 @@ Formatversion: 1
         #    return this.exists(#Type);
         #}
       ENDSOURCE
+      SOURCE #existsUseAlternateProject
+        #public boolean existsUseAlternateProject()
+        #{
+        #    return this.exists(#UseAlternateProject);
+        #}
+      ENDSOURCE
+      SOURCE #existsUseBudgeting
+        #public boolean existsUseBudgeting()
+        #{
+        #    return this.exists(#UseBudgeting);
+        #}
+      ENDSOURCE
+      SOURCE #existsValidateProjCategory
+        #public boolean existsValidateProjCategory()
+        #{
+        #    return this.exists(#ValidateProjCategory);
+        #}
+      ENDSOURCE
+      SOURCE #existsWIPProject
+        #public boolean existsWIPProject()
+        #{
+        #    return this.exists(#WIPProject);
+        #}
+      ENDSOURCE
+      SOURCE #existsWorkerResponsible
+        #public boolean existsWorkerResponsible()
+        #{
+        #    return this.exists(#WorkerResponsible);
+        #}
+      ENDSOURCE
+      SOURCE #existsWorkerResponsibleFinancial
+        #public boolean existsWorkerResponsibleFinancial()
+        #{
+        #    return this.exists(#WorkerResponsibleFinancial);
+        #}
+      ENDSOURCE
+      SOURCE #existsWorkerResponsibleSales
+        #public boolean existsWorkerResponsibleSales()
+        #{
+        #    return this.exists(#WorkerResponsibleSales);
+        #}
+      ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAProject_ProjTable);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parm_DocumentHash
@@ -151,8 +491,107 @@ Formatversion: 1
         #    return this.get_Attribute(#_DocumentHash);
         #}
       ENDSOURCE
+      SOURCE #parmAlternateBudgetProject
+        #public ProjId parmAlternateBudgetProject(ProjId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AlternateBudgetProject, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AlternateBudgetProject);
+        #}
+      ENDSOURCE
+      SOURCE #parmAssetId
+        #public AssetId parmAssetId(AssetId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#AssetId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#AssetId);
+        #}
+      ENDSOURCE
+      SOURCE #parmBankDocumentType
+        #public BankLGDocumentType parmBankDocumentType(BankLGDocumentType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#BankDocumentType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#BankDocumentType);
+        #}
+      ENDSOURCE
+      SOURCE #parmCheckBudget
+        #public NoYesId parmCheckBudget(NoYesId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#CheckBudget, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#CheckBudget);
+        #}
+      ENDSOURCE
+      SOURCE #parmContractAmendment_SA
+        #public AmountCur parmContractAmendment_SA(AmountCur _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ContractAmendment_SA, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ContractAmendment_SA);
+        #}
+      ENDSOURCE
+      SOURCE #parmContractDate_SA
+        #public TransDate parmContractDate_SA(TransDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ContractDate_SA, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ContractDate_SA);
+        #}
+      ENDSOURCE
+      SOURCE #parmContractPeriod_SA
+        #public ProjContractPeriodZakat_SA parmContractPeriod_SA(ProjContractPeriodZakat_SA _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ContractPeriod_SA, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ContractPeriod_SA);
+        #}
+      ENDSOURCE
+      SOURCE #parmContractValue_SA
+        #public AmountCur parmContractValue_SA(AmountCur _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ContractValue_SA, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ContractValue_SA);
+        #}
+      ENDSOURCE
+      SOURCE #parmCreated
+        #public TransDate parmCreated(TransDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Created, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Created);
+        #}
+      ENDSOURCE
       SOURCE #parmCustAccount
-        #public str parmCustAccount(str _value = '')
+        #public CustAccount parmCustAccount(CustAccount _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -162,70 +601,15 @@ Formatversion: 1
         #    return this.get_Attribute(#CustAccount);
         #}
       ENDSOURCE
-      SOURCE #parmCustTable
-        #public AfStronglyTypedDataContainerList parmCustTable(AfStronglyTypedDataContainerList _value = null)
+      SOURCE #parmDefaultDimension
+        #public AifDimensionAttributeValueSet parmDefaultDimension(AifDimensionAttributeValueSet _value = null)
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_List(#CustTable, _value);
+        #        this.set_Container(#DefaultDimension, _value);
         #    }
         #
-        #    return this.get_List(#CustTable);
-        #}
-      ENDSOURCE
-      SOURCE #parmDeliveryCity
-        #public AddressCity parmDeliveryCity(AddressCity _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#DeliveryCity, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#DeliveryCity);
-        #}
-      ENDSOURCE
-      SOURCE #parmDeliveryStreet
-        #public AddressStreet parmDeliveryStreet(AddressStreet _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#DeliveryStreet, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#DeliveryStreet);
-        #}
-      ENDSOURCE
-      SOURCE #parmDlvAddr
-        #public Addressing parmDlvAddr(Addressing _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#DlvAddr, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#DlvAddr);
-        #}
-      ENDSOURCE
-      SOURCE #parmDlvCountryRegionId
-        #public str parmDlvCountryRegionId(str _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#DlvCountryRegionId, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#DlvCountryRegionId);
-        #}
-      ENDSOURCE
-      SOURCE #parmDlvCounty
-        #public str parmDlvCounty(str _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#DlvCounty, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#DlvCounty);
+        #    return this.get_Container(#DefaultDimension);
         #}
       ENDSOURCE
       SOURCE #parmDlvName
@@ -239,28 +623,6 @@ Formatversion: 1
         #    return this.get_Attribute(#DlvName);
         #}
       ENDSOURCE
-      SOURCE #parmDlvState
-        #public str parmDlvState(str _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#DlvState, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#DlvState);
-        #}
-      ENDSOURCE
-      SOURCE #parmDlvZipCode
-        #public str parmDlvZipCode(str _value = '')
-        #{
-        #    if (!prmisdefault(_value))
-        #    {
-        #        this.set_Attribute(#DlvZipCode, _value);
-        #    }
-        #
-        #    return this.get_Attribute(#DlvZipCode);
-        #}
-      ENDSOURCE
       SOURCE #parmEmail
         #public Email parmEmail(Email _value = '')
         #{
@@ -270,6 +632,193 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#Email);
+        #}
+      ENDSOURCE
+      SOURCE #parmEndDate
+        #public ProjEndDate parmEndDate(ProjEndDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#EndDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#EndDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmExtensionDate
+        #public ProjExtensionDate parmExtensionDate(ProjExtensionDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ExtensionDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ExtensionDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmFormat
+        #public NumberSequenceFormat parmFormat(NumberSequenceFormat _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Format, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Format);
+        #}
+      ENDSOURCE
+      SOURCE #parmHeader
+        #public ProjHeader parmHeader(ProjHeader _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Header, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Header);
+        #}
+      ENDSOURCE
+      SOURCE #parmJobId
+        #public JmgJobId parmJobId(JmgJobId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#JobId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#JobId);
+        #}
+      ENDSOURCE
+      SOURCE #parmJobPayType
+        #public JmgJobPayType parmJobPayType(JmgJobPayType _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#JobPayType, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#JobPayType);
+        #}
+      ENDSOURCE
+      SOURCE #parmMinTimeIncrement
+        #public TSMinTimeIncrement parmMinTimeIncrement(TSMinTimeIncrement _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#MinTimeIncrement, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#MinTimeIncrement);
+        #}
+      ENDSOURCE
+      SOURCE #parmName
+        #public ProjName parmName(ProjName _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Name, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Name);
+        #}
+      ENDSOURCE
+      SOURCE #parmParentId
+        #public ProjParentId parmParentId(ProjParentId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ParentId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ParentId);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjBudgetaryControlOn
+        #public ProjBudgetaryControlOn parmProjBudgetaryControlOn(ProjBudgetaryControlOn _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjBudgetaryControlOn, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjBudgetaryControlOn);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjBudgetInterval
+        #public ProjBudgetInterval parmProjBudgetInterval(ProjBudgetInterval _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjBudgetInterval, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjBudgetInterval);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjBudgetOverrunOption
+        #public ProjBudgetOverrunOption parmProjBudgetOverrunOption(ProjBudgetOverrunOption _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjBudgetOverrunOption, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjBudgetOverrunOption);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjCarryForwardNegativeBudget
+        #public NoYesId parmProjCarryForwardNegativeBudget(NoYesId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjCarryForwardNegativeBudget, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjCarryForwardNegativeBudget);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjCarryForwardRemainingBudget
+        #public NoYesId parmProjCarryForwardRemainingBudget(NoYesId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjCarryForwardRemainingBudget, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjCarryForwardRemainingBudget);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjectedEndDate
+        #public ProjProjectedEndDate parmProjectedEndDate(ProjProjectedEndDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjectedEndDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjectedEndDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjectedStartDate
+        #public ProjProjectedStartDate parmProjectedStartDate(ProjProjectedStartDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjectedStartDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjectedStartDate);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjGroupId
+        #public ProjGroupId parmProjGroupId(ProjGroupId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjGroupId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjGroupId);
         #}
       ENDSOURCE
       SOURCE #parmProjId
@@ -283,6 +832,160 @@ Formatversion: 1
         #    return this.get_Attribute(#ProjId);
         #}
       ENDSOURCE
+      SOURCE #parmProjInvoiceProjId
+        #public ProjInvoiceProjId parmProjInvoiceProjId(ProjInvoiceProjId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjInvoiceProjId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjInvoiceProjId);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjLedgerPosting
+        #public ProjLedgerPosting parmProjLedgerPosting(ProjLedgerPosting _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjLedgerPosting, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjLedgerPosting);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjLinePropertySearch
+        #public ProjLinePropertySearch parmProjLinePropertySearch(ProjLinePropertySearch _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjLinePropertySearch, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjLinePropertySearch);
+        #}
+      ENDSOURCE
+      SOURCE #parmProjPriceGroup
+        #public ProjPriceGroupID parmProjPriceGroup(ProjPriceGroupID _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ProjPriceGroup, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ProjPriceGroup);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecId
+        #public RecId parmRecId(RecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRecVersion
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RecVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmRequireActivityExpenseForecast
+        #public RequireActivityExpenseForecast parmRequireActivityExpenseForecast(RequireActivityExpenseForecast _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RequireActivityExpenseForecast, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RequireActivityExpenseForecast);
+        #}
+      ENDSOURCE
+      SOURCE #parmRequireActivityExpenseTrx
+        #public RequireActivityExpenseTrx parmRequireActivityExpenseTrx(RequireActivityExpenseTrx _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RequireActivityExpenseTrx, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RequireActivityExpenseTrx);
+        #}
+      ENDSOURCE
+      SOURCE #parmRequireActivityHourForecast
+        #public RequireActivityHourForecast parmRequireActivityHourForecast(RequireActivityHourForecast _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RequireActivityHourForecast, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RequireActivityHourForecast);
+        #}
+      ENDSOURCE
+      SOURCE #parmRequireActivityHourTrx
+        #public RequireActivityHourTrx parmRequireActivityHourTrx(RequireActivityHourTrx _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RequireActivityHourTrx, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RequireActivityHourTrx);
+        #}
+      ENDSOURCE
+      SOURCE #parmRequireActivityItemForecast
+        #public RequireActivityItemForecast parmRequireActivityItemForecast(RequireActivityItemForecast _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RequireActivityItemForecast, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RequireActivityItemForecast);
+        #}
+      ENDSOURCE
+      SOURCE #parmRequireActivityItemTrx
+        #public RequireActivityItemTrx parmRequireActivityItemTrx(RequireActivityItemTrx _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RequireActivityItemTrx, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RequireActivityItemTrx);
+        #}
+      ENDSOURCE
+      SOURCE #parmsortingId
+        #public ProjSortingId parmsortingId(ProjSortingId _value)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_EdtArray(#sortingId, _value);
+        #    }
+        #
+        #    return this.get_EdtArray(#sortingId);
+        #}
+      ENDSOURCE
+      SOURCE #parmStartDate
+        #public ProjStartDate parmStartDate(ProjStartDate _value = dateNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#StartDate, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#StartDate);
+        #}
+      ENDSOURCE
       SOURCE #parmStatus
         #public ProjStatus parmStatus(ProjStatus _value = 0)
         #{
@@ -294,6 +997,94 @@ Formatversion: 1
         #    return this.get_Attribute(#Status);
         #}
       ENDSOURCE
+      SOURCE #parmSubject_SA
+        #public ProjSubjectZakat_SA parmSubject_SA(ProjSubjectZakat_SA _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Subject_SA, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Subject_SA);
+        #}
+      ENDSOURCE
+      SOURCE #parmSyncCreatedByExternal
+        #public SyncCreatedByExternal parmSyncCreatedByExternal(SyncCreatedByExternal _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SyncCreatedByExternal, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SyncCreatedByExternal);
+        #}
+      ENDSOURCE
+      SOURCE #parmSyncEntityId
+        #public SyncEntityId parmSyncEntityId(SyncEntityId _value = nullValueFromType(Types::Guid))
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SyncEntityId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SyncEntityId);
+        #}
+      ENDSOURCE
+      SOURCE #parmSyncLastTransId
+        #public SyncTransId parmSyncLastTransId(SyncTransId _value = nullValueFromType(Types::Guid))
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SyncLastTransId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SyncLastTransId);
+        #}
+      ENDSOURCE
+      SOURCE #parmSyncVersion
+        #public SyncVersion parmSyncVersion(SyncVersion _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#SyncVersion, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#SyncVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmTaxGroupId
+        #public TaxGroup parmTaxGroupId(TaxGroup _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#TaxGroupId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#TaxGroupId);
+        #}
+      ENDSOURCE
+      SOURCE #parmTemplate
+        #public NoYes parmTemplate(NoYes _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Template, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Template);
+        #}
+      ENDSOURCE
+      SOURCE #parmTimePostDetailSummary
+        #public TSPostDetailSummary parmTimePostDetailSummary(TSPostDetailSummary _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#TimePostDetailSummary, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#TimePostDetailSummary);
+        #}
+      ENDSOURCE
       SOURCE #parmType
         #public ProjType parmType(ProjType _value = 0)
         #{
@@ -303,6 +1094,83 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#Type);
+        #}
+      ENDSOURCE
+      SOURCE #parmUseAlternateProject
+        #public NoYesId parmUseAlternateProject(NoYesId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#UseAlternateProject, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#UseAlternateProject);
+        #}
+      ENDSOURCE
+      SOURCE #parmUseBudgeting
+        #public NoYesId parmUseBudgeting(NoYesId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#UseBudgeting, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#UseBudgeting);
+        #}
+      ENDSOURCE
+      SOURCE #parmValidateProjCategory
+        #public ProjValidateOption parmValidateProjCategory(ProjValidateOption _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ValidateProjCategory, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ValidateProjCategory);
+        #}
+      ENDSOURCE
+      SOURCE #parmWIPProject
+        #public ProjWipId parmWIPProject(ProjWipId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#WIPProject, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#WIPProject);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorkerResponsible
+        #public DirPartyNumber parmWorkerResponsible(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#WorkerResponsible, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#WorkerResponsible);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorkerResponsibleFinancial
+        #public DirPartyNumber parmWorkerResponsibleFinancial(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#WorkerResponsibleFinancial, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#WorkerResponsibleFinancial);
+        #}
+      ENDSOURCE
+      SOURCE #parmWorkerResponsibleSales
+        #public DirPartyNumber parmWorkerResponsibleSales(DirPartyNumber _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#WorkerResponsibleSales, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#WorkerResponsibleSales);
         #}
       ENDSOURCE
     ENDMETHODS

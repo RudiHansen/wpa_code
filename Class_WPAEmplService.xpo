@@ -12,11 +12,14 @@ Formatversion: 1
       Name                #WPAEmplService
       Extends             #AifDocumentService
       RunOn               #Server
+      Origin              #{521AE2E6-A382-4C73-B0F4-48C3201BF58C}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAEmplService</c> class serves as the document service for the <c>WPAEmpl</c> document type.
+        #/// </summary>
         #class WPAEmplService extends AifDocumentService
         #{
         #
@@ -24,11 +27,70 @@ Formatversion: 1
         #
       ENDSOURCE
       SOURCE #find
+        #/// <summary>
+        #///    Finds data objects.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAEmpl</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
         #public WPAEmpl find(AifQueryCriteria _queryCriteria)
         #{
-        #    WPAEmpl empl = new WPAEmpl();
-        #    this.findList(_queryCriteria, empl);
-        #    return empl;
+        #    WPAEmpl wPAEmpl = new WPAEmpl();
+        #    this.findList(_queryCriteria, wPAEmpl);
+        #    return wPAEmpl;
+        #}
+      ENDSOURCE
+      SOURCE #findAsOf
+        #/// <summary>
+        #///    Finds data objects.
+        #///    Returns data valid as of specified date/time.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <param name="_validAsOf">
+        #///    The date/time value that is used by the method to return records valid as of specified date/time.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAEmpl</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
+        #public WPAEmpl findAsOf(AifQueryCriteria _queryCriteria, utcdatetime _validAsOf)
+        #{
+        #    WPAEmpl wPAEmpl = new WPAEmpl();
+        #    this.findList(_queryCriteria, wPAEmpl, _validAsOf);
+        #    return wPAEmpl;
+        #}
+      ENDSOURCE
+      SOURCE #findRange
+        #/// <summary>
+        #///    Finds data objects.
+        #///    Returns data valid during the specified time period.
+        #/// </summary>
+        #/// <param name="_queryCriteria">
+        #///    The query criteria to use to find the data objects.
+        #/// </param>
+        #/// <param name="_validFrom">
+        #///    The date/time value that is used by the method to return valid records.
+        #////   Specifies the beginnig of the period.
+        #/// </param>
+        #/// <param name="_validTo">
+        #///    The date/time value that is used by the method to return valid records.
+        #////   Specifies the end of the period.
+        #/// </param>
+        #/// <returns>
+        #///    A <c>WPAEmpl</c> document that contains the specified data objects.
+        #/// </returns>
+        #[AifDocumentFindAttribute, SysEntryPointAttribute(true)]
+        #public WPAEmpl findRange(AifQueryCriteria _queryCriteria, utcdatetime _validFrom, utcdatetime _validTo)
+        #{
+        #    WPAEmpl wPAEmpl = new WPAEmpl();
+        #    this.findList(_queryCriteria, wPAEmpl, _validFrom, _validTo);
+        #    return wPAEmpl;
         #}
       ENDSOURCE
       SOURCE #new

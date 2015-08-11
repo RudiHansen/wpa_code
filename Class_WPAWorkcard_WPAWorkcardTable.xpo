@@ -11,28 +11,39 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAWorkcard_WPAWorkcardTable
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{ECEFE36A-A52B-4F8F-A3BF-40E71235EF81}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAWorkcard_WPAWorkcardTable</c> class is the data object class that is exposed through the <c>WPAWorkcardService</c> class.
+        #/// </summary>
+        ##AxdWPAWorkcardDCT
+        #[AifDataContainerTypeAttribute(#WPAWorkcard_WPAWorkcardTable)]
         #class WPAWorkcard_WPAWorkcardTable extends AfStronglyTypedDataContainer
         #{
-        #    #define.WPAWorkcardLine_1('WPAWorkcardLine_1')
+        #    #define.WPAWorkcardLine('WPAWorkcardLine')
         #    #define.WorkcardTypeId('WorkcardTypeId')
         #    #define.WorkcardId('WorkcardId')
         #    #define.Urgent('Urgent')
         #    #define.Transferred('Transferred')
         #    #define.Status('Status')
+        #    #define.StartTime('StartTime')
         #    #define.SiteId('SiteId')
         #    #define.ServiceObjectId('ServiceObjectId')
         #    #define.Responsible('Responsible')
+        #    #define.RefTableId('RefTableId')
+        #    #define.RefRecId('RefRecId')
+        #    #define.RefCompany('RefCompany')
         #    #define.RecVersion('RecVersion')
         #    #define.RecId('RecId')
         #    #define.PurchaseOrderNumber('PurchaseOrderNumber')
         #    #define.OrderId('OrderId')
+        #    #define.ErrorTxt('ErrorTxt')
+        #    #define.EndTime('EndTime')
         #    #define.EmploymentCode('EmploymentCode')
+        #    #define.Direction('Direction')
         #    #define.Description('Description')
         #    #define.DebitorId('DebitorId')
         #    #define.CrmInfo2('CrmInfo2')
@@ -45,10 +56,10 @@ Formatversion: 1
         #}
         #
       ENDSOURCE
-      SOURCE #createWPAWorkcardLine_1
-        #public AfStronglyTypedDataContainerList createWPAWorkcardLine_1()
+      SOURCE #createWPAWorkcardLine
+        #public AfStronglyTypedDataContainerList createWPAWorkcardLine()
         #{
-        #    return this.get_NewList(#WPAWorkcardLine_1);
+        #    return this.get_NewList(#WPAWorkcardLine);
         #}
       ENDSOURCE
       SOURCE #exists_DocumentHash
@@ -99,10 +110,28 @@ Formatversion: 1
         #    return this.exists(#Description);
         #}
       ENDSOURCE
+      SOURCE #existsDirection
+        #public boolean existsDirection()
+        #{
+        #    return this.exists(#Direction);
+        #}
+      ENDSOURCE
       SOURCE #existsEmploymentCode
         #public boolean existsEmploymentCode()
         #{
         #    return this.exists(#EmploymentCode);
+        #}
+      ENDSOURCE
+      SOURCE #existsEndTime
+        #public boolean existsEndTime()
+        #{
+        #    return this.exists(#EndTime);
+        #}
+      ENDSOURCE
+      SOURCE #existsErrorTxt
+        #public boolean existsErrorTxt()
+        #{
+        #    return this.exists(#ErrorTxt);
         #}
       ENDSOURCE
       SOURCE #existsOrderId
@@ -129,6 +158,24 @@ Formatversion: 1
         #    return this.exists(#RecVersion);
         #}
       ENDSOURCE
+      SOURCE #existsRefCompany
+        #public boolean existsRefCompany()
+        #{
+        #    return this.exists(#RefCompany);
+        #}
+      ENDSOURCE
+      SOURCE #existsRefRecId
+        #public boolean existsRefRecId()
+        #{
+        #    return this.exists(#RefRecId);
+        #}
+      ENDSOURCE
+      SOURCE #existsRefTableId
+        #public boolean existsRefTableId()
+        #{
+        #    return this.exists(#RefTableId);
+        #}
+      ENDSOURCE
       SOURCE #existsResponsible
         #public boolean existsResponsible()
         #{
@@ -145,6 +192,12 @@ Formatversion: 1
         #public boolean existsSiteId()
         #{
         #    return this.exists(#SiteId);
+        #}
+      ENDSOURCE
+      SOURCE #existsStartTime
+        #public boolean existsStartTime()
+        #{
+        #    return this.exists(#StartTime);
         #}
       ENDSOURCE
       SOURCE #existsStatus
@@ -177,16 +230,16 @@ Formatversion: 1
         #    return this.exists(#WorkcardTypeId);
         #}
       ENDSOURCE
-      SOURCE #existsWPAWorkcardLine_1
-        #public boolean existsWPAWorkcardLine_1()
+      SOURCE #existsWPAWorkcardLine
+        #public boolean existsWPAWorkcardLine()
         #{
-        #    return this.exists(#WPAWorkcardLine_1);
+        #    return this.exists(#WPAWorkcardLine);
         #}
       ENDSOURCE
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAWorkcard_WPAWorkcardTable);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parm_DocumentHash
@@ -201,7 +254,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmAccountId
-        #public str parmAccountId(str _value = '')
+        #public WPAAccountId parmAccountId(WPAAccountId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -256,7 +309,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmDebitorId
-        #public str parmDebitorId(str _value = '')
+        #public WPADebitorId parmDebitorId(WPADebitorId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -277,8 +330,19 @@ Formatversion: 1
         #    return this.get_Attribute(#Description);
         #}
       ENDSOURCE
+      SOURCE #parmDirection
+        #public WPADirection parmDirection(WPADirection _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#Direction, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#Direction);
+        #}
+      ENDSOURCE
       SOURCE #parmEmploymentCode
-        #public WPAEmploymentCode parmEmploymentCode(WPAEmploymentCode _value = '')
+        #public DirPartyNumber parmEmploymentCode(DirPartyNumber _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -286,6 +350,28 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#EmploymentCode);
+        #}
+      ENDSOURCE
+      SOURCE #parmEndTime
+        #public WPAEndTime parmEndTime(WPAEndTime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#EndTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#EndTime);
+        #}
+      ENDSOURCE
+      SOURCE #parmErrorTxt
+        #public WPAErrorTxt parmErrorTxt(WPAErrorTxt _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#ErrorTxt, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#ErrorTxt);
         #}
       ENDSOURCE
       SOURCE #parmOrderId
@@ -311,7 +397,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -322,7 +408,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecVersion
-        #public recVersion parmRecVersion(recVersion _value = 0)
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -330,6 +416,39 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#RecVersion);
+        #}
+      ENDSOURCE
+      SOURCE #parmRefCompany
+        #public CompanyId parmRefCompany(CompanyId _value = '')
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RefCompany, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RefCompany);
+        #}
+      ENDSOURCE
+      SOURCE #parmRefRecId
+        #public RefRecId parmRefRecId(RefRecId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RefRecId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RefRecId);
+        #}
+      ENDSOURCE
+      SOURCE #parmRefTableId
+        #public RefTableId parmRefTableId(RefTableId _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#RefTableId, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#RefTableId);
         #}
       ENDSOURCE
       SOURCE #parmResponsible
@@ -363,6 +482,17 @@ Formatversion: 1
         #    }
         #
         #    return this.get_Attribute(#SiteId);
+        #}
+      ENDSOURCE
+      SOURCE #parmStartTime
+        #public WPAStartTime parmStartTime(WPAStartTime _value = utcDateTimeNull())
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#StartTime, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#StartTime);
         #}
       ENDSOURCE
       SOURCE #parmStatus
@@ -420,15 +550,15 @@ Formatversion: 1
         #    return this.get_Attribute(#WorkcardTypeId);
         #}
       ENDSOURCE
-      SOURCE #parmWPAWorkcardLine_1
-        #public AfStronglyTypedDataContainerList parmWPAWorkcardLine_1(AfStronglyTypedDataContainerList _value = null)
+      SOURCE #parmWPAWorkcardLine
+        #public AfStronglyTypedDataContainerList parmWPAWorkcardLine(AfStronglyTypedDataContainerList _value = null)
         #{
         #    if (!prmisdefault(_value))
         #    {
-        #        this.set_List(#WPAWorkcardLine_1, _value);
+        #        this.set_List(#WPAWorkcardLine, _value);
         #    }
         #
-        #    return this.get_List(#WPAWorkcardLine_1);
+        #    return this.get_List(#WPAWorkcardLine);
         #}
       ENDSOURCE
     ENDMETHODS

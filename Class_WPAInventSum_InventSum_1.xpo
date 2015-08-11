@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAInventSum_InventSum_1
       Extends             #AfStronglyTypedDataContainer
-      RunOn               #Called from
+      Origin              #{DC6C5EEB-E861-4B5C-B804-D8C42B91F288}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAInventSum_InventSum_1</c> class is the data object class that is exposed through the <c>WPAInventSumService</c> class.
+        #/// </summary>
+        ##AxdWPAInventSumDCT
+        #[AifDataContainerTypeAttribute(#WPAInventSum_InventSum_1)]
         #class WPAInventSum_InventSum_1 extends AfStronglyTypedDataContainer
         #{
         #    #define.ReservPhysical('ReservPhysical')
@@ -32,6 +36,21 @@ Formatversion: 1
         #    #define.Picked('Picked')
         #    #define.PhysicalValue('PhysicalValue')
         #    #define.PhysicalInvent('PhysicalInvent')
+        #    #define.PdsCWReservPhysical('PdsCWReservPhysical')
+        #    #define.PdsCWReservOrdered('PdsCWReservOrdered')
+        #    #define.PdsCWRegistered('PdsCWRegistered')
+        #    #define.PdsCWReceived('PdsCWReceived')
+        #    #define.PdsCWQuotationReceipt('PdsCWQuotationReceipt')
+        #    #define.PdsCWQuotationIssue('PdsCWQuotationIssue')
+        #    #define.PdsCWPostedQty('PdsCWPostedQty')
+        #    #define.PdsCWPicked('PdsCWPicked')
+        #    #define.PdsCWPhysicalInvent('PdsCWPhysicalInvent')
+        #    #define.PdsCWOrdered('PdsCWOrdered')
+        #    #define.PdsCWOnOrder('PdsCWOnOrder')
+        #    #define.PdsCWDeducted('PdsCWDeducted')
+        #    #define.PdsCWAvailPhysical('PdsCWAvailPhysical')
+        #    #define.PdsCWAvailOrdered('PdsCWAvailOrdered')
+        #    #define.PdsCWArrived('PdsCWArrived')
         #    #define.Ordered('Ordered')
         #    #define.OnOrder('OnOrder')
         #    #define.LastUpdDatePhysical('LastUpdDatePhysical')
@@ -140,6 +159,96 @@ Formatversion: 1
         #    return this.exists(#Ordered);
         #}
       ENDSOURCE
+      SOURCE #existsPdsCWArrived
+        #public boolean existsPdsCWArrived()
+        #{
+        #    return this.exists(#PdsCWArrived);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWAvailOrdered
+        #public boolean existsPdsCWAvailOrdered()
+        #{
+        #    return this.exists(#PdsCWAvailOrdered);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWAvailPhysical
+        #public boolean existsPdsCWAvailPhysical()
+        #{
+        #    return this.exists(#PdsCWAvailPhysical);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWDeducted
+        #public boolean existsPdsCWDeducted()
+        #{
+        #    return this.exists(#PdsCWDeducted);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWOnOrder
+        #public boolean existsPdsCWOnOrder()
+        #{
+        #    return this.exists(#PdsCWOnOrder);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWOrdered
+        #public boolean existsPdsCWOrdered()
+        #{
+        #    return this.exists(#PdsCWOrdered);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWPhysicalInvent
+        #public boolean existsPdsCWPhysicalInvent()
+        #{
+        #    return this.exists(#PdsCWPhysicalInvent);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWPicked
+        #public boolean existsPdsCWPicked()
+        #{
+        #    return this.exists(#PdsCWPicked);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWPostedQty
+        #public boolean existsPdsCWPostedQty()
+        #{
+        #    return this.exists(#PdsCWPostedQty);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWQuotationIssue
+        #public boolean existsPdsCWQuotationIssue()
+        #{
+        #    return this.exists(#PdsCWQuotationIssue);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWQuotationReceipt
+        #public boolean existsPdsCWQuotationReceipt()
+        #{
+        #    return this.exists(#PdsCWQuotationReceipt);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWReceived
+        #public boolean existsPdsCWReceived()
+        #{
+        #    return this.exists(#PdsCWReceived);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWRegistered
+        #public boolean existsPdsCWRegistered()
+        #{
+        #    return this.exists(#PdsCWRegistered);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWReservOrdered
+        #public boolean existsPdsCWReservOrdered()
+        #{
+        #    return this.exists(#PdsCWReservOrdered);
+        #}
+      ENDSOURCE
+      SOURCE #existsPdsCWReservPhysical
+        #public boolean existsPdsCWReservPhysical()
+        #{
+        #    return this.exists(#PdsCWReservPhysical);
+        #}
+      ENDSOURCE
       SOURCE #existsPhysicalInvent
         #public boolean existsPhysicalInvent()
         #{
@@ -221,7 +330,7 @@ Formatversion: 1
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAInventSum_InventSum_1);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parm_DocumentHash
@@ -378,6 +487,171 @@ Formatversion: 1
         #    return this.get_Attribute(#Ordered);
         #}
       ENDSOURCE
+      SOURCE #parmPdsCWArrived
+        #public PdsCWInventQty parmPdsCWArrived(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWArrived, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWArrived);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWAvailOrdered
+        #public PdsCWInventQty parmPdsCWAvailOrdered(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWAvailOrdered, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWAvailOrdered);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWAvailPhysical
+        #public PdsCWInventQty parmPdsCWAvailPhysical(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWAvailPhysical, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWAvailPhysical);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWDeducted
+        #public PdsCWInventQty parmPdsCWDeducted(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWDeducted, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWDeducted);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWOnOrder
+        #public PdsCWInventQty parmPdsCWOnOrder(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWOnOrder, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWOnOrder);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWOrdered
+        #public PdsCWInventQty parmPdsCWOrdered(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWOrdered, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWOrdered);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWPhysicalInvent
+        #public PdsCWInventQty parmPdsCWPhysicalInvent(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWPhysicalInvent, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWPhysicalInvent);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWPicked
+        #public PdsCWInventQty parmPdsCWPicked(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWPicked, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWPicked);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWPostedQty
+        #public PdsCWInventQty parmPdsCWPostedQty(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWPostedQty, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWPostedQty);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWQuotationIssue
+        #public PdsCWInventQty parmPdsCWQuotationIssue(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWQuotationIssue, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWQuotationIssue);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWQuotationReceipt
+        #public PdsCWInventQty parmPdsCWQuotationReceipt(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWQuotationReceipt, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWQuotationReceipt);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWReceived
+        #public PdsCWInventQty parmPdsCWReceived(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWReceived, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWReceived);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWRegistered
+        #public PdsCWInventQty parmPdsCWRegistered(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWRegistered, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWRegistered);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWReservOrdered
+        #public PdsCWInventQty parmPdsCWReservOrdered(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWReservOrdered, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWReservOrdered);
+        #}
+      ENDSOURCE
+      SOURCE #parmPdsCWReservPhysical
+        #public PdsCWInventQty parmPdsCWReservPhysical(PdsCWInventQty _value = 0)
+        #{
+        #    if (!prmisdefault(_value))
+        #    {
+        #        this.set_Attribute(#PdsCWReservPhysical, _value);
+        #    }
+        #
+        #    return this.get_Attribute(#PdsCWReservPhysical);
+        #}
+      ENDSOURCE
       SOURCE #parmPhysicalInvent
         #public InventQtyPhysicalOnhand parmPhysicalInvent(InventQtyPhysicalOnhand _value = 0)
         #{
@@ -467,7 +741,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecId
-        #public recId parmRecId(recId _value = 0)
+        #public RecId parmRecId(RecId _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -478,7 +752,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmRecVersion
-        #public recVersion parmRecVersion(recVersion _value = 0)
+        #public RecVersion parmRecVersion(RecVersion _value = 0)
         #{
         #    if (!prmisdefault(_value))
         #    {

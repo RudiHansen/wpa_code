@@ -12,6 +12,8 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAForecastModel
       HelpText            #@WPA27
+      Origin              #{F24E2168-9DB7-43E6-B71B-B843C120F9C2}
+      LegacyId            #50022
       Extends             #ForecastModelId
     ENDPROPERTIES
     
@@ -20,6 +22,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

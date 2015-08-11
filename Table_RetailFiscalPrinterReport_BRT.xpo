@@ -1,0 +1,290 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailFiscalPrinterReport_BRT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailFiscalPrinterReport_BRT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailFiscalPrinterReport_BRT
+      Label               #@RET490269
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{4EB8E430-182F-4FC2-B1E3-68D284DC7E3E}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #AdditionalFiscalMemoryIndex
+        INT
+        PROPERTIES
+          Name                #AdditionalFiscalMemoryIndex
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{F88BD086-5C28-48FC-8C48-FFF324A94756}
+        ENDPROPERTIES
+        
+      FIELD #CreditDebitReceiptNumber
+        INT
+        PROPERTIES
+          Name                #CreditDebitReceiptNumber
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{1723B4D0-63CD-4236-9192-EC4A2844F87E}
+        ENDPROPERTIES
+        
+      FIELD #FiscalPrinterSerialNumber
+        STRING
+        PROPERTIES
+          Name                #FiscalPrinterSerialNumber
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{E6CCF4A2-1B66-403A-87C8-5E7E58A54BF4}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #ManagementReportNumber
+        INT
+        PROPERTIES
+          Name                #ManagementReportNumber
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{59BF74B2-F471-427B-8877-0F85A4C48D4A}
+        ENDPROPERTIES
+        
+      FIELD #NonFiscalOperationNumber
+        INT
+        PROPERTIES
+          Name                #NonFiscalOperationNumber
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{9FDC44B1-EFEC-4997-95FD-0F24E1B9F753}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{F0CDFF44-3C49-4F8D-A906-78DA7E1869A8}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #ReceiptNumber
+        INT
+        PROPERTIES
+          Name                #ReceiptNumber
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{6D33F0A4-D81E-4F29-935E-8C0AAD13D79A}
+        ENDPROPERTIES
+        
+      FIELD #ReplicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #ReplicationCounterFromOrigin
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{ED4B5CA2-DBD4-48B2-A85E-DEFFEB580579}
+        ENDPROPERTIES
+        
+      FIELD #ReportDateTime
+        DATETIME
+        PROPERTIES
+          Name                #ReportDateTime
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{A638EFF0-A1D1-423B-A09D-E8DE5CB5095C}
+        ENDPROPERTIES
+        
+      FIELD #ReportType
+        STRING
+        PROPERTIES
+          Name                #ReportType
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{6956C395-8B42-4FDC-8357-340D7C1DE6F5}
+          StringSize          #2
+        ENDPROPERTIES
+        
+      FIELD #RestartOperationNumber
+        INT
+        PROPERTIES
+          Name                #RestartOperationNumber
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{DFD5C856-30C8-4F7F-9316-827CA2B7790B}
+        ENDPROPERTIES
+        
+      FIELD #StoreId
+        STRING
+        PROPERTIES
+          Name                #StoreId
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{DB362FA5-9A6F-4C1C-83ED-4B2AF3250DC6}
+        ENDPROPERTIES
+        
+      FIELD #TerminalId
+        STRING
+        PROPERTIES
+          Name                #TerminalId
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{B2616224-18C4-48C6-8E97-186091C62A73}
+        ENDPROPERTIES
+        
+      FIELD #TransactionDateTime
+        DATETIME
+        PROPERTIES
+          Name                #TransactionDateTime
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{7B64B903-EAB8-421A-9016-CCA3F3EA469B}
+        ENDPROPERTIES
+        
+      FIELD #TransactionId
+        STRING
+        PROPERTIES
+          Name                #TransactionId
+          Table               #RetailFiscalPrinterReport_BRT
+          Origin              #{96282643-5AAC-4A0C-B3E8-8C977ED860D0}
+          StringSize          #44
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{FD10D51F-9526-43E7-B3C7-C2CA971478C9}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #TerminalId
+        #StoreId
+        #TransactionId
+        #ReceiptNumber
+        #RestartOperationNumber
+        #AdditionalFiscalMemoryIndex
+        #FiscalPrinterSerialNumber
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailFiscalPrinterReport_BRT cursor)
+        #{
+        #    RetailFiscalPrinterReport_BR target;
+        #    RetailFiscalPrinterReport_BRT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint SerialNumberReceiptNumberIdx
+        #                where (target.@FiscalPrinterSerialNumber==cursor2.@FiscalPrinterSerialNumber && target.@AdditionalFiscalMemoryIndex==cursor2.@AdditionalFiscalMemoryIndex && target.@RestartOperationNumber==cursor2.@RestartOperationNumber && target.@ReceiptNumber==cursor2.@ReceiptNumber && target.@TransactionId==cursor2.@TransactionId && target.@StoreId==cursor2.@StoreId && target.@TerminalId==cursor2.@TerminalId);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @AdditionalFiscalMemoryIndex,
+        #                    @CreditDebitReceiptNumber,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @ManagementReportNumber,
+        #                    @NonFiscalOperationNumber,
+        #                    @ReceiptNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @ReportDateTime,
+        #                    @ReportType,
+        #                    @RestartOperationNumber,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionDateTime,
+        #                    @TransactionId,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @AdditionalFiscalMemoryIndex,
+        #                    @CreditDebitReceiptNumber,
+        #                    @FiscalPrinterSerialNumber,
+        #                    @ManagementReportNumber,
+        #                    @NonFiscalOperationNumber,
+        #                    @ReceiptNumber,
+        #                    @ReplicationCounterFromOrigin,
+        #                    @ReportDateTime,
+        #                    @ReportType,
+        #                    @RestartOperationNumber,
+        #                    @StoreId,
+        #                    @TerminalId,
+        #                    @TransactionDateTime,
+        #                    @TransactionId,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailFiscalPrinterReport_BRT cursor)
+        #{
+        #    RetailFiscalPrinterReport_BRT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(ReplicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailFiscalPrinterReport_BR), cursor2.ReplicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

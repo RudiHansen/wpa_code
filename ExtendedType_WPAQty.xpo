@@ -12,7 +12,10 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAQty
       Label               #@SYS105177
+      Origin              #{AC22287E-262F-4521-85F8-84260F285FA6}
+      LegacyId            #50042
       Extends             #SMAQty
+      AllowNegative       #Yes
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -20,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

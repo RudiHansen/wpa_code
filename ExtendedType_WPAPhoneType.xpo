@@ -13,7 +13,8 @@ Formatversion: 1
       Name                #WPAPhoneType
       Label               #@WPA21
       HelpText            #@WPA22
-      Extends             #DirECommunicationTypeId
+      Origin              #{1324D10C-B9E6-4D05-A4D9-C25024F36955}
+      LegacyId            #50038
       StringSize          #20
     ENDPROPERTIES
     
@@ -22,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

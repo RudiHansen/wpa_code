@@ -11,34 +11,107 @@ Formatversion: 1
     PROPERTIES
       Name                #WPASendDispatchTeam
       Extends             #AxdSend
-      RunOn               #Called from
+      Origin              #{FF7034F7-1B0C-4F12-B08D-F63A3E5F430F}
+      LegacyId            #50080
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
         #class WPASendDispatchTeam extends AxdSend
         #{
+        #    SMADispatchTeamId   dispatchTeamId;
+        #}
+      ENDSOURCE
+      SOURCE #parmDispatchTeamId
+        #public SMADispatchTeamId parmDispatchTeamId(SMADispatchTeamId _dispatchTeamId = dispatchTeamId)
+        #{
+        #    dispatchTeamId = _dispatchTeamId;
+        #
+        #    return dispatchTeamId;
+        #}
+      ENDSOURCE
+      SOURCE #parmDocumentClassId
+        #public AifDocumentClassId parmDocumentClassId(AifDocumentClassId _documentClassId = aifDocumentClassId)
+        #{
+        #    aifDocumentClassId = _documentClassId;
+        #
+        #    return aifDocumentClassId;
+        #}
+      ENDSOURCE
+      SOURCE #parmSendActionType
+        #public AifSendActionType parmSendActionType(AifSendActionType _sendActionType = sendActionType)
+        #{
+        #    ;
+        #    sendActionType = _sendActionType;
+        #
+        #    return sendActionType;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #parmServiceClassId
+        #public AifServiceClassId parmServiceClassId(AifServiceClassId _serviceClassId = serviceClassId)
+        #{
+        #    ;
+        #    serviceClassId = _serviceClassId;
+        #
+        #    return serviceClassId;
+        #}
+        #
+      ENDSOURCE
+      SOURCE #queryRun
+        #public QueryRun queryRun()
+        #{
+        #    QueryRun            ret;
+        #    QueryBuildRange     qbr_DispatchTeamId;
+        #    ;
+        #    if (!ret)
+        #    {
+        #        ret = super();
+        #        qbr_DispatchTeamId = SysQuery::findOrCreateRange(ret.query().dataSourceTable(tablenum(SMADispatchTeamTable)), fieldnum(SMADispatchTeamTable, DispatchTeamId));
+        #        if (dispatchTeamId)
+        #        {
+        #            qbr_DispatchTeamId.value(dispatchTeamId);
+        #            qbr_DispatchTeamId.status(RangeStatus::Locked);
+        #        }
+        #    }
+        #    return ret;
+        #}
+      ENDSOURCE
+      SOURCE #showDialog
+        #public boolean showDialog()
+        #{
+        #    return (dispatchTeamId == "");
         #}
       ENDSOURCE
       SOURCE #main
         #static public void main(Args args)
         #{
-        #    WPASendDispatchTeam WPASendDispatchTeam;
-        #    AifConstraintList   aifConstraintList;
-        #    AifConstraint       aifConstraint;
+        #    WPASendDispatchTeam     sendDispatchTeam;
+        #    AifConstraintList       aifConstraintList;
+        #    AifConstraint           aifConstraint;
+        #    SMADispatchTeamTable    dispatchTeam;
         #    ;
         #
-        #    WPASendDispatchTeam = new WPASendDispatchTeam();
+        #    sendDispatchTeam    = new WPASendDispatchTeam();
         #    aifConstraintList   = new AifConstraintList();
         #    aifConstraint       = new AifConstraint();
+        #
+        #    if (args && args.record() && args.record().TableId == tableNum(SMADispatchTeamTable))
+        #    {
+        #        dispatchTeam = args.record();
+        #        sendDispatchTeam.parmDispatchTeamId(dispatchTeam.DispatchTeamId);
+        #    }
         #
         #    aifConstraint.parmType(AifConstraintType::NoConstraint);
         #    aifConstraintList.addConstraint(aifConstraint);
         #
-        #    WPASendDispatchTeam.parmShowDocPurpose(true) ;
+        #    sendDispatchTeam.parmOutboundPortName("WPAParam");
+        #    sendDispatchTeam.parmShowDocPurpose(true) ;
+        #    sendDispatchTeam.parmServiceClassId(classnum(WPASMADispatchTeamService));
+        #    sendDispatchTeam.parmSendActionType(AifSendActionType::SendByQuery);
+        #    sendDispatchTeam.parmDocumentClassId(classnum(WPASMADispatchTeam));
         #
-        #    WPASendDispatchTeam.sendMultipleDocuments(classnum(WPASMADispatchTeam), classnum(WPASMADispatchTeamService), AifSendMode::Async, aifConstraintList);
+        #    sendDispatchTeam.sendMultipleDocuments(classnum(WPASMADispatchTeam), classnum(WPASMADispatchTeamService), AifSendMode::Async, aifConstraintList);
         #}
       ENDSOURCE
     ENDMETHODS

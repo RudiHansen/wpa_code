@@ -1,0 +1,29 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: JOB
+
+; Microsoft Dynamics AX Job: GenerateXSDSchema_AxdWPAEmpl unloaded
+; --------------------------------------------------------------------------------
+  JOBVERSION 1
+  
+  SOURCE #GenerateXSDSchema_AxdWPAEmpl
+    #static void GenerateXSDSchema_AxdWPAEmpl(Args _args)
+    #{
+    #    AxdWPAEmpl    AxdWPAEmpl;
+    #    XML                 xml;
+    #    XMLDocument         xmlDocument;
+    #    ;
+    #    AxdWPAEmpl = AxdBase::newClassId(classnum(AxdWPAEmpl));
+    #    xml = AxdWPAEmpl.getSchema();
+    #    xmlDocument = XMLDocument::newXML(xml);
+    #    xmlDocument.save("c:\\XSDSchema_AxdWPAEmpl.xml");
+    #}
+    #
+  ENDSOURCE
+  PROPERTIES
+    Origin              #{F34A8C0F-0C08-49D8-84D4-AE074091D910}
+  ENDPROPERTIES
+  
+
+***Element: END

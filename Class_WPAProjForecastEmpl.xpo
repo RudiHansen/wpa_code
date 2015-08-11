@@ -11,12 +11,16 @@ Formatversion: 1
     PROPERTIES
       Name                #WPAProjForecastEmpl
       Extends             #AifDocument
-      RunOn               #Called from
+      Origin              #{C494FADA-3EEF-4556-8174-12B8E0DE50F8}
     ENDPROPERTIES
     
     METHODS
-      Version: 3
       SOURCE #classDeclaration
+        #/// <summary>
+        #///    The <c>WPAProjForecastEmpl</c> class is the data object class that is exposed through the <c>WPAProjForecastEmplService</c> class.
+        #/// </summary>
+        ##AxdWPAProjForecastEmplDCT
+        #[AifDataContainerTypeAttribute(#WPAProjForecastEmpl)]
         #class WPAProjForecastEmpl extends AifDocument
         #{
         #    #define.SenderId('SenderId')
@@ -53,7 +57,7 @@ Formatversion: 1
       SOURCE #new
         #public void new()
         #{
-        #    super(#WPAProjForecastEmpl);
+        #    super();
         #}
       ENDSOURCE
       SOURCE #parmDocPurpose
@@ -79,7 +83,7 @@ Formatversion: 1
         #}
       ENDSOURCE
       SOURCE #parmSenderId
-        #public dataAreaId parmSenderId(dataAreaId _value = '')
+        #public DataAreaId parmSenderId(DataAreaId _value = '')
         #{
         #    if (!prmisdefault(_value))
         #    {
@@ -105,7 +109,10 @@ Formatversion: 1
         #
         #    ProjTable                   projTable;
         #    ProjForecastEmpl            projForecastEmpl;
-        #    EmplTable                   emplTable;
+        #
+        #    HcmWorker                   workerTable;
+        #    SMADispatchTeamTable        dispatchTeamTable;
+        #
         #    SMAServiceTaskRelation      sMAServiceTaskRelation;
         #    DocuRef                     docuRef;
         #    DirPartyTable               dirPartyTable;
@@ -119,10 +126,8 @@ Formatversion: 1
         #    ProjId                      projId;
         #    str                         itemId;
         #    ProjCategoryType            categoryType;
-        #    SchedFromTime               fromTime;
-        #
+        #    SchedFromTime               schedFromTime;
         #    #define.ERPTOWPA                ('ERP_TO_WPA')
-        #    #define.InstallationName        ('InstallationName')
         #    #define.DataReceiverName        ('DataReceiverName')
         #    #define.Workcard                ('Workcard')
         #
@@ -168,38 +173,37 @@ Formatversion: 1
         #    #define.Price                   ('Price')
         #    #define.ItemUnit                ('ItemUnit')
         #    #define.StockLocationId         ('StockLocationId')
-        #    #define.ItemLineType            ('ItemTypeId')
+        #    #define.ItemTypeId              ('ItemTypeId')
         #    #define.ProductEmploymentCode   ('ProductEmploymentCode')
         #    #define.WorkcardItemStatus      ('WorkcardItemStatus')
+        #    #define.ItemDate                ('Date')
         #    ;
         #
         #    root = doc.appendChild(doc.createElement(#ERPTOWPA));
-        #    root.appendChild(doc.createElement(#InstallationName));
         #
         #    xmlWriterSettings.indent(true);
         #    localXmlWriter = XMLwriter::newXml(xmlWriterSettings);
         #
-        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.parmMessageId(), this.getQueryName()));
+        #    queryRun = new QueryRun(WPAAifDocument::getQueryFromMessage(this.getMessageId(), this.getQueryName()));
         #
-        #    while(queryRun.next())
+        #    while (queryRun.next())
         #    {
-        #        projTable = queryRun.get(tablenum(ProjTable));
         #        projForecastEmpl = queryRun.get(tablenum(ProjForecastEmpl));
-        #        if(!WPAProjForecastEmpl::validateData(projForecastEmpl))
+        #
+        #        projTable = projForecastEmpl.projTable();
+        #
+        #        if (!WPAProjForecastEmpl::validateData(projForecastEmpl))
         #        {
         #            continue;
         #        }
         #
-        #        if(projId != projForecastEmpl.ProjId)
+        #        if (projId != projForecastEmpl.ProjId)
         #        {
-        #            select firstonly PartyId, DispatchTeamId, WPAIsDepartment from emplTable
-        #                where emplTable.EmplId == projForecastEmpl.EmplId;
+        #            workerTable = HcmWorker::find(projForecastEmpl.Worker);
+        #            select firstOnly dispatchTeamTable
+        #                where dispatchTeamTable.DispatchTeamId == workerTable.PersonnelNumber;
         #
-        #            select firstonly Name from dirPartyTable
-        #                where dirPartyTable.PartyId == emplTable.PartyId;
-        #
-        #            select firstonly TableId, RecId, PartyId, AccountNum from custTable
-        #                where custTable.AccountNum == projTable.CustAccount;
+        #            custTable = CustTable::find(projTable.CustAccount);
         #
         #            select firstonly docuRef
         #                where docuRef.RefTableId    == projForecastEmpl.TableId &&
@@ -210,18 +214,20 @@ Formatversion: 1
         #
         #            node = root.appendChild(doc.createElement(#Workcard));
         #
-        #            workcardTable   = WPAWorkcardTable::findOrCreateFromProj(projTable, projForecastEmpl, emplTable, dirPartyTable, docuRef);
-        #            fromTime        = projForecastEmpl.SchedFromTime ? projForecastEmpl.SchedFromTime : WPAParameters::find().DefaultWorkcardStartTime;
+        #            workcardTable = WPAWorkcardTable::findOrCreateFromProj(projTable, projForecastEmpl, workerTable, docuRef);
         #
         #            this.wpa_addNotEmpty(node, doc, #OrderId, projTable.ProjId);
         #            this.wpa_addNotEmpty(node, doc, #WorkCardId, projForecastEmpl.TransId);
-        #            this.wpa_addNotEmpty(node, doc, #EmploymentCode, SMADispatchTeamTable::find(projForecastEmpl.EmplId).RecId ? "" : emplTable.WPAIsDepartment ? "" : projForecastEmpl.EmplId);
+        #
+        #            this.wpa_addNotEmpty(node, doc, #EmploymentCode, dispatchTeamTable.RecId ? "" : workerTable.WPAIsDepartment ? "" : int642str(workerTable.RecId));
+        #
         #            this.wpa_addNotEmpty(node, doc, #AccountId, projTable.CustAccount);
-        #            this.wpa_addNotEmpty(node, doc, #AreaId, emplTable.DispatchTeamId ? emplTable.DispatchTeamId : emplTable.WPAIsDepartment ? projForecastEmpl.EmplId : "");
-        #            //WPA 5.5 upgrade Date format-->
-        #            this.wpa_addNotEmpty(node, doc, #StartTime, date2str(projForecastEmpl.SchedFromDate, 123, 2, 4, 2, 4, 4) + " " + substr(time2str(fromTime, 1, 1),1,5));
-        #            this.wpa_addNotEmpty(node, doc, #EndTime, date2str(projForecastEmpl.SchedFromDate, 123, 2, 4, 2, 4, 4) + " " + substr(time2str(fromTime + 3600*max(projForecastEmpl.Qty, 2),1,1),1,5));
-        #            //WPA 5.5 upgrade Date format<--
+        #
+        #            this.wpa_addNotEmpty(node, doc, #AreaId, dispatchTeamTable.DispatchTeamId ? dispatchTeamTable.DispatchTeamId : workerTable.WPAIsDepartment ? int642str(workerTable.RecId) : SMADispatchWorkerSetup::findByWorker(workerTable.RecId).DispatchTeamId);
+        #            schedFromTime = projForecastEmpl.SchedFromTime ? projForecastEmpl.SchedFromTime : WPAParameters::find().DefaultWorkcardStartTime;
+        #            this.wpa_addNotEmpty(node, doc, #StartTime, date2str(projForecastEmpl.SchedFromDate, 123, 2, 4, 2, 4, 4) + " " + substr(time2str(schedFromTime, 1, 1),1,5));
+        #            this.wpa_addNotEmpty(node, doc, #EndTime, date2str(projForecastEmpl.SchedFromDate, 123, 2, 4, 2, 4, 4) + " " + substr(time2str(schedFromTime + 3600*max(projForecastEmpl.Qty, 2),1,1),1,5));
+        #
         #            this.wpa_addNotEmpty(node, doc, #Description, projForecastEmpl.Txt);
         #            this.wpa_addNotEmpty(node, doc, #Responsible, dirPartyTable.Name);
         #            this.wpa_addNotEmpty(node, doc, #CrmInfo1, docuRef.Notes);
@@ -230,7 +236,7 @@ Formatversion: 1
         #            this.wpa_addNotEmpty(node, doc, #PurchaseOrderNumber, '');
         #            this.wpa_addNotEmpty(node, doc, #Urgent, #Zero);
         #
-        #            if(custTable.AccountNum)
+        #            if (custTable.AccountNum)
         #            {
         #                subNode = node.appendChild(doc.createElement(#Debitor));
         #                this.wpa_addNotEmpty(subNode, doc, #DebitorId, custTable.AccountNum);
@@ -242,7 +248,7 @@ Formatversion: 1
         #            subNode = node.appendChild(doc.createElement(#Site));
         #            this.wpa_addNotEmpty(subNode, doc, #SiteId, projForecastEmpl.ProjId);
         #
-        #            if('')
+        #            if ('')
         #            {
         #                subNode = node.appendChild(doc.createElement(#ServiceObject));
         #                this.wpa_addNotEmpty(subNode, doc, #ServiceObjectId, '');
@@ -252,7 +258,7 @@ Formatversion: 1
         #        }
         #        projId = projForecastEmpl.projId;
         #
-        #        if(WPAParameters::find().UsePrefix && WPAParameters::find().CategoryPrefix)
+        #        if (WPAParameters::find().UsePrefix && WPAParameters::find().CategoryPrefix)
         #            itemId = WPAParameters::find().CategoryPrefix;
         #        else
         #            itemId = '';
@@ -260,7 +266,7 @@ Formatversion: 1
         #        lineNode = node.appendChild(doc.createElement(#WorkcardItem));
         #
         #        categoryType = ProjCategory::find(projForecastEmpl.CategoryId).CategoryType;
-        #        if(categoryType == ProjCategoryType::Hour)
+        #        if (categoryType == ProjCategoryType::Hour)
         #        {
         #            itemId += projForecastEmpl.CategoryId;
         #
@@ -275,13 +281,16 @@ Formatversion: 1
         #            this.wpa_addNotEmpty(lineNode, doc, #ItemId, itemId);
         #            this.wpa_addNotEmpty(lineNode, doc, #WorkcardItemId, workcardLine.GUID);
         #            this.wpa_addNotEmpty(lineNode, doc, #ItemEanNumber, '');
-        #            if(WPAParameters::find().CategorySalesPrice == NoYes::Yes)
+        #
+        #            if (WPAParameters::find().CategorySalesPrice == NoYes::Yes)
         #            {
         #                this.wpa_addNotEmpty(lineNode, doc, #ItemUnitPrice, num2str(projForecastEmpl.SalesPrice, 1, 2, 2, 0));
         #            }
-        #            this.wpa_addNotEmpty(lineNode, doc, #ItemDescription1, ProjCategory::find(projForecastEmpl.CategoryId).Name);
+        #
+        #            this.wpa_addNotEmpty(lineNode, doc, #ItemDescription1, projForecastEmpl.Txt);
         #            this.wpa_addNotEmpty(lineNode, doc, #ItemDescription2, '');
         #            this.wpa_addNotEmpty(lineNode, doc, #Quantity, num2str(projForecastEmpl.Qty, 1, 2, 2, 0));
+        #
         #            if(WPAParameters::find().CategoryCostPrice == NoYes::Yes)
         #            {
         #                this.wpa_addNotEmpty(lineNode, doc, #Price, num2str(projForecastEmpl.Qty*projForecastEmpl.SalesPrice, 1, 2, 2, 0));
@@ -289,7 +298,7 @@ Formatversion: 1
         #
         #            this.wpa_addNotEmpty(lineNode, doc, #ItemUnit, '');
         #            this.wpa_addNotEmpty(lineNode, doc, #StockLocationId, '');
-        #            this.wpa_addNotEmpty(lineNode, doc, #ItemLineType, '1');
+        #            this.wpa_addNotEmpty(lineNode, doc, #ItemTypeId, '1');
         #            this.wpa_addNotEmpty(lineNode, doc, #ProductEmploymentCode, '');
         #        }
         #
@@ -301,8 +310,9 @@ Formatversion: 1
         #
         #            lineNode = node.appendChild(doc.createElement(#WorkcardItem));
         #            this.wpa_addNotEmpty(lineNode, doc, #WorkcardItemStatus, "1");
+        #            this.wpa_addNotEmpty(lineNode, doc, #ItemDate, date2str(projForecastEmpl.SchedFromDate, 123, 2, 4, 2, 4, 4));
         #
-        #            if(WPAParameters::find().UsePrefix && WPAParameters::find().ItemPrefix)
+        #            if (WPAParameters::find().UsePrefix && WPAParameters::find().ItemPrefix)
         #                itemId = WPAParameters::find().ItemPrefix;
         #
         #            select firstonly itemBarCode from inventItemBarCode
@@ -312,16 +322,16 @@ Formatversion: 1
         #
         #            itemId += forecastSales.ItemId;
         #
-        #            if(inventDim.configId)
+        #            if (inventDim.configId)
         #                itemId += WPAParameters::find().Separator
         #                        + inventDim.configId;
-        #            if(inventDim.InventSizeId)
+        #            if (inventDim.InventSizeId)
         #                itemId += WPAParameters::find().Separator
         #                        + inventDim.InventSizeId;
-        #            if(inventDim.InventColorId)
+        #            if (inventDim.InventColorId)
         #                itemId += WPAParameters::find().Separator
         #                        + inventDim.InventColorId;
-        #            if(WPAParameters::find().LinePropertyCaregory)
+        #            if (WPAParameters::find().LinePropertyCaregory)
         #                itemId += WPAParameters::find().Separator
         #                        + forecastSales.ProjLinePropertyId;
         #
@@ -330,20 +340,21 @@ Formatversion: 1
         #            this.wpa_addNotEmpty(lineNode, doc, #ItemId, itemId);
         #            this.wpa_addNotEmpty(lineNode, doc, #WorkcardItemId, workcardLine.GUID);
         #            this.wpa_addNotEmpty(lineNode, doc, #ItemEanNumber, inventItemBarCode.itemBarCode);
-        #            if(WPAParameters::find().ItemSalesPrice == NoYes::Yes)
+        #
+        #            if (WPAParameters::find().ItemSalesPrice == NoYes::Yes)
         #            {
         #                this.wpa_addNotEmpty(lineNode, doc, #ItemUnitPrice, num2str(forecastSales.SalesPrice, 1, 2, 2, 0));
         #            }
+        #
         #            this.wpa_addNotEmpty(lineNode, doc, #ItemDescription1, forecastSales.itemName());
         #            this.wpa_addNotEmpty(lineNode, doc, #ItemDescription2, forecastSales.Comment);
         #            this.wpa_addNotEmpty(lineNode, doc, #Quantity, num2str(forecastSales.SalesQty, 1, 2, 2, 0));
         #            this.wpa_addNotEmpty(lineNode, doc, #Price, num2str(forecastSales.Amount, 1, 2, 2, 0));
         #            this.wpa_addNotEmpty(lineNode, doc, #ItemUnit, forecastSales.SalesUnitId);
         #            this.wpa_addNotEmpty(lineNode, doc, #StockLocationId, forecastSales.inventDim().InventLocationId);
-        #            this.wpa_addNotEmpty(lineNode, doc, #ItemLineType, '0');
+        #            this.wpa_addNotEmpty(lineNode, doc, #ItemTypeId, '0');
         #            this.wpa_addNotEmpty(lineNode, doc, #ProductEmploymentCode, '');
         #        }
-        #
         #    }
         #
         #    doc.writeTo(localXmlWriter);
@@ -359,17 +370,18 @@ Formatversion: 1
         #    ForecastSales   forecastSales;
         #    boolean         ret = true;
         #    ;
-        #    if (!_projForecastEmpl.EmplId)
+        #
+        #    if (!_projForecastEmpl.Worker)
         #    {
         #        error(strfmt("Employee must be filled in."));
         #        ret = false;
         #    }
+        #
         #    if (WPAParameters::find().ForecastModel && _projForecastEmpl.ModelId != WPAParameters::find().ForecastModel)
         #    {
         #        error(strfmt("Forecast model must be %1", WPAParameters::find().ForecastModel));
         #        ret = false;
         #    }
-        #
         #    ret = WPAWorkcardTable::validateWorkcard(_projForecastEmpl) && ret;
         #
         #    while select forecastSales

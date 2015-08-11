@@ -1,0 +1,1181 @@
+﻿Exportfile for AOT version 1.0 or later
+Formatversion: 1
+
+***Element: DBT
+
+; Microsoft Dynamics AX Table : RetailTransactionSalesTransT unloaded
+; --------------------------------------------------------------------------------
+  TABLEVERSION 1
+  
+  TABLE #RetailTransactionSalesTransT
+    EnforceFKRelation 1
+    PROPERTIES
+      Name                #RetailTransactionSalesTransT
+      Label               #@RET3214
+      TableType           #TempDB
+      CreateRecIdIndex    #Yes
+      PrimaryIndex        #SurrogateKey
+      ClusterIndex        #SurrogateKey
+      Origin              #{0DAC2355-58B7-498E-B234-B349D02763AD}
+    ENDPROPERTIES
+    
+    FIELDS
+      FIELD #barcode
+        STRING
+        PROPERTIES
+          Name                #barcode
+          Table               #RetailTransactionSalesTransT
+          Origin              #{A57875CE-DE0D-48FE-88F1-9B45A388F6FE}
+          StringSize          #80
+        ENDPROPERTIES
+        
+      FIELD #businessDate
+        DATE
+        PROPERTIES
+          Name                #businessDate
+          Table               #RetailTransactionSalesTransT
+          Origin              #{B9CC8496-421C-4A6D-8D21-DB20A9008C65}
+        ENDPROPERTIES
+        
+      FIELD #Catalog
+        INT64
+        PROPERTIES
+          Name                #Catalog
+          Table               #RetailTransactionSalesTransT
+          Origin              #{CCAC7D59-3497-4D09-8EEF-D50E99C7C924}
+        ENDPROPERTIES
+        
+      FIELD #Channel
+        INT64
+        PROPERTIES
+          Name                #Channel
+          Table               #RetailTransactionSalesTransT
+          Origin              #{3EC0FC6E-055A-4051-B1AE-A0C1B655E63D}
+        ENDPROPERTIES
+        
+      FIELD #comment
+        STRING
+        PROPERTIES
+          Name                #comment
+          Table               #RetailTransactionSalesTransT
+          Origin              #{DD6FB17C-937B-4808-8CD9-4C4B60475BF5}
+          StringSize          #60
+        ENDPROPERTIES
+        
+      FIELD #costAmount
+        REAL
+        PROPERTIES
+          Name                #costAmount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{3303D45E-79CA-4A4D-9694-D86FEC58263C}
+        ENDPROPERTIES
+        
+      FIELD #counter
+        INT
+        PROPERTIES
+          Name                #counter
+          Table               #RetailTransactionSalesTransT
+          Origin              #{02015DA1-9C37-4A78-9DF3-5C16D65AC824}
+        ENDPROPERTIES
+        
+      FIELD #custAccount
+        STRING
+        PROPERTIES
+          Name                #custAccount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{9AAB74B4-D65E-4F8C-987A-F1EC2DD363DA}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #custDiscAmount
+        REAL
+        PROPERTIES
+          Name                #custDiscAmount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{E633ECA7-7F8C-4B4C-BBA2-D20861FDCAA7}
+        ENDPROPERTIES
+        
+      FIELD #custInvoiceDiscAmount
+        REAL
+        PROPERTIES
+          Name                #custInvoiceDiscAmount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{98609472-7467-4D14-BB04-2FE9E70417FF}
+        ENDPROPERTIES
+        
+      FIELD #discAmount
+        REAL
+        PROPERTIES
+          Name                #discAmount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{B53250E5-8411-4D9D-8827-87F04849F989}
+        ENDPROPERTIES
+        
+      FIELD #discAmountFromStdPrice
+        REAL
+        PROPERTIES
+          Name                #discAmountFromStdPrice
+          Table               #RetailTransactionSalesTransT
+          Origin              #{5E3AF5D0-314C-449C-85A9-62D6C41378B6}
+        ENDPROPERTIES
+        
+      FIELD #discGroupId
+        STRING
+        PROPERTIES
+          Name                #discGroupId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{51C34DEC-BFD6-460B-973E-48FBCC694F42}
+        ENDPROPERTIES
+        
+      FIELD #discOfferId
+        STRING
+        PROPERTIES
+          Name                #discOfferId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{83705DA1-EA60-4E1C-829E-60E458E8ECC5}
+          StringSize          #40
+        ENDPROPERTIES
+        
+      FIELD #DiscountAmountForPrinting
+        REAL
+        PROPERTIES
+          Name                #DiscountAmountForPrinting
+          Label               #@RET3311
+          Table               #RetailTransactionSalesTransT
+          Origin              #{9A06EDD3-5EAA-44E6-8DA0-D8537E12D5DC}
+        ENDPROPERTIES
+        
+      FIELD #DlvMode
+        STRING
+        PROPERTIES
+          Name                #DlvMode
+          HelpText            #@SYS1529
+          Table               #RetailTransactionSalesTransT
+          Origin              #{FBA6CAF2-210D-4D55-BD4D-E94323FDBCF0}
+        ENDPROPERTIES
+        
+      FIELD #ElectronicDeliveryEmail
+        STRING
+        PROPERTIES
+          Name                #ElectronicDeliveryEmail
+          Table               #RetailTransactionSalesTransT
+          Origin              #{4B916A0B-1179-48D5-8FB1-128760807081}
+          StringSize          #80
+        ENDPROPERTIES
+        
+      FIELD #ElectronicDeliveryEmailContent
+        STRING
+        PROPERTIES
+          Name                #ElectronicDeliveryEmailContent
+          Table               #RetailTransactionSalesTransT
+          Origin              #{1E033296-A917-4E97-9A5F-118D792C9526}
+          StringSize          #400
+        ENDPROPERTIES
+        
+      FIELD #FileLogId
+        STRING
+        PROPERTIES
+          Name                #FileLogId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{B82CAF40-A0BD-4C6A-989B-D23DA5289140}
+        ENDPROPERTIES
+        
+      FIELD #giftcard
+        ENUM
+        PROPERTIES
+          Name                #giftcard
+          Table               #RetailTransactionSalesTransT
+          Origin              #{FB890C18-4C93-41F1-8ECA-04E5BD4FECC1}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #infocodeDiscAmount
+        REAL
+        PROPERTIES
+          Name                #infocodeDiscAmount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{23E5BF0E-E88E-4FED-BD1C-4212741E47C5}
+        ENDPROPERTIES
+        
+      FIELD #InventBatchId
+        STRING
+        PROPERTIES
+          Name                #InventBatchId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{44843191-4B31-4DC4-BF94-36775AFAD669}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #inventDimId
+        STRING
+        PROPERTIES
+          Name                #inventDimId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{39FCA9F2-6D10-45C1-B7F5-9F390F4CBFC7}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #InventLocationId
+        STRING
+        PROPERTIES
+          Name                #InventLocationId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{8DF078FF-EAB3-47B9-8988-5ABBE4837AB2}
+        ENDPROPERTIES
+        
+      FIELD #InventSerialId
+        STRING
+        PROPERTIES
+          Name                #InventSerialId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{9DD4B04D-371A-4958-990F-B5C463B8AEDD}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #InventSiteId
+        STRING
+        PROPERTIES
+          Name                #InventSiteId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{48524779-C820-442C-932D-D92F7B81F4A7}
+        ENDPROPERTIES
+        
+      FIELD #inventTransId
+        STRING
+        PROPERTIES
+          Name                #inventTransId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{89C6A7D4-5222-4CAE-9329-C5629EF63C51}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #itemCorrectedLine
+        ENUM
+        PROPERTIES
+          Name                #itemCorrectedLine
+          Table               #RetailTransactionSalesTransT
+          Origin              #{7FC05204-2D9A-4F21-8F84-A7DBFA1FE483}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #itemId
+        STRING
+        PROPERTIES
+          Name                #itemId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{954A59D0-0331-4020-B59F-F084E43B6C58}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #itemIdScanned
+        ENUM
+        PROPERTIES
+          Name                #itemIdScanned
+          Table               #RetailTransactionSalesTransT
+          Origin              #{B38B2A2B-B467-47E2-99B1-6CF4D71BBC92}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #itemPostingGroup
+        STRING
+        PROPERTIES
+          Name                #itemPostingGroup
+          Table               #RetailTransactionSalesTransT
+          Origin              #{F024039E-01A5-4652-A948-A5CE0AB55C89}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #keyboardItemEntry
+        ENUM
+        PROPERTIES
+          Name                #keyboardItemEntry
+          Table               #RetailTransactionSalesTransT
+          Origin              #{BD7EB823-87C7-49A6-960A-FB78653AA2A8}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #lineDscAmount
+        REAL
+        PROPERTIES
+          Name                #lineDscAmount
+          Label               #@RET3307
+          Table               #RetailTransactionSalesTransT
+          Origin              #{4D638499-E9E7-4D93-9DEE-1D231AF32AA9}
+        ENDPROPERTIES
+        
+      FIELD #LineManualDiscountAmount
+        REAL
+        PROPERTIES
+          Name                #LineManualDiscountAmount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{1CD910E1-2FB0-45EC-8DFF-9B7E11882D91}
+        ENDPROPERTIES
+        
+      FIELD #LineManualDiscountPercentage
+        REAL
+        PROPERTIES
+          Name                #LineManualDiscountPercentage
+          Table               #RetailTransactionSalesTransT
+          Origin              #{E11738B3-A27E-4213-8708-42FB0D4EB78D}
+        ENDPROPERTIES
+        
+      FIELD #lineNum
+        REAL
+        PROPERTIES
+          Name                #lineNum
+          Table               #RetailTransactionSalesTransT
+          Origin              #{D6D34721-4266-448A-A0E7-6D65FF30D431}
+        ENDPROPERTIES
+        
+      FIELD #lineWasDiscounted
+        ENUM
+        PROPERTIES
+          Name                #lineWasDiscounted
+          Table               #RetailTransactionSalesTransT
+          Origin              #{4679A1C8-F552-4956-85F8-E743FCA48B9D}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #linkedItemNotOriginal
+        ENUM
+        PROPERTIES
+          Name                #linkedItemNotOriginal
+          Table               #RetailTransactionSalesTransT
+          Origin              #{533E4A33-6449-4C29-89C6-0EA7FC615CA6}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #ListingId
+        STRING
+        PROPERTIES
+          Name                #ListingId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{E3381876-707C-4339-8D12-040A54463AB5}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #LogisticsPostalAddress
+        INT64
+        PROPERTIES
+          Name                #LogisticsPostalAddress
+          Table               #RetailTransactionSalesTransT
+          Origin              #{42A248DC-13CF-491C-82AB-B48D82D41628}
+        ENDPROPERTIES
+        
+      FIELD #LoyaltyDiscAmount_RU
+        REAL
+        PROPERTIES
+          Name                #LoyaltyDiscAmount_RU
+          Table               #RetailTransactionSalesTransT
+          Origin              #{81348B5F-150D-4AFA-A97B-B1486F76073B}
+        ENDPROPERTIES
+        
+      FIELD #LoyaltyDiscPct_RU
+        REAL
+        PROPERTIES
+          Name                #LoyaltyDiscPct_RU
+          Table               #RetailTransactionSalesTransT
+          Origin              #{CE10A37F-A334-4F14-A424-AB85B953FB62}
+        ENDPROPERTIES
+        
+      FIELD #netAmount
+        REAL
+        PROPERTIES
+          Name                #netAmount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{75D82C46-1C8C-4D7A-913B-E776BB0D07ED}
+        ENDPROPERTIES
+        
+      FIELD #netAmountInclTax
+        REAL
+        PROPERTIES
+          Name                #netAmountInclTax
+          Table               #RetailTransactionSalesTransT
+          Origin              #{E8B4DB7C-C757-4FBF-B9A6-3333782E27A5}
+        ENDPROPERTIES
+        
+      FIELD #netPrice
+        REAL
+        PROPERTIES
+          Name                #netPrice
+          Table               #RetailTransactionSalesTransT
+          Origin              #{D9251844-6ED8-47B7-B154-8F8DCA88CF4E}
+        ENDPROPERTIES
+        
+      FIELD #Origin
+        STRING
+        PROPERTIES
+          Name                #Origin
+          Table               #RetailTransactionSalesTransT
+          Origin              #{E9E44A7D-8409-40F8-95C8-829C797ED85D}
+          StringSize          #50
+        ENDPROPERTIES
+        
+      FIELD #originalOfLinkedItemList
+        ENUM
+        PROPERTIES
+          Name                #originalOfLinkedItemList
+          Table               #RetailTransactionSalesTransT
+          Origin              #{13D59FD3-EF60-4357-A773-662FE7BEC39E}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #originalPrice
+        REAL
+        PROPERTIES
+          Name                #originalPrice
+          Table               #RetailTransactionSalesTransT
+          Origin              #{106BCCCA-B4CD-4722-B323-4C9274B7542C}
+        ENDPROPERTIES
+        
+      FIELD #OriginalTaxGroup
+        STRING
+        PROPERTIES
+          Name                #OriginalTaxGroup
+          Table               #RetailTransactionSalesTransT
+          Origin              #{1103DF19-E974-4225-A000-96B16F58ECC5}
+        ENDPROPERTIES
+        
+      FIELD #OriginalTaxItemGroup
+        STRING
+        PROPERTIES
+          Name                #OriginalTaxItemGroup
+          Table               #RetailTransactionSalesTransT
+          Origin              #{EEC1623C-5A28-432B-8ABE-6DB45F5A3DDF}
+        ENDPROPERTIES
+        
+      FIELD #periodicDiscAmount
+        REAL
+        PROPERTIES
+          Name                #periodicDiscAmount
+          Label               #@RET3310
+          Table               #RetailTransactionSalesTransT
+          Origin              #{E1B96614-6046-4868-8974-241A69DAD5EB}
+        ENDPROPERTIES
+        
+      FIELD #periodicDiscGroup
+        STRING
+        PROPERTIES
+          Name                #periodicDiscGroup
+          Table               #RetailTransactionSalesTransT
+          Origin              #{ADF0AE8E-E972-4151-A337-2E95C0A4E0C5}
+        ENDPROPERTIES
+        
+      FIELD #periodicDiscType
+        ENUM
+        PROPERTIES
+          Name                #periodicDiscType
+          Table               #RetailTransactionSalesTransT
+          Origin              #{312179A1-5951-49D2-A8FC-A3871CD78272}
+          EnumType            #RetailPeriodicDiscType
+        ENDPROPERTIES
+        
+      FIELD #PeriodicPercentageDiscount
+        REAL
+        PROPERTIES
+          Name                #PeriodicPercentageDiscount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{3CD116E9-C3E7-49EA-A35C-E7878D17285F}
+        ENDPROPERTIES
+        
+      FIELD #prescriptionId
+        STRING
+        PROPERTIES
+          Name                #prescriptionId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{0498FB82-16B7-49D7-A27B-8FF93C6C6E97}
+        ENDPROPERTIES
+        
+      FIELD #price
+        REAL
+        PROPERTIES
+          Name                #price
+          Table               #RetailTransactionSalesTransT
+          Origin              #{217D487D-89DA-4D1F-8D21-FE5D70C0EE52}
+        ENDPROPERTIES
+        
+      FIELD #priceChange
+        ENUM
+        PROPERTIES
+          Name                #priceChange
+          Table               #RetailTransactionSalesTransT
+          Origin              #{65DFF7A5-3A87-4631-BD1B-22E74D266C6A}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #priceInBarcode
+        ENUM
+        PROPERTIES
+          Name                #priceInBarcode
+          Table               #RetailTransactionSalesTransT
+          Origin              #{83296B1F-6C0E-417C-ADC0-1477DEBED744}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #purchId
+        STRING
+        PROPERTIES
+          Name                #purchId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{BAE4D9E8-1024-49F9-A441-1BAA721BC5EC}
+          StringSize          #20
+        ENDPROPERTIES
+        
+      FIELD #qty
+        REAL
+        PROPERTIES
+          Name                #qty
+          Table               #RetailTransactionSalesTransT
+          Origin              #{0E5FE1B1-1340-4AFE-A103-6D372D271217}
+        ENDPROPERTIES
+        
+      FIELD #ReceiptDateRequested
+        DATE
+        PROPERTIES
+          Name                #ReceiptDateRequested
+          Table               #RetailTransactionSalesTransT
+          Origin              #{FF919900-97BC-4BDB-BABA-318606B1A698}
+        ENDPROPERTIES
+        
+      FIELD #receiptId
+        STRING
+        PROPERTIES
+          Name                #receiptId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{290A517A-DB15-4C6C-A464-21F0FF85037B}
+          StringSize          #18
+        ENDPROPERTIES
+        
+      FIELD #replicated
+        ENUM
+        PROPERTIES
+          Name                #replicated
+          Table               #RetailTransactionSalesTransT
+          Origin              #{765C1BEF-23DA-40EF-8080-3830A68EF507}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #replicationCounterFromOrigin
+        INT
+        PROPERTIES
+          Name                #replicationCounterFromOrigin
+          Label               #@RET3920
+          HelpText            #@RET3921
+          Table               #RetailTransactionSalesTransT
+          Origin              #{000A06DE-48BF-4396-AF4E-56522389C0C9}
+        ENDPROPERTIES
+        
+      FIELD #returnLineNum
+        REAL
+        PROPERTIES
+          Name                #returnLineNum
+          Table               #RetailTransactionSalesTransT
+          Origin              #{A38F4736-6CB2-4D27-97EC-6019FEB5CF23}
+        ENDPROPERTIES
+        
+      FIELD #returnNoSale
+        ENUM
+        PROPERTIES
+          Name                #returnNoSale
+          Table               #RetailTransactionSalesTransT
+          Origin              #{96A50A17-73B0-4CED-ACFB-F6767BFD4C41}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #returnQty
+        REAL
+        PROPERTIES
+          Name                #returnQty
+          Table               #RetailTransactionSalesTransT
+          Origin              #{05D335F6-954B-441E-B09C-2874736FA26E}
+        ENDPROPERTIES
+        
+      FIELD #returnStore
+        STRING
+        PROPERTIES
+          Name                #returnStore
+          Table               #RetailTransactionSalesTransT
+          Origin              #{788F2D52-FB62-4FA9-8897-04BA02363DFA}
+        ENDPROPERTIES
+        
+      FIELD #returnTerminalId
+        STRING
+        PROPERTIES
+          Name                #returnTerminalId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{69266CEB-ACCA-4681-A634-2BA887438577}
+        ENDPROPERTIES
+        
+      FIELD #returnTransactionId
+        STRING
+        PROPERTIES
+          Name                #returnTransactionId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{98328870-9044-4C1E-A4E1-8670FEAD6667}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #RFIDTagId
+        STRING
+        PROPERTIES
+          Name                #RFIDTagId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{055088CA-4978-464A-AFB1-594BB9010E63}
+          StringSize          #24
+        ENDPROPERTIES
+        
+      FIELD #scaleItem
+        ENUM
+        PROPERTIES
+          Name                #scaleItem
+          Table               #RetailTransactionSalesTransT
+          Origin              #{11769345-2EBF-42B9-8A8E-E3C4F0E77250}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #section
+        STRING
+        PROPERTIES
+          Name                #section
+          Table               #RetailTransactionSalesTransT
+          Origin              #{27DB2E64-C841-4A3D-AE7B-CB7CF6B3AB20}
+        ENDPROPERTIES
+        
+      FIELD #shelf
+        STRING
+        PROPERTIES
+          Name                #shelf
+          Table               #RetailTransactionSalesTransT
+          Origin              #{4BFA597A-E840-405C-A065-CF6A25EF6D87}
+        ENDPROPERTIES
+        
+      FIELD #shift
+        STRING
+        PROPERTIES
+          Name                #shift
+          Table               #RetailTransactionSalesTransT
+          Origin              #{B8D25524-7E59-4A5F-A886-47D5855A2B8C}
+        ENDPROPERTIES
+        
+      FIELD #shiftDate
+        DATE
+        PROPERTIES
+          Name                #shiftDate
+          Table               #RetailTransactionSalesTransT
+          Origin              #{A647E500-78CA-4EB7-BE8D-D0DAEA065DBE}
+        ENDPROPERTIES
+        
+      FIELD #ShippingDateRequested
+        DATE
+        PROPERTIES
+          Name                #ShippingDateRequested
+          Table               #RetailTransactionSalesTransT
+          Origin              #{16A6FC99-ACD4-4DBC-94B1-CF0DB15364EE}
+        ENDPROPERTIES
+        
+      FIELD #staffId
+        STRING
+        PROPERTIES
+          Name                #staffId
+          Label               #@RET3312
+          Table               #RetailTransactionSalesTransT
+          Origin              #{53FF1C60-D374-4E40-8BA0-40CA98F31584}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #statementCode
+        STRING
+        PROPERTIES
+          Name                #statementCode
+          Table               #RetailTransactionSalesTransT
+          Origin              #{66494BB8-CB38-4AB3-A44F-3EFC66DF5C07}
+          StringSize          #25
+        ENDPROPERTIES
+        
+      FIELD #stdNetPrice
+        REAL
+        PROPERTIES
+          Name                #stdNetPrice
+          Table               #RetailTransactionSalesTransT
+          Origin              #{6C074C15-7A45-4674-98F4-09C8DD7292E0}
+        ENDPROPERTIES
+        
+      FIELD #store
+        STRING
+        PROPERTIES
+          Name                #store
+          Table               #RetailTransactionSalesTransT
+          Origin              #{92437294-0277-4311-B16F-C05F93D9D4B7}
+        ENDPROPERTIES
+        
+      FIELD #taxAmount
+        REAL
+        PROPERTIES
+          Name                #taxAmount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{1D07D7F4-E6F7-4EA7-8203-BE337670B5C7}
+        ENDPROPERTIES
+        
+      FIELD #taxGroup
+        STRING
+        PROPERTIES
+          Name                #taxGroup
+          Table               #RetailTransactionSalesTransT
+          Origin              #{3BADF109-6C78-4B6D-B05F-6D331FD5620D}
+        ENDPROPERTIES
+        
+      FIELD #TaxItemGroup
+        STRING
+        PROPERTIES
+          Name                #TaxItemGroup
+          Table               #RetailTransactionSalesTransT
+          Origin              #{2B15F3D4-8D49-4997-A7E9-91341610FE27}
+        ENDPROPERTIES
+        
+      FIELD #terminalId
+        STRING
+        PROPERTIES
+          Name                #terminalId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{1DAB0FCE-09FA-44E6-96B2-B3F4555EEE0B}
+        ENDPROPERTIES
+        
+      FIELD #totalDiscAmount
+        REAL
+        PROPERTIES
+          Name                #totalDiscAmount
+          Label               #@RET3308
+          Table               #RetailTransactionSalesTransT
+          Origin              #{D3D0287E-1DAF-44B1-96D8-53A6C5D583AA}
+        ENDPROPERTIES
+        
+      FIELD #totalDiscInfoCodeLineNum
+        REAL
+        PROPERTIES
+          Name                #totalDiscInfoCodeLineNum
+          Table               #RetailTransactionSalesTransT
+          Origin              #{D6487247-50F1-402B-AC30-AFFD2B13C22C}
+        ENDPROPERTIES
+        
+      FIELD #totalDiscPct
+        REAL
+        PROPERTIES
+          Name                #totalDiscPct
+          Label               #@RET3309
+          Table               #RetailTransactionSalesTransT
+          Origin              #{F3B6BCBC-6676-49E5-8958-77DC9D3D16C6}
+        ENDPROPERTIES
+        
+      FIELD #totalRoundedAmount
+        REAL
+        PROPERTIES
+          Name                #totalRoundedAmount
+          Table               #RetailTransactionSalesTransT
+          Origin              #{29146FA8-B994-4F50-94D2-27AF4C41D469}
+        ENDPROPERTIES
+        
+      FIELD #transactionCode
+        ENUM
+        PROPERTIES
+          Name                #transactionCode
+          Table               #RetailTransactionSalesTransT
+          Origin              #{3B4D48B1-878A-4250-92F5-B2483ED52922}
+          EnumType            #RetailItemTransactionCode
+        ENDPROPERTIES
+        
+      FIELD #transactionId
+        STRING
+        PROPERTIES
+          Name                #transactionId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{776800C3-0E5A-474F-A1A9-3B3CB5D78608}
+          StringSize          #44
+        ENDPROPERTIES
+        
+      FIELD #transactionStatus
+        ENUM
+        PROPERTIES
+          Name                #transactionStatus
+          Table               #RetailTransactionSalesTransT
+          Origin              #{EC25AA1D-F2EC-4C81-BA2C-169E59DDF09E}
+          EnumType            #RetailEntryStatus
+        ENDPROPERTIES
+        
+      FIELD #transDate
+        DATE
+        PROPERTIES
+          Name                #transDate
+          Table               #RetailTransactionSalesTransT
+          Origin              #{55D47E57-0AD3-435A-BE26-CE10C963F8F8}
+        ENDPROPERTIES
+        
+      FIELD #transTime
+        INT
+        PROPERTIES
+          Name                #transTime
+          Table               #RetailTransactionSalesTransT
+          Origin              #{A49EB4DA-58E3-4792-8A41-D36318929663}
+        ENDPROPERTIES
+        
+      FIELD #unit
+        STRING
+        PROPERTIES
+          Name                #unit
+          Table               #RetailTransactionSalesTransT
+          Origin              #{F9872F90-6DB8-4F8A-800C-E1F721CFAE5A}
+        ENDPROPERTIES
+        
+      FIELD #unitPrice
+        REAL
+        PROPERTIES
+          Name                #unitPrice
+          Table               #RetailTransactionSalesTransT
+          Origin              #{3EBD0AC4-8FDD-4971-A481-298ABFF5C460}
+        ENDPROPERTIES
+        
+      FIELD #unitQty
+        REAL
+        PROPERTIES
+          Name                #unitQty
+          Table               #RetailTransactionSalesTransT
+          Origin              #{001B634F-78E7-4508-9E93-F264704E6A84}
+        ENDPROPERTIES
+        
+      FIELD #variantId
+        STRING
+        PROPERTIES
+          Name                #variantId
+          Table               #RetailTransactionSalesTransT
+          Origin              #{E9B568C1-5E96-4421-8F12-93A6FF46F196}
+        ENDPROPERTIES
+        
+      FIELD #weightItem
+        ENUM
+        PROPERTIES
+          Name                #weightItem
+          Table               #RetailTransactionSalesTransT
+          Origin              #{9BDE97AF-470D-45D1-AE8E-C63F09192DD1}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+      FIELD #weightManuallyEntered
+        ENUM
+        PROPERTIES
+          Name                #weightManuallyEntered
+          Table               #RetailTransactionSalesTransT
+          Origin              #{F3AD5F42-5AC6-4E31-8921-F5F24F7DF7D0}
+          EnumType            #NoYes
+        ENDPROPERTIES
+        
+    ENDFIELDS
+    GROUPS
+    ENDGROUPS
+    
+    INDICES
+      #pkidx
+      PROPERTIES
+        Name                #pkidx
+        AllowDuplicates     #No
+        Origin              #{859F6F82-0847-489B-BEFB-C4CFABF7398F}
+      ENDPROPERTIES
+      
+      INDEXFIELDS
+        #Channel
+        #lineNum
+        #transactionId
+        #terminalId
+        #store
+      ENDINDEXFIELDS
+      
+    ENDINDICES
+    FULLTEXTINDICES
+    ENDFULLTEXTINDICES
+    REFERENCES
+    ENDREFERENCES
+    
+    DELETEACTIONS
+    ENDDELETEACTIONS
+    
+    METHODS
+      SOURCE #InsertToRegularTable
+        #public static void InsertToRegularTable(RetailTransactionSalesTransT cursor)
+        #{
+        #    RetailTransactionSalesTrans target;
+        #    RetailTransactionSalesTransT cursor2;
+        #    int maxRetry = 5;
+        #    int retryCount = 0;
+        #    int i = 0;
+        #    container companies;
+        #    DataAreaID le;
+        #
+        #    while select crossCompany DataAreaId from cursor group by DataAreaId
+        #    {
+        #        companies += cursor.dataAreaId;
+        #    }
+        #
+        #    try
+        #    {
+        #        ttsBegin;
+        #        ++retryCount;
+        #
+        #        for (i = 1; i <= conLen(companies); ++i)
+        #        {
+        #            le = conPeek(companies, i);
+        #
+        #            changecompany(le)
+        #            {
+        #                target = null;
+        #                cursor2 = null;
+        #                cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #                delete_from cursor2
+        #                index hint pkidx
+        #                exists join target
+        #                index hint transactionLineIdx
+        #                where (target.@store==cursor2.@store && target.@terminalId==cursor2.@terminalId && target.@transactionId==cursor2.@transactionId && target.@lineNum==cursor2.@lineNum && target.@Channel==cursor2.@Channel);
+        #
+        #                cursor2.clear();
+        #                insert_recordset target(
+        #                    @barcode,
+        #                    @businessDate,
+        #                    @Catalog,
+        #                    @Channel,
+        #                    @comment,
+        #                    @costAmount,
+        #                    @counter,
+        #                    @custAccount,
+        #                    @custDiscAmount,
+        #                    @custInvoiceDiscAmount,
+        #                    @discAmount,
+        #                    @discAmountFromStdPrice,
+        #                    @discGroupId,
+        #                    @discOfferId,
+        #                    @DiscountAmountForPrinting,
+        #                    @DlvMode,
+        #                    @ElectronicDeliveryEmail,
+        #                    @ElectronicDeliveryEmailContent,
+        #                    @FileLogId,
+        #                    @giftcard,
+        #                    @infocodeDiscAmount,
+        #                    @InventBatchId,
+        #                    @inventDimId,
+        #                    @InventLocationId,
+        #                    @InventSerialId,
+        #                    @InventSiteId,
+        #                    @inventTransId,
+        #                    @itemCorrectedLine,
+        #                    @itemId,
+        #                    @itemIdScanned,
+        #                    @itemPostingGroup,
+        #                    @keyboardItemEntry,
+        #                    @lineDscAmount,
+        #                    @LineManualDiscountAmount,
+        #                    @LineManualDiscountPercentage,
+        #                    @lineNum,
+        #                    @lineWasDiscounted,
+        #                    @linkedItemNotOriginal,
+        #                    @ListingId,
+        #                    @LogisticsPostalAddress,
+        #                    @LoyaltyDiscAmount_RU,
+        #                    @LoyaltyDiscPct_RU,
+        #                    @netAmount,
+        #                    @netAmountInclTax,
+        #                    @netPrice,
+        #                    @originalOfLinkedItemList,
+        #                    @originalPrice,
+        #                    @OriginalTaxGroup,
+        #                    @OriginalTaxItemGroup,
+        #                    @periodicDiscAmount,
+        #                    @periodicDiscGroup,
+        #                    @periodicDiscType,
+        #                    @PeriodicPercentageDiscount,
+        #                    @prescriptionId,
+        #                    @price,
+        #                    @priceChange,
+        #                    @priceInBarcode,
+        #                    @purchId,
+        #                    @qty,
+        #                    @ReceiptDateRequested,
+        #                    @receiptId,
+        #                    @replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @returnLineNum,
+        #                    @returnNoSale,
+        #                    @returnQty,
+        #                    @returnStore,
+        #                    @returnTerminalId,
+        #                    @returnTransactionId,
+        #                    @RFIDTagId,
+        #                    @scaleItem,
+        #                    @section,
+        #                    @shelf,
+        #                    @shift,
+        #                    @shiftDate,
+        #                    @ShippingDateRequested,
+        #                    @staffId,
+        #                    @statementCode,
+        #                    @stdNetPrice,
+        #                    @store,
+        #                    @taxAmount,
+        #                    @taxGroup,
+        #                    @TaxItemGroup,
+        #                    @terminalId,
+        #                    @totalDiscAmount,
+        #                    @totalDiscInfoCodeLineNum,
+        #                    @totalDiscPct,
+        #                    @totalRoundedAmount,
+        #                    @transactionCode,
+        #                    @transactionId,
+        #                    @transactionStatus,
+        #                    @transDate,
+        #                    @transTime,
+        #                    @unit,
+        #                    @unitPrice,
+        #                    @unitQty,
+        #                    @variantId,
+        #                    @weightItem,
+        #                    @weightManuallyEntered,
+        #                    @Origin
+        #                )
+        #                select
+        #                    @barcode,
+        #                    @businessDate,
+        #                    @Catalog,
+        #                    @Channel,
+        #                    @comment,
+        #                    @costAmount,
+        #                    @counter,
+        #                    @custAccount,
+        #                    @custDiscAmount,
+        #                    @custInvoiceDiscAmount,
+        #                    @discAmount,
+        #                    @discAmountFromStdPrice,
+        #                    @discGroupId,
+        #                    @discOfferId,
+        #                    @DiscountAmountForPrinting,
+        #                    @DlvMode,
+        #                    @ElectronicDeliveryEmail,
+        #                    @ElectronicDeliveryEmailContent,
+        #                    @FileLogId,
+        #                    @giftcard,
+        #                    @infocodeDiscAmount,
+        #                    @InventBatchId,
+        #                    @inventDimId,
+        #                    @InventLocationId,
+        #                    @InventSerialId,
+        #                    @InventSiteId,
+        #                    @inventTransId,
+        #                    @itemCorrectedLine,
+        #                    @itemId,
+        #                    @itemIdScanned,
+        #                    @itemPostingGroup,
+        #                    @keyboardItemEntry,
+        #                    @lineDscAmount,
+        #                    @LineManualDiscountAmount,
+        #                    @LineManualDiscountPercentage,
+        #                    @lineNum,
+        #                    @lineWasDiscounted,
+        #                    @linkedItemNotOriginal,
+        #                    @ListingId,
+        #                    @LogisticsPostalAddress,
+        #                    @LoyaltyDiscAmount_RU,
+        #                    @LoyaltyDiscPct_RU,
+        #                    @netAmount,
+        #                    @netAmountInclTax,
+        #                    @netPrice,
+        #                    @originalOfLinkedItemList,
+        #                    @originalPrice,
+        #                    @OriginalTaxGroup,
+        #                    @OriginalTaxItemGroup,
+        #                    @periodicDiscAmount,
+        #                    @periodicDiscGroup,
+        #                    @periodicDiscType,
+        #                    @PeriodicPercentageDiscount,
+        #                    @prescriptionId,
+        #                    @price,
+        #                    @priceChange,
+        #                    @priceInBarcode,
+        #                    @purchId,
+        #                    @qty,
+        #                    @ReceiptDateRequested,
+        #                    @receiptId,
+        #                    @replicated,
+        #                    @replicationCounterFromOrigin,
+        #                    @returnLineNum,
+        #                    @returnNoSale,
+        #                    @returnQty,
+        #                    @returnStore,
+        #                    @returnTerminalId,
+        #                    @returnTransactionId,
+        #                    @RFIDTagId,
+        #                    @scaleItem,
+        #                    @section,
+        #                    @shelf,
+        #                    @shift,
+        #                    @shiftDate,
+        #                    @ShippingDateRequested,
+        #                    @staffId,
+        #                    @statementCode,
+        #                    @stdNetPrice,
+        #                    @store,
+        #                    @taxAmount,
+        #                    @taxGroup,
+        #                    @TaxItemGroup,
+        #                    @terminalId,
+        #                    @totalDiscAmount,
+        #                    @totalDiscInfoCodeLineNum,
+        #                    @totalDiscPct,
+        #                    @totalRoundedAmount,
+        #                    @transactionCode,
+        #                    @transactionId,
+        #                    @transactionStatus,
+        #                    @transDate,
+        #                    @transTime,
+        #                    @unit,
+        #                    @unitPrice,
+        #                    @unitQty,
+        #                    @variantId,
+        #                    @weightItem,
+        #                    @weightManuallyEntered,
+        #                    @Origin
+        #                    from cursor2;
+        #            }
+        #        }
+        #
+        #        ttsCommit;
+        #    }
+        #    catch(Exception::Error)
+        #    {
+        #        if (retryCount >= maxRetry)
+        #        {
+        #            throw Exception::Error;
+        #        }
+        #        else
+        #        {
+        #            retry;
+        #        }
+        #    }
+        #}
+      ENDSOURCE
+      SOURCE #UpdateUploadCounter
+        #public static void UpdateUploadCounter(RetailTransactionSalesTransT cursor)
+        #{
+        #    RetailTransactionSalesTransT cursor2;
+        #    RefRecId dataStoreRecID;
+        #    ;
+        #
+        #    cursor2.linkPhysicalTableInstance(cursor);
+        #
+        #    while select crossCompany Origin, maxof(replicationCounterFromOrigin) from cursor2
+        #        group by Origin
+        #    {
+        #        dataStoreRecID = str2int64(cursor2.Origin);
+        #        RetailCDXUploadCounter::updateCounter(dataStoreRecID, tableStr(RetailTransactionSalesTrans), cursor2.replicationCounterFromOrigin);
+        #    }
+        #}
+      ENDSOURCE
+    ENDMETHODS
+  ENDTABLE
+  
+
+***Element: END

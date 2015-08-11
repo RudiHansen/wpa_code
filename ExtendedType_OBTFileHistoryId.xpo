@@ -11,6 +11,8 @@ Formatversion: 1
   GUID
     PROPERTIES
       Name                #OBTFileHistoryId
+      Origin              #{244AA1CD-95A5-4DED-B42C-FFAAF9F48C93}
+      LegacyId            #50064
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -18,6 +20,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

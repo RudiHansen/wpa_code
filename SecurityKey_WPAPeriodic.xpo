@@ -12,6 +12,8 @@ Formatversion: 1
       Name                #WPAPeriodic
       Label               #@SYS8782
       ParentKey           #WPA
+      Origin              #{EAB78E4D-28E3-4B09-8786-5A1C00276884}
+      LegacyId            #50006
     ENDPROPERTIES
     
   ENDSECURITYKEY

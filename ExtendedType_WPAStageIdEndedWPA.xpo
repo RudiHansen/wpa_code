@@ -13,6 +13,8 @@ Formatversion: 1
       Name                #WPAStageIdEndedWPA
       Label               #@WPA182
       HelpText            #@WPA183
+      Origin              #{B745D8C7-7720-430D-981A-9D2E4B0C66E8}
+      LegacyId            #50047
       Extends             #SMAStageId
     ENDPROPERTIES
     
@@ -21,6 +23,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   

@@ -11,6 +11,8 @@ Formatversion: 1
   INT64
     PROPERTIES
       Name                #OBTRecordsProcessed
+      Origin              #{A9728083-8D23-4B90-9475-28E7B2A60345}
+      LegacyId            #50063
     ENDPROPERTIES
     
     TYPEELEMENTS
@@ -18,6 +20,9 @@ Formatversion: 1
     
     TYPEREFERENCES
     ENDTYPEREFERENCES
+    
+    TYPELOOKUPS
+    ENDTYPELOOKUPS
     
   ENDUSERTYPE
   
